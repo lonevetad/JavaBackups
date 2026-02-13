@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import common.PainterMolm;
 import common.PainterMolmPaintingOncePerRun;
@@ -52,7 +53,7 @@ public class MolmVisualizer extends JScrollPane {
 	}
 
 	protected MolmVisualizer(JPanelMolmVis view, PainterMolm painter) {
-		super(view, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		super(view, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		setPainter(painter);
 		(jpMolmVisualizer = view).mv = this;
 		setViewportView(view);

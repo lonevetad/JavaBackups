@@ -42,6 +42,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 public class GridBagLayoutDemo {
 	final static boolean shouldFill = true;
@@ -113,7 +114,7 @@ public class GridBagLayoutDemo {
 	private static void createAndShowGUI() {
 		// Create and set up the window.
 		JFrame frame = new JFrame("GridBagLayoutDemo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// Set up the content pane.
 		addComponentsToPane(frame.getContentPane());

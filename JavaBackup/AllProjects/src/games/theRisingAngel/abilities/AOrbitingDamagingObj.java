@@ -2,13 +2,12 @@ package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.GameObjectsManager;
+import games.generic.controlModel.abilities.impl.AOrbitingSpawningBlobs;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageTypeGeneric;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AOrbitingSpawningBlobs;
-import games.generic.controlModel.subimpl.GModalityRPG;
-import games.theRisingAngel.GModalityTRAn;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.GModalityTRAnBaseWorld;
 import geometry.AbstractShape2D;
 import geometry.ObjectShaped;
 import geometry.implementations.shapes.ShapeCircle;
@@ -20,15 +19,12 @@ import tools.UniqueIDProvider;
  */
 public abstract class AOrbitingDamagingObj extends AOrbitingSpawningBlobs {
 	private static final long serialVersionUID = 1L;
-	protected static final int HIT_PROBAB_PER_THOUSAND_BONUS = 100;
+	protected static final int HIT_PROBAB_PER_THOUSAND_BONUS = 750;
+	protected static final UniqueIDProvider UIDP_ORBITING_DAMAGING_OBJS = UniqueIDProvider.newBasicIDProvider();
 
-	public AOrbitingDamagingObj() {
-		super();
-		idProvOrbs = UniqueIDProvider.newBasicIDProvider();
-	}
+	public AOrbitingDamagingObj(GModality gameModality, String name) { super(gameModality, name); }
 
 	protected DamageGeneric damageToDeal;
-	protected UniqueIDProvider idProvOrbs;
 
 	public DamageGeneric getDamageToDeal() { return damageToDeal; }
 
@@ -44,26 +40,30 @@ public abstract class AOrbitingDamagingObj extends AOrbitingSpawningBlobs {
 
 	@Override
 	protected void interactWith(GModality modality, int index, ObjectShaped os, ObjectShaped target) {
-		GModalityTRAn gmtrar;
+		GModalityTRAnBaseWorld gmtrar;
 		GameObjectsManager gom;
-		gmtrar = (GModalityTRAn) modality;
+		gmtrar = (GModalityTRAnBaseWorld) modality;
 		gom = gmtrar.getGameObjectsManager();
 		gom.dealsDamageTo((DamageDealerGeneric) os, (CreatureSimple) target, damageToDeal);
 	}
 
+	//
+
+	//
+
 	protected class OrbDamaging implements ObjectShaped, DamageDealerGeneric {
 		private static final long serialVersionUID = 1L;
-		Integer ID;
-		AbstractShape2D shape;
+		protected final Long ID;
+		protected AbstractShape2D shape;
 
 		public OrbDamaging() {
 			super();
-			ID = idProvOrbs.getNewID();
-			shape = new ShapeCircle(0, 0, true, GModalityRPG.SPACE_SUB_UNITS_EVERY_UNIT_EXAMPLE);
+			ID = UIDP_ORBITING_DAMAGING_OBJS.getNewID();
+			shape = new ShapeCircle(0, 0, true, getGameModality().getSpaceSubunitsEachMacrounits());
 		}
 
 		@Override
-		public Integer getID() { return ID; }
+		public Long getID() { return ID; }
 
 		@Override
 		public String getName() { return null; }
@@ -75,7 +75,7 @@ public abstract class AOrbitingDamagingObj extends AOrbitingSpawningBlobs {
 			p = HIT_PROBAB_PER_THOUSAND_BONUS;
 			if (owner instanceof DamageDealerGeneric) {
 				caster = (DamageDealerGeneric) owner;
-				p += caster.getPercentageCriticalStrikeMultiplier(damageType);
+				p += caster.getProbabilityPerThousandHit(damageType);
 			}
 			return p;
 		}
@@ -95,5 +95,13 @@ public abstract class AOrbitingDamagingObj extends AOrbitingSpawningBlobs {
 
 		}
 
+		@Override
+		public int getDamageBonus(DamageTypeGeneric damageType) { return 0; }
+
+		@Override
+		public int getDamageBonusPercentage(DamageTypeGeneric damageType) { return 0; }
+
+		@Override
+		public boolean setID(Long newID) { return false; }
 	}
 }

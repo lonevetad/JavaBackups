@@ -3,33 +3,34 @@ package games.theRisingAngel.abilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.gObj.CurrencyHolder;
-import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingAttributesRealTime;
+import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.holders.CurrencyHolder;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
+import games.generic.controlModel.misc.Currency;
 import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.objects.creature.BaseCreatureRPG;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 
 public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRealTime implements GEventObserver {
 	private static final long serialVersionUID = -69287821202158L;
 	public static final String NAME = "Buying Reducion ";
 	public static final int RARITY = 3;
 
-	public ADamageReductionCurrencyBased() {// (DamageTypesTRAn dt
-		this(RARITY);
+	public ADamageReductionCurrencyBased(GModality gm) {// (DamageTypesTRAn dt
+		this(gm, RARITY);
 	}
 
-	public ADamageReductionCurrencyBased(int rarity) {
+	public ADamageReductionCurrencyBased(GModality gameModality, int rarity) {
 //			super(NAME + dt.getName(), AttributesTRAn.damageReductionByType(dt));
-		super(NAME + rarity,
-				new AttributesTRAn[] { AttributesTRAn.DamageReductionPhysical, AttributesTRAn.DamageReductionMagical });
+		super(gameModality, NAME + rarity,
+				new AttributesTRAn[] { AttributesTRAn.PhysicalDamageReduction, AttributesTRAn.MagicalDamageReduction });
 		this.eventsWatching = new ArrayList<>(2);
 		this.eventsWatching.add(EventsTRAn.DamageReceived.getName());
 		perThousandFraction = 0;
@@ -45,12 +46,12 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	//
 
 	@Override
-	public Integer getObserverID() { return getID(); }
+	public Long getObserverID() { return getID(); }
 
 	/**
 	 * Get the "percentage" (but it's over a thousand, 1000, not the classical
 	 * hundred of "%") of the currency held to be converted to
-	 * {@link AttributesTRAn.DamageReductionPhysical}.
+	 * {@link AttributesTRAn.PhysicalDamageReduction}.
 	 */
 	public int getPerThousandFraction() { return perThousandFraction; }
 
@@ -64,7 +65,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 		if (!(c instanceof CurrencyHolder))
 			return 0;
 		ch = ((CurrencyHolder) c).getCurrencies();
-		a = ch.getCurrencyAmount(CurrencySet.BASE_CURRENCY_INDEX);
+		a = ch.getCurrencyAmount(ch.getCurrencies()[CurrencySet.BASE_CURRENCY_INDEX]);
 		return a > 0 ? a : 0;
 	}
 
@@ -78,8 +79,8 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	//
 
 	@Override
-	public void updateAttributesModifiersValues(GModality gm, /* EquipmentItem ei, */ CreatureSimple ah,
-			CreatureAttributes ca) {
+	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+			int levelAbility) {
 		int reduct;
 		AttributeModification am;
 		reduct = (getDefaultCurrencyAmount(ah) * getPerThousandFraction()) / 1000;
@@ -94,6 +95,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 		EventDamageTRAn ed;
 		BaseCreatureRPG c;
 		CurrencySet ch;
+		Currency curr;
 		if (ge.getName() == EventsTRAn.DamageReceived.getName()) {
 			ed = (EventDamageTRAn) ge;
 //			damage = ed.getDamage();
@@ -101,11 +103,12 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 			if (!(c instanceof CurrencyHolder))
 				return;
 			ch = ((CurrencyHolder) c).getCurrencies();
-			a = ch.getCurrencyAmount(CurrencySet.BASE_CURRENCY_INDEX);
+			curr = ch.getCurrencies()[CurrencySet.BASE_CURRENCY_INDEX];
+			a = ch.getCurrencyAmount(curr);
 			a -= Math.min(//
 					((a * getPerThousandFraction()) / 1000), //
 					((maximumReduction * getPerThousandFraction()) / 1000));
-			ch.setCurrencyAmount(CurrencySet.BASE_CURRENCY_INDEX, //
+			ch.setCurrencyAmount(curr, //
 					a > 0 ? a : 0);
 //	super.getAttributeToModify().
 		}

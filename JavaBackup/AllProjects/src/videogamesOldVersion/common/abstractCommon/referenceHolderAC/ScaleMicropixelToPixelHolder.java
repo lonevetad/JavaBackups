@@ -1,6 +1,6 @@
 package common.abstractCommon.referenceHolderAC;
 
-import common.mainTools.mOLM.MatrixObjectLocationManager;
+import videogamesOldVersion.common.mainTools.mOLM.MatrixObjectLocationManager;
 
 public interface ScaleMicropixelToPixelHolder {
 

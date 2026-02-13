@@ -1,6 +1,7 @@
 package tests.tGame.tgEvent1;
 
 import games.theRisingAngel.GControllerTRAn;
+import tests.tGame.GModality_E1;
 
 public class GC_E1 extends GControllerTRAn {
 	public static final String GM_NAME = "TEST";

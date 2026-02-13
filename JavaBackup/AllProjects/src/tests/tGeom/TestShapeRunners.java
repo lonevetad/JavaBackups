@@ -274,7 +274,7 @@ public class TestShapeRunners extends TestGeneric {
 
 		ShapeRunnersModel m;
 		SquarePainter squarePainter;
-//		ShapeFieldsManager[] 
+//		ShapeFieldsManager[]
 		Map<ShapeRunnersImplemented, ShapeFieldsManager> shapeManagers;
 		ShapeFieldsManager displayedShapeManager;
 		JPanel jpGridViewer, jpShapeManagerContainer;
@@ -393,7 +393,7 @@ public class TestShapeRunners extends TestGeneric {
 				public int getHeight() { return JPANEL_DIMENSION; }
 				/*
 				 * @Override public int getX() { return 0; }
-				 * 
+				 *
 				 * @Override public int getY() { return 0; }
 				 */
 			};

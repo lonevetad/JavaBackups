@@ -6,9 +6,7 @@ import tests.tGame.tgEvent1.GEventInterface_E1;
 
 public class ObjPrinter_EventDeliver extends ObjPrinterTO {
 
-	public ObjPrinter_EventDeliver(long timeThreshold, String text) {
-		super(timeThreshold, text);
-	}
+	public ObjPrinter_EventDeliver(GModality gm, long timeThreshold, String text) { super(gm, timeThreshold, text); }
 
 	@Override
 	public void executeAction(GModality modality) {

@@ -39,6 +39,25 @@ public interface AbstractObjectsInSpaceManager<Distance extends Number> extends 
 	//
 
 	/**
+	 * See {@link #getAt(int, int)};
+	 *
+	 * @param location the location to look at
+	 * @return
+	 */
+	public default ObjectLocated getAt(Point location) { return getAt(location.x, location.y); }
+
+	/**
+	 * Returns the first available object which occupies that location, or
+	 * {@code null} if none is available.
+	 *
+	 * @param x the x-component of the location to look at
+	 * @param y the y-component of the location to look at
+	 * @return the first available object which occupies that location, or
+	 *         {@code null} if none is available
+	 */
+	public ObjectLocated getAt(int x, int y);
+
+	/**
 	 * Add the given {@link ObjectLocated} into the space managed by this manager.
 	 * <br>
 	 * Note: Should check if the given {@link ObjectLocated} lies inside the
@@ -48,6 +67,10 @@ public interface AbstractObjectsInSpaceManager<Distance extends Number> extends 
 	public boolean add(ObjectLocated o);
 
 	public boolean contains(ObjectLocated o);
+
+	public default boolean containsAt(Point location) { return containsAt(location.x, location.y); }
+
+	public default boolean containsAt(int x, int y) { return this.getAt(x, y) != null; }
 
 	public boolean remove(ObjectLocated o);
 
@@ -160,20 +183,23 @@ public interface AbstractObjectsInSpaceManager<Distance extends Number> extends 
 	}
 
 	/**
-	 * Queris all objects located in the given area, if any, moving that area along
+	 * Quereis all objects located in the given area, if any, moving that area along
 	 * a specific path, that requires at least two point (the starting point must be
 	 * provided, the last point is the end.
+	 *
+	 * @param areaToLookInto area to query
+	 * @param collector      methodology to collect the objects found
 	 */
-	public Set<ObjectLocated> findInPath(AbstractShape2D areaToLookInto, ObjCollector<ObjectLocated> collector,
+	public Set<ObjectLocated> collectInPath(AbstractShape2D areaToLookInto, ObjCollector<ObjectLocated> collector,
 			List<Point> path);
 
 	/**
-	 * Queris all objects located in the given area, if any, moving that area along
-	 * a specific path, that requires at least two point (the starting point must be
-	 * provided, the last point is the end.
+	 * Queries all objects located in the given area, if any, moving linearly that
+	 * area along a specific path, that requires at least two point (the starting
+	 * point must be provided, the last point is the end.
 	 */
-	public default Set<ObjectLocated> findInPath(AbstractShape2D areaToLookInto, List<Point> path) {
-		return this.findInPath(areaToLookInto, null, path);
+	public default Set<ObjectLocated> collectInPath(AbstractShape2D areaToLookInto, List<Point> path) {
+		return this.collectInPath(areaToLookInto, null, path);
 	}
 
 	//

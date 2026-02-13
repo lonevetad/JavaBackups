@@ -36,9 +36,7 @@ public interface ObjectsInSpaceConsumer extends BiConsumer<Point2D, ObjectLocate
 		Predicate<ObjectLocated> objectFilter;
 		areaToLookInto = getArea();
 		objectFilter = getObjectFilter();
-		if (areaToLookInto != null && (!areaToLookInto.contains(objectInSpace.getLocation())))
-			return;
-		if (objectFilter != null && (!objectFilter.test(objectInSpace)))
+		if ((areaToLookInto != null && (!areaToLookInto.contains(objectInSpace.getLocation()))) || (objectFilter != null && (!objectFilter.test(objectInSpace))))
 			return;
 		acceptImpl(location, objectInSpace);
 	}

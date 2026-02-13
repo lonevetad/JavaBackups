@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 import dataStructures.PriorityQueueKey;
 import tools.LoggerMessages;
-import tools.LoggerOnFile;
+import tools.impl.LoggerOnFile;
 
 public class TestPriorityQueueKey {
 

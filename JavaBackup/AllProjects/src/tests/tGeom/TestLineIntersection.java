@@ -223,7 +223,7 @@ public class TestLineIntersection extends TestShapeIntersection {
 	 * Point2D.Double(); } void setStuffs(int px, int py, boolean isStart, boolean
 	 * isFirst) { this.p.setLocation(px, py); this.isFirst = isFirst; this.isStart =
 	 * isStart; }
-	 * 
+	 *
 	 * @Override public void update() { model.setCoordinates(p, isStart, isFirst); }
 	 * }
 	 */

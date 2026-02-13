@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 public abstract class TestWithGUI {
 
@@ -17,7 +18,7 @@ public abstract class TestWithGUI {
 
 	protected final void init() {
 		win = new JFrame(this.getClass().getSimpleName());
-		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jp = new JPanel(gbl = new GridBagLayout()) {
 			private static final long serialVersionUID = 9840651960L;
 

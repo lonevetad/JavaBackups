@@ -2,9 +2,9 @@ package games.theRisingArmy.abilities;
 
 import java.io.Serializable;
 
-import games.theRisingArmy.MainController_TheRisingArmy;
-import games.theRisingArmy.abstractTRAr.AbstractAbilityTRAr;
-import games.theRisingArmy.abstractTRAr.GameObjectTRAr;
+import videogamesOldVersion.games.theRisingArmy.MainController_TheRisingArmy;
+import videogamesOldVersion.games.theRisingArmy.abstractTRAr.AbstractAbilityTRAr;
+import videogamesOldVersion.games.theRisingArmy.abstractTRAr.GameObjectTRAr;
 
 /**
  * Define a tiny set of variables needed by {@link AbstractAbilityTRAr}.<br>

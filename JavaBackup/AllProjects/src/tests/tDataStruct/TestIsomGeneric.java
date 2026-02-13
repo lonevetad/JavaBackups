@@ -12,7 +12,7 @@ import dataStructures.MapTreeAVL;
 import dataStructures.isom.matrixBased.MISOM_SingleObjInNode;
 import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.gObj.ObjectInSpace;
+import games.generic.controlModel.objects.ObjectInSpace;
 import geometry.AbstractShape2D;
 import geometry.ShapeRunnersImplemented;
 import tests.tDataStruct.TestIsom.ControllerTestIsom;

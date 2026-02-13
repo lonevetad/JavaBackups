@@ -30,6 +30,8 @@ public class ShapeRectangle extends ShapeFillableImpl {
 		this.diameterCache = s.diameterCache;
 	}
 
+	public ShapeRectangle(boolean isFilled, int width, int height) { this(0, 0, 0, isFilled, width, height); }
+
 	public ShapeRectangle(double angleRotation, int xCenter, int yCenter, boolean isFilled, int width, int height) {
 		super((isFilled ? ShapeRunnersImplemented.Rectangle : ShapeRunnersImplemented.RectangleBorder), angleRotation,
 				xCenter, yCenter, isFilled);

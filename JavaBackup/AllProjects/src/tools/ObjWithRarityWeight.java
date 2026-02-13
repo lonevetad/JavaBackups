@@ -1,9 +1,9 @@
 package tools;
 
 /**
- * See {@link RandomWeightedIndexes}.
+ * See {@link WeightedSetOfRandomOutcomes}.
  */
-public interface ObjWithRarityWeight {
+public interface ObjWithRarityWeight extends ObjectNamedID {
 	public int getRarityWeight();
 
 	public ObjWithRarityWeight setRarityWeight(int weight);

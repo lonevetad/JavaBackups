@@ -3,18 +3,18 @@ package tests.tGame.tgEvent1.oggettiDesempio;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.GameObjectGeneric;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.objects.GameObjectGeneric;
 import tools.UniqueIDProvider;
 
 public class ObserverPrinterEvent implements GEventObserver, GameObjectGeneric {
-	protected Integer ID;
+	protected Long ID;
 	protected List<String> eventsWatching;
 
 	public ObserverPrinterEvent() {
-		this.ID = UniqueIDProvider.GENERAL_UNIQUE_ID_PROVIDER.getNewID();
+		this.ID = UniqueIDProvider.UDIP_GENERAL.getNewID();
 		this.eventsWatching = new ArrayList<>(2);
 		this.eventsWatching.add(EventPrinter.PRINTER_EVENT_NAME);
 	}
@@ -27,7 +27,7 @@ public class ObserverPrinterEvent implements GEventObserver, GameObjectGeneric {
 	}
 
 	@Override
-	public Integer getID() { return ID; }
+	public Long getID() { return ID; }
 
 	@Override
 	public List<String> getEventsWatching() { return this.eventsWatching; }

@@ -10,35 +10,35 @@ public abstract class ZeroComparatorES<E extends Number> extends TwoNumberHolder
 	private static final long serialVersionUID = -1414515142523L;
 
 	public ZeroComparatorES(Integer v1) {
-		this((E) v1, (E) Integer.valueOf(0));
+		this(v1, Integer.valueOf(0));
 	}
 
 	public ZeroComparatorES(Double v1) {
-		this((E) v1, (E) Double.valueOf(0.0));
+		this(v1, Double.valueOf(0.0));
 	}
 
 	public ZeroComparatorES(Long v1) {
-		this((E) v1, (E) Long.valueOf(0));
+		this(v1, Long.valueOf(0));
 	}
 
 	public ZeroComparatorES(Float v1) {
-		this((E) v1, (E) Float.valueOf(0));
+		this(v1, Float.valueOf(0));
 	}
 
 	public ZeroComparatorES(Byte v1) {
-		this((E) v1, (E) Byte.valueOf((byte) 0));
+		this(v1, Byte.valueOf((byte) 0));
 	}
 
 	public ZeroComparatorES(Short v1) {
-		this((E) v1, (E) Short.valueOf((short) 0));
+		this(v1, Short.valueOf((short) 0));
 	}
 
 	public ZeroComparatorES(BigInteger v1) {
-		this((E) v1, (E) BigInteger.ZERO);
+		this(v1, BigInteger.ZERO);
 	}
 
 	public ZeroComparatorES(BigDecimal v1) {
-		this((E) v1, (E) BigDecimal.ZERO);
+		this(v1, BigDecimal.ZERO);
 	}
 
 	protected ZeroComparatorES(E v1, E v2) {

@@ -26,7 +26,7 @@ public class ShapePolygon extends ShapeFillableImpl {
 		super(isFilled ? ShapeRunnersImplemented.Polygon : ShapeRunnersImplemented.PolygonBorder);
 	}
 
-	Point2D[] points;
+	protected Point2D[] points;
 
 	public Point2D[] getPoints() { return points; }
 

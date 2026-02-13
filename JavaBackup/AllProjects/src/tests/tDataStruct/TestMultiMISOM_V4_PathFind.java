@@ -26,13 +26,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 
 import dataStructures.MapTreeAVL;
 import dataStructures.isom.MultiISOMRetangularCaching;
 import dataStructures.isom.MultiISOMRetangularMap;
 import dataStructures.isom.MultiISOMRetangularMap.MatrixISOMLocatedInSpace;
 import dataStructures.isom.ObjLocatedCollectorIsom;
-import dataStructures.isom.MultiISOMRetangularMap.MatrixISOMLocatedInSpace;
 import dataStructures.isom.matrixBased.MISOM_SingleObjInNode;
 import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager;
 import geometry.AbstractShape2D;
@@ -43,6 +43,7 @@ import stuffs.logic.AtomLogicProposition;
 import tools.Comparators;
 import tools.LoggerMessages;
 import tools.NumberManager;
+import tools.UniqueIDProvider;
 
 public class TestMultiMISOM_V4_PathFind {
 	public static final int MAXIMUM_SUBMAPS_EACH_SECTION = 4, MINIMUM_DIMENSION_MAP = 4, PIXEL_EACH_CELL = 10;
@@ -482,7 +483,7 @@ public class TestMultiMISOM_V4_PathFind {
 		MyRectangle[] rects;
 		MultiISOMRetangularMap<Double> t;
 		T_MISOM_GUI_V4 gui;
-		Map<Integer, MyRectangle> mapIdToMyrect;
+		Map<Long, MyRectangle> mapIdToMyrect;
 		Point ps, pe;
 		List<Point> path;
 		RectanglesAndPathfindingPoints rapf;
@@ -514,8 +515,7 @@ public class TestMultiMISOM_V4_PathFind {
 		}
 	}
 
-	static String nameRectContaining(MultiISOMRetangularMap<Double> t, Point p,
-			Map<Integer, MyRectangle> mapIdToMyrect) {
+	static String nameRectContaining(MultiISOMRetangularMap<Double> t, Point p, Map<Long, MyRectangle> mapIdToMyrect) {
 		MatrixISOMLocatedInSpace<Double> m;
 		m = t.getMapLocatedContaining(p);
 		if (m == null)
@@ -540,7 +540,7 @@ public class TestMultiMISOM_V4_PathFind {
 		JScrollPane jsp;
 		JComboBox<Integer> mapsToLoad;
 		JButton jbPrintMap;
-		Map<Integer, MyRectangle> rects = null;
+		Map<Long, MyRectangle> rects = null;
 		Checkbox cbIsPointwise;
 		MultiISOMRetangularMap<Double> t;
 		MyRectangle newRect = null;
@@ -582,7 +582,7 @@ public class TestMultiMISOM_V4_PathFind {
 			MouseAdapter ma;
 			KeyAdapter ka;
 			win = new JFrame("Test Multi ISOM");
-			win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			win.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			jp = new JPanel(new BorderLayout());
 			win.add(jp);
 			jpNorthPart = new JPanel(new FlowLayout());
@@ -707,8 +707,7 @@ public class TestMultiMISOM_V4_PathFind {
 
 		void checkAndResetRects() {
 			if (rects == null) {
-				rects = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration,
-						Comparators.INTEGER_COMPARATOR);
+				rects = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration, Comparators.LONG_COMPARATOR);
 			}
 		}
 
@@ -1019,18 +1018,18 @@ public class TestMultiMISOM_V4_PathFind {
 				if (isPointwisePathfind) {
 					pathFound = t.getPath(startPathfind, endPathfind);
 				} else {
-					ObjectShaped os;
-					ShapeRectangle sr;
-					os = new ObjectShapedBase_V4();
+//					ObjectShaped os;
+					ShapeRectangle sr; // 25*01*2022
+//					os = new ObjectShapedBase_V4();
 					sr = new ShapeRectangle(0.0, startPathfind.x - 3, startPathfind.y - 2, true, 7, 4);
 					System.out.println(sr);
-					os.setShape(sr);
+//					os.setShape(sr);
 //					System.out.println("os is: " + os);
-					pathFound = t.getPath(os, endPathfind);
-					System.out.println("pathfind shaped ended with " + //
-							((pathFound == null) ? "null" : pathFound.size()) + " steps");
+//					pathFound = t.getPath(os, endPathfind);
+//					System.out.println("pathfind shaped ended with " + //
+//							((pathFound == null) ? "null" : pathFound.size()) + " steps");
 				}
-				showPath(pathFound);
+//				showPath(pathFound);
 			} else
 				System.out.println("no Path found: (from: " + this.startPathfind + ", to: " + this.endPathfind + ")");
 		}
@@ -1063,10 +1062,19 @@ public class TestMultiMISOM_V4_PathFind {
 
 		protected static class ObjectShapedBase_V4 implements ObjectShaped {
 			private static final long serialVersionUID = 65152087878L;
+			public static final UniqueIDProvider UIDP_OBJ_SHAPE_V4 = UniqueIDProvider.newBasicIDProvider();
+
+			public ObjectShapedBase_V4(AbstractShape2D shape) {
+				super();
+				this.shape = shape;
+				this.id = UIDP_OBJ_SHAPE_V4.getNewID();
+			}
+
+			Long id;
 			AbstractShape2D shape;
 
 			@Override
-			public Integer getID() { return null; }
+			public Long getID() { return id; }
 
 			@Override
 			public void setShape(AbstractShape2D shape) { this.shape = shape; }
@@ -1082,14 +1090,14 @@ public class TestMultiMISOM_V4_PathFind {
 				super();
 				this.nodeIsomProvider = nodeIsomProvider;
 				this.mapBackMapsCollected = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration,
-						Comparators.INTEGER_COMPARATOR);
+						Comparators.LONG_COMPARATOR);
 				this.mapsCollected = this.mapBackMapsCollected.toSetValue(m -> m.getID());
 				filter = m -> m != null;
 			}
 
 			protected MultiISOMRetangularMap<Double> nodeIsomProvider;
 			protected Set<MatrixISOMLocatedInSpace<Double>> mapsCollected;
-			protected MapTreeAVL<Integer, MatrixISOMLocatedInSpace<Double>> mapBackMapsCollected;
+			protected MapTreeAVL<Long, MatrixISOMLocatedInSpace<Double>> mapBackMapsCollected;
 			protected Predicate<MatrixISOMLocatedInSpace<Double>> filter;
 
 			// @Override

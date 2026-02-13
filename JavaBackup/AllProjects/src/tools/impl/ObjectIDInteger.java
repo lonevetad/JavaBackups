@@ -19,9 +19,7 @@ public class ObjectIDInteger implements ObjWithIDGeneric<Integer> {
 		return Comparators.INTEGER_COMPARATOR.compare(o1.ID, o2.ID);
 	};
 
-	public static int getProgressiveID() {
-		return progressiveID;
-	}
+	public static int getProgressiveID() { return progressiveID; }
 
 	//
 
@@ -29,13 +27,18 @@ public class ObjectIDInteger implements ObjWithIDGeneric<Integer> {
 
 	public ObjectIDInteger() {
 		super();
-		ID = ++progressiveID;
+		this.ID = ++progressiveID;
 	}
 
 	protected Integer ID;
 
 	@Override
-	public Integer getID() {
-		return ID;
+	public Integer getID() { return ID; }
+
+	@Override
+	public boolean setID(Integer newID) {
+		if (this.ID != null || newID == null) { return false; }
+		this.ID = newID;
+		return true;
 	}
 }

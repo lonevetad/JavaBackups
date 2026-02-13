@@ -1,6 +1,6 @@
 package games.generic.controlModel.damage;
 
-import games.generic.controlModel.gObj.CreatureSimple;
+import games.generic.controlModel.objects.creature.CreatureSimple;
 import tools.ObjectNamedID;
 
 /**
@@ -12,6 +12,16 @@ import tools.ObjectNamedID;
  * a bullet, a meteor, an avalanche, a cat, a thunderbolt, an arrow, etc.
  */
 public interface DamageDealerGeneric extends ObjectNamedID {
+	/**
+	 * Returns the raw/absolute amount of damage bonus.
+	 */
+	public int getDamageBonus(DamageTypeGeneric damageType);
+
+	/**
+	 * Returns the relative (percentage) amount of damage bonus.
+	 */
+	public int getDamageBonusPercentage(DamageTypeGeneric damageType);
+
 	/**
 	 * NOTE: this is NOT a percentage (i.e. "%"), but a "per thousand" probability!!
 	 * <p>
@@ -26,7 +36,7 @@ public interface DamageDealerGeneric extends ObjectNamedID {
 
 	/**
 	 * Similar to {@link #getProbabilityPerThousandHit(DamageTypeGeneric)}, it's a
-	 * percentage to calculate if a critical strike will occour.
+	 * per-thousand probability to calculate if a critical strike will occur.
 	 */
 	public int getProbabilityPerThousandCriticalStrike(DamageTypeGeneric damageType);
 
@@ -34,4 +44,13 @@ public interface DamageDealerGeneric extends ObjectNamedID {
 	public int getPercentageCriticalStrikeMultiplier(DamageTypeGeneric damageType);
 
 	// TODO altro?
+
+	/**
+	 * Returns a "per-thousand" value, as
+	 * {@link DamageReceiverGeneric#getLuckPerThousand()}.
+	 *
+	 * @return a "per-thousand" value, as
+	 *         {@link DamageReceiverGeneric#getLuckPerThousand()}.
+	 */
+	public default int getLuckPerThousand() { return 0; }
 }

@@ -2,13 +2,12 @@ package common.tests.testsLittle;
 
 import java.util.Scanner;
 
-import common.MainControllerEmpty;
-import common.abstractCommon.LoaderGeneric;
-import common.mainTools.FileUtilities;
 import common.removed.TileMap;
 import common.removed.TileMapFactory;
 import common.removed.TileMapFactoryWithShapeSpec;
-import common.tests.LoaderTests;
+import tools.FileUtilities;
+import videogamesOldVersion.common.MainControllerEmpty;
+import videogamesOldVersion.common.tests.LoaderTests;
 
 public class TestSerializingTileMap {
 

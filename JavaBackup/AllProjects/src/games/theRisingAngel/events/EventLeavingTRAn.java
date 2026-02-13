@@ -1,7 +1,8 @@
 package games.theRisingAngel.events;
 
 import games.generic.controlModel.ObjectNamed;
-import games.generic.controlModel.gEvents.EventLeavingMap;
+import games.generic.controlModel.events.event.EventLeavingMap;
+import games.theRisingAngel.enums.EventsTRAn;
 import geometry.ObjectLocated;
 
 public class EventLeavingTRAn extends EventLeavingMap {

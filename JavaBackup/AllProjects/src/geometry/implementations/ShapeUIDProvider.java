@@ -6,15 +6,7 @@ public class ShapeUIDProvider extends BaseUniqueIDProvider {
 
 	public static final ShapeUIDProvider SHAPE_UNIQUE_ID_PROVIDER = newShapeIDProvider();
 
-	public static ShapeUIDProvider newShapeIDProvider() {
-		return new ShapeUIDProvider();
-	}
+	public static ShapeUIDProvider newShapeIDProvider() { return new ShapeUIDProvider(); }
 
-	public ShapeUIDProvider() {
-	}
-
-	@Override
-	public Integer getNewID() {
-		return idProgressive++;
-	}
+	public ShapeUIDProvider() {}
 }

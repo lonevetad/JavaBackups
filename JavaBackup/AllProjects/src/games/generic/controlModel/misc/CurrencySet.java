@@ -1,14 +1,15 @@
 package games.generic.controlModel.misc;
 
+import java.util.Objects;
+
 import games.generic.controlModel.GModality;
 
 public abstract class CurrencySet {
 	public static final int BASE_CURRENCY_INDEX = 0;
 
-	public static interface CurrencyIndextypeAmountConsumer {
-		public void performWithIndextypeAmount(int indexType, int amount);
+	public static interface CurrencyAmountConsumer {
+		public void performAction(Currency currency, int amount);
 	}
-//	public static enum BehaviourFiringEvent
 
 	//
 
@@ -18,27 +19,32 @@ public abstract class CurrencySet {
 	 * <code>return gameModality != null</code><br>
 	 * The "typeAmount" parameter could be an enumeration's size.
 	 */
-	public CurrencySet(GModality gameModality, int typesAmount) {
-		this.gameModality = gameModality;
-		if (typesAmount < 1)
+	public CurrencySet(GModality gameModality, Currency[] currencies) {
+		Objects.requireNonNull(currencies);
+		if (currencies.length < 1)
 			throw new IllegalArgumentException("Cannot exist no currency types, just don't create me instead!");
-		this.values = new int[typesAmount];
+		this.gameModality = gameModality;
+		this.currencies = currencies;
+		this.values = new int[currencies.length];
 		this.canFireCurrencyChangeEvent = false;
 	}
 
 	protected boolean canFireCurrencyChangeEvent;
-	protected int[] values;
+	protected final int[] values;
+	protected final Currency[] currencies;
 	protected GModality gameModality;
 
 	//
 
 	public GModality getGameModality() { return gameModality; }
 
-	public int getCurrencyAmount(int indexType) { return this.values[indexType]; }
+	public int getCurrencyAmount(Currency c) { return this.values[c.getIndex()]; }
 
 	public boolean isFiringEvents() { return canFireCurrencyChangeEvent && gameModality != null; }
 
-	public boolean isCanFireCurrencyChangeEvent() { return canFireCurrencyChangeEvent; }
+	public boolean canFireCurrencyChangeEvent() { return canFireCurrencyChangeEvent; }
+
+	public Currency[] getCurrencies() { return currencies; }
 
 	//
 
@@ -50,13 +56,21 @@ public abstract class CurrencySet {
 
 	public void setGameModaliy(GModality gameModality) { this.gameModality = gameModality; }
 
-	/***/
-	public void setCurrencyAmount(int indexType, int newAmount) {
-		int old;
-		old = this.values[indexType];
-		this.values[indexType] = newAmount;
+	public void setCurrencyAmount(Currency c, int newAmount) {
+		/**
+		 * Set the currency amount of a given type, identified by the first parameter,
+		 * to the provided amount, which is the second parameter.
+		 *
+		 * @param indexType an identifier, usually an index, that identifies the
+		 *                  currency type
+		 * @param newAmount the amount of the type of currency intended to set
+		 */
+		int old, indexCurrency;
+		indexCurrency = c.getIndex();
+		old = this.values[indexCurrency];
+		this.values[indexCurrency] = newAmount;
 		if (isFiringEvents())
-			fireCurrencyChangeEvent(this.gameModality, indexType, old, newAmount);
+			fireCurrencyChangeEvent(this.gameModality, c, old, newAmount);
 	}
 
 	//
@@ -67,30 +81,32 @@ public abstract class CurrencySet {
 	 * Shorthand to
 	 * <code>{@link #setCurrencyAmount(int, int)}( indexType, {@link #getCurrencyAmount(int)}(indexType) + delta)</code>
 	 */
-	public void alterCurrencyAmount(int indexType, int delta) {
-		int old, newAmount;
-		old = this.values[indexType];
-		this.values[indexType] = newAmount = (old + delta);
+	public void alterCurrencyAmount(Currency c, int delta) {
+		int old, newAmount, indexCurrency;
+		indexCurrency = c.getIndex();
+		old = this.values[indexCurrency];
+		this.values[indexCurrency] = newAmount = (old + delta);
 		if (isFiringEvents())
-			fireCurrencyChangeEvent(this.gameModality, indexType, old, newAmount);
+			fireCurrencyChangeEvent(this.gameModality, c, old, newAmount);
 	}
 
-	public void forEachTypeAmount(CurrencyIndextypeAmountConsumer citac) {
+	public void forEachCurrency(CurrencyAmountConsumer citac) {
 		int i, n;
 		n = this.values.length;
 		i = -1;
 		while (++i < n)
-			citac.performWithIndextypeAmount(i, this.values[i]);
+			citac.performAction(currencies[i], this.values[i]);
 	}
 
-	public abstract void fireCurrencyChangeEvent(GModality gameModality, int indexType, int oldValue, int newValue);
+	public abstract void fireCurrencyChangeEvent(GModality gameModality, Currency currency, int oldValue, int newValue);
 
 	@Override
 	public String toString() {
 		final StringBuilder sb;
 		sb = new StringBuilder(16);
 		sb.append("CurrencySet [");
-		forEachTypeAmount((i, a) -> sb.append(" (").append(i).append(':').append(a).append("), "));
+		forEachCurrency((currency, a) -> sb.append(" (").append(currency.getName()).append(':').append(a).append("), ")//
+		);
 		sb.append(']');
 		return sb.toString();
 	}

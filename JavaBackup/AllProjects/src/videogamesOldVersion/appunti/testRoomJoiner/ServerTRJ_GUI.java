@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import appunti.testRoomJoiner.TRJ_Shared.JPIV_R_Fields;
 import importedUtilities.abstractCommon.behaviouralObjectsAC.MyComparator;
@@ -64,7 +65,7 @@ public class ServerTRJ_GUI implements LoggerMessagesHolder {
 			notInit = false;
 
 			fin = new JFrame("Server test room joiner");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 			jpFin = new JPanel(new BorderLayout());
 			fin.add(jpFin);

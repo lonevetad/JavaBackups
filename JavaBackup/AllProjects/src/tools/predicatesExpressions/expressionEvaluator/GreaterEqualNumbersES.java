@@ -5,7 +5,7 @@ import tools.predicatesExpressions.expressionEvaluator.sourceEvaluer.TwoNumberHo
 import tools.predicatesExpressions.expressionEvaluator.sourceEvaluer.TwoNumbersEvaluator;
 
 public class GreaterEqualNumbersES<E extends Number> extends ComparerEqualNumberEvaluatorSegment<E> {
-//implements TwoNumberHolder<E>, AbstractEvaluator 
+//implements TwoNumberHolder<E>, AbstractEvaluator
 	private static final long serialVersionUID = 282399217154645L;
 
 	public GreaterEqualNumbersES(E v1, E v2) {

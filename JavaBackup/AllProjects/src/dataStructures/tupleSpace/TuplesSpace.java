@@ -248,9 +248,7 @@ public class TuplesSpace implements Serializable /* , Iterable<Tuple> */ {
 			TuplaSingleType tst;
 			indexType = type.ordinal();
 			checkTypesNullity();
-			if ((tst = types[indexType]) == null)
-				return false;
-			if (!tst.messages.isEmpty())
+			if (((tst = types[indexType]) == null) || !tst.messages.isEmpty())
 				return false;
 			types[indexType] = null; // free memory
 			return true;

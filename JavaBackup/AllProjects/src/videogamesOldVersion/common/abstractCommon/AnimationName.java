@@ -1,11 +1,14 @@
-package common.abstractCommon;
+package videogamesOldVersion.common.abstractCommon;
 
 import java.io.Serializable;
 
-import common.abstractCommon.referenceHolderAC.ImageAnimationHolder;
+import videogamesOldVersion.common.abstractCommon.referenceHolderAC.ImageAnimationHolder;
 
 public interface AnimationName extends Serializable {
-	/** Returns the name of the animation. Could be overrided by {@link java.lang.Enum}. */
+	/**
+	 * Returns the name of the animation. Could be overrided by
+	 * {@link java.lang.Enum}.
+	 */
 	public String name();
 
 	/**

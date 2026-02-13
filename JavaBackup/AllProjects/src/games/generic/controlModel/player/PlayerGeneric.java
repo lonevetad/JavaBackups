@@ -1,8 +1,8 @@
 package games.generic.controlModel.player;
 
-import games.generic.controlModel.GEventObserver;
-import games.generic.controlModel.gObj.GModalityHolder;
-import games.generic.controlModel.gObj.GameObjectGeneric;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.holders.GModalityHolder;
+import games.generic.controlModel.objects.GameObjectGeneric;
 
 /**
  * 27/03/2020 transformed into an interface since a "in game player" should
@@ -14,5 +14,14 @@ public interface PlayerGeneric extends GEventObserver, GameObjectGeneric, GModal
 	 */
 //	public abstract void onLeavingMap();
 //	public abstract void onEnteringInGame(GModality gm);
+
+	/**
+	 * Do some action, for instance
+	 *
+	 * @param otherPlayer
+	 */
+	public default void interactWithAnotherPlayer(PlayerGeneric otherPlayer) {
+		this.getGameModality().beginsPlayesInteraction(otherPlayer);
+	}
 
 }

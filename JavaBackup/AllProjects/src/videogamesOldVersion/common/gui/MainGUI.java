@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
 
 import common.EnumGameObjectTileImageCollection;
 import common.GameObjectInMap;
@@ -430,7 +431,7 @@ public abstract class MainGUI
 		setLog(new LoggerMessagesJScrollPane());
 
 		fin = new JFrame_Repaint(getMainController().getGameName());
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		fin.addWindowListener(getNewWindowListener_OnClosing());
 		fin.setLocation(400, 100);
 		jtp = new JTabbedPane();

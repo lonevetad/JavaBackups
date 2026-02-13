@@ -2,10 +2,11 @@ package games.theRisingAngel.misc;
 
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
+import games.theRisingAngel.enums.AttributesTRAn;
 
 /**
  * See {@link CreatureAttributesBonusesCalculatorTRAn}.
- * 
+ *
  * @deprecated Deprecated because in real game the values, due to abilities,
  *             could change frequently over time.
  */
@@ -48,7 +49,7 @@ public class CreatureAttributesBonusesCalculatorTRAn_OptimizeRareChanges
 		if (c == null)
 			isCacheDirty = false;
 //		cache[AttributesTRAn.Luck.ordinal()] =
-		for (AttributesTRAn a : AttributesTRAn.VALUES) {
+		for (AttributesTRAn a : AttributesTRAn.ALL_ATTRIBUTES) {
 			i = a.getIndex();
 			cache[i] = howToUpdateCache.getBonusFor(i);
 		}

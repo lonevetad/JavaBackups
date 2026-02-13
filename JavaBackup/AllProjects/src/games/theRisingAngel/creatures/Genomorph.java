@@ -3,9 +3,10 @@ package games.theRisingAngel.creatures;
 import java.util.Set;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.gObj.creature.CreatureSharingAbilities;
+import games.generic.controlModel.objects.creature.CreatureSharingAbilities;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import tools.Comparators;
+import tools.ObjectNamedID;
 
 /** Remember to set that ability */
 public class Genomorph extends BaseCreatureTRAn implements CreatureSharingAbilities {
@@ -25,28 +26,18 @@ public class Genomorph extends BaseCreatureTRAn implements CreatureSharingAbilit
 	//
 
 	@Override
-	public String getClassCreaturesSharingAbilities() {
-		return GENOMORPH_CLASS;
-	}
+	public ObjectNamedID getCreatureGroupBelonging() { return games.theRisingAngel.enums.CreatureTypesTRAn.Genomorph; }
 
 	@Override
-	public String getAbilityToShare() {
-		return abilityToShare;
-	}
+	public String getAbilityToShare() { return abilityToShare; }
 
 	@Override
-	public Set<String> getSharedAbilities() {
-		return sharedAbilities;
-	}
+	public Set<String> getSharedAbilities() { return sharedAbilities; }
 
 	//
 
 	@Override
-	public void setSharedAbilities(Set<String> abilities) {
-		sharedAbilities = abilities;
-	}
+	public void setSharedAbilities(Set<String> abilities) { sharedAbilities = abilities; }
 
-	public void setAbilityToShare(String abilityToShare) {
-		this.abilityToShare = abilityToShare;
-	}
+	public void setAbilityToShare(String abilityToShare) { this.abilityToShare = abilityToShare; }
 }

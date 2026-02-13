@@ -559,7 +559,7 @@ public class CastingClass {
 					if (stringa_da_controllare.charAt(k) == numeriSimboli[g]) {
 						if (g < 10) {// digits
 							atLeastOneDigitFound = true;
-							if (prima_virgola_trovata == true) {
+							if (prima_virgola_trovata) {
 								numeri_dopo_il_punto = stringa_da_controllare.charAt(k) + numeri_dopo_il_punto;
 							}
 							// if ( prima_virgola_trovata == false)
@@ -599,7 +599,7 @@ public class CastingClass {
 				x++;
 			}
 			x = 0;
-			if (prima_virgola_trovata == true) {
+			if (prima_virgola_trovata) {
 				while (x < numeri_dopo_il_punto.length()) {
 					// calcolo parte decimale, dopo della virgola
 
@@ -653,7 +653,7 @@ public class CastingClass {
 				if (parteDecimale < 0) {
 					parteDecimale = -parteDecimale;
 				}
-				while ((parte_intera < 1) == false) {
+				while ((parte_intera >= 1)) {
 					tempParteIntera = parte_intera % 10;
 					parte_intera = parte_intera / 10;
 					/*

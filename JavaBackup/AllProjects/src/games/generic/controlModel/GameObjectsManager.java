@@ -5,14 +5,17 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import dataStructures.SetMapped;
-import dataStructures.isom.InSpaceObjectsManagerImpl;
+import dataStructures.isom.InSpaceObjectsManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.gObj.GModalityHolder;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.gObj.MovingObject;
-import games.generic.controlModel.gObj.ObjectInSpace;
+import games.generic.controlModel.events.GEventInterface;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.holders.GModalityHolder;
+import games.generic.controlModel.objects.LivingObject;
+import games.generic.controlModel.objects.MovingObject;
+import games.generic.controlModel.objects.ObjectInSpace;
+import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.subimpl.GModalityET;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
@@ -34,14 +37,14 @@ import tools.ObjectWithID;
  * Usually this class is used inside RPG or RTS games, but it's not mandatory.
  * <p>
  * Kind of object handled:
- * <ul>
- * <li>{@link MovingObject} (through {@link InSpaceObjectsManagerImpl}
+ * <ol>
+ * <li>{@link MovingObject} (through {@link InSpaceObjectsManager}
  * instance)</li>
  * <li>{@link LivingObject} (through methods like
  * {@link #dealsDamageTo(DamageDealerGeneric, CreatureSimple, DamageGeneric)}).</li>
  * <li>{@link ObjectInSpace} (as n°1)</li>
  * <li>{@link GEventObserver} (through {@link GEventInterface} instance)</li>
- * </ul>
+ * </ol>
  */
 public interface GameObjectsManager extends GModalityHolder {
 
@@ -57,13 +60,13 @@ public interface GameObjectsManager extends GModalityHolder {
 
 	//
 
-	public default void addToSpace(ObjectInSpace mo) {
-		getGObjectInSpaceManager().addObject(mo);
-	}
+	// TODO: BUNCH OF PROXIES
 
-	public default void removeFromSpace(ObjectInSpace mo) {
-		getGObjectInSpaceManager().removeObject(mo);
-	}
+	//
+
+	public default void addToSpace(ObjectInSpace mo) { getGObjectInSpaceManager().addObject(mo); }
+
+	public default void removeFromSpace(ObjectInSpace mo) { getGObjectInSpaceManager().removeObject(mo); }
 
 	/** See {@link #findInArea(AbstractShape2D, Predicate)}. */
 	public default Set<ObjectInSpace> findInArea(AbstractShape2D shape) {

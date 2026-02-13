@@ -46,7 +46,7 @@ public class TestCircleLineIntersection extends TestShapeIntersection {
 			l = this.sl.toLine();
 			System.out.println("ShapeLine: " + l.getP1() + " - " + l.getP2());
 			updateIntersection();
-//			
+//
 		}
 		/*
 		 * double getAngDeg(Line2D l) { return 0; }
@@ -248,7 +248,7 @@ public class TestCircleLineIntersection extends TestShapeIntersection {
 	 * Point2D.Double(); } void setStuffs(int px, int py, boolean isStart, boolean
 	 * isFirst) { this.p.setLocation(px, py); this.isFirst = isFirst; this.isStart =
 	 * isStart; }
-	 * 
+	 *
 	 * @Override public void update() { model.setCoordinates(p, isStart, isFirst); }
 	 * }
 	 */

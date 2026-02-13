@@ -2,6 +2,8 @@ package videogames.gridObjectManager.core;
 
 import java.io.Serializable;
 
+import tools.ObjectWithID;
+
 public class NodeGOM implements Serializable {
 	private static final long serialVersionUID = 1618033989L;
 

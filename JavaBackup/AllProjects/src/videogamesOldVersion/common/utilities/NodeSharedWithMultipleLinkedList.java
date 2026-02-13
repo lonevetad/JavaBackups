@@ -78,7 +78,7 @@ public interface NodeSharedWithMultipleLinkedList<K extends NodeSharedWithMultip
 		 * {@link #setBefore(NodeSharedWithMultipleLinkedList, Head_Setter)}
 		 * instead.<br>
 		 * This method is designed ONLY to set a local variable, nothing more.
-		 * 
+		 *
 		 * @param thisNode
 		 *            the node that needs to modify his local variables.
 		 * @param newPrev
@@ -148,7 +148,7 @@ public interface NodeSharedWithMultipleLinkedList<K extends NodeSharedWithMultip
 	 * // hs is and instance of {@link HeadTailGetterSetter}.<br>
 	 * // npgs is and instance of {@link NextPrevGetterSetter}.<br>
 	 * </code>
-	 * 
+	 *
 	 * @param nodeThatWillBeAfter
 	 *            the node that will be setted after <code>this</code> node. If
 	 *            it's null or the head of the queue, <code>this</code> will be

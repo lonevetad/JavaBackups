@@ -26,11 +26,11 @@ public class ObjLocatedCollectorMatrix<Distance extends Number> extends PointCon
 			Predicate<ObjectLocated> targetFilter) {
 		super(misom);
 		this.targetFilter = targetFilter;
-		objFoundBack = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration, Comparators.INTEGER_COMPARATOR);
+		objFoundBack = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration, Comparators.LONG_COMPARATOR);
 		objFound = objFoundBack.toSetValue(ObjectLocated.KEY_EXTRACTOR);
 	}
 
-	protected MapTreeAVL<Integer, ObjectLocated> objFoundBack;
+	protected MapTreeAVL<Long, ObjectLocated> objFoundBack;
 	protected Set<ObjectLocated> objFound;
 	protected Predicate<ObjectLocated> targetFilter;
 
@@ -41,7 +41,7 @@ public class ObjLocatedCollectorMatrix<Distance extends Number> extends PointCon
 	public Set<ObjectLocated> getCollectedObjects() { return objFound; }
 
 	@Override
-	public NodeIsom getNodeAt(Point location) {
+	public NodeIsom<Distance> getNodeAt(Point location) {
 		int x;
 		x = (int) location.getX();
 		return (0 <= x && x < this.rowCache.length) ? this.rowCache[x] : null;

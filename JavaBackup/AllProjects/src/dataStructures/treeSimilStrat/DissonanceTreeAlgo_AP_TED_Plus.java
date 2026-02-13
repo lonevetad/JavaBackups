@@ -10,7 +10,7 @@ import dataStructures.SortedSetEnhanced;
 /**
  * Implementation of the algorithm proposed ... ehm, here: <i>Zhang, K., Shasha,
  * D.: Simple fast algorithms for the editing distance between trees and related
- * problems. SIAM J. Comput. 18(6), 1245–1262 (1989)</i>
+ * problems. SIAM J. Comput. 18(6), 1245ï¿½1262 (1989)</i>
  * <p>
  * The general contract accept a "forest", while this implementation starts from
  * two single nodes.<br>
@@ -106,7 +106,7 @@ public class DissonanceTreeAlgo_AP_TED_Plus<T> implements DissonanceTreeAlgorith
 //		iter = children.iterator();
 //		stackNodes=new LinkedList<>();
 //		stackNodes.add(new Object[] {t,iter});
-//		
+//
 //		t = null; // it's the node we are looking for from here until end
 //		while(t==null&&(!stackNodes.isEmpty())) {
 //			nodeAndChildrenIterator=stackNodes.peek();

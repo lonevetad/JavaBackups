@@ -1,6 +1,9 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.GEventInterface;
+import java.util.List;
+
+import games.generic.controlModel.events.GEventInterface;
+import games.generic.controlModel.events.IGEvent;
 
 /**
  * Specify that this Game <br>
@@ -38,5 +41,8 @@ public interface IGameModalityEventBased {
 	 * <p>
 	 * Optional method, could be empty, by default returns <code>false</code>.
 	 */
-	public default boolean doOnExceedingEventsProcessedInStep() { return false; }
+	public default boolean handleExceedingEventsEnqueued(List<IGEvent> eventsLeft) {
+		eventsLeft.clear();
+		return false;
+	}
 }

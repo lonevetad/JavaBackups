@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import dataStructures.isom.MultiISOMPolygonalSubareas;
 import dataStructures.isom.NodeIsom;
@@ -41,7 +42,7 @@ public class TestMatrixISOMRotated {
 	void buildAndShowGUI() {
 //		KeyAdapter ka;
 		win = new JFrame("Test Multi ISOM");
-		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jpDrawMultimap = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
@@ -153,10 +154,11 @@ public class TestMatrixISOMRotated {
 		System.out.println("FINE");
 	}
 
-//	protected	static class 
+//	protected	static class
 
 	protected static class ColoredOL implements ObjectLocated {
-		Integer ID;
+		private static final long serialVersionUID = 1L;
+		Long ID;
 		Color color;
 		Point location;
 
@@ -177,7 +179,7 @@ public class TestMatrixISOMRotated {
 		}
 
 		@Override
-		public Integer getID() { return ID; }
+		public Long getID() { return ID; }
 
 		@Override
 		public Point getLocation() { return location; }

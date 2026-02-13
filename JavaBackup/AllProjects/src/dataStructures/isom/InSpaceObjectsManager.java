@@ -3,7 +3,6 @@ package dataStructures.isom;
 import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -14,7 +13,6 @@ import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
 import geometry.ObjectShaped;
 import geometry.PathOptimizer;
-import geometry.PointInt;
 import geometry.implementations.shapes.ShapeLine;
 import geometry.pointTools.PointConsumer;
 import geometry.pointTools.impl.ObjCollector;
@@ -22,6 +20,28 @@ import tools.LoggerMessages;
 import tools.NumberManager;
 import tools.PathFinder;
 
+/**
+ * Defines a class that manages (add, remove, search, collects, etc) instances
+ * of {@link ObjectLocated}. They are located in a geometric space with a
+ * defined geometry (usually, the Euclidean one).
+ * <p>
+ * It's mostly used to:
+ * <ul>
+ * <li>management of {@link ObjectLocated}instances:
+ * {@link #add(ObjectLocated)}, {@link #remove(ObjectLocated)},
+ * {@link #contains(ObjectLocated)}</li>
+ * <li>queries of {@link ObjectLocated} in a specified area (through
+ * {@link #fetch(AbstractShape2D)} or
+ * {@link #fetch(AbstractShape2D, Predicate)}) or alongside a path
+ * ({@link #collectInPath(AbstractShape2D, List)})</li>
+ * <li>by providing a path-find algorithm {@link PathFinderIsom} (through
+ * {@link #setPathFinder(PathFinderIsom)}), calculating a path from a source and
+ * a destination: {@link #getPath(Point, Point)},
+ * {@link #getPath(ObjectShaped, Point)},
+ * {@link #getPath(ObjectShaped, Point, Predicate, boolean)}, etc.</li>
+ * <li>{@link}</li>
+ * </ul>
+ */
 public interface InSpaceObjectsManager<Distance extends Number>
 //extends dataStructures.graph.GraphSimple<NodeIsom, D>
 		extends AbstractObjectsInSpaceManager<Distance>, NodeIsomProvider<Distance>, ObjectShaped {
@@ -55,17 +75,6 @@ public interface InSpaceObjectsManager<Distance extends Number>
 //		return new Point(c.x - (getWidth() >> 1), c.y - (getHeight() >> 1));
 //	}
 
-	@Override
-	public default PointInt getTopLetCorner() {
-//		Point c;
-//		c = getLocation();
-//		return new Point(c.x - (getWidth() >> 1), c.y - (getHeight() >> 1));
-//		Point2D p2d;
-//		p2d = getShape().getTopLeftCorner();
-//		return new Point((int) p2d.getX(), (int) p2d.getY());
-		return getShape().getTopLeftCorner();
-	}
-
 	//
 
 	// TODO SETTER
@@ -92,7 +101,7 @@ public interface InSpaceObjectsManager<Distance extends Number>
 
 	// TODO OTHER
 
-	public abstract ObjectLocated getObjectLocated(Integer ID);
+	public abstract ObjectLocated getObjectLocated(Long ID);
 
 	public default boolean removeAllObjects() {
 		clearAllNodes();
@@ -114,15 +123,15 @@ public interface InSpaceObjectsManager<Distance extends Number>
 	// TODO to-do path find
 
 	/** Convert the given list of internal node points to a list of points. */
-	public static <OL extends ObjectLocated> List<Point> listNodeToPoint(List<OL> lni) {
+	public static <OL extends ObjectLocated> List<Point> mapNodesToPoints(List<OL> lni) {
 		ListMapped<OL, Point> lmapping;
-		List<Point> ret;
+//		List<Point> ret;
 		lmapping = new ListMapped<>(lni, ni -> ni.getLocation()); // map them
-		ret = new LinkedList<>();
-		for (Point p : lmapping) {
-			ret.add(p);
-		}
-		return ret;
+		/*
+		 * ret = new LinkedList<>(); for (Point p : lmapping) { ret.add(p); } return
+		 * ret;
+		 */
+		return lmapping;
 	}
 
 	/**
@@ -162,7 +171,7 @@ public interface InSpaceObjectsManager<Distance extends Number>
 	/**
 	 * Simplified version of path finding. <br>
 	 * See
-	 * {@link PathFinder#getPath(ObjectShaped, Object, NumberManager, Predicate)}.
+	 * {@link AbstractObjectsInSpaceManager#getPath(ObjectShaped, Point, PathFinder, NumberManager, Predicate, boolean)}.
 	 */
 	public default List<Point> getPath(ObjectShaped objRequiringTo, Point destination,
 			Predicate<ObjectLocated> isWalkableTester, boolean returnPathToClosestNodeIfNotFound) {
@@ -188,7 +197,7 @@ public interface InSpaceObjectsManager<Distance extends Number>
 
 	/**
 	 * Refers to
-	 * {@link InSpaceObjectsManagerImpl#findInPath(AbstractShape2D, dataStructures.isom.ObjLocatedCollectorIsom, List)}
+	 * {@link InSpaceObjectsManagerImpl#collectInPath(AbstractShape2D, dataStructures.isom.ObjLocatedCollectorIsom, List)}
 	 * . <br>
 	 * Sub-implementations of this class must provide a way to define
 	 * {@link ObjCollector}.
@@ -202,8 +211,8 @@ public interface InSpaceObjectsManager<Distance extends Number>
 	 * provided, the last point is the end).
 	 */
 	@Override
-	public default Set<ObjectLocated> findInPath(AbstractShape2D areaToLookInto, ObjCollector<ObjectLocated> collector,
-			List<Point> path) {
+	public default Set<ObjectLocated> collectInPath(AbstractShape2D areaToLookInto,
+			ObjCollector<ObjectLocated> collector, List<Point> path) {
 		Iterator<Point> iter;
 		ShapeLine subpath;
 		Line2D line;

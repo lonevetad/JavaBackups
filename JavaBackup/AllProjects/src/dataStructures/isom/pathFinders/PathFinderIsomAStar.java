@@ -73,7 +73,7 @@ public class PathFinderIsomAStar<Distance extends Number> extends PathFinderIsom
 					return (c != 0) ? c : comp.compare(n1.distFromStart, n2.distFromStart);
 				}, MapTreeAVL.BehaviourOnKeyCollision.Replace, (NodeInfoAstar_V2 no) -> no);
 		ss = new NodeInfoAstar_V2(start);
-		ss.father = ss; 
+		ss.father = ss;
 		ss.distFromFather = ss.distFromStart = distanceManager.getZeroValue();
 		frontier.put(ss);
 		nodeInfos.put(start, ss);

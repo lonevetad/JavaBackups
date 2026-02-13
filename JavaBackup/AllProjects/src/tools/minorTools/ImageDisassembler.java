@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dataStructures.MyLinkedList;
@@ -121,7 +122,7 @@ public class ImageDisassembler {
 		if (!initializeFinished) {
 
 			fin = new JFrame("Image Disassembler 2.0");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			fin.setSize(50, 50);
 			fin.setVisible(true);
 			fin.addComponentListener(new ComponentAdapter() {
@@ -684,7 +685,7 @@ public class ImageDisassembler {
 				if (stringa_da_controllare.charAt(k) == numeriSimboli[g]) {
 					if (g < 10) {// digits
 						atLeastOneDigitFound = true;
-						if (prima_virgola_trovata == true) {
+						if (prima_virgola_trovata) {
 							numeri_dopo_il_punto = stringa_da_controllare.charAt(k) + numeri_dopo_il_punto;
 						}
 						// if ( prima_virgola_trovata == false)
@@ -724,7 +725,7 @@ public class ImageDisassembler {
 			x++;
 		}
 		x = 0;
-		if (prima_virgola_trovata == true) {
+		if (prima_virgola_trovata) {
 			while (x < numeri_dopo_il_punto.length()) {
 				/*
 				 * calcolo parte decimale, dopo della virgola

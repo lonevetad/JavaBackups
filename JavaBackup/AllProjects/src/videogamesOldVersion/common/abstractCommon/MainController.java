@@ -105,20 +105,20 @@ public abstract class MainController
 		/*
 		 * htgs = new
 		 * NodeSharedWithMultipleLinkedList.HeadTailGetterSetter<ObjectInMap>() {
-		 * 
+		 *
 		 * @Override public NodeSharedWithMultipleLinkedList<ObjectInMap> setTail(
 		 * NodeSharedWithMultipleLinkedList<ObjectInMap> newTail) { ObjectInMap o; o =
 		 * null; if (newTail != null) { o = allObjectsInMap_Tail; allObjectsInMap_Tail =
 		 * (ObjectInMap) newTail; } return o; }
-		 * 
+		 *
 		 * @Override public NodeSharedWithMultipleLinkedList<ObjectInMap> setHead(
 		 * NodeSharedWithMultipleLinkedList<ObjectInMap> newHead) { ObjectInMap o; o =
 		 * null; if (newHead != null) { o = allObjectsInMap_Head; allObjectsInMap_Head =
 		 * (ObjectInMap) newHead; } return o; }
-		 * 
+		 *
 		 * @Override public NodeSharedWithMultipleLinkedList<ObjectInMap> getTail() {
 		 * return allObjectsInMap_Tail; }
-		 * 
+		 *
 		 * @Override public NodeSharedWithMultipleLinkedList<ObjectInMap> getHead() {
 		 * return allObjectsInMap_Head; } };
 		 */

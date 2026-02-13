@@ -74,8 +74,8 @@ public class TestStressPolygonIsInside {
 			System.out.println(delta);
 			/**
 			 * Results:
-			 * 
-			 * 
+			 *
+			 *
 			 * run number: 0<br>
 			 * start original.. inside<br>
 			 * delta: 51965<br>
@@ -203,7 +203,7 @@ public class TestStressPolygonIsInside {
 			 * delta: 22750<br>
 			 * outside:<br>
 			 * 14851<br>
-			 * 
+			 *
 			 */
 		}
 	}

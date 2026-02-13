@@ -1,26 +1,28 @@
 package tests.tGame.tgEvent1.oggettiDesempio;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.subimpl.TimedObjectSimpleImpl;
+import games.generic.controlModel.subimpl.TimedObjectPeriodic;
 import tools.UniqueIDProvider;
 
 /*Simply prints some text*/
-public class ObjPrinterTO implements TimedObjectSimpleImpl {
+public class ObjPrinterTO implements TimedObjectPeriodic {
 	private static final long serialVersionUID = 1L;
 	long timeThreshold, accumulatedTimeElapsed;
 	String text;
-	Integer ID;
+	final Long ID;
+	final GModality gm;
 
-	public ObjPrinterTO(long timeThreshold, String text) {
+	public ObjPrinterTO(GModality gm, long timeThreshold, String text) {
 		super();
-		this.ID = UniqueIDProvider.GENERAL_UNIQUE_ID_PROVIDER.getNewID();
+		this.gm = gm;
+		this.ID = UniqueIDProvider.UDIP_GENERAL.getNewID();
 		this.timeThreshold = timeThreshold;
 		this.text = text;
 		this.accumulatedTimeElapsed = 0;
 	}
 
 	@Override
-	public Integer getID() { return ID; }
+	public Long getID() { return ID; }
 
 	public String getText() { return text; }
 
@@ -46,4 +48,11 @@ public class ObjPrinterTO implements TimedObjectSimpleImpl {
 
 	@Override
 	public String getName() { return "PRINTEEEEEEEEEEEEEEEEEEER"; }
+
+	@Override
+	public GModality getGameModality() { return gm; }
+
+	@Override
+	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+	}
 }

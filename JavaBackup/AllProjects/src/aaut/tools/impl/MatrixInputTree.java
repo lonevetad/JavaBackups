@@ -123,7 +123,7 @@ public class MatrixInputTree extends MatrixInput {
 			// n and i are at jet synchronized
 			atIndex = at[i];
 			children = n.subdimensions;
-//			dimLen = 
+//			dimLen =
 			if (atIndex >= children.length)
 				return Integer.valueOf(i);
 			n = children[atIndex]; // to next dimension
@@ -149,7 +149,7 @@ public class MatrixInputTree extends MatrixInput {
 				// n and i are at jet synchronized
 				atIndex = at[i];
 				children = n.subdimensions;
-//			dimLen = 
+//			dimLen =
 				if (atIndex >= children.length)
 					noError = false;
 				else

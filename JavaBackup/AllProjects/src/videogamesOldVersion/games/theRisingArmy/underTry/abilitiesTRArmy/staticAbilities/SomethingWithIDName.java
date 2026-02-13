@@ -8,12 +8,12 @@ public abstract class SomethingWithIDName implements Serializable {
 	/**An identifyer letting to distinghush from different instances of the same ability (i.e. having the same name)*/
 	protected Long instanceID;
 	protected String name;
-	
+
 	public SomethingWithIDName(String name) {
 		super();
 		this.name = name;
 	}
-	
+
 	// TODO GETTER
 
 	public String getName() {
@@ -23,9 +23,9 @@ public abstract class SomethingWithIDName implements Serializable {
 	public Long getInstanceID() {
 		return instanceID;
 	}
-    
+
 	// TODO SETTER
-    
+
 
 	public void setName(String name) {
 		this.name = name;

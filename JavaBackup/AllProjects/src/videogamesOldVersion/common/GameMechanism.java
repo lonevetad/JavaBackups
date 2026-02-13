@@ -124,7 +124,7 @@ public abstract class GameMechanism implements ThreadsHolder {
 	// TODO PUBLIC
 
 	/**
-	 * 
+	 *
 	 * @since 06 April 2018
 	 */
 	public MOLMManagerObservable getNewMolmManagerObservable() {

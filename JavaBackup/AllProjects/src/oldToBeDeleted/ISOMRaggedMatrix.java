@@ -28,7 +28,7 @@ import tools.NumberManager;
  * A set of {@link MatrixInSpaceObjectsManager} to build a map that could be
  * non-rectangular, i.e. non-simple shaped.
  * <p>
- * 
+ *
  * @deprecated because it's replaced by {@link MultiISOMRetangularMap}
  */
 @Deprecated
@@ -37,7 +37,7 @@ public abstract class ISOMRaggedMatrix<Distance extends Number> extends InSpaceO
 //TODO
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -197,9 +197,7 @@ public abstract class ISOMRaggedMatrix<Distance extends Number> extends InSpaceO
 		public NodeIsom<Distance> newNodeMatrix(int x, int y) { return ISOMRaggedMatrix.this.newNodeMatrix(x, y); }
 
 		public void addAdjacent(ChunkMISOM c) {
-			if (c == null || c == this)
-				return;
-			if (adjacents.containsKey(c.IDChunk))
+			if (c == null || c == this || adjacents.containsKey(c.IDChunk))
 				return;
 			adjacents.put(c.IDChunk, c);
 		}
@@ -216,7 +214,7 @@ public abstract class ISOMRaggedMatrix<Distance extends Number> extends InSpaceO
 	/**
 	 * Representation of the space represented by the super class.<br>
 	 * That space is formed by chunks, who are organized as supergroups
-	 * 
+	 *
 	 * to compute what chunk is containing a particular point
 	 */
 	protected class ChunckManager {

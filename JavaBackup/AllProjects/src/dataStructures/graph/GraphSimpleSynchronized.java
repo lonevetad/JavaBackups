@@ -3,8 +3,10 @@ package dataStructures.graph;
 import java.util.Comparator;
 import java.util.function.BiConsumer;
 
+import dataStructures.isom.PathFinderIsomFrontierBased.NodePositionInFrontier;
+
 // 2019-11-17 : DijkstraColor is changed to NodePositionInFrontier
-public class GraphSimpleSynchronized<E, Distance> extends GraphSimple<E, Distance> {
+public class GraphSimpleSynchronized<E, Distance extends Number> extends GraphSimple<E, Distance> {
 
 	protected int pathFindRuns;
 
@@ -24,18 +26,12 @@ public class GraphSimpleSynchronized<E, Distance> extends GraphSimple<E, Distanc
 	}
 
 	@Override
-	public final boolean isSynchronized() {
-		return true;
-	}
+	public final boolean isSynchronized() { return true; }
 
 	@Override
-	protected NodeGraph newNodeGraph(E e) {
-		return new NodeGraphSimpleSynchronized(e);
-	}
+	protected NodeGraph newNodeGraph(E e) { return new NodeGraphSimpleSynchronized(e); }
 
-	public int getPathFindRuns() {
-		return pathFindRuns;
-	}
+	public int getPathFindRuns() { return pathFindRuns; }
 
 	public GraphSimpleSynchronized<E, Distance> setPathFindRuns(int pathFindRuns) {
 		this.pathFindRuns = pathFindRuns;
@@ -98,25 +94,15 @@ public class GraphSimpleSynchronized<E, Distance> extends GraphSimple<E, Distanc
 					.append(this.getFather() == null ? "null" : String.valueOf(this.getFather().getElem())).toString();
 		}
 
-		public int getDijkstraRuns() {
-			return pathFindierIdRuns;
-		}
+		public int getDijkstraRuns() { return pathFindierIdRuns; }
 
-		public NodePositionInFrontier getColor() {
-			return color;
-		}
+		public NodePositionInFrontier getColor() { return color; }
 
-		public Distance getDistFromStart() {
-			return distFromStart;
-		}
+		public Distance getDistFromStart() { return distFromStart; }
 
-		public Distance getDistFromFather() {
-			return distFromFather;
-		}
+		public Distance getDistFromFather() { return distFromFather; }
 
-		public NodeGraphSimpleSynchronized getFather() {
-			return father;
-		}
+		public NodeGraphSimpleSynchronized getFather() { return father; }
 
 		public NodeGraphSimpleSynchronized setDijkstraRuns(int dijkstraRuns) {
 			this.pathFindierIdRuns = dijkstraRuns;

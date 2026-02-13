@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
- * 
+ *
  * This class provides a main method,
  * {@link #boundingPolygon_UnckeckedParameters(int[][], int, int)}, and some
  * utilities.<br>
@@ -55,7 +55,7 @@ public class BufferedImageBoundingPolygon {
 	 * null; if (bi != null) { PointList pl = null; Punto p, peekPoint, primo,
 	 * tempPoint; int x = 0, y = 0, w = bi.getWidth(), h = bi.getHeight(); if (w
 	 * > 0 && h > 0) {
-	 * 
+	 *
 	 * } } return ret; }
 	 */
 
@@ -63,7 +63,7 @@ public class BufferedImageBoundingPolygon {
 	 * A simple method that check if the matrix border's are fully transparent
 	 * (before it, the matrix must be accepted [rectangular, not-null,
 	 * not-empty]).
-	 * 
+	 *
 	 * @return false if in the border of the matrix there is at least one opaque
 	 *         pixel, true otherwise.
 	 */
@@ -303,7 +303,7 @@ public class BufferedImageBoundingPolygon {
 	 * peek è trasparente O.O che immagine strana...vabbeh, no problema</li>
 	 * <li>___ se no : devo cercare in senso orario da "p" : (marker-branck °°°°
 	 * per non perdere l'orientamento nel codice)<br>
-	 * 
+	 *
 	 * if( orario di p è opaco)
 	 * <ul>
 	 * <li>__ se è opaco : altro angolo , ma orario! aggiungo il punto, cambio
@@ -316,12 +316,12 @@ public class BufferedImageBoundingPolygon {
 	 * </ul>
 	 * </li>
 	 * </ul>
-	 * 
+	 *
 	 * @param m
 	 *            : the matrix to work on
 	 * @param w
 	 *            : the width of the matrix (not only of a region)
-	 * 
+	 *
 	 * @param h
 	 *            : the height (m.length) of the matrix (not only of a region)
 	 */

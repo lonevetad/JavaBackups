@@ -4,11 +4,11 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageReceiverGeneric;
-import games.generic.controlModel.damage.EventDamage;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.gObj.DestructibleObject;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.heal.HealAmountInstance;
+import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.objects.DestructibleObject;
+import games.generic.controlModel.objects.LivingObject;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GEventInterfaceRPG;
 import games.generic.controlModel.subimpl.GModalityET;
 import games.generic.controlModel.subimpl.GModalityRPG;
@@ -53,7 +53,7 @@ public interface LivingObject_OLD extends DestructibleObject, DamageReceiverGene
 		if (gm == null || (!(gm instanceof GModalityRPG)))
 			return null;
 		gmodrpg = (GModalityRPG) gm;
-//		gom = gmodrpg.getGameObjectsManagerDelegated(); 
+//		gom = gmodrpg.getGameObjectsManagerDelegated();
 		geie1 = (GEventInterfaceRPG) gmodrpg.getGameObjectsManager().getGEventInterface();
 
 		//
@@ -68,7 +68,7 @@ public interface LivingObject_OLD extends DestructibleObject, DamageReceiverGene
 	}
 	// , int actualDamageReceived);
 
-	public HealAmountInstance newHealLifeInstance(int healAmount);
+	public ResourceAmountRecharged newHealLifeInstance(int healAmount);
 
 	/**
 	 * Similar to {@link #fireDamageReceived( GModality, int, int)}, but about
@@ -78,7 +78,7 @@ public interface LivingObject_OLD extends DestructibleObject, DamageReceiverGene
 			SourceHealing source) {
 		GEventInterfaceRPG geiRpg;
 		geiRpg = (GEventInterfaceRPG) this.getGameModality().getGameObjectsManager().getGEventInterface();
-		geiRpg.fireHealReceivedEvent((GModalityET) gm, source, (CreatureSimple) this,
+		geiRpg.fireResourceRechargeReceivedEvent((GModalityET) gm, source, (CreatureSimple) this,
 				newHealLifeInstance(originalHealing));
 	}
 

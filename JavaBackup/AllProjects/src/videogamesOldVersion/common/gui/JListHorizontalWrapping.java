@@ -9,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 
 public class JListHorizontalWrapping<E> extends JList<E> {
 	private static final long serialVersionUID = 45615096598909L;
@@ -48,7 +49,7 @@ public class JListHorizontalWrapping<E> extends JList<E> {
 		JFrame frame = new JFrame("Foo001");
 		frame.getContentPane().add(new JScrollPane(sList));
 		frame.getContentPane().setPreferredSize(new Dimension(400, 300));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

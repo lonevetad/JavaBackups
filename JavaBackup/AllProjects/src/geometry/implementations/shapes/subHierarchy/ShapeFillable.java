@@ -7,7 +7,7 @@ public interface ShapeFillable extends Serializable { // AbstractShapeImpl {
 
 //	public AbstractFillable(AbstractFillable s) {
 //		super(s);
-//		this.isFilled = s.isFilled; 
+//		this.isFilled = s.isFilled;
 //	}
 //
 //	public AbstractFillable(ShapeRunnersImplemented shapeImplementing, int x, int y, double angleRotation,

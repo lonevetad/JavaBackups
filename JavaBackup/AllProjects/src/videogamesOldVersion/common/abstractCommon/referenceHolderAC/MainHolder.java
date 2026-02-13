@@ -2,7 +2,7 @@ package common.abstractCommon.referenceHolderAC;
 
 import java.io.Serializable;
 
-import common.abstractCommon.MainController;
+import videogamesOldVersion.common.abstractCommon.MainController;
 
 public interface MainHolder extends Serializable {
 

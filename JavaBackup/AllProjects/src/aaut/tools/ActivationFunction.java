@@ -68,7 +68,7 @@ public interface ActivationFunction {
 		;
 
 		DefaultActivationFunctions(ActivationFunction af) {
-			this.af = af;
+			ActivationFunction.af = af;
 		}
 
 		final ActivationFunction af;

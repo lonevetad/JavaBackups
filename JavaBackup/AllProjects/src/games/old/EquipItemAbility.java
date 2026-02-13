@@ -2,8 +2,8 @@ package games.old;
 
 import java.util.function.Function;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.gObj.TimedObject;
 import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AbilityGeneric;
@@ -60,19 +60,19 @@ public interface EquipItemAbility extends AbilityGeneric {
 	 * <p>
 	 * NOTE: to obtain the {@link BaseCreatureRPG} which this equipment's ability is
 	 * applied on, use the following chain code:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
 	 * BaseCreatureRPG creatureHolder;
 	 * creatureHolder = {@link #getEquipItem()}.getBelongingEquipmentSet().getCreatureWearingEquipments();
-	 * // use creatureHolder ... , but beware of nulls 
-	 * 
+	 * // use creatureHolder ... , but beware of nulls
+	 *
 	 * // or the shorthand
 	 * creatureHolder = {@link #getEquipItem()}.getCreatureWearingEquipments();
 	 * // use creatureHolder ... , but beware of nulls
 	 * </code>
 	 * </pre>
-	 * 
+	 *
 	 * See {@link EquipmentItem#getBelongingEquipmentSet()} and
 	 * {@link EquipmentSet#getCreatureWearingEquipments()} for further
 	 * informations.>
@@ -89,14 +89,12 @@ public interface EquipItemAbility extends AbilityGeneric {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public default void onAddingToOwner(GModality gm) {
-		onEquip(gm);
-	}
+	public default void onAddingToOwner(GModality gm) { onEquip(gm); }
 
 	/**
 	 * The opposite work of {@link #onEquip(GModality)}, stopping every acting work
-	 * AND resetting to the original state: it also calls
-<<<<<<< HEAD:JavaBackup/AllProjects/src/games/generic/controlModel/inventoryAbil/EquipItemAbility.java
+	 * AND resetting to the original state: it also calls <<<<<<<
+	 * HEAD:JavaBackup/AllProjects/src/games/generic/controlModel/inventoryAbil/EquipItemAbility.java
 	 * {@link #onRemoving(GModality)}.
 	 */
 	public default void onUnEquipping(GModality gm) {
@@ -106,10 +104,10 @@ public interface EquipItemAbility extends AbilityGeneric {
 		onRemoving(gm);
 	}
 
-=======
-	 * {@link #onRemovingFromOwner(GModality)}.
-	 */
+	=======*
+
+	{@link #onRemovingFromOwner(GModality)}.*/
+
 	@Override
-	public default void onRemovingFromOwner(GModality gm) { AbilityGeneric.super.onRemovingFromOwner(gm); }
->>>>>>> develop:JavaBackup/AllProjects/src/games/old/EquipItemAbility.java
+	public default void onRemovingFromOwner(GModality gm) { AbilityGeneric.super.onRemovingFromOwner(gm); }>>>>>>>develop:JavaBackup/AllProjects/src/games/old/EquipItemAbility.java
 }

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.SortedSet;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import dataStructures.MapTreeAVL;
 import dataStructures.graph.EdgesIntersectionDetector.IntersectionInstantiator;
@@ -18,31 +19,6 @@ import tools.NumberManager;
 public abstract class GraphSimple<E, Distance extends Number> {
 
 //	public static enum NodePositionInFrontier {NeverAdded, InFrontier, Closed;}
-
-	/**
-	 * public static final Comparator<Integer> INT_COMPARATOR = // Integer::compare;
-	 * // <br>
-	 * (i1, i2) -> { // <br>
-	 * if (i1 == null && i2 == null) // <br>
-	 * return 0; // <br>
-	 * if (i1 == null) // <br>
-	 * return -1; // <br>
-	 * if (i2 == null) // <br>
-	 * return 1; // <br>
-	 * return Integer.compare(i1, i2); // <br>
-	 * }; // <br>
-	 * public static final Comparator<Double> DOUBLE_COMPARATOR = //
-	 * Integer::compare; // <br>
-	 * (i1, i2) -> { // <br>
-	 * if (i1 == null && i2 == null) // <br>
-	 * return 0; // <br>
-	 * if (i1 == null) // <br>
-	 * return -1; // <br>
-	 * if (i2 == null) // <br>
-	 * return 1; // <br>
-	 * return Double.compare(i1, i2); // <br>
-	 * }; // <br>
-	 */
 
 	//
 
@@ -97,41 +73,27 @@ public abstract class GraphSimple<E, Distance extends Number> {
 	// getter and setter
 
 	/** DO NOT MODIFY THE RETURNED MAP */
-	public Map<E, NodeGraph> getNodeGraphs() {
-		return nodes;
-	}
+	public Map<E, NodeGraph> getNodeGraphs() { return nodes; }
 
-	public boolean isDirected() {
-		return isDirected;
-	}
+	public boolean isDirected() { return isDirected; }
 
 	public int getLinksAmount() {
 		final GraphSimple<E, Distance> g;
 		if (linksAmount < 0) {
 			linksAmount = 0;
 			g = this;
-			nodes.forEach((e, n) -> {
-				n.adjacents.forEach((adj, dist) -> g.linksAmount++);
-			});
+			nodes.forEach((e, n) -> { n.adjacents.forEach((adj, dist) -> g.linksAmount++); });
 		}
 		return linksAmount;
 	}
 
-	public PathFindStrategy<E, Distance> getPathFinder() {
-		return pathFinder;
-	}
+	public PathFindStrategy<E, Distance> getPathFinder() { return pathFinder; }
 
-	public Comparator<E> getComparatorElements() {
-		return comparatorElements;
-	}
+	public Comparator<E> getComparatorElements() { return comparatorElements; }
 
-	public Comparator<NodeGraph> getCompNodeGraph() {
-		return compNodeGraph;
-	}
+	public Comparator<NodeGraph> getCompNodeGraph() { return compNodeGraph; }
 
-	public LoggerMessages getLog() {
-		return log;
-	}
+	public LoggerMessages getLog() { return log; }
 
 	//
 
@@ -153,13 +115,9 @@ public abstract class GraphSimple<E, Distance extends Number> {
 
 	//
 
-	public int size() {
-		return nodes.size();
-	}
+	public int size() { return nodes.size(); }
 
-	public boolean isEmpty() {
-		return size() == 0;
-	}
+	public boolean isEmpty() { return size() == 0; }
 
 	/** Beware: if the map modified, the graph will be modified as well */
 	public SortedSet<E> getElementsSet() {
@@ -172,17 +130,11 @@ public abstract class GraphSimple<E, Distance extends Number> {
 	}
 
 	/** USE WITH CAUTION */
-	public MapTreeAVL<E, NodeGraph> getNodes() {
-		return this.nodes;
-	}
+	public MapTreeAVL<E, NodeGraph> getNodes() { return this.nodes; }
 
-	public boolean hasNode(E e) {
-		return getNode(e) != null;
-	}
+	public boolean hasNode(E e) { return getNode(e) != null; }
 
-	public NodeGraph getNode(E e) {
-		return nodes.get(e);
-	}
+	public NodeGraph getNode(E e) { return nodes.get(e); }
 
 	public boolean hasLink(E from, E dest) {
 		NodeGraph nf;
@@ -262,8 +214,10 @@ public abstract class GraphSimple<E, Distance extends Number> {
 		return true;
 	}
 
-	public PathGraph<E, Distance> getPath(E start, E dest, NumberManager<Distance> distanceManager) {
-		return this.pathFinder == null ? null : this.pathFinder.getPath(this, start, dest, distanceManager);
+	public PathGraph<E, Distance> getPath(E start, E dest, NumberManager<Distance> distanceManager,
+			Predicate<E> isWalkableTester) {
+		return this.pathFinder == null ? null
+				: this.pathFinder.getPath(this, start, dest, distanceManager, isWalkableTester);
 	}
 
 	@Override
@@ -284,22 +238,14 @@ public abstract class GraphSimple<E, Distance extends Number> {
 		return sb.toString();
 	}
 
-	public void forEach(Consumer<E> c) {
-		nodes.forEach((e, n) -> c.accept(e));
-	}
+	public void forEach(Consumer<E> c) { nodes.forEach((e, n) -> c.accept(e)); }
 
-	public void forEach(BiConsumer<E, NodeGraph> c) {
-		nodes.forEach(c);
-	}
+	public void forEach(BiConsumer<E, NodeGraph> c) { nodes.forEach(c); }
 
 	public GraphSimple<E, Distance> deepCopy(GraphSimpleGenerator<E, Distance> gsg) {
 		GraphSimple<E, Distance> copy;
 		copy = gsg.newGraph(isDirected(), getPathFinder(), getComparatorElements());
-		this.forEach((e, n) -> {
-			n.forEachAdjacents((ad, dist) -> {
-				copy.addLink(e, ad.elem, dist);
-			});
-		});
+		this.forEach((e, n) -> { n.forEachAdjacents((ad, dist) -> { copy.addLink(e, ad.elem, dist); }); });
 		return copy;
 	}
 
@@ -350,7 +296,7 @@ public abstract class GraphSimple<E, Distance extends Number> {
 	//
 
 	@Deprecated
-	protected E getElem(Entry<NodeGraph, Integer> e) {
+	protected E getElem(Entry<NodeGraph, Long> e) {
 		if (e == null || e.getKey() == null)
 			return null;
 		return e.getKey().elem;
@@ -361,7 +307,6 @@ public abstract class GraphSimple<E, Distance extends Number> {
 	// subclasses
 
 	public abstract class NodeGraph {
-//				Integer id;NodePositionInFrontier
 		private E elem;
 		protected Map<NodeGraph, Distance> adjacents; // the "value" is the distance
 		// for dijkstra
@@ -372,13 +317,9 @@ public abstract class GraphSimple<E, Distance extends Number> {
 			this.adjacents = null;
 		}
 
-		public E getElem() {
-			return elem;
-		}
+		public E getElem() { return elem; }
 
-		public void setElem(E elem) {
-			this.elem = elem;
-		}
+		public void setElem(E elem) { this.elem = elem; }
 
 		// public Map<NodeGraph, Integer> getAdjacents() {
 //			checkAdj();

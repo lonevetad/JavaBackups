@@ -4,11 +4,11 @@ import java.util.Comparator;
 import java.util.SortedSet;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
-import games.generic.controlModel.inventoryAbil.EquipmentItem;
-import games.generic.controlModel.inventoryAbil.EquipmentUpgrade;
+import games.generic.controlModel.holders.RarityHolder;
+import games.generic.controlModel.items.EquipmentItem;
+import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CurrencySet;
-import games.generic.controlModel.misc.RarityHolder;
 import tools.ClosestMatch;
 import tools.Comparators;
 
@@ -18,7 +18,7 @@ public class EquipmentUpgradeImpl implements EquipmentUpgrade {
 		super();
 		this.rarityIndex = rarityIndex;
 		this.name = name;
-		backMapAttrMods = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
+		this.backMapAttrMods = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
 		this.attributeModifiers = backMapAttrMods.toSetValue(AttributeModification.KEY_EXTRACTOR);
 		this.description = null;
 	}
@@ -26,8 +26,8 @@ public class EquipmentUpgradeImpl implements EquipmentUpgrade {
 	protected int rarityIndex;
 	protected String name, description;
 	protected final MapTreeAVL<String, AttributeModification> backMapAttrMods;
-	protected EquipmentItem equipmentAssigned;
 	protected final SortedSet<AttributeModification> attributeModifiers;
+	protected EquipmentItem equipmentAssigned;
 	protected CurrencySet priceModifications;
 
 	@Override

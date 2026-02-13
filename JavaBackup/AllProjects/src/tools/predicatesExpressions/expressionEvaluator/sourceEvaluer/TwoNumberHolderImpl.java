@@ -57,7 +57,7 @@ public class TwoNumberHolderImpl<E extends Number> implements TwoNumberHolder<E>
 	 * Class<? extends Number> cn; Number oldModule; if (firstNumber == null) throw
 	 * new IllegalArgumentException("Number must be not null"); if (secondNumber ==
 	 * null) throw new IllegalArgumentException("Modulemust be not null");
-	 * 
+	 *
 	 * if ((cn = firstNumber.getClass()) != secondNumber.getClass()) throw new
 	 * IllegalArgumentException("Number and secondNumber must have the same class");
 	 * if (this.firstNumber != firstNumber) { this.firstNumber = firstNumber; }

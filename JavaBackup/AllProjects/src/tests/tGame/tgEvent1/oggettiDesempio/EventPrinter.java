@@ -1,6 +1,6 @@
 package tests.tGame.tgEvent1.oggettiDesempio;
 
-import games.generic.controlModel.gEvents.GEvent;
+import games.generic.controlModel.events.GEvent;
 
 public class EventPrinter extends GEvent {
 	public static final String PRINTER_EVENT_NAME = "PRINTER";

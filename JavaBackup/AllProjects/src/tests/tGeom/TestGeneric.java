@@ -7,6 +7,7 @@ import java.awt.Polygon;
 import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import geometry.AbstractShape2D;
 
@@ -32,7 +33,7 @@ public abstract class TestGeneric {
 	protected abstract class ShapeView {
 		ShapeView() {
 			fin = new JFrame("Test Intersections");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			pContainer = fin.getContentPane();// new JPanel();
 			pContainer.setLayout(new GridBagLayout());
 //			init();

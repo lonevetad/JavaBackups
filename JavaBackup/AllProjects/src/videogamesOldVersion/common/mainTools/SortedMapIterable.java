@@ -25,7 +25,7 @@ public interface SortedMapIterable<K, V> extends Serializable, SortedMap<K, V>, 
 		V v;
 		v = null;
 		try {
-			v = fetch((K) key);
+			v = fetch(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public interface SortedMapIterable<K, V> extends Serializable, SortedMap<K, V>, 
 		V v;
 		v = null;
 		try {
-			v = delete((K) key);
+			v = delete(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

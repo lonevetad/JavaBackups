@@ -1,8 +1,8 @@
 package games.generic.controlModel.subimpl;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.gObj.TimedObject;
 import games.generic.controlModel.misc.GThread;
+import games.generic.controlModel.objects.TimedObject;
 
 /**
  * Mark a {@link GModality} as a "time-based" game, maybe "real-time" based
@@ -38,4 +38,11 @@ public interface IGameModalityTimeBased {
 
 	public void removeGameThread(GThread t);
 
+	/**
+	 * See {@link GameOptionsRPG#getTimeSubunitsEachUnit()} and
+	 * {@link TimedObject#getTimeSubunitsEachUnit()}.
+	 *
+	 * @return
+	 */
+	public int getTimeSubunitsEachUnit();
 }

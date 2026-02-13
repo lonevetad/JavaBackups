@@ -1,12 +1,12 @@
 package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.misc.AttributeModification;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * Upon receiving a damage, it is halved, but at the cost of a similar amount of
@@ -18,10 +18,10 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 	public static final String NAME = "Crystal Glass";
 	public static final int RARITY = 2, DURATION_EFFECT = 500/* 2000 */, DURATION_VANISH = 5000;
 	protected static final AttributeIdentifier[] WHAT_TO_MODIFY = new AttributeIdentifier[] {
-			AttributesTRAn.DamageReductionPhysical, AttributesTRAn.DamageReductionMagical };
+			AttributesTRAn.PhysicalDamageReduction, AttributesTRAn.MagicalDamageReduction };
 
-	public AProtectButMakesSoft() {
-		super(NAME, AttributeModification.newEmptyArray(WHAT_TO_MODIFY));
+	public AProtectButMakesSoft(GModality gameModality) {
+		super(gameModality, NAME, AttributeModification.newEmptyArray(WHAT_TO_MODIFY));
 		this.eventsWatching.add(EventsTRAn.DamageReceived.getName());
 		this.setCumulative(false);
 		super.setVanishingEffectDuration(DURATION_VANISH);
@@ -31,20 +31,10 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 	}
 
 	/**
-	 * Upon receiving the second successive damage (before the activated ability
-	 * fades out), force me to deactivate.<br>
-	 * NOT USED: mechanism already exists because before firing the damage event,
-	 * the damage amount is reduced by the appropriate creature's attribute
-	 * "reduction damage of XYZ".
-	 */
-//	protected boolean isForcingDeactivation = false;
-	/**
 	 * The amount of damage reduced, equal but opposite to the reduction malus to be
 	 * applied.
 	 */
 	protected int malusVanishing;
-
-//		public CreatureSimple getCreatureReferred() {return creatureReferred;}
 
 //
 
@@ -53,11 +43,9 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 		EventDamageTRAn dEvent;
 		if (EventsTRAn.DamageReceived.getName() == ge.getName()) {
 			dEvent = (EventDamageTRAn) ge;
-			if (dEvent.getTarget() == this.getOwner() // this.getEquipItem().getCreatureWearingEquipments()
+			if (dEvent.getTarget() == this.getOwner()
 					// check equality because it's bounded to the "wearer"
-					&& dEvent.getDamage().getDamageAmount() > 0) {
-				return true;
-			}
+					&& dEvent.getDamageOriginal().getDamageAmount() > 0) { return true; }
 		}
 		return false;
 	}
@@ -76,24 +64,17 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 				de.setDamageAmountToBeApplied(de.getDamageAmountToBeApplied() - d);
 				malusVanishing = -d; // NEGATIVE
 				setPhaseAbilityCurrent(PhaseAbilityVanishing.Active);
-//				this.attributesToModify[0].setValue(-d);
-//				this.attributesToModify[1].setValue(-d);
 			}
 		}
 	}
 
-//	public void doUponAbilityRefreshed() { setPhaseTo(PhaseAbilityVanishing.Finished); }
-
 	@Override
-	public void updateModAttributesDuringActivationEffect() {
+	public void updateModAttributesOnEffectActivation() {
 		int d;
-//		super.updateModAttributesDuringActiveEffect();
+//		super.updateModAttributesOnEffectActivation();
 		d = malusVanishing;
 		this.attributesToModify[0].setValue(d);
 		this.attributesToModify[1].setValue(d);
-//		malusVanishing = 0;
-//		this.newModifiersAmountOnVanishing[0] = malusVanishing;
-//		this.newModifiersAmountOnVanishing[1] = malusVanishing;
 	}
 
 	@Override

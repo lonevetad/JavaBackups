@@ -11,7 +11,7 @@ public class MISOM_SingleObjInNode<Distance extends Number> extends MatrixInSpac
 		super(isLazyNodeInstancing, width, height, weightManager);
 	}
 
-	public MISOM_SingleObjInNode(Integer ID, boolean isLazyNodeInstancing, int width, int height,
+	public MISOM_SingleObjInNode(Long ID, boolean isLazyNodeInstancing, int width, int height,
 			NumberManager<Distance> weightManager) {
 		super(ID, isLazyNodeInstancing, width, height, weightManager);
 	}

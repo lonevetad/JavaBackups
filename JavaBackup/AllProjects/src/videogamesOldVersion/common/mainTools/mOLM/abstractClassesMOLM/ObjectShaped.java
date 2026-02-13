@@ -152,7 +152,7 @@ public abstract class ObjectShaped extends ObjectWithID
 	 * <p>
 	 * BEWARE: the {@link ShapeSpecification} instance returned by {@link #getShapeSpecification()}
 	 * will be modified !
-	 * 
+	 *
 	 * @param molm
 	 *            {@link MatrixObjectLocationManager} instance.
 	 * @param xNewCenterMicropixel

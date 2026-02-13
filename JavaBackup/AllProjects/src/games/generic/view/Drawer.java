@@ -18,6 +18,8 @@ import geometry.pointTools.PolygonUtilities;
  * {@link #drawDrawable(DrawableObj)} (and its derivated:
  * {@link #drawDrawable(DrawableObj, int, int)}) considers the coordinates as
  * <b><code>about the center</code></b>.
+ *
+ * @author ottin
  */
 public interface Drawer {
 //	public Point getLeftTopCornerCameraLocation() // to be moved in a class using this one

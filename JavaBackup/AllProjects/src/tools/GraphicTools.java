@@ -16,7 +16,7 @@ public class GraphicTools {
 
 	/**
 	 * BEWARE : NO CHECK PERFORMED TO THE PARAMETERS' CORRECTNESS !
-	 * 
+	 *
 	 * @param g          A {@link Graphics} instance. No null-check
 	 * @param w          the width of the rectangle bounding the grid, usually
 	 *                   graphic component's width associated with "g".
@@ -170,15 +170,15 @@ public class GraphicTools {
 	 * public static void paintRoeated(Graphics g,
 	 * AbstractObjectBoundingBoxedRealPixel obbrp, BufferedImage image) { int x, y;
 	 * Graphics2D g2d;
-	 * 
+	 *
 	 * // image = obbrp.getImageOriginal(); if (image != null) { g2d = (Graphics2D)
 	 * g.create();
-	 * 
+	 *
 	 * g2d.setColor(Color.BLACK);
-	 * 
+	 *
 	 * // x = (getWidth() - image.getWidth()) / 2; // y = (getHeight() -
 	 * image.getHeight()) / 2;
-	 * 
+	 *
 	 * x = obbrp.getXLeftBottomRealPixel(); y = obbrp.getYLeftBottomRealPixel();
 	 * AffineTransform at = new AffineTransform();
 	 * at.setToRotation(Math.toRadians(obbrp.getAngleDeg()), x + (image.getWidth()

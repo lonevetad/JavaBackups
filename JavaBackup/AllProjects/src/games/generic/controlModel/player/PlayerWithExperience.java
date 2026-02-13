@@ -1,6 +1,7 @@
 package games.generic.controlModel.player;
 
-import games.generic.controlModel.gObj.ExperienceLevelHolder;
+import games.generic.controlModel.holders.ExperienceLevelHolder;
+import games.generic.controlModel.subimpl.ExperienceLevelHolderImpl;
 import games.generic.controlModel.subimpl.GEventInterfaceRPG;
 import games.generic.controlModel.subimpl.GModalityET;
 import games.generic.controlModel.subimpl.GModalityRPG;
@@ -12,22 +13,14 @@ public interface PlayerWithExperience extends PlayerGeneric, ExperienceLevelHold
 
 	public void setExpLevelHolder(ExperienceLevelHolder expLevelHolder);
 
-//	protected ExperienceLevelHolderImpl expLevelHolder;
+	@Override
+	public default int acquireExperience(int amount) { return getExpLevelHolder().acquireExperience(amount); }
 
 	@Override
-	public default int acquireExperience(int amount) {
-		return getExpLevelHolder().acquireExperience(amount);
-	}
+	public default int getExpToLevelUp() { return getExpLevelHolder().getExpToLevelUp(); }
 
 	@Override
-	public default int getExpToLevelUp() {
-		return getExpLevelHolder().getExpToLevelUp();
-	}
-
-	@Override
-	public default ExperienceLevelHolder setLevel(int level) {
-		return getExpLevelHolder().setLevel(level);
-	}
+	public default ExperienceLevelHolder setLevel(int level) { return getExpLevelHolder().setLevel(level); }
 
 	@Override
 	public default ExperienceLevelHolder setExperienceNow(int experienceNow) {
@@ -41,19 +34,13 @@ public interface PlayerWithExperience extends PlayerGeneric, ExperienceLevelHold
 
 	//
 
-	public default int getExp() {
-		return this.getExpLevelHolder().getExperienceNow();
-	}
+	public default int getExp() { return this.getExpLevelHolder().getExperienceNow(); }
 
 	@Override
-	public default int getLevel() {
-		return this.getExpLevelHolder().getLevel();
-	}
+	public default int getLevel() { return this.getExpLevelHolder().getLevel(); }
 
 	@Override
-	public default void recalculateExpToLevelUp() {
-		this.getExpLevelHolder().recalculateExpToLevelUp();
-	}
+	public default void recalculateExpToLevelUp() { this.getExpLevelHolder().recalculateExpToLevelUp(); }
 
 	/**
 	 * See {@link ExperienceLevelHolder#acquireExperience(int)} AND earn attributes

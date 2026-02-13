@@ -13,7 +13,7 @@ import videogamesOldVersion.common.mainTools.mOLM.ShapeRunners;
  * If not done, changes on Objects (adding (xOnCenter,yOnCenter)) will be
  * useless.
  * <p>
- * 
+ *
  * N.B.: all center of rotations of each shape must be the "center of gravity"
  * of that shape, that is the point passed as parameter.
  */
@@ -144,7 +144,7 @@ public interface AbstractShapeRunners extends Serializable {
 	 * <br>
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation..<br>
-	 * 
+	 *
 	 * @param molm     {@link MatrixObjectLocationManager} instance
 	 * @param x        the x-coordinate of the center.
 	 * @param y        the y-coordinate of the center.
@@ -172,7 +172,7 @@ public interface AbstractShapeRunners extends Serializable {
 	 * <br>
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation.<br>
-	 * 
+	 *
 	 * @param molm     {@link MatrixObjectLocationManager} instance
 	 * @param x        the x-coordinate of the center.
 	 * @param y        the y-coordinate of the center.
@@ -204,7 +204,7 @@ public interface AbstractShapeRunners extends Serializable {
 	 * <br>
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation.<br>
-	 * 
+	 *
 	 * @param molm {@link MatrixObjectLocationManager} instance
 	 * @param x    the x-coordinate of the center
 	 * @param y    the y-coordinate of the center
@@ -230,7 +230,7 @@ public interface AbstractShapeRunners extends Serializable {
 	 * <br>
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation.<br>
-	 * 
+	 *
 	 * @param molm {@link MatrixObjectLocationManager} instance
 	 * @param x    the x-coordinate of the center
 	 * @param y    the y-coordinate of the center
@@ -257,9 +257,9 @@ public interface AbstractShapeRunners extends Serializable {
 	 * _________/___(x,y)___\ <br>
 	 * ________/_____________\ <br>
 	 * _______3_______________2
-	 * 
+	 *
 	 * @param molm         {@link MatrixObjectLocationManager} instance
-	 * 
+	 *
 	 * @param x            the x-coordinate of the center
 	 * @param y            the y-coordinate of the center
 	 * @param lengthBorder the Length of the triangle's border.
@@ -322,9 +322,9 @@ public interface AbstractShapeRunners extends Serializable {
 	 * ............................................./<br>
 	 * .........................................../<br>
 	 * ........................................./<br>
-	 * 
+	 *
 	 * @param molm         {@link MatrixObjectLocationManager} instance
-	 * 
+	 *
 	 * @param x            the x-coordinate of the center
 	 * @param y            the y-coordinate of the center
 	 * @param borderLength the Length of the arrow's borders.
@@ -356,7 +356,7 @@ public interface AbstractShapeRunners extends Serializable {
 	/**
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation.
-	 * 
+	 *
 	 * @param molm            {@link MatrixObjectLocationManager} instance
 	 * @param xStart          x-coordinates of the center
 	 * @param yStart          y-coordinates of the center
@@ -386,7 +386,7 @@ public interface AbstractShapeRunners extends Serializable {
 	 * <br>
 	 * BEWARE: the point P(x,y) passed as parameter is both the center of the shape
 	 * and the center of the shape's rotation..<br>
-	 * 
+	 *
 	 * @param molm   {@link MatrixObjectLocationManager} instance
 	 * @param x      the x-coordinate of the center.
 	 * @param y      the y-coordinate of the center.

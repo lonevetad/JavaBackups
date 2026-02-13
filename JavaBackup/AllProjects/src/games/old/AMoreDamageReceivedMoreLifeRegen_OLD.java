@@ -3,31 +3,20 @@ package games.old;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.gObj.CreatureSimple;
 import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AttributeModification;
 import games.generic.controlModel.inventoryAbil.EquipmentItem;
 import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingSingleAttributeRealTime;
 import games.generic.controlModel.misc.CreatureAttributes;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-<<<<<<< HEAD
-import games.theRisingAngel.events.EventsTRAn;
-=======
-<<<<<<< HEAD
 import games.theRisingAngel.events.EventsTRAr;
->>>>>>> master
-=======
-<<<<<<< HEAD
-import games.theRisingAngel.events.EventsTRAn;
-=======
 import games.theRisingAngel.events.EventsTRAr;
->>>>>>> master
->>>>>>> develop
->>>>>>> develop
-import games.theRisingAngel.misc.AttributesTRAn;
 import tools.ObjectWithID;
 
 public class AMoreDamageReceivedMoreLifeRegen_OLD extends AbilityModifyingSingleAttributeRealTime
@@ -105,7 +94,7 @@ public class AMoreDamageReceivedMoreLifeRegen_OLD extends AbilityModifyingSingle
 			dEvent = (EventDamageTRAn<?>) ge;
 			if (dEvent.getTarget() ==
 			// check equality because it's bounded to the "wearer"
-			this.getEquipItem().getCreatureWearingEquipments() && (d = dEvent.getDamage().getDamageAmount()) >= 4) {
+			this.getEquipItem().getCreatureWearingEquipments() && (d = dEvent.getDamageOriginal().getDamageAmount()) >= 4) {
 				// increase of 12.5% of damage, so minimum is 4
 
 //		am = this.getAttributeToModify();

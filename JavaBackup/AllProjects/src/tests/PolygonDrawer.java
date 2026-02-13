@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import aaut.nn.impl.OutputToBoolean;
@@ -99,7 +100,7 @@ public class PolygonDrawer {
 				return;
 			c = new GridBagConstraints();
 			fin = new JFrame("DrawPolygon");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 			fin.addComponentListener(new ComponentAdapter() {
 				@Override
@@ -155,7 +156,7 @@ public class PolygonDrawer {
 			// TODO impostare un layout DECENTE
 			jpBuildPoly = new JPanel() {
 				/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 
@@ -166,7 +167,7 @@ public class PolygonDrawer {
 			};
 			jpImageFiltered = new JPanel() {
 				/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 
@@ -180,7 +181,7 @@ public class PolygonDrawer {
 			};
 			jpOracle = new JPanel() {
 				/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 
@@ -373,7 +374,7 @@ public class PolygonDrawer {
 
 			class JBDeleting extends JButton {
 				/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 				PointWithID pwiReferring;

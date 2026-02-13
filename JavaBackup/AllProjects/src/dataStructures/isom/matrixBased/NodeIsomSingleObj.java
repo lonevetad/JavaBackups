@@ -39,7 +39,7 @@ public class NodeIsomSingleObj<Distance extends Number> extends NodeIsom<Distanc
 	public ObjectLocated getObject(int i) { return objectLying; }
 
 	@Override
-	public ObjectLocated getObject(Integer ID) { return objectLying; }
+	public ObjectLocated getObject(Long ID) { return objectLying; }
 
 	@Override
 	public ObjectLocated getObject(Predicate<ObjectLocated> filter) {
@@ -49,7 +49,7 @@ public class NodeIsomSingleObj<Distance extends Number> extends NodeIsom<Distanc
 	}
 
 	@Override
-	public boolean removeObject(Integer ID) {
+	public boolean removeObject(Long ID) {
 		if (ID == null || this.objectLying == null || (!ID.equals(this.objectLying.getID()))) { return false; }
 		this.objectLying = null;
 		return true;

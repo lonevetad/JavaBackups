@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import common.mainTools.Comparators;
@@ -56,7 +57,7 @@ public class TestRBTreeListModel {
 
 		c = new GridBagConstraints();
 		win = new JFrame(this.getClass().getSimpleName());
-		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jp = new JPanel(gbl = new GridBagLayout()) {
 			private static final long serialVersionUID = 9840651960L;
 

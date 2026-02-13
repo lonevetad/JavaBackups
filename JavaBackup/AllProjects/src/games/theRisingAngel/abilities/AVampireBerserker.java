@@ -1,24 +1,25 @@
 package games.theRisingAngel.abilities;
 
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.damage.EventDamage;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.ASimpleFixedBufferVanishing;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
+import games.generic.controlModel.GModality;
+import games.generic.controlModel.abilities.impl.ASimpleFixedBufferVanishing;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.objects.LivingObject;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 
 public class AVampireBerserker extends ASimpleFixedBufferVanishing {
 	private static final long serialVersionUID = 624478230215L;
 	public static final String NAME = "Vampire Hunt";
 	public static final int RARITY = 4, BASE_LIFE_LEECH = 5;
 
-	public AVampireBerserker() {
-		super(NAME,
+	public AVampireBerserker(GModality gameModality) {
+		super(gameModality, NAME,
 				new AttributeModification[] {
 						new AttributeModification(AttributesTRAn.LifeLeechPercentage, BASE_LIFE_LEECH),
-						new AttributeModification(AttributesTRAn.RegenLife, -1),
-						new AttributeModification(AttributesTRAn.RegenMana, 0) });
+						new AttributeModification(AttributesTRAn.LifeRegen, -1),
+						new AttributeModification(AttributesTRAn.ManaRegen, 0) });
 		setCumulative(true);
 		addEventWatched(EventsTRAn.DamageReceived);
 		setAbilityEffectDuration(5000);

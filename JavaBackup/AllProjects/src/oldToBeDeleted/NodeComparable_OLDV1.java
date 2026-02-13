@@ -179,7 +179,7 @@ public interface NodeComparable_OLDV1<K> extends Stringable {
 
 	//
 
-//	
+//
 
 	/**
 	 * Compute how much <code>this</code> node differs to the given one, which is

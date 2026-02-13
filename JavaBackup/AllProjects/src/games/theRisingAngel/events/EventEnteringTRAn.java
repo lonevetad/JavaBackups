@@ -1,7 +1,8 @@
 package games.theRisingAngel.events;
 
 import games.generic.controlModel.ObjectNamed;
-import games.generic.controlModel.gEvents.EventEnteringOnMap;
+import games.generic.controlModel.events.event.EventEnteringOnMap;
+import games.theRisingAngel.enums.EventsTRAn;
 import geometry.ObjectLocated;
 
 public class EventEnteringTRAn extends EventEnteringOnMap {

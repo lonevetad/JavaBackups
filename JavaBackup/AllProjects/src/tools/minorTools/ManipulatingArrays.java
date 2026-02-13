@@ -1536,7 +1536,7 @@ public class ManipulatingArrays {
 
 	public static ArrayList<Integer> sort_ProporzionaleLineare_ArrayListInteger(ArrayList<Integer> lista,
 			boolean growing) {
-		return (growing == true) ? sort_ProporzionaleLineare_Growing_ArrayListInteger(lista)
+		return growing ? sort_ProporzionaleLineare_Growing_ArrayListInteger(lista)
 				: sort_ProporzionaleLineare_UnGrowing_ArrayListInteger(lista);
 	}
 
@@ -1581,7 +1581,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -1595,7 +1595,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(lista.get(i1));
 								}
 							} else {
@@ -1644,7 +1644,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -1680,7 +1680,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -1704,7 +1704,7 @@ public class ManipulatingArrays {
 
 	public static ArrayList<Double> sort_ProporzionaleLineare_ArrayListDouble(ArrayList<Double> lista,
 			boolean growing) {
-		return (growing == true) ? sort_ProporzionaleLineare_Growing_ArrayListDouble(lista)
+		return growing ? sort_ProporzionaleLineare_Growing_ArrayListDouble(lista)
 				: sort_ProporzionaleLineare_UnGrowing_ArrayListDouble(lista);
 	}
 
@@ -1749,7 +1749,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -1763,7 +1763,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(lista.get(i1));
 								}
 							} else {
@@ -1813,7 +1813,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -1835,7 +1835,7 @@ public class ManipulatingArrays {
 										add = true;
 									}
 								}
-								if (add == false) {
+								if (!add) {
 									ret.add(0, lista.get(i1));
 								}
 							} else {
@@ -2388,7 +2388,7 @@ public class ManipulatingArrays {
 	 * <p>
 	 * N.B.: NO CHECK IS PERFORMED ABOUT {@link NullPointerException} AND
 	 * {@link IndexOutOfBoundsException}.
-	 * 
+	 *
 	 * @param m    the integer matrix to write the disc
 	 * @param x    the x-component of the top-left corner of the bounding box of the
 	 *             disc

@@ -5,10 +5,9 @@ import java.util.Set;
 import dataStructures.isom.InSpaceObjectsManager;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.GObjectsInSpaceManager;
-import games.generic.controlModel.gObj.ObjectInSpace;
+import games.generic.controlModel.objects.ObjectInSpace;
 import geometry.pointTools.HeuristicManhattan;
 import oldToBeDeleted.PathFinderIsomAStar_Naive;
-import tools.ObjectWithID;
 
 /**
  * Based on a {@link InSpaceObjectsManager}.
@@ -16,14 +15,17 @@ import tools.ObjectWithID;
 public abstract class GObjectsInSpaceManagerImpl implements GObjectsInSpaceManager {
 
 	public GObjectsInSpaceManagerImpl(InSpaceObjectsManager<Double> isom) {
-		objWID = null;
+		this.objectsInSpace = null;
 		this.isom = isom;
 		this.isom.setPathFinder(new PathFinderIsomAStar_Naive<Double>(this.isom, HeuristicManhattan.SINGLETON));
 	}
 
-	protected Set<ObjectWithID> objWID;
+//	protected Set<ObjectWithID> objWID;
+	protected Set<ObjectInSpace> objectsInSpace;
 	protected InSpaceObjectsManager<Double> isom;
 	protected GModality gameModality;
+
+	//
 
 	@Override
 	public InSpaceObjectsManager<Double> getOIMManager() { return isom; }
@@ -32,19 +34,26 @@ public abstract class GObjectsInSpaceManagerImpl implements GObjectsInSpaceManag
 	public GModality getGameModality() { return gameModality; }
 
 	@Override
-	public Set<ObjectWithID> getObjects() {
-		if (this.objWID == null) { this.objWID = GObjectsInSpaceManager.super.getObjects(); }
-		return this.objWID;
+	public Set<ObjectInSpace> getObjects() {
+		if (this.objectsInSpace == null) { this.objectsInSpace = GObjectsInSpaceManager.super.getObjects(); }
+		return this.objectsInSpace;
 	}
+
+	//
 
 	@Override
 	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
 
-	@Override
-	public int objectsHeldCount() { return this.objWID.size(); }
+	//
 
 	@Override
-	public boolean contains(ObjectWithID o) { return (o == null) ? false : this.getObjects().contains(o); }
+	public int objectsHeldCount() { return this.objectsInSpace.size(); }
+
+	@Override
+	public ObjectInSpace get(Long id) { return (ObjectInSpace) this.getOIMManager().getObjectLocated(id); }
+
+	@Override
+	public boolean contains(ObjectInSpace o) { return (o == null) ? false : this.getObjects().contains(o); }
 
 	@Override
 	public boolean containsObject(ObjectInSpace o) { return contains(o); }

@@ -46,7 +46,7 @@ public class GThread extends Thread {
 		 * Execute the game, usually by invoking
 		 * {@link GModality#runSingleGameCycle()}.<br>
 		 * Implementation example:<br>
-		 * 
+		 *
 		 * <pre>
 		 * <code>
 		 * public void run() {
@@ -56,7 +56,7 @@ public class GThread extends Thread {
 		 * }
 		 * </code>
 		 * </pre>
-		 * 
+		 *
 		 * Setting a local flag to false should be enough, usually no greater complexity
 		 * is required.<br>
 		 * (NOTE: To "pause" the game do not rely on {@link #stopAndDie()}, use
@@ -75,7 +75,7 @@ public class GThread extends Thread {
 		 * {@link GController#pauseGame()} instead!
 		 * <p>
 		 * Implementation example:<br>
-		 * 
+		 *
 		 * <pre>
 		 * <code>
 		 * public void stopAndDie(){
@@ -83,7 +83,7 @@ public class GThread extends Thread {
 		 * }
 		 * </code>
 		 * </pre>
-		 * 
+		 *
 		 */
 		public void stopAndDie();
 

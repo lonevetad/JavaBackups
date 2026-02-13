@@ -18,7 +18,7 @@ public class TransferTranslationRuleBased_V3 extends ATransferTranslationRuleBas
 	public TransferTranslationRuleBased_V3() {
 		rulesGivenLHS = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, SynonymSet.COMPARATOR_SYNONYM_SET);
 //		ruleCollectorByLHSAsChild = new NodeParsedSentence("i'm just a root");
-//	<TransferTranslationItEng3.ElementGrammarWithAlternatives, List<TransferRule>>		
+//	<TransferTranslationItEng3.ElementGrammarWithAlternatives, List<TransferRule>>
 	}
 
 	/**

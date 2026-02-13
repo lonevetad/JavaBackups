@@ -31,7 +31,7 @@ import tools.UniqueIDProvider;
 /** Rectangular matrix-based implementation */
 public abstract class MatrixInSpaceObjectsManager<Distance extends Number> extends InSpaceObjectsManagerImpl<Distance> {
 	private static final long serialVersionUID = 6663104159265L;
-	protected static final Double justOne = 1.0, sqrtTwo = /* Math.max(justOne + 0.5, */Math.sqrt(2);
+	protected static final Double ONE = 1.0, SQRT_TWO = /* Math.max(justOne + 0.5, */Math.sqrt(2);
 	public static final CoordinatesDeltaForAdjacentNodes[] VALUES_CoordinatesDeltaForAdjacentNodes = CoordinatesDeltaForAdjacentNodes
 			.values();
 	protected static final UniqueIDProvider idProvider = UniqueIDProvider.newBasicIDProvider();
@@ -39,8 +39,8 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 
 	public static enum CoordinatesDeltaForAdjacentNodes {
 		// TOP(0, -1), RIGHT(+1, 0), BOTTOM(0, 1), LEFT(-1, 0);
-		NORD(0, -1, justOne), SUD(0, 1, justOne), OVEST(-1, 0, justOne), EST(1, 0, justOne)//
-		, NORD_EST(1, -1, sqrtTwo), SUD_EST(1, 1, sqrtTwo), SUD_OVEST(-1, 1, sqrtTwo), NORD_OVEST(-1, -1, sqrtTwo)//
+		NORD(0, -1, ONE), SUD(0, 1, ONE), OVEST(-1, 0, ONE), EST(1, 0, ONE)//
+		, NORD_EST(1, -1, SQRT_TWO), SUD_EST(1, 1, SQRT_TWO), SUD_OVEST(-1, 1, SQRT_TWO), NORD_OVEST(-1, -1, SQRT_TWO)//
 		;
 
 		public final int dx, dy;
@@ -58,14 +58,14 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 		this(idProvider.getNewID(), isLazyNodeInstancing, width, height, weightManager);
 	}
 
-	public MatrixInSpaceObjectsManager(Integer ID, boolean isLazyNodeInstancing, int width, int height,
+	public MatrixInSpaceObjectsManager(Long ID, boolean isLazyNodeInstancing, int width, int height,
 			NumberManager<Distance> weightManager) {
 		super();
+		this.setID(ID);
 		this.isLazyNodeInstancing = isLazyNodeInstancing;
 //		this.height = height;
 //		this.width = width;
 		this.weightManager = weightManager;
-		this.id = ID;
 		onCreate(width, height);
 		// TODO create intersectors and runners
 //		ProviderShapesIntersectionDetector shapeIntersectionDetectorProvider;
@@ -75,19 +75,18 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 //	protected Comparator IDOwidComparator;
 	protected final boolean isLazyNodeInstancing;
 //	protected int width, height;
-	protected Integer id;
 	protected NodeIsom<Distance>[][] matrix;
 	protected AbstractShape2D shape;
 	protected ProviderShapesIntersectionDetector shapeIntersectionDetectorProvider;
 	protected ProviderShapeRunner shapeRunnerProvider;
-	protected Map<Integer, ObjectLocated> objectsAdded;
+	protected Map<Long, ObjectLocated> objectsAdded;
 	protected Set<ObjectLocated> objectsAddedSet;
 
 	//
 
 	protected void onCreate(int width, int height) {
 		this.shape = new ShapeRectangle(0, width >> 1, height >> 1, true, width, height);
-		setObjectsAdded(MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR));
+		setObjectsAdded(MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR));
 		setProviderShapeRunner(ProviderShapeRunnerImpl.getInstance());
 		setProviderShapesIntersectionDetector(ProviderShapesIntersectionDetector.getInstance());
 		setPathOptimizer(PathOptimizerPoint.getInstance());
@@ -95,11 +94,6 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	}
 
 	//
-
-	public Integer getId() { return id; }
-
-	@Override
-	public Integer getID() { return id; }
 
 	@Override
 	public AbstractShape2D getBoundingShape() { return shape; }
@@ -117,7 +111,7 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	public ProviderShapeRunner getShapeRunnerProvider() { return shapeRunnerProvider; }
 
 	/** Use with caution. */
-	public Map<Integer, ObjectLocated> getObjectsAdded() { return objectsAdded; }
+	public Map<Long, ObjectLocated> getObjectsAdded() { return objectsAdded; }
 
 	@Override
 	public Set<ObjectLocated> getAllObjectLocated() { return objectsAddedSet; }
@@ -127,8 +121,6 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	//
 
 	// TODO SETTER
-
-	public void setId(Integer id) { this.id = id; }
 
 	@Override
 	public void setShape(AbstractShape2D shape) {}
@@ -144,13 +136,13 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	}
 
 	/** Sets the map holding all objects in this space. */
-	public void setObjectsAdded(Map<Integer, ObjectLocated> objectsAdded) {
+	public void setObjectsAdded(Map<Long, ObjectLocated> objectsAdded) {
 		this.objectsAdded = objectsAdded;
 		if (objectsAdded == null)
 			this.objectsAddedSet = null;
 		else {
 			if (objectsAdded instanceof MapTreeAVL<?, ?>)
-				this.objectsAddedSet = ((MapTreeAVL<Integer, ObjectLocated>) objectsAdded).toSetValue(ol -> ol.getID());
+				this.objectsAddedSet = ((MapTreeAVL<Long, ObjectLocated>) objectsAdded).toSetValue(ol -> ol.getID());
 			else
 				this.objectsAddedSet = new SetMapped<>(objectsAdded.entrySet(), e -> e.getValue());
 		}
@@ -259,6 +251,11 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	}
 
 	@Override
+	public ObjectLocated getAt(int x, int y) { return getNodeAt(x, y).getObject(0); }
+
+	//
+
+	@Override
 	public void runOnWholeMap(PointConsumer action) {
 		Point p;
 		p = new Point();
@@ -291,7 +288,7 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	// TODO add
 
 	@Override
-	public ObjectLocated getObjectLocated(Integer ID) { return this.objectsAdded.get(ID); }
+	public ObjectLocated getObjectLocated(Long ID) { return this.objectsAdded.get(ID); }
 
 	@Override
 	public boolean add(ObjectLocated o) {
@@ -314,9 +311,7 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 	@Override
 	public boolean remove(ObjectLocated o) {
 		RemoverObjLocated<Distance> r;
-		if (o == null)
-			return false;
-		if (this.getObjectsAdded().remove(o.getID()) != null)
+		if ((o == null) || (this.getObjectsAdded().remove(o.getID()) != null))
 			return false;
 		r = new RemoverObjLocated<>(this, o);
 		if (r instanceof ObjectShaped) {
@@ -357,22 +352,22 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 		if (node.y > 0) {
 			row = matrix[node.y - 1];
 			if (xStrictlyPositive)
-				adjacentDistanceConsumer.accept(row[x - 1], weightManager.fromDouble(sqrtTwo));
-			adjacentDistanceConsumer.accept(row[x], weightManager.fromDouble(justOne));
+				adjacentDistanceConsumer.accept(row[x - 1], weightManager.fromDouble(SQRT_TWO));
+			adjacentDistanceConsumer.accept(row[x], weightManager.fromDouble(ONE));
 			if (xNotTooOnRight)
-				adjacentDistanceConsumer.accept(row[x + 1], weightManager.fromDouble(sqrtTwo));
+				adjacentDistanceConsumer.accept(row[x + 1], weightManager.fromDouble(SQRT_TWO));
 		}
 		if (xStrictlyPositive)
-			adjacentDistanceConsumer.accept(matrix[node.y][x - 1], weightManager.fromDouble(justOne));
+			adjacentDistanceConsumer.accept(matrix[node.y][x - 1], weightManager.fromDouble(ONE));
 		if (xNotTooOnRight)
-			adjacentDistanceConsumer.accept(matrix[node.y][x + 1], weightManager.fromDouble(justOne));
+			adjacentDistanceConsumer.accept(matrix[node.y][x + 1], weightManager.fromDouble(ONE));
 		if (node.y < (matrix.length - 1)) {
 			row = matrix[node.y + 1];
 			if (xStrictlyPositive)
-				adjacentDistanceConsumer.accept(row[x - 1], weightManager.fromDouble(sqrtTwo));
-			adjacentDistanceConsumer.accept(row[x], weightManager.fromDouble(justOne));
+				adjacentDistanceConsumer.accept(row[x - 1], weightManager.fromDouble(SQRT_TWO));
+			adjacentDistanceConsumer.accept(row[x], weightManager.fromDouble(ONE));
 			if (xNotTooOnRight)
-				adjacentDistanceConsumer.accept(row[x + 1], weightManager.fromDouble(sqrtTwo));
+				adjacentDistanceConsumer.accept(row[x + 1], weightManager.fromDouble(SQRT_TWO));
 		}
 
 	}
@@ -382,7 +377,7 @@ public abstract class MatrixInSpaceObjectsManager<Distance extends Number> exten
 			List<Point> path) {
 		ObjLocatedCollectorMatrix<Distance> coll;
 		coll = new ObjLocatedCollectorMatrix<>(this, objectFilter);
-		return this.findInPath(areaToLookInto, coll, path);
+		return this.collectInPath(areaToLookInto, coll, path);
 	}
 
 	@Override

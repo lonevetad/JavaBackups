@@ -25,7 +25,7 @@ import tools.SynonymSet;
  * <li>Per ogni nodo foglia considerato, invocare ricorsivamente
  * {@link TransferTranslationItEng3#transfer(NodeSubtreeDependency)}
  * ricorsivamente.</li>
- * </ol> 
+ * </ol>
  */
 /**
  * Apply the transfer translation (through
@@ -40,7 +40,7 @@ public class TransferTranslationRuleBased extends ATransferTranslationRuleBased 
 
 	public TransferTranslationRuleBased() {
 		rulesGroupedByRoot = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, SynonymSet.COMPARATOR_SYNONYM_SET);
-//	<TransferTranslationItEng3.ElementGrammarWithAlternatives, List<TransferRule>>		
+//	<TransferTranslationItEng3.ElementGrammarWithAlternatives, List<TransferRule>>
 	}
 
 	/**

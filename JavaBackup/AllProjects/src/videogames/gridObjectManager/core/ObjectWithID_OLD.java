@@ -6,7 +6,7 @@ import java.util.Comparator;
 import tools.Comparators;
 
 public abstract class ObjectWithID_OLD implements Serializable
-//		, ObjectSerializableDoingNothingAfter, LoggerMessagesHolder, MementoPatternImplementor 
+//		, ObjectSerializableDoingNothingAfter, LoggerMessagesHolder, MementoPatternImplementor
 {
 	private static final long serialVersionUID = -28065206360L;
 	private static int progressiveID = 0;

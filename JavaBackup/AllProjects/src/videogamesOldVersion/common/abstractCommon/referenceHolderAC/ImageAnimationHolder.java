@@ -1,22 +1,18 @@
 package videogamesOldVersion.common.abstractCommon.referenceHolderAC;
 
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
-import videogamesOldVersion.common.gui.TileImage;
+import games.generic.view.TileImage;
+import tools.ObjectWithID;
 import videogamesOldVersion.common.mainTools.AnimatedImage;
 
 /**
  * Represent a class holding an image, more precisely {@link BufferedImage},
  * and/or an {@link AnimatedImage}.
  */
-public interface ImageAnimationHolder extends Serializable {
+public interface ImageAnimationHolder extends ObjectWithID {
 
-	public static ImageAnimationHolder newDefaultImplementation() {
-		return new TileImage();
-	}
-
-	public Integer getID();
+	public static ImageAnimationHolder newDefaultImplementation() { return new TileImage(); }
 
 	/** Get the name associated to this image/animation. */
 	public String getImageName();
@@ -25,10 +21,10 @@ public interface ImageAnimationHolder extends Serializable {
 	 * Returns the current image. <br>
 	 * If the implementor has a field of type {@link BufferedImage} called
 	 * {@code image}, then this method should be implemented as following:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
-	 * public BufferedImage getImageResized() { 
+	 * public BufferedImage getImageResized() {
 	 * 	AnimatedImage ai;
 	 * 	ai = getAnimatedImage();
 	 * 	return ai != null ? ai.getImage() : image;
@@ -44,7 +40,7 @@ public interface ImageAnimationHolder extends Serializable {
 	 * Get the {@link AnimatedImage} associated to this image holder.
 	 * <p>
 	 * Usual use:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
 	AnimatedImage animatedImage;
@@ -79,7 +75,7 @@ public interface ImageAnimationHolder extends Serializable {
 	 * Set the animation. <br>
 	 * If the implementor has a field of type {@link BufferedImage} called
 	 * {@code image}, then this method should be implemented as following:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
 	 * public default ObjectTiled setAnimatedImage(AnimatedImage ai) {
@@ -107,16 +103,14 @@ public interface ImageAnimationHolder extends Serializable {
 	 * Update any possible animation with the given amount of time (expressed in
 	 * milliseconds).
 	 */
-	public default void updateAnimation(int millis) {
-		getNextImage(millis);
-	}
+	public default void updateAnimation(int millis) { getNextImage(millis); }
 
 	/**
 	 * Update any possible animation with the given amount of time (expressed in
 	 * milliseconds) and get the current image (that is a animation's frame if that
 	 * animation exists, or a "static" image otherwise).<br>
 	 * Beware of <code>null</code>s.
-	 * 
+	 *
 	 * @param millis update the progression of animation by given amount of time in
 	 *               milliseconds, then return the current frame
 	 */

@@ -21,7 +21,7 @@ public abstract class NodeIsom<D extends Number> extends PointWrapper implements
 			return -1;
 		if (n2 == null)
 			return 1;
-		return Comparators.INTEGER_COMPARATOR.compare(n1.getID(), n2.getID());
+		return Comparators.LONG_COMPARATOR.compare(n1.getID(), n2.getID());
 	}, //
 			COMPARATOR_NODE_ISOM_POINT = (p1, p2) -> {
 				if (p1 == p2)
@@ -100,12 +100,12 @@ public abstract class NodeIsom<D extends Number> extends PointWrapper implements
 	public abstract ObjectLocated getObject(int i);
 
 	/** Return an object given an identifier */
-	public abstract ObjectLocated getObject(Integer ID);
+	public abstract ObjectLocated getObject(Long ID);
 
 	/** Return an object satisfying a filer (no order is guaranteed)-. */
 	public abstract ObjectLocated getObject(Predicate<ObjectLocated> filter);
 
-	public abstract boolean removeObject(Integer ID);
+	public abstract boolean removeObject(Long ID);
 
 	public abstract boolean removeObject(ObjectLocated o);
 

@@ -19,7 +19,7 @@ public class Test_NodeCompGetChild {
 		l = new LinkedList<>();
 		l.add(0);
 		l.add(-5);
-//		l.add(-88);	
+//		l.add(-88);
 		t.addNode(-88, l);
 		t.addNode(-77, l);
 		l.clear();

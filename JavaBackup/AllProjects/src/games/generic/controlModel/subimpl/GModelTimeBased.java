@@ -3,7 +3,8 @@ package games.generic.controlModel.subimpl;
 import java.util.function.Consumer;
 
 import games.generic.controlModel.GModel;
-import games.generic.controlModel.gObj.TimedObject;
+import games.generic.controlModel.holders.TimedObjectHolder;
+import games.generic.controlModel.objects.TimedObject;
 
 public abstract class GModelTimeBased extends GModel {
 	public static final String TIMED_OBJECT_HOLDER_NAME = "toh";

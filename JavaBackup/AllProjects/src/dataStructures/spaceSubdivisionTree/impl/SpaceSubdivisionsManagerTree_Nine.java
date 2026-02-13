@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import dataStructures.MapTreeAVL;
 import dataStructures.MapTreeAVL.Optimizations;
@@ -33,7 +34,7 @@ import tools.Comparators;
  * of four, taking inspiration from cardinal points:
  * {@link SquareNineSpaceSubdivisions.NineRectangularSingleSpaceSubdivision }
  * <p>
- * 
+ *
  * @deprecated because there is a list of features required but still not
  *             developed and some bugfixes:<br>
  *             <ul>
@@ -48,7 +49,7 @@ import tools.Comparators;
  *             </ul>
  */
 // <li></li>
-//TODO 
+//TODO
 @Deprecated
 public class SpaceSubdivisionsManagerTree_Nine extends SpaceSubdivisionsManagerTree {
 
@@ -329,7 +330,7 @@ public class SpaceSubdivisionsManagerTree_Nine extends SpaceSubdivisionsManagerT
 					thirdWidth = this.getWidth() / sSubds_Nine.getColumnsSubdivisionsAmount();
 					thirdHeight = this.getHeight() / sSubds_Nine.getRowsSubdivisionsAmount();
 					assert thirdWidth == thirdHeight : "Not a square? thirdWidth: " + thirdWidth + ", thirdHeight: "
-							+ thirdHeight;
+							+ thirdHeight
 					// create nodes
 					for (SingleSpaceSectionsSubdivision singleSquare : suddivision) {
 						sectionOfSubsection = singleSquare.getSpaceSubdivision();
@@ -537,7 +538,7 @@ public class SpaceSubdivisionsManagerTree_Nine extends SpaceSubdivisionsManagerT
 			jp.add(jl);
 			jp.setLocation(0, 0);
 			fin = new JFrame("LEL");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			fin.add(jp);
 			fin.pack();
 			fin.setVisible(true);

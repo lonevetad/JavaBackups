@@ -206,7 +206,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	public int indexOf(E elem) {
 		boolean notFound;
 		int index;
-//		RedBlackTree<K, E>.RBTIterator 
+//		RedBlackTree<K, E>.RBTIterator
 		Iterator<Entry<K, E>> iter;
 		K keyElem;
 		index = 0;
@@ -301,7 +301,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object o) {
-		return removeElement((E) o);
+		return removeElement(o);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -309,7 +309,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	public boolean containsAll(Collection<?> c) {
 		if (c != null && c.size() > 0) {
 			for (Object o : c)
-				if (!delegate.containsKey(keyExtractor.apply((E) o)))
+				if (!delegate.containsKey(keyExtractor.apply(o)))
 					return false;
 			return true;
 		}
@@ -323,7 +323,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 		if (c != null && c.size() > 0) {
 			changed = false;
 			for (Object o : c)
-				changed |= add((E) o);
+				changed |= add(o);
 			return changed;
 		}
 		return false;

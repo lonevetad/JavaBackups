@@ -1,7 +1,8 @@
 package games.generic.controlModel.misc;
 
-import games.generic.controlModel.gObj.MovingObject;
-import games.generic.controlModel.gObj.TimedObject;
+import games.generic.controlModel.objects.MovingObject;
+import games.generic.controlModel.objects.TimedObject;
+import tools.impl.OWIDLongImpl;
 
 /**
  * Generic definition of a "movement" and its implementation.<br>
@@ -16,19 +17,18 @@ import games.generic.controlModel.gObj.TimedObject;
  * linear movements)</li>
  * </ul>
  */
-public abstract class GObjMovement implements TimedObject {
+public abstract class GObjMovement extends OWIDLongImpl implements TimedObject {
 	private static final long serialVersionUID = 1L;
+
+	public GObjMovement() { super(); }
+
 	protected MovingObject objectToMove;
 
 	//
 
-	public MovingObject getObjectToMove() {
-		return objectToMove;
-	}
+	public MovingObject getObjectToMove() { return objectToMove; }
 
-	public void setObjectToMove(MovingObject objectToMove) {
-		this.objectToMove = objectToMove;
-	}
+	public void setObjectToMove(MovingObject objectToMove) { this.objectToMove = objectToMove; }
 
 	/**
 	 * Returns the amount of "space" traveled in a fixed amount of time. (The time's
@@ -41,7 +41,5 @@ public abstract class GObjMovement implements TimedObject {
 	 * Returns the amount of distance traveled since the starting point.<br>
 	 * Be careful when implementing some manager with acceleration in it.
 	 */
-	public int getDistanceTraveled() {
-		return 0;
-	}
+	public int getDistanceTraveled() { return 0; }
 }

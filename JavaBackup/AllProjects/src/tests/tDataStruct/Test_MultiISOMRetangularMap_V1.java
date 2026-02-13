@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 
 import dataStructures.MapTreeAVL;
 import stuffs.logic.AtomLogicProposition;
@@ -529,7 +530,7 @@ public class Test_MultiISOMRetangularMap_V1 {
 		void rebuildGUI() {
 			MouseAdapter ma;
 			win = new JFrame("Test Multi ISOM");
-			win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			win.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			jp = new JPanel() {
 				@Override
 				public void paintComponent(Graphics g) {
@@ -565,7 +566,7 @@ public class Test_MultiISOMRetangularMap_V1 {
 				@Override
 				public void mouseDragged(MouseEvent e) {
 					pEndDrawningRect = e.getPoint();
-//					System.out.println("°°°°dragged on " + pEndDrawningRect);
+//					System.out.println("ï¿½ï¿½ï¿½ï¿½dragged on " + pEndDrawningRect);
 					if (t.xLeftTop < 0) { pEndDrawningRect.x += t.xLeftTop; }
 					if (t.yLeftTop < 0) { pEndDrawningRect.y += t.yLeftTop; }
 					updateStartEndPoinNewRectangle();

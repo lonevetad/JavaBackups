@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 public class PrologMazeGenerator {
 	public static final Color COL = Color.BLUE;
@@ -39,18 +41,18 @@ public class PrologMazeGenerator {
 
 	void buildGUI() {
 		jf = new JFrame("Prolog Maze Generator (row by row)");
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jpFin = new JPanel();
 		/*
 		 * {
-		 * 
+		 *
 		 * @Override public Dimension getSize() { return jf.getSize(); }
-		 * 
+		 *
 		 * @Override public Dimension getPreferredSize() { return jf.getPreferredSize();
 		 * }
-		 * 
+		 *
 		 * @Override public int getWidth() { return jf.getWidth(); }
-		 * 
+		 *
 		 * @Override public int getHeight() { return jf.getHeight(); } }
 		 */
 		jpFin.setLayout(new BorderLayout());
@@ -59,11 +61,11 @@ public class PrologMazeGenerator {
 
 		jpNorth = new JPanel();
 		jpFin.add(jpNorth, BorderLayout.NORTH);
-		jpNorth.add(new JLabel("N° Rows:"));
+		jpNorth.add(new JLabel("Nï¿½ Rows:"));
 		jtfNumRow = new JTextField("10");
 		jtfNumRow.setSize(50, 25);
 		jpNorth.add(jtfNumRow);
-		jpNorth.add(new JLabel("N° Columns:"));
+		jpNorth.add(new JLabel("Nï¿½ Columns:"));
 		jtfNumCol = new JTextField("10");
 		jtfNumCol.setSize(jtfNumRow.getSize());
 		jpNorth.add(jtfNumCol);
@@ -92,8 +94,8 @@ public class PrologMazeGenerator {
 		jpFin.add(jspMaze, BorderLayout.CENTER);
 		jlMousePosition = new JLabel("Mouse position: ");
 		jspMaze.setColumnHeaderView(jlMousePosition);
-		jspMaze.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		jspMaze.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jspMaze.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		jspMaze.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		jspMaze.setSize(500, 500);
 		jspMaze.setPreferredSize(jspMaze.getSize());
 		MouseAdapter ma;

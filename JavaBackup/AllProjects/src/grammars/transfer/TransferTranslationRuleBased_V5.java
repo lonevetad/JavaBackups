@@ -7,7 +7,6 @@ import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
 import grammars.NodeParsedSentence;
-import grammars.transfer.TransferTranslationRuleBased.RuleScored;
 
 public class TransferTranslationRuleBased_V5 extends ATransferTranslationRuleBased {
 

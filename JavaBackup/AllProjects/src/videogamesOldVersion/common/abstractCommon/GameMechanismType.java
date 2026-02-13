@@ -2,7 +2,7 @@ package common.abstractCommon;
 
 import java.io.Serializable;
 
-import common.GameMechanism;
+import videogamesOldVersion.common.GameMechanism;
 
 /**
  * Designed to be implemented by a {@link Enum}.<br>

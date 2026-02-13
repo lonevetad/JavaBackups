@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.Stack;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -117,9 +116,8 @@ public interface MapTreeAVL<K, V> extends Serializable, SortedMap<K, V>, Functio
 	}
 
 	/**
-	 * Specify how to iterate over this map on methods like
-	 * {@link MapTreeAVL #forEach(ForEachMode, BiConsumer)} (this is the most common
-	 * version).<br>
+	 * Specify how to iterate over this map on methods like {@link MapTreeAVL
+	 * #forEach(ForEachMode, BiConsumer)} (this is the most common version).<br>
 	 * Pairs of key and values could be provided:
 	 * <ul>
 	 * <li>in a sorted order (sorted through the key, as would be natural in a
@@ -360,8 +358,8 @@ public interface MapTreeAVL<K, V> extends Serializable, SortedMap<K, V>, Functio
 	 * Usually, there are two use cases (not mutually exclusive) which this
 	 * iteration could run on more than one element:
 	 * <ul>
-	 * <li>The option {@link BehaviourOnKeyCollision#AddItsNotASet} has been set upon
-	 * instantiating this map.</li>
+	 * <li>The option {@link BehaviourOnKeyCollision#AddItsNotASet} has been set
+	 * upon instantiating this map.</li>
 	 * <li>The given Consumer generate a less restrictive partition of the key's
 	 * domain than the one provided upon building this map. That means that
 	 * theoretically more elements could be considered "equal" under the given

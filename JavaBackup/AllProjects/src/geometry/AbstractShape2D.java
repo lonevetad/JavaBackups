@@ -10,8 +10,9 @@ import java.io.Serializable;
 import geometry.implementations.PointIntImpl;
 import geometry.implementations.ShapeUIDProvider;
 import geometry.pointTools.PolygonUtilities;
+import tools.impl.OWIDLongImpl;
 
-public abstract class AbstractShape2D implements ObjectLocated, Serializable, Cloneable {
+public abstract class AbstractShape2D extends OWIDLongImpl implements ObjectLocated, Serializable, Cloneable {
 	public static final int MINIMUM_CORNERS_AMOUNT = 2; // a triangle
 	/** Use negative values to move clockwise */
 	protected static final double MINUS_360 = -360.0;
@@ -20,13 +21,13 @@ public abstract class AbstractShape2D implements ObjectLocated, Serializable, Cl
 	public AbstractShape2D(AbstractShape2D s) { this(s.shapeImplementing); }
 
 	public AbstractShape2D(ShapeRunnersImplemented shapeImplementing) {
+		super();
 		if (shapeImplementing == null)
 			throw new IllegalArgumentException("The shapeImplementing cannot be null");
+		this.setID(ShapeUIDProvider.SHAPE_UNIQUE_ID_PROVIDER.getNewID());
 		this.shapeImplementing = shapeImplementing;
-		this.ID = ShapeUIDProvider.SHAPE_UNIQUE_ID_PROVIDER.getNewID();
 	}
 
-	protected Integer ID;
 	protected final ShapeRunnersImplemented shapeImplementing;
 	protected Polygon polygonCache;
 
@@ -46,9 +47,6 @@ public abstract class AbstractShape2D implements ObjectLocated, Serializable, Cl
 	}
 
 	public final boolean contains(Point2D p) { return contains((int) p.getX(), (int) p.getY()); }
-
-	@Override
-	public Integer getID() { return ID; }
 
 	/** The x-component of {@link #getCenter()}. */
 	public int getXCenter() { return getx(); }
@@ -130,7 +128,7 @@ public abstract class AbstractShape2D implements ObjectLocated, Serializable, Cl
 	 * Returns the radius, got by dividing (and rounding down) the diameter returned
 	 * by {@link #getDiameter()}.
 	 */
-	public int getRadius() { return getDiameter() >> 1; };
+	public int getRadius() { return getDiameter() >> 1; }
 
 	/**
 	 * Returns the amount of corners represented by this regular polygon. A value

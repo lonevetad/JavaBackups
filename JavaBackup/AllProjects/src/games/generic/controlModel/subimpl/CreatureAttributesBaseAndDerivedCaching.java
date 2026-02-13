@@ -1,66 +1,70 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.inventoryAbil.AttributeModification;
+import java.util.Objects;
+
+import games.generic.controlModel.CreatureAttributesBaseAndDerived;
 import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.CreatureAttributesBaseAndDerived;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
+import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 
 public class CreatureAttributesBaseAndDerivedCaching extends CreatureAttributesBaseAndDerived {
 
-	public CreatureAttributesBaseAndDerivedCaching(int attributesCount) {
-		super(attributesCount);
+	public CreatureAttributesBaseAndDerivedCaching(int attributesCount, IndexToObjectBackmapping itai) {
+		super(attributesCount, itai);
 		this.attributesModificationsApplied = new int[attributesCount];
-		this.cacheValues = new int[attributesCount];
+		this.cacheValues = this.newCacheValues(attributesCount);
 		this.isCacheAvailable = false;
 	}
 
 	protected transient boolean isCacheAvailable = false;
 //protected transient int attributesCountLeftToUpdate;
 //protected final boolean[] attributesUpdated;
-	protected int[] attributesModificationsApplied, cacheValues;
-
-	@Override
-	public int getValue(int index) {
-		throw new UnsupportedOperationException(
-				"Cannot invoke on integer index because it cannot perform \"AttributeIdentifier#isStrictlyPositive()\" check");
-	}
+	protected final int[] attributesModificationsApplied, cacheValues;
 
 	@Override
 	public int getValue(AttributeIdentifier identifier) {
-		int v, index;
-		index = identifier.getIndex();
 		if (!isCacheAvailable) { recalculateCache(); }
-		v = this.cacheValues[index];
-		return (identifier.isStrictlyPositive() && v < 0) ? 0 : v;
+		return this.cacheValues[identifier.getIndex()];
 	}
 
+	//
+
+	protected int[] newCacheValues(int length) { return new int[length]; }
+
 	protected void recalculateCache() {
-		boolean bcNotNull;
-		int i, ac;
+		int i, tempAttr, tempBound;
 		final int[] cv, ov, ama;
 		CreatureAttributesBonusesCalculator bc;
-		isCacheAvailable = true;
+		AttributeIdentifier ai;
+		IndexToObjectBackmapping itai;
+		this.isCacheAvailable = false;
 		cv = this.cacheValues;
 		ov = super.originalValues;
 		ama = this.attributesModificationsApplied;
-		ac = attributesCount;
-		// then others
-		if (bcNotNull = (bc = this.bonusCalculator) != null) { bc.markCacheAsDirty(); }
-		i = ac;
-		if (bcNotNull) {
-			while (--i >= 0) {// update the values
+		i = this.attributesCount;
+		if ((bc = this.bonusCalculator) != null) {
+			bc.markCacheAsDirty();
+			while (--i >= 0) {
 				cv[i] = ov[i] + ama[i] + bc.getBonusFor(i);
 			}
-		} else { // update others
-			while (--i >= 0) {// update the values
+		} else {
+			while (--i >= 0) {
 				cv[i] = ov[i] + ama[i];
 			}
 		}
+		// check bounds
+		i = this.attributesCount;
+		itai = this.getIndexToAttributeIdentifier();
+		while (--i >= 0) {
+			tempAttr = cv[i];
+			if (tempAttr < (tempBound = (ai = (AttributeIdentifier) itai.fromIndex(i)).lowerBound())) {
+				cv[i] = tempBound;
+			} else if (tempAttr > (tempBound = ai.upperBound())) { cv[i] = tempBound; }
+		}
+		this.isCacheAvailable = true;
 	}
 
-//public int[] getComputedAttributesModifications() {
-//	return attributesModifications;
-//}
 	@Override
 	public void setBonusCalculator(CreatureAttributesBonusesCalculator bonusCalculator) {
 		this.isCacheAvailable = false;
@@ -80,6 +84,9 @@ public class CreatureAttributesBaseAndDerivedCaching extends CreatureAttributesB
 	@Override
 	public void applyAttributeModifier(AttributeModification eam) {
 		this.isCacheAvailable = false;
+		Objects.requireNonNull(this.attributesModificationsApplied);
+		Objects.requireNonNull(eam);
+		Objects.requireNonNull(eam.getAttributeModified());
 		this.attributesModificationsApplied[eam.getAttributeModified().getIndex()] += eam.getValue();
 	}
 

@@ -864,7 +864,7 @@ public class ShapeRunnerCircleBorder extends AbstractShapeRunnerImpl {
 //				x1 = xcentre + r;
 //				x = 1 + (xcentre - r);
 //				y1 = ycentre + dxprev;
-////				y = ycentre - (dxnext - 2); 
+////				y = ycentre - (dxnext - 2);
 //				y = (ycentre - (dxnext - 1)) + 1;
 //
 //				point.x = x1;

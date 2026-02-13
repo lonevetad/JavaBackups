@@ -3,7 +3,7 @@ package games.old;
 import java.util.List;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.player.PlayerGeneric;
 import tools.UniqueIDProvider;
 
@@ -25,7 +25,7 @@ public class PlayerGenericImpl implements PlayerGeneric {
 	}
 
 	protected void initializeID() {
-		this.ID = UniqueIDProvider.GENERAL_UNIQUE_ID_PROVIDER.getNewID();
+		this.ID = UniqueIDProvider.UDIP_GENERAL.getNewID();
 	}
 
 	//

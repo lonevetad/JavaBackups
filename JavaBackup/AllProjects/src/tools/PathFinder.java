@@ -23,11 +23,28 @@ import geometry.ObjectShaped;
 public interface PathFinder<NodeType, NodeContent, Distance extends Number> { // NodeContent extends Point2D not needed
 
 	/**
+	 * Calls {@link #getPath(Object, Object, NumberManager, Predicate)} passing
+	 * <code>null</code> to {@link Predicate}.
+	 */
+	public default List<NodeType> getPath(NodeType start, NodeType dest, NumberManager<Distance> distanceManager) {
+		return getPath(start, dest, distanceManager, null, false);
+	}
+
+	/**
+	 * Calls {@link #getPath(ObjectShaped, Object, NumberManager, Predicate)}
+	 * passing <code>null</code> to {@link Predicate}.
+	 */
+	public default List<NodeType> getPath(ObjectShaped objPlanningToMove, NodeType dest,
+			NumberManager<Distance> distanceManager) {
+		return getPath(objPlanningToMove, dest, distanceManager, null, false);
+	}
+
+	/**
 	 * Get the shortest path from one starting point to a destination (first two
 	 * parameters), managing distances types through the third parameter and
 	 * providing a way to recognize when a node is a "free, walkable node" or a
 	 * "wall" (using the fourth parameter: a {@link Predicate}).
-	 * 
+	 *
 	 * @param start                             mandatory, the starting point of the
 	 *                                          path
 	 * @param dest                              mandatory, the destination of the
@@ -50,21 +67,13 @@ public interface PathFinder<NodeType, NodeContent, Distance extends Number> { //
 			Predicate<NodeContent> isWalkableTester, boolean returnPathToClosestNodeIfNotFound);
 
 	/**
-	 * Calls {@link #getPath(Object, Object, NumberManager, Predicate)} passing
-	 * <code>null</code> to {@link Predicate}.
-	 */
-	public default List<NodeType> getPath(NodeType start, NodeType dest, NumberManager<Distance> distanceManager) {
-		return getPath(start, dest, distanceManager, null, false);
-	}
-
-	/**
 	 * As
 	 * {@link #getPath(ObjectLocated, ObjectLocated, NumberManager, Predicate, boolean)},
 	 * but the starting point depends on the first parameter's location, who has
 	 * also a {@link AbstractShape2D} AND this implementation must take into account
 	 * that shape, checking if the shape can "walk" over the specified space.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param objPlanningToMove                 mandatory, the object having a
 	 *                                          {@link AbstractShape2D} and
 	 *                                          providing the starting point of the
@@ -92,12 +101,4 @@ public interface PathFinder<NodeType, NodeContent, Distance extends Number> { //
 			NumberManager<Distance> distanceManager, Predicate<NodeContent> isWalkableTester,
 			boolean returnPathToClosestNodeIfNotFound);
 
-	/**
-	 * Calls {@link #getPath(ObjectShaped, Object, NumberManager, Predicate)}
-	 * passing <code>null</code> to {@link Predicate}.
-	 */
-	public default List<NodeType> getPath(ObjectShaped objPlanningToMove, NodeType dest,
-			NumberManager<Distance> distanceManager) {
-		return getPath(objPlanningToMove, dest, distanceManager, null, false);
-	}
 }

@@ -140,7 +140,7 @@ public class Main_TheRisingAngel extends MainController// _RealTime
 	 * static class JFrame_Updating extends JFrame implements
 	 * GraphicComponentUpdating { JFrame_Updating(){ super(); } JFrame_Updating(Main
 	 * main){ } Main m;
-	 * 
+	 *
 	 * @Override public void updateValues() { } }
 	 */
 }

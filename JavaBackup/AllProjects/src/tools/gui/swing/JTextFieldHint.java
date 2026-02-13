@@ -14,7 +14,7 @@ import javax.swing.text.Document;
 /**
  * Took from "Adam Gawne-Cain"'s reply on <a href=
  * "https://stackoverflow.com/questions/1738966/java-jtextfield-with-input-hint">StackOverflow</a>.
- * 
+ *
  * @deprecated use {@link HintTextFieldUI} instead invoking
  *             <code>justATextField.setUI(new HintTextFieldUI("blabla"))</code>
  */

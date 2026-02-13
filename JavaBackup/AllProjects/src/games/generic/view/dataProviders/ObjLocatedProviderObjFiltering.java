@@ -34,7 +34,7 @@ public class ObjLocatedProviderObjFiltering extends ObjLocatedProvider {
 		goism.forEach(owid -> {
 			ObjectLocated ol;
 			if (owid instanceof ObjectLocated) {
-				ol = (ObjectLocated) owid;
+				ol = owid;
 				if (ol instanceof ObjectShaped) {
 					if (psid.areIntersecting(shape, ((ObjectShaped) ol).getShape()))
 						action.accept(ol.getLocation(), ol);

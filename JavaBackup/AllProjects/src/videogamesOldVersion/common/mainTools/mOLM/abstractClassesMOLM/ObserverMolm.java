@@ -2,8 +2,8 @@ package common.mainTools.mOLM.abstractClassesMOLM;
 
 import java.io.Serializable;
 
-import common.abstractCommon.behaviouralObjectsAC.AbstractMOLMManager;
 import common.mainTools.mOLM.abstractClassesMOLM.ObservableMolm.MolmEvent;
+import videogamesOldVersion.common.abstractCommon.behaviouralObjectsAC.AbstractMOLMManager;
 
 public interface ObserverMolm extends Serializable {
 	/**

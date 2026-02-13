@@ -65,6 +65,6 @@ public class TasksPerformerOnPassingTime implements ObjectPerformingTasksOnPassi
 			if (o != null && o != optopt) o.act(milliseconds);
 			return null;
 		}
-	};
+	}
 
 }

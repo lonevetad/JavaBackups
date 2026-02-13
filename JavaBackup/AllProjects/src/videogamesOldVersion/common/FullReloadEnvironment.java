@@ -1,6 +1,6 @@
 package common;
 
-import common.abstractCommon.MainController;
+import videogamesOldVersion.common.abstractCommon.MainController;
 
 /**
  * 03/01/2018: Probabilmente questa classe raccoglie delle istanze utili nella

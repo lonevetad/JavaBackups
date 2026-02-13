@@ -22,10 +22,10 @@ import importedUtilities.mainTools.LoggerMessages;
  * TODO fare il messaggio di disconnessione che permetta al server di rimuovere
  * un Player da connectedPlayer !!!
  *
- * 
+ *
  * //
  *
- * 
+ *
  **/
 public class ClientTRJ implements LoggerMessagesHolder {
 	private static final long serialVersionUID = -6250455555078206L;

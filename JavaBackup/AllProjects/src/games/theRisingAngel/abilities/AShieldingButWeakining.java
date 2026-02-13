@@ -1,15 +1,17 @@
 package games.theRisingAngel.abilities;
 
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityAttributesModsVanishingOverTime;
+import games.generic.controlModel.GModality;
+import games.generic.controlModel.abilities.impl.AbilityAttributesModsVanishingOverTime;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
-import games.theRisingAngel.GModalityTRAn;
+import games.generic.controlModel.objects.creature.BaseCreatureRPG;
+import games.theRisingAngel.GModalityTRAnBaseWorld;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
+import games.theRisingAngel.enums.RaritiesTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 import tools.ObjectWithID;
 
 /**
@@ -30,15 +32,17 @@ public class AShieldingButWeakining extends AbilityAttributesModsVanishingOverTi
 	private static final long serialVersionUID = -5898625452208602145L;
 	public static final boolean IS_TESTING = false;
 	public static final String NAME = "Stonefying Skin";
-	public static final int RARITY = 2, DURATION_EFFECT = IS_TESTING ? 2000 : 5000; // 750
-	protected static final AttributeIdentifier[] WHAT_TO_MODIFY = new AttributeIdentifier[] { AttributesTRAn.RegenLife,
-			AttributesTRAn.DamageReductionPhysical, AttributesTRAn.DamageReductionMagical };
+	public static final RaritiesTRAn RARITY = RaritiesTRAn.Good;
+	public static final int DURATION_EFFECT = IS_TESTING ? 2000 : 5000; // 750
+	protected static final AttributeIdentifier[] WHAT_TO_MODIFY = new AttributeIdentifier[] { AttributesTRAn.LifeRegen,
+			AttributesTRAn.PhysicalDamageReduction, AttributesTRAn.MagicalDamageReduction };
 
-	public AShieldingButWeakining() {
-		super(NAME, AttributeModification.newEmptyArray(WHAT_TO_MODIFY));
+	public AShieldingButWeakining(GModality gm) {
+		super(gm, NAME, WHAT_TO_MODIFY// AttributeModification.newEmptyArray(WHAT_TO_MODIFY)
+		);
 		this.eventsWatching.add(EventsTRAn.DamageReceived.getName());
 		this.setCumulative(false);
-		setRarityIndex(RARITY);
+		setRarityIndex(RARITY.getIndex());
 	}
 
 //	public CreatureSimple getCreatureReferred() {return creatureReferred;}
@@ -73,15 +77,13 @@ public class AShieldingButWeakining extends AbilityAttributesModsVanishingOverTi
 			dEvent = (EventDamageTRAn) ge;
 			if (dEvent.getTarget() == this.getOwner() // this.getEquipItem().getCreatureWearingEquipments()
 					// check equality because it's bounded to the "wearer"
-					&& dEvent.getDamageReducedByTargetArmors() > 0) {
-				return true;
-			}
+					&& dEvent.getDamageReducedByTargetArmors() > 0) { return true; }
 		}
 		return false;
 	}
 
 	@Override
-	public void updateModAttributesDuringActivationEffect() {
+	public void updateModAttributesOnEffectActivation() {
 		// no kind of updated
 	}
 
@@ -97,7 +99,7 @@ public class AShieldingButWeakining extends AbilityAttributesModsVanishingOverTi
 		cAttr = creatureWearing.getAttributes();
 		// lifeRegenAmount = cAttr.getValue(AttributesTRAn.RigenLife.getIndex()); //
 		// Original
-		lifeRegenAmount = creatureWearing.getLifeRegenation();
+		lifeRegenAmount = creatureWearing.getLifeRegeneration();
 		(am = this.attributesToModify[0]).setValue(-(lifeRegenAmount >> 1)); // the half
 		cAttr.applyAttributeModifier(am);
 		lifeRegenAmount >>= 2; // recycle as a temp
@@ -132,5 +134,5 @@ public class AShieldingButWeakining extends AbilityAttributesModsVanishingOverTi
 	public void updateModAttributesDuringVanishing() { setPhaseTo(PhaseAbilityVanishing.Finished); }
 
 	@Override
-	public int getVanishingTimeThresholdUpdate() { return GModalityTRAn.TIME_SUBUNITS_EACH_TIME_UNIT_TRAn; }
+	public int getVanishingTimeThresholdUpdate() { return GModalityTRAnBaseWorld.TIME_SUBUNITS_EACH_TIME_UNIT_TRAn; }
 }

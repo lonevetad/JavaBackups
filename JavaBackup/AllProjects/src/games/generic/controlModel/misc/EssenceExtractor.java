@@ -3,10 +3,16 @@ package games.generic.controlModel.misc;
 import java.util.Map;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.inventoryAbil.AbilityGeneric;
-import games.generic.controlModel.inventoryAbil.EquipmentItem;
-import games.generic.controlModel.inventoryAbil.EquipmentUpgrade;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.items.EquipmentItem;
+import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.items.EssenceStorage;
 
+/**
+ * NPC-like that manipulates {@link EquipmentItem} to extract (for example,
+ * {@link #extractEssenceByName(EssenceStorage, EquipmentItem, String)}) some
+ * {@link EquipmentUpgrade} into a {@link EssenceStorage}.
+ */
 public abstract class EssenceExtractor {
 
 	public static enum EssenceApplianceStatus {
@@ -29,14 +35,14 @@ public abstract class EssenceExtractor {
 	 */
 	public abstract String getAbilityObjProviderName(GModality gm);
 
-	public boolean storeEssence(EssenceVial vial, EquipmentUpgrade upgrade) {
+	public boolean storeEssence(EssenceStorage vial, EquipmentUpgrade upgrade) {
 		if (vial == null || upgrade == null || (!vial.isEmpty()))
 			return false;
 		vial.storeEssence(upgrade);
 		return true;
 	}
 
-	public boolean storeEssence(EssenceVial vial, AbilityGeneric ability) {
+	public boolean storeEssence(EssenceStorage vial, AbilityGeneric ability) {
 		if (vial == null || ability == null || (!vial.isEmpty()))
 			return false;
 		vial.storeEssence(ability);
@@ -45,10 +51,10 @@ public abstract class EssenceExtractor {
 
 	/**
 	 * Remove the essence from a given {@link EquipmentItem} and store it into a
-	 * {@link EssenceVial}. No costs are applied: it depends on the given
+	 * {@link EssenceStorage}. No costs are applied: it depends on the given
 	 * {@link GModality} implementing this feature.
 	 */
-	public boolean extractEssenceByName(EssenceVial vial, EquipmentItem equipment, String nameEssence) {
+	public boolean extractEssenceByName(EssenceStorage vial, EquipmentItem equipment, String nameEssence) {
 		Map<String, EquipmentUpgrade> equips;
 		Map<String, AbilityGeneric> abil;
 		EquipmentUpgrade upgrade;
@@ -77,7 +83,7 @@ public abstract class EssenceExtractor {
 	 * error, another {@link EssenceApplianceStatus}'s value is returned.
 	 */
 	@SuppressWarnings("unchecked")
-	public EssenceApplianceStatus applyEssence(GModality gm, EssenceVial vial, EquipmentItem equipment) {
+	public EssenceApplianceStatus applyEssence(GModality gm, EssenceStorage vial, EquipmentItem equipment) {
 		Map<String, EquipmentUpgrade> equips;
 		Map<String, AbilityGeneric> abil;
 		String essenceName;

@@ -101,7 +101,7 @@ public class TestPolygonNNAttention {
 		while (++i < numEx) {
 			System.out.println("\n esempio n°: " + i);
 			ex = examples[i];
-//	
+//
 			poly = new Polygon(ex[0], ex[1], ex[0].length);
 
 			for (int k = 0; k < numPoints; k++) {

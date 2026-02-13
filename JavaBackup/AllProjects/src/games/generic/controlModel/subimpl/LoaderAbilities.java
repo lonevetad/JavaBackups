@@ -1,8 +1,8 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.inventoryAbil.AbilityGeneric;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.loaders.LoaderGameObjects;
 import games.generic.controlModel.misc.GameObjectsProvider;
-import games.generic.controlModel.misc.LoaderGameObjects;
 
 public abstract class LoaderAbilities extends LoaderGameObjects<AbilityGeneric> {
 

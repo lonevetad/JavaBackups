@@ -1,15 +1,22 @@
 package games.generic.controlModel;
 
+import java.util.Comparator;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import games.generic.controlModel.gEvents.GEvent;
-import games.generic.controlModel.gObj.GModalityHolder;
-import games.generic.controlModel.gObj.GameObjectGeneric;
+import games.generic.GameOptions;
+import games.generic.controlModel.events.GEvent;
+import games.generic.controlModel.events.GEventInterface;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.holders.GModalityHolder;
+import games.generic.controlModel.holders.GameObjectsProvidersHolder;
+import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.GThread;
+import games.generic.controlModel.objects.GameObjectGeneric;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
+import tools.Comparators;
 import tools.ObjectNamedID;
 import tools.ObjectWithID;
 
@@ -44,7 +51,13 @@ import tools.ObjectWithID;
  * <li>{@link GMap}</li>
  * </ul>
  */
-public abstract class GModality {
+public abstract class GModality implements ObjectNamed {
+	public static final Comparator<GModality> COMPARATOR_GAME_MODALITY = (o1, o2) -> {
+		if (o1 == o2) { return 0; }
+		if (o1 == null) { return -1; }
+		if (o2 == null) { return 1; }
+		return Comparators.STRING_COMPARATOR.compare(o1.getName(), o2.getName());
+	};
 
 	protected boolean isRunning;
 	protected final GController controller;
@@ -60,14 +73,14 @@ public abstract class GModality {
 		this.controller = controller;
 		this.modalityName = modalityName;
 		this.model = newGameModel();
-		this.gameObjectsProviderHolder = controller.getGObjProvidersHolderForGModality(this);
+		this.gameObjectsProviderHolder = controller.newGameObjectProvidersHolderFor(this);
 		this.gomDelegated = newGameObjectsManager(); // ((GControllerRPG) controller).get; //
 		this.random = new Random();
 		onCreate();
 		// il game model deve avere anche l'holder dovuto dal "Misom"
 		assert this.getModel()
 				.containsObjHolder(this.getGameObjectsManager().getGObjectInSpaceManager().getNameGObjHolder()) : //
-		"The model does not have a \"GObjHolder\" instance for ObjectLocated (which is an instance of GObjectInSpaceManager)";
+				"The model does not have a \"GObjHolder\" instance for ObjectLocated (which is an instance of GObjectInSpaceManager)";
 	}
 
 	//
@@ -84,7 +97,7 @@ public abstract class GModality {
 	/**
 	 * Simply return a flag. Used to check if the game is running or not (i.e.: the
 	 * game is NOT running if {@link #pause()} has been invoked).
-	 * 
+	 *
 	 * <br>
 	 * Differs from {@link #isAlive()}, see it for differences.
 	 */
@@ -94,7 +107,10 @@ public abstract class GModality {
 
 	public String getModalityName() { return modalityName; }
 
-	public GController getController() { return controller; }
+	@Override
+	public String getName() { return this.modalityName; }
+
+	public GController getGameController() { return controller; }
 
 	public Random getRandom() { return random; }
 
@@ -161,6 +177,8 @@ public abstract class GModality {
 		this.getModel().addObjHolder(goism.getNameGObjHolder(), goism);
 	}
 
+	// NEW-STUFF METHODS
+
 	public abstract GModel newGameModel();
 
 	public abstract CurrencySet newCurrencyHolder();
@@ -197,6 +215,10 @@ public abstract class GModality {
 	 */
 //	public abstract void fireEvent(GEvent event);
 
+	// abstract methods
+
+	public abstract void loadFrom(GController gc, GameOptions gameOpt, LoaderGeneric loader);
+
 	//
 
 	// game object handler
@@ -210,7 +232,14 @@ public abstract class GModality {
 		return getGameObjectsManager().getGObjectInSpaceManager().getSpaceSubunitsEachMacrounits();
 	}
 
-	/** Add a {@link ObjectWithID} to the {@link GModel}. */
+	public void beginsPlayesInteraction(PlayerGeneric otherPlayer) {
+
+	}
+
+	/**
+	 * Add a {@link ObjectWithID} to the {@link GModel} and fire the related event
+	 * ({@link GameObjectGeneric#onAddedToGame(GModality)}) upon addition.
+	 */
 	public boolean addGameObject(GameObjectGeneric o) {
 		GModel gm;
 		if (o == null)
@@ -226,6 +255,13 @@ public abstract class GModality {
 		return false;
 	}
 
+	/**
+	 * Removes the given object to this game instance and fire the related event
+	 * ({@link GameObjectGeneric#onRemovedFromGame(GModality)}) upon removal.
+	 *
+	 * @param o object to be removed
+	 * @return {@code true} if the object have been removes
+	 */
 	public boolean removeGameObject(GameObjectGeneric o) {
 		GModel gm;
 		if (o == null)

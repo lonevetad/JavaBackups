@@ -6,13 +6,11 @@ import games.generic.controlModel.subimpl.GModalityRPG;
 <<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/BaseNPCCreatureTRAr.java
 <<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/BaseNPCCreatureTRAr.java
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
-=======
+import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.inventory.EquipmentSetTRAn;
 >>>>>>> master:JavaBackup/AllProjects/src/games/theRisingAngel/creatures/BaseNPCCreatureTRAr.java
 =======
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
->>>>>>> develop:JavaBackup/AllProjects/src/games/theRisingAngel/creatures/BaseNPCCreatureTRAr.java
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * This is NOT a {@link PlayerGeneric}, even if it's similar (but there's no

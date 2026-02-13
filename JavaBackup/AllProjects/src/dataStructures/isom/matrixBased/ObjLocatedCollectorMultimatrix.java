@@ -4,12 +4,13 @@ import java.awt.Point;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import dataStructures.isom.InSpaceObjectsManager;
 import dataStructures.isom.MultiISOMRetangularCaching;
 import dataStructures.isom.MultiISOMRetangularMap;
 import dataStructures.isom.NodeIsom;
 import dataStructures.isom.NodeIsomProvider;
 import dataStructures.isom.ObjLocatedCollectorIsom;
-import dataStructures.isom.MultiISOMRetangularMap.MatrixISOMLocatedInSpace;
+import dataStructures.isom.internal.ISOMWrapperLocated;
 import geometry.ObjectLocated;
 
 /**
@@ -43,18 +44,21 @@ public class ObjLocatedCollectorMultimatrix<Distance extends Number> implements 
 
 	@Override
 	public void accept(Point location) {
-		MatrixISOMLocatedInSpace<Distance> ml;
+		ISOMWrapperLocated<Distance> ml;
+		InSpaceObjectsManager<Distance> misom;
 		ml = isomProvider.getMapLocatedContaining(location);
 		if (ml == null)
 			return; // no null allowed here!
-		if (ml.misom != olcm.getMisom()) {
+		misom = ml.getIsomHeld();
+
+		if (!(misom instanceof MatrixInSpaceObjectsManager<?>)) { return; }
+		if (misom != olcm.getMisom()) {
 			// reset the row-cache
-			olcm.setMisom(ml.misom);
+			olcm.setMisom((MatrixInSpaceObjectsManager<Distance>) misom);
 		}
 		// shift the point to the offset
-		location = new Point(location.x - ml.x, location.y - ml.y);
+		location = new Point(location.x - ml.getx(), location.y - ml.gety());
 		olcm.accept(location);
-//		consume(isomProvider.getNodeAt(location));
 	}
 
 	// proxies

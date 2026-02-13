@@ -1,7 +1,6 @@
 package dataStructures.isom;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,6 +13,7 @@ import java.util.function.Predicate;
 
 import dataStructures.MapTreeAVL;
 import dataStructures.SetMapped;
+import dataStructures.isom.internal.ISOMWrapperLocated;
 import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager;
 import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager.CoordinatesDeltaForAdjacentNodes;
 import dataStructures.isom.matrixBased.ObjLocatedCollectorMultimatrix;
@@ -21,7 +21,6 @@ import dataStructures.isom.pathFinders.PathFinderIsomDijkstra;
 import geometry.AbstractMultiOISMRectangular;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
-import geometry.PointInt;
 import geometry.implementations.shapes.ShapeRectangle;
 import tests.tDataStruct.Test_MultiISOMRetangularMap_V1;
 import tools.Comparators;
@@ -38,8 +37,8 @@ import tools.UniqueIDProvider;
  * <p>
  * To implement {@link NodeIsomProvider#getNodeAt(Point)}, use the
  * {@link Test_MultiISOMRetangularMap_V1
- * 
- * 
+ *
+ *
  * #getMapContaining(Point)} code.
  */
 public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMultiOISMRectangular<Distance>
@@ -60,37 +59,37 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		this.ID = ID_PROV_MULTIISOM.getNewID();
 		this.maximumSubmapsEachSection = maximumSubmapsEachSection;
 		mapsLocatedInSpace = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration,
-				Comparators.INTEGER_COMPARATOR);
+				Comparators.LONG_COMPARATOR);
 		mapsAsList = mapsLocatedInSpace.toListValue(r -> r.ID);
-		misomsHeld = new SetMapped<>(mapsLocatedInSpace.toSetValue(w -> w.ID), w -> w.misom);
-		setObjectsAddedMap(MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR));
+		misomsHeld = new SetMapped<>(mapsLocatedInSpace.toSetValue(w -> w.ID), w -> {
+			return (MatrixInSpaceObjectsManager<Distance>) w.getIsomHeld();
+		});
+		setObjectsAddedMap(MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR));
 		shapeBoundingBox = null;// new ShapeRectangle()
 		clear();
 		setPathFinder(newPathFinder());
-//		this.pathOptimizer = new PathOptimizer<Point>() 
+//		this.pathOptimizer = new PathOptimizer<Point>()
 	}
 
-	protected int idProg = 0;
+	protected long idProg = 0;
 //	protected PathFinderIsomAdapter<NodeIsom, D> pathFinder;
 	// multi-misom stuffs
 	// protected boolean neverBuilt;
 	protected int maximumSubmapsEachSection;
 	protected int maxDepth, xLeftTop, yLeftTop, xRightBottom, yRightBottom, width, height;
 	protected NodeQuadtreeMultiISOMRectangular root;
-	protected final MapTreeAVL<Integer, MatrixISOMLocatedInSpace<Distance>> mapsLocatedInSpace;
+	protected final MapTreeAVL<Long, ISOMWrapperLocated<Distance>> mapsLocatedInSpace;
 	protected final Set<MatrixInSpaceObjectsManager<Distance>> misomsHeld;
-	protected final List<MatrixISOMLocatedInSpace<Distance>> mapsAsList;
+	protected final List<ISOMWrapperLocated<Distance>> mapsAsList;
 	protected ShapeRectangle shapeBoundingBox;
 	// from isom
-	protected final Integer ID;
-	protected Map<Integer, ObjectLocated> objectsAddedMap;
+	protected final Long ID;
+	protected Map<Long, ObjectLocated> objectsAddedMap;
 	protected Set<ObjectLocated> objectsAddedSet;
 
 	//
 
 	// GETTER
-	@Override
-	public Integer getID() { return ID; }
 
 	@Override
 	public AbstractShape2D getBoundingShape() { return shapeBoundingBox; }
@@ -124,7 +123,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	@Override
 	public int getHeight() { return height; }
 
-	public Map<Integer, MatrixISOMLocatedInSpace<Distance>> getMapsLocatedInSpace() { return mapsLocatedInSpace; }
+	public Map<Long, ISOMWrapperLocated<Distance>> getMapsLocatedInSpace() { return mapsLocatedInSpace; }
 
 	public ShapeRectangle getShapeRect() { return shapeBoundingBox; }
 
@@ -133,16 +132,19 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	// SETTER
 
 	@Override
+	public boolean setID(Long newID) { return false; }
+
+	@Override
 	public void setShape(AbstractShape2D shape) { throw new UnsupportedOperationException("Shape is self-defined"); }
 
 	/** Sets the map holding all objects in this space. */
-	protected void setObjectsAddedMap(Map<Integer, ObjectLocated> objectsAdded) {
+	protected void setObjectsAddedMap(Map<Long, ObjectLocated> objectsAdded) {
 		this.objectsAddedMap = objectsAdded;
 		if (objectsAdded == null) // here and below, update the set
 			this.objectsAddedSet = null;
 		else {
 			if (objectsAdded instanceof MapTreeAVL<?, ?>)
-				this.objectsAddedSet = ((MapTreeAVL<Integer, ObjectLocated>) objectsAdded).toSetValue(ol -> ol.getID());
+				this.objectsAddedSet = ((MapTreeAVL<Long, ObjectLocated>) objectsAdded).toSetValue(ol -> ol.getID());
 			else
 				this.objectsAddedSet = new SetMapped<>(objectsAdded.entrySet(), e -> e.getValue());
 		}
@@ -190,7 +192,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 */
 	@Override
 	public NodeIsom<Distance> getNodeAt(int x, int y) {
-		MatrixISOMLocatedInSpace<Distance> ml;
+		ISOMWrapperLocated<Distance> ml;
 		ml = getMapLocatedContaining(x, y);
 		if (ml == null)
 			return null;
@@ -203,10 +205,10 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	@Override
 	public void forEachNode(BiConsumer<NodeIsom<Distance>, Point> action) {
 		this.mapsLocatedInSpace.forEach((i, mw) -> {
-			mw.misom.forEachNode((n, p) -> {
+			mw.getIsomHeld().forEachNode((n, p) -> {
 				// consider the offset
-				p.x += mw.x;
-				p.y += mw.y;
+				p.x += mw.getx();
+				p.y += mw.gety();
 				action.accept(n, p);
 			});
 		});
@@ -216,13 +218,13 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	public Set<ObjectLocated> getAllObjectLocated() { return this.objectsAddedSet; }
 
 	@Override
-	public ObjectLocated getObjectLocated(Integer ID) { return this.objectsAddedMap.get(ID); }
+	public ObjectLocated getObjectLocated(Long ID) { return this.objectsAddedMap.get(ID); }
 
 	@Override
 	public void forEachAdjacents(NodeIsom<Distance> node,
 			BiConsumer<NodeIsom<Distance>, Distance> adjacentDistanceConsumer) {
 //		MatrixInSpaceObjectsManager<Distance> misom;
-		MatrixISOMLocatedInSpace<Distance> mlis;
+		ISOMWrapperLocated<Distance> mlis;
 		Point p, absoluteNodeLocation;
 		NodeIsom<Distance> adj;
 		p = new Point();
@@ -236,10 +238,10 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //			if (misom != null) {
 			if (mlis != null) {
 				adj = this.getNodeAt(p); // changed to "this" to let considering the misom's offset
-				if (adj != null && mlis.contains(p))
+				if (adj != null && mlis.getIsomHeld().containsAt(p))
 					adjacentDistanceConsumer.accept(
 							// misom
-							adj, mlis.misom.getWeightManager().fromDouble(c.weight));
+							adj, mlis.getIsomHeld().getWeightManager().fromDouble(c.weight));
 			}
 		}
 	}
@@ -252,9 +254,12 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		final Point offset;
 		offset = new Point();
 		this.mapsLocatedInSpace.forEach((id, wrapper) -> {
-			offset.x = wrapper.x;
-			offset.y = wrapper.y;
-			action.accept(wrapper.misom, offset);
+			InSpaceObjectsManager<Distance> isom;
+			isom = wrapper.getIsomHeld();
+			if (!(isom instanceof MatrixInSpaceObjectsManager<?>)) { return; }
+			offset.x = wrapper.getx();
+			offset.y = wrapper.gety();
+			action.accept((MatrixInSpaceObjectsManager<Distance>) isom, offset);
 		});
 	}
 
@@ -336,29 +341,33 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 * {@link MatrixInSpaceObjectsManager} held.
 	 */
 	public MatrixInSpaceObjectsManager<Distance> getMISOMContaining(int x, int y) {
-		MatrixISOMLocatedInSpace<Distance> mw;
+		ISOMWrapperLocated<Distance> mw;
+		InSpaceObjectsManager<Distance> isom;
 		mw = getMapLocatedContaining(x, y);
-		return (mw == null) ? null : mw.misom;
+		if (mw == null) { return null; }
+		isom = mw.getIsomHeld();
+		if (!(isom instanceof MatrixInSpaceObjectsManager<?>)) { return null; }
+		return (MatrixInSpaceObjectsManager<Distance>) isom;
 	}
 
 	/** See {@link #getMapLocatedContaining(int, int)}. */
-	public MatrixISOMLocatedInSpace<Distance> getMapLocatedContaining(Point p) {
+	public ISOMWrapperLocated<Distance> getMapLocatedContaining(Point p) {
 		return getMapLocatedContaining(p.x, p.y);
 	}
 
 	/**
-	 * Returns a {@link MatrixISOMLocatedInSpace} that can contains the given point
-	 * (those coordinates are absolute, not relative in any way, nor this class's
-	 * space represented).
+	 * Returns a {@link ISOMWrapperLocated} that can contains the given point (those
+	 * coordinates are absolute, not relative in any way, nor this class's space
+	 * represented).
 	 */
-	public MatrixISOMLocatedInSpace<Distance> getMapLocatedContaining(int x, int y) {
+	public ISOMWrapperLocated<Distance> getMapLocatedContaining(int x, int y) {
 		NodeQuadtreeMultiISOMRectangular n, prev;
-		List<MatrixISOMLocatedInSpace<Distance>> submaps;
+		List<ISOMWrapperLocated<Distance>> submaps;
 		n = prev = getRoot();
 		if (n == null)
 			return null;
 		// traverse the tree
-		while (!(n == null || n.isLeaf())) {
+		while (n != null && (!n.isLeaf())) {
 			prev = n;
 			if (x >= n.xMiddle) { // east
 				n = (y >= n.yMiddle) ? n.sse : n.sne;
@@ -371,8 +380,8 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		if (submaps == null)
 			return null;
 		// if any holds that point, then return it
-		for (MatrixISOMLocatedInSpace<Distance> r : submaps) {
-			if (r.contains(x, y)) // MathUtilities.isInside(r, p))//
+		for (ISOMWrapperLocated<Distance> r : submaps) {
+			if (r.getIsomHeld().containsAt(x, y)) // MathUtilities.isInside(r, p))//
 				return r;
 		}
 		return null; // Error 404
@@ -389,7 +398,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 * See {@link #getNodeAt(int, int)} to more informations and examples about the
 	 * meaning of <i>offset</i> and <i>coordinates</i> both relative and absolute.
 	 */
-	public MatrixISOMLocatedInSpace<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, int x, int y) {
+	public ISOMWrapperLocated<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, int x, int y) {
 		return addMap(map, x, y, 0.0);
 	}
 
@@ -397,14 +406,16 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 * See {@link #addMap(MatrixInSpaceObjectsManager, int, int)}, but also
 	 * providing a rotation to the given map.
 	 */
-	public MatrixISOMLocatedInSpace<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, int x, int y,
+	public ISOMWrapperLocated<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, int x, int y,
 			double angleRotationDegrees) {
 		int c;
-		MatrixISOMLocatedInSpace<Distance> r;
+		ISOMWrapperLocated<Distance> r;
 		if (map == null || map.getWidth() < 1 || map.getWidth() < 1)
 			return null;
 		map.setTopLeftCorner(x, y);
-		r = new MatrixISOMLocatedInSpace<Distance>(this, map, x, y, angleRotationDegrees);
+//		r = new ISOMWrapperLocated<Distance>(this, map, x, y, angleRotationDegrees);
+		r = new ISOMWrapperLocated<Distance>(map, x, y, angleRotationDegrees);
+		r.setLocation(x, y);
 		c = updateBoundingBox(r);
 		if (c >= 0) {
 			mapsLocatedInSpace.put(r.ID, r);
@@ -417,11 +428,11 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	}
 
 	/** See {@link #addMap(MatrixInSpaceObjectsManager, int, int)}. */
-	public MatrixISOMLocatedInSpace<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, Point locationLeftTop) {
+	public ISOMWrapperLocated<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, Point locationLeftTop) {
 		return addMap(map, locationLeftTop, 0.0);
 	}
 
-	public MatrixISOMLocatedInSpace<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, Point locationLeftTop,
+	public ISOMWrapperLocated<Distance> addMap(MatrixInSpaceObjectsManager<Distance> map, Point locationLeftTop,
 			double angleRotationDegrees) {
 		if (map == null || map.getWidth() < 1 || map.getWidth() < 1)
 			return null;
@@ -447,7 +458,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //			mapsList.forEach(this::addNotRebuilding);
 //	}
 
-	public void removeMap(MatrixISOMLocatedInSpace<Distance> r) {
+	public void removeMap(ISOMWrapperLocated<Distance> r) {
 		if (mapsLocatedInSpace.containsKey(r.ID)) {
 			mapsLocatedInSpace.remove(r.ID);
 			recalculateBoundingBox();
@@ -464,12 +475,12 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	}
 
 	public void removeMapLocatedIn(MatrixInSpaceObjectsManager<Distance> map, int x, int y) {
-		MatrixISOMLocatedInSpace<Distance> r;
+		ISOMWrapperLocated<Distance> r;
 		r = getMapLocatedContaining(x, y);
 		if (r != null) { removeMap(r); }
 	}
 
-	public void removeMaps(Collection<MatrixISOMLocatedInSpace<Distance>> mapsList) {
+	public void removeMaps(Collection<ISOMWrapperLocated<Distance>> mapsList) {
 		boolean[] cc = { false };
 		mapsList.forEach(r -> {
 			if (mapsLocatedInSpace.containsKey(r.ID)) {
@@ -495,12 +506,13 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		clearDimensionCache();
 		mapsAsList.forEach(this::updateBoundingBox);
 	}
+
 	/**
 	 * Update the bounding box. Returns a negative value if the shape are illegal
 	 * (null or negative height or width), 0 if the bounding box is not changed and
 	 * a positive value if the bounding box has successfully being updated.
 	 */
-	protected int updateBoundingBox(MatrixISOMLocatedInSpace<Distance> r) {
+	protected int updateBoundingBox(ISOMWrapperLocated<Distance> r) {
 		boolean changed;
 		int temp;
 		if (r.width < 1 || r.height < 1) { return -1; }
@@ -551,12 +563,12 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	}
 
 	protected NodeQuadtreeMultiISOMRectangular rebuild(NodeQuadtreeMultiISOMRectangular father,
-			List<MatrixISOMLocatedInSpace<Distance>> submaps, //
+			List<ISOMWrapperLocated<Distance>> submaps, //
 			int xLeftTop, int yLeftTop, int xRightBottom, int yRightBottom, int width, int height, //
 			int xMiddle, int yMiddle) {
 		final int mxw, mxe, myn, mys, widthWest, widthEst, heightNorth, heightSouth, yMiddlemmmm, xMiddlemmmm;
 		NodeQuadtreeMultiISOMRectangular n;
-		List<MatrixISOMLocatedInSpace<Distance>> snw, sne, ssw, sse;
+		List<ISOMWrapperLocated<Distance>> snw, sne, ssw, sse;
 		n = new NodeQuadtreeMultiISOMRectangular(father);
 		if (this.getMaxDepth() < n.depth) { this.maxDepth = n.depth; }
 		n.x = xLeftTop;
@@ -624,7 +636,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 
 	/**
 	 */
-	protected void addNotRebuilding(MatrixISOMLocatedInSpace<Distance> map) {
+	protected void addNotRebuilding(ISOMWrapperLocated<Distance> map) {
 		if (getRoot() == null)
 			rebuild();
 		else
@@ -635,7 +647,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 * Create a new {@link NodeQuadtreeMultiISOMRectangular} based on a given map
 	 * (to be held) and a father node.
 	 */
-	protected NodeQuadtreeMultiISOMRectangular newNodeWith(MatrixISOMLocatedInSpace<Distance> map,
+	protected NodeQuadtreeMultiISOMRectangular newNodeWith(ISOMWrapperLocated<Distance> map,
 			NodeQuadtreeMultiISOMRectangular fatherNode) {
 		NodeQuadtreeMultiISOMRectangular newNode;
 		newNode = new NodeQuadtreeMultiISOMRectangular(fatherNode);
@@ -647,7 +659,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 
 	// the recursive part
 	// returns the node given or a newly created one
-	protected NodeQuadtreeMultiISOMRectangular addNotRebuilding(MatrixISOMLocatedInSpace<Distance> map,
+	protected NodeQuadtreeMultiISOMRectangular addNotRebuilding(ISOMWrapperLocated<Distance> map,
 			NodeQuadtreeMultiISOMRectangular currentNode) {
 		if (currentNode.isLeaf()) {
 			if (currentNode.submaps.size() < this.maximumSubmapsEachSection) {
@@ -656,7 +668,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 			} else {
 				// else, build ricoursively
 //				currentNode.submaps.add(map);
-				List<MatrixISOMLocatedInSpace<Distance>> submaps;
+				List<ISOMWrapperLocated<Distance>> submaps;
 				submaps = currentNode.submaps;
 				currentNode.submaps = null;
 				submaps.add(map);
@@ -753,291 +765,300 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	 * <code>{x:5, y:10} - {x:1, y:3} = {x:4, y:7}</code>, so the {@link NodeIsom}
 	 * located at <code>{x:4, y:7}</code> will be taken into account.
 	 */
-	public static class MatrixISOMLocatedInSpace<Dd extends Number> extends Rectangle implements ObjectLocated {
-		private static final long serialVersionUID = 560804524L;
-		public static final Function<MatrixISOMLocatedInSpace<?>, Integer> ID_EXTRACTOR = w -> w.ID;
-		public static final Function<MatrixISOMLocatedInSpace<?>, MatrixInSpaceObjectsManager<?>> MISOM_EXTRACTOR = w -> w.misom;
-
-		/** See calls the constructor considering */
-		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom, int x,
-				int y) {
-			this(multi, misom, x, y, 0.0);
-		}
-
-		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom, int x,
-				int y, double angleRotation) {
-			super(x, y, misom.getWidth(), misom.getHeight());
-			this.multi = multi;
-			this.ID = this.multi.idProg++;
-			this.angleRotationDegrees = angleRotation;
-			this.misom = misom;
-		}
-
-		/**
-		 * See {@link MatrixISOMLocatedInSpace} for informations about the given
-		 * {@link Point}.
-		 */
-		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom,
-				Point p) {
-			this(multi, misom, p.x, p.y);
-		}
-
-		/** In Degreed */
-		protected double angleRotationDegrees, sinCache, cosCache, sinInverseCache, cosInverseCache;
-		public final Integer ID;
-		protected final MultiISOMRetangularMap<Dd> multi;
-		public final MatrixInSpaceObjectsManager<Dd> misom;
-
-		@Override
-		public Integer getID() { return ID; }
-
-		public MatrixInSpaceObjectsManager<Dd> getMatrix() { return misom; }
-
-		public MatrixInSpaceObjectsManager<Dd> getISOM() { return misom; }
-
-		public double getAngleRotationDegrees() { return angleRotationDegrees; }
-
-		public void setAngleRotationDegrees(double angleRotationDegrees) {
-			double rad;
-			this.angleRotationDegrees = angleRotationDegrees % 360.0;
-			if (this.angleRotationDegrees < 0.0)
-				this.angleRotationDegrees += 360.0;
-			rad = Math.toRadians(this.angleRotationDegrees);
-			sinCache = Math.sin(rad);
-			cosCache = Math.cos(rad);
-			sinInverseCache = Math.sin(-rad);
-			cosInverseCache = Math.cos(-rad);
-		}
-
-		/** Absolute coordinates. */
-		public NodeIsom<Dd> getNodeAt(int x, int y) {
-//			boolean isNinety;
-			if (angleRotationDegrees == 0.0) {
-				// consider the offset
-				return misom.getNodeAt(x - this.x, y - this.y);
-			} else if (angleRotationDegrees == 180.0) {
-				int xx, yy;
-				xx = ((this.x + width) - x);
-				yy = ((this.y + height) - y);
-				if ((width & 0x1) == 0) // even
-					xx++; // because of "rounding"
-				if ((height & 0x1) == 0) // even
-					yy++; // because of "rounding"
-				// consider the offset
-				return misom.getNodeAt(xx, yy);
-			}
-//				else if ((isNinety = angleRotationDegrees == 90.0) || (angleRotationDegrees == 270.0)) {
-//				int xx, yy; // centre
-//				xx = this.x + (width >> 1);
-////				if((width&0x1)==0)xx--;
-////				if((height&0x1)==0)yy--;
-//				yy = this.y + (height >> 1);
+//	public static class MatrixISOMLocatedInSpace<Dd extends Number> extends Rectangle implements ObjectLocated {
+//		private static final long serialVersionUID = 560804524L;
+//		public static final Function<MatrixISOMLocatedInSpace<?>, Long> ID_EXTRACTOR = w -> w.ID;
+//		public static final Function<MatrixISOMLocatedInSpace<?>, MatrixInSpaceObjectsManager<?>> MISOM_EXTRACTOR = w -> w.misom;
 //
-//				// top left corner, but rotated
+//		/** See calls the constructor considering */
+//		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom, int x,
+//				int y) {
+//			this(multi, misom, x, y, 0.0);
+//		}
+//
+//		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom, int x,
+//				int y, double angleRotation) {
+//			super(x, y, misom.getWidth(), misom.getHeight());
+//			this.multi = multi;
+//			this.ID = this.multi.idProg++;
+//			this.angleRotationDegrees = angleRotation;
+//			this.misom = misom;
+//		}
+//
+//		/**
+//		 * See {@link MatrixISOMLocatedInSpace} for informations about the given
+//		 * {@link Point}.
+//		 */
+//		public MatrixISOMLocatedInSpace(MultiISOMRetangularMap<Dd> multi, MatrixInSpaceObjectsManager<Dd> misom,
+//				Point p) {
+//			this(multi, misom, p.x, p.y);
+//		}
+//
+//		/** In Degreed */
+//		protected double angleRotationDegrees, sinCache, cosCache, sinInverseCache, cosInverseCache;
+//		public final Long ID;
+//		protected final MultiISOMRetangularMap<Dd> multi;
+//		public final MatrixInSpaceObjectsManager<Dd> misom;
+//
+//		//
+//
+//		@Override
+//		public Long getID() { return ID; }
+//
+//		public MatrixInSpaceObjectsManager<Dd> getMatrix() { return misom; }
+//
+//		public MatrixInSpaceObjectsManager<Dd> getISOM() { return misom; }
+//
+//		public double getAngleRotationDegrees() { return angleRotationDegrees; }
+//
+//		//
+//
+//		@Override
+//		public boolean setID(Long newID) { return false; }
+//
+//		public void setAngleRotationDegrees(double angleRotationDegrees) {
+//			double rad;
+//			this.angleRotationDegrees = angleRotationDegrees % 360.0;
+//			if (this.angleRotationDegrees < 0.0)
+//				this.angleRotationDegrees += 360.0;
+//			rad = Math.toRadians(this.angleRotationDegrees);
+//			sinCache = Math.sin(rad);
+//			cosCache = Math.cos(rad);
+//			sinInverseCache = Math.sin(-rad);
+//			cosInverseCache = Math.cos(-rad);
+//		}
+//
+//		//
+//
+//		/** Absolute coordinates. */
+//		public NodeIsom<Dd> getNodeAt(int x, int y) {
+////			boolean isNinety;
+//			if (angleRotationDegrees == 0.0) {
 //				// consider the offset
-//				// it's rotated, so the coordinates are swapped
-////				return misom.getNodeAt(y-yy,x-xx);
-//				throw new UnsupportedOperationException("Not still done");
-//			} else if (angleRotationDegrees == 270.0) {
-//				int xx, yy; // top left corner, but rotated
-//				xx = this.x + (width >> 1);
-//				yy = this.y + (height >> 1);
+//				return misom.getNodeAt(x - this.x, y - this.y);
+//			} else if (angleRotationDegrees == 180.0) {
+//				int xx, yy;
+//				xx = ((this.x + width) - x);
+//				yy = ((this.y + height) - y);
+//				if ((width & 0x1) == 0) // even
+//					xx++; // because of "rounding"
+//				if ((height & 0x1) == 0) // even
+//					yy++; // because of "rounding"
 //				// consider the offset
-//				// TODO rotate
-//				// it's rotated, so the coordinates are swapped
-////				return misom.getNodeAt(y-yy,x-xx);
-//				throw new UnsupportedOperationException("Not still done");
+//				return misom.getNodeAt(xx, yy);
 //			}
-//			otherwise ..if (this.angleRotationDegrees != 0.0) {
-			else {
-				Point location;
-				// NOTE: actions in "makeRelativeAndRotate" are make here just to make them fast
-				location = this.misom.getLocation();
-				// make coordinates relative to the centre
-//				x += location.x - (this.misom.getWidth() >> 1);
-//				y += location.y - (this.misom.getHeight() >> 1);
-				x -= location.x;
-				y -= location.y;
-//			s = Math.sin(a); // a is in radians
-//			c = Math.cos(a);
-//			rotationMatrix = [
-//				[c, -s],
-//				[s, c]
-//			];
-				// [x,y] = dotProduct( [x,y], rotationMatrix);
-//			xtemp = x * cosInverseCache;
-//			ytemp = y * sinInverseCache;
-				x = (int) (x * cosInverseCache + y * sinInverseCache);
-				y = (int) ((y * cosInverseCache) - (x * sinInverseCache));
-			}
-
-			return misom.getNodeAt(x, y);
-		}
-
-		/**
-		 * Change the provided {@link Point}'s internal values equal to the relative
-		 * top-left corner of the {@link InSpaceObjectsManager} held by this class.
-		 */
-		public Point makePointRelativeToTopLeftCorner(Point p) {
-			PointInt location;
-			location = this.misom.getTopLetCorner();
-			p.x -= location.getX();
-			p.y -= location.getY();
-			return p;
-		}
-
-		/**
-		 * Calls {@link #makePointRelativeToTopLeftCorner(Point)} providing a newly
-		 * created {@link Point}. The given point is to be meant as <b>absolute</b>,
-		 * i.e. NOT relative to this {@link InSpaceObjectsManager}.
-		 */
-		public Point makePointRelativeToTopLeftCorner(int x, int y) {
-			return makePointRelativeToTopLeftCorner(new Point(x, y));
-		}
-
-		public Point makePointAbsoluteToTopLeftCorner(Point p) {
-			PointInt location;
-			location = this.misom.getTopLetCorner();
-			p.x += location.getX();
-			p.y += location.getY();
-			return p;
-		}
-
-		/** See {@link #makePointRelativeToTopLeftCorner(int, int)}. */
-		public Point makePointRelativeToCenter(Point p) {
-			Point location;
+////				else if ((isNinety = angleRotationDegrees == 90.0) || (angleRotationDegrees == 270.0)) {
+////				int xx, yy; // centre
+////				xx = this.x + (width >> 1);
+//////				if((width&0x1)==0)xx--;
+//////				if((height&0x1)==0)yy--;
+////				yy = this.y + (height >> 1);
+////
+////				// top left corner, but rotated
+////				// consider the offset
+////				// it's rotated, so the coordinates are swapped
+//////				return misom.getNodeAt(y-yy,x-xx);
+////				throw new UnsupportedOperationException("Not still done");
+////			} else if (angleRotationDegrees == 270.0) {
+////				int xx, yy; // top left corner, but rotated
+////				xx = this.x + (width >> 1);
+////				yy = this.y + (height >> 1);
+////				// consider the offset
+////				// TODO rotate
+////				// it's rotated, so the coordinates are swapped
+//////				return misom.getNodeAt(y-yy,x-xx);
+////				throw new UnsupportedOperationException("Not still done");
+////			}
+////			otherwise ..if (this.angleRotationDegrees != 0.0) {
+//			else {
+//				Point location;
+//				// NOTE: actions in "makeRelativeAndRotate" are make here just to make them fast
+//				location = this.misom.getLocation();
+//				// make coordinates relative to the centre
+////				x += location.x - (this.misom.getWidth() >> 1);
+////				y += location.y - (this.misom.getHeight() >> 1);
+//				x -= location.x;
+//				y -= location.y;
+////			s = Math.sin(a); // a is in radians
+////			c = Math.cos(a);
+////			rotationMatrix = [
+////				[c, -s],
+////				[s, c]
+////			];
+//				// [x,y] = dotProduct( [x,y], rotationMatrix);
+////			xtemp = x * cosInverseCache;
+////			ytemp = y * sinInverseCache;
+//				x = (int) (x * cosInverseCache + y * sinInverseCache);
+//				y = (int) ((y * cosInverseCache) - (x * sinInverseCache));
+//			}
+//
+//			return misom.getNodeAt(x, y);
+//		}
+//
+//		/**
+//		 * Change the provided {@link Point}'s internal values equal to the relative
+//		 * top-left corner of the {@link InSpaceObjectsManager} held by this class.
+//		 */
+//		public Point makePointRelativeToTopLeftCorner(Point p) {
+//			PointInt location;
 //			location = this.misom.getTopLetCorner();
-//			p.x += (this.misom.getWidth() >> 1) - location.x;
-//			p.y += (this.misom.getHeight() >> 1) - location.y;
+//			p.x -= location.getX();
+//			p.y -= location.getY();
 //			return p;
-			location = this.misom.getLocation();
-			p.x -= location.x;
-			p.y -= location.y;
-			return p;
-		}
-
-		public Point makePointAbsoluteToCenter(int x, int y) { return makePointAbsoluteToCenter(new Point(x, y)); }
-
-		public Point makePointAbsoluteToCenter(Point p) {
-			Point location;
+//		}
+//
+//		/**
+//		 * Calls {@link #makePointRelativeToTopLeftCorner(Point)} providing a newly
+//		 * created {@link Point}. The given point is to be meant as <b>absolute</b>,
+//		 * i.e. NOT relative to this {@link InSpaceObjectsManager}.
+//		 */
+//		public Point makePointRelativeToTopLeftCorner(int x, int y) {
+//			return makePointRelativeToTopLeftCorner(new Point(x, y));
+//		}
+//
+//		public Point makePointAbsoluteToTopLeftCorner(Point p) {
+//			PointInt location;
 //			location = this.misom.getTopLetCorner();
-//			p.x += location.x - (this.misom.getWidth() >> 1);
-//			p.y += location.y - (this.misom.getHeight() >> 1);
-			location = this.misom.getLocation();
-			p.x += location.x;
-			p.y += location.y;
-			return p;
-		}
-
-		/**
-		 * The given {@link InSpaceObjectsManager} has a rotation in degrees (i.e.:
-		 * {@link #getAngleRotationDegrees()}), so the <b>relative</b> given point is
-		 * rotated relatively to the center so that it could be used as a
-		 * <i>2D-index</i>.
-		 */
-		public Point applyIsomsRotation(Point p) {
-			int x, y;
-			x = p.x;
-			y = p.y;
-			p.x = (int) (x * cosInverseCache + y * sinInverseCache);
-			p.y = (int) ((y * cosInverseCache) - (x * sinInverseCache));
-			return p;
-		}
-
-		/**
-		 * Calls {@link #makePointRelativeToTopLeftCorner(Point)} providing a newly
-		 * created {@link Point}.
-		 */
-		public Point applyIsomsRotation(int x, int y) { return applyIsomsRotation(new Point(x, y)); }
-
-		/**
-		 * Apply both {@link #makePointRelativeToTopLeftCorner(Point)} and then
-		 * {@link #applyIsomsRotation(Point)} to the given <b>absolute</b> point.
-		 */
-		public Point makeRelativeToCenterAndRotate(Point p) {
-			return applyIsomsRotation(makePointRelativeToCenter(p));
-		}
-
-		public Point makeRelativeToCenterAndRotate(int x, int y) {
-			return makeRelativeToCenterAndRotate(new Point(x, y));
-		}
-
-		public boolean add(ObjectLocated o) {
-			boolean c;
-			int xo, yo;// , x, y;
-			Point oldLocation;
-			if (o == null)
-				return false;
-			oldLocation = o.getLocation();
-			xo = oldLocation.x;
-			yo = oldLocation.y;
-//			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
-			makeRelativeToCenterAndRotate(oldLocation);
-			c = this.multi.add(o);
-			o.setLocation(xo, yo);
-			return c;
-		}
-
-		public boolean contains(ObjectLocated o) {
-			boolean c;
-			int xo, yo;// , x, y;
-			Point oldLocation;
-			if (o == null)
-				return false;
-			oldLocation = o.getLocation();
-			xo = oldLocation.x;
-			yo = oldLocation.y;
-//			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
-			makeRelativeToCenterAndRotate(oldLocation);
-			c = this.multi.contains(o);
-			o.setLocation(xo, yo);
-			return c;
-		}
-
-		public boolean remove(ObjectLocated o) {
-			boolean c;
-			int xo, yo;// , x, y;
-			Point oldLocation;
-//			misomLocation = this.misom.getLocation();
-			if (o == null)
-				return false;
-			oldLocation = o.getLocation();
-			xo = oldLocation.x;
-			yo = oldLocation.y;
-//			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
-			makeRelativeToCenterAndRotate(oldLocation);
-			c = this.multi.remove(o);
-			o.setLocation(xo, yo);
-			return c;
-		}
-
-		public void forEachNode(BiConsumer<NodeIsom<Dd>, Point> action) {
-			int hw, hh;
-			Point isomLocationCentre;
-			isomLocationCentre = this.misom.getLocation();
-			hw = (this.misom.getWidth() >> 1);
-			hh = (this.misom.getHeight() >> 1);
-			this.misom.forEachNode((n, p) -> {
-				int xRotated, yRotated;
-				// p is relative right now
-				// must be made absolute and rotated
-
-				// 1) make it from relative to top-left to relative to center
-				p.x -= hw;
-				p.y -= hh;
-				// 2) apply the rotation
-				xRotated = (int) (p.x * cosCache + p.y * sinCache);
-				yRotated = (int) ((p.y * cosCache) - (p.x * sinCache));
-				p.x = xRotated;
-				p.y = yRotated;
-				// 3) make it back relative to top-left corner and 4) absolute
-				p.x += hw + isomLocationCentre.x;
-				p.y += hh + isomLocationCentre.y;
-				// 5) DONE
-				action.accept(n, p);
-			});
-		}
-	}
+//			p.x += location.getX();
+//			p.y += location.getY();
+//			return p;
+//		}
+//
+//		/** See {@link #makePointRelativeToTopLeftCorner(int, int)}. */
+//		public Point makePointRelativeToCenter(Point p) {
+//			Point location;
+////			location = this.misom.getTopLetCorner();
+////			p.x += (this.misom.getWidth() >> 1) - location.x;
+////			p.y += (this.misom.getHeight() >> 1) - location.y;
+////			return p;
+//			location = this.misom.getLocation();
+//			p.x -= location.x;
+//			p.y -= location.y;
+//			return p;
+//		}
+//
+//		public Point makePointAbsoluteToCenter(int x, int y) { return makePointAbsoluteToCenter(new Point(x, y)); }
+//
+//		public Point makePointAbsoluteToCenter(Point p) {
+//			Point location;
+////			location = this.misom.getTopLetCorner();
+////			p.x += location.x - (this.misom.getWidth() >> 1);
+////			p.y += location.y - (this.misom.getHeight() >> 1);
+//			location = this.misom.getLocation();
+//			p.x += location.x;
+//			p.y += location.y;
+//			return p;
+//		}
+//
+//		/**
+//		 * The given {@link InSpaceObjectsManager} has a rotation in degrees (i.e.:
+//		 * {@link #getAngleRotationDegrees()}), so the <b>relative</b> given point is
+//		 * rotated relatively to the center so that it could be used as a
+//		 * <i>2D-index</i>.
+//		 */
+//		public Point applyIsomsRotation(Point p) {
+//			int x, y;
+//			x = p.x;
+//			y = p.y;
+//			p.x = (int) (x * cosInverseCache + y * sinInverseCache);
+//			p.y = (int) ((y * cosInverseCache) - (x * sinInverseCache));
+//			return p;
+//		}
+//
+//		/**
+//		 * Calls {@link #makePointRelativeToTopLeftCorner(Point)} providing a newly
+//		 * created {@link Point}.
+//		 */
+//		public Point applyIsomsRotation(int x, int y) { return applyIsomsRotation(new Point(x, y)); }
+//
+//		/**
+//		 * Apply both {@link #makePointRelativeToTopLeftCorner(Point)} and then
+//		 * {@link #applyIsomsRotation(Point)} to the given <b>absolute</b> point.
+//		 */
+//		public Point makeRelativeToCenterAndRotate(Point p) {
+//			return applyIsomsRotation(makePointRelativeToCenter(p));
+//		}
+//
+//		public Point makeRelativeToCenterAndRotate(int x, int y) {
+//			return makeRelativeToCenterAndRotate(new Point(x, y));
+//		}
+//
+//		public boolean add(ObjectLocated o) {
+//			boolean c;
+//			int xo, yo;// , x, y;
+//			Point oldLocation;
+//			if (o == null)
+//				return false;
+//			oldLocation = o.getLocation();
+//			xo = oldLocation.x;
+//			yo = oldLocation.y;
+////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+//			makeRelativeToCenterAndRotate(oldLocation);
+//			c = this.multi.add(o);
+//			o.setLocation(xo, yo);
+//			return c;
+//		}
+//
+//		public boolean contains(ObjectLocated o) {
+//			boolean c;
+//			int xo, yo;// , x, y;
+//			Point oldLocation;
+//			if (o == null)
+//				return false;
+//			oldLocation = o.getLocation();
+//			xo = oldLocation.x;
+//			yo = oldLocation.y;
+////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+//			makeRelativeToCenterAndRotate(oldLocation);
+//			c = this.multi.contains(o);
+//			o.setLocation(xo, yo);
+//			return c;
+//		}
+//
+//		public boolean remove(ObjectLocated o) {
+//			boolean c;
+//			int xo, yo;// , x, y;
+//			Point oldLocation;
+////			misomLocation = this.misom.getLocation();
+//			if (o == null)
+//				return false;
+//			oldLocation = o.getLocation();
+//			xo = oldLocation.x;
+//			yo = oldLocation.y;
+////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+//			makeRelativeToCenterAndRotate(oldLocation);
+//			c = this.multi.remove(o);
+//			o.setLocation(xo, yo);
+//			return c;
+//		}
+//
+//		public void forEachNode(BiConsumer<NodeIsom<Dd>, Point> action) {
+//			int hw, hh;
+//			Point isomLocationCentre;
+//			isomLocationCentre = this.misom.getLocation();
+//			hw = (this.misom.getWidth() >> 1);
+//			hh = (this.misom.getHeight() >> 1);
+//			this.misom.forEachNode((n, p) -> {
+//				int xRotated, yRotated;
+//				// p is relative right now
+//				// must be made absolute and rotated
+//
+//				// 1) make it from relative to top-left to relative to center
+//				p.x -= hw;
+//				p.y -= hh;
+//				// 2) apply the rotation
+//				xRotated = (int) (p.x * cosCache + p.y * sinCache);
+//				yRotated = (int) ((p.y * cosCache) - (p.x * sinCache));
+//				p.x = xRotated;
+//				p.y = yRotated;
+//				// 3) make it back relative to top-left corner and 4) absolute
+//				p.x += hw + isomLocationCentre.x;
+//				p.y += hh + isomLocationCentre.y;
+//				// 5) DONE
+//				action.accept(n, p);
+//			});
+//		}
+//	}
 
 	/**
 	 * Node subsection of this quad-tree like class.<br>
@@ -1046,7 +1067,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 	public class NodeQuadtreeMultiISOMRectangular implements Stringable {
 		private static final long serialVersionUID = 1L;
 		protected int x, y, width, height, xMiddle, yMiddle, depth;
-		List<MatrixISOMLocatedInSpace<Distance>> submaps;
+		List<ISOMWrapperLocated<Distance>> submaps;
 		NodeQuadtreeMultiISOMRectangular father, snw, sne, ssw, sse;
 
 		NodeQuadtreeMultiISOMRectangular(NodeQuadtreeMultiISOMRectangular father) {
@@ -1069,7 +1090,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 
 		public int getDepth() { return this.depth; }
 
-		public List<MatrixISOMLocatedInSpace<Distance>> getSubmaps() { return submaps; }
+		public List<ISOMWrapperLocated<Distance>> getSubmaps() { return submaps; }
 
 		public boolean isLeaf() { return submaps != null; }
 
@@ -1097,7 +1118,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		@Override
 		public String toString() { return "Node--[x=" + x + ", y=" + y + ", w=" + width + ", h=" + height + "]"; }
 
-		public boolean intersectsWithMap(MatrixISOMLocatedInSpace<Distance> map) {
+		public boolean intersectsWithMap(ISOMWrapperLocated<Distance> map) {
 			return MathUtilities.intersects(x, y, width, height, map.x, map.y, map.width, map.height);
 		}
 
@@ -1129,4 +1150,5 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 			}
 		}
 	} // end NodeQuadtreeMultiISOMRectangular
+
 }

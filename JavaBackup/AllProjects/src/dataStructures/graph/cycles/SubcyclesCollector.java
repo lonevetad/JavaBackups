@@ -3,7 +3,10 @@ package dataStructures.graph.cycles;
 import java.io.Serializable;
 import java.util.List;
 
-public interface SubcyclesCollector<E, Distance> extends Serializable {
+import dataStructures.graph.GraphSimple;
+import dataStructures.graph.GraphSimpleGenerator;
+
+public interface SubcyclesCollector<E, Distance extends Number> extends Serializable {
 	public static final boolean PRESERVE_SOURCE_GRAPH = true, MODIFY_SOURCE_GRAPH = false;
 
 	public default List<GraphSimple<E, Distance>> collectCycles(GraphSimple<E, Distance> gsource,

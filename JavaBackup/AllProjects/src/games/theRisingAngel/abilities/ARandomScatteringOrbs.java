@@ -5,28 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.abilities.impl.AbilityBaseImpl;
+import games.generic.controlModel.abilities.impl.AbilityTargetingGObjInMap;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageReceiverGeneric;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.gObj.MovingObject;
-import games.generic.controlModel.gObj.MovingObjectDelegatingMovement;
-import games.generic.controlModel.gObj.OrbitingInteractiveObject;
-import games.generic.controlModel.gObj.TimedObject;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityTargetingGObjInMap;
 import games.generic.controlModel.misc.GObjMovement;
+import games.generic.controlModel.objects.MovingObject;
+import games.generic.controlModel.objects.MovingObjectDelegatingMovement;
+import games.generic.controlModel.objects.OrbitingInteractiveObject;
+import games.generic.controlModel.objects.TimedObject;
+import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.subimpl.movements.GObjLinearMovement;
-import games.theRisingAngel.GModalityTRAn;
+import games.theRisingAngel.GModalityTRAnBaseWorld;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
 import geometry.ObjectShaped;
 import geometry.implementations.shapes.ShapeCircle;
 import tools.Comparators;
 import tools.MathUtilities;
-import tools.ObjectWithID;
 import tools.UniqueIDProvider;
 
 // emula il "Storm Burst" di "path of Exile"
@@ -34,75 +35,57 @@ import tools.UniqueIDProvider;
  * Generates a series of orbs that scatters and deals damage upon hitting
  * someone while moving or exploding.
  */
-public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap, TimedObject {
+public abstract class ARandomScatteringOrbs extends AbilityBaseImpl implements AbilityTargetingGObjInMap, TimedObject {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Scattering Bombs";
 	protected static final boolean STATUS_TRAVELLING = true, STATUS_STATIONARY_FOR_EXPLOSION = !STATUS_TRAVELLING;
 	protected static final int MILLIS_STATIONARY_BEFORE_EXPLOSION = 500, MILLIS_TRAVELLING = 1000;
+	protected static final UniqueIDProvider UIDP_SCATTERING_ORBS = UniqueIDProvider.newBasicIDProvider();
 
-	public ARandomScatteringOrbs(GModalityTRAn gameModality) {
+	public ARandomScatteringOrbs(GModalityTRAnBaseWorld gameModality) {
+		super();
 		this.gameModality = gameModality;
-		orbsIDProvider = UniqueIDProvider.newBasicIDProvider();
-		random = new Random();
+		random = gameModality.getRandom();
 		timeSpawningOrbs = tempSpawning = 0;
+		this.targetsFilter = this.newTargetsFilter();
 	}
 
-	protected GModalityTRAn gameModality;
 	protected transient int tempSpawning;
 	protected int timeSpawningOrbs;
-	protected transient UniqueIDProvider orbsIDProvider;
-	protected Integer ID;
 	protected transient Random random;
-	protected transient ObjectWithID owner;
+	protected GModalityTRAnBaseWorld gameModality;
 	protected Set<ScatteringOrb> orbs;
+	protected Predicate<ObjectLocated> targetsFilter;
 
 	@Override
-	public Integer getID() {
-		return ID;
-	}
+	public String getName() { return NAME; }
+
+	public int getTimeSpawningOrbs() { return timeSpawningOrbs; }
+
+	public Random getRandom() { return random; }
+
+	public Set<ScatteringOrb> getOrbs() { return orbs; }
 
 	@Override
-	public String getName() {
-		return NAME;
-	}
-
-	@Override
-	public ObjectWithID getOwner() {
-		return owner;
-	}
-
-	public int getTimeSpawningOrbs() {
-		return timeSpawningOrbs;
-	}
-
-	public Random getRandom() {
-		return random;
-	}
-
-	public Set<ScatteringOrb> getOrbs() {
-		return orbs;
-	}
+	public Predicate<ObjectLocated> getTargetsFilter() { return this.targetsFilter; }
 
 	//
 
-	public void setTimeSpawningOrbs(int timeSpawningOrbs) {
-		this.timeSpawningOrbs = timeSpawningOrbs;
-	}
+	public void setTimeSpawningOrbs(int timeSpawningOrbs) { this.timeSpawningOrbs = timeSpawningOrbs; }
 
-	public void setRandom(Random random) {
-		this.random = random;
-	}
+	public void setRandom(Random random) { this.random = random; }
 
 	@Override
-	public void setOwner(ObjectWithID owner) {
-		this.owner = owner;
-	}
+	public GModality getGameModality() { return gameModality; }
+
+	@Override
+	public void setGameModality(GModality gameModality) { this.gameModality = (GModalityTRAnBaseWorld) gameModality; }
 
 	//
 
 	/** Get the radius of each single orb */
 	public int getRadiusOrbs() {
-		return gameModality.getSpaceSubunitsEveryUnit(); // just 1 unit
+		return gameModality.getSpaceSubunitsEachUnit(); // just 1 unit
 	}
 
 	/**
@@ -127,10 +110,20 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 
 	protected abstract ScatteringOrb newOrb();
 
-	@Override
-	public void performAbility(GModality gm) {
-		// TODO Auto-generated method stub
+	protected Predicate<ObjectLocated> newTargetsFilter() { return ol -> this.owner != ol; }
 
+//
+
+	@Override
+	public void resetAbility() {
+		this.tempSpawning = 0;
+		this.orbs.forEach(so -> this.gameModality.removeGameObject(so));
+		this.orbs.clear();
+	}
+
+	@Override
+	public void performAbility(GModality gm, int level) {
+// TODO WHAT TO DO? NOTHING?
 	}
 
 	@Override
@@ -142,15 +135,15 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 				do {
 					tempSpawning -= tso;
 					this.orbs.add(newOrb()); // spawn
-				} while(tempSpawning >= tso && this.orbs.size() < getMaxAmountScatteringOrbs());
+				} while (tempSpawning >= tso && this.orbs.size() < getMaxAmountScatteringOrbs());
 			}
 		}
 		orbs.forEach(so -> so.act(modality, timeUnits));
 	}
 
 	protected void performDamage(GModality gm, ScatteringOrb orb, CreatureSimple target) {
-		GModalityTRAn gmtran;
-		gmtran = (GModalityTRAn) gm;
+		GModalityTRAnBaseWorld gmtran;
+		gmtran = (GModalityTRAnBaseWorld) gm;
 		gmtran.dealsDamageTo(orb, target, getDamageOrbs(orb, target));
 	}
 
@@ -163,7 +156,7 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 		private static final long serialVersionUID = 1L;
 		protected transient boolean status; // if false, then it's stationary
 		protected transient int tempTime;
-		protected transient Integer id;
+		protected transient final Long id;
 		protected GObjLinearMovement movementLinear;
 		protected AbstractShape2D shape;
 		protected transient Set<ObjectLocated> targetsDamagedOnTravel;
@@ -171,29 +164,25 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 
 		protected ScatteringOrb() {
 			Point p;
-			MapTreeAVL<Integer, ObjectLocated> backmap;
+			MapTreeAVL<Long, ObjectLocated> backmap;
 			tempTime = 0;
-			id = orbsIDProvider.getNewID();
+			id = UIDP_SCATTERING_ORBS.getNewID();
 			p = getCenterOfScattering();
 			shape = new ShapeCircle(p.x, p.y, true, getRadiusOrbs());
 			movementLinear = new GObjLinearMovement();
 			movementLinear.setObjectToMove(this);
 			movementLinear.resetStartingPoint();
 			status = STATUS_STATIONARY_FOR_EXPLOSION;
-			backmap = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR);
+			backmap = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR);
 			targetsDamagedOnTravel = backmap.toSetValue(ObjectLocated.KEY_EXTRACTOR);
 			path = new ArrayList<>(2);
 		}
 
 		@Override
-		public Integer getID() {
-			return id;
-		}
+		public Long getID() { return id; }
 
 		@Override
-		public GObjMovement getMovementImplementation() {
-			return movementLinear;
-		}
+		public GObjMovement getMovementImplementation() { return movementLinear; }
 
 		@Override
 		public void setMovementImplementation(GObjMovement movementImplementation) {
@@ -201,14 +190,10 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 		}
 
 		@Override
-		public AbstractShape2D getShape() {
-			return shape;
-		}
+		public AbstractShape2D getShape() { return shape; }
 
 		@Override
-		public void setShape(AbstractShape2D shape) {
-			this.shape = shape;
-		}
+		public void setShape(AbstractShape2D shape) { this.shape = shape; }
 
 		/**
 		 * Perform blast explosion, calling
@@ -250,7 +235,7 @@ public abstract class ARandomScatteringOrbs implements AbilityTargetingGObjInMap
 				dest.y = centre.y * ((int) ang * radius);
 				// must cover the whole distance within time
 				movementLinear
-						.setVelocity((int) (MathUtilities.distance(dest, getLocation()) / getTimeUnitSuperscale()));
+						.setVelocity((int) (MathUtilities.distance(dest, getLocation()) / getTimeSubUnitsEachUnit()));
 				movementLinear.setDestination(dest);
 				path.clear();
 				path.add(shape.getCenter());

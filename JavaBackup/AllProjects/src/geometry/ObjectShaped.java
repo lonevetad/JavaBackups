@@ -19,7 +19,7 @@ public interface ObjectShaped extends ObjectLocated {
 		return s.getCenter();
 	}
 
-	public default PointInt getTopLetCorner() {
+	public default PointInt getTopLeftCorner() {
 		AbstractShape2D s;
 //		Point2D p2d;
 		s = this.getShape();

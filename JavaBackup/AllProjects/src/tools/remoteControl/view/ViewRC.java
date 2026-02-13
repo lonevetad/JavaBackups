@@ -26,6 +26,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 import tools.ObserverSimple;
 import tools.gui.swing.HintTextFieldUI;
@@ -84,7 +86,7 @@ public class ViewRC {
 		allPanelsManager = new CardLayout();
 		currentPanel = PanelName.Main;
 		fin = new JFrame("Remote controller - by lonevetad");
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		fin.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -255,8 +257,8 @@ public class ViewRC {
 		};
 		jspScreencast = new JScrollPane(jpScreencast);
 		jspScreencast.setViewportView(jpScreencast);
-		jspScreencast.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		jspScreencast.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jspScreencast.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		jspScreencast.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		whereToAdd.add(jspScreencast, BorderLayout.CENTER);
 		jpScreencast.setSize(200, 200);
 		jpScreencast.setBackground(new Color(128, 255, 196));

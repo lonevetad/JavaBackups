@@ -1,6 +1,6 @@
 package games.old;
 
-import games.generic.controlModel.gEvents.GEvent;
+import games.generic.controlModel.events.GEvent;
 
 /** Interfaccia di dubbio uso, pensata per le enumerazioni. */
 public interface GEventFactory {

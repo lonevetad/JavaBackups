@@ -18,7 +18,7 @@ public interface MyObservable {
 	/**
 	 * Deletes an observer from the set of observers of this object. Passing <CODE>null</CODE> to
 	 * this method will have no effect.
-	 * 
+	 *
 	 * @param o
 	 *            the observer to be deleted.
 	 */

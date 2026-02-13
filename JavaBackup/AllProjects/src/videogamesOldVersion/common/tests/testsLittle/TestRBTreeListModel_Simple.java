@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import common.abstractCommon.behaviouralObjectsAC.MyComparator;
@@ -48,7 +49,7 @@ public class TestRBTreeListModel_Simple {
 	void init() {
 		GridBagConstraints c;
 		fin = new JFrame(this.getClass().getSimpleName());
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jp = new JPanel(gbl = new GridBagLayout()) {
 			private static final long serialVersionUID = 9840651960L;
 

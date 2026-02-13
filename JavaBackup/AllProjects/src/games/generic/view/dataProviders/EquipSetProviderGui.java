@@ -1,11 +1,12 @@
 package games.generic.view.dataProviders;
 
-import games.generic.controlModel.inventoryAbil.EquipmentSet;
-import games.generic.controlModel.inventoryAbil.EquipmentsHolder;
+import games.generic.controlModel.holders.EquipmentsHolder;
+import games.generic.controlModel.items.EquipmentSet;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.view.GameView;
-import games.generic.view.GuiComponent;
+import games.generic.view.impl.GuiComponent;
 
+/** Mostra quali pezzi di equipaggiamento sono assegnati al Player. */
 public class EquipSetProviderGui extends GuiComponent {
 
 	public EquipSetProviderGui(GameView view) { super(view); }

@@ -4,7 +4,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
 import games.generic.controlModel.subimpl.CreatureAttributesBaseAndDerivedCaching;
-import games.theRisingAngel.misc.AttributesTRAn;
+import games.theRisingAngel.enums.AttributesTRAn;
 
 /**
  * More variable version: bonus are about the <code>25%</code> of the computed
@@ -15,7 +15,7 @@ public class AAttrSingleBonusMalusRandomPercentage extends AAttrSingleBonusMalus
 	private static final long serialVersionUID = -2154186081264778L;
 	public static final String NAME = AAttrSingleBonusMalusRandom.NAME + " relative";
 
-	public AAttrSingleBonusMalusRandomPercentage() { super(NAME); }
+	public AAttrSingleBonusMalusRandomPercentage(GModality gameModality) { super(gameModality, NAME); }
 
 	@Override
 	public int getAttributesBonusValue(GModality gm, CreatureAttributes ca, AttributesTRAn attr) {

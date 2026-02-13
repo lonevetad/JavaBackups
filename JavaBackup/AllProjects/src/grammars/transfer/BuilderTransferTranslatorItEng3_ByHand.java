@@ -367,7 +367,7 @@ public class BuilderTransferTranslatorItEng3_ByHand extends BuilderTransferTrans
 				return r;
 			}
 		});
-    
+
 		t.addRule(new TransferRule(//
 				(NodeParsedSentence) ElemGrammarBase.Verb.newNode()//
 						.addChildNC(//

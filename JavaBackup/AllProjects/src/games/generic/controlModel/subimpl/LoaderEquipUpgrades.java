@@ -1,8 +1,8 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.inventoryAbil.EquipmentUpgrade;
+import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.loaders.LoaderGameObjects;
 import games.generic.controlModel.misc.GameObjectsProvider;
-import games.generic.controlModel.misc.LoaderGameObjects;
 
 public abstract class LoaderEquipUpgrades extends LoaderGameObjects<EquipmentUpgrade> {
 

@@ -5,26 +5,10 @@ import java.awt.Point;
 import geometry.PathOptimizer;
 import tools.LoggerMessages;
 import tools.NumberManager;
+import tools.impl.OWIDLongImpl;
 
-/**
- * This interface denotes a huge object managing a set of object placed in space
- * (2D or 3D, it depends), providing various utilities like adding, removing,
- * fetching or querying objects or performing tasks in some areas, like scanning
- * the area. Other utilities could be path finding, providing special subsets of
- * objects, like the ones in a specific area, sets of clustered objects, get the
- * bounding polygon of an area and so on.
- * <p>
- * Each separate groups of utilities (like {add, remove, fetch}, {path find},
- * {bounding polygon}, etc) should be provided by a separate interface,
- * obviously linked or bounded with this instance, to avoid the <i>God class
- * anti-pattern</i>.
- * <p>
- * Provided utilities:
- * <ul>
- * <li>{@link PathFinderIsom}</li>
- * </ul>
- */
-public abstract class InSpaceObjectsManagerImpl<Distance extends Number> implements InSpaceObjectsManager<Distance> {
+public abstract class InSpaceObjectsManagerImpl<Distance extends Number> extends OWIDLongImpl
+		implements InSpaceObjectsManager<Distance> {
 	private static final long serialVersionUID = 1L;
 
 	public InSpaceObjectsManagerImpl() { super(); }

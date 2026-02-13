@@ -8,6 +8,15 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Set of functions to convert stuffs.
+ * <p>
+ * It would be deprecated because it's almost useless, except for the array
+ * wrappers.
+ *
+ * @author ottin
+ *
+ */
 public final class Iterables {
 
 	// INTERFACES
@@ -22,7 +31,7 @@ public final class Iterables {
 
 	//
 
-	public static <T> ForEacher<T> forEach(Collection<T> c) { return a -> c.forEach(a); }
+	public static <T> ForEacher<T> forEach(Collection<T> c) { return c::forEach; }
 
 	public static <T> ForEacher<T> forEach(T[] array) {
 		return a -> {
@@ -36,15 +45,16 @@ public final class Iterables {
 	}
 
 	public static <T> ForEacher<T> forEach(Iterator<T> i) {
-		return a -> {
-			while (i.hasNext())
-				a.accept(i.next());
-		};
+//		return a -> {
+//			while (i.hasNext())
+//				a.accept(i.next());
+//		};
+		return i::forEachRemaining;
 	}
 
-	public static <T> ForEacher<T> forEach(Stream<T> s) { return a -> s.forEach(a); }
+	public static <T> ForEacher<T> forEach(Stream<T> s) { return s::forEach; }
 
-	public static <T> ForEacher<T> forEach(Iterable<T> s) { return a -> s.forEach(a); }
+	public static <T> ForEacher<T> forEach(Iterable<T> s) { return s::forEach; }
 
 	public static <K, V> ForEacher<K> forEach(Map<K, V> m) { return a -> m.forEach((k, v) -> a.accept(k)); }
 

@@ -4,10 +4,12 @@ package games.generic.controlModel.misc;
 public interface AttributeIdentifier extends IndexableObject {
 
 	/**
-	 * Tells if the current attribute can or cannot be negative. If
-	 * <code>true</code>, then it cannot be negative.
+	 * Returns the minimum value this attribute can have.
 	 */
-	public default boolean isStrictlyPositive() {
-		return false;
-	}
+	public default int lowerBound() { return Integer.MIN_VALUE; }
+
+	/**
+	 * Returns the maximum value this attribute can have.
+	 */
+	public default int upperBound() { return Integer.MAX_VALUE; }
 }

@@ -105,7 +105,7 @@ public class IntegerStream {
 	 * random index, as second parameter the sequential index, ranging from
 	 * <code>0</code> to the upper bound (EXCLUDED) provided by
 	 * {@link #getUpperBound()}.
-	 * 
+	 *
 	 * @param pairRandomAndSequentialIndexConsumer a consumer that consume a pair of
 	 *                                             indexes: the first parameter is
 	 *                                             the random index, the second

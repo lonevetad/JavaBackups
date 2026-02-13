@@ -3,15 +3,15 @@ package games.theRisingAngel.abilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.damage.EventDamage;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.heal.resExample.ManaHavingObject;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityBaseImpl;
-import games.generic.controlModel.misc.AttributesHolder;
-import games.theRisingAngel.events.EventsTRAn;
+import games.generic.controlModel.abilities.impl.AbilityBaseImpl;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.holders.AttributesHolder;
+import games.generic.controlModel.objects.LivingObject;
+import games.generic.controlModel.rechargeable.resources.holders.ManaHavingObject;
+import games.theRisingAngel.enums.EventsTRAn;
 
 public class ALoseManaBeforeLife extends AbilityBaseImpl implements GEventObserver {
 	private static final long serialVersionUID = -451558465L;
@@ -48,13 +48,14 @@ public class ALoseManaBeforeLife extends AbilityBaseImpl implements GEventObserv
 			return;
 		mho = (ManaHavingObject) owner;
 		manaAmount = mho.getMana();
-		if (manaAmount <= 0)
+		damageAmount = ed.getDamageAmountOriginal();
+		if (manaAmount <= 0 || damageAmount <= 0)
 			return; // no mana to sacrifice
-		damageAmount = ed.getDamageReducedByTargetArmors(); // get the damage (TODO not the AmountToBeApplied?)
 		min = damageAmount > manaAmount ? manaAmount : damageAmount;
-		mho.setMana(mho.getMana() - min);
+		if (min > ed.getDamageAmountToBeApplied()) { min = ed.getDamageAmountToBeApplied(); }
+		if (min <= 0) { return; }
+		mho.setMana(manaAmount - min);
 		ed.setDamageAmountToBeApplied(ed.getDamageAmountToBeApplied() - min);
-		// TODO sicuro che non sia getDamageReducedByTargetArmors ?
 	}
 
 	@Override
@@ -62,4 +63,8 @@ public class ALoseManaBeforeLife extends AbilityBaseImpl implements GEventObserv
 
 	@Override
 	public void resetAbility() {}
+
+	@Override
+	public void performAbility(GModality gm, int targetLevel) { // TODO Auto-generated method stub
+	}
 }

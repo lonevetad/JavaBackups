@@ -1,17 +1,22 @@
 package games.generic.controlModel;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import dataStructures.MapTreeAVL;
+import games.generic.GameOptions;
+import games.generic.controlModel.holders.GameObjectsProvidersHolder;
+import games.generic.controlModel.holders.ProbabilityOfContextesHolders;
+import games.generic.controlModel.loaders.LoaderGeneric;
+import games.generic.controlModel.loaders.LoaderManager;
+import games.generic.controlModel.loaders.LoaderManager.LoadingObserver;
 import games.generic.controlModel.misc.GModalityFactory;
-import games.generic.controlModel.misc.LoaderGameObjects;
-import games.generic.controlModel.misc.LoaderGeneric;
-import games.generic.controlModel.misc.ProbabilityOfContextesHolders;
+import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
-import games.theRisingAngel.LoaderConfigurations;
+import games.generic.view.GameView;
 import tools.Comparators;
+import tools.LoggerMessages;
 
 /**
  * One of the Core classes.<br>
@@ -40,20 +45,23 @@ public abstract class GController {
 
 	protected boolean isAlive;
 	protected Map<String, GModalityFactory> gameModalitiesFactories;
-	protected GModality currentGameModality;
+
+	protected final LoggerMessages logger;
+	protected final GameOptions gameOptions;
+	protected final LoaderManager loaderManager;
 	protected UserAccountGeneric user;
-	protected final List<LoaderGameObjects<? extends ObjectNamed>> gameObjectsLoader;
-	protected final LoaderGeneric loaderConfigurations;
+	protected GModality currentGameModality;
 	protected ProbabilityOfContextesHolders probabilityOfContextesHolders;
+	public static final Random RANDOM = new Random();
 
 	/** Create everything and loads everything as well. */
-	protected GController() {
+	public GController() { this(null); }
+
+	public GController(LoggerMessages logger) {
 		this.isAlive = false;
-		this.gameModalitiesFactories = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
-				Comparators.STRING_COMPARATOR);
-		this.gameObjectsLoader = new LinkedList<>();
-		this.loaderConfigurations = newLoaderConfigurations(this);
-		this.probabilityOfContextesHolders = new ProbabilityOfContextesHolders();
+		this.logger = LoggerMessages.loggerOrDefault(logger);
+		this.loaderManager = this.newLoaderManager();
+		this.gameOptions = this.newGameOptions();
 	}
 
 	//
@@ -63,6 +71,18 @@ public abstract class GController {
 	public Map<String, GModalityFactory> getGameModalitiesFactories() { return gameModalitiesFactories; }
 
 	public ProbabilityOfContextesHolders getProbabilityOfContextesHolders() { return probabilityOfContextesHolders; }
+
+//	public List<LoaderGameObjects<? extends ObjectNamed>> getGameObjectsLoader() { return gameObjectsLoader; }
+
+	public GameOptions getGameOptions() { return gameOptions; }
+
+	public UserAccountGeneric getUser() { return user; }
+
+	public static Random getRandom() { return RANDOM; }
+
+	public LoggerMessages getLogger() { return logger; }
+
+	public LoaderManager getLoaderManager() { return loaderManager; }
 
 	//
 
@@ -74,11 +94,22 @@ public abstract class GController {
 
 	//
 
+	// TODO NEW-related methods
+
 	/**
 	 * Add all {@link GModalityFactory}} to the set of possible modalities,
 	 * identified by {@link #getGameModalitiesFactories()}.
 	 */
 	protected abstract void defineGameModalitiesFactories();
+
+	/**
+	 * Returns a new {@link GameOptions} instance.
+	 *
+	 * @return
+	 */
+	protected abstract GameOptions newGameOptions();
+
+	protected abstract LoaderManager newLoaderManager();
 
 	/** See {@link UserAccountGeneric} to see what is meant. */
 	protected abstract UserAccountGeneric newUserAccount();
@@ -93,35 +124,55 @@ public abstract class GController {
 	 * For instance, the game "The Rising Army" will differs two game modalities:
 	 * one having some degree of randomness, the other one that is totally
 	 * deterministic and aspects like damage ranges or "something that scatters
-	 * randomly, like grape bombs" are fixed (for instance, grapes of grape bombs
-	 * expands in a symmetric and radial way). So, there would exists abilities
-	 * designed in a parallel way so that they could have random intervals or fixed
-	 * values. (In that case, it's advised to define once the ability and only one
-	 * {@link GameObjectsProvidersHolder}, just passing to that ability's
-	 * constructor the flag about if the game modality allows randomness or not).
+	 * randomly, like cluster bombs" are fixed (for instance, each grapes of cluster
+	 * bombs expands in symmetrically and radially). So, there would exists
+	 * abilities designed in a parallel way so that they could have random intervals
+	 * or fixed values. (In that case, it's advised to define the ability only once
+	 * and only one {@link GameObjectsProvidersHolder}, just passing to that
+	 * ability's constructor the flag about if the game modality allows randomness
+	 * or not).
 	 */
-	protected abstract GameObjectsProvidersHolder getGObjProvidersHolderForGModality(GModality gm);
+	protected abstract GameObjectsProvidersHolder newGameObjectProvidersHolderFor(GModality gm);
 
-//
+	//
 
-	/** Override designed BUT call <code>super.</code>{@link #init()}}. */
+	// TODO INITIALIZATION METHODS
+
+	//
+
+	/**
+	 * Override designed BUT call <code>super.</code>{@link #initNonFinalStuffs()}}.
+	 */
 	protected void initNonFinalStuffs() {
+		this.probabilityOfContextesHolders = new ProbabilityOfContextesHolders();
+		this.gameModalitiesFactories = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
+				Comparators.STRING_COMPARATOR);
 		defineGameModalitiesFactories();
 		user = this.newUserAccount();
-		this.loaderConfigurations.loadInto(this);
-		loadAll();
 	}
 
-	protected <E extends ObjectNamed> void addGameObjectLoader(LoaderGameObjects<E> ol) {
-		this.gameObjectsLoader.add(ol);
+//	public <E extends ObjectNamed> void addGameObjectLoader(LoaderGameObjects<E> ol) { this.gameObjectsLoader.add(ol); }
+
+	/**
+	 * Delegates to {@link LoaderManager#addLoader(LoaderGeneric)}).
+	 */
+	public void addLoader(games.generic.controlModel.loaders.LoaderGeneric loader) {
+		if (loader != null) { this.loaderManager.addLoader(loader); }
 	}
 
-	/** Load everything that needs to be loaded */
-	protected void loadAll() {
-		this.gameObjectsLoader.forEach(l -> l.loadInto(this));
+	/**
+	 * Delegates to {@link LoaderManager#addLoadingProcessObserver(LoaderGeneric)}).
+	 */
+	public void addLoadingProcessObserver(LoadingObserver lo) {
+		if (lo != null) { loaderManager.addLoadingProcessObserver(lo); }
 	}
 
-	protected LoaderGeneric newLoaderConfigurations(GController cgRPG) { return new LoaderConfigurations(); }
+	/**
+	 * Delegates to {@link LoaderManager#loadAll()}).
+	 */
+	public final List<LoaderGeneric> loadAll() { return this.loaderManager.loadAll(); }
+
+//
 
 	//
 
@@ -182,6 +233,16 @@ public abstract class GController {
 	}
 
 	//
+
+	/**
+	 * Begins the interaction between players. May notify the {@link GameView}
+	 *
+	 * @param thisPlayer  the current player, the one playing
+	 * @param otherPlayer another player from somewhere else (a remote one, maybe)
+	 */
+	public void beginsPlayesInteraction(PlayerGeneric thisPlayer, PlayerGeneric otherPlayer) {
+
+	}
 
 	//
 

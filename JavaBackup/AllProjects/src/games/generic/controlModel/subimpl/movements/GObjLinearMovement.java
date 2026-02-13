@@ -3,27 +3,26 @@ package games.generic.controlModel.subimpl.movements;
 import java.awt.Point;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.gObj.MovingObject;
 import games.generic.controlModel.misc.GObjMovement;
+import games.generic.controlModel.objects.MovingObject;
 import tools.MathUtilities;
 
 public class GObjLinearMovement extends GObjMovement {
 	private static final long serialVersionUID = 1L;
 
 	public GObjLinearMovement() {
+		super();
 		distanceTraveled = 0;
 		startingPoint = null;
 	}
 
 	protected int tempTimeUnit, distanceTraveled, distanceToDestination, velocity, previousVelocity;
-	protected double cos, sin;
+	protected double cos, sin, angleRadians;
 	protected Point startingPoint, destination;
+	protected GModality gameModality;
 
 	@Override
 	public int getDistanceTraveled() { return distanceTraveled; }
-
-	@Override
-	public Integer getID() { return null; }
 
 	@Override
 	public int getVelocity() { return velocity; }
@@ -34,7 +33,13 @@ public class GObjLinearMovement extends GObjMovement {
 
 	public Point getStartingPoint() { return startingPoint; }
 
+	@Override
+	public GModality getGameModality() { return gameModality; }
+
 	//
+
+	@Override
+	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
 
 	public void setDestination(Point destination) {
 		this.destination = destination;
@@ -79,7 +84,7 @@ public class GObjLinearMovement extends GObjMovement {
 		dx = startingPoint.x - destination.x;
 		dy = startingPoint.y - destination.y;
 		distanceToDestination = (int) Math.hypot(dx, dy);
-		angRad = MathUtilities.angleRadiants(dx, dy);
+		angRad = angleRadians = MathUtilities.angleRadiants(dx, dy);
 		angRad = sin = Math.sin(angRad); // recycle "angRad" as "sin" for higher efficiency
 //		cos=Math.cos(angRad);
 		cos = 1.0 - angRad * angRad;// from the fundamental equality (or Phytagorean Theorem)
@@ -104,11 +109,11 @@ public class GObjLinearMovement extends GObjMovement {
 		 */
 		if (previousVelocity != velocity) {
 			// update velocity, distance traveled progression, etc
-			distanceTraveled += (tempTimeUnit * previousVelocity) / getTimeUnitSuperscale();
+			distanceTraveled += (tempTimeUnit * previousVelocity) / getTimeSubUnitsEachUnit();
 			previousVelocity = velocity;
 			tempTimeUnit = 0;
 		}
-		distFromLastVelcityChange = ((this.tempTimeUnit += timeUnits) * velocity) / getTimeUnitSuperscale();
+		distFromLastVelcityChange = ((this.tempTimeUnit += timeUnits) * velocity) / getTimeSubUnitsEachUnit();
 		totalDistTraveled = distanceTraveled + distFromLastVelcityChange;
 		if (totalDistTraveled >= distanceToDestination) {
 			// ARRIVED

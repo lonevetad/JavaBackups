@@ -11,7 +11,7 @@ import dataStructures.NodeComparable;
  * Enhance {@link NodeComparableSynonymIndexed#getChildNCBySingleKey(String)} at
  * the expense of memory usage and time required for executing
  * {@link #addChildNC(NodeComparable)}.
- * 
+ *
  * @deprecated because some children may share the same root (and so, same [or
  *             some] individual synonyms) but different subtrees -> a single
  *             synonym may identify no better than a {@link List} of stuffs

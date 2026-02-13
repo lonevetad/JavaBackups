@@ -1,23 +1,29 @@
 package games.theRisingAngel;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
+import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.ExperienceLevelHolder;
-import games.generic.controlModel.inventoryAbil.AbilityGeneric;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.holders.ExperienceLevelHolder;
+import games.generic.controlModel.items.InventoryAdder;
+import games.generic.controlModel.items.InventoryItems;
 import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.player.BasePlayerRPG;
-import games.generic.controlModel.player.ExperienceLevelHolderImpl;
+import games.generic.controlModel.subimpl.ExperienceLevelHolderImpl;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
-import games.theRisingAngel.events.EventsTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.inventory.EquipmentSetTRAn;
-import games.theRisingAngel.misc.PlayerCharacterTypesHolder.PlayerCharacterTypes;
+import games.theRisingAngel.inventory.InventoryTRAn;
+import games.theRisingAngel.misc.PlayerCharacterTypesTRAn.PlayerCharacterTypes;
 
 public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 	private static final long serialVersionUID = -3336623605789L;
+	public static final int INVENTORY_LEVEL = 4;
 
 	public PlayerTRAn(GModalityRPG gameModality, PlayerCharacterTypes characterType) {
 		super(gameModality, "No name currently provided");
@@ -26,13 +32,18 @@ public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 		this.eventsWatching = new ArrayList<>(2);
 		this.eventsWatching.add(EventsTRAn.Destroyed.getName());
 		this.experienceLevelHolder = new ExperienceLevelHolderImpl();
+		this.additionalInventories = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration,
+				InventoryAdder.COMPARATOR_INVENTORY_ADDER);
 		this.setEquipmentSet(new EquipmentSetTRAn());
+		this.setBaseInventory(new InventoryTRAn(INVENTORY_LEVEL));
 	}
 
 	protected int attributePointsLeftToApply;
 	protected final PlayerCharacterTypes characterType;
 	protected CurrencySet currencies;
 	protected ExperienceLevelHolder experienceLevelHolder;
+	protected InventoryItems baseInventory;
+	protected Map<InventoryAdder, InventoryItems> additionalInventories;
 
 	public PlayerCharacterTypes getCharacterType() { return characterType; }
 
@@ -50,6 +61,12 @@ public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 	@Override
 	public int getAttributePointsLeftToApply() { return attributePointsLeftToApply; }
 
+	@Override
+	public InventoryItems getBaseInventory() { return this.baseInventory; }
+
+	@Override
+	public Map<InventoryAdder, InventoryItems> getAdditionalInventories() { return this.additionalInventories; }
+
 	//
 
 	@Override
@@ -65,6 +82,9 @@ public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 	public void setAttributePointsLeftToApply(int attributePointsLeftToApply) {
 		this.attributePointsLeftToApply = attributePointsLeftToApply;
 	}
+
+	@Override
+	public void setBaseInventory(InventoryItems inventory) { this.baseInventory = inventory; }
 
 	//
 
@@ -85,12 +105,8 @@ public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 
 	@Override
 	public void onAddedToGame(GModality gm) {
-		BiConsumer<String, AbilityGeneric> abilityAdderToGModality;
 		super.onAddedToGame(gm);
-		// Add equips and abilities on GMod
-		abilityAdderToGModality = (n, ab) -> ab.onAddedToGame(gm);
-		this.getAbilities().forEach(abilityAdderToGModality);
-		this.getEquipmentSet().forEachEquipment((e, i) -> { if (e != null) { e.onAddedToGame(gm); } });
+// TODO something else?
 	}
 
 	@Override
@@ -124,19 +140,5 @@ public class PlayerTRAn extends BaseCreatureTRAn implements BasePlayerRPG {
 	//
 
 	// TODO FIRE EVENTS
-
-//	public <SourceHealing> void fireLifeHealingReceived(GModality gm, int originalHealing, SourceHealing source) {
-//		if (gm == null || (!(gm instanceof GModalityET)))
-//			return;
-////		GModalityET gmet;
-//		GEventInterfaceTRAr gei;
-//		if (gm == null || (!(gm instanceof GModalityET)))
-//			return;
-////		gmet = (GModalityET) gm;
-////		gei = (GEventInterfaceTRAr) gmet.getEventInterface();
-//		gei = (GEventInterfaceTRAr) gm.getGameObjectsManager().getGEventInterface();
-//		gei.fireHealReceivedEvent((GModalityET) gm, source, this,
-//				new HealGeneric(originalHealing, HealingTypeExample.Life));
-//	}
 
 }

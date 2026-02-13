@@ -7,6 +7,7 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import geometry.implementations.shapes.ShapePolygonRegular;
 import geometry.pointTools.PolygonUtilities;
@@ -48,7 +49,7 @@ public class TestShapePolygonEquilater {
 		Polygon[] polygonPointer;
 		polygonPointer = new Polygon[] { p };
 		fin = new JFrame("Polygon regular");
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		jp = new JPanel() {
 			private static final long serialVersionUID = -7775420L;

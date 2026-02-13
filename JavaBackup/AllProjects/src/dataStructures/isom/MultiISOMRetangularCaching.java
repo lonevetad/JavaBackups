@@ -2,6 +2,7 @@ package dataStructures.isom;
 
 import java.awt.Point;
 
+import dataStructures.isom.internal.ISOMWrapperLocated;
 import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager;
 import dataStructures.isom.pathFinders.Heuristic8GridMovement;
 import dataStructures.isom.pathFinders.PathFinderIsomAStar;
@@ -28,14 +29,14 @@ public class MultiISOMRetangularCaching<Dd extends Number> extends MultiISOMReta
 		this.cachedMW = null;
 	}
 
-	protected MatrixISOMLocatedInSpace<Dd> cachedMW;
+	protected ISOMWrapperLocated<Dd> cachedMW;
 
 	public MatrixInSpaceObjectsManager<Dd> getCachedMisom() { return cachedMW == null ? null : cachedMW.misom; }
 
 	///
 
 	@Override
-	public MatrixISOMLocatedInSpace<Dd> getMapLocatedContaining(int x, int y) {
+	public ISOMWrapperLocated<Dd> getMapLocatedContaining(int x, int y) {
 		if (cachedMW == null || (!cachedMW.contains(x, y))) { cachedMW = super.getMapLocatedContaining(x, y); }
 		return cachedMW;
 	}

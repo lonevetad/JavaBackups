@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import common.mainTools.mOLM.abstractClassesMOLM.ShapeSpecification;
 import common.removed.objectHierarchyFromMOLM.ObjectTiled;
@@ -143,7 +144,7 @@ public class TesterMOLM {
 		toDoOnClick_OnMolmRepainter = MouseClickListenerAdapter.newInstance(this::onClick_OnMOLMRepainter);
 
 		fin = new JFrame("TESTER MatrixObjectLocationManager");
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		jtp = new JTabbedPane();
 		fin.add(jtp);
 		fin.addComponentListener(new ComponentAdapter() {
@@ -592,7 +593,7 @@ public class TesterMOLM {
 		s = FileUtilities.getPath(TesterMOLM.class);
 		/*
 		 * r = 3; i = s.length(); while (r > 0 && s != null) {
-		 * 
+		 *
 		 * i=s.lastIndexOf(File.separatorChar); /* while (--i >= 0 && s.charAt(i) !=
 		 * File.separatorChar) ; if (i < 0) { s = null; } else { r--; }// if(i>0)r--; }
 		 * if (s != null) { s = s.substring(0, i + 1); }

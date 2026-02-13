@@ -1,4 +1,4 @@
-package common.mainTools;
+package videogamesOldVersion.common.mainTools;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -8,14 +8,15 @@ import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 
-import common.abstractCommon.MainController;
-import common.utilities.CastingClass;
 import common.utilities.Methods;
+import tools.CastingClass;
+import tools.FileUtilities;
+import videogamesOldVersion.common.abstractCommon.MainController;
 
 /**
- * Implementazione molto brutta: tiene una lista linkata di BufferedImage (quindi questa classe NON
- * e' serializzabile) e ciclicamente cambia frame ogni N millisecondi (specificata dalla durata
- * dell'frame.<br>
+ * Implementazione molto brutta: tiene una lista linkata di BufferedImage
+ * (quindi questa classe NON e' serializzabile) e ciclicamente cambia frame ogni
+ * N millisecondi (specificata dalla durata dell'frame.<br>
  * I frame vengono effettivamente cambiati solo su richiesta e
  */
 
@@ -32,9 +33,7 @@ public class AnimatedImage implements Serializable {
 		reset();
 	}
 
-	public AnimatedImage(AnimatedImage a) {
-		this(a, true);
-	}
+	public AnimatedImage(AnimatedImage a) { this(a, true); }
 
 	public AnimatedImage(AnimatedImage ai, boolean makeNodeListIndipendent) {
 		this();
@@ -83,33 +82,19 @@ public class AnimatedImage implements Serializable {
 
 	//
 
-	int getSize() {
-		return size;
-	}
+	int getSize() { return size; }
 
-	long getTotalImageTime() {
-		return totalImageTime;
-	}
+	long getTotalImageTime() { return totalImageTime; }
 
-	public long getStartTime() {
-		return startTime;
-	}
+	public long getStartTime() { return startTime; }
 
-	public long getTimePassed() {
-		return timePassed;
-	}
+	public long getTimePassed() { return timePassed; }
 
-	public int getWidth() {
-		return width;
-	}
+	public int getWidth() { return width; }
 
-	public int getHeight() {
-		return height;
-	}
+	public int getHeight() { return height; }
 
-	public String getImageFilename() {
-		return imageFilename;
-	}
+	public String getImageFilename() { return imageFilename; }
 
 	//
 
@@ -122,8 +107,10 @@ public class AnimatedImage implements Serializable {
 
 	/** Add the image on end of the (circular) queue. */
 	public void addImage(BufferedImage bi, int millis) {
-		if (bi == null) throw new NullPointerException(imageFilename + " Cannot add a null image to sequence");
-		if (millis < 1) throw new IllegalArgumentException(imageFilename + " Invalid milliseconds: " + millis);
+		if (bi == null)
+			throw new NullPointerException(imageFilename + " Cannot add a null image to sequence");
+		if (millis < 1)
+			throw new IllegalArgumentException(imageFilename + " Invalid milliseconds: " + millis);
 		addImage(new NodeAI(bi, millis));
 	}
 
@@ -147,9 +134,7 @@ public class AnimatedImage implements Serializable {
 		}
 		width = Math.max(width, n.bi.getWidth());
 		height = Math.max(height, n.bi.getHeight());
-		if ((totalImageTime += n.millis) < 0) {
-			totalImageTime = Long.MAX_VALUE;
-		}
+		if ((totalImageTime += n.millis) < 0) { totalImageTime = Long.MAX_VALUE; }
 	}
 
 	protected long timePassed() {
@@ -159,17 +144,19 @@ public class AnimatedImage implements Serializable {
 	}
 
 	/*
-	 * public BufferedImage getImage() { return getImage(timePassed()); } public BufferedImage
-	 * getImage(long millisPassed) { BufferedImage b; if (head == null) return null; b = now.bi;
-	 * passTime(millisPassed); return b; }
+	 * public BufferedImage getImage() { return getImage(timePassed()); } public
+	 * BufferedImage getImage(long millisPassed) { BufferedImage b; if (head ==
+	 * null) return null; b = now.bi; passTime(millisPassed); return b; }
 	 */
 	public BufferedImage getImageResized() {
-		if (head == null) return null;
+		if (head == null)
+			return null;
 		return now.bi;
 	}
 
 	public BufferedImage getImageOriginalSize() {
-		if (head == null) return null;
+		if (head == null)
+			return null;
 		return now.biOriginal;
 	}
 
@@ -180,9 +167,7 @@ public class AnimatedImage implements Serializable {
 		return b;
 	}
 
-	public BufferedImage getImageAfterTimePassed() {
-		return getImageAfterTimePassed(timePassed());
-	}
+	public BufferedImage getImageAfterTimePassed() { return getImageAfterTimePassed(timePassed()); }
 
 	public BufferedImage getImageAfterTimePassed(long millisPassed) {
 		passTime(millisPassed);
@@ -194,7 +179,8 @@ public class AnimatedImage implements Serializable {
 		long m;
 
 		if (millisPassed > 0) {
-			if (millisPassed > totalImageTime) millisPassed %= totalImageTime;
+			if (millisPassed > totalImageTime)
+				millisPassed %= totalImageTime;
 			if (millisPassed > 0) {
 				// System.out.println("animated image: pass time " +
 				// millisPassed + ", timePassed: " + timePassed);
@@ -226,12 +212,11 @@ public class AnimatedImage implements Serializable {
 
 	/** Deep clone of its nodes */
 
-	// protected void doOnCloning(AnimatedImage ai, boolean makeNodeListIndipendent) {
+	// protected void doOnCloning(AnimatedImage ai, boolean makeNodeListIndipendent)
+	// {
 
 	@Override
-	public String toString() {
-		return "AnimatedImage: " + imageFilename;
-	}
+	public String toString() { return "AnimatedImage: " + imageFilename; }
 
 	/**
 	 * Calls {@link #clone(boolean)} giving <code>true</code> as parameter.
@@ -239,33 +224,30 @@ public class AnimatedImage implements Serializable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public AnimatedImage clone() {
-		return clone(true);
-	}
+	public AnimatedImage clone() { return clone(true); }
 
 	/**
-	 * If the boolean parameter is <code>true</code>, then a deep clone of this nodes is made, so
-	 * every modification to the original instance won't affect the clone, and vice-versa..<br>
+	 * If the boolean parameter is <code>true</code>, then a deep clone of this
+	 * nodes is made, so every modification to the original instance won't affect
+	 * the clone, and vice-versa..<br>
 	 * Otherwise,
 	 */
-	public AnimatedImage clone(boolean makeNodeListIndipendent) {
-		return new AnimatedImage(this);
-	}
+	public AnimatedImage clone(boolean makeNodeListIndipendent) { return new AnimatedImage(this); }
 
 	/**
 	 * Performs a shallow copy.<br>
-	 * Like {@link #clone()}, but any modifications to this images sequence will be reflected to all
-	 * other shallow copies and the original ones.<br>
-	 * In particular, if the images will be resized to the original instance or one of the copies,
-	 * every other instances (the original and the clones made in this way) will be affected.
+	 * Like {@link #clone()}, but any modifications to this images sequence will be
+	 * reflected to all other shallow copies and the original ones.<br>
+	 * In particular, if the images will be resized to the original instance or one
+	 * of the copies, every other instances (the original and the clones made in
+	 * this way) will be affected.
 	 */
-	public AnimatedImage cloneSharingSequence() {
-		return new AnimatedImage(this, false);
-	}
+	public AnimatedImage cloneSharingSequence() { return new AnimatedImage(this, false); }
 
 	public AnimatedImage resizeAllImages(int width, int height) {
 		NodeAI iter;
-		if (width < 1 || height < 1 || head == null || (width == this.width && height == this.height)) return this;
+		if (width < 1 || height < 1 || head == null || (width == this.width && height == this.height))
+			return this;
 		iter = head;
 		do {
 			iter.bi = CastingClass.castImage_ARGB_ToBufferedImage(
@@ -293,9 +275,7 @@ public class AnimatedImage implements Serializable {
 			System.out.println("pathStartLookingImage null");
 			return null;
 		}
-		if (filename == null) {
-			throw new IllegalArgumentException("The name must not be null");
-		}
+		if (filename == null) { throw new IllegalArgumentException("The name must not be null"); }
 
 		if ((folder = FileUtilities.searchFile(pathStartLookingImage, filename)) != null) {
 			fileList = folder.listFiles();
@@ -313,14 +293,12 @@ public class AnimatedImage implements Serializable {
 						b = null;
 						if (o instanceof ImageIcon) {
 							b = CastingClass.castImage_ARGB_ToBufferedImage(((ImageIcon) o).getImage());
-						} else if (o instanceof BufferedImage) {
-							b = (BufferedImage) o;
-						}
+						} else if (o instanceof BufferedImage) { b = (BufferedImage) o; }
 						if (b != null) {
 							ai.addImage(b, extractMillisecondFromFormattedString(nomeImmagine)
 							/**
-							 * convertStringToInteger(nomeImmagine.substring(nomeImmagine.indexOf('
-							 * ') + 1, // <br>
+							 * convertStringToInteger(nomeImmagine.substring(nomeImmagine.indexOf(' ') + 1,
+							 * // <br>
 							 * ((indexExtension = // indexFilenameExtension//<br>
 							 * indexLastDigit(nomeImmagine) + 1) >= 0) ? indexExtension :
 							 * nomeImmagine.length()))// <br>
@@ -346,7 +324,7 @@ public class AnimatedImage implements Serializable {
 		// while (Character.isDigit(nomeImmagine.charAt(++j)))
 		while (++j < len && (c = nomeImmagine.charAt(j)) >= '0' && c <= '9')
 			;
-		;
+
 		i = j;
 		/* get the amount of milliseconds */
 		// otteniamo l'indice dell'ultima cifra (senza altri caratteri nel
@@ -370,17 +348,11 @@ public class AnimatedImage implements Serializable {
 		transient BufferedImage bi, biOriginal;
 		NodeAI next, prev;
 
-		NodeAI() {
-			super();
-		}
+		NodeAI() { super(); }
 
 		NodeAI(BufferedImage bi, int millis) {
-			if (bi == null) {
-				throw new IllegalArgumentException("Given image is null");
-			}
-			if (millis < 1) {
-				throw new IllegalArgumentException("Incorrect time: " + millis);
-			}
+			if (bi == null) { throw new IllegalArgumentException("Given image is null"); }
+			if (millis < 1) { throw new IllegalArgumentException("Incorrect time: " + millis); }
 			this.bi = biOriginal = bi;
 			this.millis = millis;
 		}
@@ -392,8 +364,6 @@ public class AnimatedImage implements Serializable {
 		}
 
 		@Override
-		public NodeAI clone() {
-			return new NodeAI(this);
-		}
+		public NodeAI clone() { return new NodeAI(this); }
 	}
 }

@@ -34,6 +34,8 @@ public interface IterableSized<T> extends Iterable<T> {
 			this.delegator = delegator;
 		}
 
+		public Collection<K> getDelegator() { return delegator; }
+
 		@Override
 		public void forEach(Consumer<? super K> action) { delegator.forEach(action); }
 

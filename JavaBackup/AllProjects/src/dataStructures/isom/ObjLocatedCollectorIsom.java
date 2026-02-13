@@ -24,11 +24,7 @@ public interface ObjLocatedCollectorIsom<Distance extends Number>
 		if (n == null)
 			return;
 		co = getCollectedObjects();
-		n.forEachAcceptableObject(getTargetsFilter(), o -> {
-			if (o == null)
-				return;
-			co.add(o);
-		});
+		n.forEachAcceptableObject(getTargetsFilter(), co::add);
 	}
 
 	@Override

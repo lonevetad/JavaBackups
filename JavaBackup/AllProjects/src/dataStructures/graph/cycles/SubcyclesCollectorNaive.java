@@ -12,7 +12,7 @@ import dataStructures.graph.GraphSimple;
 import dataStructures.graph.GraphSimpleGenerator;
 import dataStructures.graph.PathFindStrategy;
 
-public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<E, Distance> {
+public class SubcyclesCollectorNaive<E, Distance extends Number> implements SubcyclesCollector<E, Distance> {
 	private static final long serialVersionUID = 541052402540L;
 
 	@Override
@@ -284,7 +284,8 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 		return ret;
 	}
 
-	static <E, D> GraphSimple<E, D> extractGraph(GraphSimple<E, D> originalGraph, GraphSimpleGenerator<E, D> gsg, //
+	static <E, D extends Number> GraphSimple<E, D> extractGraph(GraphSimple<E, D> originalGraph,
+			GraphSimpleGenerator<E, D> gsg, //
 			MapTreeAVL<E, GraphSimple<E, D>.NodeGraph> nodesLeft,
 			MapTreeAVL<E, NodeGraphCycleColInfo<E, D>> nodeVisited, //
 			NodeGraphCycleColInfo<E, D> n, NodeGraphCycleColInfo<E, D> adj) {
@@ -339,7 +340,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 			 * the sub-cycle must be a "cycle": commonAncestor has a adjacent-based chain of
 			 * nodes connecting it to both "n" and "adj" and also "n" is connected to "adj,
 			 * but it's needed to check if there exist also
-			 * 
+			 *
 			 * from at least one "side" (i.e. from ancestor to n or from ancestor to adj)
 			 * there must exist
 			 */
@@ -347,7 +348,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 		return g;
 	}
 
-	static <E, Distance> boolean isSomeGraphsContainingNode(List<GraphSimple<E, Distance>> graphs,
+	static <E, Distance extends Number> boolean isSomeGraphsContainingNode(List<GraphSimple<E, Distance>> graphs,
 			GraphSimple<E, Distance>.NodeGraph node) {
 		for (GraphSimple<E, Distance> g : graphs)
 			if (g.hasNode(node.getElem()))
@@ -355,7 +356,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 		return false;
 	}
 
-	static <E, Distance> void printCycle(NodeGraphCycleColInfo<E, Distance> start) {
+	static <E, Distance extends Number> void printCycle(NodeGraphCycleColInfo<E, Distance> start) {
 		NodeGraphCycleColInfo<E, Distance> cycleIter;
 		cycleIter = start;
 		System.out.println("printing cycle");
@@ -369,7 +370,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 	 * Check if exists a lowest common subsumer that is not the starting point (the
 	 * tree's root) , that is recognised thanks to its father: it's just itself.
 	 */
-	public static <E, Distance> boolean isFatherButNotStart(// Comparator<E> ecomp, //
+	public static <E, Distance extends Number> boolean isFatherButNotStart(// Comparator<E> ecomp, //
 			NodeGraphCycleColInfo<E, Distance> thisNode, NodeGraphCycleColInfo<E, Distance> maybeFamiliar) {
 		boolean cancontinueThis, cancontinueFamiliar;
 //		Set<E> ancestorsThis, ancestorsFamiliar;
@@ -409,7 +410,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 
 	//
 
-	static class NodeGraphCycleColInfo<E, Distance> {
+	static class NodeGraphCycleColInfo<E, Distance extends Number> {
 		int distanceFromStart; // , cyclesBelongingLeft; // the one from father is unary
 		int lastGraphBelonging;
 		GraphSimple<E, Distance>.NodeGraph node;
@@ -428,7 +429,7 @@ public class SubcyclesCollectorNaive<E, Distance> implements SubcyclesCollector<
 		}
 	}
 
-	static class SetExtractor<E, Distance> implements //
+	static class SetExtractor<E, Distance extends Number> implements //
 			Function<Set<Entry<E, GraphSimple<E, Distance>.NodeGraph>>, Entry<E, GraphSimple<E, Distance>.NodeGraph>> {
 		Iterator<Entry<E, GraphSimple<E, Distance>.NodeGraph>> iter;
 		Set<Entry<E, GraphSimple<E, Distance>.NodeGraph>> set;

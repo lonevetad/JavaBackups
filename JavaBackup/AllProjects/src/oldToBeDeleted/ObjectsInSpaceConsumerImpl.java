@@ -47,9 +47,7 @@ public abstract class ObjectsInSpaceConsumerImpl implements ObjectsInSpaceConsum
 
 	@Override
 	public final void accept(Point2D location, ObjectLocated objectInSpace) {
-		if (areaToLookInto != null && (!areaToLookInto.contains(objectInSpace.getLocation())))
-			return;
-		if (objectFilter != null && (!objectFilter.test(objectInSpace)))
+		if ((areaToLookInto != null && (!areaToLookInto.contains(objectInSpace.getLocation()))) || (objectFilter != null && (!objectFilter.test(objectInSpace))))
 			return;
 		acceptImpl(location, objectInSpace);
 	}

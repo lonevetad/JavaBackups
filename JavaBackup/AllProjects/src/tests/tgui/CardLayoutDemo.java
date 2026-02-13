@@ -48,6 +48,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 
 public class CardLayoutDemo implements ItemListener {
 	JPanel cards; // a panel that uses CardLayout
@@ -94,7 +95,7 @@ public class CardLayoutDemo implements ItemListener {
 	private static void createAndShowGUI() {
 		// Create and set up the window.
 		JFrame frame = new JFrame("CardLayoutDemo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
 		CardLayoutDemo demo = new CardLayoutDemo();

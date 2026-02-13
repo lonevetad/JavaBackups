@@ -1,7 +1,7 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.GEventManager;
-import games.generic.controlModel.GObjectsHolder;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.holders.GObjectsHolder;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import games.generic.controlModel.GObjectsHolder;
  * </ul>
  */
 public class GModelET extends GModelTimeBased {
-	public static final String EVENT_MANAGER_OBSERVERS_HOLDER_NAME = "emo"; // event manager observers
+	public static final String EVENT_MANAGER_OBSERVERS_HOLDER_NAME = "emonGModelET"; // event manager observers
 
 	public GModelET() { super(); }
 
@@ -22,6 +22,8 @@ public class GModelET extends GModelTimeBased {
 	public void onCreate() {
 		// nothing to do
 	}
+
+	public GEventManager getEventManager() { return eventManager; }
 
 	public void setEventManager(GEventManager eventManager) {
 		this.eventManager = eventManager;

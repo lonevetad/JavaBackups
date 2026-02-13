@@ -30,9 +30,9 @@ public interface AbstractPathOptimizer extends Serializable {
 			return l;
 		first = l.getFirst();
 		if (first instanceof Point)
-			return (LinkedList<E>) optimizePath(((LinkedList<Point>) l), ccPoint);
+			return (LinkedList<E>) optimizePath((l), ccPoint);
 		if (first instanceof NodeMatrix)
-			return (LinkedList<E>) optimizePath(((LinkedList<NodeMatrix>) l), ccNodeMatrix);
+			return (LinkedList<E>) optimizePath((l), ccNodeMatrix);
 		return null;
 	}
 
@@ -54,7 +54,7 @@ public interface AbstractPathOptimizer extends Serializable {
 	 * See {@link #areCollinear(int, int, int, int, int, int)}.<br>
 	 * Effectively, it calls
 	 * <code> areCollinear(pfirst.x, pfirst.y, psecond.x, psecond.y, pthird.x, pthird.y);</code>
-	 * 
+	 *
 	 * @param pfirst  the first point
 	 * @param psecond the second point
 	 * @param pthird  the second point
@@ -71,7 +71,7 @@ public interface AbstractPathOptimizer extends Serializable {
 	 * See {@link #areCollinear(int, int, int, int, int, int)}.<br>
 	 * Effectively, it calls
 	 * <code> areCollinear(pfirst.getX(), pfirst.getY(), psecond.getX(), psecond.getY(), pthird.getX(), pthird.getY());</code>
-	 * 
+	 *
 	 * @param pfirst  the first point
 	 * @param psecond the second point
 	 * @param pthird  the second point

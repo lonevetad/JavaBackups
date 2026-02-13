@@ -3,39 +3,40 @@ package games.theRisingAngel;
 import java.util.Random;
 
 import dataStructures.isom.MultiISOMRetangularMap;
-import games.generic.controlModel.GEventInterface;
-import games.generic.controlModel.GEventManager;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.GObjectsInSpaceManager;
 import games.generic.controlModel.GameObjectsManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageTypeGeneric;
-import games.generic.controlModel.damage.EventDamage;
-import games.generic.controlModel.gEvents.GEvent;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.heal.HealAmountInstance;
-import games.generic.controlModel.heal.resExample.ExampleHealingType;
+import games.generic.controlModel.events.GEvent;
+import games.generic.controlModel.events.GEventInterface;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GModalityET;
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.RechargeableResourcesTRAn;
 import games.theRisingAngel.events.GEventInterfaceTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 import games.theRisingAngel.misc.GObjectsInSpaceManagerTRAn;
 import tools.NumberManager;
 
 public class GameObjectsManagerTRAn implements GameObjectsManager {
-	public static final int THRESHOLD_PROBABILITY_BASE_TO_HIT = 75,
+	public static final int THRESHOLD_PROBABILITY_BASE_TO_HIT = 50,
 			THRESHOLD_PROBABILITY_BASE_TO_HIT_PER_THOUSAND = THRESHOLD_PROBABILITY_BASE_TO_HIT * 10,
 			MAX_PROBABILITY_VALUE = 100, MAX_PROBABILITY_VALUE_PER_THOUSAND = 10 * MAX_PROBABILITY_VALUE;
 
-	/** DO NOT TOUCH */
+	/** DO NOT ALTER */
 	public static final AttributesTRAn[] leechableResources = { AttributesTRAn.LifeLeechPercentage,
-			AttributesTRAn.ManaLeechPercentage, AttributesTRAn.ShieldLeechPercentage }; // add shield in future
-	/** DO NOT TOUCH */
-	public static final ExampleHealingType[] leechableHealingTypes = { ExampleHealingType.Life, ExampleHealingType.Mana,
-			ExampleHealingType.Shield };
+			AttributesTRAn.ManaLeechPercentage, AttributesTRAn.ShieldLeechPercentage,
+			AttributesTRAn.StaminaLeechPercentage };
+	/** DO NOT ALTER */
+	public static final RechargeableResourcesTRAn[] leechableResourcesType = { RechargeableResourcesTRAn.Life,
+			RechargeableResourcesTRAn.Mana, RechargeableResourcesTRAn.Shield, RechargeableResourcesTRAn.Stamina };
 
-	public GameObjectsManagerTRAn(GModalityTRAn gmodalityTrar) {
+	public GameObjectsManagerTRAn(GModalityTRAnBaseWorld gmodalityTrar) {
 		super();
 		MultiISOMRetangularMap<Double> isom;
 		setGameModality(gmodalityTrar);
@@ -45,14 +46,14 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 		this.goism = new GObjectsInSpaceManagerTRAn(isom);
 	}
 
-	protected GModalityTRAn gmodalityTran;
+	protected GModalityTRAnBaseWorld gmodalityTran;
 	protected GObjectsInSpaceManager goism;
 
 	@Override
 	public GModality getGameModality() { return gmodalityTran; }
 
 	@Override
-	public void setGameModality(GModality gameModality) { this.gmodalityTran = (GModalityTRAn) gameModality; }
+	public void setGameModality(GModality gameModality) { this.gmodalityTran = (GModalityTRAnBaseWorld) gameModality; }
 
 	@Override
 	public GObjectsInSpaceManager getGObjectInSpaceManager() { return goism; }
@@ -86,68 +87,104 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 	 */
 	@Override
 	public void dealsDamageTo(DamageDealerGeneric source, CreatureSimple target, DamageGeneric damage) {
-
-		int r, thresholdToHitting;
+		int rollOfHitting, thresholdWithinHitting;
+		final int luckAdvantage;
 		DamageTypeGeneric damageType;
 		Random rand;
 		EventDamage ed;
 		GModalityET gm;
 		GEventInterface eventInterface;
+
 		rand = this.getGameModality().getRandom();
-		r = rand.nextInt(MAX_PROBABILITY_VALUE_PER_THOUSAND);
+		luckAdvantage = (source.getLuckPerThousand() - target.getLuckPerThousand());
+		rollOfHitting = rand.nextInt(MAX_PROBABILITY_VALUE_PER_THOUSAND);
 		damageType = damage.getDamageType();
+
+		// apply bonus, multipliers, reductions, etc ..
+		{
+			int damageAmount, multiplierPercentage;
+			damageAmount = damage.getDamageAmount();
+			// bonus and reductions
+			damageAmount += source.getDamageBonus(damageType) - target.getDamageReduction(damageType);
+			if (damageAmount <= 0) { return; }
+			multiplierPercentage = source.getDamageBonusPercentage(damageType)
+					- target.getDamageBonusPercentage(damageType);
+			if (multiplierPercentage != 0) {
+				damageAmount = (int) (//
+				((100 + multiplierPercentage) * (long) damageAmount) //
+						/ 100);
+			}
+			if (damageAmount <= 0) { return; }
+			damage.setDamageAmount(damageAmount);
+		}
+
 		// consider source and target chances
-		thresholdToHitting = (THRESHOLD_PROBABILITY_BASE_TO_HIT_PER_THOUSAND
-				+ source.getProbabilityPerThousandHit(damageType)) - target.getProbabilityPerThousandAvoid(damageType);
+		thresholdWithinHitting = THRESHOLD_PROBABILITY_BASE_TO_HIT_PER_THOUSAND + luckAdvantage + //
+				(source.getProbabilityPerThousandHit(damageType) - target.getProbabilityPerThousandAvoid(damageType));
 		gm = (GModalityET) getGameModality();
 		eventInterface = this.getGEventInterface();
-		if (r <= thresholdToHitting) {
+		if (rollOfHitting <= thresholdWithinHitting) {
 //			GameObjectsManager.super.dealsDamageTo(source, target, damage);
 			ed = eventInterface.fireDamageDealtEvent(gm, source, target, damage);
 //			update the damage amount
 			damage.setValue(ed.getDamageAmountToBeApplied());
 
-			// does it crits?
-			thresholdToHitting = source.getProbabilityPerThousandCriticalStrike(damageType); // use it as a "temp"
-			// now uses "r" as a "temp"
-			r = source.getPercentageCriticalStrikeMultiplier(damageType)
-					- target.getPercentageCriticalStrikeReduction(damageType);
-			if (thresholdToHitting > 0 && r > 0) { // no positive multiplier -> no crit applied
-				thresholdToHitting -= rand.nextInt(MAX_PROBABILITY_VALUE_PER_THOUSAND);
-				if (thresholdToHitting >= 0) {
-					// crit dealt !
-					damage.setValue((damage.getDamageAmount() * (100 + r)) / 100);
-					ed = eventInterface.fireCriticalDamageDealtEvent(gm, source, target, damage);
-					// update the damage amount
-					damage.setValue(ed.getDamageAmountToBeApplied());
+			if (ed.getDamageAmountToBeApplied() > 0) {
+
+				// does it crits?
+
+				// use "rollOfHitting" as a "multiplier"
+				rollOfHitting = (source.getPercentageCriticalStrikeMultiplier(damageType)
+						- target.getPercentageCriticalStrikeReduction(damageType));
+
+				// now uses "r" as a "temp"
+				if (rollOfHitting > 0) { // no positive multiplier -> no crit applied
+					thresholdWithinHitting = luckAdvantage + //
+							(source.getPercentageCriticalStrikeMultiplier(damageType)
+									- target.getPercentageCriticalStrikeReduction(damageType));
+
+					// use thresholdWithinHitting as "is positive: crit"
+					thresholdWithinHitting = luckAdvantage + //
+							(source.getProbabilityPerThousandCriticalStrike(damageType)
+									- target.getProbabilityPerThousandCriticalStrike(damageType));
+
+					thresholdWithinHitting -= rand.nextInt(MAX_PROBABILITY_VALUE_PER_THOUSAND);
+					if (thresholdWithinHitting >= 0) {
+						// crit dealt !
+						damage.setValue((damage.getDamageAmount() * (100 + rollOfHitting)) / 100);
+						ed = eventInterface.fireCriticalDamageDealtEvent(gm, source, target, damage);
+						// update the damage amount
+						damage.setValue(ed.getDamageAmountToBeApplied());
+					}
 				}
-			}
-			// recycle "r" as "damage amount to be inflicted"
-			r = damage.getDamageAmount();
-			if (r > 0) {
-				if (source instanceof BaseCreatureTRAn) {
-					int i;
-					BaseCreatureTRAn bc;
-					HealAmountInstance healing;
-					bc = (BaseCreatureTRAn) source;
-					/*
-					 * Recycle "thresholdToHitting" as "amount to leech". Also accepts negative
-					 * values: some mechanism like "guilt".
-					 */
-					i = leechableResources.length;
-					while (--i >= 0) {
-						thresholdToHitting = bc.getAttributes().getValue(leechableResources[i]);
-						if (thresholdToHitting != 0) {
-							thresholdToHitting = (thresholdToHitting * r) / 100;
-							if (thresholdToHitting != 0) {
-								healing = new HealAmountInstance(leechableHealingTypes[i], thresholdToHitting);
-								bc.receiveHealing(gm, source, healing);
+				// recycle "r" as "damage amount to be inflicted"
+				rollOfHitting = damage.getDamageAmount();
+				if (rollOfHitting > 0) {
+					if (source instanceof BaseCreatureTRAn) {
+						int i;
+						BaseCreatureTRAn bc;
+						ResourceAmountRecharged healing;
+						bc = (BaseCreatureTRAn) source;
+						/*
+						 * Recycle "thresholdToHitting" as "amount to leech". Also accepts negative
+						 * values: some mechanism like "guilt".
+						 */
+						i = leechableResources.length;
+						while (--i >= 0) {
+							thresholdWithinHitting = bc.getAttributes().getValue(leechableResources[i]);
+							if (thresholdWithinHitting != 0) {
+								thresholdWithinHitting = (thresholdWithinHitting * rollOfHitting) / 100;
+								if (thresholdWithinHitting != 0) {
+									healing = new ResourceAmountRecharged(leechableResourcesType[i],
+											thresholdWithinHitting);
+									bc.performRechargeOf(healing, source);
+								}
 							}
 						}
 					}
+					// in the end, the damage is ready to be delivered
+					target.receiveDamage(gm, damage, source);
 				}
-				// in the end, the damage is ready to be delivered
-				target.receiveDamage(gm, damage, source);
 			}
 		} else {
 			GEventInterfaceTRAn geiTran;

@@ -7,7 +7,7 @@ public interface DoSomethingWithItem extends Serializable {
 	/**
 	 * @param item
 	 *            the instance of {@link ObjectWithID} to be elaborated.
-	 * 
+	 *
 	 * @param x
 	 *            the x-coordinates of <code>item</code> instance in
 	 *            <code>molm</code>'s matrix.

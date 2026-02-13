@@ -60,7 +60,7 @@ public class PathFinderOLD implements AbstractPathFinder {
 		/* not modify original */
 		ss = ss.clone();
 
-		col = new CollectorObstacles(nodeStart.item, CollectorObstacles.COLLECT_FIRST_FOUND_TO_CHECK_EMPITY);
+		col = new CollectorObstacles(nodeStart.item, ItemCollector.COLLECT_FIRST_FOUND_TO_CHECK_EMPITY);
 		col.setCollectIfBothNull(false).setMustCollectNulls(false);
 
 		/*

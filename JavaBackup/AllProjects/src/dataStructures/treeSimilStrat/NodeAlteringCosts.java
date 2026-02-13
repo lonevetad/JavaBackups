@@ -1,17 +1,17 @@
 package dataStructures.treeSimilStrat;
 
-import dataStructures.CollectionAlteringCosts;
+import dataStructures.EditCosts;
 import dataStructures.NodeComparable;
 
-public interface NodeAlteringCosts<E> extends CollectionAlteringCosts<NodeComparable<E>> {
-	public default long insertNodeCost(NodeComparable<E> node) { return insertCost(node); }
+public interface NodeAlteringCosts<E> extends EditCosts<NodeComparable<E>> {
+	public default long insertNodeCost(NodeComparable<E> node) { return insertion(node); }
 
-	public default long deleteNodeCost(NodeComparable<E> node) { return deleteCost(node); }
+	public default long deleteNodeCost(NodeComparable<E> node) { return deletion(node); }
 
 	public long renameNodeCost(NodeComparable<E> node, E newLabel);
 
 	@Override
-	public default long renameCost(NodeComparable<E> node, NodeComparable<E> newNode) {
+	public default long substitution(NodeComparable<E> node, NodeComparable<E> newNode) {
 		return renameNodeCost(node, newNode.getKeyIdentifier());
 	}
 
@@ -20,10 +20,10 @@ public interface NodeAlteringCosts<E> extends CollectionAlteringCosts<NodeCompar
 	public static <T> NodeAlteringCosts<T> newDefaultNAC() {
 		return new NodeAlteringCosts<>() {
 			@Override
-			public long insertCost(NodeComparable<T> node) { return 1; }
+			public long insertion(NodeComparable<T> node) { return 1; }
 
 			@Override
-			public long deleteCost(NodeComparable<T> node) { return 1; }
+			public long deletion(NodeComparable<T> node) { return 1; }
 
 			@Override
 			public long renameNodeCost(NodeComparable<T> node, T newLabel) {

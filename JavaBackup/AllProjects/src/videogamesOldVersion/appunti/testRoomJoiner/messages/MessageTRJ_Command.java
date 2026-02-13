@@ -1,8 +1,8 @@
 package appunti.testRoomJoiner.messages;
 
-import appunti.testRoomJoiner.MessageTestRoomJoiner;
-import appunti.testRoomJoiner.Player;
-import appunti.testRoomJoiner.ServerTRJ;
+import videogamesOldVersion.appunti.testRoomJoiner.MessageTestRoomJoiner;
+import videogamesOldVersion.appunti.testRoomJoiner.Player;
+import videogamesOldVersion.appunti.testRoomJoiner.ServerTRJ;
 
 public abstract class MessageTRJ_Command extends MessageTestRoomJoiner implements Runnable {
 	private static final long serialVersionUID = -92907170770L;

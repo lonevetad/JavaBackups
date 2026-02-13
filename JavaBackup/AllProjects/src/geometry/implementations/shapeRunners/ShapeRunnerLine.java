@@ -248,15 +248,15 @@ public class ShapeRunnerLine extends AbstractShapeRunnerImpl {
 	 * = point.y; while (++i < length) { xx = x + cos * i; yy = y + sin * i; //
 	 * check cache xfloor = (int) Math.floor(xx); yfloor = (int) Math.floor(yy);
 	 * xceil = (int) Math.ceil(xx); yceil = (int) Math.ceil(yy);
-	 * 
+	 *
 	 * if (xfloor != x1) { point.x = xfloor; if (yfloor != y1) { y1 = yfloor;
 	 * point.y = yfloor; action.accept(point); } if (yfloor != yceil) { point.y =
 	 * yfloor; action.accept(point); } y2 = yceil;
-	 * 
+	 *
 	 * x1 = xfloor; } if (xfloor != xceil) {
-	 * 
+	 *
 	 * }
-	 * 
+	 *
 	 * if (xt != x1) point.x = (int) Math.round(x + cos * i); point.y = (int)
 	 * Math.round(y + sin * i); action.accept(point); } point.x = lastx; point.y =
 	 * lasty; action.accept(point); }

@@ -1,6 +1,6 @@
 package dataStructures.treeSimilStrat;
 
-import dataStructures.CollectionAlteringCosts;
+import dataStructures.EditCosts;
 import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
 import tools.EditDistance;
@@ -23,26 +23,26 @@ public class DissonanceTreeAlgo_Mine5<T> extends ADissonanceTreeAlgo_Mine<T> {
 	protected void computeDissonance_PrepareStuffs(long[] totalDissonance, NodeAlteringCosts<T> nodeAlteringCost,
 			NodeComparable<T> t1, NodeComparable<T> t2) {
 		EqualityChecker<NodeComparable<T>> equalityChecker;
-		CollectionAlteringCosts<NodeComparable<T>> cac;
+		EditCosts<NodeComparable<T>> cac;
 		final EditDistance ed;
 		ed = new EditDistanceLevenshtein();
 		equalityChecker = (n1, n2) -> false;// need to perform always the "cac". If equal nodes -> diss == 0
 		cac = // here comes the bigger part
-				new CollectionAlteringCosts<>() {
+				new EditCosts<>() {
 					@Override
-					public long insertCost(NodeComparable<T> element) {
-						return nodeAlteringCost.insertCost(element) + //
+					public long insertion(NodeComparable<T> element) {
+						return nodeAlteringCost.insertion(element) + //
 						getActionCostWholeSubtree(nodeAlteringCost, true, element.getChildrenNC());
 					}
 
 					@Override
-					public long deleteCost(NodeComparable<T> element) {
-						return nodeAlteringCost.deleteCost(element) + //
+					public long deletion(NodeComparable<T> element) {
+						return nodeAlteringCost.deletion(element) + //
 						getActionCostWholeSubtree(nodeAlteringCost, false, element.getChildrenNC());
 					}
 
 					@Override
-					public long renameCost(NodeComparable<T> element, NodeComparable<T> newLabel) {
+					public long substitution(NodeComparable<T> element, NodeComparable<T> newLabel) {
 						// delegate to recursion
 						long[] d = { 0 };
 						computeDissonance_on_nodes(d, nodeAlteringCost, element, newLabel, equalityChecker, this, ed); // RECURSION
@@ -54,7 +54,7 @@ public class DissonanceTreeAlgo_Mine5<T> extends ADissonanceTreeAlgo_Mine<T> {
 
 	protected void computeDissonance_on_nodes(long[] totalDissonance, NodeAlteringCosts<T> nodeAlteringCost,
 			NodeComparable<T> t1, NodeComparable<T> t2, EqualityChecker<NodeComparable<T>> equalityChecker,
-			CollectionAlteringCosts<NodeComparable<T>> cac, EditDistance ed) {
+			EditCosts<NodeComparable<T>> cac, EditDistance ed) {
 		totalDissonance[0] += t1.getKeyComparator().compare(t1.getKeyIdentifier(), t2.getKeyIdentifier()) == 0 //
 				? 0
 				: //
@@ -67,7 +67,7 @@ public class DissonanceTreeAlgo_Mine5<T> extends ADissonanceTreeAlgo_Mine<T> {
 	// the most important part
 	protected void computeDissonance_on_children(long[] totalDiss, NodeAlteringCosts<T> nodeAlteringCost,
 			SortedSetEnhanced<NodeComparable<T>> ff, SortedSetEnhanced<NodeComparable<T>> fg,
-			EqualityChecker<NodeComparable<T>> eqCheck, CollectionAlteringCosts<NodeComparable<T>> cac,
+			EqualityChecker<NodeComparable<T>> eqCheck, EditCosts<NodeComparable<T>> cac,
 			EditDistance ed) {
 		boolean ffEmpty, fgEmpty;
 		ffEmpty = (ff == null || ff.isEmpty());

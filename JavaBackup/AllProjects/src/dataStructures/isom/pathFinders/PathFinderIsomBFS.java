@@ -114,7 +114,7 @@ public class PathFinderIsomBFS<Distance extends Number> extends PathFinderIsomBa
 			niAdj = null;
 //			distStartToNeighbour = this.distanceManager.getAdder().apply(distToAdjacent, currentNode.distFromStart);
 			niAdj = nodes.get(adjacent);
-//			if ( niAdj != null// nodes.containsKey(adjID) 
+//			if ( niAdj != null// nodes.containsKey(adjID)
 //					&& niAdj.color != NodePositionInFrontier.NeverAdded)
 //				return; // unable to handle this adjacent
 			if (niAdj == null) {

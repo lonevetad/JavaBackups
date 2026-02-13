@@ -58,7 +58,7 @@ public class TestTreeAVLToCollections {
 			t.put(ke.apply(x), x);
 		p(t);
 		System.out.println("now do foreach on list:\n");
-		wrapperSet.forEach((Consumer<? super String>) PRINTER_K);
+		wrapperSet.forEach(PRINTER_K);
 		System.out.println("\n and iterate over it:\n\t");
 		for (String x : wrapperSet)
 			System.out.print(" " + x);
@@ -77,7 +77,7 @@ public class TestTreeAVLToCollections {
 		System.out.println("...\n\n..++" + "its size after bulk of integers: " + t.size());
 		p(t);
 		System.out.println("\n.....now do foreach on list:\n");
-		wrapperSet.forEach((Consumer<? super String>) PRINTER_K);
+		wrapperSet.forEach(PRINTER_K);
 		System.out.println("\n and iterate over it:\n\t");
 		for (String x : wrapperSet)
 			System.out.print(" " + x);
@@ -105,7 +105,7 @@ public class TestTreeAVLToCollections {
 			t.put(x, x);
 		p(t);
 		System.out.println("now do foreach on list:\n");
-		wrapperList.forEach((Consumer<? super Integer>) PRINTER_K);
+		wrapperList.forEach(PRINTER_K);
 		System.out.println("\n and iterate over it:\n\t");
 		for (Integer x : wrapperList)
 			System.out.print(" " + x);
@@ -123,7 +123,7 @@ public class TestTreeAVLToCollections {
 		System.out.println("...\n\n..++" + "");
 		p(t);
 		System.out.println("\n.....now do foreach on list:\n");
-		wrapperList.forEach((Consumer<? super Integer>) PRINTER_K);
+		wrapperList.forEach(PRINTER_K);
 		System.out.println("\n and iterate over it:\n\t");
 		for (Integer x : wrapperList)
 			System.out.print(" " + x);

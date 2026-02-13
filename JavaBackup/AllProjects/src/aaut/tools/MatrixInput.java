@@ -38,7 +38,7 @@ public abstract class MatrixInput implements Serializable {
 	 * Supposing that each dimension's domain is a finite space (having at most
 	 * {@link Integer#MAX_VALUE} elements), returns the dimension's domain's ariety
 	 * of the dimension of the specified index (the index is the given parameter).
-	 * 
+	 *
 	 * @throws IndexOutOfBoundsException
 	 */
 	public int getDimensionAriety(int indexDimension) {
@@ -64,7 +64,7 @@ public abstract class MatrixInput implements Serializable {
 	 * have a length, in terms of array's length, less by one than
 	 * {@link #getDimensionsCount()}. or it will throws an
 	 * {@link #IllegalArgumentException}.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 */
 	public void setValuesOfLastDimensionsAt(int[] at, final double[] values) {

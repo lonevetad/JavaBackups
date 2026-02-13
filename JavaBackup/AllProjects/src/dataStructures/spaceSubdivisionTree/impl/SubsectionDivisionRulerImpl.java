@@ -10,7 +10,7 @@ import dataStructures.spaceSubdivisionTree.impl.utils.ObjectsSubdivision;
 import dataStructures.spaceSubdivisionTree.impl.utils.SubsectionDivisionRuler;
 import geometry.ObjectLocated;
 
-//TODO generalize from "Enna" to something else 
+//TODO generalize from "Enna" to something else
 /** Works under the "rectangular assumption */
 public class SubsectionDivisionRulerImpl implements SubsectionDivisionRuler {
 	private static final long serialVersionUID = 2829317112540506L;
@@ -69,7 +69,7 @@ public class SubsectionDivisionRulerImpl implements SubsectionDivisionRuler {
 			meanPoint.setLocation((meanPoint.getX() + (p.getX() / objCountDouble)),
 					(meanPoint.getY() + (p.getY() / objCountDouble))); //
 //			meanPoint.x += p.getX() / objCountDouble;
-//			meanPoint.y += p.getY() / objCountDouble;	
+//			meanPoint.y += p.getY() / objCountDouble;
 		});
 		// more or less, that's the mean
 		squareSideSubsection = Math.min(rectSubNode.getWidth(), rectSubNode.getHeight()) //

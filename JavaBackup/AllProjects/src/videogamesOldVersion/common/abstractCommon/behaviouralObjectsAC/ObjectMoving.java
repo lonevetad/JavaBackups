@@ -44,7 +44,7 @@ public interface ObjectMoving /* extends ObjectActingOnPassingTime */ {
 	 * used to compute how, where and how much move.
 	 * <p>
 	 * Should call {@link #updatePositionAfterMove()}.
-	 * 
+	 *
 	 * @param milliseconds
 	 *            amount of milliseconds passed since last move call.
 	 */

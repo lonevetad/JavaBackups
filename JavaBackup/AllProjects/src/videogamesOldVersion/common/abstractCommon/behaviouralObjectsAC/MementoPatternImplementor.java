@@ -2,7 +2,7 @@ package common.abstractCommon.behaviouralObjectsAC;
 
 import java.io.Serializable;
 
-import common.abstractCommon.Memento;
+import videogamesOldVersion.common.abstractCommon.Memento;
 
 public interface MementoPatternImplementor extends Serializable {
 

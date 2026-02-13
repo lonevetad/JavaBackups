@@ -38,7 +38,7 @@ public class MatrixObjectLocationManager implements AbstractMatrixObjectLocation
 
 	public enum COLORS_VISIT {
 		WHITE, GRAY, BLACK;
-	};
+	}
 
 	/**
 	 * Il senso delle coordinate è orario MA l'o rigine degli assi cartesiani

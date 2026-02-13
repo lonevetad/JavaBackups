@@ -1,9 +1,9 @@
 package games.theRisingArmy.tiles;
 
-import common.EnumGameObjectTileImageCollection;
-import common.gui.TileImage;
 import common.removed.TileMap;
-import games.theRisingArmy.MainController_TheRisingArmy;
+import games.old.gui.TileImage;
+import videogamesOldVersion.common.EnumGameObjectTileImageCollection;
+import videogamesOldVersion.games.theRisingArmy.MainController_TheRisingArmy;
 
 /** Contains ALL enums of {@link TileMap} for the game "The Rising Army". */
 public class EnumGameObjectTileImageCollection_TRAr extends EnumGameObjectTileImageCollection {

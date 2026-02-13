@@ -13,64 +13,61 @@ public class AFireShpereOrbiting extends AOrbitingDamagingObj {
 	public static final int RARITY = 4, BLOB_RADIUS = 3, BLOB_RADIUS_FROM_CENTRE = 7;
 	public static final String NAME = "Planetary Fire Spheres";
 
-	public AFireShpereOrbiting() {
-		super();
+	public AFireShpereOrbiting(GModality gameModality) {
+		super(gameModality, NAME);
 		setRarityIndex(RARITY);
-	}
-
-//	protected EquipmentItem eqipItem; // related to this ability
-
-	@Override
-	public void move(GModality gm, int milliseconds) {
-		// TODO Auto-generated method stub
-
-	}
-
-//	public EquipmentItem getEquipItem() { return eqipItem; }
-//	public void setEquipItem(EquipmentItem equipmentItem) { this.eqipItem = equipmentItem; }
-
-	@Override
-	public void setShape(AbstractShape2D shape) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public ObjectShaped newOrbitingObj() { return new FlamingOrb(); }
 
 	@Override
-	protected void updateCenterPosition(GModality modality) {
-		// TODO Auto-generated method stub
+	public int getOrbitingObjectRadius(int index, ObjectShaped os) { return orbitingObjectRadius; }
 
+	@Override
+	public int getLevel() { // TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public int getOrbitingObjectRadius(int index, ObjectShaped os) { return orbitingObjectRadius; }
+	public void setLevel(int level) { // TODO Auto-generated method stub
+	}
+
+	//
+
+	@Override
+	public void move(GModality modality, int timeUnits) { // TODO Auto-generated method stub
+	}
+
+	@Override
+	public void setShape(AbstractShape2D shape) { // TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void updateCenterPosition(GModality modality) { // TODO Auto-generated method stub
+	}
 
 	//
 
 	//
 
-	class FlamingOrb implements ObjectShaped {
+	protected class FlamingOrb extends OrbDamaging {
 		private static final long serialVersionUID = 1L;
-		ShapeCircle shape;
 
-		FlamingOrb() {
+		protected FlamingOrb() {
+			super();
 			Point p;
 			p = getLocation();
 			shape = new ShapeCircle(p.x, p.y, true, BLOB_RADIUS);
 		}
 
 		@Override
-		public Integer getID() {
-			return null; // don't care
-		}
+		public Long getID() { return ID; }
 
 		@Override
 		public AbstractShape2D getShape() { return shape; }
 
 		@Override
-		public void setShape(AbstractShape2D shape) { this.shape = (ShapeCircle) shape; }
-
+		public void setShape(AbstractShape2D shape) { this.shape = shape; }
 	}
 }

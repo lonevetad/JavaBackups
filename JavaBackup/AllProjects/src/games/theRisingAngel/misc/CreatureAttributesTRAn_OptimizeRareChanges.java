@@ -3,6 +3,7 @@ package games.theRisingAngel.misc;
 import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
 import games.generic.controlModel.subimpl.CreatureAttributesBaseAndDerivedCaching;
+import games.theRisingAngel.enums.AttributesTRAn;
 
 /**
  * @deprecated Deprecated because in real game the values, due to abilities,
@@ -12,9 +13,8 @@ import games.generic.controlModel.subimpl.CreatureAttributesBaseAndDerivedCachin
 public class CreatureAttributesTRAn_OptimizeRareChanges extends CreatureAttributesBaseAndDerivedCaching {
 
 	public CreatureAttributesTRAn_OptimizeRareChanges() {
-		super(AttributesTRAn.VALUES.length);
+		super(AttributesTRAn.ALL_ATTRIBUTES.length, AttributesTRAn.INDEX_TO_ATTRIBUTE_TRAn);
 		super.setBonusCalculator(new CreatureAttributesBonusesCalculatorTRAn_OptimizeRareChanges());
-		this.cacheValues = null;
 
 	}
 
@@ -26,7 +26,12 @@ public class CreatureAttributesTRAn_OptimizeRareChanges extends CreatureAttribut
 	}
 
 	@Override
-	public int getValue(int index) { return this.getValue(AttributesTRAn.VALUES[index]); }
+	public int getValue(int index) { return this.getValue(AttributesTRAn.ALL_ATTRIBUTES[index]); }
+
+	//
+
+	@Override
+	protected int[] newCacheValues(int length) { return null; }
 
 	@Override
 	protected void recalculateCache() {
@@ -86,7 +91,7 @@ public class CreatureAttributesTRAn_OptimizeRareChanges extends CreatureAttribut
 		sb.append("CreatureAttributesTRAn [\n");
 		for (int i = 0, n = getAttributesCount(); i < n; i++)
 //			sb.append(getOriginalValue(i)).append(", ");
-			sb.append('\t').append(AttributesTRAn.VALUES[i].getName()).append(':').append(this.getValue(i))
+			sb.append('\t').append(AttributesTRAn.ALL_ATTRIBUTES[i].getName()).append(':').append(this.getValue(i))
 					.append('\n');
 		return sb.append(']').toString();
 	}

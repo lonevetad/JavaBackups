@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import dataStructures.MapTreeAVL;
 import dataStructures.isom.NodeIsom;
 import games.generic.controlModel.GObjectsInSpaceManager;
-import games.generic.controlModel.gObj.ObjectInSpace;
+import games.generic.controlModel.objects.ObjectInSpace;
 import games.generic.view.GameView;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
@@ -21,15 +21,15 @@ public class ObjLocatedProviderAreaScanning extends ObjLocatedProvider {
 
 	public ObjLocatedProviderAreaScanning(GameView gameView) {
 		super(gameView);
-		objectPainted = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR);
+		objectPainted = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR);
 	}
 
-	protected Map<Integer, ObjectInSpace> objectPainted;
+	protected Map<Long, ObjectInSpace> objectPainted;
 
 	@Override
 	public void forEachObjInArea(GObjectsInSpaceManager goism, AbstractShape2D shape,
 			BiConsumer<Point, ObjectLocated> action) {
-		final Map<Integer, ObjectInSpace> m;
+		final Map<Long, ObjectInSpace> m;
 		Consumer<ObjectLocated> oisPainter;
 //		InSpaceObjectsManager<Double> isom;
 		if (goism == null)
@@ -40,7 +40,7 @@ public class ObjLocatedProviderAreaScanning extends ObjLocatedProvider {
 		// * NOTE: beware of repetitions!
 		(m = this.objectPainted).clear();
 		oisPainter = ol -> {
-			Integer id;
+			Long id;
 			ObjectInSpace ois;
 			ois = (ObjectInSpace) ol;
 			id = ol.getID();
@@ -50,7 +50,7 @@ public class ObjLocatedProviderAreaScanning extends ObjLocatedProvider {
 			}
 		};
 		goism.runOnShape(shape, p -> {
-			NodeIsom n;
+			NodeIsom<Double> n;
 			n = goism.getNodeAt(p);
 			if (n == null)
 				return;

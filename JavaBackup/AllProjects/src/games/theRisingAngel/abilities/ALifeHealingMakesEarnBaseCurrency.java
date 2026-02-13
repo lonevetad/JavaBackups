@@ -3,16 +3,16 @@ package games.theRisingAngel.abilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.CurrencyHolder;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.heal.EventHealing;
-import games.generic.controlModel.heal.resExample.ExampleHealingType;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityBaseImpl;
+import games.generic.controlModel.abilities.impl.AbilityBaseImpl;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.events.event.EventResourceRecharge;
+import games.generic.controlModel.holders.CurrencyHolder;
 import games.generic.controlModel.misc.CurrencySet;
-import games.theRisingAngel.events.EventsTRAn;
+import games.generic.controlModel.objects.LivingObject;
+import games.theRisingAngel.enums.EventsTRAn;
+import games.theRisingAngel.enums.RechargeableResourcesTRAn;
 import tools.ObjectWithID;
 
 /**
@@ -29,7 +29,7 @@ public class ALifeHealingMakesEarnBaseCurrency extends AbilityBaseImpl implement
 	public ALifeHealingMakesEarnBaseCurrency() {
 		super();
 		this.eventsWatching = new ArrayList<>(2);
-		this.eventsWatching.add(EventsTRAn.HealReceived.getName());
+		this.eventsWatching.add(EventsTRAn.ResourceRechargeReceived.getName());
 		this.hasReceivedOddReneration = false;
 		setRarityIndex(RARITY);
 	}
@@ -43,33 +43,33 @@ public class ALifeHealingMakesEarnBaseCurrency extends AbilityBaseImpl implement
 	public List<String> getEventsWatching() { return eventsWatching; }
 
 	@Override
-	public void performAbility(GModality gm) {}
+	public void performAbility(GModality gm, int targetLevel) {}
 
 	@Override
 	public void resetAbility() { this.hasReceivedOddReneration = false; }
 
 	@Override
 	public void notifyEvent(GModality modality, IGEvent ge) {
-		if (EventsTRAn.HealReceived.getName() == ge.getName()) {
-			int amoutHealed;
-			EventHealing<?> eventHealing;
+		if (EventsTRAn.ResourceRechargeReceived.getName() == ge.getName()) {
+			int amoutRecharged;
+			EventResourceRecharge<?> eventRecharging;
 			CurrencyHolder ch;
 			CurrencySet cs;
 			LivingObject ol;
 			ObjectWithID owid;
-			eventHealing = (EventHealing<?>) ge;
-			if (eventHealing.getHeal().getType() != ExampleHealingType.Life)
+			eventRecharging = (EventResourceRecharge<?>) ge;
+			if (eventRecharging.getResourceAmountRecharged().getRechargedResource() != RechargeableResourcesTRAn.Life)
 				return;
-			amoutHealed = eventHealing.getHeal().getHealAmount();
+			amoutRecharged = eventRecharging.getResourceAmountRecharged().getRechargedAmount();
 			owid = getOwner();
-			if (eventHealing.getTarget() == owid //
+			if (eventRecharging.getTarget() == owid //
 //					&&(amoutHealed > 1
 //							|| (hasReceivedOddReneration && amoutHealed > 0))//
 					&& (owid instanceof CurrencyHolder)) {
 				ol = (LivingObject) owid;
-				if ((amoutHealed & 0x1) == 1) {
+				if ((amoutRecharged & 0x1) == 1) {
 					if (hasReceivedOddReneration) {
-						amoutHealed++;
+						amoutRecharged++;
 						hasReceivedOddReneration = false;
 					} else {
 						hasReceivedOddReneration = true;
@@ -79,7 +79,9 @@ public class ALifeHealingMakesEarnBaseCurrency extends AbilityBaseImpl implement
 					// apply only if the regeneration has really happened
 					ch = (CurrencyHolder) owid;
 					cs = ch.getCurrencies();
-					cs.alterCurrencyAmount(CurrencySet.BASE_CURRENCY_INDEX, (amoutHealed >> 1));
+					cs.alterCurrencyAmount(//
+							cs.getCurrencies()[CurrencySet.BASE_CURRENCY_INDEX], //
+							(amoutRecharged >> 1));
 				}
 			}
 		}

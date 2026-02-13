@@ -53,7 +53,7 @@ public class MetodiVari {
 	 * sarebbe sufficiente 31], ossia O(1).<br>
 	 * All'atto pratico, conviene considerare questa funzione come richiedene 32
 	 * passi, per stare larghi.
-	 * 
+	 *
 	 * @return <code>-1</code> if <code>x</code> is negative,
 	 *         <code>floor(log2(x))</code> otherwise.
 	 */

@@ -3,7 +3,7 @@ package games.generic.view;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import games.generic.controlModel.gObj.TimedObject;
+import games.generic.controlModel.objects.TimedObject;
 import geometry.ObjectLocated;
 
 /** Graphic part of a {@link ObjectLocated}. */

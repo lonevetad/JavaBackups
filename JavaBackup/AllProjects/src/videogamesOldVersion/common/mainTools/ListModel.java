@@ -50,7 +50,7 @@ public class ListModel<E> extends AbstractListModel<E> {
 	 * Although this method is not deprecated, the preferred method to use is
 	 * <code>get(int)</code>, which implements the <code>List</code> interface
 	 * defined in the 1.2 Collections framework. </blockquote>
-	 * 
+	 *
 	 * @param index
 	 *            an index into this list
 	 * @return the component at the specified index
@@ -145,7 +145,7 @@ public class ListModel<E> extends AbstractListModel<E> {
 	/**
 	 * Returns the first component of this list. Throws a
 	 * <code>NoSuchElementException</code> if this vector has no components.
-	 * 
+	 *
 	 * @return the first component of this list
 	 * @see Vector#firstElement()
 	 */
@@ -412,7 +412,7 @@ public class ListModel<E> extends AbstractListModel<E> {
 
 	/*
 	 * public void addAll(Collection c) { }
-	 * 
+	 *
 	 * public void addAll(int index, Collection c) { }
 	 */
 }

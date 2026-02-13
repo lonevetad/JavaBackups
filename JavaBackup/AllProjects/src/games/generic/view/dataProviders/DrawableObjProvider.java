@@ -6,7 +6,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.GEventObserver;
+import games.generic.controlModel.events.GEventObserver;
 import games.generic.view.DrawableObj;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
@@ -27,7 +27,7 @@ import tools.Comparators;
  * when an object enters into or leave the <i>space</i> they are located on.
  */
 public abstract class DrawableObjProvider {
-	public static final Function<DrawableObj, Integer> KEY_EXTRACTOR = d -> {
+	public static final Function<DrawableObj, Long> KEY_EXTRACTOR = d -> {
 		ObjectLocated ol = d.getRelatedObject();
 		return (ol == null) ? null : ol.getID();
 	};
@@ -67,8 +67,8 @@ public abstract class DrawableObjProvider {
 
 	public Set<DrawableObj> getDrawablesInArea(AbstractShape2D shape) {
 		Set<DrawableObj> s;
-		MapTreeAVL<Integer, DrawableObj> collected;
-		collected = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR);
+		MapTreeAVL<Long, DrawableObj> collected;
+		collected = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR);
 		s = collected.toSetValue(KEY_EXTRACTOR);
 		this.forEachDrawableInArea(shape, (p, d) -> {
 			if (d != null)

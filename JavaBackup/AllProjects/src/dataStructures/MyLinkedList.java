@@ -22,30 +22,20 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	NodeList<E> head, tail;
 
 	@Override
-	public int size() {
-		return size;
-	}
+	public int size() { return size; }
 
-	public NodeList<E> getHead() {
-		return head;
-	}
+	public NodeList<E> getHead() { return head; }
 
-	public NodeList<E> getTail() {
-		return tail;
-	}
+	public NodeList<E> getTail() { return tail; }
 
 	@Override
-	public boolean isEmpty() {
-		return size == 0;
-	}
+	public boolean isEmpty() { return size == 0; }
 
 	@Override
 	public boolean contains(Object o) {
 		if (o // instanceof GraphNode
-		!= null) {
-			if (size == 0) {
-				return false;
-			}
+				!= null) {
+			if (size == 0) { return false; }
 			int i = indexOf(o);
 			// System.out.println("\t\t\t contains gives : " + i);
 			return i >= 0 && i < size;
@@ -68,9 +58,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			} else {
 				n = new NodeList<E>(e);
 				n.prev = tail;
-				if (tail != null) {
-					tail.next = n;
-				}
+				if (tail != null) { tail.next = n; }
 				tail = n;
 				size++;
 			}
@@ -89,7 +77,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 
 		someoneRemoved = false;
 		if (o // instanceof GraphNode
-		!= null && size > 0) {
+				!= null && size > 0) {
 
 			g = (E) o;
 			n = head;
@@ -99,9 +87,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 						// if (n != head && n != tail) {
 						temp = n.next;
 						// }
-						if (n == head) {
-							temp = head = n.next;
-						}
+						if (n == head) { temp = head = n.next; }
 						if (n == tail) {
 							tail = n.prev;
 							temp = null;
@@ -121,9 +107,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	public E get(int index) {
 		if (index >= 0 && index < size) {
 			NodeList<E> n = getAt(index);
-			if (n != null) {
-				return n.item;
-			}
+			if (n != null) { return n.item; }
 		}
 		return null;
 	}
@@ -133,12 +117,8 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 		boolean notFound = true;
 		int i = 0;
 		if (index >= 0 && index < size) {
-			if (index == 0) {
-				return head;
-			}
-			if (index == size - 1) {
-				return tail;
-			}
+			if (index == 0) { return head; }
+			if (index == size - 1) { return tail; }
 			iterator = head;
 			while (notFound && iterator != null) {
 				notFound = i < index;
@@ -248,18 +228,10 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 
 	public void unlink(NodeList<E> n) {
 		if (n != null) {
-			if (n == head) {
-				head = head.next;
-			}
-			if (n == tail) {
-				tail = tail.prev;
-			}
-			if (n.prev != null) {
-				n.prev.next = n.next;
-			}
-			if (n.next != null) {
-				n.next.prev = n.prev;
-			}
+			if (n == head) { head = head.next; }
+			if (n == tail) { tail = tail.prev; }
+			if (n.prev != null) { n.prev.next = n.next; }
+			if (n.next != null) { n.next.prev = n.prev; }
 			n.prev = null;
 			n.next = null;
 			size--;
@@ -273,9 +245,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			iterator = tail;
 			while (notFound && iterator != null) {
 				notFound = !e.equals(iterator.item);
-				if (notFound) {
-					iterator = iterator.prev;
-				}
+				if (notFound) { iterator = iterator.prev; }
 			}
 		}
 		return iterator;
@@ -321,9 +291,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 				if (n != null) {
 					nn.next = n;
 					nn.prev = n.prev;
-					if (n.prev != null) {
-						n.prev.next = nn;
-					}
+					if (n.prev != null) { n.prev.next = nn; }
 					n.prev = nn;
 				}
 			}
@@ -361,7 +329,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 		NodeList<E> iterator;
 
 		if (o // instanceof GraphNode
-		!= null && size > 0) {
+				!= null && size > 0) {
 			g = (E) o;
 			notFound = true;
 			i = size - 1;
@@ -373,9 +341,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 					iterator = iterator.prev;
 				}
 			}
-			if (notFound) {
-				i = -1;
-			}
+			if (notFound) { i = -1; }
 			return i;
 		}
 		return -1;
@@ -430,9 +396,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 						iterator = iterator.prev;
 					}
 				}
-				if (notFound) {
-					i = -1;
-				}
+				if (notFound) { i = -1; }
 				return i;
 			}
 		}
@@ -452,9 +416,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			 * head = n; size = 2; }
 			 */else {
 				n.next = head;
-				if (head != null) {
-					head.prev = n;
-				}
+				if (head != null) { head.prev = n; }
 				head = n;
 				size++;
 			}
@@ -462,9 +424,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	}
 
 	@Override
-	public void addLast(E e) {
-		add(e);
-	}
+	public void addLast(E e) { add(e); }
 
 	@Override
 	public boolean offerFirst(E e) {
@@ -513,40 +473,28 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	}
 
 	@Override
-	public E pollFirst() {
-		return removeFirst();
-	}
+	public E pollFirst() { return removeFirst(); }
 
 	@Override
-	public E pollLast() {
-		return removeLast();
-	}
+	public E pollLast() { return removeLast(); }
 
 	@Override
 	public E getFirst() {
-		if (head != null) {
-			return head.item;
-		}
+		if (head != null) { return head.item; }
 		return null;
 	}
 
 	@Override
 	public E getLast() {
-		if (tail != null) {
-			return tail.item;
-		}
+		if (tail != null) { return tail.item; }
 		return null;
 	}
 
 	@Override
-	public E peekFirst() {
-		return getFirst();
-	}
+	public E peekFirst() { return getFirst(); }
 
 	@Override
-	public E peekLast() {
-		return getLast();
-	}
+	public E peekLast() { return getLast(); }
 
 	@Override
 	public boolean removeFirstOccurrence(Object o) {
@@ -567,14 +515,10 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	}
 
 	@Override
-	public E remove() {
-		return removeFirst();
-	}
+	public E remove() { return removeFirst(); }
 
 	@Override
-	public E poll() {
-		return removeFirst();
-	}
+	public E poll() { return removeFirst(); }
 
 	@Override
 	public E element() {
@@ -583,19 +527,13 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	}
 
 	@Override
-	public E peek() {
-		return getFirst();
-	}
+	public E peek() { return getFirst(); }
 
 	@Override
-	public void push(E e) {
-		addFirst(e);
-	}
+	public void push(E e) { addFirst(e); }
 
 	@Override
-	public E pop() {
-		return removeFirst();
-	}
+	public E pop() { return removeFirst(); }
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -681,9 +619,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	}
 
 	@Override
-	public ListIterator<E> listIterator() {
-		return (ListIterator<E>) iterator();
-	}
+	public ListIterator<E> listIterator() { return (ListIterator<E>) iterator(); }
 
 	@Override
 	public ListIterator<E> listIterator(int index) {
@@ -731,37 +667,25 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	// TODO class NodeList<E>
 
 	public static class NodeList<E> implements Serializable {
-		@SuppressWarnings("unused")
-		private NodeList() {
-		}
-
-		public NodeList(E gn) {
-			this.item = gn;
-		}
-
 		private static final long serialVersionUID = 65840009806036741L;
-		NodeList<E> next = null, prev = null;
-		E item;
 
-		public E getItem() {
-			return item;
-		}
+		@SuppressWarnings("unused")
+		private NodeList() {}
 
-		public NodeList<E> getNext() {
-			return next;
-		}
+		public NodeList(E gn) { this.item = gn; }
 
-		public NodeList<E> getPrev() {
-			return prev;
-		}
+		protected NodeList<E> next = null, prev = null;
+		protected E item;
+
+		public E getItem() { return item; }
+
+		public NodeList<E> getNext() { return next; }
+
+		public NodeList<E> getPrev() { return prev; }
 
 		public void unlink() {
-			if (prev != null) {
-				prev.next = next;
-			}
-			if (next != null) {
-				next.prev = prev;
-			}
+			if (prev != null) { prev.next = next; }
+			if (next != null) { next.prev = prev; }
 			next = prev = null;
 		}
 	}
@@ -769,10 +693,9 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 	// TODO class IteratorMyLinkedList<E>
 
 	public static class IteratorMyLinkedList<E> implements Iterator<E>, ListIterator<E>, Serializable {
+		private static final long serialVersionUID = 64063335415800L;
 
-		private IteratorMyLinkedList() {
-			i = -1;
-		}
+		private IteratorMyLinkedList() { i = -1; }
 
 		IteratorMyLinkedList(NodeList<E> n) {
 			this();
@@ -781,11 +704,10 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			this.n = n;
 		}
 
-		private static final long serialVersionUID = 64063335415800L;
-		private NodeList<E> n;
-		private int i, size;
 		// ti uso per evitare il GC overhead per creare la sentinella
-		boolean nullNextNeverAsked = true, canAskAgainHasNext = true;
+		protected boolean nullNextNeverAsked = true, canAskAgainHasNext = true;
+		private int i, size;
+		private NodeList<E> n;
 
 		@Override
 		public boolean hasNext() {
@@ -797,9 +719,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			return b;
 		}
 
-		public E getE() {
-			return n.item;
-		}
+		public E getE() { return n.item; }
 
 		/**
 		 * If the current node isn't null and the next node exists, this methods Returns
@@ -828,9 +748,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 		}
 
 		@Override
-		public boolean hasPrevious() {
-			return n != null && n.prev != null;
-		}
+		public boolean hasPrevious() { return n != null && n.prev != null; }
 
 		@Override
 		public E previous() {
@@ -844,18 +762,12 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 		}
 
 		@Override
-		public int nextIndex() {
-			return i + 1;
-		}
+		public int nextIndex() { return i + 1; }
 
-		public int getIndex() {
-			return i;
-		}
+		public int getIndex() { return i; }
 
 		@Override
-		public int previousIndex() {
-			return i - 1;
-		}
+		public int previousIndex() { return i - 1; }
 
 		@Override
 		public void remove() {
@@ -872,9 +784,7 @@ public class MyLinkedList<E> implements Serializable, List<E>, Deque<E> {
 			throw new UnsupportedOperationException("operation not supported in IteratorMyLinkedList");
 		}
 
-		public int getSize() {
-			return size;
-		}
+		public int getSize() { return size; }
 
 	}
 

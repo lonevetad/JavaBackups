@@ -182,12 +182,12 @@ public final class PolygonUtilities {
 
 	/**
 	 * isPointInsideThePolygon(): winding number test for a point in a polygon <br>
-	 * 
+	 *
 	 * @param pointToBeTested            a point
 	 * @param polygonAsConsecutivePoints array "V" of "n" vertex points of a
 	 *                                   polygon, where <code>V[n] == V[0]</code>
 	 *                                   implicitly
-	 * 
+	 *
 	 * @return: wn = the winding number's computation (=0 only when P is outside)
 	 */
 	public static boolean isInside(Point2D pointToBeTested, Point2D[] polygonAsConsecutivePoints) {
@@ -221,11 +221,11 @@ public final class PolygonUtilities {
 
 	/**
 	 * isPointInsideThePolygon(): winding number test for a point in a polygon <br>
-	 * 
+	 *
 	 * @param pointToBeTested a point
 	 * @param polygon         array "V" of "n" vertex points of a polygon, where
 	 *                        <code>V[n] == V[0]</code> implicitly
-	 * 
+	 *
 	 * @return: wn = the winding number's computation (=0 only when P is outside)
 	 */
 	public static boolean isInside(Point2D pointToBeTested, Polygon polygon) {

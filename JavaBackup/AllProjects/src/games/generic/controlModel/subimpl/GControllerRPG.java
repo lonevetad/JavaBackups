@@ -1,33 +1,33 @@
 package games.generic.controlModel.subimpl;
 
+import games.generic.GameOptions;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.GameObjectsProvidersHolder;
+import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
 
 public abstract class GControllerRPG extends GControllerET {
-	// implements IGameWithAbililties {
 
 	public GControllerRPG() {
 		super();
-		this.gameObjectsProvidersHolderRPG = newGameObjectsProvider();
+		this.gameObjectsProvidersHolderRPG = newGameObjectProvidersHolderFor(null);
 	}
 
-	protected final GameObjectsProvidersHolderRPG gameObjectsProvidersHolderRPG;
-
-	//
-
-	protected abstract GameObjectsProvidersHolderRPG newGameObjectsProvider();
+	protected GameObjectsProvidersHolderRPG gameObjectsProvidersHolderRPG;
 
 	//
 
 	@Override
-	protected GameObjectsProvidersHolder getGObjProvidersHolderForGModality(GModality gm) {
-		return gameObjectsProvidersHolderRPG; // don't care of "gm", it's always this instance ..
-	}
+	protected abstract GameObjectsProvidersHolderRPG newGameObjectProvidersHolderFor(GModality gm);
 
-	public GameObjectsProvidersHolderRPG getGameObjectsProvider() {
-		return gameObjectsProvidersHolderRPG;
+	//
+
+	public GameObjectsProvidersHolderRPG getGameObjectsProvidersHolder() { return gameObjectsProvidersHolderRPG; }
+
+	public void setGameObjectsProvidersHolderRPG(GameObjectsProvidersHolderRPG gameObjectsProvidersHolderRPG) {
+		this.gameObjectsProvidersHolderRPG = gameObjectsProvidersHolderRPG;
 	}
 
 	//
 
+	@Override
+	protected GameOptions newGameOptions() { return new GameOptionsRPG(this); }
 }

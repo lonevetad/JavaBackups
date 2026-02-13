@@ -1,6 +1,6 @@
 package videogames.gridObjectManager.core;
 
-import tools.geometry.pointTools.PointConsumer;
+import geometry.pointTools.PointConsumer;
 
 public interface GomConsumer extends PointConsumer {
 	/**

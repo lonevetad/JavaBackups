@@ -175,8 +175,7 @@ public class ManaGroup implements SerializableStuff {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if ((obj == null) || (getClass() != obj.getClass())) return false;
 		ManaGroup other = (ManaGroup) obj;
 		if (totalManaColored != other.totalManaColored) return false;
 		if (totalManaCost != other.totalManaCost) return false;

@@ -1,12 +1,12 @@
 package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingAttributesRealTime;
+import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
 import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
-import games.theRisingAngel.misc.AttributesTRAn;
+import games.generic.controlModel.objects.LivingObject;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.enums.AttributesTRAn;
 import tools.ObjectWithID;
 
 /**
@@ -19,7 +19,7 @@ import tools.ObjectWithID;
  */
 //*  <code>a = 4; b = 1</code> and <code>c = d = e = 1</code>.
 public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModifyingAttributesRealTime
-//		implements GEventObserver 
+//		implements GEventObserver
 {
 	private static final long serialVersionUID = -4521020230699090L;
 	public static final String NAME = "Trained to Endure";
@@ -28,9 +28,9 @@ public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModi
 	protected boolean isActive; // , canBeActivated
 //	protected List<String> eventsWatching;
 
-	public ADamageReductionOnLifeLowerToPhysicalAttributes() {
-		super(NAME, new AttributeIdentifier[] { AttributesTRAn.DamageReductionMagical,
-				AttributesTRAn.DamageReductionPhysical });
+	public ADamageReductionOnLifeLowerToPhysicalAttributes(GModality gm) {
+		super(gm, NAME, new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction,
+				AttributesTRAn.PhysicalDamageReduction });
 		this.isActive = false;
 //		this.canBeActivated = false;
 //		eventsWatching = Arrays.asList(new String[] { EventsTRAn.DamageReceived.getName() });
@@ -71,7 +71,8 @@ public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModi
 	}
 
 	@Override
-	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca) {
+	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+			int targetLevel) {
 		int amount;
 		if (canBeActivated(ah)) {
 //			System.out.println("DEFENCES BEFORE");
@@ -93,4 +94,14 @@ public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModi
 			}
 		}
 	}
+
+	@Override
+	public GModality getGameModality() { // TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+	}
+
 }

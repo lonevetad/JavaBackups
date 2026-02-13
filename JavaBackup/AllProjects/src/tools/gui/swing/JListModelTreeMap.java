@@ -1,5 +1,6 @@
 package tools.gui.swing;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -21,10 +22,11 @@ import tools.Comparators;
 
 /**
  * This class represent a {@link ListModel} (more precisely, a
- * {@link AbstractListModel}) of a generic <code>E</code> type that is mapped
- * through a second type <code>K</code>. The instances of <code>K</code> are the
- * keys for that mapping and can be obtained by the given "key extractor"
- * (implementation of {@link Function}&ltE,K>) passed as parameter
+ * {@link AbstractListModel}) of a generic <code>E</code> type (which is the
+ * SECOND generics) that is mapped through another type <code>K</code> (which is
+ * the FIRST generics) acting as a <i>key</i>. The instances of <code>K</code>
+ * are the keys for that mapping and can be obtained by the given "key
+ * extractor" (implementation of {@link Function}&ltE,K>) passed as parameter
  */
 public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set<E> {
 	private static final long serialVersionUID = -777775641098194444L;
@@ -82,9 +84,10 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	protected transient int currentIndex;
 //	protected transient K currentKey;
 //	protected transient E currentVal;
-	protected transient // RedBlackTree<K, E>.RBTIterator
+//	protected transient // RedBlackTree<K, E>.RBTIterator
 //	SortedMap<K, E>.IteratorAVL iter;
-	Iterator<Entry<K, E>> iter;
+
+	protected Iterator<Entry<K, E>> iter;
 
 	protected Comparator<K> comparatorKeys;
 	protected Function<E, K> keyExtractor;
@@ -96,9 +99,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 
 	//
 
-	public Function<E, ?> getKeyExtractor() {
-		return keyExtractor;
-	}
+	public Function<E, ?> getKeyExtractor() { return keyExtractor; }
 
 	// public List<ListDataListener> getListDataListenerCollection() {return
 	// listDataListenerCollection;}
@@ -113,9 +114,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	//
 
 	@Override
-	public int getSize() {
-		return delegate.size();
-	}
+	public int getSize() { return delegate.size(); }
 
 	protected void checkIterator() {
 		if (iter == null || (!iter.hasNext()))
@@ -139,10 +138,10 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	 */
 	@Override
 	public E getElementAt(int index) {
+//		return this.delegate.getAt(index);
 		Entry<K, E> e;
 		e = null;
 		checkIterator();
-//		System.out.println("currentIndex: " + currentIndex + ", index: " + index);
 		if (index < 0 || index >= this.delegate.size())
 			return null;
 		if (index != currentIndex) {
@@ -155,14 +154,12 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 			 */
 			if (index < currentIndex)
 				resetIterator();
-//			System.out.println("AAAAAAA currentIndex: " + currentIndex + ", index: " + index);
 			if (index > currentIndex) {
 				do {
 					e = iter.next();
 					if (e == null)
 						System.out.println("ERR e is null at " + (currentIndex + 1));
 				} while (++currentIndex < index);
-//				System.out.println("currentthen Index: " + currentIndex);
 			}
 			// }
 		}
@@ -180,9 +177,13 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 		return prev;
 	}
 
-	public List<E> addElements(Iterable<E> some) {
-		return addElements(some, false);
+	public List<E> addElements(E[] some) { return this.addElements(Arrays.asList(some)); }
+
+	public List<E> addElements(E[] some, boolean collectPreviousValues) {
+		return this.addElements(Arrays.asList(some), collectPreviousValues);
 	}
+
+	public List<E> addElements(Iterable<E> some) { return this.addElements(some, false); }
 
 	public List<E> addElements(Iterable<E> some, boolean collectPreviousValues) {
 		List<E> l;
@@ -207,7 +208,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	public int indexOf(E elem) {
 		boolean notFound;
 		int index;
-//		RedBlackTree<K, E>.RBTIterator 
+//		RedBlackTree<K, E>.RBTIterator
 		Iterator<Entry<K, E>> iter;
 		K keyElem;
 		index = 0;
@@ -261,28 +262,18 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	}
 
 	@Override
-	public void forEach(Consumer<? super E> consumer) {
-		forEach((k, e) -> consumer.accept(e));
-	}
+	public void forEach(Consumer<? super E> consumer) { forEach((k, e) -> consumer.accept(e)); }
 
-	public void forEach(BiConsumer<? super K, ? super E> doSome) {
-		delegate.forEach(doSome);
-	}
+	public void forEach(BiConsumer<? super K, ? super E> doSome) { delegate.forEach(doSome); }
 
 	@Override
-	public int size() {
-		return delegate.size();
-	}
+	public int size() { return delegate.size(); }
 
 	@Override
-	public boolean isEmpty() {
-		return delegate.isEmpty();
-	}
+	public boolean isEmpty() { return delegate.isEmpty(); }
 
 	@Override
-	public boolean contains(Object o) {
-		return delegate.containsKey(o);
-	}
+	public boolean contains(Object o) { return delegate.containsKey(o); }
 
 	@Override
 	public Iterator<E> iterator() {
@@ -291,9 +282,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	}
 
 	@Override
-	public Object[] toArray() {
-		return delegate.entrySet().toArray();
-	}
+	public Object[] toArray() { return delegate.entrySet().toArray(); }
 
 	@Override
 	public <T> T[] toArray(T[] a) {
@@ -302,22 +291,18 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	}
 
 	@Override
-	public boolean add(E e) {
-		return addElement(e) == null;
-	}
+	public boolean add(E e) { return addElement(e) == null; }
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean remove(Object o) {
-		return removeElement((E) o);
-	}
+	public boolean remove(Object o) { return removeElement(o); }
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		if (c != null && c.size() > 0) {
 			for (Object o : c)
-				if (!delegate.containsKey(keyExtractor.apply((E) o)))
+				if (!delegate.containsKey(keyExtractor.apply(o)))
 					return false;
 			return true;
 		}
@@ -331,7 +316,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 		if (c != null && c.size() > 0) {
 			changed = false;
 			for (Object o : c)
-				changed |= add((E) o);
+				changed |= add(o);
 			return changed;
 		}
 		return false;
@@ -365,9 +350,7 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 	// TODO CLASSES
 
 	@Override
-	public String toString() {
-		return "JListModelRBTree [delegate=\n" + delegate + "\n]";
-	}
+	public String toString() { return "JListModelRBTree [delegate=\n" + delegate + "\n]"; }
 
 	class Retainer implements BiConsumer<K, E> {
 		boolean changed;
@@ -403,44 +386,44 @@ public class JListModelTreeMap<K, E> extends AbstractListModel<E> implements Set
 		String s;
 		lm = JListModelTreeMap.newInstance(Comparators.STRING_COMPARATOR_2);
 		lm.add("ciao");
-		lm.add("stronzooo");
+		lm.add("heloooooo");
 		lm.add(s = "capra");
 		lm.add("allooooora");
 		lm.add("helo");
-		lm.add("moci");
+		lm.add("mosdgnfafhj");
 
 		System.out.println("size:" + lm.size());
 		System.out.println(lm);
 		printIndex(lm, s);
-		printIndex(lm, "moci");
-		printIndex(lm, "moci");
-		lm.add("stronzoo");
-		lm.add("stronzo");
+		printIndex(lm, "mosafssf");
+		printIndex(lm, "mosafssf");
+		lm.add("srgrjnvkslo");
+		lm.add("srgrjnvksl");
 		System.out.println("....size:" + lm.size());
 		System.out.println(lm);
-		printIndex(lm, "stronzo");
-		printIndex(lm, "moci");
+		printIndex(lm, "srgrjnvksl");
+		printIndex(lm, "mosafssf");
 		lm.add("strunz");
 		System.out.println("......");
 		System.out.println(lm);
-		printIndex(lm, "stronzo");
-		printIndex(lm, "moci");
+		printIndex(lm, "srgrjnvksl");
+		printIndex(lm, "mosafssf");
 
 		System.out.println("\n......\n");
 		System.out.println("size: " + lm.getSize());
 		System.out.println(lm.getElementAt(4));
-		System.out.println(lm.getElementAt(lm.indexOf("moci")));
+		System.out.println(lm.getElementAt(lm.indexOf("mosafssf")));
 		System.out.println("\n......\n");
 
-		lm.removeElement("stronzoo");
+		lm.removeElement("srgrjnvkslo");
 		System.out.println(lm);
-		printIndex(lm, "stronzo");
-		printIndex(lm, "moci");
+		printIndex(lm, "srgrjnvksl");
+		printIndex(lm, "mosafssf");
 
-		lm.removeElement("moci");
+		lm.removeElement("mosafssf");
 		System.out.println(lm);
-		printIndex(lm, "stronzo");
-		printIndex(lm, "moci");
+		printIndex(lm, "srgrjnvksl");
+		printIndex(lm, "mosafssf");
 	}
 
 	static <K, E> void printIndex(JListModelTreeMap<K, E> lm, E s) {

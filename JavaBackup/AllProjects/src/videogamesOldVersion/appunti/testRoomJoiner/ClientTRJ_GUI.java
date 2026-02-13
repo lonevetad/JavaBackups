@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import appunti.testRoomJoiner.ClientTRJ.ClientConnectionStatus;
 import importedUtilities.abstractCommon.referenceHolderAC.LoggerMessagesHolder;
@@ -81,7 +82,7 @@ public class ClientTRJ_GUI implements LoggerMessagesHolder {
 			notInit = false;
 
 			fin = new JFrame("client test room joiner");
-			fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 			jtp = new JTabbedPane();
 			fin.add(jtp);

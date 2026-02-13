@@ -42,13 +42,14 @@ public class PathFindAStar<E, Distance extends Number> implements PathFindStrate
 	//
 
 	@Override
-	public List<E> getPath(E start, E dest, NumberManager<Distance> distanceManager, Predicate<E> isWalkableTester) {
+	public List<E> getPath(E start, E dest, NumberManager<Distance> distanceManager, Predicate<E> isWalkableTester,
+			boolean returnPathToClosestNodeIfNotFound) {
 		return getPath(graph, start, dest, distanceManager, isWalkableTester).toListNodes();
 	}
 
 	@Override
 	public List<E> getPath(ObjectShaped objPlanningToMove, E dest, NumberManager<Distance> distanceManager,
-			Predicate<E> isWalkableTester) {
+			Predicate<E> isWalkableTester, boolean returnPathToClosestNodeIfNotFound) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Too lazy to implement");
 	}
@@ -57,6 +58,7 @@ public class PathFindAStar<E, Distance extends Number> implements PathFindStrate
 	@Override
 	public PathGraph<E, Distance> getPath(GraphSimple<E, Distance> graph, E start, E dest,
 			NumberManager<Distance> distanceManager, Predicate<E> isWalkableTester) {
+		boolean walkableNull;
 //		final double distanceTotal;
 		PathGraph<E, Distance> p;
 		GraphSimpleAsynchronized<E, Distance>.NodeGraphSimpleAsynchronized s, d;
@@ -66,6 +68,10 @@ public class PathFindAStar<E, Distance extends Number> implements PathFindStrate
 		UsynchronizedAdjacentForEacherAStar<E, Distance> forAdjacents;
 		Comparator<Distance> comp;
 		comp = distanceManager.getComparator();
+
+		walkableNull = isWalkableTester == null;
+		if ((!walkableNull) && ((!isWalkableTester.test(start)) || (!isWalkableTester.test(dest)))) { return null; }
+
 		{ // scope for the heuristic, to pick the variable as soon as possible and then
 			// free its space on the stack
 			BiFunction<E, E, Distance> h;
@@ -77,8 +83,8 @@ public class PathFindAStar<E, Distance extends Number> implements PathFindStrate
 					MapTreeAVL.BehaviourOnKeyCollision.KeepPrevious, graph.getComparatorElements());
 			frontier = new PriorityQueueKey<>((i1, i2) -> graph.getCompNodeGraph().compare(i1.thisNode, i2.thisNode),
 					comp, no -> no.fScore);
-			forAdjacents = new UsynchronizedAdjacentForEacherAStar<E, Distance>(nodeInfos, frontier, h,
-					distanceManager);
+			forAdjacents = new UsynchronizedAdjacentForEacherAStar<E, Distance>(nodeInfos, frontier, h, distanceManager,
+					isWalkableTester);
 		}
 		s = (GraphSimpleAsynchronized<E, Distance>.NodeGraphSimpleAsynchronized) graph.getNode(start);
 		d = (GraphSimpleAsynchronized<E, Distance>.NodeGraphSimpleAsynchronized) graph.getNode(dest);
@@ -161,67 +167,71 @@ public class PathFindAStar<E, Distance extends Number> implements PathFindStrate
 	private static class UsynchronizedAdjacentForEacherAStar<E, D extends Number>
 			implements BiConsumer<GraphSimple<E, D>.NodeGraph, D> {
 
-		private NodeInfoAStar<E, D> currentNode;
-		private final Map<E, NodeInfoAStar<E, D>> nodeInfos;
-		private final PriorityQueueKey<NodeInfoAStar<E, D>, D> frontier;
-		private final BiFunction<E, E, D> heuristic;
-		private final NumberManager<D> distanceManager;
-
 		UsynchronizedAdjacentForEacherAStar(Map<E, NodeInfoAStar<E, D>> nodeInfos,
 				PriorityQueueKey<NodeInfoAStar<E, D>, D> frontier, BiFunction<E, E, D> heuristic,
-				NumberManager<D> distanceManager) {
+				NumberManager<D> distanceManager, Predicate<E> isWalkableTester) {
 			this.nodeInfos = nodeInfos;
 			this.frontier = frontier;
 			this.heuristic = heuristic;
 			this.distanceManager = distanceManager;
+			this.walkableNull = (this.isWalkableTester = isWalkableTester) == null;
 		}
+
+		protected final boolean walkableNull;
+		protected final Predicate<E> isWalkableTester;
+		private final NumberManager<D> distanceManager;
+		private NodeInfoAStar<E, D> currentNode;
+		private final Map<E, NodeInfoAStar<E, D>> nodeInfos;
+		private final PriorityQueueKey<NodeInfoAStar<E, D>, D> frontier;
+		private final BiFunction<E, E, D> heuristic;
 
 		public void setCurrentNode(NodeInfoAStar<E, D> n) { this.currentNode = n; }
 
 //		public void accept(GraphSimpleAsynchronized<E, D>.NodeGraphSimpleAsynchronized nod, Integer distToAdj) {
 		@SuppressWarnings("unchecked")
 		@Override
-		public void accept(GraphSimple<E, D>.NodeGraph nnn, D distToAdj) {
+		public void accept(GraphSimple<E, D>.NodeGraph neighbourNode, D distToAdj) {
 			D distToNo;
 			E e;
 			GraphSimpleAsynchronized<E, D>.NodeGraphSimpleAsynchronized no;
 			NodeInfoAStar<E, D> neighbourInfo;
-			no = (GraphSimpleAsynchronized<E, D>.NodeGraphSimpleAsynchronized) nnn;
-			e = no.getElem();
-			if (nodeInfos.containsKey(e))
-				neighbourInfo = nodeInfos.get(e);
-			else
-				nodeInfos.put(e, neighbourInfo = new NodeInfoAStar<E, D>(no, distanceManager));
+			if (walkableNull || isWalkableTester.test(neighbourNode.getElem())) {
+				no = (GraphSimpleAsynchronized<E, D>.NodeGraphSimpleAsynchronized) neighbourNode;
+				e = no.getElem();
+				if (nodeInfos.containsKey(e))
+					neighbourInfo = nodeInfos.get(e);
+				else
+					nodeInfos.put(e, neighbourInfo = new NodeInfoAStar<E, D>(no, distanceManager));
 
 //			if (neighbourInfo.color == NodePositionInFrontier.Closed) // equivalent of being in closed set
 //				return;
-			distToNo =
-					// distToAdjDouble + currentNode.distFromStart
-					distanceManager.getAdder().apply(distToAdj, currentNode.distFromStart);
-			// create the new node or try to re-opening it
-			if (neighbourInfo.father == null ||
-			// distToNo < neighbourInfo.distFromStart
-					distanceManager.getComparator().compare(distToNo, neighbourInfo.distFromStart) < 0) {
+				distToNo =
+						// distToAdjDouble + currentNode.distFromStart
+						distanceManager.getAdder().apply(distToAdj, currentNode.distFromStart);
+				// create the new node or try to re-opening it
+				if (neighbourInfo.father == null ||
+				// distToNo < neighbourInfo.distFromStart
+						distanceManager.getComparator().compare(distToNo, neighbourInfo.distFromStart) < 0) {
 //				final Double newDistanceFromStart,
-				D fScore;
-				// update
+					D fScore;
+					// update
 //				newDistanceFromStart = Double.valueOf(distToNo);
-				neighbourInfo.father = currentNode;
-				neighbourInfo.distFromFather = distToAdj;
-				neighbourInfo.distFromStart = distToNo; // newDistanceFromStart;
-				fScore = // newDistanceFromStart +
-						distanceManager.getAdder().apply(distToNo,
-								this.heuristic.apply(currentNode.thisNode.getElem(), neighbourInfo.thisNode.getElem()));
-				if (neighbourInfo.color == NodePositionInFrontier.NeverAdded) {
-					// track that's in open set, e.g. it has been seen almost one time
-					neighbourInfo.color = NodePositionInFrontier.InFrontier;
-					neighbourInfo.fScore = fScore;
-					// add on queue
-					frontier.put(neighbourInfo);
-				} else // it's grey, it's actually in the queue / open set
-					frontier.alterKey(neighbourInfo, nodd -> nodd.fScore = fScore);
+					neighbourInfo.father = currentNode;
+					neighbourInfo.distFromFather = distToAdj;
+					neighbourInfo.distFromStart = distToNo; // newDistanceFromStart;
+					fScore = // newDistanceFromStart +
+							distanceManager.getAdder().apply(distToNo, this.heuristic
+									.apply(currentNode.thisNode.getElem(), neighbourInfo.thisNode.getElem()));
+					if (neighbourInfo.color == NodePositionInFrontier.NeverAdded) {
+						// track that's in open set, e.g. it has been seen almost one time
+						neighbourInfo.color = NodePositionInFrontier.InFrontier;
+						neighbourInfo.fScore = fScore;
+						// add on queue
+						frontier.put(neighbourInfo);
+					} else // it's grey, it's actually in the queue / open set
+						frontier.alterKey(neighbourInfo, nodd -> nodd.fScore = fScore);
+				}
 			}
 		}
 	}
-
 }

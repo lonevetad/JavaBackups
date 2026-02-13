@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 import common.EnumGameObjectTileImageCollection;
 import common.MainControllerEmpty;
@@ -93,7 +94,7 @@ public class TestMovingReshapingOIM {
 		FieldOIM f;
 
 		fin = new JFrame("test painter roteated");
-		fin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		fin.setVisible(false);
 		fin.addWindowListener(new WindowAdapter() {
 			@Override

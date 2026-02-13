@@ -10,7 +10,7 @@ import java.util.Objects;
  * Used to split all of {@link GraphSimple}'s edges to create new nodes and
  * non-intersecting edges.
  */
-public interface EdgesIntersectionDetector<E, D> {
+public interface EdgesIntersectionDetector<E, D extends Number> {
 
 	/**
 	 * See
@@ -29,7 +29,7 @@ public interface EdgesIntersectionDetector<E, D> {
 	 * {@link #computeIntersection(GraphSimple, Object, Object, Object, Object, IntersectionInstantiator)}
 	 * and, if so, modify the given graph to add the intersection.<br>
 	 * Returns true if the intersection happened.
-	 * 
+	 *
 	 * @parameter distanceCalculator a function computing the distance between two
 	 *            nodes
 	 */
@@ -63,7 +63,7 @@ public interface EdgesIntersectionDetector<E, D> {
 	 * {@link #computeValueOnIntersection(GraphSimple, Object, Object, Object, Object)}
 	 * documentation.
 	 */
-	public static interface IntersectionInstantiator<T, D> {
+	public static interface IntersectionInstantiator<T, Dd extends Number> {
 		/**
 		 * Assuming that:
 		 * <ul>
@@ -79,7 +79,7 @@ public interface EdgesIntersectionDetector<E, D> {
 		 * If the values are 2D-points (like {@link Point2D}, then the new value is the
 		 * point lying at the intersection of the two straight lines connecting the two
 		 * edges.
-		 * 
+		 *
 		 * @parameter graphSource the {@link GraphSimple} where it's ASSUMED the four
 		 *            values belongs to
 		 * @parameter start1 the starting point of the first edge
@@ -89,7 +89,7 @@ public interface EdgesIntersectionDetector<E, D> {
 		 * @return the value representing the intersection, if any, of the two given
 		 *         edges
 		 */
-		public T computeValueOnIntersection(GraphSimple<T, D> graphSource, T start1, T end1, T start2, T end2);
+		public T computeValueOnIntersection(GraphSimple<T, Dd> graphSource, T start1, T end1, T start2, T end2);
 	}
 
 	public static class IntersectionResult<T> {
@@ -101,12 +101,8 @@ public interface EdgesIntersectionDetector<E, D> {
 			this.valuesAtIntersection = valuesAtIntersection;
 		}
 
-		public boolean isIntersecting() {
-			return isIntersecting;
-		}
+		public boolean isIntersecting() { return isIntersecting; }
 
-		public T getValuesAtIntersection() {
-			return valuesAtIntersection;
-		}
+		public T getValuesAtIntersection() { return valuesAtIntersection; }
 	}
 }

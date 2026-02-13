@@ -70,7 +70,7 @@ public interface AbstractEnumGOTI extends Iterable<AbstractEnumElementGOTI>, Ser
 	 * <p>
 	 * Have a look of the {@link EnumGameObjectTileImageCollection} documentation's
 	 * note.
-	 * 
+	 *
 	 * @return: <code>null</code> if the entry is not present.
 	 */
 	public default AbstractEnumElementGOTI fetchElementGOTI(Integer id) {

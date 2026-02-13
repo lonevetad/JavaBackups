@@ -23,7 +23,7 @@ import java.util.Set;
  * {@link SingleTaskLoader} so the <i>method reference</i> can be used.
  * <p>
  * Example:
- * 
+ *
  * <pre>
  * <code>
  * public class ResourcesLoader extends AllLoader{
@@ -108,7 +108,7 @@ public abstract class AllLoader {
 	/**
 	 * Performs the loading of all loading tasks specified in
 	 * {@link #getAllTasks()}.
-	 * 
+	 *
 	 * @return true if all tasks have been loaded without any axceptions
 	 */
 	public boolean loadAll() {

@@ -1,6 +1,7 @@
 package tools;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.io.File;
@@ -10,39 +11,71 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import dataStructures.EditCosts;
+import tools.impl.EditDistanceLevenshtein;
+
 public final class Comparators {
 	public interface MyComparator<E> extends Comparator<E>, Serializable {
 	}
 
 	private Comparators() {}
 
+	public static final EditDistance DEFAULT_EDIT_DISTANCE = new EditDistanceLevenshtein();
+	private static final EditCosts<Byte> BYTE_EC = EditCosts.newDefaultCosts();
+
 	public static final MyComparator<String> STRING_COMPARATOR = new GenericComparator<>()//
 			, STRING_COMPARATOR_2 = //
 					(s1, s2) -> ((s1 == s2) ? 0
 							: ((s1 == null) ? (s2 == null ? 0 : -1) : (s2 == null ? 1 : s1.compareTo(s2))));
+
 	public static final MyComparator<Integer> INTEGER_COMPARATOR = new GenericComparator<>();
 	public static final MyComparator<Long> LONG_COMPARATOR = new GenericComparator<>();
 	public static final MyComparator<Double> DOUBLE_COMPARATOR = new GenericComparator<>();
 	public static final MyComparator<Character> CHAR_COMPARATOR = new GenericComparator<>();
+	public static final MyComparator<Byte> BYTE_COMPARATOR = new GenericComparator<>();
 	public static final MyComparator<File> FILE_COMPARATOR = new GenericComparator<File>();
 	public static final MyComparator<Color> COLOR_COMPARATOR = (e1, e2) -> {
-		if (e1 == e2)
-			return 0;
-		if (e1 == null)
-			return -1;
-		if (e2 == null)
-			return 1;
+		if (e1 == e2) { return 0; }
+		if (e1 == null) { return -1; }
+		if (e2 == null) { return 1; }
 		return Integer.compare(e1.getRGB(), e2.getRGB());
 	};
 	public static final MyComparator<Object> OBJECT_COMPARATOR = (o1, o2) -> {
-		if (o1 == o2)
-			return 0;
-		if (o1 == null)
-			return -1;
-		if (o2 == null)
-			return 1;
+		if (o1 == o2) { return 0; }
+		if (o1 == null) { return -1; }
+		if (o2 == null) { return 1; }
 		return Integer.compare(o1.hashCode(), o2.hashCode());
 	};
+
+	public static final MyComparator<Class<?>> CLASS_COMPARATOR = (o1, o2) -> {
+		if (o1 == o2) { return 0; }
+		if (o1 == null) { return -1; }
+		if (o2 == null) { return 1; }
+		return o1.getName().compareTo(o2.getName());
+	};
+
+	public static final MyComparator<Dimension> DIMENSION_COMPARATOR_DESCENDING_HEIGHT_FIRST = (d1, d2) -> {
+		if (d1 == d2) { return 0; }
+		if (d1 == null) { return -1; }
+		if (d2 == null) { return 1; }
+		if (d1.height == d2.height) {
+			return (d1.width == d2.width) ? 0 : //
+					(d1.width > d2.width ? 1 : -1);
+		} else {
+			return d1.height > d2.height ? 1 : -1;
+		}
+	}, DIMENSION_COMPARATOR_DESCENDING_WIDTH_FIRST = (d1, d2) -> {
+		if (d1 == d2) { return 0; }
+		if (d1 == null) { return -1; }
+		if (d2 == null) { return 1; }
+		if (d1.width == d2.width) {
+			return (d1.height == d2.height) ? 0 : //
+					(d1.height > d2.height ? 1 : -1);
+		} else {
+			return d1.width > d2.width ? 1 : -1;
+		}
+	};
+
 	/**
 	 * Sorters use natural order, that is, given an array <code>a</code> holding at
 	 * least 2 different values <code>x</code> and <code>y</code>:<br>
@@ -55,131 +88,92 @@ public final class Comparators {
 	 */
 	public static final MyComparator<Point> //
 	POINT_COMPARATOR_HIGHEST_FIRST = (p1, p2) -> {
-		if (p1 == p2)
-			return 0;
-		if (p1 == null)
-			return -1;
-		if (p2 == null)
-			return 1;
+		if (p1 == p2) { return 0; }
+		if (p1 == null) { return -1; }
+		if (p2 == null) { return 1; }
 		return Integer.compare(p2.y, p1.y);
 	}//
 			, POINT_COMPARATOR_LOWEST_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Integer.compare(p1.y, p2.y);
 			} //
 			, POINT_COMPARATOR_LEFT_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Integer.compare(p1.x, p2.x);
 			}//
 			, POINT_COMPARATOR_RIGHT_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Integer.compare(p2.x, p1.x);
 			}//
 			, POINT_COMPARATOR_HIGHEST_LEFTMOST_FIRST = (p1, p2) -> {
 				int c;
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				c = POINT_COMPARATOR_HIGHEST_FIRST.compare(p1, p2);
 				return (c == 0) ? Integer.compare(p1.x, p2.x) : c;
 			};
 
 	public static final MyComparator<Point2D> //
 	POINT_2D_COMPARATOR_HIGHEST_FIRST = (p1, p2) -> {
-		if (p1 == p2)
-			return 0;
-		if (p1 == null)
-			return -1;
-		if (p2 == null)
-			return 1;
+		if (p1 == p2) { return 0; }
+		if (p1 == null) { return -1; }
+		if (p2 == null) { return 1; }
 		return Double.compare(p2.getY(), p1.getY());
 	}//
 			, POINT_2D_COMPARATOR_LOWEST_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Double.compare(p1.getY(), p2.getY());
 			} //
 			, POINT_2D_COMPARATOR_LEFT_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Double.compare(p1.getX(), p2.getX());
 			}//
 			, POINT_2D_COMPARATOR_RIGHT_FIRST = (p1, p2) -> {
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				return Double.compare(p2.getX(), p1.getX());
 			}//
 			, POINT_2D_COMPARATOR_HIGHEST_LEFTMOST_FIRST = (p1, p2) -> {
 				int c;
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				c = POINT_2D_COMPARATOR_HIGHEST_FIRST.compare(p1, p2);
 				return (c == 0) ? Double.compare(p1.getX(), p2.getX()) : c;
 			}//
 			, POINT_2D_COMPARATOR_LOWEST_LEFTMOST_FIRST = (p1, p2) -> {
 				int c;
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				c = POINT_2D_COMPARATOR_LOWEST_FIRST.compare(p1, p2);
 				return (c == 0) ? Double.compare(p1.getX(), p2.getX()) : c;
 			}//
 			, POINT_2D_COMPARATOR_HIGHEST_RIGHTMOST_FIRST = (p1, p2) -> {
 				int c;
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				c = POINT_2D_COMPARATOR_HIGHEST_FIRST.compare(p1, p2);
 				return (c == 0) ? Double.compare(p2.getX(), p1.getX()) : c;
 			}//
 			, POINT_2D_COMPARATOR_LOWEST_RIGHTMOST_FIRST = (p1, p2) -> {
 				int c;
-				if (p1 == p2)
-					return 0;
-				if (p1 == null)
-					return -1;
-				if (p2 == null)
-					return 1;
+				if (p1 == p2) { return 0; }
+				if (p1 == null) { return -1; }
+				if (p2 == null) { return 1; }
 				c = POINT_2D_COMPARATOR_HIGHEST_FIRST.compare(p1, p2);
 				return (c == 0) ? Double.compare(p2.getX(), p1.getX()) : c;
 			};
@@ -187,12 +181,9 @@ public final class Comparators {
 	public static final MyComparator<Comparable<? extends Object>[]> ARRAY_COMPARABLES_COMPARATOR = (a1, a2) -> {
 		int i, l1, l2, len, c;
 		Comparable<? extends Object> o1, o2;
-		if (a1 == a2)
-			return 0;
-		if (a1 == null)
-			return -1;
-		if (a2 == null)
-			return 1;
+		if (a1 == a2) { return 0; }
+		if (a1 == null) { return -1; }
+		if (a2 == null) { return 1; }
 		l1 = a1.length;
 		l2 = a2.length;
 		len = Math.min(l1, l2);
@@ -207,6 +198,10 @@ public final class Comparators {
 		return Integer.compare(l1, l2);
 	};
 
+	public static final MyComparator<String> STRING_COMPARATOR_EDIT_DISTANCE = (s1,
+			s2) -> ((s1 == s2) ? 0 : ((s1 == null) ? (s2 == null ? 0 : -1) : (s2 == null ? 1 : //
+					(int) DEFAULT_EDIT_DISTANCE.editDistance(s1, s2, BYTE_EC)//
+	)));
 	/*
 	 * public static final Comparator<Long> LONG_COMPARATOR = (e1, e2) -> { if (e1
 	 * == e2) return 0; if (e1 == null) return -1; if (e2 == null) return 1; return
@@ -223,12 +218,9 @@ public final class Comparators {
 		return (l1, l2) -> {
 			int s1, s2, c;
 			Iterator<K> iter1, iter2;
-			if (l1 == l2)
-				return 0;
-			if (l1 == null)
-				return -1;
-			if (l2 == null)
-				return 1;
+			if (l1 == l2) { return 0; }
+			if (l1 == null) { return -1; }
+			if (l2 == null) { return 1; }
 			s1 = l1.size();
 			s2 = l2.size();
 			if (s1 == 0) {
@@ -238,7 +230,7 @@ public final class Comparators {
 			iter2 = l2.iterator();
 			c = 0;
 			while (iter1.hasNext() && iter2.hasNext() && //
-			(c = keyComparator.compare(iter1.next(), iter2.next())) == 0) {
+					(c = keyComparator.compare(iter1.next(), iter2.next())) == 0) {
 			}
 			return (c != 0) ? c : (s1 - s2);
 		};
@@ -249,8 +241,7 @@ public final class Comparators {
 		V v, vtemp;
 		if (array == null || comp == null || (len = array.length) == 0)
 			return -1;
-		if (len == 1)
-			return 0;
+		if (len == 1) { return 0; }
 		v = array[i = index = 0];
 		while (++i < len) {
 			if (((vtemp = array[i]) != null) && (comp.compare(vtemp, v) > 0)) {
@@ -266,8 +257,7 @@ public final class Comparators {
 		V v, vtemp;
 		if (array == null || comp == null || (len = array.length) == 0)
 			return -1;
-		if (len == 1)
-			return 0;
+		if (len == 1) { return 0; }
 		v = array[i = index = 0];
 		while (++i < len) {
 			if (((vtemp = array[i]) != null) && (comp.compare(vtemp, v) < 0)) {
@@ -285,10 +275,8 @@ public final class Comparators {
 		Comparable<Object> cc1, cc2;
 		if (o1 == o2)
 			return 0;
-		if (o1 == null)
-			return o2.compareTo(null);
-		if (o2 == null)
-			return o1.compareTo(null);
+		if (o1 == null) { return o2.compareTo(null); }
+		if (o2 == null) { return o1.compareTo(null); }
 		System.out.println(o1 + ", " + o2);
 		c1 = o1.getClass();
 		c2 = o2.getClass();
@@ -313,12 +301,9 @@ public final class Comparators {
 
 		@Override
 		public int compare(E e1, E e2) {
-			if (e1 == e2)
-				return 0;
-			if (e1 == null)
-				return -1;
-			if (e2 == null)
-				return 1;
+			if (e1 == e2) { return 0; }
+			if (e1 == null) { return -1; }
+			if (e2 == null) { return 1; }
 			return e1.compareTo(e2);
 		}
 	}

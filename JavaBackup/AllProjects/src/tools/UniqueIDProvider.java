@@ -1,26 +1,31 @@
 package tools;
 
-/** Generates new ID */
+/**
+ * Interface aimed to generate new {@link Long} <i>ID</i>.<br>
+ * It's especially useful for the interface {@link ObjectWithID} (in particular
+ * {@link ObjectWithID#getID()}). generation of the ID for the
+ */
 public interface UniqueIDProvider {
 
-	public static final UniqueIDProvider GENERAL_UNIQUE_ID_PROVIDER = newBasicIDProvider();
+	public static final UniqueIDProvider UDIP_GENERAL = newBasicIDProvider();
 
-	public static UniqueIDProvider newBasicIDProvider() {
-		return new BaseUniqueIDProvider();
-	}
+	public static UniqueIDProvider newBasicIDProvider() { return new BaseUniqueIDProvider(); }
 
 	//
 
-	public Integer getNewID();
+	/**
+	 * Generates a new, unique ID. <br>
+	 * Useful to provide (and assign) the value that would be returned by
+	 * {@link ObjectWithID#getID()}.
+	 */
+	public Long getNewID();
 
 //
 
 	public static class BaseUniqueIDProvider implements UniqueIDProvider {
-		protected int idProgressive = 0;
+		protected long idProgressive = 0;
 
 		@Override
-		public Integer getNewID() {
-			return idProgressive++;
-		}
+		public Long getNewID() { return idProgressive++; }
 	}
 }

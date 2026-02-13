@@ -2,19 +2,25 @@ package games.theRisingAngel.events;
 
 import java.awt.Point;
 
-import games.generic.controlModel.GEventManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
-import games.generic.controlModel.damage.EventDamage;
-import games.generic.controlModel.gEvents.DestructionObjEvent;
-import games.generic.controlModel.gEvents.EventMoneyChange;
-import games.generic.controlModel.gObj.DestructibleObject;
-import games.generic.controlModel.gObj.LivingObject;
-import games.generic.controlModel.heal.HealAmountInstance;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.events.event.EventDestructionObj;
+import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.events.event.EventEnteringOnMap;
+import games.generic.controlModel.events.event.EventMoneyChange;
+import games.generic.controlModel.events.event.EventMoviment;
+import games.generic.controlModel.events.event.EventResourceRecharge;
+import games.generic.controlModel.holders.ResourceRechargeableHolder;
+import games.generic.controlModel.misc.Currency;
+import games.generic.controlModel.objects.DestructibleObject;
+import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.player.PlayerGeneric;
+import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GEventInterfaceRPG;
 import games.generic.controlModel.subimpl.GEventManagerFineGrained;
 import games.generic.controlModel.subimpl.GModalityET;
+import games.theRisingAngel.enums.EventsTRAn;
 import geometry.ObjectLocated;
 import tools.ObjectWithID;
 
@@ -37,26 +43,33 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	// TODO EVENTS
 
 	@Override
-	public DestructionObjEvent fireDestructionObjectEvent(GModalityET gaModality, DestructibleObject desObj) {
-		DestructionObjEvent doe;
-		doe = new DestructionObjEvent(desObj, EventsTRAn.Destroyed.getName());
+	public EventDestructionObj fireDestructionObjectEvent(GModalityET gaModality, DestructibleObject desObj) {
+		EventDestructionObj doe;
+		doe = new EventDestructionObj(desObj, EventsTRAn.Destroyed.getName());
 		this.getGameEventManager().fireEvent(doe);
 		return doe;
 	}
 
-// TODOOOOOOOOO dc'è da spostare molti eventi in un luogo più idoneo
+// TODOOOOOOOOO dc'ï¿½ da spostare molti eventi in un luogo piï¿½ idoneo
 
 	@Override
 	public void firePlayerEnteringInMap(GModalityET gameModality, PlayerGeneric p) {
-		// semplice "creature entering on the field"
+		EventEnteringOnMap eeom;
+		eeom = new EventEnteringOnMap((ObjectLocated) p, EventsTRAn.ObjectAdded);
+		this.getGameEventManager().fireEvent(eeom);
+	}
+
+	@Override
+	public void fireGameObjectMoved(GModalityET gameModality, Point previousLocation, ObjectLocated o) {
+		this.getGameEventManager().fireEvent(EventMoviment.newEventMoviment(o, previousLocation, o.getLocation()));
 	}
 
 	/***
 	 * @param currencyType the index (or an id) of the currency earned-lost
 	 */
 	@Override
-	public void fireMoneyChangeEvent(GModalityET gm, int currencyType, int oldValue, int newValue) {
-		this.getGameEventManager().fireEvent(new EventMoneyChange(gm.getPlayer(), currencyType, oldValue, newValue));
+	public void fireCurrencyChangeEvent(GModalityET gm, Currency currency, int oldValue, int newValue) {
+		this.getGameEventManager().fireEvent(new EventMoneyChange(gm.getPlayer(), currency, oldValue, newValue));
 	}
 
 	@Override
@@ -84,9 +97,9 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 
 	@Override
 	public EventDamage fireCriticalDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
-			DamageGeneric damage) {
+			DamageGeneric originalDamage) {
 		EventDamage ed;
-		ed = new EventDamageTRAn(EventsTRAn.DamageCriticalInflicted, source, target, damage);
+		ed = new EventDamageTRAn(EventsTRAn.DamageCriticalInflicted, source, target, originalDamage);
 		this.getGameEventManager().fireEvent(ed);
 		return ed;
 	}
@@ -111,44 +124,43 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public <SourceHealing extends ObjectWithID> void fireHealGivenEvent(GModalityET gaModality, LivingObject receiver,
-			HealAmountInstance heal, SourceHealing source) {
-		this.getGameEventManager().fireEvent(new EventHealTRAr<>(EventsTRAn.HealGiven, source, receiver, heal));
+	public <SourceRecharge extends ObjectWithID> EventResourceRecharge<SourceRecharge> fireResourceRechargeGivenEvent(
+			GModalityET gaModality, SourceRecharge whoIsPerformingTheRecharge, ResourceRechargeableHolder receiver,
+			ResourceAmountRecharged rechargeInstance) {
+		EventResourceRecharge<SourceRecharge> eventRecharge;
+		eventRecharge = new EventResourceRechargeTRAr<>(EventsTRAn.ResourceRechargeGiven, whoIsPerformingTheRecharge,
+				receiver, rechargeInstance);
+		this.getGameEventManager().fireEvent(eventRecharge);
+		return eventRecharge;
 	}
 
 	@Override
-	public <SourceHealing extends ObjectWithID> void fireHealReceivedEvent(GModalityET gaModality, SourceHealing source,
-			LivingObject receiver, HealAmountInstance heal) {
-		this.getGameEventManager().fireEvent(new EventHealTRAr<>(EventsTRAn.HealReceived, source, receiver, heal));
+	public <SourceRecharge extends ObjectWithID> EventResourceRecharge<SourceRecharge> fireResourceRechargeReceivedEvent(
+			GModalityET gaModality, SourceRecharge whoIsPerformingTheRecharge, ResourceRechargeableHolder receiver,
+			ResourceAmountRecharged rechargeInstance) {
+		EventResourceRecharge<SourceRecharge> eventRecharge;
+		eventRecharge = new EventResourceRechargeTRAr<>(EventsTRAn.ResourceRechargeReceived, whoIsPerformingTheRecharge,
+				receiver, rechargeInstance);
+		this.getGameEventManager().fireEvent(eventRecharge);
+		return eventRecharge;
 	}
 
 	@Override
-	public void fireExpGainedEvent(GModalityET gm, int expGained) {
-		// TODO Auto-generated method stub
-
+	public void fireGameObjectAdded(GModalityET gameModality, ObjectLocated o) { // TODO Auto-generated
+																					// method stub
 	}
 
 	@Override
-	public void fireGameObjectAdded(GModalityET gameModality, ObjectLocated o) {
-		// TODO Auto-generated method stub
-
+	public void fireGameObjectRemoved(GModalityET gameModality, ObjectLocated o) { // TODO Auto-generated
+																					// method stub
 	}
 
 	@Override
-	public void fireGameObjectRemoved(GModalityET gameModality, ObjectLocated o) {
-		// TODO Auto-generated method stub
-
+	public void fireExpGainedEvent(GModalityET gm, int expGained) { // TODO Auto-generated method stub
 	}
 
 	@Override
-	public void fireGameObjectMoved(GModalityET gameModality, Point previousLocation, ObjectLocated o) {
-		// TODO Auto-generated method stub
-
+	public void fireLevelGainedEvent(GModalityET gm, int levelGained) { // TODO Auto-generated method stub
 	}
 
-	@Override
-	public void fireLevelGainedEvent(GModalityET gm, int levelGained) {
-		// TODO Auto-generated method stub
-
-	}
 }

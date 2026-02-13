@@ -19,7 +19,7 @@ import tools.NumberManager;
 /**
  * TODO: mettere a disposizione l'iterazione dei vari step e nacondere la
  * {@link java.util.List} sottostante.
- * 
+ *
  * @author lonevetad
  *
  * @param <E>

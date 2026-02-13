@@ -3,77 +3,72 @@ package games.theRisingAngel.abilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
-import games.generic.controlModel.gObj.CreatureSimple;
-import games.generic.controlModel.inventoryAbil.AttributeModification;
-import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingSingleAttributeRealTime;
+import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
+import games.generic.controlModel.abilities.impl.AbilityModifyingSingleAttributeRealTime;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
+import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * Grants a life regeneration equals to the 12.5% of received damage,
  * accumulated each time it's received.<br>
  * At each "tick", equals to
  * {@link AbilityModifyingSingleAttributeRealTime#MILLISEC_ATTRIBUTE_UPDATE}, it
- * decrease by the maximum between {@link #VALUE_DECREMENT_PER_TICK} and the
- * 25%.
+ * decrease by the maximum between {@link #MIN_VALUE_DECREMENT} and the 25%.
  */
 //* 12.5%.
 public class AMoreDamageReceivedMoreLifeRegen extends AbilityModifyingSingleAttributeRealTime
 		implements GEventObserver {
 	private static final long serialVersionUID = 5411087000163L;
-	public static final int VALUE_DECREMENT_PER_TICK = 4, RARITY = 3;
+	public static final int MIN_VALUE_DECREMENT = 4, RARITY = 3, THRESHOLD_DAMAGE_TO_TRIGGER = 8;
 	public static final String NAME = "Pain Rinvigoring";
 
-	public AMoreDamageReceivedMoreLifeRegen() {
-		super(NAME, AttributesTRAn.RegenLife);
+	public AMoreDamageReceivedMoreLifeRegen(GModality gm) {
+		super(gm, NAME, AttributesTRAn.LifeRegen);
 		this.eventsWatching = new ArrayList<>(2);
 		this.addEventWatched(EventsTRAn.DamageReceived);
-		ticks = 0;
-		thresholdTime = 1000;
-		accumulatedLifeRegen = 0;
+//		this.ticks = 0;
+		this.thresholdTime = AbilityModifyingAttributesRealTime.MILLISEC_ATTRIBUTE_UPDATE;
+		this.accumulatedLifeRegen = 0;
 		setRarityIndex(RARITY);
 	}
 
 	protected int accumulatedLifeRegen;
-	protected long ticks, thresholdTime;
+//	protected long ticks;
+	protected final long thresholdTime;
 	protected List<String> eventsWatching;
-//	protected CreatureSimple creatureReferred;
 
 	@Override
-	public Integer getObserverID() { return getID(); }
-
-//	public CreatureSimple getCreatureReferred() {return creatureReferred;}
+	public Long getObserverID() { return getID(); }
 
 	@Override
 	public List<String> getEventsWatching() { return eventsWatching; }
-
-//	public ObjectWithID getOwner() { return this.getEquipItem().getCreatureWearingEquipments(); }
 
 	@Override
 	public long getTimeThreshold() { return thresholdTime; }
 
 	//
 
-//	public void setOwner(ObjectWithID owner) {
-//		if (owner instanceof BaseCreatureRPG)
-//			this.getEquipItem().getBelongingEquipmentSet().setCreatureWearingEquipments((BaseCreatureRPG) owner);
-//	}
-
-//	public void setCreatureReferred(CreatureSimple creatureReferred) {this.creatureReferred = creatureReferred;}
-
-	//
-
 	@Override
 	public void resetAbility() {
 		super.resetAbility();
-		ticks = 0;
-		thresholdTime = 1000;
+//		ticks = 0;
+//		thresholdTime = 1000;
 		accumulatedLifeRegen = 0;
+	}
+
+	@Override
+	public void act(GModality modality, int timeUnits) {
+		AttributeModification am;
+		am = this.getAttributesToModify()[0]; // the first one == the only one
+		// do not waste computational time if no regeneration has to be applied
+		if (am.getValue() > 0 || this.accumulatedLifeRegen > 0) { super.act(modality, timeUnits); }
 	}
 
 	@Override
@@ -82,36 +77,43 @@ public class AMoreDamageReceivedMoreLifeRegen extends AbilityModifyingSingleAttr
 			int d;
 			EventDamageTRAn dEvent;
 			dEvent = (EventDamageTRAn) ge;
-			if (dEvent.getTarget() ==
+			if (
 			// check equality because it's bounded to the "wearer"
-//					this.getEquipItem().getCreatureWearingEquipments()  //
-					this.getOwner() && (d = dEvent.getDamageReducedByTargetArmors()) >= 8) {
-				d >>= 3;
-				if (d > 0)
-					accumulatedLifeRegen += d;
+			dEvent.getTarget() == this.getOwner() && //
+					(d = dEvent.getDamageReducedByTargetArmors()) >= THRESHOLD_DAMAGE_TO_TRIGGER) {
+				d >>= 3; // "/ 8"
+				if (d > 0) {
+					this.accumulatedLifeRegen += d;
+					if (this.accumulatedLifeRegen < 0) { this.accumulatedLifeRegen = Integer.MAX_VALUE; }
+				}
 			}
 		}
 	}
 
 	@Override
-	public void updateAttributesModifiersValues(GModality gm, /* EquipmentItem ei, */ CreatureSimple ah,
-			CreatureAttributes ca) {
-		int v, t;
+	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+			int levelTarget) {
+		int v, alr;
 		AttributeModification am;
 		am = this.getAttributesToModify()[0]; // the first one == the only one
 		v = am.getValue();
+		alr = this.accumulatedLifeRegen;
 		if (v > 0) {
-			if (++ticks >= (1000 / AbilityModifyingSingleAttributeRealTime.MILLISEC_ATTRIBUTE_UPDATE))
-				ticks = 0;
-			t = v >> 2; // 25%%
-			if (t <= 0)
-				t = 1;
-			v += accumulatedLifeRegen - t; // (t >= VALUE_DECREMENT_PER_TICK ? t : VALUE_DECREMENT_PER_TICK);
-			am.setValue(v > 0 ? v : 0); // limit is 0
+			if (alr > 0) {
+				v += alr;
+				this.accumulatedLifeRegen = 0;
+			}
+//			if (++ticks >= (1000 / AbilityModifyingSingleAttributeRealTime.MILLISEC_ATTRIBUTE_UPDATE))
+//				ticks = 0;
+			// recycle "alr" as temporary variable
+			alr = v >> 2; // 25%
+			if (alr < MIN_VALUE_DECREMENT) { alr = MILLISEC_ATTRIBUTE_UPDATE; }
+			v -= alr;
+			if (v <= 0) { v = 0; }
+			am.setValue(v);
 		} else {
-			if (accumulatedLifeRegen > 0)
-				am.setValue(accumulatedLifeRegen);
+			if (alr > 0) { am.setValue(alr); }
+			this.accumulatedLifeRegen = 0;
 		}
-		accumulatedLifeRegen = 0;
 	}
 }

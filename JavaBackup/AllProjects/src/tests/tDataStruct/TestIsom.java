@@ -26,6 +26,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import dataStructures.ListMapped;
 import dataStructures.MapTreeAVL;
@@ -215,7 +217,7 @@ public class TestIsom extends TestIsomGeneric {
 			// TODO fill it
 
 			window = new JFrame("TEST ISOM");
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 			c = new GridBagConstraints();
 			jpWindow = new JPanel(new GridBagLayout()) {
@@ -339,7 +341,7 @@ public class TestIsom extends TestIsomGeneric {
 			jpOptions.add(jlMouseAction, c);
 
 			c.gridy += c.gridheight;
-			jslClickMode = new JSlider(JSlider.HORIZONTAL, 0, MOUSE_CLICK_ACTIONS.length - 1, 0);
+			jslClickMode = new JSlider(SwingConstants.HORIZONTAL, 0, MOUSE_CLICK_ACTIONS.length - 1, 0);
 //			jslClickMode.setModel(new BoundedRangeModel);
 			jslClickMode.addChangeListener(e -> {
 				JSlider source = (JSlider) e.getSource();

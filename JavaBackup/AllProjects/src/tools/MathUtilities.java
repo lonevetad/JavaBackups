@@ -64,7 +64,7 @@ public final class MathUtilities {
 	 * firstPoint, Point2secondPoint, and pointToBeTested.<br>
 	 * Calls {@link #relationToLine(double, double, double, double, double, double)}
 	 * passing those three point's coordinates.
-	 * 
+	 *
 	 * @param firstPoint      first point of a line
 	 * @param secondPoint     second point of a line
 	 * @param pointToBeTested the point to be tested if it lies on the line defined
@@ -134,7 +134,7 @@ public final class MathUtilities {
 	 * See {@link #areCollinear(int, int, int, int, int, int)}.<br>
 	 * Effectively, it calls
 	 * <code> areCollinear(pfirst.x, pfirst.y, psecond.x, psecond.y, pthird.x, pthird.y);</code>
-	 * 
+	 *
 	 * @param pfirst  the first point
 	 * @param psecond the second point
 	 * @param pthird  the second point
@@ -231,7 +231,7 @@ public final class MathUtilities {
 		if (d < 0.0)
 			d += 360.0;
 		if (x2 < x1) {
-//		if (y2 < y1) 
+//		if (y2 < y1)
 			d -= 180.0; // (second or) third quadrant
 //		else d-=90.0;
 		}
@@ -383,7 +383,7 @@ public final class MathUtilities {
 	 * Returns the angle, expressed in degrees, existing from the line passing
 	 * through <code>p1</code> and <code>p2</code> and the horizontal axes.-<br>
 	 * It's assumed that the origin (0,0) lies on the BOTTOM-left corner.
-	 * 
+	 *
 	 * @Deprecated hard to use
 	 */
 	@Deprecated
@@ -413,7 +413,7 @@ public final class MathUtilities {
 	 * through <code>(x1,y1)</code> and <code>(x2,y2)</code> and the horizontal
 	 * axes.-<br>
 	 * It's assumed that the origin (0,0) lies on the BOTTOM-left corner.
-	 * 
+	 *
 	 * @Deprecated hard to use
 	 */
 	@Deprecated
@@ -592,13 +592,11 @@ public final class MathUtilities {
 			// slope_cd cannot be Infinity (second group of checks) and zero (first ones)
 			x = (y - q_cd) / slope_cd;
 
-			if ((pxStart1 <= pxEnd1) ? (x < pxStart1 || x > pxEnd1)
+			if (((pxStart1 <= pxEnd1) ? (x < pxStart1 || x > pxEnd1)
 					// point are reversed
-					: (x > pxStart1 || x < pxEnd1))
-				return null;
-			if ((pxStart2 <= pxEnd2) ? (x < pxStart2 || x > pxEnd2)
+					: (x > pxStart1 || x < pxEnd1)) || ((pxStart2 <= pxEnd2) ? (x < pxStart2 || x > pxEnd2)
 					// point are reversed
-					: (x > pxStart2 || x < pxEnd2))
+					: (x > pxStart2 || x < pxEnd2)))
 				return null;
 			if ((pyStart2 < pyEnd2) ? (pyStart2 <= y && y <= pyEnd2)//
 					: (pyEnd2 <= y && y <= pyStart2))
@@ -611,14 +609,11 @@ public final class MathUtilities {
 			// slope_ab cannot be Infinity (second group of checks) and zero (first ones)
 			x = (y - q_ab) / slope_ab;
 
-			if ((pxStart2 <= pxEnd2) ? (x < pxStart2 || x > pxEnd2)
+			if (((pxStart2 <= pxEnd2) ? (x < pxStart2 || x > pxEnd2)
 					// point are reversed
-					: (x > pxStart2 || x < pxEnd2))
-				return null;
-
-			if ((pxStart1 <= pxEnd1) ? (x < pxStart1 || x > pxEnd1)
+					: (x > pxStart2 || x < pxEnd2)) || ((pxStart1 <= pxEnd1) ? (x < pxStart1 || x > pxEnd1)
 					// point are reversed
-					: (x > pxStart1 || x < pxEnd1))
+					: (x > pxStart1 || x < pxEnd1)))
 				return null;
 			if ((pyStart1 < pyEnd1) ? (pyStart1 <= y && y <= pyEnd1)//
 					: (pyEnd1 <= y && y <= pyStart1))
@@ -712,13 +707,11 @@ public final class MathUtilities {
 			// slope_cd cannot be Infinity (second group of checks) and zero (first ones)
 			x = (y - q_cd) / slope_cd;
 
-			if ((point_a.getX() <= point_b.getX()) ? (x < point_a.getX() || x > point_b.getX())
+			if (((point_a.getX() <= point_b.getX()) ? (x < point_a.getX() || x > point_b.getX())
 					// point are reversed
-					: (x > point_a.getX() || x < point_b.getX()))
-				return null;
-			if ((point_c.getX() <= point_d.getX()) ? (x < point_c.getX() || x > point_d.getX())
+					: (x > point_a.getX() || x < point_b.getX())) || ((point_c.getX() <= point_d.getX()) ? (x < point_c.getX() || x > point_d.getX())
 					// point are reversed
-					: (x > point_c.getX() || x < point_d.getX()))
+					: (x > point_c.getX() || x < point_d.getX())))
 				return null;
 			if ((point_c.getY() < point_d.getY()) ? (point_c.getY() <= y && y <= point_d.getY())//
 					: (point_d.getY() <= y && y <= point_c.getY()))
@@ -731,14 +724,11 @@ public final class MathUtilities {
 			// slope_ab cannot be Infinity (second group of checks) and zero (first ones)
 			x = (y - q_ab) / slope_ab;
 
-			if ((point_c.getX() <= point_d.getX()) ? (x < point_c.getX() || x > point_d.getX())
+			if (((point_c.getX() <= point_d.getX()) ? (x < point_c.getX() || x > point_d.getX())
 					// point are reversed
-					: (x > point_c.getX() || x < point_d.getX()))
-				return null;
-
-			if ((point_a.getX() <= point_b.getX()) ? (x < point_a.getX() || x > point_b.getX())
+					: (x > point_c.getX() || x < point_d.getX())) || ((point_a.getX() <= point_b.getX()) ? (x < point_a.getX() || x > point_b.getX())
 					// point are reversed
-					: (x > point_a.getX() || x < point_b.getX()))
+					: (x > point_a.getX() || x < point_b.getX())))
 				return null;
 			if ((point_a.getY() < point_b.getY()) ? (point_a.getY() <= y && y <= point_b.getY())//
 					: (point_b.getY() <= y && y <= point_a.getY()))
@@ -912,7 +902,7 @@ public final class MathUtilities {
 	 * delta of xs and ys are un-intuitively reverted.</li>
 	 * <li>There you go</li>
 	 * </ul>
-	 * 
+	 *
 	 * @return a {@link java.util.List} of points if there is an intersection,
 	 *         holding just one point if the cirlces are just "kissing" or the same,
 	 *         <code>null</code> otherwise.
@@ -1110,11 +1100,7 @@ public final class MathUtilities {
 		int w, h, rx, ry;
 		w = r.width;
 		h = r.height;
-		if ((w | h) < 0) {
-			// At least one of the dimensions is negative...
-			return false;
-		}
-		if (x < (rx = r.x) || y < (ry = r.y))
+		if (((w | h) < 0) || x < (rx = r.x) || y < (ry = r.y))
 			return false;
 		rx += w;
 		ry += h;
@@ -1168,7 +1154,7 @@ public final class MathUtilities {
 
 	/**
 	 * If mod is equals or less than zero, 0 is returned.<br>
-	 * 
+	 *
 	 * @param val the value to be snapped
 	 *
 	 * @param mod the returned int will be a multiple of mod
@@ -1202,9 +1188,7 @@ public final class MathUtilities {
 			return -1;
 		if (a == 0)
 			return 0;
-		if (a == 1)
-			return 1;
-		if (b == 0)
+		if ((a == 1) || (b == 0))
 			return 1;
 		if (b == 1)
 			return a;

@@ -1,7 +1,7 @@
 package games.old;
 
 <<<<<<< HEAD
-import games.generic.controlModel.IGEvent;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AttributeModification;
 import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityAttributesModsVanishingOverTime;
@@ -9,9 +9,9 @@ import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
 <<<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/AShiedlingButWeakining_OLD2.java
 import games.theRisingAngel.abilities.AShieldingButWeakining;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-import games.theRisingAngel.events.EventsTRAn;
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * See {@link AShieldingButWeakining}.
@@ -83,7 +83,6 @@ public class AShiedlingButWeakining_OLD2 extends AbilityModifyingAttributesRealT
 ========
 import games.theRisingAngel.events.EventDamageTRAn;
 import games.theRisingAngel.events.EventsTRAr;
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * Upon taking damage, reduce it by

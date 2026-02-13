@@ -15,7 +15,7 @@ public interface FrameHolder extends Serializable {
 	 * <p>
 	 * If some {@link MainHolder} subclasses implements this interface, like
 	 * {@link GameObjectInMapView}, then this method could be implemented as:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
 	 * public int getCurrentFrame(){

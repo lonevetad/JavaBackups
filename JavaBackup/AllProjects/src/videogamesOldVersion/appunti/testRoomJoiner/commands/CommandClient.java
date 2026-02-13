@@ -1,7 +1,7 @@
 package appunti.testRoomJoiner.commands;
 
-import appunti.testRoomJoiner.AbstractCommand;
-import appunti.testRoomJoiner.ClientTRJ;
+import videogamesOldVersion.appunti.testRoomJoiner.AbstractCommand;
+import videogamesOldVersion.appunti.testRoomJoiner.ClientTRJ;
 
 public class CommandClient extends AbstractCommand {
 	private static final long serialVersionUID = 210990090654L;

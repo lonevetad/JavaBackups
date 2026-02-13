@@ -11,7 +11,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketException;
 
-import common.mainTools.LoggerMessages;
+import tools.LoggerMessages;
 
 public class ConnectionTRJ {
 	public static final String FUNCTIONALITY_NOT_IMPLEMENTED = "Functionality not implemented";

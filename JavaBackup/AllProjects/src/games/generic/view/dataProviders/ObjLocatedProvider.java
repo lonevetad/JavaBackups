@@ -10,7 +10,7 @@ import dataStructures.isom.InSpaceObjectsManager;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.GObjectsInSpaceManager;
 import games.generic.view.GameView;
-import games.generic.view.IsomPainter;
+import games.generic.view.drawers.IsomPainter;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
 import geometry.implementations.shapes.ShapeRectangle;
@@ -72,8 +72,8 @@ public abstract class ObjLocatedProvider {
 
 	public Set<ObjectLocated> getObjInArea(AbstractShape2D shape) {
 		Set<ObjectLocated> s;
-		MapTreeAVL<Integer, ObjectLocated> collected;
-		collected = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.INTEGER_COMPARATOR);
+		MapTreeAVL<Long, ObjectLocated> collected;
+		collected = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.LONG_COMPARATOR);
 		s = collected.toSetValue(ObjectLocated.KEY_EXTRACTOR);
 		this.forEachObjInArea(shape, (p, ol) -> { if (ol != null) { collected.put(ol.getID(), ol); } });
 		return s;

@@ -1,13 +1,11 @@
-package games.theRisingAngel.main;
+package videogamesOldVersion.games.theRisingAngel.main;
 
-import common.ExperienceLevelHolder;
-import games.theRisingAngel.equipment.AbstractEquipment;
+import games.generic.controlModel.subimpl.ExperienceLevelHolderImpl;
+import videogamesOldVersion.games.theRisingAngel.equipment.AbstractEquipment;
 
 public class PlayerModel {
 
-	public PlayerModel() {
-		equipments = null;
-	}
+	public PlayerModel() { equipments = null; }
 
 	int pointsGained;
 	ExperienceLevelHolderImpl expLevelHolder;
@@ -19,9 +17,9 @@ public class PlayerModel {
 	//
 
 	/**
-	 * Everytime the player levels up, it gains points. Them will be assigned to some statistics
-	 * (Strength, life, mana, agility, ecc) that will modify something. Calculate here that
-	 * modifications.
+	 * Everytime the player levels up, it gains points. Them will be assigned to
+	 * some statistics (Strength, life, mana, agility, ecc) that will modify
+	 * something. Calculate here that modifications.
 	 */
 	protected void resetStatMax_BasePlusPointsAssigned() {
 		// TODO to-do resetStatMax_BasePlusPointsAssigned
@@ -41,7 +39,8 @@ public class PlayerModel {
 				if (e.isUpperBounded()) {
 					now = statNow.getStat(e);
 					max = statMax.getStat(e);
-					if (now >= max) statNow.setStatInt(e, max);
+					if (now >= max)
+						statNow.setStatInt(e, max);
 				}
 			});
 		}
@@ -68,9 +67,7 @@ public class PlayerModel {
 		return false;
 	}
 
-	public boolean removeEquipmentAt(int index) {
-		return removeEquipmentAt(index, true);
-	}
+	public boolean removeEquipmentAt(int index) { return removeEquipmentAt(index, true); }
 
 	protected boolean removeEquipmentAt(int index, boolean checkConsinstency) {
 		AbstractEquipment oldEquip;
@@ -78,7 +75,8 @@ public class PlayerModel {
 			oldEquip = equipments[index];
 			if (oldEquip != null) {
 				oldEquip.removeEquipmentsEffects(statMax);
-				if (checkConsinstency) checkStatNowConsinstency();
+				if (checkConsinstency)
+					checkStatNowConsinstency();
 			}
 			return true;
 		}

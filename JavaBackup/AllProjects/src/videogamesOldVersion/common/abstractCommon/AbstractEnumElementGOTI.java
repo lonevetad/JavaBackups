@@ -21,7 +21,7 @@ import videogamesOldVersion.common.mainTools.mOLM.abstractClassesMOLM.AbstractMa
  * its View's part: {@link TileImage}, which contains the images and animations.
  * These instances are combined together to create a {@link GameObjectInMapView}
  * instance, used by graphic environment like {@link MapGameView}.<br>
- * 
+ *
  * @see AbstractEnumGOTI
  */
 public interface AbstractEnumElementGOTI extends Serializable {
@@ -185,7 +185,7 @@ public interface AbstractEnumElementGOTI extends Serializable {
 	 * overload(s), but only the one stored in {@link #getTileImageCached()}. Store
 	 * that created TileImages in some way and resize them manually, one per one,
 	 * calling {@link TileImage#scaleImages(int, int)}.
-	 * 
+	 *
 	 * @param pixelEachMicropixel amount of real graphical pixels represented by a
 	 *                            single
 	 *                            {@link AbstractMatrixObjectLocationManager}'s

@@ -69,7 +69,7 @@ public class JListModelRBTree<K, E> extends AbstractListModel<E> implements Set<
 		if (rbtree == null)
 			throw new IllegalArgumentException("The given RBTree must not be null");
 		this.delegate = rbtree;
-		this.comparatorKeys = (Comparator<K>) rbtree.comparator();
+		this.comparatorKeys = rbtree.comparator();
 	}
 
 	protected transient int currentIndex;
@@ -189,13 +189,13 @@ public class JListModelRBTree<K, E> extends AbstractListModel<E> implements Set<
 	public int indexOf(E elem) {
 		boolean notFound;
 		int index;
-//		RedBlackTree<K, E>.RBTIterator 
+//		RedBlackTree<K, E>.RBTIterator
 		Iterator<K> iter;
 		K keyElem;
 		index = 0;
 		notFound = true;
 		keyElem = keyExtractor.apply(elem);
-		iter = (Iterator<K>) ((Set<E>) delegate).iterator();
+		iter = ((Set<E>) delegate).iterator();
 		while (iter.hasNext() && //
 				(notFound = (elem == null ? (iter.n.keyIdentifier != null)
 						: (!(comparatorKeys.compare(keyElem, iter.next()) == 0))))/**/)
@@ -283,7 +283,7 @@ public class JListModelRBTree<K, E> extends AbstractListModel<E> implements Set<
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object o) {
-		return removeElement((E) o);
+		return removeElement(o);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -291,7 +291,7 @@ public class JListModelRBTree<K, E> extends AbstractListModel<E> implements Set<
 	public boolean containsAll(Collection<?> c) {
 		if (c != null && c.size() > 0) {
 			for (Object o : c)
-				if (!delegate.containsKey(keyExtractor.apply((E) o)))
+				if (!delegate.containsKey(keyExtractor.apply(o)))
 					return false;
 			return true;
 		}
@@ -305,7 +305,7 @@ public class JListModelRBTree<K, E> extends AbstractListModel<E> implements Set<
 		if (c != null && c.size() > 0) {
 			changed = false;
 			for (Object o : c)
-				changed |= add((E) o);
+				changed |= add(o);
 			return changed;
 		}
 		return false;

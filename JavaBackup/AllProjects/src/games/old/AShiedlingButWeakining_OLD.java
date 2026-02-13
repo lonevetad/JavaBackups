@@ -3,9 +3,9 @@ package games.old;
 import java.util.ArrayList;
 import java.util.List;
 
-import games.generic.controlModel.GEventObserver;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.IGEvent;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.gObj.CreatureSimple;
 import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AttributeModification;
@@ -13,22 +13,11 @@ import games.generic.controlModel.inventoryAbil.EquipmentItem;
 import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingAttributesRealTime;
 import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
+import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
-<<<<<<< HEAD
-import games.theRisingAngel.events.EventsTRAn;
-=======
-<<<<<<< HEAD
 import games.theRisingAngel.events.EventsTRAr;
->>>>>>> master
-=======
-<<<<<<< HEAD
-import games.theRisingAngel.events.EventsTRAn;
-=======
 import games.theRisingAngel.events.EventsTRAr;
->>>>>>> master
->>>>>>> develop
->>>>>>> develop
-import games.theRisingAngel.misc.AttributesTRAn;
 import tools.ObjectWithID;
 
 /**

@@ -49,12 +49,10 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		Comparator<E> co = getKeyComparator();
 		if (eg == this)
 			return true;
-		if (eg == null ||
-		// se uno è empty -> return false
-				((s1 = this.size()) > 0) != (((s2 = eg.size()) > 0)))
-			return false;
 		// since the sets are sorted .. check extremes
-		if (co.compare(this.last(), eg.first()) < 0 || co.compare(eg.last(), this.first()) < 0) { return false; }
+		if (eg == null ||
+		// se uno ï¿½ empty -> return false
+				((s1 = this.size()) > 0) != (((s2 = eg.size()) > 0)) || co.compare(this.last(), eg.first()) < 0 || co.compare(eg.last(), this.first()) < 0) { return false; }
 		// basically, compute an intersection.. if they intersects -> true
 		if (s1 > s2) {// the tiniest check over the "less than linear" bigger
 			for (E s : this) {
@@ -350,7 +348,7 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		/**
 		 * Compares the sets and collapse to <code>0</code> both cases of "equals" and
 		 * "none of them is a subset".
-		 * 
+		 *
 		 * @deprecated May violates transitivity
 		 * @see {@link #KEY_ORDER} should be used instead for <b>comparison</b> and see
 		 *      {@link #SUBSET_THEN_NON_SHARED_KEYS} to understand more about the
@@ -361,7 +359,7 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 
 		/**
 		 * * @deprecated May violates transitivity
-		 * 
+		 *
 		 * @see {@link #KEY_ORDER} should be used instead for <b>comparison</b> and see
 		 *      {@link #SUBSET_THEN_NON_SHARED_KEYS} to understand more about the
 		 *      violation.
@@ -407,7 +405,7 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		 * other, as checked in step <code>1)</code>).</li>
 		 * <li></li>
 		 * </ol>
-		 * 
+		 *
 		 * @deprecated May violates transitivity
 		 * @see {@link #KEY_ORDER} should be used instead for <b>comparison</b> and see
 		 *      {@link #SUBSET_THEN_NON_SHARED_KEYS} to understand more about the
@@ -478,7 +476,7 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		 * lower than the third.<br>
 		 * This creates a circularity, while a {@link Comparator} requires transitivity
 		 * and non-circularity.
-		 * 
+		 *
 		 * @deprecated May violates transitivity
 		 * @see {@link #KEY_ORDER} should be used instead for <b>comparison</b>.
 		 */

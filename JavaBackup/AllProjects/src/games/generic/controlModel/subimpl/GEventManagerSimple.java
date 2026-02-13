@@ -5,24 +5,22 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.GEventManager;
-import games.generic.controlModel.GEventObserver;
-import games.generic.controlModel.IGEvent;
+import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.events.IGEvent;
 import tools.Comparators;
-import tools.ObjectWithID;
 
 /** Broadcast the event to ALL observers, without any selection. */
 public class GEventManagerSimple extends GEventManager {
 
-	public Set<ObjectWithID> observersSet;
-	public MapTreeAVL<Integer, ObjectWithID> observers; // previously GEventObserver
+	public Set<GEventObserver> observersSet;
+	public MapTreeAVL<Long, GEventObserver> observers; // previously GEventObserver
 	protected EventNotifier notifier;
 
 	public GEventManagerSimple(GModalityET gameModality) {
 		super(gameModality);
-		this.observers = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration,
-				Comparators.INTEGER_COMPARATOR);
-		this.observersSet = this.observers.toSetValue(ObjectWithID.KEY_EXTRACTOR);
+		this.observers = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration, Comparators.LONG_COMPARATOR);
+		this.observersSet = this.observers.toSetValue(GEventObserver::getID);
 		this.notifier = new EventNotifier(this);
 	}
 
@@ -48,7 +46,7 @@ public class GEventManagerSimple extends GEventManager {
 
 	@Override
 	public void forEachEventObservers(Consumer<GEventObserver> action) {
-		this.observers.forEach((id, obs) -> action.accept((GEventObserver) obs));
+		this.observers.forEach((id, obs) -> action.accept(obs));
 	}
 
 	@Override
@@ -61,21 +59,21 @@ public class GEventManagerSimple extends GEventManager {
 	public int objectsHeldCount() { return this.observers.size(); }
 
 	@Override
-	public Set<ObjectWithID> getObjects() { return this.observersSet; }
+	public Set<GEventObserver> getObjects() { return this.observersSet; }
 
 	@Override
-	public boolean contains(ObjectWithID o) { return this.observers.containsKey(o.getID()); }
+	public boolean contains(GEventObserver o) { return this.observers.containsKey(o.getID()); }
 
 	@Override
-	public ObjectWithID get(Integer id) { return this.observers.get(id); }
+	public GEventObserver get(Long id) { return this.observers.get(id); }
 
 	//
 
 	//
 
-	protected static class EventNotifier implements BiConsumer<Integer, ObjectWithID> {
-		IGEvent ge;
-		GEventManager gem;
+	protected static class EventNotifier implements BiConsumer<Long, GEventObserver> {
+		protected IGEvent ge;
+		protected GEventManager gem;
 
 		public EventNotifier(GEventManager gem) {
 			super();
@@ -83,6 +81,6 @@ public class GEventManagerSimple extends GEventManager {
 		}
 
 		@Override
-		public void accept(Integer t, ObjectWithID o) { ((GEventObserver) o).notifyEvent(gem.getGameModality(), ge); }
+		public void accept(Long t, GEventObserver o) { o.notifyEvent(gem.getGameModality(), ge); }
 	}
 }

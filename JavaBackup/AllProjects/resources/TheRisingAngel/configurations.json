@@ -1,0 +1,9 @@
+{
+	"pointsAttributeUpgradeOnLeveling": 5,
+	"factorPriceEssenceExtracting": 10,
+	"subunitsEachMacrounits":{
+		"space": 20,
+		"time": 1000
+	},
+	"shieldDelayMilliseconds": 4000
+}

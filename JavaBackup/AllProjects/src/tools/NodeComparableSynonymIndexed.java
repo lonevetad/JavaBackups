@@ -247,4 +247,9 @@ public class NodeComparableSynonymIndexed extends NodeComparable.NodeComparableD
 		// TODO: use the synonym's comparator or not?
 		return this.alternatives.countDifferenceWith(anotherKey);
 	}
+
+	@Override
+	public NodeComparable<SynonymSet> getExactChild(NodeComparable<SynonymSet> copy) {
+		return this.childrenBySynonymsBackMap.get(copy);
+	}
 }

@@ -5,14 +5,10 @@ import games.generic.controlModel.subimpl.CreatureAttributesCaching;
 import games.generic.controlModel.subimpl.GModalityRPG;
 <<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/BaseNPCCreatureTRAn.java
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
-=======
-<<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/BaseNPCCreatureTRAr.java
+import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.creatures.BaseCreatureTRAn;
 =======
 import games.theRisingAngel.inventory.EquipmentSetTRAn;
->>>>>>> master:JavaBackup/AllProjects/src/games/theRisingAngel/creatures/BaseNPCCreatureTRAr.java
->>>>>>> develop:JavaBackup/AllProjects/src/games/old/BaseNPCCreatureTRAr.java
-import games.theRisingAngel.misc.AttributesTRAn;
 
 /**
  * This is NOT a {@link PlayerGeneric}, even if it's similar (but there's no

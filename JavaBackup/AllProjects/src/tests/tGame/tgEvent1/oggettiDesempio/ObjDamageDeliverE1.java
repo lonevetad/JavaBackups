@@ -4,25 +4,27 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageTypeGeneric;
-import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
-import games.generic.controlModel.subimpl.TimedObjectSimpleImpl;
+import games.generic.controlModel.objects.creature.BaseCreatureRPG;
+import games.generic.controlModel.subimpl.TimedObjectPeriodic;
 import games.theRisingAngel.GameObjectsManagerTRAn;
-import games.theRisingAngel.misc.DamageTypesTRAn;
-import tests.tGame.tgEvent1.GModality_E1;
+import games.theRisingAngel.enums.DamageTypesTRAn;
+import tests.tGame.GModality_E1;
 import tools.UniqueIDProvider;
 
 // TODO fare con GUI e affini
-public class ObjDamageDeliverE1 implements TimedObjectSimpleImpl, DamageDealerGeneric {
+public class ObjDamageDeliverE1 implements TimedObjectPeriodic, DamageDealerGeneric {
 	private static final long serialVersionUID = 4741714L;
 	static final int MILLIS_EACH__DAMAGE = 1500;
+	protected static final UniqueIDProvider UIDP_OBJ_DAMAGE_DELIVER_E1 = UniqueIDProvider.newBasicIDProvider();
+
 	public int c, damageAmount;
 	public long timeElapsed, timeThreshold;
-	public final Integer ID;
+	public final Long ID;
 	public BaseCreatureRPG target;
 	public DamageTypesTRAn damageType;
 
 	public ObjDamageDeliverE1(long timeThreshold) {
-		ID = UniqueIDProvider.GENERAL_UNIQUE_ID_PROVIDER.getNewID();
+		ID = UIDP_OBJ_DAMAGE_DELIVER_E1.getNewID();
 		timeElapsed = 0;
 		this.timeThreshold = timeThreshold;
 		c = 0;
@@ -30,7 +32,7 @@ public class ObjDamageDeliverE1 implements TimedObjectSimpleImpl, DamageDealerGe
 	}
 
 	@Override
-	public Integer getID() { return ID; }
+	public Long getID() { return ID; }
 
 	@Override
 	public long getAccumulatedTimeElapsed() { return timeElapsed; }
@@ -87,4 +89,13 @@ public class ObjDamageDeliverE1 implements TimedObjectSimpleImpl, DamageDealerGe
 
 	@Override
 	public void onRemovedFromGame(GModality gm) {}
+
+	@Override
+	public GModality getGameModality() { // TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+	}
 }

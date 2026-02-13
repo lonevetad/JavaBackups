@@ -1,8 +1,9 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.inventoryAbil.AttributeModification;
 import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
+import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 
 /**
  * Caches all attribute's modifications (as like {@link AttributeModification})
@@ -11,8 +12,8 @@ import games.generic.controlModel.misc.CreatureAttributes;
  */
 public class CreatureAttributesCaching extends CreatureAttributes {
 
-	public CreatureAttributesCaching(int attributesCount) {
-		super(attributesCount);
+	public CreatureAttributesCaching(int attributesCount, IndexToObjectBackmapping itai) {
+		super(attributesCount, itai);
 		this.attributesModificationsApplied = new int[attributesCount];
 		this.cacheValues = new int[attributesCount];
 		this.isCacheAvailable = false;
@@ -24,33 +25,34 @@ public class CreatureAttributesCaching extends CreatureAttributes {
 	protected int[] attributesModificationsApplied, cacheValues;
 
 	@Override
-	public int getValue(int index) {
-		throw new UnsupportedOperationException(
-				"Cannot invoke on integer index because it cannot perform \"AttributeIdentifier#isStrictlyPositive()\" check");
-	}
-
-	@Override
 	public int getValue(AttributeIdentifier identifier) {
-		int v, index;
-		index = identifier.getIndex();
 		if (!isCacheAvailable) { recalculateCache(); }
-		v = this.cacheValues[index];
-		return (identifier.isStrictlyPositive() && v < 0) ? 0 : v;
+		return this.cacheValues[identifier.getIndex()];
 	}
 
 	protected void recalculateCache() {
-		int i, ac;
+		int i, tempAttr, tempBound;
 		final int[] cv, ov, ama;
+		AttributeIdentifier ai;
+		IndexToObjectBackmapping itai;
 		isCacheAvailable = true;
 		cv = this.cacheValues;
 		ov = super.originalValues;
 		ama = this.attributesModificationsApplied;
-		ac = attributesCount;
-		// then others
-		i = ac;
-		while (--i >= 0) {// update the values
+		i = attributesCount;
+		while (--i >= 0) {
 			cv[i] = ov[i] + ama[i];
 		}
+		// check bounds
+		i = this.attributesCount;
+		itai = this.getIndexToAttributeIdentifier();
+		while (--i >= 0) {
+			tempAttr = cv[i];
+			if (tempAttr < (tempBound = (ai = (AttributeIdentifier) itai.fromIndex(i)).lowerBound())) {
+				cv[i] = tempBound;
+			} else if (tempAttr > (tempBound = ai.upperBound())) { cv[i] = tempBound; }
+		}
+		this.isCacheAvailable = true;
 	}
 
 	/**

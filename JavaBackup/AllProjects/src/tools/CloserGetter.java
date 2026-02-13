@@ -67,7 +67,7 @@ public interface CloserGetter<K> extends Serializable {
 					flag[0] = false;
 					notYetCheckedAnElement[0] = k;
 				} else {
-					notYetCheckedAnElement[0] = getCloserTo(target, (K) notYetCheckedAnElement[0], k);
+					notYetCheckedAnElement[0] = getCloserTo(target, notYetCheckedAnElement[0], k);
 				}
 			});
 		}

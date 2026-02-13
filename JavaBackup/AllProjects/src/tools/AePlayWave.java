@@ -108,7 +108,7 @@ public class AePlayWave extends Thread {
 
 	public void setIsPlaying(boolean b) {
 		isPlaying = b;
-		if (b == true) {
+		if (b) {
 			this.howMuchMillisecToSleep = (0);
 		}
 	}
@@ -154,7 +154,7 @@ public class AePlayWave extends Thread {
 			eee.printStackTrace();
 			canContinue = false;
 		}
-		if (canContinue == true) {
+		if (canContinue) {
 			// re-use the boolean variable "canContinue" to avoid the return
 			// statement
 			canContinue = false;
@@ -173,7 +173,7 @@ public class AePlayWave extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (canContinue == true) {
+			if (canContinue) {
 				if (auline.isControlSupported(FloatControl.Type.PAN)) {
 					FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
 					if (getCurPosition() == Position.RIGHT)
@@ -191,10 +191,10 @@ public class AePlayWave extends Thread {
 
 						// lo faccio dormire per farlo stoppare in modo poco
 						// elegante e performante ma pratico e funzionale
-						while ((this.getHowMuchMillisecToSleep() > 0) || (this.getIsPlaying() == false)) {
+						while ((this.getHowMuchMillisecToSleep() > 0) || !this.getIsPlaying()) {
 							try {
 								Thread.sleep(1);
-								if (this.getIsPlaying() == true) {
+								if (this.getIsPlaying()) {
 									this.setHowMuchMillisecToSleep(this.getHowMuchMillisecToSleep() - 1);
 								}
 							} catch (Exception e) {

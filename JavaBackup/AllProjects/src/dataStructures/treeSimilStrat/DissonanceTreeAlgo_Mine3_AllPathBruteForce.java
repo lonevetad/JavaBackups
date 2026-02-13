@@ -26,9 +26,9 @@ import tools.impl.EditDistanceLevenshtein;
  * <ul>
  * <li><code> 77 {55 {22 {33 {1 2 3 4}}}}</code></li>
  * <li>
- * 
+ *
  * <pre>
- *  <code> 
+ *  <code>
  * 77{
  *   55 {22 {33 {1}}}
  *   55 {22 {33 {4}}}
@@ -37,7 +37,7 @@ import tools.impl.EditDistanceLevenshtein;
  * }
  * </code>
  * </pre>
- * 
+ *
  * </li>
  * </ul>
  * Those two trees will be mapped to the same set of path, so they will be

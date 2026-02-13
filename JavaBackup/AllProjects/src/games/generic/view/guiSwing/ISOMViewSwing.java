@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
-import games.generic.view.IsomPainter;
+import games.generic.view.drawers.IsomPainter;
 
 public class ISOMViewSwing {
 	public static final int GRID_SIZE_DEFAULT = 25;

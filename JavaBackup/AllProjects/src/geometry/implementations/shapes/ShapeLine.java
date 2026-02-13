@@ -49,8 +49,8 @@ public class ShapeLine extends AbstractShapeImpl {
 //		setDiameter(diameter)
 	}
 
-	int length;
-	Point2D p1, p2;
+	protected int length;
+	protected Point2D p1, p2;
 
 	//
 

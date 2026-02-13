@@ -101,7 +101,6 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 			sizeRight = sizeLeft = 0;
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
 		public void rotate(boolean isRight) {
 			int hl, hr;
@@ -111,13 +110,23 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 				// right
 				nSide = (NodeAVL_Indexable) left;
 				if (nSide.right.height > nSide.left.height) {
+					// left-right rotation (left on b, right on c)
 					// three-rotation : ignoring this difference would cause the tree to be
-					// umbalanced again
+					// umbalanced again. x,y,z and w might be (all or none) NIL
+					//h  :   .   n=a
+					//   .   ./  .  \.
+					//h+1:  b.   .   x
+					//h+2:y  .c
+					//h+3:   z w
+					// ->
+					//h  :   c
+					//   .  /.\
+					//h+1: b . a
+					//h+2:y z.w x.
 					final NodeAVL_Indexable a, b, c;
 					a = this;
 					b = nSide;
 					c = (NodeAVL_Indexable) b.right;
-//					if (oldFather != NIL) {
 					if (oldFather.left == a)
 						oldFather.left = c;
 					else
@@ -144,21 +153,28 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 						root = c;
 						c.father = NIL; // not necessary, but done to be sure
 					}
-					// adjust sizes
-//					if (c.right == NIL) c.sizeRight = 0;
-//					if (c.left == NIL) c.sizeLeft = 0;
-//					if (a.right == NIL) a.sizeRight = 0;
-//					if (b.left == NIL) b.sizeLeft = 0;
 					a.sizeLeft = c.sizeRight;
 					b.sizeRight = c.sizeLeft;
 					c.sizeRight += 1 + a.sizeRight;
 					c.sizeLeft += 1 + b.sizeLeft;
 					return;
 				}
-				left = left.right; // i could have put "nSide. .." but the whole piece of code would be less clear
-//				if (left == NIL)sizeLeft = 0;
+				// right rotation on b
+				//h  :   .   n=a
+				//   .   ./  .  \.
+				//h+1:  b.   .   x
+				//h+2: c .y
+				//h+3:z w
+				// ->
+				//h  :   b
+				//   .  /.\
+				//h+1: c . a
+				//h+2:z w.y x.
+		
+				// note: oldFather pointers moved outside
+				left = left.right; // a.left == y
 				nSide.right.father = this;
-				nSide.right = this;
+				nSide.right = this; // b.right == a
 				// adjust sizes
 				sizeLeft = nSide.sizeRight;
 				nSide.sizeRight += 1 + sizeRight;
@@ -166,6 +182,19 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 				// left
 				nSide = (NodeAVL_Indexable) right;
 				if (nSide.left.height > nSide.right.height) {
+					// right-left rotation (right on b, left on c)
+					// three-rotation : ignoring this difference would cause the tree to be
+					// umbalanced again. x,y,z and w might be (all or none) NIL
+					//h  :   .   n=a
+					//   .   ./  .  \.
+					//h+1:  x.   .   b
+					//h+2:   .   .c  .  y
+					//h+3:   .   z w
+					// ->
+					//h  :   c
+					//   .  /.\
+					//h+1: a . b
+					//h+2:x z.w y.
 					final NodeAVL_Indexable a, b, c;
 					a = this;
 					b = nSide;
@@ -196,21 +225,29 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 					NIL.left = NIL.right = NIL.father = NIL;
 					if (a == root) {
 						root = c;
-//						c.father = NIL; // not necessary, but done to be sure
+						c.father = NIL; // not necessary, but done to be sure
 					}
 					// adjust sizes
-//					if (c.right == NIL) c.sizeRight = 0;
-//					if (c.left == NIL) c.sizeLeft = 0;
-//					if (b.right == NIL) b.sizeRight = 0;
-//					if (a.left == NIL) a.sizeLeft = 0;
 					a.sizeRight = c.sizeLeft;
 					b.sizeLeft = c.sizeRight;
 					c.sizeLeft += 1 + a.sizeLeft;
 					c.sizeRight += 1 + b.sizeRight;
 					return;
 				}
-				right = right.left; // i could have put "nSide. .." but the whole piece of code would be less clear
-//				if (right == NIL) sizeRight = 0;
+				// left rotation on b
+				//h  :   .   n=a
+				//   .   ./  .  \.
+				//h+1:  x.   .   b
+				//h+2:   .   . y . c
+				//h+3:   .   .   .z w
+				// ->
+				//h  :   b
+				//   .  /.\
+				//h+1: a . c
+				//h+2:x y.z w.
+		
+				// note: oldFather pointers moved outside
+				right = right.left;
 				nSide.left.father = this;
 				nSide.left = this;
 				// adjust sizes
@@ -237,12 +274,22 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 
 		@Override
 		protected int index() {
-			int i;
+			int i, indexNodeLeftInorder;
 			i = 0;
-			if (sizeLeft > 0)
-				i = sizeLeft + 1;
-			if (father != NIL && father.right == this)
-				i += father.index();
+			if (sizeLeft > 0){
+				i = sizeLeft;
+			}
+			indexNodeLeftInorder = -1;
+			NodeAVL_Indexable nodeLeftInOrder = this; 
+			while( nodeLeftInOrder != NIL && nodeLeftInOrder.father != NIL && nodeLeftInOrder.father.right != nodeLeftInOrder) {
+				nodeLeftInOrder = (MapTreeAVLIndexable<K, V>.NodeAVL_Indexable) nodeLeftInOrder.father;
+			}
+			if (nodeLeftInOrder != NIL && nodeLeftInOrder.father != NIL ){
+				indexNodeLeftInorder = nodeLeftInOrder.father.index();
+			}
+			if( indexNodeLeftInorder >= 0) {
+				i += indexNodeLeftInorder + 1;
+			}
 			return i;
 		}
 

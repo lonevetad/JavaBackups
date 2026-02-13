@@ -114,7 +114,7 @@ public abstract class SpaceSubdivisions implements Serializable {
 		 * Take the center of the given subsection and returns the point of the center
 		 * of an hypothetical new subdivision (one level deeper) if the given subsection
 		 * would be divided.
-		 * 
+		 *
 		 * @param subsection the subsection to refer to.
 		 */
 		public abstract Point2D centerOfDeeperSubsection(SpaceSubsectionNode subsection);// double

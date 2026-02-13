@@ -3,7 +3,7 @@ package dataStructures.graph;
 import java.util.Comparator;
 import java.util.function.BiConsumer;
 
-public class GraphSimpleAsynchronized<E, Distance> extends GraphSimple<E, Distance> {
+public class GraphSimpleAsynchronized<E, Distance extends Number> extends GraphSimple<E, Distance> {
 
 	public GraphSimpleAsynchronized(boolean isDirected, PathFindStrategy<E, Distance> pathFinder,
 			Comparator<E> comparatorElements) {
@@ -17,14 +17,10 @@ public class GraphSimpleAsynchronized<E, Distance> extends GraphSimple<E, Distan
 	//
 
 	@Override
-	public final boolean isSynchronized() {
-		return false;
-	}
+	public final boolean isSynchronized() { return false; }
 
 	@Override
-	protected NodeGraph newNodeGraph(E e) {
-		return new NodeGraphSimpleAsynchronized(e);
-	}
+	protected NodeGraph newNodeGraph(E e) { return new NodeGraphSimpleAsynchronized(e); }
 
 	//
 
@@ -49,8 +45,6 @@ public class GraphSimpleAsynchronized<E, Distance> extends GraphSimple<E, Distan
 	//
 
 	public class NodeGraphSimpleAsynchronized extends NodeGraph {
-		NodeGraphSimpleAsynchronized(E e) {
-			super(e);
-		}
+		NodeGraphSimpleAsynchronized(E e) { super(e); }
 	}
 }

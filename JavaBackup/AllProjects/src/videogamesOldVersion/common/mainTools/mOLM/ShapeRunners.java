@@ -1131,9 +1131,9 @@ public class ShapeRunners implements AbstractShapeRunners {
 			// ((y + diameter) < molm.getHeight());
 			/*
 			 * if (ok) {
-			 * 
+			 *
 			 * r = 1; rr = y + 1; l = riga.length;
-			 * 
+			 *
 			 * while (ok && r++ < diameter) { if (ok = (riga = matrix[rr++]) != null) { ok =
 			 * lastPoint < (l = (riga.length < l ? riga.length : l)); } } }
 			 */
@@ -1154,7 +1154,7 @@ public class ShapeRunners implements AbstractShapeRunners {
 	 * <p>
 	 * N.B.: NO CHECK IS PERFORMED ABOUT {@link NullPointerException} AND
 	 * {@link IndexOutOfBoundsException}.
-	 * 
+	 *
 	 * @param isom the integer matrix to write the disc
 	 * @param x      the x-component of the bottom-left corner of the bounding box
 	 *               of the disc
@@ -1773,7 +1773,7 @@ public class ShapeRunners implements AbstractShapeRunners {
 	 * _________/___________\ <br>
 	 * ________/_____________\ <br>
 	 * _______3______________2
-	 * 
+	 *
 	 * <p>
 	 * NOTE:>ul>
 	 * <li>Keeping in mind the figure above and to the classic axis system (that is
@@ -1874,7 +1874,7 @@ public class ShapeRunners implements AbstractShapeRunners {
 			// System.out.println(Arrays.toString(yCorners));
 			/**
 			 * the situation:<br>
-			 * 
+			 *
 			 * .........top<br>
 			 * ........./.\<br>
 			 * ......../...\<br>

@@ -11,7 +11,7 @@ import geometry.AbstractShape2D;
  * TODO del 05-10-2019 <br>
  * Per implementare l'aggiunta di un oggetto con forma (shape), collezionare
  * tutti gli SpaceSubsectionNode "foglia" (senza children) che intersecano con
- * tale forma e in ciascuno fare l'aggiunta. Se la forma è un punto, usare il
+ * tale forma e in ciascuno fare l'aggiunta. Se la forma ï¿½ un punto, usare il
  * modo giÃ  implementato per ottimizzare. Altrimenti, invocare un metodo
  * gatherAllNodesAbleToHold che restituisce una List<SpaceSubsectionNode>. Per
  * farlo, si prende ogni nodo ad incominciare dal root, e si vede se la forma
@@ -19,27 +19,27 @@ import geometry.AbstractShape2D;
  * SpaceSubsectionNode ha una shape associata. Quindi si vede se tale shape
  * intersecano. si interseca con la forma dell'oggetto da inserire. Se si,
  * allora si vede se ha children. Se si, allora ricorsione su tutti i children
- * raggruppando i risultati in una unica LinkedList. Se no, allora tale nodo è
+ * raggruppando i risultati in una unica LinkedList. Se no, allora tale nodo ï¿½
  * una foglia e si raccoglie tale nodo. <br>
  * Ottenuta tale lista, per ogni nodo si effettua un inserimento dell'oggetto
  * (avente una forma) da inserire.
  * <p>
- * Volendo, non è necessario fare la raccolta nella List e poi inserire in tutti
- * la forma, può bastare usare la ricorsione sul singolo nodo il quale farÃ 
- * l'inserimento appena capisce che sia è una foglia sia c'è intersezione.
+ * Volendo, non ï¿½ necessario fare la raccolta nella List e poi inserire in tutti
+ * la forma, puï¿½ bastare usare la ricorsione sul singolo nodo il quale farÃ 
+ * l'inserimento appena capisce che sia ï¿½ una foglia sia c'ï¿½ intersezione.
  */
 // TODO
 /**
- * 
+ *
  * TODO NOTE of 13/06/2020 <br>
  *
  * 16/07/2020: SPIEGAZIONE: la pensai ai tempi di Isabella-Losanna,
- * 
+ *
  * @deprecated Use {@link MultiISOMRetangularCaching} to build a
  *             {@link AbstractShape2D}-based implementation (and not just a
  *             {@link Rectangle}-based only).
- * 
- * 
+ *
+ *
  */
 @Deprecated
 public abstract class SpaceSubdivisionsManagerTree implements Serializable {

@@ -223,7 +223,7 @@ public class ShapeRunnerRectangleBorder extends AbstractShapeRunnerImpl {
 				slopeRight = MathUtilities.slope(p3, p4);
 				qr = p3.getY() - slopeRight * p3.getX();
 				isRightProgressing = false;
-//				p.x = 
+//				p.x =
 				x = (int) Math.round(p3.getX());
 				p.y = y;
 				p.x = prevxRight;

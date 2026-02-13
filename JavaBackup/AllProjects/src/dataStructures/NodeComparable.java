@@ -245,26 +245,6 @@ public interface NodeComparable<K> extends Stringable {
 		return new IteratorPathNodeComp<K, K>(this, n -> n.getKeyIdentifier());
 	}
 
-	/**
-	 * Iterates over all possible <i>root-to-leaf</i> path.<br>
-	 * BEWARE: the {@link List} is cached, so do NOT collect the instances provided
-	 * by the {@link Consumer} because they are literally the same.<br>
-	 * This calls {@link #forEachPathOfSomething(Function, Consumer)} passing an
-	 * identity function to provide {@link NodeComparable}.
-	 */
-	public default void forEachPathNode(Consumer<List<NodeComparable<K>>> pathConsumer) {
-		forEachPathOfSomething(n -> n, pathConsumer);
-	}
-
-	/** See {@link #forEachPathNode(Consumer)}. */
-	public default void forEachPathKey(Consumer<List<K>> pathConsumer) {
-		forEachPathOfSomething(n -> n.getKeyIdentifier(), pathConsumer);
-	}
-
-	public default Iterator<List<NodeComparable<K>>> iteratorPathNodes() {
-		return new IteratorPathNodeComp<NodeComparable<K>, K>(this, n -> n);
-	}
-
 	//
 
 	//

@@ -1,10 +1,10 @@
 package games.theRisingAngel.gui;
 
-import games.generic.controlModel.inventoryAbil.EquipmentItem;
+import games.generic.controlModel.items.EquipmentItem;
 import games.generic.view.GameView;
 import games.generic.view.dataProviders.EquipSetProviderGui;
+import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.inventory.EquipmentSetTRAn;
-import games.theRisingAngel.inventory.EquipmentTypesTRAn;
 
 /**
  * Should add, as a feature: each rarity-1 attribute that includes 1 Luck should

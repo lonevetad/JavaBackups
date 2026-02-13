@@ -1,6 +1,6 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.inventoryAbil.AbilitiesProvider;
+import games.generic.controlModel.providers.AbilitiesProvider;
 
 public interface IGameWithAbililties {
 
