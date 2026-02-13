@@ -48,13 +48,14 @@ public class TribesTRAn {
 
 		mrta = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, RaritiesTRAn.COMPARATOR_RARITY_TRAn);
 
+		// TODO (2026-02-13): all of these should be put in a configuration
 		mrta.put(RaritiesTRAn.Common,
 				new AttributesVariationTribeEquip(VariationLevels.Memory, 3, -1, new int[] { 4 }));
 		mrta.put(RaritiesTRAn.Good, new AttributesVariationTribeEquip(VariationLevels.Trade, 7, -2, new int[] { 8 }));
 		mrta.put(RaritiesTRAn.Awesome,
-				new AttributesVariationTribeEquip(VariationLevels.Essence, 12, -3, new int[] { 15 }));
+				new AttributesVariationTribeEquip(VariationLevels.Essence, 11, -3, new int[] { 15 }));
 		mrta.put(RaritiesTRAn.Rare,
-				new AttributesVariationTribeEquip(VariationLevels.Original, 19, -5, new int[] { 20 }));
+				new AttributesVariationTribeEquip(VariationLevels.Original, 17, -5, new int[] { 20 }));
 
 		ALL_EQUIP_UPGRADES_RARITIES = Collections.unmodifiableSet(mrta.keySet());
 		MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE = Collections.unmodifiableMap(mrta);
@@ -130,7 +131,10 @@ public class TribesTRAn {
 
 	//
 
-	// TODO : Tribe enum
+	/**
+	 * All tribes in this game. Each of them venerates a base Attribute and hates another one. Being devoted to an Attribute
+	 * gives more bonus than the malus provided by the hating.
+	 */
 	public static enum Tribe implements IndexableObject {
 		Apebz, Asexiso, Buavoj, Bifod, Cobahir, Cugujab, Dokosok, Domonoleg, Drovovomir, Epewuv, Equaks, Fidnox,
 		Folottuj, Gamaskov, Gizix, Gokuq, Guwaddarg, Hansyn, Hitifa, Hugupad, Icibiup, Innizay, Jaonuvup, Jawueqk,
@@ -146,8 +150,12 @@ public class TribesTRAn {
 			for (int praiseIndex = AttributesTRAn.FIRST_INDEX_ATTRIBUTE_UPGRADABLE; praiseIndex <= AttributesTRAn.LAST_INDEX_ATTRIBUTE_UPGRADABLE; praiseIndex++) {
 				for (int hateIndex = AttributesTRAn.FIRST_INDEX_ATTRIBUTE_UPGRADABLE; hateIndex <= AttributesTRAn.LAST_INDEX_ATTRIBUTE_UPGRADABLE; hateIndex++) {
 					if (praiseIndex != hateIndex) {
-						tribes[indexTribe++].religion = new TribeReligion(AttributesTRAn.ALL_ATTRIBUTES[praiseIndex],
-								AttributesTRAn.ALL_ATTRIBUTES[hateIndex]);
+						tribes[indexTribe].religion = new TribeReligion(
+								tribes[indexTribe],
+								AttributesTRAn.ALL_ATTRIBUTES[praiseIndex],
+								AttributesTRAn.ALL_ATTRIBUTES[hateIndex]
+						);
+						indexTribe++;
 					}
 				}
 			}
@@ -213,7 +221,7 @@ public class TribesTRAn {
 			currencies = cs.getCurrencies();
 			cs.setGameModaliy(gmrpg);
 			n = variation.addedPrices.length;
-			while (--n >= 0) {
+			while (--n >= 0) { // for each type of currencies ...
 				addedPrice = variation.addedPrices[n];
 				if (relAlMod.isIsnegativePriceChanging()) { addedPrice = -addedPrice; }
 				cs.setCurrencyAmount(currencies[n], addedPrice);
@@ -374,7 +382,7 @@ public class TribesTRAn {
 	}
 
 	/**
-	 * A {@link TribeReligion} worship may vary.
+	 * A {@link TribeReligion} worship level may vary.
 	 */
 	public static enum ReligionAlignment {
 		/**
@@ -382,7 +390,7 @@ public class TribesTRAn {
 		 */
 		Canon(""),
 		/**
-		 * Turns the Upgrade no negative:
+		 * Amplify the bonus at the cost of turning the price to negative:
 		 * <ul>
 		 * <li>Flip the prices modifications to negative</li>
 		 * <li>swap bonus (which is greater than malus) with malus</li>
@@ -407,6 +415,9 @@ public class TribesTRAn {
 		public final String nameAlteration;
 	}
 
+	/**
+	 * The greater (their ordinal), the more intense is their bonuses
+	 */
 	public static enum VariationLevels {
 		Original(false), Memory, Trade, Essence;
 
@@ -454,6 +465,9 @@ public class TribesTRAn {
 
 	//
 
+	/**
+	* Represent the set of bonuses and malus a religion (linked with a Tribe) gives to.
+	* */
 	public static final class TribeReligion {
 		public static final Comparator<TribeReligion> COMPARATOR_TRIBE_RELIGION = (r1, r2) -> {
 			int res;
@@ -465,26 +479,31 @@ public class TribesTRAn {
 			return Comparators.LONG_COMPARATOR.compare(r1.religionHated.getID(), r2.religionHated.getID());
 		};
 
-		public TribeReligion(AttributesTRAn religionDevotedTo, AttributesTRAn religionHated) {
+		public TribeReligion(Tribe tribeVeneratingIt, AttributesTRAn religionDevotedTo, AttributesTRAn religionHated) {
 			super();
 			if (religionDevotedTo == null || religionHated == null || religionDevotedTo == religionHated) {
 				throw new IllegalArgumentException("Can't praise and hate a null religion or the same religions: <"
 						+ religionDevotedTo + ", " + religionHated + ">");
 			}
+			this.tribeVeneratingIt = tribeVeneratingIt;
 			this.religionDevotedTo = religionDevotedTo;
 			this.religionHated = religionHated;
 		}
 
+		protected final Tribe tribeVeneratingIt;
 		protected final AttributesTRAn religionDevotedTo, religionHated;
 
 		//
+
+		public Tribe getTribeVeneratingIt() { return tribeVeneratingIt; }
+
 		public AttributesTRAn getReligionDevotedTo() { return religionDevotedTo; }
 
 		public AttributesTRAn getReligionHated() { return religionHated; }
 
 		@Override
 		public String toString() {
-			return "TribeReligion [religionDevotedTo=" + religionDevotedTo + ", religionHated=" + religionHated + "]";
+			return "TribeReligion [tribeVeneratingIt=" + tribeVeneratingIt.getName() + ", religionDevotedTo=" + religionDevotedTo + ", religionHated=" + religionHated + "]";
 		}
 	}
 
@@ -501,13 +520,18 @@ public class TribesTRAn {
 			}
 			case Fanatic: {
 				isnegativePriceChanging = false;
-				// swap both bonus/malus and signs
+				/*
+				 OLD swap both bonus/malus and signs
 				bonus = -variation.malus;
 				malus = -variation.bonus;
+				*/
+				bonus = variation.bonus << 1;
+				malus = variation.malus * 2 ;
 				break;
+				 */
 			}
 			case Heretic: {
-				isnegativePriceChanging = true;
+				// OLD: isnegativePriceChanging = true;
 				// turns positive
 				malus = -variation.malus;
 				/*

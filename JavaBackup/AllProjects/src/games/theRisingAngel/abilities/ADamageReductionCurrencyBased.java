@@ -51,7 +51,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	/**
 	 * Get the "percentage" (but it's over a thousand, 1000, not the classical
 	 * hundred of "%") of the currency held to be converted to
-	 * {@link AttributesTRAn.DamageReductionPhysical}.
+	 * {@link AttributesTRAn.PhysicalDamageReduction}.
 	 */
 	public int getPerThousandFraction() { return perThousandFraction; }
 

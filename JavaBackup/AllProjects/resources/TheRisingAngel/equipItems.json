@@ -1,4 +1,15 @@
 [
+	/*
+	Tutti gli oggetti possono essere incantati con un massimo di tot modificatori per ogni categoria. Iniziano con un valore minimo di "quantità massima di upgrade incantabili", ma può essere incrementata con dei miglioramenti, offerti da un "artigiano" per ciascuna categoria, fino di un limite massimo invalicabile.
+	Tali definizioni sono raccolte in un mapping di oggetti:
+	{
+	"Material": { "min": 2, "max":4 },
+	"Blessing":  { "min": 2, "max":4 },
+	"Rune": { "min": 1, "max":5 },
+	"Coloring": { "min": 1, "max":3 },
+	"CharacterClass": { "min": 1, "max":2 },
+	}
+	*/
 	{
 		"name": "Cloth Trousers",
 		"rarity": 1,

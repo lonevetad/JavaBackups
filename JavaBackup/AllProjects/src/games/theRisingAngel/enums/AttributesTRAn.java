@@ -30,23 +30,26 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	 * It's a percentage value
 	 */
 	Velocity(1, 1000), //
-	LifeMax(1), LifeRegen, ManaMax(0), ManaRegen, ShieldMax(0), ShieldRegen, StaminaMax(0), StaminaRegen, //
+	LifeMax(1), LifeRegen, //
+	ManaMax(0), ManaRegen, //
+	ShieldMax(0), ShieldRegen, //
+	StaminaMax(0), StaminaRegen, //
 	/**
 	 * Expressed in milliseconds
 	 */
 	ShieldDelayReduction, //
 	//
-	PhysicalDamageBonus, PhysicalDamageMultiplierPercentageBonus, PhysicalDamageReduction,
-	PhysicalDamageMultiplierPercentageReduction, //
+	PhysicalDamageBonus, PhysicalDamageMultiplierPercentageBonus, //
+	PhysicalDamageReduction, PhysicalDamageMultiplierPercentageReduction, //
 	PhysicalProbabilityPerThousandHit, PhysicalProbabilityPerThousandAvoid, //
-	VelocityAttackStrikePercentage(1), //
-	MagicalDamageBonus, MagicalDamageMultiplierPercentageBonus, MagicalDamageReduction,
-	MagicalDamageMultiplierPercentageReduction, //
+	VelocityAttackStrikePercentage(1), //  // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocitySpellCastPercentage)) ?
+	MagicalDamageBonus, MagicalDamageMultiplierPercentageBonus, //
+	MagicalDamageReduction, MagicalDamageMultiplierPercentageReduction, //
 	MagicalProbabilityPerThousandHit, MagicalProbabilityPerThousandAvoid, //
-	VelocitySpellCastPercentage(-99, 10000), //
+	VelocitySpellCastPercentage(-99, 10000), // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocitySpellCastPercentage)) ?
 	CostCastReductionPercentage(-10000, 99), //
 	//
-	CriticalProbabilityPerThousandHit, CriticalMultiplierPercentage(0), //
+	CriticalProbabilityPerThousandHit, CriticalMultiplierPercentageBonus(0), //
 	CriticalProbabilityPerThousandAvoid, CriticalMultiplierPercentageReduction, //
 	LifeLeechPercentage(-1000, 1000), ManaLeechPercentage(-1000, 1000), ShieldLeechPercentage(-1000, 1000),
 	StaminaLeechPercentage(-1000, 1000), //
