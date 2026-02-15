@@ -5,13 +5,13 @@ import java.util.Map;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.EssenceStorage;
 
 /**
  * NPC-like that manipulates {@link EquipmentItem} to extract (for example,
  * {@link #extractEssenceByName(EssenceStorage, EquipmentItem, String)}) some
- * {@link EquipmentUpgrade} into a {@link EssenceStorage}.
+ * {@link IEquipmentUpgrade} into a {@link EssenceStorage}.
  */
 public abstract class EssenceExtractor {
 
@@ -25,7 +25,7 @@ public abstract class EssenceExtractor {
 
 	/**
 	 * Get the name of the {@link GameObjectsProvider} associated with
-	 * {@link EquipmentUpgrade}.
+	 * {@link IEquipmentUpgrade}.
 	 */
 	public abstract String getEquipmentUpgradeObjProviderName(GModality gm);
 
@@ -35,7 +35,7 @@ public abstract class EssenceExtractor {
 	 */
 	public abstract String getAbilityObjProviderName(GModality gm);
 
-	public boolean storeEssence(EssenceStorage vial, EquipmentUpgrade upgrade) {
+	public boolean storeEssence(EssenceStorage vial, IEquipmentUpgrade upgrade) {
 		if (vial == null || upgrade == null || (!vial.isEmpty()))
 			return false;
 		vial.storeEssence(upgrade);
@@ -55,9 +55,9 @@ public abstract class EssenceExtractor {
 	 * {@link GModality} implementing this feature.
 	 */
 	public boolean extractEssenceByName(EssenceStorage vial, EquipmentItem equipment, String nameEssence) {
-		Map<String, EquipmentUpgrade> equips;
+		Map<String, IEquipmentUpgrade> equips;
 		Map<String, AbilityGeneric> abil;
-		EquipmentUpgrade upgrade;
+		IEquipmentUpgrade upgrade;
 		AbilityGeneric ability;
 		if (vial == null || equipment == null || vial.isEmpty())
 			return false;
@@ -84,10 +84,10 @@ public abstract class EssenceExtractor {
 	 */
 	@SuppressWarnings("unchecked")
 	public EssenceApplianceStatus applyEssence(GModality gm, EssenceStorage vial, EquipmentItem equipment) {
-		Map<String, EquipmentUpgrade> equips;
+		Map<String, IEquipmentUpgrade> equips;
 		Map<String, AbilityGeneric> abil;
 		String essenceName;
-		FactoryObjGModalityBased<EquipmentUpgrade> factoryEquipUpgrade;
+		FactoryObjGModalityBased<IEquipmentUpgrade> factoryEquipUpgrade;
 		FactoryObjGModalityBased<AbilityGeneric> factoryAbility;
 		if (gm == null || vial == null || equipment == null)
 			return EssenceApplianceStatus.NullParameter;
@@ -96,7 +96,7 @@ public abstract class EssenceExtractor {
 		essenceName = vial.getEssenceName();
 		abil = equipment.getAbilities();
 		equips = equipment.getUpgradesMap();
-		factoryEquipUpgrade = (FactoryObjGModalityBased<EquipmentUpgrade>) gm.getGameObjectsProvider()
+		factoryEquipUpgrade = (FactoryObjGModalityBased<IEquipmentUpgrade>) gm.getGameObjectsProvider()
 				.getProvider(getEquipmentUpgradeObjProviderName(gm)).getObjByName(essenceName);
 		factoryAbility = (FactoryObjGModalityBased<AbilityGeneric>) gm.getGameObjectsProvider()
 				.getProvider(getAbilityObjProviderName(gm)).getObjByName(essenceName);

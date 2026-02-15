@@ -1,6 +1,6 @@
 package games.theRisingAngel.inventory;
 
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 

@@ -2,7 +2,7 @@ package games.generic.controlModel.subimpl;
 
 import java.awt.Point;
 
-import games.generic.controlModel.misc.Currency;
+import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.objects.InteractableObject;
 import geometry.ObjectLocated;
 import tools.ObjectNamedID;

@@ -1,11 +1,11 @@
 package games.old;
 
 <<<<<<< HEAD
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AttributeModification;
 import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityAttributesModsVanishingOverTime;
-import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
 <<<<<<<< HEAD:JavaBackup/AllProjects/src/games/old/AShiedlingButWeakining_OLD2.java
 import games.theRisingAngel.abilities.AShieldingButWeakining;

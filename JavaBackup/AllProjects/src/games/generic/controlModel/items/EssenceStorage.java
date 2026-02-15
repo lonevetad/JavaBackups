@@ -6,7 +6,7 @@ import games.generic.controlModel.subimpl.GModalityRPG;
 import tools.ObjectNamedID;
 
 /**
- * Storage for an "essence" of something, like {@link EquipmentUpgrade} or an
+ * Storage for an "essence" of something, like {@link IEquipmentUpgrade} or an
  * {@link AbilityGeneric}.<br>
  * (Actually, it just store its key, that is its name, since both are instances
  * of {@link ObjectNamedID}.)
@@ -26,7 +26,7 @@ public class EssenceStorage extends InventoryItem {
 
 	/**
 	 * Returns <code>true</code> if the extracted essence, if any, refers to an
-	 * {@link EquipmentUpgrade} or an {@link AbilityGeneric}.
+	 * {@link IEquipmentUpgrade} or an {@link AbilityGeneric}.
 	 */
 	public boolean isEquipmentUpgrade() { return isEquipmentUpgrade; }
 
@@ -46,7 +46,7 @@ public class EssenceStorage extends InventoryItem {
 
 	//
 
-	public boolean storeEssence(EquipmentUpgrade essence) {
+	public boolean storeEssence(IEquipmentUpgrade essence) {
 		if (essence == null || this.essenceName != null)
 			return false;
 		this.essenceName = essence.getName();

@@ -11,11 +11,11 @@ import java.util.Objects;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesProvider;
@@ -45,7 +45,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
 	// end COMBINATORIC GENERATION SETUP
 
-	public LoaderEquipUpgradesTRAn(GameObjectsProvider<EquipmentUpgrade> objProvider) { super(objProvider); }
+	public LoaderEquipUpgradesTRAn(GameObjectsProvider<IEquipmentUpgrade> objProvider) { super(objProvider); }
 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {
@@ -120,7 +120,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 		return LoadStatusResult.Success;
 	}
 
-	public static class EquipUpgradeTribeFactoryTRAn implements FactoryObjGModalityBased<EquipmentUpgrade> {
+	public static class EquipUpgradeTribeFactoryTRAn implements FactoryObjGModalityBased<IEquipmentUpgrade> {
 		protected final Tribe tribe;
 		protected final RaritiesTRAn rarity;
 		protected final ReligionAlignment religionAlignment;
@@ -137,12 +137,12 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 		public RaritiesTRAn getRarity() { return rarity; }
 
 		@Override
-		public EquipmentUpgrade newInstance(GModality gm) {
+		public IEquipmentUpgrade newInstance(GModality gm) {
 			return tribe.newEquipmentUpgradeForRarity(rarity, (GModalityRPG) gm, religionAlignment);
 		}
 	}
 
-	public static List<String> factoryToLinesString(GModality gm, FactoryObjGModalityBased<EquipmentUpgrade> factory) {
+	public static List<String> factoryToLinesString(GModality gm, FactoryObjGModalityBased<IEquipmentUpgrade> factory) {
 		int rarity, price;
 		final List<String> l;
 		String name, description;
@@ -157,7 +157,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			price = fe.bonusPriceSell[0];
 			attrMods = fe.attrMods;
 		} else {
-			EquipmentUpgrade eu;
+			IEquipmentUpgrade eu;
 			CurrencySet curr;
 			eu = factory.newInstance(gm);
 			name = eu.getName();
@@ -193,7 +193,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 //		FactoryEquipUpgrade fe;
 		LoaderEquipUpgradesTRAn loader;
 		EquipmentUpgradesProvider equipUpgradeProvider;
-		Map<String, FactoryObjGModalityBased<EquipmentUpgrade>> allObjectFactories;
+		Map<String, FactoryObjGModalityBased<IEquipmentUpgrade>> allObjectFactories;
 		final CreatureAttributes caTotal, caEachRarity[];
 		final RaritiesTRAn[] RARITIES;
 		final LoggerMessages log;
@@ -260,7 +260,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 				price = fe.bonusPriceSell[0];
 				attrMods = fe.attrMods;
 			} else {
-				EquipmentUpgrade eu;
+				IEquipmentUpgrade eu;
 				CurrencySet curr;
 				eu = factoryEquip.newInstance(gm);
 				rarity = eu.getRarityIndex();

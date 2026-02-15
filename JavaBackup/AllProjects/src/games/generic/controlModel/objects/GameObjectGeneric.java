@@ -23,7 +23,9 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	 */
 	public void onAddedToGame(GModality gm);
 
-	public default void addMeToGame(GModality gm) { gm.addGameObject(this); }
+	public default void addMeToGame(GModality gm) {
+		gm.addGameObject(this);
+	}
 
 	/**
 	 * Opposite of {@link #onAddedToGame(GModality)}, performing clean-up actions
@@ -40,5 +42,15 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	 * already called by {@link GModality#removeGameObject(GameObjectGeneric)}.</li>
 	 * </ul>
 	 */
-	public default void removeMeToGame(GModality gm) { gm.removeGameObject(this); }
+	public default void removeMeToGame(GModality gm) {
+		gm.removeGameObject(this);
+	}
+
+	//
+
+	/**
+	 * Function to be called on creation time, upon instantiation, to define its
+	 * internal fields, default values, etc.
+	 */
+	public void onCreate(GModality gm);
 }

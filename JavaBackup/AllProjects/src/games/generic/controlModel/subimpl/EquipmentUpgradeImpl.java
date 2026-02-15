@@ -4,15 +4,15 @@ import java.util.Comparator;
 import java.util.SortedSet;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeModification;
-import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import tools.ClosestMatch;
 import tools.Comparators;
 
-public class EquipmentUpgradeImpl implements EquipmentUpgrade {
+public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 
 	public EquipmentUpgradeImpl(int rarityIndex, String name) {
 		super();

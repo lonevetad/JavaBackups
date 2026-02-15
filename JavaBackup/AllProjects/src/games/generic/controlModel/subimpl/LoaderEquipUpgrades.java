@@ -1,12 +1,12 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.loaders.LoaderGameObjects;
 import games.generic.controlModel.misc.GameObjectsProvider;
 
-public abstract class LoaderEquipUpgrades extends LoaderGameObjects<EquipmentUpgrade> {
+public abstract class LoaderEquipUpgrades extends LoaderGameObjects<IEquipmentUpgrade> {
 
-	public LoaderEquipUpgrades(GameObjectsProvider<EquipmentUpgrade> objProvider) {
+	public LoaderEquipUpgrades(GameObjectsProvider<IEquipmentUpgrade> objProvider) {
 		super(objProvider);
 	}
 }

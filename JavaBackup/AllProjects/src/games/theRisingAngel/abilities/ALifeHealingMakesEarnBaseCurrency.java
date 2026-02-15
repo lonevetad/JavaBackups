@@ -5,11 +5,11 @@ import java.util.List;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.AbilityBaseImpl;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.CurrencyHolder;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.objects.LivingObject;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.enums.RechargeableResourcesTRAn;

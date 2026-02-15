@@ -1,7 +1,7 @@
 package games.generic.controlModel.subimpl;
 
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 

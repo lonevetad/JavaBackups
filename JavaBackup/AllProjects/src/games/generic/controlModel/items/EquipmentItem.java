@@ -12,10 +12,11 @@ import dataStructures.MapTreeAVL;
 import dataStructures.mtAvl.MapTreeAVLLightweight.TreeAVLDelegator;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
 import games.generic.controlModel.holders.AbilitiesHolder;
 import games.generic.controlModel.holders.AttributesHolder;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
-import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.AssignableObject;
 import games.generic.controlModel.objects.InteractingObj;
@@ -46,8 +47,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	protected final List<AttributeModification> baseAttributeModifiers;
 	protected MapTreeAVL<String, AbilityGeneric> backMapAbilities;
 	protected Set<AbilityGeneric> abilities;
-	protected MapTreeAVL<String, EquipmentUpgrade> backMapEquipUpgrades;
-	protected Set<EquipmentUpgrade> upgrades;
+	protected MapTreeAVL<String, IEquipmentUpgrade> backMapEquipUpgrades; //
+	protected Set<IEquipmentUpgrade> upgrades;
+	protected MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> maxUpgradesPerCategory;
 
 	public EquipmentItem(GModalityRPG gmrpg, EquipmentType equipmentType, String name) {
 		this(gmrpg, equipmentType, name, null);
@@ -68,16 +70,22 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	//
 
-	public EquipmentType getEquipmentType() { return this.equipmentType; }
+	public EquipmentType getEquipmentType() {
+		return this.equipmentType;
+	}
 
-	public EquipmentSet getBelongingEquipmentSet() { return this.belongingEquipmentSet; }
+	public EquipmentSet getBelongingEquipmentSet() {
+		return this.belongingEquipmentSet;
+	}
 
 	/**
 	 * Immutable {@link List} of {@link AttributeModification} related to this
 	 * equipment, that defines it. It's embedded in its definition and should not be
-	 * modified. Use {@link #addUpgrade(EquipmentUpgrade)} instead.
+	 * modified. Use {@link #addUpgrade(IEquipmentUpgrade)} instead.
 	 */
-	public List<AttributeModification> getBaseAttributeModifiers() { return this.baseAttributeModifiers; }
+	public List<AttributeModification> getBaseAttributeModifiers() {
+		return this.baseAttributeModifiers;
+	}
 
 	/** Beware: could return null if this item has no abilities. */
 	public Set<AbilityGeneric> getAbilitiesSet() {
@@ -91,14 +99,29 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		return this.backMapAbilities;
 	}
 
-	public Map<String, EquipmentUpgrade> getUpgradesMap() { return backMapEquipUpgrades; }
+	public Map<String, IEquipmentUpgrade> getUpgradesMap() {
+		return backMapEquipUpgrades;
+	}
 
-	public Set<EquipmentUpgrade> getUpgrades() { return this.upgrades; }
+	public Set<IEquipmentUpgrade> getUpgrades() {
+		return this.upgrades;
+	}
+
+	public MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> getMaxUpgradesPerCategory() {
+		this.checkMaxUpgradesPerCategory();
+		return this.maxUpgradesPerCategory;
+	}
 
 	//
 
 	public void setBelongingEquipmentSet(EquipmentSet belongingEquipmentSet) {
 		this.belongingEquipmentSet = belongingEquipmentSet;
+	}
+
+	public void setMaxUpgradesPerCategory(
+			MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> maxUpgradesPerCategory) {
+		this.maxUpgradesPerCategory = maxUpgradesPerCategory;
+		this.checkMaxUpgradesPerCategory();
 	}
 
 	//
@@ -111,23 +134,50 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	 */
 	protected abstract void enrichEquipment(GModality gm, GameObjectsProvidersHolder providersHolder);
 
-	protected void onCreate(GModality gm) { enrichEquipment(gm, gm.getGameObjectsProvider()); }
+	@Override
+	public void onCreate(GModality gm) {
+		enrichEquipment(gm, gm.getGameObjectsProvider());
+	}
 
 	/** Just check the instances of sets and backmaps. */
 	protected void checkAbilitiesSet() {
-		if (this.abilities == null) {
-			this.backMapAbilities = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
-					MapTreeAVL.BehaviourOnKeyCollision.KeepPrevious, Comparators.STRING_COMPARATOR);
-			this.abilities = this.backMapAbilities.toSetValue(AbilityGeneric.NAME_EXTRACTOR);
+		if (this.abilities != null) {
+			return;
 		}
+		this.backMapAbilities = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
+				MapTreeAVL.BehaviourOnKeyCollision.KeepPrevious, Comparators.STRING_COMPARATOR);
+		this.abilities = this.backMapAbilities.toSetValue(AbilityGeneric.NAME_EXTRACTOR);
 	}
 
 	protected void checkUpgradeSet() {
-		if (this.upgrades == null) {
-			this.backMapEquipUpgrades = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
-					Comparators.STRING_COMPARATOR);
-			this.upgrades = this.backMapEquipUpgrades.toSetValue(EquipmentUpgrade.KEY_EXTRACTOR);
+		if (this.upgrades != null) {
+			return;
 		}
+		this.backMapEquipUpgrades = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
+				Comparators.STRING_COMPARATOR);
+		this.upgrades = this.backMapEquipUpgrades.toSetValue(IEquipmentUpgrade.KEY_EXTRACTOR);
+	}
+
+	protected void checkMaxUpgradesPerCategory() {
+		if (this.maxUpgradesPerCategory != null) {
+			return;
+		}
+		this.maxUpgradesPerCategory = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
+				IEquipmentUpgradeCategory.COMPARATOR_IEQUIPMENT_UPGRADE_CATEGORY);
+	}
+
+	public void addUpgradeCategoryMax(IEquipmentUpgradeCategory category, MaxUpgradesPerCategory maxUpgrades) {
+		this.checkMaxUpgradesPerCategory();
+		this.maxUpgradesPerCategory.put(category, maxUpgrades);
+	}
+
+	public boolean removeUpgradeCategoryMax(IEquipmentUpgradeCategory category) {
+		this.checkMaxUpgradesPerCategory();
+		if (!this.maxUpgradesPerCategory.containsKey(category)) {
+			return false;
+		}
+		this.maxUpgradesPerCategory.remove(category);
+		return true;
 	}
 
 	//
@@ -144,14 +194,17 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	}
 
 	@Override
-	public InteractingObj getOwner() { return getCreatureWearingEquipments(); }
+	public InteractingObj getOwner() {
+		return getCreatureWearingEquipments();
+	}
 
 	@Override
 	public void setOwner(ObjectWithID owner) {
 		EquipmentSet es;
 		es = this.getBelongingEquipmentSet();
-		if (es == null || (!(owner instanceof BaseCreatureRPG)))
+		if (es == null || (!(owner instanceof BaseCreatureRPG))) {
 			return;
+		}
 		es.setCreatureWearingEquipments((BaseCreatureRPG) owner);
 	}
 
@@ -163,7 +216,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	 */
 
 	@Override
-	public GModality getGameModality() { return getCreatureWearingEquipments().getGameModality(); }
+	public GModality getGameModality() {
+		return getCreatureWearingEquipments().getGameModality();
+	}
 
 	@Override
 	public EquipmentItem addAbility(AbilityGeneric am) {
@@ -189,7 +244,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			checkAbilitiesSet();
 			if (this.abilities.remove(am)) {
 //				am.setEquipItem(null);
-				if (getCreatureWearingEquipments() != null) { am.onRemovingFromOwner(getGameModality()); }
+				if (getCreatureWearingEquipments() != null) {
+					am.onRemovingFromOwner(getGameModality());
+				}
 			}
 		}
 		return this;
@@ -215,7 +272,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		return this;
 	}
 
-	public EquipmentItem addUpgrade(EquipmentUpgrade up) {
+	public EquipmentItem addUpgrade(IEquipmentUpgrade up) {
 		final AttributesHolder ah;
 		final CreatureAttributes ca;
 		if (up != null) {
@@ -223,8 +280,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			this.upgrades.add(up);
 			up.setEquipmentAssigned(this);
 			// apply currency monus/malus
-			up.getPricesModifications()
-					.forEachCurrency((i, amount) -> { this.sellPrice.alterCurrencyAmount(i, amount); });
+			up.getPricesModifications().forEachCurrency((i, amount) -> {
+				this.sellPrice.alterCurrencyAmount(i, amount);
+			});
 			// apply modifications
 			ah = this.getCreatureWearingEquipments();
 			if (ah != null) {
@@ -235,15 +293,17 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		return this;
 	}
 
-	public EquipmentItem removeUpgrade(EquipmentUpgrade up) {
+	public EquipmentItem removeUpgrade(IEquipmentUpgrade up) {
 		final AttributesHolder ah;
 		final CreatureAttributes ca;
 		if (up != null) {
 			checkUpgradeSet();
-			if (this.upgrades.remove(up))
+			if (this.upgrades.remove(up)) {
 				up.setEquipmentAssigned(null);
-			up.getPricesModifications()
-					.forEachCurrency((i, amount) -> { this.sellPrice.alterCurrencyAmount(i, -amount); });
+			}
+			up.getPricesModifications().forEachCurrency((i, amount) -> {
+				this.sellPrice.alterCurrencyAmount(i, -amount);
+			});
 			// apply modifications
 			ah = this.getCreatureWearingEquipments();
 			if (ah != null) {
@@ -257,14 +317,16 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	@SuppressWarnings("unchecked")
 	public EquipmentItem removeUpgradeByName(String name) {
 		if (name != null) {
-			TreeAVLDelegator<String, EquipmentUpgrade> backMapDeleg;
-			MapTreeAVL<String, EquipmentUpgrade> backMap;
-			EquipmentUpgrade eu;
+			TreeAVLDelegator<String, IEquipmentUpgrade> backMapDeleg;
+			MapTreeAVL<String, IEquipmentUpgrade> backMap;
+			IEquipmentUpgrade eu;
 			checkAbilitiesSet();
-			backMapDeleg = (TreeAVLDelegator<String, EquipmentUpgrade>) this.upgrades;
+			backMapDeleg = (TreeAVLDelegator<String, IEquipmentUpgrade>) this.upgrades;
 			backMap = backMapDeleg.getBackTree();
 			eu = backMap.get(name);
-			if (eu != null) { removeUpgrade(eu); }
+			if (eu != null) {
+				removeUpgrade(eu);
+			}
 		}
 		return this;
 	}
@@ -276,14 +338,16 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		final AttributesHolder ah;
 		final CreatureAttributes ca;
 		List<AttributeModification> attmod;
-		Set<EquipmentUpgrade> upg;
+		Set<IEquipmentUpgrade> upg;
 		Consumer<AttributeModification> modifierApplier;
 		ah = this.getCreatureWearingEquipments(); // assumed to be true
 		ca = ah.getAttributes();
 		modifierApplier = eam -> ca.applyAttributeModifier(eam);
 		attmod = this.getBaseAttributeModifiers();
 		this.onAddingToOwner(gm);
-		if (attmod != null) { attmod.forEach(modifierApplier); }
+		if (attmod != null) {
+			attmod.forEach(modifierApplier);
+		}
 		upg = this.getUpgrades();
 		if (upg != null) {
 			upg.forEach(up -> {
@@ -300,7 +364,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		final AttributesHolder ah;
 		final CreatureAttributes ca;
 		List<AttributeModification> attmod;
-		Set<EquipmentUpgrade> upg;
+		Set<IEquipmentUpgrade> upg;
 		Consumer<AttributeModification> modifierRemover;
 
 		ah = this.getCreatureWearingEquipments();
@@ -311,7 +375,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 		gm.removeGameObject(this);
 		this.onRemovingFromOwner(gm);
-		if (attmod != null) { attmod.forEach(modifierRemover); }
+		if (attmod != null) {
+			attmod.forEach(modifierRemover);
+		}
 		upg = this.getUpgrades();
 		if (upg != null) {
 			upg.forEach(up -> {
@@ -350,7 +416,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		abl = this.getAbilitiesSet();
 		if (abl != null) {
 //			abl.forEach(ea -> ea.onUnEquipping(gm));
-			abl.forEach(ea -> { ea.onRemovingFromOwner(gm); });
+			abl.forEach(ea -> {
+				ea.onRemovingFromOwner(gm);
+			});
 		}
 	}
 
@@ -371,8 +439,9 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	protected String abilitiesToString() {
 		StringBuilder sb;
-		if (abilities == null)
+		if (abilities == null) {
 			return "null";
+		}
 		sb = new StringBuilder(16);
 		abilities.forEach(ea -> sb.append(ea));
 		return sb.toString();
@@ -380,10 +449,12 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	protected String upgradesToString() {
 		StringBuilder sb;
-		if (upgrades == null)
+		if (upgrades == null) {
 			return "null";
-		if (upgrades.isEmpty())
+		}
+		if (upgrades.isEmpty()) {
 			return "";
+		}
 		sb = new StringBuilder(16);
 		sb.append('\n');
 		upgrades.forEach(eu -> sb.append('\t').append(eu).append('\n'));

@@ -1,7 +1,7 @@
 package games.generic.controlModel.abilities.impl;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 
 /**
  * This class is designed to modify a single attribute (identified by a

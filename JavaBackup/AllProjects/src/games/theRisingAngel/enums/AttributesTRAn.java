@@ -3,7 +3,7 @@ package games.theRisingAngel.enums;
 import java.util.Map;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import tools.Comparators;
 
 /**

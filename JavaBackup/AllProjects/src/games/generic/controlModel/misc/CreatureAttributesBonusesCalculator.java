@@ -2,6 +2,7 @@ package games.generic.controlModel.misc;
 
 import java.util.Objects;
 
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 
 /**

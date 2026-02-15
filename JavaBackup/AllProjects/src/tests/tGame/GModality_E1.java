@@ -9,10 +9,10 @@ import games.generic.controlModel.CreatureAttributesBaseAndDerived;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModel;
 import games.generic.controlModel.GObjectsInSpaceManager;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
 import games.generic.controlModel.player.PlayerGeneric;
@@ -258,7 +258,7 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 			p.setAttributes(caa);
 			amApplier = am -> { caa.applyAttributeModifier(am); };
 			goph.getEquipUpgradesProvider().forEachFactory((euName, f) -> {
-				EquipmentUpgrade eu;
+				IEquipmentUpgrade eu;
 				eu = f.newInstance(this);
 				eu.getAttributeModifiers().forEach(amApplier);
 			});

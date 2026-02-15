@@ -45,7 +45,7 @@ import tools.Comparators;
  * <li>{@link AbilitiesProvider}</li>
  * <li>{@link CreatureSimple}</li>
  * <li>{@link CreaturesProvider}</li>
- * <li>{@link EquipmentUpgrade}</li>
+ * <li>{@link IEquipmentUpgrade}</li>
  * </ul>
  */
 public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvidersHolder {

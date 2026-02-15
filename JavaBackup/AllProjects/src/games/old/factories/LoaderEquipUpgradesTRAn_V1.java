@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.generic.controlModel.GController;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.misc.LoaderGeneric;
@@ -19,7 +19,7 @@ import games.theRisingAngel.misc.CreatureAttributesTRAn;
 
 public class LoaderEquipUpgradesTRAn_V1 extends LoaderEquipUpgrades {
 
-	public LoaderEquipUpgradesTRAn_V1(GameObjectsProvider<EquipmentUpgrade> objProvider) {
+	public LoaderEquipUpgradesTRAn_V1(GameObjectsProvider<IEquipmentUpgrade> objProvider) {
 		super(objProvider);
 		// TODO Auto-generated constructor stub
 	}

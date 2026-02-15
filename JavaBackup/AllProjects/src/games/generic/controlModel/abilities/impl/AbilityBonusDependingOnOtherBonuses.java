@@ -3,8 +3,8 @@ package games.generic.controlModel.abilities.impl;
 import java.util.Arrays;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
 import games.generic.controlModel.objects.creature.CreatureSimple;

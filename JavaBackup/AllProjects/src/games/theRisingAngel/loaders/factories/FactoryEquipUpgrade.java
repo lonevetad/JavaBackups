@@ -3,20 +3,20 @@ package games.theRisingAngel.loaders.factories;
 import java.util.Arrays;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeModification;
-import games.generic.controlModel.misc.Currency;
-import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.Currency;
+import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
 import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
 
 /**
- * A factory for {@link EquipmentUpgrade}.
+ * A factory for {@link IEquipmentUpgrade}.
  *
  * @author ottin
  *
  */
-public class FactoryEquipUpgrade implements FactoryObjGModalityBased<EquipmentUpgrade> {
+public class FactoryEquipUpgrade implements FactoryObjGModalityBased<IEquipmentUpgrade> {
 	public int rarity;
 	public int[] bonusPriceSell = null;
 	public String name, description = null;
@@ -25,8 +25,8 @@ public class FactoryEquipUpgrade implements FactoryObjGModalityBased<EquipmentUp
 	public FactoryEquipUpgrade() { super(); }
 
 	@Override
-	public EquipmentUpgrade newInstance(GModality gm) {
-		EquipmentUpgrade eu;
+	public IEquipmentUpgrade newInstance(GModality gm) {
+		IEquipmentUpgrade eu;
 		eu = new EquipmentUpgradeImpl(rarity, name);
 		if (description != null) { eu.setDescription(description); }
 		if (attrMods != null) {

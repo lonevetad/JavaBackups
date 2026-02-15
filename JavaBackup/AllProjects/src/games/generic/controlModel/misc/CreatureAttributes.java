@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.holders.AttributesHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EquipmentSet;

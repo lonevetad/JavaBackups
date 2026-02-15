@@ -1,6 +1,6 @@
 package games.theRisingAngel.enums;
 
-import games.generic.controlModel.misc.Currency;
+import games.generic.controlModel.currency.Currency;
 import tools.UniqueIDProvider;
 
 public enum CurrenciesTRAn implements Currency {

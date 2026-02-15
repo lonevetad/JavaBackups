@@ -13,6 +13,36 @@ import tools.ObjectWithID;
 @Deprecated
 public class TestGModel {
 
+	static class IDLongHolder implements ObjectWithID {
+
+		private static final long serialVersionUID = 24724120L;
+
+		protected Long id = null;
+
+		public IDLongHolder(Long idGiven) {
+			super();
+			this.id = idGiven;
+		}
+
+		public IDLongHolder(int idGiven) {
+			this(Long.valueOf(idGiven));
+		}
+
+		@Override
+		public boolean setID(Long newID) {
+			if (id != null) {
+				return false;
+			}
+			this.id = newID;
+			return true;
+		}
+
+		@Override
+		public Long getID() {
+			return this.id;
+		}
+	}
+
 	public static void main(String[] args) {
 		GModel gm;
 		GModelTimeBased gmt;
@@ -20,7 +50,9 @@ public class TestGModel {
 		printer = o -> System.out.println(o.getID());
 		gm = new GModel() {
 			@Override
-			public void onCreate() { System.out.println("CIAOOOO"); }
+			public void onCreate() {
+				System.out.println("CIAOOOO");
+			}
 
 		};
 		System.out.println("helooo " + gm.addObjHolder("TIME", new GOH()));
@@ -28,15 +60,17 @@ public class TestGModel {
 		gmt = new GModelTimeBased() {
 
 			@Override
-			public void onCreate() { System.out.println("REAL timed model"); }
+			public void onCreate() {
+				System.out.println("REAL timed model");
+			}
 
 		};
 		System.out.println("helooo 2.0 " + gmt.addObjHolder("MEMORYLESS", new GOH()));
 		gmt.addTimedObject(new TO(777));
 		gmt.addTimedObject(new TO(12));
-		gmt.add(() -> Long.valueOf(44));
-		gmt.add(() -> Long.valueOf(33));
-		gmt.add(() -> Long.valueOf(-55));
+		gmt.add(new IDLongHolder(44));
+		gmt.add(new IDLongHolder(33));
+		gmt.add(new IDLongHolder(-55));
 		System.out.println("fine 2, stampa di tutto");
 		gmt.forEach(printer);
 		System.out.println("ora stampa solo i timed by " + GModelTimeBased.TIMED_OBJECT_HOLDER_NAME);
@@ -51,22 +85,32 @@ public class TestGModel {
 		private static final long serialVersionUID = 1L;
 		Long id;
 
-		public TO(long id) { this.id = id; }
+		public TO(long id) {
+			this.id = id;
+		}
 
 		@Override
-		public Long getID() { return id; }
+		public Long getID() {
+			return id;
+		}
 
 		@Override
-		public void act(GModality modality, int timeUnits) { System.out.println("time " + timeUnits); }
+		public void act(GModality modality, int timeUnits) {
+			System.out.println("time " + timeUnits);
+		}
 
 		@Override
-		public void onAddedToGame(GModality gm) {}
+		public void onAddedToGame(GModality gm) {
+		}
 
 		@Override
-		public void onRemovedFromGame(GModality gm) {}
+		public void onRemovedFromGame(GModality gm) {
+		}
 
 		@Override
-		public String getName() { return null; }
+		public String getName() {
+			return null;
+		}
 
 		@Override
 		public GModality getGameModality() { // TODO Auto-generated method stub
@@ -75,6 +119,18 @@ public class TestGModel {
 
 		@Override
 		public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onCreate(GModality gm) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public boolean setID(Long newID) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 	}
 
@@ -86,22 +142,33 @@ public class TestGModel {
 		}
 
 		@Override
-		public boolean remove(ObjectWithID o) { return false; }
+		public boolean remove(ObjectWithID o) {
+			return false;
+		}
 
 		@Override
-		public boolean contains(ObjectWithID o) { return false; }
+		public boolean contains(ObjectWithID o) {
+			return false;
+		}
 
 		@Override
-		public void forEach(Consumer<ObjectWithID> action) {}
+		public void forEach(Consumer<ObjectWithID> action) {
+		}
 
 		@Override
-		public ObjectWithID get(Long id) { return null; }
+		public ObjectWithID get(Long id) {
+			return null;
+		}
 
 		@Override
-		public Set<ObjectWithID> getObjects() { return null; }
+		public Set<ObjectWithID> getObjects() {
+			return null;
+		}
 
 		@Override
-		public boolean removeAll() { return false; }
+		public boolean removeAll() {
+			return false;
+		}
 
 		@Override
 		public int objectsHeldCount() { // TODO Auto-generated method stub

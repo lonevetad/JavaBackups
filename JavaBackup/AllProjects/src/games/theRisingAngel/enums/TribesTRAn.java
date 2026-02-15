@@ -10,11 +10,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.EquipmentUpgrade;
-import games.generic.controlModel.misc.AttributeModification;
-import games.generic.controlModel.misc.Currency;
-import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.IndexableObject;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
@@ -132,8 +131,9 @@ public class TribesTRAn {
 	//
 
 	/**
-	 * All tribes in this game. Each of them venerates a base Attribute and hates another one. Being devoted to an Attribute
-	 * gives more bonus than the malus provided by the hating.
+	 * All tribes in this game. Each of them venerates a base Attribute and hates
+	 * another one. Being devoted to an Attribute gives more bonus than the malus
+	 * provided by the hating.
 	 */
 	public static enum Tribe implements IndexableObject {
 		Apebz, Asexiso, Buavoj, Bifod, Cobahir, Cugujab, Dokosok, Domonoleg, Drovovomir, Epewuv, Equaks, Fidnox,
@@ -150,11 +150,8 @@ public class TribesTRAn {
 			for (int praiseIndex = AttributesTRAn.FIRST_INDEX_ATTRIBUTE_UPGRADABLE; praiseIndex <= AttributesTRAn.LAST_INDEX_ATTRIBUTE_UPGRADABLE; praiseIndex++) {
 				for (int hateIndex = AttributesTRAn.FIRST_INDEX_ATTRIBUTE_UPGRADABLE; hateIndex <= AttributesTRAn.LAST_INDEX_ATTRIBUTE_UPGRADABLE; hateIndex++) {
 					if (praiseIndex != hateIndex) {
-						tribes[indexTribe].religion = new TribeReligion(
-								tribes[indexTribe],
-								AttributesTRAn.ALL_ATTRIBUTES[praiseIndex],
-								AttributesTRAn.ALL_ATTRIBUTES[hateIndex]
-						);
+						tribes[indexTribe].religion = new TribeReligion(tribes[indexTribe],
+								AttributesTRAn.ALL_ATTRIBUTES[praiseIndex], AttributesTRAn.ALL_ATTRIBUTES[hateIndex]);
 						indexTribe++;
 					}
 				}
@@ -168,18 +165,28 @@ public class TribesTRAn {
 		protected TribeReligion religion;
 
 		@Override
-		public int getIndex() { return this.ordinal(); }
+		public int getIndex() {
+			return this.ordinal();
+		}
 
 		@Override
-		public String getName() { return this.name(); }
+		public String getName() {
+			return this.name();
+		}
 
 		@Override
-		public Long getID() { return (long) this.ordinal(); }
+		public Long getID() {
+			return (long) this.ordinal();
+		}
 
-		public TribeReligion getReligion() { return this.religion; }
+		public TribeReligion getReligion() {
+			return this.religion;
+		}
 
 		@Override
-		public IndexToObjectBackmapping getFromIndexBackmapping() { return INDEX_TO_TRIBE_TRAn; }
+		public IndexToObjectBackmapping getFromIndexBackmapping() {
+			return INDEX_TO_TRIBE_TRAn;
+		}
 
 		public String stringify() {
 			StringBuilder sb;
@@ -195,14 +202,14 @@ public class TribesTRAn {
 
 		// GENERATORS
 
-		public EquipmentUpgrade newEquipmentUpgradeForRarity(RaritiesTRAn rar, GModalityRPG gmrpg) {
+		public IEquipmentUpgrade newEquipmentUpgradeForRarity(RaritiesTRAn rar, GModalityRPG gmrpg) {
 			return this.newEquipmentUpgradeForRarity(rar, gmrpg, ReligionAlignment.Canon);
 		}
 
-		public EquipmentUpgrade newEquipmentUpgradeForRarity(RaritiesTRAn rar, GModalityRPG gmrpg,
+		public IEquipmentUpgrade newEquipmentUpgradeForRarity(RaritiesTRAn rar, GModalityRPG gmrpg,
 				ReligionAlignment religAlign) {
 			int n, addedPrice;
-			EquipmentUpgrade eu;
+			IEquipmentUpgrade eu;
 			AttributesVariationTribeEquip variation;
 			CurrencySet cs;
 			Currency[] currencies;
@@ -223,7 +230,9 @@ public class TribesTRAn {
 			n = variation.addedPrices.length;
 			while (--n >= 0) { // for each type of currencies ...
 				addedPrice = variation.addedPrices[n];
-				if (relAlMod.isIsnegativePriceChanging()) { addedPrice = -addedPrice; }
+				if (relAlMod.isIsnegativePriceChanging()) {
+					addedPrice = -addedPrice;
+				}
 				cs.setCurrencyAmount(currencies[n], addedPrice);
 			}
 			eu.setPricesModifications(cs);
@@ -264,7 +273,9 @@ public class TribesTRAn {
 			if (variation == null) {
 				variation = MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE.get(RARITY_TRIBE_EQUIPMENT_PIECES);
 			}
-			if (ped == null) { ped = MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE.get(pieceType); }
+			if (ped == null) {
+				ped = MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE.get(pieceType);
+			}
 
 			rel = tribe.religion;
 			allAttributes = new AttributeModification[2 + ped.additionalAttributeModifiers.length];
@@ -286,7 +297,9 @@ public class TribesTRAn {
 			n = variation.addedPrices.length;
 			while (--n >= 0) {
 				price = variation.addedPrices[n];
-				if (!relAlMod.isIsnegativePriceChanging()) { price <<= 1; }
+				if (!relAlMod.isIsnegativePriceChanging()) {
+					price <<= 1;
+				}
 				cs.setCurrencyAmount(currencies[n], price);
 			}
 			equipPiece.setSellPrice(cs);
@@ -328,7 +341,9 @@ public class TribesTRAn {
 
 		public TribeWarStatus getWarsStatusWith(TribesTRAn.Tribe otherTribe) {
 			TribeReligion tr, or;
-			if (otherTribe == null || otherTribe == this) { return TribeWarStatus.Neutral; }
+			if (otherTribe == null || otherTribe == this) {
+				return TribeWarStatus.Neutral;
+			}
 			tr = this.religion;
 			or = otherTribe.religion;
 			if (isWorstEnemy(otherTribe) || tr.religionDevotedTo == or.religionHated
@@ -348,7 +363,9 @@ public class TribesTRAn {
 		}
 
 		@Override
-		public boolean setID(Long newID) { return false; }
+		public boolean setID(Long newID) {
+			return false;
+		}
 	}
 
 //
@@ -366,19 +383,29 @@ public class TribesTRAn {
 		}
 
 		@Override
-		public Long getID() { return (long) this.ordinal(); }
+		public Long getID() {
+			return (long) this.ordinal();
+		}
 
 		@Override
-		public String getName() { return this.name(); }
+		public String getName() {
+			return this.name();
+		}
 
 		@Override
-		public int getIndex() { return this.ordinal(); }
+		public int getIndex() {
+			return this.ordinal();
+		}
 
 		@Override
-		public IndexToObjectBackmapping getFromIndexBackmapping() { return INDEX_TO_TRIBE_WAR_STATUS; }
+		public IndexToObjectBackmapping getFromIndexBackmapping() {
+			return INDEX_TO_TRIBE_WAR_STATUS;
+		}
 
 		@Override
-		public boolean setID(Long ID) { return false; }
+		public boolean setID(Long ID) {
+			return false;
+		}
 	}
 
 	/**
@@ -405,7 +432,9 @@ public class TribesTRAn {
 		 */
 		Heretic;
 
-		private ReligionAlignment() { this(null); }
+		private ReligionAlignment() {
+			this(null);
+		}
 
 		private ReligionAlignment(String na) {
 			this.nameAlteration = (na != null) ? na : //
@@ -423,9 +452,13 @@ public class TribesTRAn {
 
 		public final boolean canProduceEquipUpgrade;
 
-		VariationLevels() { this(true); }
+		VariationLevels() {
+			this(true);
+		}
 
-		VariationLevels(boolean canProduceEquipUpgrade) { this.canProduceEquipUpgrade = canProduceEquipUpgrade; }
+		VariationLevels(boolean canProduceEquipUpgrade) {
+			this.canProduceEquipUpgrade = canProduceEquipUpgrade;
+		}
 	}
 
 	// TODO : TribeWarStatusTRAn enum
@@ -435,7 +468,9 @@ public class TribesTRAn {
 	// TODO : other stuffs
 
 	public static Tribe getTribeByReligion(TribeReligion religion) {
-		if (religion == null) { return null; }
+		if (religion == null) {
+			return null;
+		}
 		return MAP_RELIGION_TO_TRIBE.get(religion);
 	}
 
@@ -445,9 +480,13 @@ public class TribesTRAn {
 
 	public static String getNameEquipUgradeFor(Tribe tribe, RaritiesTRAn rarity, ReligionAlignment religAlign) {
 		AttributesVariationTribeEquip variation;
-		if (religAlign == null) { religAlign = ReligionAlignment.Canon; }
+		if (religAlign == null) {
+			religAlign = ReligionAlignment.Canon;
+		}
 		variation = MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE.get(rarity);
-		if (variation == null) { throw new IllegalArgumentException("Not accepted rarity: " + rarity); }
+		if (variation == null) {
+			throw new IllegalArgumentException("Not accepted rarity: " + rarity);
+		}
 		return "of " + religAlign.nameAlteration + tribe.getName() + " Tribe " + variation.getVariationName();
 	}
 
@@ -457,25 +496,38 @@ public class TribesTRAn {
 
 	public static String getNameEquipFor(Tribe tribe, EquipmentTypesTRAn equipType, ReligionAlignment religAlign) {
 		PieceOfEquipmentSetData ped;
-		if (religAlign == null) { religAlign = ReligionAlignment.Canon; }
+		if (religAlign == null) {
+			religAlign = ReligionAlignment.Canon;
+		}
 		ped = MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE.get(equipType);
-		if (ped == null) { throw new IllegalArgumentException("Not accepted equipment type: " + equipType); }
+		if (ped == null) {
+			throw new IllegalArgumentException("Not accepted equipment type: " + equipType);
+		}
 		return ped.namePrefix + " Cosplay of " + religAlign.nameAlteration + tribe.getName() + " Tribe";
 	}
 
 	//
 
 	/**
-	* Represent the set of bonuses and malus a religion (linked with a Tribe) gives to.
-	* */
+	 * Represent the set of bonuses and malus a religion (linked with a Tribe) gives
+	 * to.
+	 */
 	public static final class TribeReligion {
 		public static final Comparator<TribeReligion> COMPARATOR_TRIBE_RELIGION = (r1, r2) -> {
 			int res;
-			if (r1 == r2) { return 0; }
-			if (r1 == null) { return -1; }
-			if (r2 == null) { return 1; }
+			if (r1 == r2) {
+				return 0;
+			}
+			if (r1 == null) {
+				return -1;
+			}
+			if (r2 == null) {
+				return 1;
+			}
 			res = Comparators.LONG_COMPARATOR.compare(r1.religionDevotedTo.getID(), r2.religionDevotedTo.getID());
-			if (res != 0) { return res; }
+			if (res != 0) {
+				return res;
+			}
 			return Comparators.LONG_COMPARATOR.compare(r1.religionHated.getID(), r2.religionHated.getID());
 		};
 
@@ -495,22 +547,31 @@ public class TribesTRAn {
 
 		//
 
-		public Tribe getTribeVeneratingIt() { return tribeVeneratingIt; }
+		public Tribe getTribeVeneratingIt() {
+			return tribeVeneratingIt;
+		}
 
-		public AttributesTRAn getReligionDevotedTo() { return religionDevotedTo; }
+		public AttributesTRAn getReligionDevotedTo() {
+			return religionDevotedTo;
+		}
 
-		public AttributesTRAn getReligionHated() { return religionHated; }
+		public AttributesTRAn getReligionHated() {
+			return religionHated;
+		}
 
 		@Override
 		public String toString() {
-			return "TribeReligion [tribeVeneratingIt=" + tribeVeneratingIt.getName() + ", religionDevotedTo=" + religionDevotedTo + ", religionHated=" + religionHated + "]";
+			return "TribeReligion [tribeVeneratingIt=" + tribeVeneratingIt.getName() + ", religionDevotedTo="
+					+ religionDevotedTo + ", religionHated=" + religionHated + "]";
 		}
 	}
 
 	public static class TribeReligionAlignmentModification {
 		public TribeReligionAlignmentModification(AttributesVariationTribeEquip variation,
 				ReligionAlignment religAlign) {
-			if (religAlign == null) { religAlign = ReligionAlignment.Canon; }
+			if (religAlign == null) {
+				religAlign = ReligionAlignment.Canon;
+			}
 			switch (religAlign) {
 			case Canon: {
 				isnegativePriceChanging = false;
@@ -519,19 +580,18 @@ public class TribesTRAn {
 				break;
 			}
 			case Fanatic: {
-				isnegativePriceChanging = false;
+				// OLD: false
+				isnegativePriceChanging = true;
 				/*
-				 OLD swap both bonus/malus and signs
-				bonus = -variation.malus;
-				malus = -variation.bonus;
-				*/
-				bonus = variation.bonus << 1;
-				malus = variation.malus * 2 ;
-				break;
+				 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
+				 * -variation.bonus;
 				 */
+				bonus = variation.bonus << 1;
+				malus = variation.malus * 2;
+				break;
 			}
 			case Heretic: {
-				// OLD: isnegativePriceChanging = true;
+				isnegativePriceChanging = true;
 				// turns positive
 				malus = -variation.malus;
 				/*
@@ -549,11 +609,17 @@ public class TribesTRAn {
 		final boolean isnegativePriceChanging;
 		final int bonus, malus;
 
-		public boolean isIsnegativePriceChanging() { return isnegativePriceChanging; }
+		public boolean isIsnegativePriceChanging() {
+			return isnegativePriceChanging;
+		}
 
-		public int getBonus() { return bonus; }
+		public int getBonus() {
+			return bonus;
+		}
 
-		public int getMalus() { return malus; }
+		public int getMalus() {
+			return malus;
+		}
 
 	}
 
@@ -574,15 +640,25 @@ public class TribesTRAn {
 		protected String variationName;
 
 		//
-		public String getVariationName() { return variationName; }
+		public String getVariationName() {
+			return variationName;
+		}
 
-		public int getBonus() { return bonus; }
+		public int getBonus() {
+			return bonus;
+		}
 
-		public int getMalus() { return malus; }
+		public int getMalus() {
+			return malus;
+		}
 
-		public int[] getAddedPrices() { return addedPrices; }
+		public int[] getAddedPrices() {
+			return addedPrices;
+		}
 
-		public boolean isCanBeEquipUpgrade() { return canBeEquipUpgrade; }
+		public boolean isCanBeEquipUpgrade() {
+			return canBeEquipUpgrade;
+		}
 		//
 //		public void setVariationName(String variationName) { this.variationName = variationName; }
 //		public void setBonus(int bonus) { this.bonus = bonus; }
@@ -615,13 +691,21 @@ public class TribesTRAn {
 		protected AttributeModification[] additionalAttributeModifiers;
 
 		//
-		public String getNamePrefix() { return namePrefix; }
+		public String getNamePrefix() {
+			return namePrefix;
+		}
 
-		public EquipmentTypesTRAn getEquipType() { return equipType; }
+		public EquipmentTypesTRAn getEquipType() {
+			return equipType;
+		}
 
-		public Dimension getDimensionInventory() { return dimensionInventory; }
+		public Dimension getDimensionInventory() {
+			return dimensionInventory;
+		}
 
-		public AttributeModification[] getAdditionalAttributeModifiers() { return additionalAttributeModifiers; }
+		public AttributeModification[] getAdditionalAttributeModifiers() {
+			return additionalAttributeModifiers;
+		}
 		//
 		// public void setNamePrefix(String namePrefix) { this.namePrefix = namePrefix;
 		// }

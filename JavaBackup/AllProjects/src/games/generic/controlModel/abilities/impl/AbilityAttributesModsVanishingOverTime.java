@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 

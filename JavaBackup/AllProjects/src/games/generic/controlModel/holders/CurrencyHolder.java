@@ -1,6 +1,6 @@
 package games.generic.controlModel.holders;
 
-import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.currency.CurrencySet;
 
 public interface CurrencyHolder {
 	public CurrencySet getCurrencies();

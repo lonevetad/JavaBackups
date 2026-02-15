@@ -5,13 +5,13 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import games.generic.GameOptions;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
 import games.generic.controlModel.holders.GModalityHolder;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
 import games.generic.controlModel.loaders.LoaderGeneric;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.GThread;
 import games.generic.controlModel.objects.GameObjectGeneric;
 import games.generic.controlModel.player.PlayerGeneric;

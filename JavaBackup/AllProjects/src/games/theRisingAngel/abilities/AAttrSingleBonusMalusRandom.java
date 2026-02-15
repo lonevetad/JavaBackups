@@ -4,7 +4,7 @@ import java.util.Random;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.AbilAttributesBonusMalusChanging;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.theRisingAngel.enums.AttributesTRAn;
 

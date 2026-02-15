@@ -27,7 +27,7 @@
 		"price": [
 			4
 		],
-		"category":  "Misc",
+		"category": "Misc",
 		"attributeModifiers": {
 			"Strength": 2
 		}
@@ -7047,6 +7047,34 @@
 			"Intelligence": 1,
 			"Wisdom": 1,
 			"Faith": 1
+		}
+	},
+	{
+		"name": "of the Raven",
+		"rarity": 2,
+		"price": [
+			38
+		],
+		"category": "Incarnation",
+		"attributeModifiers": {
+			"Intelligence": 7,
+			"ShieldMax": 20,
+			"ShieldRegen": 1,
+			"MagicalDamageBonus": 5,
+			"MagicalDamageMultiplierPercentageBonus": 10
+		}
+	},
+	{
+		"name": "with Light Shielding",
+		"rarity": 3,
+		"price": [
+			70
+		],
+		"category": "Incantation",
+		"attributeModifiers": {
+			"ShieldMax": 150,
+			"ShieldRegen": 12,
+			"Faith": 5
 		}
 	}
 ]

@@ -2,7 +2,7 @@ package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.IndexableObject;
 import games.generic.controlModel.objects.creature.CreatureSimple;

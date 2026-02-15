@@ -1,8 +1,8 @@
 package games.generic.controlModel.objects;
 
+import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.holders.InventoryHolder;
 import games.generic.controlModel.items.InventoryItem;
-import games.generic.controlModel.misc.Currency;
 import games.generic.controlModel.player.PlayerGeneric;
 import tools.ObjectWithID;
 

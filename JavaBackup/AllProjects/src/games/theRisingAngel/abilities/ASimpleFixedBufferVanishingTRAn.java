@@ -2,7 +2,7 @@ package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.ASimpleFixedBufferVanishing;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
 
 public class ASimpleFixedBufferVanishingTRAn extends ASimpleFixedBufferVanishing {

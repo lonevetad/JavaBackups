@@ -1,9 +1,9 @@
 package games.generic.controlModel.providers;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 
-public class EquipmentUpgradesProvider extends GObjProviderRarityPartitioning<EquipmentUpgrade> {
+public class EquipmentUpgradesProvider extends GObjProviderRarityPartitioning<IEquipmentUpgrade> {
 	public static final String NAME = "EqUpP";
 
 	public EquipmentUpgradesProvider() {
@@ -11,7 +11,7 @@ public class EquipmentUpgradesProvider extends GObjProviderRarityPartitioning<Eq
 	}
 
 	/** Should be preferred over {@link #getObjIdentifiedByID(Integer)}. */
-	public EquipmentUpgrade getAbilityByName(GModality gm, String name) {
+	public IEquipmentUpgrade getAbilityByName(GModality gm, String name) {
 		if (name == null)
 			return null;
 //		return getObjByName(name).newInstance(gm);

@@ -1,8 +1,8 @@
 package games.generic.controlModel.subimpl;
 
+import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.event.EventDestructionObj;
-import games.generic.controlModel.misc.Currency;
 import games.generic.controlModel.objects.DestructibleObject;
 
 public interface GEventInterfaceRPG extends GEventInterface {

@@ -42,14 +42,14 @@ import javax.swing.event.ListSelectionListener;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GController;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.EquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.loaders.LoaderGeneric.LoadStatusResult;
 import games.generic.controlModel.loaders.LoaderManager.LoadingObserver;
-import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
 import games.generic.controlModel.misc.GThread.GTRunnable;
 import games.generic.controlModel.player.PlayerGeneric;
@@ -117,7 +117,7 @@ public class GView_E1 extends GameView {
 		goph = (GameObjectsProvidersHolderTRAn) gc.getGameObjectsProvidersHolder();
 
 		this.inspectors = new InspectorElements[] { //
-				new InspectorElements<FactoryObjGModalityBased<EquipmentUpgrade>>("Equipment Upgrades", //
+				new InspectorElements<FactoryObjGModalityBased<IEquipmentUpgrade>>("Equipment Upgrades", //
 						elemCons -> {
 							System.out.println("GView_E1 - running inspector - equip upgrades - "
 									+ goph.getEquipUpgradesProvider().getObjectsFactoriesCount() + " elements");

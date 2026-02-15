@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.gObj.CreatureSimple;
@@ -11,7 +12,6 @@ import games.generic.controlModel.gObj.creature.BaseCreatureRPG;
 import games.generic.controlModel.inventoryAbil.AttributeModification;
 import games.generic.controlModel.inventoryAbil.EquipmentItem;
 import games.generic.controlModel.inventoryAbil.abilitiesImpl.AbilityModifyingAttributesRealTime;
-import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
@@ -146,7 +146,7 @@ public class AShiedlingButWeakining_OLD extends AbilityModifyingAttributesRealTi
 				}
 				this.setAccumulatedTimeElapsed(0);
 				this.isAbilityActive = true;
-				System.out.println("çççççççç a shielding weaking, now regen: " + this.attributesToModify[0].getValue());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ a shielding weaking, now regen: " + this.attributesToModify[0].getValue());
 			}
 		}
 	}

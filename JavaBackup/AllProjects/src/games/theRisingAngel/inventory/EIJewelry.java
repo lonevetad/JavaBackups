@@ -1,8 +1,6 @@
 package games.theRisingAngel.inventory;
 
-import games.generic.controlModel.GModality;
-import games.generic.controlModel.holders.GameObjectsProvidersHolder;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 
@@ -22,13 +20,10 @@ public class EIJewelry extends EquipItemTRAn {
 	}
 
 	@Override
-	protected void enrichEquipment(GModality gm, GameObjectsProvidersHolder providersHolder) {
-		// do nothing: already done in loading time
+	public void onDrop(GModalityRPG gmRPG) {
 	}
 
 	@Override
-	public void onDrop(GModalityRPG gmRPG) {}
-
-	@Override
-	public void onPickUp(GModalityRPG gmRPG) {}
+	public void onPickUp(GModalityRPG gmRPG) {
+	}
 }

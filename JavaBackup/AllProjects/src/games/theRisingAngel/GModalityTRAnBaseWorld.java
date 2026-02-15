@@ -5,9 +5,9 @@ import java.awt.Dimension;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GMap;
 import games.generic.controlModel.GameObjectsManager;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.items.InventoryItems;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.player.BasePlayerRPG;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
@@ -96,7 +96,7 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 		// and then? TODO
 	}
 
-	// TODO to do definire un metodo di dropping degli oggetti, con abilità e
+	// TODO to do definire un metodo di dropping degli oggetti, con abilitï¿½ e
 	// modificatori annessi
 
 //

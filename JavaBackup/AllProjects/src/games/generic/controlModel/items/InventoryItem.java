@@ -4,10 +4,10 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.GModalityHolder;
 import games.generic.controlModel.holders.InventoryHolder;
 import games.generic.controlModel.holders.RarityHolder;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import games.generic.controlModel.objects.AssignableObject;
 import games.generic.controlModel.objects.DroppableObj;

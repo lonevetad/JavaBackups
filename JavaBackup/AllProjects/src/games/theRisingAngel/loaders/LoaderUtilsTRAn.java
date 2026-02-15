@@ -9,9 +9,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.attributes.AttributesUpgrade;
 import games.generic.controlModel.loaders.LoaderGeneric;
-import games.generic.controlModel.misc.AttributeModification;
-import games.generic.controlModel.misc.AttributesUpgrade;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.loaders.LoaderUtilsTRAn.OLD_LOADERS_JSON.JSONLineReader;
 

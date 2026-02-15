@@ -1,10 +1,12 @@
-package games.generic.controlModel.misc;
+package games.generic.controlModel.attributes;
 
 import java.util.Comparator;
 import java.util.function.Function;
 
 import games.generic.controlModel.holders.AttributesHolder;
 import games.generic.controlModel.items.EquipmentItem;
+import games.generic.controlModel.misc.AmountNamed;
+import games.generic.controlModel.misc.CreatureAttributes;
 import tools.Comparators;
 import tools.ObjectNamedID;
 

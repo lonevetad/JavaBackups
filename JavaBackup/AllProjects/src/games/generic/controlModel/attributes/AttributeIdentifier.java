@@ -1,4 +1,6 @@
-package games.generic.controlModel.misc;
+package games.generic.controlModel.attributes;
+
+import games.generic.controlModel.misc.IndexableObject;
 
 /** Comfortable for defining set of attributes using enumerations. */
 public interface AttributeIdentifier extends IndexableObject {

@@ -1,9 +1,10 @@
-package games.generic.controlModel.misc;
+package games.generic.controlModel.attributes;
 
 import java.util.SortedSet;
 
 import dataStructures.minorUtils.SortedSetEnhancedDelegating;
 import games.generic.controlModel.ObjectNamed;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EssenceStorage;

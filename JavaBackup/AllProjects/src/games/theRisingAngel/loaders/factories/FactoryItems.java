@@ -4,9 +4,9 @@ import java.awt.Dimension;
 import java.util.Arrays;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.currency.Currency;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.items.InventoryItem;
-import games.generic.controlModel.misc.Currency;
-import games.generic.controlModel.misc.CurrencySet;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
 
 public class FactoryItems implements FactoryObjGModalityBased<InventoryItem> {

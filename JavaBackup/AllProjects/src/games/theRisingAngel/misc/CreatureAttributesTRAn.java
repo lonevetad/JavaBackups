@@ -1,6 +1,6 @@
 package games.theRisingAngel.misc;
 
-import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributesBonusesCalculator;
 import games.generic.controlModel.subimpl.CreatureAttributesBaseAndDerivedCaching;
 import games.theRisingAngel.enums.AttributesTRAn;

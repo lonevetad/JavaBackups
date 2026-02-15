@@ -4,12 +4,12 @@ import java.util.Set;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.damage.DamageTypeGeneric;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.events.event.EventDestructionObj;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
 import games.generic.controlModel.items.EquipmentSet;
-import games.generic.controlModel.misc.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 import games.generic.controlModel.rechargeable.resources.RechargableResource;

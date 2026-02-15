@@ -2,6 +2,7 @@ package games.theRisingAngel.events;
 
 import java.awt.Point;
 
+import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.events.GEventManager;
@@ -12,7 +13,6 @@ import games.generic.controlModel.events.event.EventMoneyChange;
 import games.generic.controlModel.events.event.EventMoviment;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
-import games.generic.controlModel.misc.Currency;
 import games.generic.controlModel.objects.DestructibleObject;
 import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.player.PlayerGeneric;

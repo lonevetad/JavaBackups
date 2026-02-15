@@ -1,6 +1,6 @@
 package games.theRisingAngel.misc;
 
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.theRisingAngel.PlayerTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;

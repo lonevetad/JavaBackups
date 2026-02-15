@@ -2,8 +2,8 @@ package games.generic.controlModel.abilities.impl;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 
 public class ASimpleFixedBufferVanishing extends AbilityAttributesModsVanishingOverTime {
 	private static final long serialVersionUID = 6560887921022805536L;

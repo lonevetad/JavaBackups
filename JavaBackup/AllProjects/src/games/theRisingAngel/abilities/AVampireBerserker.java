@@ -2,9 +2,9 @@ package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.ASimpleFixedBufferVanishing;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.events.event.EventDamage;
-import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.objects.LivingObject;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;

@@ -6,9 +6,9 @@ import java.util.List;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.misc.AttributeModification;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.misc.LoaderGeneric;

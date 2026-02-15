@@ -1,9 +1,9 @@
 package games.theRisingAngel.abilities;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.IGEvent;
-import games.generic.controlModel.misc.AttributeIdentifier;
-import games.generic.controlModel.misc.AttributeModification;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;

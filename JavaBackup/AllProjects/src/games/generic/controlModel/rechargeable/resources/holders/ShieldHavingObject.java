@@ -1,6 +1,6 @@
 package games.generic.controlModel.rechargeable.resources.holders;
 
-import games.generic.controlModel.misc.AttributeIdentifier;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import tools.ObjectNamedID;
 
 public interface ShieldHavingObject extends ObjectNamedID {

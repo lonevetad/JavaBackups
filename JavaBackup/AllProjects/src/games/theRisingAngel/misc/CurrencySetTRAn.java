@@ -1,8 +1,8 @@
 package games.theRisingAngel.misc;
 
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.misc.Currency;
-import games.generic.controlModel.misc.CurrencySet;
+import games.generic.controlModel.currency.Currency;
+import games.generic.controlModel.currency.CurrencySet;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
 import games.theRisingAngel.enums.CurrenciesTRAn;
 import games.theRisingAngel.events.GEventInterfaceTRAn;
