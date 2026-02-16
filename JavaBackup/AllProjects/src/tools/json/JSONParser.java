@@ -149,9 +149,10 @@ public class JSONParser {
 			source.previousCharAndStepBack();
 			sb = new StringBuilder(256);
 			sb.append("Wrong character '").append(currentChar).append("' at line ").append(indexLineColumn[0]);
-			sb.append(", column ").append(indexLineColumn[1]).append(", expected: --").append(c)
-					.append("--\n\tsurrounded  by (at max) " + maxDelta
-							+ " chars before and after (the extracted text starts from the beginning of line):\n");
+			sb.append(", column ").append(indexLineColumn[1])
+				.append(", expected: --").append(c)
+				.append("--\n\tsurrounded  by (at max) ").append(maxDelta)
+				.append( " chars before and after (the extracted text starts from the beginning of line):\n");
 
 			source.previousCharAndStepBack();
 			while (prevStepsPerformed < maxDelta && source.hasPreviousChars()) {
@@ -218,22 +219,22 @@ public class JSONParser {
 		// requires a second "/" or a "*"
 
 		c = source.currentCharAndMove();
-		if (c == '/') {
-			isSingleLine = true;
-		} else if (c == '*') {
-			isSingleLine = false;
-		} else {
-			source.previousCharAndStepBack();
-			source.previousCharAndStepBack();
-			return;
-		}
+            switch (c) {
+                case '/' -> isSingleLine = true;
+                case '*' -> isSingleLine = false;
+                default -> {
+                    source.previousCharAndStepBack();
+                    source.previousCharAndStepBack();
+                    return;
+                }
+            }
 		indexLineColumn[1] += 2;
 		// start jumping comment
 		stillInComment = true;
 		do {
 			c = source.currentCharAndMove();
 
-			if (c == '\n' || c == '\r' || c == 13) {
+			if (c == '\n' || c == '\r' || c == ((char)13)) {
 				indexLineColumn[0]++;
 				indexLineColumn[1] = 0;
 				stillInComment = !isSingleLine; // end?
@@ -260,42 +261,33 @@ public class JSONParser {
 		Character cc = null;
 		c = source.currentCharAndMove();
 		switch (c) {
-		case '\"': {
-			cc = '\"';
-			break;
+			case '\"' ->  {
+				cc = '\"';
+			}
+			case '\'' ->  {
+				cc = '\'';
+			}
+			case '\\' ->  {
+				cc = '\\';
+			}
+			case 't' ->  {
+				cc = '\t';
+			}
+			case 'n' ->  {
+				cc = '\n';
+			}
+			case 'r' ->  {
+				cc = '\r';
+			}
+			case 'b' ->  {
+				cc = '\b';
+			}
+			case '0' ->  {
+				cc = '\0';
+			}
+			default -> checkAndConsumeExpectedToken(source, indexLineColumn, '\"'); // will surely fire an exception
 		}
-		case '\'': {
-			cc = '\'';
-			break;
-		}
-		case '\\': {
-			cc = '\\';
-			break;
-		}
-		case 't': {
-			cc = '\t';
-			break;
-		}
-		case 'n': {
-			cc = '\n';
-			break;
-		}
-		case 'r': {
-			cc = '\r';
-			break;
-		}
-		case 'b': {
-			cc = '\b';
-			break;
-		}
-		case '0': {
-			cc = '\0';
-			break;
-		}
-		// TODO : add unicode, utf-8, utf-16, html ones, etc encodings
-		default:
-			checkAndConsumeExpectedToken(source, indexLineColumn, '\"'); // will surely fire an exception
-		}
+            // TODO : add unicode, utf-8, utf-16, html ones, etc encodings
 		return cc;
 	}
 
@@ -374,50 +366,52 @@ public class JSONParser {
 
 	protected static JSONValue parseBoolean(CharactersIterator source, int[] indexLineColumn) {
 		char c = source.currentCharAndMove();
-		if (c == 't' || c == 'T') {
-			c = source.currentCharAndMove();
-			if (c == 'r' || c == 'R') {
-				c = source.currentCharAndMove();
-				if (c == 'u' || c == 'U') {
-					c = source.currentCharAndMove();
-					if (c == 'e' || c == 'E') {
-						indexLineColumn[1] += 4;
-						return new JSONBoolean(true);
-					} else {
-						source.previousCharAndStepBack();
-					}
-				} else {
-					source.previousCharAndStepBack();
-				}
-			} else {
-				source.previousCharAndStepBack();
-			}
-		} else if (c == 'f' || c == 'F') {
-			c = source.currentCharAndMove();
-			if (c == 'a' || c == 'A') {
-				c = source.currentCharAndMove();
-				if (c == 'l' || c == 'L') {
-					c = source.currentCharAndMove();
-					if (c == 's' || c == 'S') {
-						c = source.currentCharAndMove();
-						if (c == 'e' || c == 'E') {
-							indexLineColumn[1] += 5;
-							return new JSONBoolean(false);
-						} else {
-							source.previousCharAndStepBack();
-						}
-					} else {
-						source.previousCharAndStepBack();
-					}
-				} else {
-					source.previousCharAndStepBack();
-				}
-			} else {
-				source.previousCharAndStepBack();
-			}
-		} else {
-			source.previousCharAndStepBack();
-		}
+            switch (c) {
+                case 't', 'T' -> {
+                    c = source.currentCharAndMove();
+                    if (c == 'r' || c == 'R') {
+                        c = source.currentCharAndMove();
+                        if (c == 'u' || c == 'U') {
+                            c = source.currentCharAndMove();
+                            if (c == 'e' || c == 'E') {
+                                indexLineColumn[1] += 4;
+                                return new JSONBoolean(true);
+                            } else {
+                                source.previousCharAndStepBack();
+                            }
+                        } else {
+                            source.previousCharAndStepBack();
+                        }
+                    } else {
+                        source.previousCharAndStepBack();
+                    }
+                }
+                case 'f', 'F' -> {
+                    c = source.currentCharAndMove();
+                    if (c == 'a' || c == 'A') {
+                        c = source.currentCharAndMove();
+                        if (c == 'l' || c == 'L') {
+                            c = source.currentCharAndMove();
+                            if (c == 's' || c == 'S') {
+                                c = source.currentCharAndMove();
+                                if (c == 'e' || c == 'E') {
+                                    indexLineColumn[1] += 5;
+                                    return new JSONBoolean(false);
+                                } else {
+                                    source.previousCharAndStepBack();
+                                }
+                            } else {
+                                source.previousCharAndStepBack();
+                            }
+                        } else {
+                            source.previousCharAndStepBack();
+                        }
+                    } else {
+                        source.previousCharAndStepBack();
+                    }
+                }
+                default -> source.previousCharAndStepBack();
+            }
 		return null;
 	}
 

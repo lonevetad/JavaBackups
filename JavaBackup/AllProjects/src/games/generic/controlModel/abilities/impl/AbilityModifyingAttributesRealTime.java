@@ -29,7 +29,6 @@ public abstract class AbilityModifyingAttributesRealTime extends AbilityBaseWith
 	}
 
 	protected long accumulatedTimeElapsedForUpdating;
-	protected final GModality gameModality;
 	/** Attributes this ability modifies. */
 	protected AttributeModification[] attributesToModify;
 

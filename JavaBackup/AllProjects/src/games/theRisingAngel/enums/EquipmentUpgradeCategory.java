@@ -14,12 +14,14 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
     Refining(new MaxUpgradesPerCategory(new RangedAmountInt(4, 10))), //
     Coloring(new MaxUpgradesPerCategory(new RangedAmountInt(2, 4))), //
     Rune(new MaxUpgradesPerCategory(new RangedAmountInt(5, 10))), //
-    Incantation(new MaxUpgradesPerCategory(new RangedAmountInt(7, 20))), //
+    Incantation(new MaxUpgradesPerCategory(new RangedAmountInt(7, 25))), // almost everything, even "of Traitors"
     Blessings(new MaxUpgradesPerCategory(new RangedAmountInt(2, 6))), //
-    Incarnation(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), // ,
-    Focusing(new MaxUpgradesPerCategory(new RangedAmountInt(5, 10))), // (es: "of Strength")
-    CharacterClass(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), //
-    CharacterRace(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), //
+    Incarnation(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), // devine being, spirit, soul, essence, ...
+    Elemental(new MaxUpgradesPerCategory(new RangedAmountInt(3, 15))), // (es: "Fire", "Water", "Air", "Earth", "Fresh Air", "Cold Air", "Lightning", "Nature", "Darkness", "Light", "Chaos", "Order", "Time", "Space", "Void", ...)
+    Focusing(new MaxUpgradesPerCategory(new RangedAmountInt(5, 20))), // (es: "of Strength", ONLY Attributes)
+    WorkersRolesRelated(new MaxUpgradesPerCategory(new RangedAmountInt(5, 20))), // of King, Blacksmith, Enchanter, Alchemist, Jeweler, Merchant, Hunter, Farmer, Fisherman, Cook, Scholar, Scribe, Priest, Thief, Assassin, Warrior, Mage, Archer, ...
+    CharacterClass(new MaxUpgradesPerCategory(new RangedAmountInt(2, 7))), //
+    CharacterRace(new MaxUpgradesPerCategory(new RangedAmountInt(1, 5))), //
     Tribal(new MaxUpgradesPerCategory(new RangedAmountInt(2, 3))), //
     Misc(new MaxUpgradesPerCategory(new RangedAmountInt(5, 99))) // just ... anything undefined
     ;

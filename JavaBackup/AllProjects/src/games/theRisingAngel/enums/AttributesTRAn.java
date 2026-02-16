@@ -25,7 +25,7 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	Defense(0), Dexterity(0), Precision(0), //
 	Intelligence(0), Wisdom(0), Faith(0), //
 	//
-	Luck, //
+	Luck, // helps with drops, rarity, amount of modifiers and abilities and their rarities, and hitting, avoiding and critical probabilities
 	/**
 	 * It's a percentage value
 	 */
@@ -35,14 +35,14 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	ShieldMax(0), ShieldRegen, //
 	StaminaMax(0), StaminaRegen, //
 	/**
-	 * Expressed in milliseconds
+	 * Expressed in milliseconds, delay from starting the sheild recharging after being depleated.
 	 */
 	ShieldDelayReduction, //
 	//
 	PhysicalDamageBonus, PhysicalDamageMultiplierPercentageBonus, //
 	PhysicalDamageReduction, PhysicalDamageMultiplierPercentageReduction, //
 	PhysicalProbabilityPerThousandHit, PhysicalProbabilityPerThousandAvoid, //
-	VelocityAttackStrikePercentage(1), //  // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocitySpellCastPercentage)) ?
+	VelocityAttackStrikePercentage(1), //  // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocityAttackStrikePercentage)) ?
 	MagicalDamageBonus, MagicalDamageMultiplierPercentageBonus, //
 	MagicalDamageReduction, MagicalDamageMultiplierPercentageReduction, //
 	MagicalProbabilityPerThousandHit, MagicalProbabilityPerThousandAvoid, //
@@ -66,7 +66,6 @@ public enum AttributesTRAn implements AttributeIdentifier {
 		FIRST_INDEX_ATTRIBUTE_UPGRADABLE = Strength.getIndex();
 		LAST_INDEX_ATTRIBUTE_UPGRADABLE = Faith.getIndex();
 		ATTRIBUTES_UPGRADABLE_COUNT = 1 + (LAST_INDEX_ATTRIBUTE_UPGRADABLE - FIRST_INDEX_ATTRIBUTE_UPGRADABLE);
-		;
 		ALL_ATTRIBUTES = AttributesTRAn.values();
 		INDEX_TO_ATTRIBUTE_TRAn = (int i) -> AttributesTRAn.ALL_ATTRIBUTES[i];
 	}

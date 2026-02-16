@@ -68,4 +68,11 @@ public abstract class AbilityBaseImpl implements AbilityGeneric {
 		this.ID = newID;
 		return true;
 	}
+
+	//
+
+
+	@Override
+	public void onCreate(GModality gm) {
+	}
 }
