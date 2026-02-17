@@ -5,7 +5,6 @@ import java.awt.Point;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.currency.CurrencySet;
-import games.generic.controlModel.holders.GModalityHolder;
 import games.generic.controlModel.holders.InventoryHolder;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
@@ -14,7 +13,6 @@ import games.generic.controlModel.objects.DroppableObj;
 import games.generic.controlModel.objects.InteractingObj;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import geometry.AbstractShape2D;
-import tools.ObjectNamedID;
 import tools.ObjectWithID;
 import tools.UniqueIDProvider;
 import tools.impl.OWIDLongImpl;
@@ -24,7 +22,7 @@ import tools.impl.OWIDLongImpl;
  * Used in RPGS
  */
 public abstract class InventoryItem extends OWIDLongImpl
-		implements ObjectNamedID, RarityHolder, GModalityHolder, DroppableObj, AssignableObject {
+		implements RarityHolder, DroppableObj, AssignableObject {
 	private static final long serialVersionUID = 47104252L;
 
 	private static UniqueIDProvider UIDP_INVENTORY = UniqueIDProvider.newBasicIDProvider();

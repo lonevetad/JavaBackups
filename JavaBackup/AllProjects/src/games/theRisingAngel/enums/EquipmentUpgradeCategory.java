@@ -26,7 +26,12 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
     Misc(new MaxUpgradesPerCategory(new RangedAmountInt(5, 99))) // just ... anything undefined
     ;
 
-    protected static final IndexToObjectBackmapping itobm = (index) -> EquipmentUpgradeCategory.values()[index];
+    protected static final EquipmentUpgradeCategory[] VALUES;
+	public static final IndexToObjectBackmapping BACKMAPPING;
+	static {
+		VALUES = EquipmentUpgradeCategory.values();
+		BACKMAPPING = (int i) -> VALUES[i];
+	}
 
     protected final MaxUpgradesPerCategory defaultMaxUpgradesPerCategory;
 
@@ -52,7 +57,7 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
 
     @Override
     public IndexToObjectBackmapping getFromIndexBackmapping() {
-        return itobm;
+        return BACKMAPPING;
     }
 
     public MaxUpgradesPerCategory getDefaultMaxUpgradesPerCategory() {

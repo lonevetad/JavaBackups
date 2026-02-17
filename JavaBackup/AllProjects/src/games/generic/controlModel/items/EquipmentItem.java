@@ -201,6 +201,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	@Override
 	public void setOwner(ObjectWithID owner) {
 		EquipmentSet es;
+		super.setOwner(owner);
 		es = this.getBelongingEquipmentSet();
 		if (es == null || (!(owner instanceof BaseCreatureRPG))) {
 			return;
