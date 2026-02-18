@@ -11,26 +11,67 @@ public class JSONArray extends JSONValue {
 	protected JSONValue[] array;
 	protected JSONTypes elementsTypes;
 
+	public boolean isPrimitive() {
+		return false;
+	}
+
 	protected JSONArray() {
 		this.isHomogeneous = true;
 		this.array = null;
 		this.elementsTypes = JSONTypes.ArrayMiscTypes;
 	}
 
-	public JSONArray(JSONTypes arrayType, JSONValue[] values, JSONTypes elementsTypes) {
+	public JSONArray(boolean isHomogeneous, JSONValue[] values, JSONTypes elementsTypes) {
 		this();
 		this.elementsTypes = elementsTypes;
-		this.isHomogeneous = JSONTypes.ArrayHomogeneousType == arrayType;
+		this.isHomogeneous = isHomogeneous;
 		this.array = values;
+	}
+
+	public JSONArray(JSONTypes arrayType, JSONValue[] values, JSONTypes elementsTypes) {
+		this(JSONTypes.ArrayHomogeneousType == arrayType, values, elementsTypes);
 	}
 
 	public void forEach(BiConsumer<? super Integer, ? super JSONValue> action) {
 		int i;
-		if (this.array == null || this.array.length == 0) { return; }
+		if (this.array == null || this.array.length == 0) {
+			return;
+		}
 		i = 0;
 		for (JSONValue val : this.array) {
 			action.accept(i++, val);
 		}
+	}
+
+	@Override
+	public Object asObject() {
+		// TODO: Check recursion ??????
+		if (!this.isHomogeneous) {
+			return this.asArrayObject();
+		}
+		Object arr = null;
+		switch (this.elementsTypes) {
+			case Int -> {
+				arr = this.asArrayInt();
+			}
+			case Double -> {
+				arr = this.asArrayDouble();
+			}
+			case String -> {
+				arr = this.asArrayString();
+			}
+			case Long -> {
+				arr = this.asArrayLong();
+			}
+			case Boolean -> {
+				arr = this.asArrayBoolean();
+			}
+			case Object -> { // it should never happen .....
+				arr = this.asArrayObject();
+			}
+			default -> throw new IllegalArgumentException("Unexpected type of arrays: " + this.elementsTypes);
+		}
+		return arr;
 	}
 
 	@Override
@@ -49,25 +90,36 @@ public class JSONArray extends JSONValue {
 	}
 
 	@Override
-	public JSONTypes getType() { return isHomogeneous ? JSONTypes.ArrayHomogeneousType : JSONTypes.ArrayMiscTypes; }
+	public JSONTypes getType() {
+		return isHomogeneous ? JSONTypes.ArrayHomogeneousType : JSONTypes.ArrayMiscTypes;
+	}
 
-	@Override
-	public Object asObject() { return this.asArrayObject(); }
+	// TODO: scoprire se l'array ï¿½ omogeneo, se il tipo del primo elemento
+	// corrisponde, sennï¿½ ECCEZIONE
 
-	// TODO: scoprire se l'array è omogeneo, se il tipo del primo elemento
-	// corrisponde, sennò ECCEZIONE
+	public boolean isHomogeneous() {
+		return isHomogeneous;
+	}
 
-	public boolean isHomogeneous() { return isHomogeneous; }
+	public JSONTypes getElementsTypes() {
+		return elementsTypes;
+	}
 
-	public JSONTypes getElementsTypes() { return elementsTypes; }
+	public JSONValue getAt(int i) {
+		return array[i];
+	}
 
-	public JSONValue getAt(int i) { return array[i]; }
+	public int getElementsAmount() {
+		return this.length();
+	}
 
-	public int getElementsAmount() { return this.length(); }
+	public int length() {
+		return this.array.length;
+	}
 
-	public int length() { return this.array.length; }
-
-	public void setElementsTypes(JSONTypes elementsTypes) { this.elementsTypes = elementsTypes; }
+	public void setElementsTypes(JSONTypes elementsTypes) {
+		this.elementsTypes = elementsTypes;
+	}
 
 	//
 

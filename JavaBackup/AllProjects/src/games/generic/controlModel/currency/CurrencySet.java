@@ -1,10 +1,22 @@
 package games.generic.controlModel.currency;
 
+import java.util.Map;
 import java.util.Objects;
 
 import games.generic.controlModel.GModality;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
+import tools.json.JSONable;
+import tools.json.types.JSONArray;
+import tools.json.types.JSONBoolean;
+import tools.json.types.JSONInt;
+import tools.json.types.JSONObject;
 
-public abstract class CurrencySet {
+public abstract class CurrencySet implements JSONable {
+	public static final String FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT = "canFireCurrencyChangeEvent";
+	public static final String FIELD_VALUES = "values";
+	public static final String FIELD_CURRENCIES = "currencies";
+
 	public static final int BASE_CURRENCY_INDEX = 0;
 
 	public static interface CurrencyAmountConsumer {
@@ -30,21 +42,31 @@ public abstract class CurrencySet {
 	}
 
 	protected boolean canFireCurrencyChangeEvent;
-	protected final int[] values;
-	protected final Currency[] currencies;
+	protected int[] values;
+	protected Currency[] currencies;
 	protected GModality gameModality;
 
 	//
 
-	public GModality getGameModality() { return gameModality; }
+	public GModality getGameModality() {
+		return gameModality;
+	}
 
-	public int getCurrencyAmount(Currency c) { return this.values[c.getIndex()]; }
+	public int getCurrencyAmount(Currency c) {
+		return this.values[c.getIndex()];
+	}
 
-	public boolean isFiringEvents() { return canFireCurrencyChangeEvent && gameModality != null; }
+	public boolean isFiringEvents() {
+		return canFireCurrencyChangeEvent && gameModality != null;
+	}
 
-	public boolean canFireCurrencyChangeEvent() { return canFireCurrencyChangeEvent; }
+	public boolean canFireCurrencyChangeEvent() {
+		return canFireCurrencyChangeEvent;
+	}
 
-	public Currency[] getCurrencies() { return currencies; }
+	public Currency[] getCurrencies() {
+		return currencies;
+	}
 
 	//
 
@@ -52,9 +74,13 @@ public abstract class CurrencySet {
 		this.canFireCurrencyChangeEvent = canFireCurrencyChangeEvent;
 	}
 
-	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
+	public void setGameModality(GModality gameModality) {
+		this.gameModality = gameModality;
+	}
 
-	public void setGameModaliy(GModality gameModality) { this.gameModality = gameModality; }
+	public void setGameModaliy(GModality gameModality) {
+		this.gameModality = gameModality;
+	}
 
 	public void setCurrencyAmount(Currency c, int newAmount) {
 		/**
@@ -71,6 +97,14 @@ public abstract class CurrencySet {
 		this.values[indexCurrency] = newAmount;
 		if (isFiringEvents())
 			fireCurrencyChangeEvent(this.gameModality, c, old, newAmount);
+	}
+
+	protected void setValues(int[] vals) {
+		this.values = vals;
+	}
+
+	protected void setCurrencies(Currency[] curr) {
+		this.currencies = curr;
 	}
 
 	//
@@ -109,6 +143,121 @@ public abstract class CurrencySet {
 		);
 		sb.append(']');
 		return sb.toString();
+	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	public abstract Currency currencyFromJSONMap(Map<String, Object> jsonMap);
+
+	public abstract Currency currencyFromJSONObject(JSONObject jsonObj);
+
+	@Override
+	public void toJSONValue(JSONObject wrapper) {
+		// canFireCurrencyChangeEvent
+		JSONBoolean jsonedCFCCE = new JSONBoolean(this.canFireCurrencyChangeEvent());
+		wrapper.addField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, jsonedCFCCE);
+		// values
+		JSONInt[] valuesArray = new JSONInt[this.values.length];
+		for (int i = 0; i < this.values.length; i++) {
+			valuesArray[i] = new JSONInt(this.values[i]);
+		}
+		JSONArray jsonedValues = new JSONArray(true, valuesArray, JSONTypes.Int);
+		wrapper.addField(FIELD_VALUES, jsonedValues);
+		// currencies
+		JSONObject[] currenciesArray = new JSONObject[this.currencies.length];
+		for (int i = 0; i < this.currencies.length; i++) {
+			currenciesArray[i] = this.currencies[i].toJSONValue();
+		}
+		JSONArray jsonedCurrencies = new JSONArray(true, currenciesArray, JSONTypes.Object);
+		wrapper.addField(FIELD_CURRENCIES, jsonedCurrencies);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void loadFromJSONMap(Map<String, Object> jsonMap) {
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSON map cannot be null");
+		}
+		if (!jsonMap.containsKey(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT)) {
+			this.raiseExceptionMissingField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean);
+		}
+		Object valCFCCE = jsonMap.get(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT);
+		if (!(valCFCCE instanceof Boolean)) {
+			this.raiseExceptionIllegalTypeField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean, valCFCCE);
+		}
+		this.setCanFireCurrencyChangeEvent((Boolean) valCFCCE);
+		//
+		if (!jsonMap.containsKey(FIELD_VALUES)) {
+			this.raiseExceptionMissingField(FIELD_VALUES, JSONTypes.Object);
+		}
+		Object valValues = jsonMap.get(FIELD_VALUES);
+		if (!(valValues instanceof int[])) {
+			this.raiseExceptionIllegalTypeField(FIELD_VALUES, JSONTypes.ArrayHomogeneousType, valValues);
+		}
+		this.setValues((int[]) valValues);
+		//
+		if (!jsonMap.containsKey(FIELD_CURRENCIES)) {
+			this.raiseExceptionMissingField(FIELD_CURRENCIES, JSONTypes.Object);
+		}
+		Object valCurr = jsonMap.get(FIELD_CURRENCIES);
+		if (!(valCurr instanceof Object[])) {
+			this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES, JSONTypes.ArrayHomogeneousType, valCurr);
+		}
+		Object[] valCurrArr = (Object[]) valCurr;
+		Currency[] currArr = new Currency[valCurrArr.length];
+		for (int i = 0; i < valCurrArr.length; i++) {
+			Object curr = valCurrArr[i];
+			if (!(curr instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + i, JSONTypes.Object, curr);
+			}
+			currArr[i] = this.currencyFromJSONMap((Map<String, Object>) curr);
+		}
+		this.setCurrencies(currArr);
+	}
+
+	@Override
+	public void loadFromJSONObject(JSONObject wrapper) {
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
+		}
+		if (!wrapper.hasField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT)) {
+			this.raiseExceptionMissingField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean);
+		}
+		JSONValue valCFCCE = wrapper.getFieldValue(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT);
+		if (!valCFCCE.isType(JSONTypes.Boolean)) {
+			this.raiseExceptionIllegalTypeField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean, valCFCCE);
+		}
+		this.setCanFireCurrencyChangeEvent(valCFCCE.asBoolean());
+		//
+		if (!wrapper.hasField(FIELD_VALUES)) {
+			this.raiseExceptionMissingField(FIELD_VALUES, JSONTypes.Object);
+		}
+		JSONValue valValues = wrapper.getFieldValue(FIELD_VALUES);
+		if (!(valValues.isType(JSONTypes.ArrayHomogeneousType))) {
+			this.raiseExceptionIllegalTypeField(FIELD_VALUES, JSONTypes.ArrayHomogeneousType, valValues);
+		}
+		this.setValues(valValues.asArrayInt());
+		//
+		if (!wrapper.hasField(FIELD_CURRENCIES)) {
+			this.raiseExceptionMissingField(FIELD_CURRENCIES, JSONTypes.Object);
+		}
+		JSONValue valCurr = wrapper.getFieldValue(FIELD_CURRENCIES);
+		if (!(valCurr.isType(JSONTypes.ArrayHomogeneousType))) {
+			this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES, JSONTypes.ArrayHomogeneousType, valCurr);
+		}
+		JSONArray valCurrArr = (JSONArray) valCurr;
+		final Currency[] currArr = new Currency[valCurrArr.getElementsAmount()];
+		valCurrArr.forEach((index, currJSON) -> {
+			if (!currJSON.isType(JSONTypes.Object)) {
+				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + index, JSONTypes.Object, currJSON);
+			}
+			currArr[index] = currencyFromJSONObject((JSONObject) currJSON);
+		});
+		this.setCurrencies(currArr);
 	}
 
 }

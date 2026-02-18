@@ -13,15 +13,27 @@ public class JSONBoolean extends JSONValue {
 
 	protected boolean value;
 
-	@Override
-	public boolean asBoolean() { return this.value; }
+	public boolean isPrimitive() {
+		return true;
+	}
 
 	@Override
-	public JSONTypes getType() { return JSONTypes.Boolean; }
+	public boolean asBoolean() {
+		return this.value;
+	}
 
 	@Override
-	public void toString(StringBuilder sb) { sb.append(Boolean.toString(value)); }
+	public JSONTypes getType() {
+		return JSONTypes.Boolean;
+	}
 
 	@Override
-	public Object asObject() { return this.value ? Boolean.TRUE : Boolean.FALSE; }
+	public void toString(StringBuilder sb) {
+		sb.append(Boolean.toString(value));
+	}
+
+	@Override
+	public Object asObject() {
+		return this.value ? Boolean.TRUE : Boolean.FALSE;
+	}
 }

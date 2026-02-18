@@ -12,15 +12,27 @@ public class JSONDouble extends JSONValue {
 		this.value = value;
 	}
 
-	@Override
-	public double asDouble() { return this.value; }
+	public boolean isPrimitive() {
+		return true;
+	}
 
 	@Override
-	public JSONTypes getType() { return JSONTypes.Double; }
+	public double asDouble() {
+		return this.value;
+	}
 
 	@Override
-	public void toString(StringBuilder sb) { sb.append(Double.toString(value)); }
+	public JSONTypes getType() {
+		return JSONTypes.Double;
+	}
 
 	@Override
-	public Object asObject() { return Double.valueOf(this.value); }
+	public void toString(StringBuilder sb) {
+		sb.append(Double.toString(value));
+	}
+
+	@Override
+	public Object asObject() {
+		return Double.valueOf(this.value);
+	}
 }

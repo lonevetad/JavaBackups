@@ -14,32 +14,60 @@ public class JSONObject extends JSONValue {
 	private static final long serialVersionUID = -5641554230425406L;
 	protected Map<String, JSONValue> fields = null;
 
+	public boolean isPrimitive() {
+		return false;
+	}
+
 	@Override
-	public JSONTypes getType() { return JSONTypes.Object; }
+	public JSONTypes getType() {
+		return JSONTypes.Object;
+	}
 
-	public int getFieldsAmount() { return (this.fields == null) ? 0 : this.fields.size(); }
+	public int getFieldsAmount() {
+		return (this.fields == null) ? 0 : this.fields.size();
+	}
 
-	public int size() { return this.getFieldsAmount(); }
+	public int size() {
+		return this.getFieldsAmount();
+	}
 
-	public boolean hasField(String name) { return (this.fields != null) && this.fields.containsKey(name); }
+	public boolean hasField(String name) {
+		return (this.fields != null) && this.fields.containsKey(name);
+	}
 
 	public void addField(String name, JSONValue v) {
-		if (this.fields == null) { this.fields = MapTreeAVL.newMap(Comparators.STRING_COMPARATOR); }
+		if (this.fields == null) {
+			this.fields = MapTreeAVL.newMap(Comparators.STRING_COMPARATOR);
+		}
 		this.fields.put(name, v);
 	}
 
 	/**
 	 * Returns the value if the item exists, {@code null} otherwise.
 	 */
-	public JSONValue getFieldValue(String name) { return this.hasField(name) ? this.fields.get(name) : null; }
+	public JSONValue getFieldValue(String name) {
+		return this.hasField(name) ? this.fields.get(name) : null;
+	}
 
 	public void forEachField(BiConsumer<? super String, ? super JSONValue> action) {
-		if (this.fields == null || this.fields.isEmpty()) { return; }
+		if (this.fields == null || this.fields.isEmpty()) {
+			return;
+		}
 		this.fields.forEach(action);
 	}
 
+	public Map<String, Object> toMapFields() {
+		Map<String, Object> mapFields = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
+				Comparators.STRING_COMPARATOR);
+		// TODO: Check recursion ??????
+		forEachField((fieldName, fieldJSONValue) -> mapFields.put(fieldName, fieldJSONValue.asObject()));
+		return mapFields;
+	}
+
 	@Override
-	public Object asObject() { return java.util.Collections.unmodifiableMap(this.fields); }
+	public Object asObject() {
+		return java.util.Collections.unmodifiableMap(this.toMapFields());
+	}
 
 	@Override
 	public void toString(StringBuilder sb) {
@@ -67,66 +95,67 @@ public class JSONObject extends JSONValue {
 			try {
 				Field field = instance.getClass().getField(fieldName);
 				switch (fieldValue.getType()) {
-				case Boolean: {
-					field.setBoolean(instance, fieldValue.asBoolean());
-					break;
-				}
-				case Int: {
-					field.setInt(instance, fieldValue.asInt());
-					break;
-				}
-				case Long: {
-					field.setLong(instance, fieldValue.asLong());
-					break;
-				}
-				case Double: {
-					field.setDouble(instance, fieldValue.asDouble());
-					break;
-				}
-				case String: {
-					field.set(instance, fieldValue.asString());
-					break;
-				}
-				case ArrayMiscTypes: {
-					field.set(instance, fieldValue.asArrayObject());
-					break;
-				}
-				case ArrayHomogeneousType: {
-					JSONArray fieldValueAsArray = (JSONArray) fieldValue;
-					switch (fieldValueAsArray.elementsTypes) {
 					case Boolean: {
-						field.set(instance, fieldValueAsArray.asArrayBoolean());
+						field.setBoolean(instance, fieldValue.asBoolean());
 						break;
 					}
 					case Int: {
-						field.set(instance, fieldValueAsArray.asArrayInt());
+						field.setInt(instance, fieldValue.asInt());
 						break;
 					}
 					case Long: {
-						field.set(instance, fieldValueAsArray.asArrayLong());
+						field.setLong(instance, fieldValue.asLong());
 						break;
 					}
 					case Double: {
-						field.set(instance, fieldValueAsArray.asArrayDouble());
+						field.setDouble(instance, fieldValue.asDouble());
 						break;
 					}
 					case String: {
-						field.set(instance, fieldValueAsArray.asArrayString());
+						field.set(instance, fieldValue.asString());
 						break;
 					}
-					case ArrayMiscTypes:
+					case ArrayMiscTypes: {
+						field.set(instance, fieldValue.asArrayObject());
+						break;
+					}
 					case ArrayHomogeneousType: {
-						field.set(instance, fieldValueAsArray.asArrayObject());
+						JSONArray fieldValueAsArray = (JSONArray) fieldValue;
+						switch (fieldValueAsArray.elementsTypes) {
+							case Boolean: {
+								field.set(instance, fieldValueAsArray.asArrayBoolean());
+								break;
+							}
+							case Int: {
+								field.set(instance, fieldValueAsArray.asArrayInt());
+								break;
+							}
+							case Long: {
+								field.set(instance, fieldValueAsArray.asArrayLong());
+								break;
+							}
+							case Double: {
+								field.set(instance, fieldValueAsArray.asArrayDouble());
+								break;
+							}
+							case String: {
+								field.set(instance, fieldValueAsArray.asArrayString());
+								break;
+							}
+							case ArrayMiscTypes:
+							case ArrayHomogeneousType: {
+								field.set(instance, fieldValueAsArray.asArrayObject());
+								break;
+							}
+							default:
+								throw new IllegalArgumentException(
+										"Unexpected array homogeneous type upon setting it for the field: "
+												+ fieldName);
+						}
 						break;
 					}
 					default:
-						throw new IllegalArgumentException(
-								"Unexpected array homogeneous type upon setting it for the field: " + fieldName);
-					}
-					break;
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected field type: " + fieldValue.getType().name());
+						throw new IllegalArgumentException("Unexpected field type: " + fieldValue.getType().name());
 				}
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 				e.printStackTrace();

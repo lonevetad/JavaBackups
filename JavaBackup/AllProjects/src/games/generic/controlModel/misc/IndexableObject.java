@@ -1,6 +1,8 @@
 package games.generic.controlModel.misc;
 
 import tools.ObjectNamedID;
+import tools.json.types.JSONInt;
+import tools.json.types.JSONObject;
 
 /**
  * Identify an object that is unique through its index (beware: it's NOT an
@@ -8,6 +10,8 @@ import tools.ObjectNamedID;
  * See {@link #getIndex()} and {@link ObjectNamedID} for more details.
  */
 public interface IndexableObject extends ObjectNamedID {
+	public static final String FIELD_INDEX = "index";
+
 	/**
 	 * It differs substantially by {@link #getID()}: this is an <b>index</b>, not an
 	 * <i>ID</i>, and it's defined in a greater environment (for instance,
@@ -35,5 +39,17 @@ public interface IndexableObject extends ObjectNamedID {
 		 * See {@link IndexToObjectBackmapping}.
 		 */
 		public IndexableObject fromIndex(int index);
+	}
+
+	//
+
+	// JSON
+
+	//
+
+	@Override
+	public default void toJSONValue(JSONObject wrapper) {
+		JSONInt jsonedIndex = new JSONInt(this.getIndex());
+		wrapper.addField(FIELD_INDEX, jsonedIndex);
 	}
 }

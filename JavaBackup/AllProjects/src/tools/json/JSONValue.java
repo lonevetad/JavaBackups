@@ -7,7 +7,11 @@ public abstract class JSONValue implements Serializable {
 
 	public abstract JSONTypes getType();
 
-	public boolean isType(JSONTypes t) { return t == this.getType(); }
+	public abstract boolean isPrimitive();
+
+	public boolean isType(JSONTypes t) {
+		return t == this.getType();
+	}
 
 	public int asInt() {
 		throw new UnsupportedOperationException("Unsupported operation for type: " + this.getType().name());

@@ -12,15 +12,33 @@ public class JSONString extends JSONValue {
 		this.value = value;
 	}
 
-	@Override
-	public String asString() { return this.value; }
+	public boolean isPrimitive() {
+		return true;
+	}
 
 	@Override
-	public JSONTypes getType() { return JSONTypes.String; }
+	public String asString() {
+		return this.value;
+	}
 
 	@Override
-	public void toString(StringBuilder sb) { sb.append('\"').append(value).append('\"'); }
+	public JSONTypes getType() {
+		return JSONTypes.String;
+	}
 
 	@Override
-	public Object asObject() { return this.value; }
+	public void toString(StringBuilder sb) {
+		sb.append('\"').append(
+				value
+						.replace("\\", "\\\\")
+						.replace("\"", "\\\"")
+		// this resuls from "hello" to \"hello\"
+		// and \"hi\" to \\\"hi\\\"
+		).append('\"');
+	}
+
+	@Override
+	public Object asObject() {
+		return this.value;
+	}
 }

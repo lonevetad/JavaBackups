@@ -8,6 +8,7 @@ import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EssenceStorage;
+import tools.json.types.JSONObject;
 
 /**
  * Simply consists in a named collection of {@link AttributeModification}.<br>
@@ -22,6 +23,9 @@ import games.generic.controlModel.items.EssenceStorage;
  */
 public interface AttributesUpgrade
 		extends RarityHolder, ObjectNamed, SortedSetEnhancedDelegating<AttributeModification> {
+
+	public static final String FIELD_ATTRIBUTE_MODIFIERS = "attributeModifiers";
+	public static final String FIELD_PRICES_MODIFICATIONS = "pricesModifications";
 
 	/** BEWARE: do not modify the set. */
 	public default SortedSet<AttributeModification> getAttributeModifiers() {
@@ -39,7 +43,9 @@ public interface AttributesUpgrade
 	//
 
 	public default AttributesUpgrade addAttributeModifier(AttributeModification am) {
-		if (am == null) { return null; }
+		if (am == null) {
+			return null;
+		}
 		getAttributeModifiers().add(am);
 		return this;
 	}
@@ -48,4 +54,18 @@ public interface AttributesUpgrade
 	public default AttributesUpgrade addAttributeModifier(AttributeIdentifier ai, int value) {
 		return this.addAttributeModifier(new AttributeModification(ai, value));
 	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	@Override
+	public default void toJSONValue(JSONObject wrapper) {
+		ObjectNamed.super.toJSONValue(wrapper);
+		// TODO IL RESTO
+		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, jsonedName);
+	}
+
 }

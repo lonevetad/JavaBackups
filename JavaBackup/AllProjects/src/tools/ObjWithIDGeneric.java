@@ -1,6 +1,12 @@
 package tools;
 
-public interface ObjWithIDGeneric<IDType> extends Stringable {
+import tools.json.JSONValue;
+import tools.json.JSONable;
+import tools.json.types.JSONObject;
+
+public interface ObjWithIDGeneric<IDType> extends JSONable {
+	public static final String FIELD_ID = "id";
+
 	public IDType getID();
 
 	/**
@@ -13,7 +19,7 @@ public interface ObjWithIDGeneric<IDType> extends Stringable {
 	.. previous code
 	protected IDType ID = null; // instance field
 	.. other code
-
+	
 	public boolean setID(IDType newID){
 		if(this.ID != null || newID == null){ return false; }
 		this.ID = newID;
@@ -27,4 +33,18 @@ public interface ObjWithIDGeneric<IDType> extends Stringable {
 	 *         <code>false</code> otherwise.
 	 */
 	public boolean setID(IDType newID);
+
+	//
+
+	// JSON
+
+	//
+
+	public JSONValue newJSONValueForID();
+
+	@Override
+	public default void toJSONValue(JSONObject wrapper) {
+		JSONValue jsonedIndex = this.newJSONValueForID();
+		wrapper.addField(FIELD_ID, jsonedIndex);
+	}
 }

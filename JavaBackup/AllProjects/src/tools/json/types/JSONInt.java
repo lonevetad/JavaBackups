@@ -12,18 +12,32 @@ public class JSONInt extends JSONValue {
 		this.value = value;
 	}
 
-	@Override
-	public int asInt() { return this.value; }
+	public boolean isPrimitive() {
+		return true;
+	}
 
 	@Override
-	public long asLong() { return this.value; }
+	public int asInt() {
+		return this.value;
+	}
 
 	@Override
-	public JSONTypes getType() { return JSONTypes.Int; }
+	public long asLong() {
+		return this.value;
+	}
 
 	@Override
-	public void toString(StringBuilder sb) { sb.append(Integer.toString(value)); }
+	public JSONTypes getType() {
+		return JSONTypes.Int;
+	}
 
 	@Override
-	public Object asObject() { return Integer.valueOf(this.value); }
+	public void toString(StringBuilder sb) {
+		sb.append(Integer.toString(value));
+	}
+
+	@Override
+	public Object asObject() {
+		return Integer.valueOf(this.value);
+	}
 }

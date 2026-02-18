@@ -12,8 +12,14 @@ public class JSONLong extends JSONValue {
 		this.value = value;
 	}
 
+	public boolean isPrimitive() {
+		return true;
+	}
+
 	@Override
-	public long asLong() { return this.value; }
+	public long asLong() {
+		return this.value;
+	}
 
 	@Override
 	public int asInt() {
@@ -28,11 +34,17 @@ public class JSONLong extends JSONValue {
 	}
 
 	@Override
-	public JSONTypes getType() { return JSONTypes.Long; }
+	public JSONTypes getType() {
+		return JSONTypes.Long;
+	}
 
 	@Override
-	public void toString(StringBuilder sb) { sb.append(Long.toString(value)); }
+	public void toString(StringBuilder sb) {
+		sb.append(Long.toString(value));
+	}
 
 	@Override
-	public Object asObject() { return Long.valueOf(this.value); }
+	public Object asObject() {
+		return Long.valueOf(this.value);
+	}
 }

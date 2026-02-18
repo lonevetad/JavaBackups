@@ -2,28 +2,31 @@ package games.generic.controlModel.misc;
 
 import java.util.Map;
 
-import dataStructures.MapTreeAVL;
-import tools.Comparators;
-import tools.JSONable;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
+import tools.json.JSONable;
 import tools.json.types.JSONInt;
-
+import tools.json.types.JSONObject;
 
 public class RangedAmountInt implements JSONable {
+	protected static final String FIELD_MIN = "min";
+	protected static final String FIELD_MAX = "max";
+	protected static final String FIELD_CURRENT = "current";
 	private static final long serialVersionUID = 245247402524100085L;
 
 	protected int min, max, current;
-	
+
 	public RangedAmountInt(int min, int max) {
 		super();
 		this.min = min;
 		this.max = max;
-		if(min > max) {
-			throw new IllegalArgumentException("The minimum amount (" + min + ") is lower than the maximum (" + max + ").");
+		if (min > max) {
+			throw new IllegalArgumentException(
+					"The minimum amount (" + min + ") is lower than the maximum (" + max + ").");
 		}
 		this.current = min;
 	}
+
 	public RangedAmountInt(int max) {
 		this(0, max);
 	}
@@ -41,112 +44,113 @@ public class RangedAmountInt implements JSONable {
 	public int getCurrent() {
 		return current;
 	}
-	
+
 	//
 
 	public void setMin(int min) {
 		this.min = min;
-		if(this.max < min) {
+		if (this.max < min) {
 			this.setMax(min);
 		}
-		if(this.current < min) {
+		if (this.current < min) {
 			this.setCurrent(min);
 		}
 	}
 
 	public void setMax(int max) {
 		this.max = max;
-		if(this.min > max) {
+		if (this.min > max) {
 			this.setMin(max);
 		}
 	}
 
 	public void setCurrent(int current) {
-		if(current < this.getMin()) {
-			throw new IllegalArgumentException("Given current (" + current + ") is lower than the minimum (" + this.getMin() + ")");
+		if (current < this.getMin()) {
+			throw new IllegalArgumentException(
+					"Given current (" + current + ") is lower than the minimum (" + this.getMin() + ")");
 		}
-		if(current > this.getMax()) {
-			throw new IllegalArgumentException("Given current (" + current + ") is greater than the maximum (" + this.getMax() + ")");
+		if (current > this.getMax()) {
+			throw new IllegalArgumentException(
+					"Given current (" + current + ") is greater than the maximum (" + this.getMax() + ")");
 		}
 		this.current = current;
 	}
+
+	//
+
+	// JSON-related
+
+	//
+
 	@Override
-	public String toJSON(StringBuilder sb, int tabLevel) {
-		sb.append("{\n");
-		addTab(sb, tabLevel + 1);
-		sb.append("\"min\": ").append(this.min).append(",\n");
-		addTab(sb, tabLevel + 1);
-		sb.append("\"max\": ").append(this.max).append(",\n");
-		addTab(sb, tabLevel + 1);
-		sb.append("\"current\": ").append(this.current).append("\n");
-		addTab(sb, tabLevel);
-		sb.append("}");
-		return sb.toString();
-	}
-	@Override
-	public void loadFromJSON(String jsonString) {
-		JSONValue read = tools.json.JSONParser.parse(jsonString);
-		if(read instanceof tools.json.types.JSONObject json) {
-			JSONValue maybeMin = json.getFieldValue("min");
-			if(maybeMin.isType(JSONTypes.Int)) {
-				this.setMin(((JSONInt) maybeMin).asInt());
-			} else {
-				throw new IllegalArgumentException("Invalid JSON value for field 'min' in RangedAmountInt: " + maybeMin);
-			}
-			JSONValue maybeMax = json.getFieldValue("max");
-			if(maybeMax.isType(JSONTypes.Int)) {
-				this.setMax(((JSONInt) maybeMax).asInt());
-			} else {
-				throw new IllegalArgumentException("Invalid JSON value for field 'max' in RangedAmountInt: " + maybeMax);
-			}
-			if(json.hasField("current")) {
-				JSONValue maybeCurrent = json.getFieldValue("current");
-				if(maybeCurrent.isType(JSONTypes.Int)) {
-					this.setCurrent(((JSONInt) maybeCurrent).asInt());
-				} else {
-					throw new IllegalArgumentException("Invalid JSON value for field 'current' in RangedAmountInt: " + maybeCurrent);
-				}
-			} else {
-				this.setCurrent(this.getMin());
-			}
-		} else {
-			throw new IllegalArgumentException("Invalid JSON string for RangedAmountInt (not a JSONObject): " + jsonString);
-		}
+	public void toJSONValue(JSONObject wrapper) {
+		JSONInt jsonedMin = new JSONInt(this.getMin());
+		JSONInt jsonedMax = new JSONInt(this.getMax());
+		JSONInt jsonedCurrent = new JSONInt(this.getCurrent());
+		wrapper.addField(FIELD_MIN, jsonedMin);
+		wrapper.addField(FIELD_MAX, jsonedMax);
+		wrapper.addField(FIELD_CURRENT, jsonedCurrent);
 	}
 
 	@Override
-	public Map<String, Object> toJSONMap() {
-		Map<String, Object> map =  MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
-		map.put("min", this.getMin());
-		map.put("max", this.getMax());
-		map.put("current", this.getCurrent());
-		return map;
+	public void loadFromJSONObject(JSONObject wrapper) {
+		JSONValue maybeMin = wrapper.getFieldValue(FIELD_MIN);
+		if (maybeMin.isType(JSONTypes.Int)) {
+			this.setMin(((JSONInt) maybeMin).asInt());
+		} else {
+			this.raiseExceptionIllegalTypeField(FIELD_MIN, JSONTypes.Int, maybeMin);
+		}
+		JSONValue maybeMax = wrapper.getFieldValue(FIELD_MAX);
+		if (maybeMax.isType(JSONTypes.Int)) {
+			this.setMin(((JSONInt) maybeMax).asInt());
+		} else {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX, JSONTypes.Int, maybeMax);
+		}
+		if (wrapper.hasField(FIELD_CURRENT)) {
+			JSONValue maybeCurrent = wrapper.getFieldValue(FIELD_CURRENT);
+			if (maybeCurrent.isType(JSONTypes.Int)) {
+				this.setCurrent(((JSONInt) maybeCurrent).asInt());
+			} else {
+				this.raiseExceptionIllegalTypeField(FIELD_CURRENT, JSONTypes.Int, maybeCurrent);
+			}
+		} else {
+			this.setCurrent(this.getMin());
+		}
 	}
 
 	@Override
 	public void loadFromJSONMap(Map<String, Object> jsonMap) {
-		if(jsonMap == null) {
+		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
-		if(!jsonMap.containsKey("min") || !(jsonMap.get("min") instanceof Integer)) {
-			throw new IllegalArgumentException("Invalid JSON map for RangedAmountInt: missing or invalid 'min' field");
+		for (String fieldNameInt : new String[] { FIELD_MIN, FIELD_MAX }) {
+			if (!jsonMap.containsKey(fieldNameInt)) {
+				this.raiseExceptionMissingField(fieldNameInt, JSONTypes.Int);
+			}
 		}
-		if(!jsonMap.containsKey("max") || !(jsonMap.get("max") instanceof Integer)) {
-			throw new IllegalArgumentException("Invalid JSON map for RangedAmountInt: missing or invalid 'max' field");
+		Object valMin = jsonMap.get(FIELD_MIN);
+		Object valMax = jsonMap.get(FIELD_MAX);
+		if (!(valMin instanceof Integer)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MIN, JSONTypes.Int, valMin);
 		}
-		this.setMin((Integer) jsonMap.get("min"));
-		this.setMax((Integer) jsonMap.get("max"));
-		if(jsonMap.containsKey("current")) {
-			if(!(jsonMap.get("current") instanceof Integer)) {
-				try{
-					throw new IllegalArgumentException("Invalid JSON map for RangedAmountInt: invalid 'current' field");
+		if (!(valMax instanceof Integer)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX, JSONTypes.Int, valMax);
+		}
+		this.setMin((Integer) valMin);
+		this.setMax((Integer) valMax);
+		Object valCurrent = jsonMap.get(FIELD_CURRENT);
+		if (jsonMap.containsKey(FIELD_CURRENT)) {
+			if (!(valCurrent instanceof Integer)) {
+				try {
+					this.raiseExceptionIllegalTypeField(FIELD_CURRENT, JSONTypes.Int, valCurrent);
 				} finally {
 					this.setCurrent(this.getMin());
 				}
 			}
-			this.setCurrent((Integer) jsonMap.get("current"));
+			this.setCurrent((Integer) valCurrent);
 		} else {
 			this.setCurrent(this.getMin());
 		}
-	}	
+	}
+
 }

@@ -80,11 +80,12 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {
 		final LoaderEquipTRAn thisLoader = this;
-//		objProvider.addObj(ADamageReductionCurrencyBased.NAME,
-//				gmm -> new ADamageReductionCurrencyBased(DamageTypesTRAr.Physical));
-//		objProvider.addObj(ADamageReductionCurrencyBased.NAME,
-//				gmm -> new ADamageReductionCurrencyBased(DamageTypesTRAr.Magical));
-//		objProvider.addObj(AMoreDamageReceivedMoreLifeRegen.NAME, gmm -> new AMoreDamageReceivedMoreLifeRegen());
+		// objProvider.addObj(ADamageReductionCurrencyBased.NAME,
+		// gmm -> new ADamageReductionCurrencyBased(DamageTypesTRAr.Physical));
+		// objProvider.addObj(ADamageReductionCurrencyBased.NAME,
+		// gmm -> new ADamageReductionCurrencyBased(DamageTypesTRAr.Magical));
+		// objProvider.addObj(AMoreDamageReceivedMoreLifeRegen.NAME, gmm -> new
+		// AMoreDamageReceivedMoreLifeRegen());
 		objProvider.addObj(ArmProtectionShieldingDamageByMoney.NAME,
 				(gm) -> new ArmProtectionShieldingDamageByMoney((GModalityRPG) gm));
 		objProvider.addObj(NecklaceOfPainRinvigoring.NAME, //
@@ -94,11 +95,12 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 
 		try {
 			final int[] index = { 0 };
-//			JSONArray equips;
-//			equips = (JSONArray) JSONParser
-//					.parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT + "equipItems.json");
-//
-//			equips.forEach(
+			// JSONArray equips;
+			// equips = (JSONArray) JSONParser
+			// .parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT +
+			// "equipItems.json");
+			//
+			// equips.forEach(
 			JSONParser.forEachInArray(//
 					JSONParser.charactersIteratorFrom(
 							new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + "equipItems.json")),
@@ -174,46 +176,46 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 			return LoadStatusResult.CriticalFail;
 		}
 
-//		leff = new LoaderEquipFromFile("", "equipItems.json");
-//		leff.readAllFile();
-//		log.logAndPrint("total equip loaded: " + leff.factories.size());
-//		for (FactoryEquip fe : leff.factories) {
-//			objProvider.addObj(fe.getFactoryItem().name, fe.getFactoryItem().rarity, fe);
-//		}
+		// leff = new LoaderEquipFromFile("", "equipItems.json");
+		// leff.readAllFile();
+		// log.logAndPrint("total equip loaded: " + leff.factories.size());
+		// for (FactoryEquip fe : leff.factories) {
+		// objProvider.addObj(fe.getFactoryItem().name, fe.getFactoryItem().rarity, fe);
+		// }
 
 		if (neverLoadedTribeSets) {
 			switch (TRIBE_EQUIP_LOAD_MODE) {
-			case EachItemsIndividually: {
-				int rarityIndex;
-				rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
-				TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(equipType -> {
-					for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
-						for (ReligionAlignment relAl : RELIGION_ALIGMENTS_TO_LOAD) {
-							thisLoader.saveObjectFactory(TribesTRAn.getNameEquipFor(tribe, equipType), rarityIndex,
-									new EquipTRAnFactoryTribeBased(tribe, equipType, relAl));
+				case EachItemsIndividually: {
+					int rarityIndex;
+					rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
+					TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(equipType -> {
+						for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
+							for (ReligionAlignment relAl : RELIGION_ALIGMENTS_TO_LOAD) {
+								thisLoader.saveObjectFactory(TribesTRAn.getNameEquipFor(tribe, equipType), rarityIndex,
+										new EquipTRAnFactoryTribeBased(tribe, equipType, relAl));
+							}
 						}
+					});
+					break;
+				}
+				case SetGrouped: {
+					int rarityIndex;
+					rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
+					for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
+						EquipTRAnFullSetFactory fullSetFactory;
+						fullSetFactory = new EquipTRAnFullSetFactory(tribe);
+						tribesFullSetDropStates.put(tribe, fullSetFactory);
+						thisLoader.saveObjectFactory(tribe.getName(), rarityIndex, fullSetFactory);
 					}
-				});
-				break;
-			}
-			case SetGrouped: {
-				int rarityIndex;
-				rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
-				for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
-					EquipTRAnFullSetFactory fullSetFactory;
-					fullSetFactory = new EquipTRAnFullSetFactory(tribe);
-					tribesFullSetDropStates.put(tribe, fullSetFactory);
-					thisLoader.saveObjectFactory(tribe.getName(), rarityIndex, fullSetFactory);
+					break;
 				}
-				break;
-			}
-			case Ignore: {
-				break;
-			}
-			default:
-				if (TRIBE_EQUIP_LOAD_MODE != null) {
-					throw new IllegalArgumentException("Unexpected value: " + TRIBE_EQUIP_LOAD_MODE);
+				case Ignore: {
+					break;
 				}
+				default:
+					if (TRIBE_EQUIP_LOAD_MODE != null) {
+						throw new IllegalArgumentException("Unexpected value: " + TRIBE_EQUIP_LOAD_MODE);
+					}
 			}
 			neverLoadedTribeSets = false;
 		}
@@ -221,13 +223,22 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 		return LoadStatusResult.Success;
 	}
 
+	public void toJSONValue(JSONObject wrapper);
+
+	public void loadFromJSONMap(Map<String, Object> jsonMap);
+
+	public void loadFromJSONObject(JSONObject wrapper);
+
 	@Override
 	public JSONValue toJSON() {
 		final JSONObject o;
 		Function<EquipmentTypesTRAn, JSONString> equipToJSONStringConverter;
 
 		o = new JSONObject();
-		equipToJSONStringConverter = (eqType) -> { return new JSONString(eqType.getName()); };
+		// TODO: SHOULD CALL toJSONValue
+		equipToJSONStringConverter = (eqType) -> {
+			return new JSONString(eqType.getName());
+		};
 
 		// produces all amount of pieces lef
 		tribesFullSetDropStates.forEach((t, f) -> {
@@ -240,12 +251,12 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 				objSingleTribe.addField(relAl.name(),
 						// f.piecesNotYetDropped.toSetValue(EquipmentItem::getEquipmentType)
 						new JSONArray( // ARRAY OF ALL OF THE EQUIPMENT's NAMES LEFT
-								JSONTypes.ArrayHomogeneousType, //
+								true, // JSONTypes.ArrayHomogeneousType, //
 								new SetMapped<EquipmentTypesTRAn, JSONString>(//
 										f.piecesNotYetDroppedByReligionAlign[relAl.ordinal()].keySet(),
 										equipToJSONStringConverter)//
-												.toArray(new JSONString[f.piecesNotYetDroppedByReligionAlign[relAl
-														.ordinal()].size()]), //
+										.toArray(new JSONString[f.piecesNotYetDroppedByReligionAlign[relAl
+												.ordinal()].size()]), //
 								JSONTypes.String)//
 				);
 			}
@@ -266,20 +277,22 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 		public EquipTRAnFullSetFactory(Tribe tribe) {
 			super();
 			this.tribe = tribe;
-//			piecesNotYetDropped = null;
+			// piecesNotYetDropped = null;
 			this.piecesNotYetDroppedByReligionAlign = new MapTreeAVL[RELIGION_ALIGMENTS_TO_LOAD.length];
 			Arrays.fill(this.piecesNotYetDroppedByReligionAlign, null);
 			this.piecesLeftCacheByReligionAlign = new int[RELIGION_ALIGMENTS_TO_LOAD.length];
 			Arrays.fill(this.piecesLeftCacheByReligionAlign, 0);
 		}
 
-//		ReligionAlignment
+		// ReligionAlignment
 		protected void checkAndRefill(GModalityRPG gmrpg, ReligionAlignment relAl) {
-//			MapTreeAVL<EquipmentTypesTRAn, EquipmentItem> pnyd = this.piecesNotYetDropped;
-//			if (pnyd.isEmpty()) {
-//				TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(
-//						(EquipmentTypesTRAn equipTypePiece) -> { pnyd.put(equipTypePiece.getID(), equipTypePiece); });
-//			}
+			// MapTreeAVL<EquipmentTypesTRAn, EquipmentItem> pnyd =
+			// this.piecesNotYetDropped;
+			// if (pnyd.isEmpty()) {
+			// TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(
+			// (EquipmentTypesTRAn equipTypePiece) -> { pnyd.put(equipTypePiece.getID(),
+			// equipTypePiece); });
+			// }
 
 			final int indexReligionAlignment;
 			final MapTreeAVL<EquipmentTypesTRAn, EquipItemTRAn> newSetOfPieces;
@@ -312,7 +325,7 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 			int size, indexReligAlign;
 			MapTreeAVL<EquipmentTypesTRAn, EquipItemTRAn> pnyd;
 			Entry<EquipmentTypesTRAn, EquipItemTRAn> e;
-//			EquipmentTypesTRAn equipType;
+			// EquipmentTypesTRAn equipType;
 
 			this.checkAndRefill((GModalityRPG) gm);
 
@@ -383,9 +396,9 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 		int size, raritiesAmount;
 		int[] rarities, raritiesEachEquipType; // let's collect some statistics
 		RaritiesTRAn[] allRarities;
-//		LoaderEquipFromFile leff;
-//		LinkedList<FactoryEquip> factories;
-//		FactoryEquip fe;
+		// LoaderEquipFromFile leff;
+		// LinkedList<FactoryEquip> factories;
+		// FactoryEquip fe;
 		LoaderEquipTRAn loader;
 		EquipItemProvider equipItemProvider;
 		Map<String, FactoryObjGModalityBased<EquipmentItem>> allObjectFactories;
@@ -450,8 +463,8 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 					FactoryEquip fe;
 					FactoryItems fi;
 					fe = (FactoryEquip) factoryEquip;
-//				log.logAndPrint(fe.toString());
-//				log.logAndPrint("\n");
+					// log.logAndPrint(fe.toString());
+					// log.logAndPrint("\n");
 					fi = fe.getFactoryItem();
 					rarity = fi.rarity;
 					eqType = fe.type;
