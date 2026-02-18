@@ -3115,6 +3115,17 @@
     }
   },
   {
+    "name": "of Onix",
+    "rarity": 2,
+    "price": [21],
+    "category": "Material",
+    "attributeModifiers": {
+      "Health": 4,
+      "Precision": 4,
+      "Faith": 3
+    }
+  },
+  {
     "name": "Manifactured",
     "rarity": 1,
     "price": [10],
