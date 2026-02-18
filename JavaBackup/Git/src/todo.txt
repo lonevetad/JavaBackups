@@ -1,2 +1,0 @@
-- make the first draft of "gridObjectManager" (Old "MatrixObjectLocationManager" [in the name "path" and "edging polygon" were missing]) with a bit of refactoring of the core classes
-- at the end, paste the "videogame" project.
