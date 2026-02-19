@@ -39,11 +39,11 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	//
 
 	@Override
-	public void toJSONValue(JSONObject wrapper);
+	public default void toJSONValue(JSONObject wrapper);
 
 	@Override
-	public void loadFromJSONMap(Map<String, Object> jsonMap);
+	public default void loadFromJSONMap(Map<String, Object> jsonMap);
 
 	@Override
-	public void loadFromJSONObject(JSONObject wrapper);
+	public default void loadFromJSONObject(JSONObject wrapper);
 }

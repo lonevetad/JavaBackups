@@ -10,6 +10,7 @@ import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.objects.GameObjectGeneric;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
+import tools.json.JSONable;
 import tools.json.types.JSONArray;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
@@ -40,7 +41,8 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void onAddedToGame(GModality gm) {}
+	public default void onAddedToGame(GModality gm) {
+	}
 
 	@Override
 	public default void removeMeToGame(GModality gm) {
@@ -49,26 +51,33 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void onRemovedFromGame(GModality gm) {}
+	public default void onRemovedFromGame(GModality gm) {
+	}
 
 	public default AbilitiesHolder addAbility(AbilityGeneric ability) {
-		if (ability == null) { return this; }
+		if (ability == null) {
+			return this;
+		}
 		this.getAbilities().put(ability.getName(), ability);
 		return this;
 	}
 
 	public default AbilitiesHolder removeAbility(AbilityGeneric ability) {
-		if (ability == null) { return this; }
+		if (ability == null) {
+			return this;
+		}
 		this.removeAbilityByName(ability.getName());
 		return this;
 	}
 
 	public default AbilitiesHolder removeAbilityByName(String abilityName) {
-		if (abilityName == null) { return this; }
+		if (abilityName == null) {
+			return this;
+		}
 		this.getAbilities().remove(abilityName);
 		return this;
 	}
-	
+
 	//
 
 	// JSON-related
@@ -76,54 +85,56 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	//
 
 	@Override
-	public default void toJSONValue(JSONObject wrapper) { 
+	public default void toJSONValue(JSONObject wrapper) {
 		GameObjectGeneric.super.toJSONValue(wrapper);
 		//
 		Map<String, AbilityGeneric> abil = this.getAbilities();
 		JSONValue[] abilitiesArrayjsoned = new JSONValue[abil.size()];
-		final int[] index = {0};
+		final int[] index = { 0 };
 		// mapping each ability
-		this.getAbilities().forEach((abilityName, ability)->{
+		this.getAbilities().forEach((abilityName, ability) -> {
 			JSONObject abilityJSONed = new JSONObject();
 			abilityJSONed.addField("name", new JSONString(ability.getName()));
 			abilityJSONed.addField("level", new JSONInt(ability.getLevel()));
 			abilitiesArrayjsoned[index[0]++] = abilityJSONed;
 		});
-		JSONArray jsonedAbilitiesArrayed = new JSONArray(JSONTypes.ArrayHomogeneousType, abilitiesArrayjsoned, JSONTypes.Object);
+		JSONArray jsonedAbilitiesArrayed = new JSONArray(JSONTypes.ArrayHomogeneousType, abilitiesArrayjsoned,
+				JSONTypes.Object);
 		wrapper.addField(FIELD_ABILITIES, jsonedAbilitiesArrayed);
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) { 
+	public default void loadFromJSONObject(JSONObject wrapper) {
 		GameObjectGeneric.super.loadFromJSONObject(wrapper);
 		//
 		if (!wrapper.hasField(FIELD_ABILITIES)) {
 			this.raiseExceptionMissingField(FIELD_ABILITIES, JSONTypes.Object);
 		}
 		JSONValue jsonedAbilitiesArrayed = wrapper.getFieldValue(FIELD_ABILITIES);
-		if(! jsonedAbilitiesArrayed.isType(JSONTypes.ArrayHomogeneousType)){
-			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType, jsonedAbilitiesArrayed);
+		if (!jsonedAbilitiesArrayed.isType(JSONTypes.ArrayHomogeneousType)) {
+			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType,
+					jsonedAbilitiesArrayed);
 		}
 		final GModality gm = this.getGameModality();
-		//JSONValue[] abilitiesArrayjsoned ;
-		((JSONArray)jsonedAbilitiesArrayed).forEach((index, abilityJSONed) ->{
-			if(! abilityJSONed.isType(JSONTypes.Object)){
+		// JSONValue[] abilitiesArrayjsoned ;
+		((JSONArray) jsonedAbilitiesArrayed).forEach((index, abilityJSONed) -> {
+			if (!abilityJSONed.isType(JSONTypes.Object)) {
 				this.raiseExceptionIllegalTypeField(FIELD_ABILITIES + "#" + index, JSONTypes.Object, abilityJSONed);
 			}
 			JSONObject ablJSON = (JSONObject) abilityJSONed;
-			Map<String,Object> extraParameters = this.newFieldValuesMap();
+			Map<String, Object> extraParameters = JSONable.newFieldValuesMap();
 			// name
 			JSONValue abilityNameJSONed = ablJSON.getFieldValue("name");
-			if(! abilityNameJSONed.isType(JSONTypes.String)){
+			if (!abilityNameJSONed.isType(JSONTypes.String)) {
 				this.raiseExceptionIllegalTypeField("name", JSONTypes.String, abilityNameJSONed);
 			}
-			String abilityName = ((JSONString)abilityNameJSONed).asString();
+			String abilityName = ((JSONString) abilityNameJSONed).asString();
 			// level
 			JSONValue abilityLevelJSONed = ablJSON.getFieldValue("level");
-			if(! abilityLevelJSONed.isType(JSONTypes.Int)){
+			if (!abilityLevelJSONed.isType(JSONTypes.Int)) {
 				this.raiseExceptionIllegalTypeField("level", JSONTypes.Int, abilityLevelJSONed);
 			}
-			Integer abilityLevel = ((JSONInt)abilityLevelJSONed).asInt();
+			Integer abilityLevel = ((JSONInt) abilityLevelJSONed).asInt();
 			extraParameters.put("level", abilityLevel);
 			// create the Ability
 			AbilityGeneric ag = gm.newAbilityGeneric(abilityName, extraParameters);
@@ -138,14 +149,16 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 		}
 		GameObjectGeneric.super.loadFromJSONMap(jsonMap);
 		//
-		if (!jsonMap.containsKey(FIELD_ABILITIES) /*|| !(jsonMap.get(FIELD_ABILITIES) instanceof Map<?,?>)*/) {
-			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.Object, jsonMap.get(FIELD_ABILITIES));
+		if (!jsonMap.containsKey(FIELD_ABILITIES) /* || !(jsonMap.get(FIELD_ABILITIES) instanceof Map<?,?>) */) {
+			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType,
+					jsonMap.get(FIELD_ABILITIES));
 		}
 		Map<String, Object> sellPriceMap = (Map<String, Object>) jsonMap.get(FIELD_ABILITIES);
-		GModality gm = this.getGameModality();
+		TODO as loadFromJSONObject
+		/* GModality gm = this.getGameModality();
 		CurrencySet cs = gm.newCurrencyHolder();
 		cs.loadFromJSONMap(sellPriceMap);
-		this.setSellPrice(cs);
+		this.setSellPrice(cs); */
 	}
 
 }

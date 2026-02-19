@@ -1,5 +1,7 @@
 package games.generic.controlModel.attributes;
 
+import java.util.Comparator;
+import java.util.Map;
 import java.util.SortedSet;
 
 import dataStructures.minorUtils.SortedSetEnhancedDelegating;
@@ -28,8 +30,16 @@ public interface AttributesUpgrade
 	public static final String FIELD_PRICES_MODIFICATIONS = "pricesModifications";
 
 	/** BEWARE: do not modify the set. */
-	public default SortedSet<AttributeModification> getAttributeModifiers() {
-		return this.getDelegator();
+	public SortedSet<AttributeModification> getAttributeModifiers();
+
+	@Override
+	public default SortedSet<AttributeModification> getDelegator() {
+		return this.getAttributeModifiers();
+	}
+
+	@Override
+	public default Comparator<AttributeModification> getKeyComparator() {
+		return AttributeModification.COMPARATOR;
 	}
 
 	/**
@@ -59,13 +69,19 @@ public interface AttributesUpgrade
 
 	// JSON-related
 
-	//
+	// TODO
 
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		ObjectNamed.super.toJSONValue(wrapper);
 		// TODO IL RESTO
 		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, jsonedName);
+		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, jsonedName);
 	}
 
+	@Override
+	public default void loadFromJSONMap(Map<String, Object> jsonMap);
+
+	@Override
+	public default void loadFromJSONObject(JSONObject wrapper);
 }

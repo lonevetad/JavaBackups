@@ -9,6 +9,7 @@ import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgradeCategory;
 import tools.ClosestMatch;
 import tools.Comparators;
 
@@ -31,27 +32,41 @@ public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	protected CurrencySet priceModifications;
 
 	@Override
-	public SortedSet<AttributeModification> getDelegator() { return attributeModifiers; }
+	public SortedSet<AttributeModification> getAttributeModifiers() {
+		return this.attributeModifiers;
+	}
 
 	@Override
-	public String getName() { return name; }
+	public String getName() {
+		return name;
+	}
 
 	@Override
-	public String getDescription() { return description; }
+	public String getDescription() {
+		return description;
+	}
 
 	@Override
-	public int getRarityIndex() { return rarityIndex; }
+	public int getRarityIndex() {
+		return rarityIndex;
+	}
 
 	@Override
-	public EquipmentItem getEquipmentAssigned() { return equipmentAssigned; }
+	public EquipmentItem getEquipmentAssigned() {
+		return equipmentAssigned;
+	}
 
 	@Override
-	public CurrencySet getPricesModifications() { return priceModifications; }
+	public CurrencySet getPricesModifications() {
+		return priceModifications;
+	}
 
 	//
 
 	@Override
-	public void setDescription(String description) { this.description = description; }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Override
 	public RarityHolder setRarityIndex(int rarityIndex) {
@@ -61,12 +76,16 @@ public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	}
 
 	@Override
-	public void setEquipmentAssigned(EquipmentItem equipmentAssigned) { this.equipmentAssigned = equipmentAssigned; }
+	public void setEquipmentAssigned(EquipmentItem equipmentAssigned) {
+		this.equipmentAssigned = equipmentAssigned;
+	}
 
 	@Override
 	public void setPricesModifications(CurrencySet priceModifications) {
 		this.priceModifications = priceModifications;
-		if (priceModifications != null) { priceModifications.setCanFireCurrencyChangeEvent(false); }
+		if (priceModifications != null) {
+			priceModifications.setCanFireCurrencyChangeEvent(false);
+		}
 	}
 
 	@Override
@@ -89,11 +108,9 @@ public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	}
 
 	@Override
-	public Comparator<AttributeModification> getKeyComparator() { return AttributeModification.COMPARATOR; }
-
-	@Override
 	public ClosestMatch<AttributeModification> closestMatchOf(AttributeModification key) {
 		var cm = backMapAttrMods.closestMatchOf(AttributeModification.KEY_EXTRACTOR.apply(key));
 		return cm.convertTo(AttributeModification.COMPARATOR, e -> e.getValue());
 	}
+
 }
