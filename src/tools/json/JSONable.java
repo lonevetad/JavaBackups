@@ -3,6 +3,7 @@ package tools.json;
 import java.util.Map;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.GModality;
 import tools.Comparators;
 import tools.Stringable;
 import tools.json.types.JSONObject;
@@ -14,9 +15,9 @@ public interface JSONable extends Stringable {
 
 	/**
 	 * Since this instance is NOT a primitive value, then it has some instance
-	 * fields -> convert
-	 * this instance into a "json-map" or "json-object" by filling the already
-	 * provided instance (via {@link JSONObject#addField(String, JSONValue)}).
+	 * fields -> convert this instance into a "json-map" or "json-object" by filling
+	 * the already provided instance (via
+	 * {@link JSONObject#addField(String, JSONValue)}).
 	 * 
 	 * @param wrapper the {@link JSONObject} representing this instance and that
 	 *                needs to be filled via
@@ -24,9 +25,25 @@ public interface JSONable extends Stringable {
 	 */
 	public void toJSONValue(JSONObject wrapper);
 
-	public void loadFromJSONMap(Map<String, Object> jsonMap);
+	/**
+	 * Load the values of this instance using the informations from the provided
+	 * {@link JSONObject}; the given {@link GModality} may be used to obtain
+	 * constant values (like {@link Enum}s.
+	 * 
+	 * @param gm
+	 * @param wrapper
+	 */
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper);
 
-	public void loadFromJSONObject(JSONObject wrapper);
+	/**
+	 * Load the values of this instance using the informations from the provided
+	 * {@link java.util.Map}<String, Object>; the given {@link GModality} may be
+	 * used to obtain constant values (like {@link Enum}s.
+	 * 
+	 * @param gm
+	 * @param wrapper
+	 */
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap);
 
 	// "starter" methods: those who start the chain of invocations and deepening
 	// recursion
@@ -78,28 +95,23 @@ public interface JSONable extends Stringable {
 	// helpers
 
 	public static Map<String, Object> newFieldValuesMap() {
-		return MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight,
-				Comparators.STRING_COMPARATOR);
+		return MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
 	}
 
 	// exceptions
 
 	public default void raiseExceptionIllegalTypeField(String fieldName, JSONTypes expectedType, Object actualValue)
 			throws IllegalArgumentException {
-		throw new IllegalArgumentException(
-				"Invalid JSON value (of type: " + expectedType.getTypeName() + ") for field '" + fieldName + "' in "
-						+ this.getClass().getName() + " : " + actualValue);
+		throw new IllegalArgumentException("Invalid JSON value (of type: " + expectedType.getTypeName()
+				+ ") for field '" + fieldName + "' in " + this.getClass().getName() + " : " + actualValue);
 	}
 
-	public default void raiseExceptionMissingField(String fieldName, JSONTypes expectedType)
-			throws RuntimeException {
-		throw new RuntimeException(
-				"Field \"" + fieldName + "\" of type " + expectedType.getTypeName() + " not found in "
-						+ this.getClass().getName());
+	public default void raiseExceptionMissingField(String fieldName, JSONTypes expectedType) throws RuntimeException {
+		throw new RuntimeException("Field \"" + fieldName + "\" of type " + expectedType.getTypeName()
+				+ " not found in " + this.getClass().getName());
 	}
 
-	public default void raiseExceptionIllegalTypeField(Object actualValue)
-			throws IllegalArgumentException {
+	public default void raiseExceptionIllegalTypeField(Object actualValue) throws IllegalArgumentException {
 		this.raiseExceptionIllegalTypeField("The actual source", JSONTypes.Object, actualValue);
 	}
 }

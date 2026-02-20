@@ -4,7 +4,7 @@ import java.util.Map;
 
 import games.generic.controlModel.ObjectNamed;
 import tools.ObjectNamedID;
-import tools.json.JSONable;
+import tools.json.JSONTypes;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
@@ -17,7 +17,7 @@ import tools.json.types.JSONObject;
  * @author ottin
  *
  */
-public class AmountNamed implements ObjectNamed, JSONable {
+public class AmountNamed implements ObjectNamed {
 	private static final long serialVersionUID = -54562455221147L;
 	public static final String FIELD_TYPE = "type";
 	public static final String FIELD_VALUE = "value";
@@ -74,8 +74,14 @@ public class AmountNamed implements ObjectNamed, JSONable {
 	}
 
 	@Override
-	public void loadFromJSONMap(Map<String, Object> jsonMap);
+	public void loadFromJSONObject(JSONObject wrapper) {
+		if (!wrapper.hasField(FIELD_VALUE)) {
+			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
+		}
+	}
 
 	@Override
-	public void loadFromJSONObject(JSONObject wrapper);
+	public void loadFromJSONMap(Map<String, Object> jsonMap) {
+
+	}
 }

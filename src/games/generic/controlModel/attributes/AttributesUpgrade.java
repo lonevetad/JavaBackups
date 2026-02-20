@@ -10,8 +10,6 @@ import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EssenceStorage;
 import tools.json.JSONTypes;
-import tools.json.JSONValue;
-import tools.json.JSONObject;
 import tools.json.types.JSONObject;
 
 /**
@@ -83,7 +81,7 @@ public interface AttributesUpgrade
 	public default void loadFromJSONObject(JSONObject wrapper) {
 		ObjectNamed.super.loadFromJSONObject(wrapper);
 		RarityHolder.super.loadFromJSONObject(wrapper);
-		// index
+		// attribute modifiers
 		// get the field
 		if (!wrapper.hasField(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
