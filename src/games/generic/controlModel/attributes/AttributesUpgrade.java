@@ -6,10 +6,12 @@ import java.util.SortedSet;
 
 import dataStructures.minorUtils.SortedSetEnhancedDelegating;
 import games.generic.controlModel.ObjectNamed;
-import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EssenceStorage;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
+import tools.json.JSONObject;
 import tools.json.types.JSONObject;
 
 /**
@@ -27,7 +29,6 @@ public interface AttributesUpgrade
 		extends RarityHolder, ObjectNamed, SortedSetEnhancedDelegating<AttributeModification> {
 
 	public static final String FIELD_ATTRIBUTE_MODIFIERS = "attributeModifiers";
-	public static final String FIELD_PRICES_MODIFICATIONS = "pricesModifications";
 
 	/** BEWARE: do not modify the set. */
 	public SortedSet<AttributeModification> getAttributeModifiers();
@@ -41,14 +42,6 @@ public interface AttributesUpgrade
 	public default Comparator<AttributeModification> getKeyComparator() {
 		return AttributeModification.COMPARATOR;
 	}
-
-	/**
-	 * Any attributes could apply a bonus or a malus to the price of everything it's
-	 * applied on.
-	 */
-	public CurrencySet getPricesModifications();
-
-	public void setPricesModifications(CurrencySet priceModifications);
 
 	//
 
@@ -81,17 +74,38 @@ public interface AttributesUpgrade
 			am.toJSONValue(amJSONed);
 			attributesJsoned.addField(am.getName(), amJSONed);
 		});
-		JSONObject priceModsJsoned = new JSONObject();
-		this.getPricesModifications().toJSONValue(priceModsJsoned);
 		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, attributesJsoned);
-		wrapper.addField(FIELD_PRICES_MODIFICATIONS, priceModsJsoned);
 	}
 
 	// TODO IL RESTO
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap);
+	public default void loadFromJSONObject(JSONObject wrapper) {
+		ObjectNamed.super.loadFromJSONObject(wrapper);
+		RarityHolder.super.loadFromJSONObject(wrapper);
+		// index
+		// get the field
+		if (!wrapper.hasField(FIELD_ATTRIBUTE_MODIFIERS)) {
+			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
+		}
+		JSONOValue jsonedAttributeModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
+		// now de-serialize it
+		if (!jsonedAttributeModifiers_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
+					jsonedAttributeModifiers_value);
+		}
+		JSONObject jsonedAttributeModifiers = (JSONObject) jsonedAttributeModifiers_value;
+		jsonedAttributeModifiers.forEachField((name, jsonedAttributeModifier_value) -> {
+			int value;
+			AttributeModification am = new AttributeModification();
+		});
+		// TODO
+	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper);
+	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+		ObjectNamed.super.loadFromJSONMap(jsonMap);
+		RarityHolder.super.loadFromJSONMap(jsonMap);
+		//
+	}
 }

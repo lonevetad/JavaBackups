@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.Map;
 
 import games.generic.controlModel.ObjectNamed;
-import tools.json.JSONValue;
 import tools.json.types.JSONObject;
 
 /**
@@ -42,16 +41,6 @@ public interface ObjectNamedID extends ObjectWithID, ObjectNamed {
 		ObjectNamed.super.loadFromJSONObject(wrapper);
 	}
 
-	/**
-	 * Since this instance is NOT a primitive value, then it has some instance
-	 * fields -> convert
-	 * this instance into a "json-map" or "json-object" by filling the already
-	 * provided instance (via {@link JSONObject#addField(String, JSONValue)}).
-	 * 
-	 * @param wrapper the {@link JSONObject} representing this instance and that
-	 *                needs to be filled via
-	 *                {@link JSONObject#addField(String, JSONValue)}.
-	 */
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		ObjectWithID.super.toJSONValue(wrapper);

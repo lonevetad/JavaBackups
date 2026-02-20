@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GMap;
 import games.generic.controlModel.GameObjectsManager;
+import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.items.InventoryItems;
@@ -17,6 +18,7 @@ import games.theRisingAngel.inventory.InventoryTRAn;
 import games.theRisingAngel.misc.CurrencySetTRAn;
 import games.theRisingAngel.misc.EssenceExtractorTRAn;
 import games.theRisingAngel.misc.PlayerCharacterTypesTRAn.PlayerCharacterTypes;
+import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 import tools.ObjectNamedID;
 
 // TODO todo tons of stuffs
@@ -38,13 +40,43 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 	// NEW-STUFF
 
 	@Override
-	public GEventInterface newEventInterface() { return new GEventInterfaceTRAn(); }
+	public GEventInterface newEventInterface() {
+		return new GEventInterfaceTRAn();
+	}
 
 	@Override
-	protected GameObjectsManager newGameObjectsManager(GEventInterface gei) { return new GameObjectsManagerTRAn(this); }
+	protected GameObjectsManager newGameObjectsManager(GEventInterface gei) {
+		return new GameObjectsManagerTRAn(this);
+	}
 
 	@Override
-	public CurrencySet newCurrencyHolder() { return new CurrencySetTRAn(this); }
+	public CurrencySet newCurrencyHolder() {
+		return new CurrencySetTRAn(this);
+	}
+
+	@Override
+	public AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext) {
+		GameObjectsProvidersHolderTRAn gophTRAn = (GameObjectsProvidersHolderTRAn) this.getGameObjectsProvider();
+		return gophTRAn.getAbilitiesProvider().getNewObjByName(this, abilityName);
+	}
+
+	@Override
+	public InventoryItems newInventoryItems() {
+		return new InventoryTRAn();
+	}
+
+	@Override
+	public InventoryItems newInventoryItems(int level) {
+		return new InventoryTRAn(level);
+	}
+
+	@Override
+	public InventoryItems newInventoryItems(Dimension size) {
+		InventoryTRAn inv;
+		inv = new InventoryTRAn();
+		inv.resizeBy(size);
+		return inv;
+	}
 
 	@Override
 	protected PlayerGeneric newPlayerInGame(UserAccountGeneric superPlayer, ObjectNamedID characterType) {
@@ -63,26 +95,16 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 		return gmap;
 	}
 
-	@Override
-	public InventoryItems newInventoryItems() { return new InventoryTRAn(); }
-
-	@Override
-	public InventoryItems newInventoryItems(int level) { return new InventoryTRAn(level); }
-
-	@Override
-	public InventoryItems newInventoryItems(Dimension size) {
-		InventoryTRAn inv;
-		inv = new InventoryTRAn();
-		inv.resizeBy(size);
-		return inv;
-	}
-
 	// GETTERS
 
-	public EssenceExtractorTRAn getEssenceExtractor() { return essenceExtractor; }
+	public EssenceExtractorTRAn getEssenceExtractor() {
+		return essenceExtractor;
+	}
 
 	@Override
-	public int getAttributesPointGainedOnLevelingUp(BasePlayerRPG p) { return ATTRIBUTES_POINTS_GAINED_ON_LEVELING; }
+	public int getAttributesPointGainedOnLevelingUp(BasePlayerRPG p) {
+		return ATTRIBUTES_POINTS_GAINED_ON_LEVELING;
+	}
 
 	/** Given a {@link PlayerTRAn}, set its initial set of attributes */
 	public void setStartingBaseAttributes(PlayerTRAn player) {
@@ -91,7 +113,8 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 
 	@Override
 	public void startGame() {
-//		((GameObjectsProvidersHolderRPG) this.getGameObjectsProvider()).setgModality(this);
+		// ((GameObjectsProvidersHolderRPG)
+		// this.getGameObjectsProvider()).setgModality(this);
 		super.startGame();
 		// and then? TODO
 	}
@@ -99,7 +122,7 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 	// TODO to do definire un metodo di dropping degli oggetti, con abilit� e
 	// modificatori annessi
 
-//
+	//
 
 	// TODO DAMAGE CALCULATION
 

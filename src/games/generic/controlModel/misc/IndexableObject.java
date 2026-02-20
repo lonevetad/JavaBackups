@@ -1,6 +1,9 @@
 package games.generic.controlModel.misc;
 
+import java.util.Map;
+
 import tools.ObjectNamedID;
+import tools.json.JSONTypes;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
@@ -52,4 +55,29 @@ public interface IndexableObject extends ObjectNamedID {
 		JSONInt jsonedIndex = new JSONInt(this.getIndex());
 		wrapper.addField(FIELD_INDEX, jsonedIndex);
 	}
+
+	@Override
+	public default void loadFromJSONObject(JSONObject wrapper) {
+		ObjectNamedID.super.loadFromJSONObject(wrapper);
+		// index
+		// get the field
+		if (!wrapper.hasField(FIELD_INDEX)) {
+			this.raiseExceptionMissingField(FIELD_INDEX, JSONTypes.Int);
+		}
+		JSONOValue jsonedIndex_value = wrapper.getFieldValue(FIELD_INDEX);
+		// TODO
+		// now de-serialize it
+		if (!jsonedIndex_value.isType(JSONTypes.Int)) {
+			this.raiseExceptionIllegalTypeField(FIELD_INDEX, JSONTypes.Int,
+					jsonedIndex_value);
+		}
+		JSONObject jsonedIndex = (JSONObject) jsonedIndex_value;
+	}
+
+	@Override
+	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+		ObjectNamedID.super.loadFromJSONMap(jsonMap);
+		ObjectNamed.super.loadFromJSONMap(jsonMap);
+	}
+
 }

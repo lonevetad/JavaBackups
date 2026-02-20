@@ -6,7 +6,6 @@ import java.util.function.BiConsumer;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
-import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.objects.GameObjectGeneric;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
@@ -153,12 +152,23 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType,
 					jsonMap.get(FIELD_ABILITIES));
 		}
-		Map<String, Object> sellPriceMap = (Map<String, Object>) jsonMap.get(FIELD_ABILITIES);
-		TODO as loadFromJSONObject
-		/* GModality gm = this.getGameModality();
-		CurrencySet cs = gm.newCurrencyHolder();
-		cs.loadFromJSONMap(sellPriceMap);
-		this.setSellPrice(cs); */
+		final GModality gm = this.getGameModality();
+		Map<String, Object> abilitiesMap = (Map<String, Object>) jsonMap.get(FIELD_ABILITIES);
+		abilitiesMap.forEach((name, abilityDataObj) -> {
+			if (!(abilityDataObj instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_NAME + "#(" + name + ")", JSONTypes.Object, abilityDataObj);
+			}
+			Map<String, Object> abilityDataMap = (Map<String, Object>) abilityDataObj;
+			AbilityGeneric ability = gm.newAbilityGeneric(name, abilityDataObj);
+			if (abilityDataMap.containsKey("level")) { // set the level if possible (it should already be set by the
+														// method above, but ... just in case)
+				Object maybeLevel = abilityDataMap.get("level");
+				if (maybeLevel instanceof Integer levelInt) {
+					ability.setLevel(levelInt);
+				}
+			}
+			this.addAbility(ability);
+		});
 	}
 
 }
