@@ -2,8 +2,10 @@ package games.generic.controlModel.misc;
 
 import java.util.Map;
 
+import games.generic.controlModel.ObjectNamed;
 import tools.ObjectNamedID;
 import tools.json.JSONable;
+import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
 /**
@@ -15,8 +17,11 @@ import tools.json.types.JSONObject;
  * @author ottin
  *
  */
-public class AmountNamed implements JSONable {
+public class AmountNamed implements ObjectNamed, JSONable {
 	private static final long serialVersionUID = -54562455221147L;
+	public static final String FIELD_TYPE = "type";
+	public static final String FIELD_VALUE = "value";
+
 	protected int value;
 	protected ObjectNamedID type;
 
@@ -42,6 +47,7 @@ public class AmountNamed implements JSONable {
 		this.type = type;
 	}
 
+	@Override
 	public String getName() {
 		return type.getName();
 	}
@@ -58,7 +64,14 @@ public class AmountNamed implements JSONable {
 	//
 
 	@Override
-	public void toJSONValue(JSONObject wrapper);
+	public void toJSONValue(JSONObject wrapper) {
+		// no super call due to delegation to the ObjectNamedID "value" field
+		JSONInt jsonedValue = new JSONInt(this.getValue());
+		wrapper.addField(FIELD_VALUE, jsonedValue);
+		JSONObject jsonedType = new JSONObject();
+		this.getType().toJSONValue(jsonedType);
+		wrapper.addField(FIELD_TYPE, jsonedType);
+	}
 
 	@Override
 	public void loadFromJSONMap(Map<String, Object> jsonMap);

@@ -74,10 +74,20 @@ public interface AttributesUpgrade
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		ObjectNamed.super.toJSONValue(wrapper);
-		// TODO IL RESTO
-		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, jsonedName);
-		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, jsonedName);
+		RarityHolder.super.toJSONValue(wrapper);
+		final JSONObject attributesJsoned = new JSONObject();
+		this.getAttributeModifiers().forEach(am -> {
+			JSONObject amJSONed = new JSONObject();
+			am.toJSONValue(amJSONed);
+			attributesJsoned.addField(am.getName(), amJSONed);
+		});
+		JSONObject priceModsJsoned = new JSONObject();
+		this.getPricesModifications().toJSONValue(priceModsJsoned);
+		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, attributesJsoned);
+		wrapper.addField(FIELD_PRICES_MODIFICATIONS, priceModsJsoned);
 	}
+
+	// TODO IL RESTO
 
 	@Override
 	public default void loadFromJSONMap(Map<String, Object> jsonMap);

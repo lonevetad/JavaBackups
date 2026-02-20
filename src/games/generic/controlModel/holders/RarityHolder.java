@@ -5,7 +5,6 @@ import java.util.Map;
 import games.generic.controlModel.items.EquipmentItem;
 import tools.WeightedSetOfRandomOutcomes;
 import tools.json.JSONTypes;
-import tools.json.JSONValue;
 import tools.json.JSONable;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
@@ -31,23 +30,13 @@ public interface RarityHolder extends JSONable {
 	public int getRarityIndex();
 
 	public RarityHolder setRarityIndex(int rarityIndex);
-	
+
 	//
 
 	// JSON-related
 
 	//
 
-	/**
-	 * Since this instance is NOT a primitive value, then it has some instance
-	 * fields -> convert
-	 * this instance into a "json-map" or "json-object" by filling the already
-	 * provided instance (via {@link JSONObject#addField(String, JSONValue)}).
-	 * 
-	 * @param wrapper the {@link JSONObject} representing this instance and that
-	 *                needs to be filled via
-	 *                {@link JSONObject#addField(String, JSONValue)}.
-	 */
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		JSONInt jsonedIndexRarity = new JSONInt(this.getRarityIndex());
@@ -70,7 +59,7 @@ public interface RarityHolder extends JSONable {
 		if (!jsonMap.containsKey(FIELD_RARITY_INDEX) || !(jsonMap.get(FIELD_RARITY_INDEX) instanceof Integer)) {
 			this.raiseExceptionIllegalTypeField(FIELD_RARITY_INDEX);
 		}
-		this.setRarityIndex((Integer)jsonMap.get(FIELD_RARITY_INDEX));
+		this.setRarityIndex((Integer) jsonMap.get(FIELD_RARITY_INDEX));
 	}
 
 }
