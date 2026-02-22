@@ -3,6 +3,10 @@ package games.generic.controlModel.holders;
 import java.util.Map;
 
 import games.generic.controlModel.ObjectNamed;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.misc.GameObjectsProvider;
 
 /**
@@ -13,6 +17,8 @@ import games.generic.controlModel.misc.GameObjectsProvider;
  */
 public interface GameObjectsProvidersHolder {
 
+	public void initialize();
+
 	public Map<String, GameObjectsProvider<? extends ObjectNamed>> getProviders();
 
 	public default GameObjectsProvider<? extends ObjectNamed> getProvider(String name) {
@@ -22,4 +28,19 @@ public interface GameObjectsProvidersHolder {
 	public default void addProvider(String name, GameObjectsProvider<? extends ObjectNamed> provider) {
 		getProviders().put(name, provider);
 	}
+
+	// other factories
+
+	public abstract CurrencySet newCurrencyHolder();
+
+	/**
+	 * Instantiate a new Ability, given some kind of context to it (various
+	 * initializiation/constructor parameters)
+	 * 
+	 * @param abilityName
+	 * @param abilityContext
+	 * @return
+	 */
+	public abstract AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext);
+
 }

@@ -6,19 +6,20 @@ import games.generic.controlModel.misc.RangedAmountInt;
 
 public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
     // (corrisponde alla definizione di "fatto con..."),
-    Material(new MaxUpgradesPerCategory(new RangedAmountInt(3, 7))), //
+    Material(new MaxUpgradesPerCategory(new RangedAmountInt(3, 12))), //
     // (good, light, ruined, encrusted, flexible,...),
     Structural(new MaxUpgradesPerCategory(new RangedAmountInt(2, 7))), //
     // ("rifiniture/raffinatezza", per esempio: rough, sharp, worn-out, with art
     // decoration, broken, fragile, thinner, bended),
-    Refining(new MaxUpgradesPerCategory(new RangedAmountInt(4, 10))), //
+    Refining(new MaxUpgradesPerCategory(new RangedAmountInt(2, 7))), //
     Coloring(new MaxUpgradesPerCategory(new RangedAmountInt(2, 4))), //
-    Rune(new MaxUpgradesPerCategory(new RangedAmountInt(5, 10))), //
+    Rune(new MaxUpgradesPerCategory(new RangedAmountInt(3, 10))), //
+    Enviromental(new MaxUpgradesPerCategory(new RangedAmountInt(1, 5))), //
     Incantation(new MaxUpgradesPerCategory(new RangedAmountInt(7, 25))), // almost everything, even "of Traitors"
-    Blessings(new MaxUpgradesPerCategory(new RangedAmountInt(2, 6))), //
-    Incarnation(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), // devine being, spirit, soul, essence, ...
+    Blessing(new MaxUpgradesPerCategory(new RangedAmountInt(2, 8))), // "of the Sun", "Blessed by ..."
+    Incarnation(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), // divine being, spirit, soul, essence, ...
     Elemental(new MaxUpgradesPerCategory(new RangedAmountInt(3, 15))), // (es: "Fire", "Water", "Air", "Earth", "Fresh Air", "Cold Air", "Lightning", "Nature", "Darkness", "Light", "Chaos", "Order", "Time", "Space", "Void", ...)
-    Focusing(new MaxUpgradesPerCategory(new RangedAmountInt(5, 20))), // (es: "of Strength", ONLY Attributes)
+    Focusing(new MaxUpgradesPerCategory(new RangedAmountInt(2, 20))), // (es: "of Strength", ONLY Attributes)
     WorkersRolesRelated(new MaxUpgradesPerCategory(new RangedAmountInt(5, 20))), // of King, Blacksmith, Enchanter, Alchemist, Jeweler, Merchant, Hunter, Farmer, Fisherman, Cook, Scholar, Scribe, Priest, Thief, Assassin, Warrior, Mage, Archer, ...
     CharacterClass(new MaxUpgradesPerCategory(new RangedAmountInt(2, 7))), //
     CharacterRace(new MaxUpgradesPerCategory(new RangedAmountInt(1, 5))), //
@@ -26,7 +27,8 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
     Misc(new MaxUpgradesPerCategory(new RangedAmountInt(5, 99))) // just ... anything undefined
     ;
 
-    protected static final EquipmentUpgradeCategory[] VALUES;
+	public static final String NAME = "EquipmentUpgradeCategory";
+    public static final EquipmentUpgradeCategory[] VALUES;
 	public static final IndexToObjectBackmapping BACKMAPPING;
 	static {
 		VALUES = EquipmentUpgradeCategory.values();

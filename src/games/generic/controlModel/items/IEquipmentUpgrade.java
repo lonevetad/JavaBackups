@@ -3,8 +3,11 @@ package games.generic.controlModel.items;
 import java.util.Map;
 import java.util.function.Function;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributesUpgrade;
 import games.generic.controlModel.currency.CurrencySet;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
 
@@ -61,9 +64,54 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		wrapper.addField(FIELD_UPGRADE_CATEGORY, upgradeCategoryJsoned);
 	}
 
-	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap);
+	/**
+	 * The UpgradeCategory are game-specific, so they cannot be loaded in the
+	 * generic package.
+	 */
+	public void loadIEquipmentUpgradeCategory(GModality gm, String categoryName);
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper);
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		AttributesUpgrade.super.loadFromJSONObject(gm, wrapper);
+		// description
+		if (!wrapper.hasField(FIELD_DESCRIPTION)) {
+			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);
+		}
+		this.setDescription(wrapper.getFieldValue(FIELD_DESCRIPTION).asString());
+		// prices
+		if (!wrapper.hasField(FIELD_PRICES_MODIFICATIONS)) {
+			this.raiseExceptionMissingField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object);
+		}
+		JSONValue pricesModsJSONed = wrapper.getFieldValue(FIELD_PRICES_MODIFICATIONS);
+		if (!pricesModsJSONed.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object, pricesModsJSONed);
+		}
+		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
+		cs.loadFromJSONObject(gm, (JSONObject) pricesModsJSONed);
+		// UpgradeCategory's name
+		// equip upgrade category
+		loadIEquipmentUpgradeCategory(gm, wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		AttributesUpgrade.super.loadFromJSONMap(gm, jsonMap);
+		// description
+		if (!jsonMap.containsKey(FIELD_DESCRIPTION)) {
+			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);
+		}
+		this.setDescription((String) jsonMap.get(FIELD_DESCRIPTION));
+		// prices
+		if (!jsonMap.containsKey(FIELD_PRICES_MODIFICATIONS)) {
+			this.raiseExceptionMissingField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object);
+		}
+		Object pricesModsJSONed = jsonMap.get(FIELD_PRICES_MODIFICATIONS);
+		if (!(pricesModsJSONed instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object, pricesModsJSONed);
+		}
+		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
+		cs.loadFromJSONMap(gm, (Map<String, Object>) pricesModsJSONed);
+		// equip upgrade category
+		loadIEquipmentUpgradeCategory(gm, jsonMap);
+	}
 }

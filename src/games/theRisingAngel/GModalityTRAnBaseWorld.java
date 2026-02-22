@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GMap;
 import games.generic.controlModel.GameObjectsManager;
-import games.generic.controlModel.abilities.AbilityGeneric;
-import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.items.InventoryItems;
 import games.generic.controlModel.player.BasePlayerRPG;
@@ -15,7 +13,6 @@ import games.generic.controlModel.player.UserAccountGeneric;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.events.GEventInterfaceTRAn;
 import games.theRisingAngel.inventory.InventoryTRAn;
-import games.theRisingAngel.misc.CurrencySetTRAn;
 import games.theRisingAngel.misc.EssenceExtractorTRAn;
 import games.theRisingAngel.misc.PlayerCharacterTypesTRAn.PlayerCharacterTypes;
 import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
@@ -50,17 +47,6 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 	}
 
 	@Override
-	public CurrencySet newCurrencyHolder() {
-		return new CurrencySetTRAn(this);
-	}
-
-	@Override
-	public AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext) {
-		GameObjectsProvidersHolderTRAn gophTRAn = (GameObjectsProvidersHolderTRAn) this.getGameObjectsProvider();
-		return gophTRAn.getAbilitiesProvider().getNewObjByName(this, abilityName);
-	}
-
-	@Override
 	public InventoryItems newInventoryItems() {
 		return new InventoryTRAn();
 	}
@@ -81,9 +67,11 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 	@Override
 	protected PlayerGeneric newPlayerInGame(UserAccountGeneric superPlayer, ObjectNamedID characterType) {
 		PlayerTRAn p;
+		GameObjectsProvidersHolderTRAn gophTRAn;
 		p = new PlayerTRAn(this, (PlayerCharacterTypes) characterType);
 		setStartingBaseAttributes(p);
-		p.setCurrencies(newCurrencyHolder());
+		gophTRAn = (GameObjectsProvidersHolderTRAn) this.getGameObjectsProvider();
+		p.setCurrencies(gophTRAn.newCurrencyHolder());
 		return p;
 	}
 

@@ -2,6 +2,7 @@ package games.generic.controlModel.misc;
 
 import java.util.Map;
 
+import games.generic.controlModel.GModality;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.JSONable;
@@ -93,7 +94,7 @@ public class RangedAmountInt implements JSONable {
 	}
 
 	@Override
-	public void loadFromJSONObject(JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		JSONValue maybeMin = wrapper.getFieldValue(FIELD_MIN);
 		if (maybeMin.isType(JSONTypes.Int)) {
 			this.setMin(((JSONInt) maybeMin).asInt());
@@ -119,7 +120,7 @@ public class RangedAmountInt implements JSONable {
 	}
 
 	@Override
-	public void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

@@ -5,6 +5,7 @@
 	{
 	"Material": { "min": 2, "max":4 },
 	"Blessing":  { "min": 2, "max":4 },
+  "Enviromental": { "min": 3, "max":5 },
 	"Rune": { "min": 1, "max":5 },
 	"Coloring": { "min": 1, "max":3 },
 	"CharacterClass": { "min": 1, "max":2 },
@@ -13,7 +14,9 @@
   {
     "name": "Cloth Trousers",
     "rarity": 1,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -34,7 +37,9 @@
   {
     "name": "Cloth Shirt",
     "rarity": 1,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -54,7 +59,9 @@
   {
     "name": "Cloth Sleeve",
     "rarity": 1,
-    "price": [8],
+    "price": [
+      8
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -75,7 +82,9 @@
   {
     "name": "Cloth Shoes",
     "rarity": 1,
-    "price": [20],
+    "price": [
+      20
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -97,7 +106,9 @@
   {
     "name": "Cloth Hat",
     "rarity": 1,
-    "price": [12],
+    "price": [
+      12
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -117,7 +128,9 @@
   {
     "name": "Cloth Hood",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -136,7 +149,9 @@
   {
     "name": "Cloth Gloves",
     "rarity": 1,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -156,7 +171,9 @@
   {
     "name": "Cloth Cape",
     "rarity": 1,
-    "price": [21],
+    "price": [
+      21
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -178,7 +195,9 @@
   {
     "name": "Wool Cap",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -200,7 +219,9 @@
   {
     "name": "Wool Gloves",
     "rarity": 1,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -223,7 +244,9 @@
   {
     "name": "Wool Sleeve",
     "rarity": 1,
-    "price": [8],
+    "price": [
+      8
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -245,7 +268,9 @@
   {
     "name": "Wool Trousers",
     "rarity": 1,
-    "price": [27],
+    "price": [
+      27
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -268,7 +293,9 @@
   {
     "name": "Wool Pullover",
     "rarity": 1,
-    "price": [28],
+    "price": [
+      28
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 3,
@@ -291,7 +318,9 @@
   {
     "name": "Wool Shoes",
     "rarity": 1,
-    "price": [27],
+    "price": [
+      27
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -313,7 +342,9 @@
   {
     "name": "Wool Mantle",
     "rarity": 1,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -336,7 +367,9 @@
   {
     "name": "Leather Trousers",
     "rarity": 2,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -358,7 +391,9 @@
   {
     "name": "Leather Jacket",
     "rarity": 1,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -380,7 +415,9 @@
   {
     "name": "Leather Shoes",
     "rarity": 2,
-    "price": [34],
+    "price": [
+      34
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -403,7 +440,9 @@
   {
     "name": "Leather Boots",
     "rarity": 2,
-    "price": [37],
+    "price": [
+      37
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -426,7 +465,9 @@
   {
     "name": "Leather Cap",
     "rarity": 2,
-    "price": [28],
+    "price": [
+      28
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -447,7 +488,9 @@
   {
     "name": "Leather Gloves",
     "rarity": 2,
-    "price": [22],
+    "price": [
+      22
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -470,7 +513,9 @@
   {
     "name": "Leather Sleeve",
     "rarity": 2,
-    "price": [13],
+    "price": [
+      13
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -494,7 +539,9 @@
   {
     "name": "Leather Cloak",
     "rarity": 2,
-    "price": [35],
+    "price": [
+      35
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 3,
@@ -517,7 +564,9 @@
   {
     "name": "Chainmail Trousers",
     "rarity": 2,
-    "price": [37],
+    "price": [
+      37
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -538,7 +587,9 @@
   {
     "name": "Chainmail Brigandine",
     "rarity": 2,
-    "price": [37],
+    "price": [
+      37
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -560,7 +611,9 @@
   {
     "name": "Chainmail Coif",
     "rarity": 2,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -581,7 +634,9 @@
   {
     "name": "Chainmail Gauntlet",
     "rarity": 2,
-    "price": [32],
+    "price": [
+      32
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -602,7 +657,9 @@
   {
     "name": "Chainmail Sleeve",
     "rarity": 2,
-    "price": [28],
+    "price": [
+      28
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 2,
@@ -623,7 +680,9 @@
   {
     "name": "Chainmail Boots",
     "rarity": 2,
-    "price": [23],
+    "price": [
+      23
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -644,7 +703,9 @@
   {
     "name": "Steelplated Trousers",
     "rarity": 3,
-    "price": [45],
+    "price": [
+      45
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -669,7 +730,9 @@
   {
     "name": "Steelplated Armor",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -695,7 +758,9 @@
   {
     "name": "Steelplated Helm",
     "rarity": 3,
-    "price": [30],
+    "price": [
+      30
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -720,7 +785,9 @@
   {
     "name": "Steelplated Ponthelm",
     "rarity": 3,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -745,7 +812,9 @@
   {
     "name": "Steelplated Cage",
     "rarity": 3,
-    "price": [28],
+    "price": [
+      28
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -770,7 +839,9 @@
   {
     "name": "Steelplated Gauntlet",
     "rarity": 2,
-    "price": [27],
+    "price": [
+      27
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -794,7 +865,9 @@
   {
     "name": "Steelplated Sleeve",
     "rarity": 2,
-    "price": [31],
+    "price": [
+      31
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 2,
@@ -821,7 +894,9 @@
   {
     "name": "Steelplated Sollerets",
     "rarity": 3,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -847,7 +922,9 @@
   {
     "name": "Feather Wings",
     "rarity": 1,
-    "price": [7],
+    "price": [
+      7
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 4,
@@ -868,7 +945,9 @@
   {
     "name": "Angel Wings",
     "rarity": 4,
-    "price": [255],
+    "price": [
+      255
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 4,
@@ -892,7 +971,9 @@
   {
     "name": "Demon Wings",
     "rarity": 4,
-    "price": [255],
+    "price": [
+      255
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 4,
@@ -916,7 +997,9 @@
   {
     "name": "Wood Chestplate",
     "rarity": 1,
-    "price": [17],
+    "price": [
+      17
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -940,7 +1023,9 @@
   {
     "name": "Wood plated Trousers",
     "rarity": 2,
-    "price": [21],
+    "price": [
+      21
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -963,7 +1048,9 @@
   {
     "name": "Wood Helmet",
     "rarity": 2,
-    "price": [12],
+    "price": [
+      12
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -989,7 +1076,9 @@
   {
     "name": "Wood Plinth",
     "rarity": 2,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -1012,7 +1101,9 @@
   {
     "name": "Wood armguard",
     "rarity": 2,
-    "price": [9],
+    "price": [
+      9
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -1038,7 +1129,9 @@
   {
     "name": "Leather Helmet",
     "rarity": 2,
-    "price": [28],
+    "price": [
+      28
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -1059,7 +1152,9 @@
   {
     "name": "Leather Belt",
     "rarity": 1,
-    "price": [24],
+    "price": [
+      24
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1077,7 +1172,9 @@
   {
     "name": "Belt with iron plates",
     "rarity": 2,
-    "price": [39],
+    "price": [
+      39
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1096,7 +1193,9 @@
   {
     "name": "String belt",
     "rarity": 1,
-    "price": [16],
+    "price": [
+      16
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1115,7 +1214,9 @@
   {
     "name": "Belt with Vials",
     "rarity": 1,
-    "price": [16],
+    "price": [
+      16
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1132,7 +1233,9 @@
   {
     "name": "Ruby Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1147,7 +1250,9 @@
   {
     "name": "Oxided Iron Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1162,7 +1267,9 @@
   {
     "name": "Lapis Lazuli Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1177,7 +1284,9 @@
   {
     "name": "Amber Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1191,7 +1300,9 @@
   {
     "name": "Emerald Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1205,7 +1316,9 @@
   {
     "name": "Ring of fearful animal",
     "rarity": 1,
-    "price": [27],
+    "price": [
+      27
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1222,7 +1335,9 @@
   {
     "name": "Sapphire Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1236,7 +1351,9 @@
   {
     "name": "Tiger Eye Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1250,7 +1367,9 @@
   {
     "name": "Opal Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1264,7 +1383,9 @@
   {
     "name": "Aquamarine Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1278,7 +1399,9 @@
   {
     "name": "Quartz Ring",
     "rarity": 1,
-    "price": [42],
+    "price": [
+      42
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1293,7 +1416,9 @@
   {
     "name": "Body Quartz Ring",
     "rarity": 1,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1308,7 +1433,9 @@
   {
     "name": "Mind Quartz Ring",
     "rarity": 1,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1323,7 +1450,9 @@
   {
     "name": "Rhyolite Ring",
     "rarity": 2,
-    "price": [47],
+    "price": [
+      47
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1338,7 +1467,9 @@
   {
     "name": "Spectrolite Ring",
     "rarity": 1,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1353,7 +1484,9 @@
   {
     "name": "Serpentine Ring",
     "rarity": 2,
-    "price": [38],
+    "price": [
+      38
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1369,7 +1502,9 @@
   {
     "name": "Spinel Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1383,7 +1518,9 @@
   {
     "name": "Diamond Ring",
     "rarity": 3,
-    "price": [65],
+    "price": [
+      65
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1397,7 +1534,9 @@
   {
     "name": "Andesine Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1411,7 +1550,9 @@
   {
     "name": "Amazonite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1425,7 +1566,9 @@
   {
     "name": "Calcite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1439,7 +1582,9 @@
   {
     "name": "Rhodonite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1453,7 +1598,9 @@
   {
     "name": "Malachite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1467,7 +1614,9 @@
   {
     "name": "Moldavite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1481,7 +1630,9 @@
   {
     "name": "Morganite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1495,7 +1646,9 @@
   {
     "name": "Sphene Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1509,7 +1662,9 @@
   {
     "name": "Sugilite Ring",
     "rarity": 1,
-    "price": [33],
+    "price": [
+      33
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1523,7 +1678,9 @@
   {
     "name": "Blue Topaz Ring",
     "rarity": 2,
-    "price": [48],
+    "price": [
+      48
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1538,7 +1695,9 @@
   {
     "name": "Light-Blue Topaz Ring",
     "rarity": 2,
-    "price": [48],
+    "price": [
+      48
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1553,7 +1712,9 @@
   {
     "name": "Triphane Ring",
     "rarity": 2,
-    "price": [48],
+    "price": [
+      48
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1568,7 +1729,9 @@
   {
     "name": "Verdite Ring",
     "rarity": 2,
-    "price": [48],
+    "price": [
+      48
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1583,7 +1746,9 @@
   {
     "name": "Yellow Zoisite Ring",
     "rarity": 2,
-    "price": [55],
+    "price": [
+      55
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1598,7 +1763,9 @@
   {
     "name": "Green Zoisite Ring",
     "rarity": 2,
-    "price": [55],
+    "price": [
+      55
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1613,7 +1780,9 @@
   {
     "name": "Sunstone Ring",
     "rarity": 3,
-    "price": [65],
+    "price": [
+      65
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 2,
@@ -1632,7 +1801,9 @@
   {
     "name": "Moonstone Ring",
     "rarity": 3,
-    "price": [65],
+    "price": [
+      65
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 2,
@@ -1651,7 +1822,9 @@
   {
     "name": "Pyrite Ring",
     "rarity": 2,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1668,7 +1841,9 @@
   {
     "name": "Prehnite Ring",
     "rarity": 2,
-    "price": [55],
+    "price": [
+      55
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -1684,7 +1859,9 @@
   {
     "name": "Plated Armor of Stonefying Skin",
     "rarity": 3,
-    "price": [155],
+    "price": [
+      155
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -1709,7 +1886,9 @@
   {
     "name": "Belt with Limph-made Walled",
     "rarity": 3,
-    "price": [203],
+    "price": [
+      203
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1729,7 +1908,9 @@
   {
     "name": "Bracelet of a child",
     "rarity": 1,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1745,7 +1926,9 @@
   {
     "name": "Bracelet of river stones",
     "rarity": 1,
-    "price": [17],
+    "price": [
+      17
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1762,7 +1945,9 @@
   {
     "name": "Bracelet of animal bones",
     "rarity": 2,
-    "price": [22],
+    "price": [
+      22
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1779,7 +1964,9 @@
   {
     "name": "Bracelet of wolves teeth",
     "rarity": 3,
-    "price": [35],
+    "price": [
+      35
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1796,7 +1983,9 @@
   {
     "name": "Bracelet of precious stones",
     "rarity": 3,
-    "price": [42],
+    "price": [
+      42
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1813,7 +2002,9 @@
   {
     "name": "Bracelet with metal bands",
     "rarity": 3,
-    "price": [42],
+    "price": [
+      42
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1830,7 +2021,9 @@
   {
     "name": "Bracelet of runed woods",
     "rarity": 3,
-    "price": [42],
+    "price": [
+      42
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1849,7 +2042,9 @@
   {
     "name": "Bracelet of flowers and leaves",
     "rarity": 2,
-    "price": [26],
+    "price": [
+      26
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1866,7 +2061,9 @@
   {
     "name": "Bracelet gold plated",
     "rarity": 4,
-    "price": [170],
+    "price": [
+      170
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1883,7 +2080,9 @@
   {
     "name": "Bracelet silver plated",
     "rarity": 3,
-    "price": [80],
+    "price": [
+      80
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -1900,7 +2099,9 @@
   {
     "name": "Belt of the Warrior",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1918,7 +2119,9 @@
   {
     "name": "Belt of the Druid",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1936,7 +2139,9 @@
   {
     "name": "Belt of the Bishop",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -1954,7 +2159,9 @@
   {
     "name": "Earrings of little hunger",
     "rarity": 2,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -1969,7 +2176,9 @@
   {
     "name": "Earrings of rusted plate",
     "rarity": 1,
-    "price": [7],
+    "price": [
+      7
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -1987,7 +2196,9 @@
   {
     "name": "Ring of rusted plate",
     "rarity": 1,
-    "price": [7],
+    "price": [
+      7
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -2006,7 +2217,9 @@
   {
     "name": "Gloves of the mad hunter",
     "rarity": 3,
-    "price": [5],
+    "price": [
+      5
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -2028,7 +2241,9 @@
   {
     "name": "Necklace of devoted vampire",
     "rarity": 3,
-    "price": [76],
+    "price": [
+      76
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2052,7 +2267,9 @@
   {
     "name": "Bead of the dance",
     "rarity": 1,
-    "price": [17],
+    "price": [
+      17
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2068,7 +2285,9 @@
   {
     "name": "Pendant with Eye of the tiger",
     "rarity": 1,
-    "price": [17],
+    "price": [
+      17
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2083,7 +2302,9 @@
   {
     "name": "Choker of inebriance",
     "rarity": 2,
-    "price": [14],
+    "price": [
+      14
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2100,7 +2321,9 @@
   {
     "name": "Necklace of the tribu",
     "rarity": 2,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2117,7 +2340,9 @@
   {
     "name": "Warm scarf",
     "rarity": 1,
-    "price": [8],
+    "price": [
+      8
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2133,7 +2358,9 @@
   {
     "name": "Amulet of spiritual guardian",
     "rarity": 3,
-    "price": [47],
+    "price": [
+      47
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2151,7 +2378,9 @@
   {
     "name": "Earrings of hard touch",
     "rarity": 2,
-    "price": [22],
+    "price": [
+      22
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -2167,7 +2396,9 @@
   {
     "name": "Gloves of soft touch",
     "rarity": 1,
-    "price": [12],
+    "price": [
+      12
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 1,
@@ -2188,7 +2419,9 @@
   {
     "name": "Crystal armguard",
     "rarity": 4,
-    "price": [230],
+    "price": [
+      230
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -2206,7 +2439,9 @@
   {
     "name": "Runed armguard",
     "rarity": 3,
-    "price": [80],
+    "price": [
+      80
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -2233,7 +2468,9 @@
   {
     "name": "Gems Necklace of Meditation",
     "rarity": 2,
-    "price": [44],
+    "price": [
+      44
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2258,7 +2495,9 @@
   {
     "name": "Angel-guided Sleeve",
     "rarity": 4,
-    "price": [65],
+    "price": [
+      65
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 2,
@@ -2288,7 +2527,9 @@
   {
     "name": "Archers Sleeve",
     "rarity": 2,
-    "price": [20],
+    "price": [
+      20
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 2,
@@ -2311,7 +2552,9 @@
   {
     "name": "Mantle of Semi-visibility",
     "rarity": 3,
-    "price": [77],
+    "price": [
+      77
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -2333,7 +2576,9 @@
   {
     "name": "Charm",
     "rarity": 1,
-    "price": [22],
+    "price": [
+      22
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2348,7 +2593,9 @@
   {
     "name": "Ring of the Wicked Witch",
     "rarity": 1,
-    "price": [13],
+    "price": [
+      13
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -2364,7 +2611,9 @@
   {
     "name": "Ring of the Leech",
     "rarity": 1,
-    "price": [13],
+    "price": [
+      13
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -2380,7 +2629,9 @@
   {
     "name": "Crystal Thunderstone Belt of mad Scientist",
     "rarity": 3,
-    "price": [100],
+    "price": [
+      100
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -2400,7 +2651,9 @@
   {
     "name": "Ferromagnetic Ring",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -2415,7 +2668,9 @@
   {
     "name": "Ferromagnetic Chocker",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 2,
@@ -2430,7 +2685,9 @@
   {
     "name": "Ferromagnetic Bracelet",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -2445,7 +2702,9 @@
   {
     "name": "Ferromagnetic Earrings",
     "rarity": 1,
-    "price": [18],
+    "price": [
+      18
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -2460,7 +2719,9 @@
   {
     "name": "Gloves of the Trickster",
     "rarity": 2,
-    "price": [36],
+    "price": [
+      36
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -2482,7 +2743,9 @@
   {
     "name": "Mask of the Vampire",
     "rarity": 3,
-    "price": [39],
+    "price": [
+      39
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -2501,7 +2764,9 @@
   {
     "name": "Gloves of the Leech",
     "rarity": 2,
-    "price": [24],
+    "price": [
+      24
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -2520,7 +2785,9 @@
   {
     "name": "Snake Belt",
     "rarity": 2,
-    "price": [27],
+    "price": [
+      27
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -2540,7 +2807,9 @@
   {
     "name": "Earrings with Feathers",
     "rarity": 1,
-    "price": [6],
+    "price": [
+      6
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -2556,7 +2825,9 @@
   {
     "name": "Leggins",
     "rarity": 2,
-    "price": [23],
+    "price": [
+      23
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 1,
@@ -2574,7 +2845,9 @@
   {
     "name": "Helenite Belt",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 2,
@@ -2591,7 +2864,9 @@
   {
     "name": "Loath Mask",
     "rarity": 2,
-    "price": [15],
+    "price": [
+      15
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -2616,7 +2891,9 @@
   {
     "name": "Gloves of the Mad Hunter",
     "rarity": 3,
-    "price": [5],
+    "price": [
+      5
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -2639,7 +2916,9 @@
   {
     "name": "Necklace of Devoted Vampire",
     "rarity": 3,
-    "price": [76],
+    "price": [
+      76
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2663,7 +2942,9 @@
   {
     "name": "Labradorite Pendant",
     "rarity": 3,
-    "price": [63],
+    "price": [
+      63
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2681,7 +2962,9 @@
   {
     "name": "Labradorite Bracelet",
     "rarity": 3,
-    "price": [63],
+    "price": [
+      63
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 2,
@@ -2699,7 +2982,9 @@
   {
     "name": "Force Field Belt",
     "rarity": 4,
-    "price": [88],
+    "price": [
+      88
+    ],
     "type": "Belt",
     "dimensionInventory": {
       "width": 1,
@@ -2716,7 +3001,9 @@
   {
     "name": "Circle of Protection",
     "rarity": 3,
-    "price": [63],
+    "price": [
+      63
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2735,7 +3022,9 @@
   {
     "name": "Rings of Protection",
     "rarity": 3,
-    "price": [63],
+    "price": [
+      63
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -2754,7 +3043,9 @@
   {
     "name": "Hermes Shoes",
     "rarity": 4,
-    "price": [82],
+    "price": [
+      82
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -2773,7 +3064,9 @@
   {
     "name": "Thanatos Tendris of Pleasure",
     "rarity": 4,
-    "price": [66],
+    "price": [
+      66
+    ],
     "type": "Hands",
     "dimensionInventory": {
       "width": 2,
@@ -2795,7 +3088,9 @@
   {
     "name": "Mindstone Crown of Focusing Mindwaves",
     "rarity": 4,
-    "price": [78],
+    "price": [
+      78
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -2813,7 +3108,9 @@
   {
     "name": "Soft Blanket",
     "rarity": 1,
-    "price": [8],
+    "price": [
+      8
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -2830,7 +3127,9 @@
   {
     "name": "Bioyum Stone",
     "rarity": 4,
-    "price": [100],
+    "price": [
+      100
+    ],
     "type": "Special",
     "dimensionInventory": {
       "width": 1,
@@ -2845,7 +3144,9 @@
   {
     "name": "Psychyum Stone",
     "rarity": 4,
-    "price": [100],
+    "price": [
+      100
+    ],
     "type": "Special",
     "dimensionInventory": {
       "width": 1,
@@ -2860,7 +3161,9 @@
   {
     "name": "Mathyum Stone",
     "rarity": 4,
-    "price": [100],
+    "price": [
+      100
+    ],
     "type": "Special",
     "dimensionInventory": {
       "width": 1,
@@ -2875,7 +3178,9 @@
   {
     "name": "Evoker Bracelets",
     "rarity": 3,
-    "price": [57],
+    "price": [
+      57
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -2892,7 +3197,9 @@
   {
     "name": "Warrior Shoulder",
     "rarity": 3,
-    "price": [57],
+    "price": [
+      57
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -2909,7 +3216,9 @@
   {
     "name": "Cheapskate Purse",
     "rarity": 3,
-    "price": [57],
+    "price": [
+      57
+    ],
     "type": "Arms",
     "dimensionInventory": {
       "width": 1,
@@ -2924,7 +3233,9 @@
   {
     "name": "Singer Mask",
     "rarity": 2,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -2940,7 +3251,9 @@
   {
     "name": "Comfortable Pants",
     "rarity": 2,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -2958,7 +3271,9 @@
   {
     "name": "Air Filtering Scarf",
     "rarity": 2,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -2977,7 +3292,9 @@
   {
     "name": "Socks",
     "rarity": 0,
-    "price": [4],
+    "price": [
+      4
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 1,
@@ -2993,7 +3310,9 @@
   {
     "name": "Sandals of the Novice",
     "rarity": 2,
-    "price": [25],
+    "price": [
+      25
+    ],
     "type": "Feet",
     "dimensionInventory": {
       "width": 2,
@@ -3012,7 +3331,9 @@
   {
     "name": "Earflap of the Avoidant",
     "rarity": 3,
-    "price": [40],
+    "price": [
+      40
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 2,
@@ -3031,7 +3352,9 @@
   {
     "name": "Ring with Mystic Dense Stones",
     "rarity": 4,
-    "price": [85],
+    "price": [
+      85
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -3049,7 +3372,9 @@
   {
     "name": "Collar with Mystic Dense Stones",
     "rarity": 4,
-    "price": [105],
+    "price": [
+      105
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 2,
@@ -3067,7 +3392,9 @@
   {
     "name": "Sonars with Mystic Dense Stones",
     "rarity": 4,
-    "price": [95],
+    "price": [
+      95
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -3085,7 +3412,9 @@
   {
     "name": "Top of Unholy Syndome",
     "rarity": 4,
-    "price": [77],
+    "price": [
+      77
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -3106,7 +3435,9 @@
   {
     "name": "Trousers of the Lightning",
     "rarity": 4,
-    "price": [53],
+    "price": [
+      53
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -3127,7 +3458,9 @@
   {
     "name": "Top Coatings of the Bloodthirsty Hedgehog",
     "rarity": 4,
-    "price": [77],
+    "price": [
+      77
+    ],
     "type": "Shoulder",
     "dimensionInventory": {
       "width": 2,
@@ -3152,7 +3485,9 @@
   {
     "name": "Sollerets of The Martial Artist",
     "rarity": 3,
-    "price": [48],
+    "price": [
+      48
+    ],
     "type": "Legs",
     "dimensionInventory": {
       "width": 2,
@@ -3179,7 +3514,9 @@
   {
     "name": "Helmet of The Furious",
     "rarity": 4,
-    "price": [7],
+    "price": [
+      7
+    ],
     "type": "Head",
     "dimensionInventory": {
       "width": 2,
@@ -3207,7 +3544,9 @@
   {
     "name": "Thoughts Whisperer",
     "rarity": 3,
-    "price": [17],
+    "price": [
+      17
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -3227,7 +3566,9 @@
   {
     "name": "Simple Ring",
     "rarity": 0,
-    "price": [2],
+    "price": [
+      2
+    ],
     "type": "Ring",
     "dimensionInventory": {
       "width": 1,
@@ -3244,7 +3585,9 @@
   {
     "name": "Simple Necklace",
     "rarity": 0,
-    "price": [2],
+    "price": [
+      2
+    ],
     "type": "Necklace",
     "dimensionInventory": {
       "width": 1,
@@ -3261,7 +3604,9 @@
   {
     "name": "Simple Bracelet",
     "rarity": 0,
-    "price": [2],
+    "price": [
+      2
+    ],
     "type": "Bracelet",
     "dimensionInventory": {
       "width": 1,
@@ -3278,7 +3623,9 @@
   {
     "name": "Simple Earrings",
     "rarity": 0,
-    "price": [2],
+    "price": [
+      2
+    ],
     "type": "Earrings",
     "dimensionInventory": {
       "width": 1,
@@ -3295,7 +3642,9 @@
   {
     "name": "Cloth of Blessed Canvas",
     "rarity": 5,
-    "price": [500],
+    "price": [
+      500
+    ],
     "type": "Chest",
     "dimensionInventory": {
       "width": 2,
@@ -3309,21 +3658,70 @@
       "MagicalDamageReduction": 2
     },
     "maxUpgradesPerCategory": {
-      "Material": { "min": 99, "max": 99 },
-      "Structural": { "min": 99, "max": 99 },
-      "Refining": { "min": 99, "max": 99 },
-      "Coloring": { "min": 99, "max": 99 },
-      "Rune": { "min": 99, "max": 99 },
-      "Incantation": { "min": 99, "max": 99 },
-      "Blessings": { "min": 99, "max": 99 },
-      "Incarnation": { "min": 99, "max": 99 },
-      "Elemental": { "min": 99, "max": 99 },
-      "Focusing": { "min": 99, "max": 99 },
-      "WorkersRolesRelated": { "min": 99, "max": 99 },
-      "CharacterClass": { "min": 99, "max": 99 },
-      "CharacterRace": { "min": 99, "max": 99 },
-      "Tribal": { "min": 99, "max": 99 },
-      "Misc": { "min": 99, "max": 99 }
+      "Material": {
+        "min": 99,
+        "max": 99
+      },
+      "Structural": {
+        "min": 99,
+        "max": 99
+      },
+      "Refining": {
+        "min": 99,
+        "max": 99
+      },
+      "Coloring": {
+        "min": 99,
+        "max": 99
+      },
+      "Rune": {
+        "min": 99,
+        "max": 99
+      },
+      "Enviromental": {
+        "min": 99,
+        "max": 99
+      },
+      "Incantation": {
+        "min": 99,
+        "max": 99
+      },
+      "Blessing": {
+        "min": 99,
+        "max": 99
+      },
+      "Incarnation": {
+        "min": 99,
+        "max": 99
+      },
+      "Elemental": {
+        "min": 99,
+        "max": 99
+      },
+      "Focusing": {
+        "min": 99,
+        "max": 99
+      },
+      "WorkersRolesRelated": {
+        "min": 99,
+        "max": 99
+      },
+      "CharacterClass": {
+        "min": 99,
+        "max": 99
+      },
+      "CharacterRace": {
+        "min": 99,
+        "max": 99
+      },
+      "Tribal": {
+        "min": 99,
+        "max": 99
+      },
+      "Misc": {
+        "min": 99,
+        "max": 99
+      }
     }
   }
 ]

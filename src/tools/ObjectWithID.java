@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.function.Function;
 
+import games.generic.controlModel.GModality;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.types.JSONLong;
@@ -55,7 +56,7 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
@@ -63,15 +64,14 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 		if (!jsonMap.containsKey(FIELD_ID)) {
 			this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
 		}
-		if (!((jsonMap.get(FIELD_ID) instanceof Integer)
-				|| (jsonMap.get(FIELD_ID) instanceof Long))) {
+		if (!((jsonMap.get(FIELD_ID) instanceof Integer) || (jsonMap.get(FIELD_ID) instanceof Long))) {
 			this.raiseExceptionIllegalTypeField(FIELD_ID, JSONTypes.Long, jsonMap.get(FIELD_ID));
 		}
 		this.setID((Long) jsonMap.get(FIELD_ID));
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (!wrapper.hasField(FIELD_ID)) {
 			this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
 		}

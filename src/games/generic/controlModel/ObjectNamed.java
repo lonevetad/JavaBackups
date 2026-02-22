@@ -49,18 +49,18 @@ public interface ObjectNamed extends JSONable {
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
 		if (!jsonMap.containsKey(FIELD_NAME) || !(jsonMap.get(FIELD_NAME) instanceof String)) {
 			this.raiseExceptionIllegalTypeField(FIELD_NAME);
 		}
-		this.setName((String)jsonMap.get(FIELD_NAME));
+		this.setName((String) jsonMap.get(FIELD_NAME));
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (!wrapper.hasField(FIELD_NAME)) {
 			this.raiseExceptionMissingField(FIELD_NAME, JSONTypes.String);
 		}

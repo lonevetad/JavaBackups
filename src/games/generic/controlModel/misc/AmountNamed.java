@@ -2,6 +2,7 @@ package games.generic.controlModel.misc;
 
 import java.util.Map;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import tools.ObjectNamedID;
 import tools.json.JSONTypes;
@@ -74,14 +75,14 @@ public class AmountNamed implements ObjectNamed {
 	}
 
 	@Override
-	public void loadFromJSONObject(JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (!wrapper.hasField(FIELD_VALUE)) {
 			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
 		}
 	}
 
 	@Override
-	public void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 
 	}
 }

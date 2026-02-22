@@ -9,6 +9,8 @@ import tools.Stringable;
 import tools.json.types.JSONObject;
 
 public interface JSONable extends Stringable {
+	public static final String SEPARATOR_INDEX = "#";
+	public static final String SEPARATOR_FIELD = "@";
 
 	// Incremental methods: from and to (usually, those are the one to be
 	// overridden)
@@ -80,13 +82,13 @@ public interface JSONable extends Stringable {
 	 * @param jsonString a valid JSON string representing this object
 	 * @throws IllegalArgumentException
 	 */
-	public default void loadFromJSON(String jsonString) throws IllegalArgumentException {
+	public default void loadFromJSON(GModality gm, String jsonString) throws IllegalArgumentException {
 		JSONValue read = JSONParser.parse(jsonString);
 		if (read == null) {
 			throw new RuntimeException("The object read is null from te following JSON string:\n\t" + jsonString);
 		}
 		if (read instanceof JSONObject jsonObj) {
-			this.loadFromJSONObject((JSONObject) jsonObj);
+			this.loadFromJSONObject(gm, jsonObj);
 		} else {
 			this.raiseExceptionIllegalTypeField(read);
 		}

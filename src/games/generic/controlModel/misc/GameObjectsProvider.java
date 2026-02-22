@@ -41,6 +41,13 @@ public class GameObjectsProvider<E extends ObjectNamed> {
 				Comparators.STRING_COMPARATOR);
 	}
 
+	/**
+	 * Override-designed
+	 */
+	public void initialize() {
+		// TODO :
+	}
+
 	public void addObj(String name, FactoryObjGModalityBased<E> gm) {
 //		System.out.println("\n\n------------original name: " + name + " in class: " + this.getClass().getSimpleName());
 		this.objsByName.put(name, gm);
@@ -56,9 +63,13 @@ public class GameObjectsProvider<E extends ObjectNamed> {
 	 * Added as a workaround, it just calls
 	 * {@link #addObj(String, FactoryObjGModalityBased)}.
 	 */
-	public void addObj(String name, int rarityIndex, FactoryObjGModalityBased<E> gm) { this.addObj(name, gm); }
+	public void addObj(String name, int rarityIndex, FactoryObjGModalityBased<E> gm) {
+		this.addObj(name, gm);
+	}
 
-	public FactoryObjGModalityBased<E> getObjByName(String name) { return this.objsByName.get(name); }
+	public FactoryObjGModalityBased<E> getObjByName(String name) {
+		return this.objsByName.get(name);
+	}
 
 	public E getNewObjByName(GModality gm, String name) {
 		FactoryObjGModalityBased<E> e;
@@ -66,19 +77,27 @@ public class GameObjectsProvider<E extends ObjectNamed> {
 		return e == null ? null : e.newInstance(gm);
 	}
 
-	public FactoryObjGModalityBased<E> getAtIndex(int index) { return this.objsByName.getAt(index).getValue(); }
+	public FactoryObjGModalityBased<E> getAtIndex(int index) {
+		return this.objsByName.getAt(index).getValue();
+	}
 
 	/**
 	 * Returns a {@link Map} that holds every stored object, which are identified by
 	 * their name.
 	 */
-	public Map<String, FactoryObjGModalityBased<E>> getObjectsIdentified() { return this.objsByName; }
+	public Map<String, FactoryObjGModalityBased<E>> getObjectsIdentified() {
+		return this.objsByName;
+	}
 
 	public void forEachFactory(BiConsumer<String, FactoryObjGModalityBased<E>> action) {
 		this.objsByName.forEach(action);
 	}
 
-	public int getObjectsFactoriesCount() { return this.objsByName.size(); }
+	public int getObjectsFactoriesCount() {
+		return this.objsByName.size();
+	}
 
-	public void removeAll() { this.objsByName.clear(); }
+	public void removeAll() {
+		this.objsByName.clear();
+	}
 }

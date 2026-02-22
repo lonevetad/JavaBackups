@@ -13,6 +13,8 @@ import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
 public abstract class CurrencySet implements JSONable {
+
+	private static final long serialVersionUID = -949401544050800932L;
 	public static final String FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT = "canFireCurrencyChangeEvent";
 	public static final String FIELD_VALUES = "values";
 	public static final String FIELD_CURRENCIES = "currencies";
@@ -33,8 +35,9 @@ public abstract class CurrencySet implements JSONable {
 	 */
 	public CurrencySet(GModality gameModality, Currency[] currencies) {
 		Objects.requireNonNull(currencies);
-		if (currencies.length < 1)
+		if (currencies.length < 1) {
 			throw new IllegalArgumentException("Cannot exist no currency types, just don't create me instead!");
+		}
 		this.gameModality = gameModality;
 		this.currencies = currencies;
 		this.values = new int[currencies.length];
@@ -95,8 +98,9 @@ public abstract class CurrencySet implements JSONable {
 		indexCurrency = c.getIndex();
 		old = this.values[indexCurrency];
 		this.values[indexCurrency] = newAmount;
-		if (isFiringEvents())
+		if (isFiringEvents()) {
 			fireCurrencyChangeEvent(this.gameModality, c, old, newAmount);
+		}
 	}
 
 	protected void setValues(int[] vals) {
@@ -120,16 +124,18 @@ public abstract class CurrencySet implements JSONable {
 		indexCurrency = c.getIndex();
 		old = this.values[indexCurrency];
 		this.values[indexCurrency] = newAmount = (old + delta);
-		if (isFiringEvents())
+		if (isFiringEvents()) {
 			fireCurrencyChangeEvent(this.gameModality, c, old, newAmount);
+		}
 	}
 
 	public void forEachCurrency(CurrencyAmountConsumer citac) {
 		int i, n;
 		n = this.values.length;
 		i = -1;
-		while (++i < n)
+		while (++i < n) {
 			citac.performAction(currencies[i], this.values[i]);
+		}
 	}
 
 	public abstract void fireCurrencyChangeEvent(GModality gameModality, Currency currency, int oldValue, int newValue);
@@ -178,7 +184,7 @@ public abstract class CurrencySet implements JSONable {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
@@ -220,7 +226,7 @@ public abstract class CurrencySet implements JSONable {
 	}
 
 	@Override
-	public void loadFromJSONObject(JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
 		}
@@ -253,7 +259,8 @@ public abstract class CurrencySet implements JSONable {
 		final Currency[] currArr = new Currency[valCurrArr.getElementsAmount()];
 		valCurrArr.forEach((index, currJSON) -> {
 			if (!currJSON.isType(JSONTypes.Object)) {
-				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + index, JSONTypes.Object, currJSON);
+				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + JSONable.SEPARATOR_INDEX + index,
+						JSONTypes.Object, currJSON);
 			}
 			currArr[index] = currencyFromJSONObject((JSONObject) currJSON);
 		});

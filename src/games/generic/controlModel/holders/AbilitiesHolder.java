@@ -118,7 +118,8 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 		// JSONValue[] abilitiesArrayjsoned ;
 		((JSONArray) jsonedAbilitiesArrayed).forEach((index, abilityJSONed) -> {
 			if (!abilityJSONed.isType(JSONTypes.Object)) {
-				this.raiseExceptionIllegalTypeField(FIELD_ABILITIES + "#" + index, JSONTypes.Object, abilityJSONed);
+				this.raiseExceptionIllegalTypeField(FIELD_ABILITIES + JSONable.SEPARATOR_INDEX + index,
+						JSONTypes.Object, abilityJSONed);
 			}
 			JSONObject ablJSON = (JSONObject) abilityJSONed;
 			Map<String, Object> extraParameters = JSONable.newFieldValuesMap();
@@ -136,7 +137,7 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 			Integer abilityLevel = ((JSONInt) abilityLevelJSONed).asInt();
 			extraParameters.put("level", abilityLevel);
 			// create the Ability
-			AbilityGeneric ag = gm.newAbilityGeneric(abilityName, extraParameters);
+			AbilityGeneric ag = gm.getGameObjectsProvider().newAbilityGeneric(abilityName, extraParameters);
 			this.addAbility(ag);
 		});
 	}
@@ -159,7 +160,7 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 				this.raiseExceptionIllegalTypeField(FIELD_NAME + "#(" + name + ")", JSONTypes.Object, abilityDataObj);
 			}
 			Map<String, Object> abilityDataMap = (Map<String, Object>) abilityDataObj;
-			AbilityGeneric ability = gm.newAbilityGeneric(name, abilityDataObj);
+			AbilityGeneric ability = gm.getGameObjectsProvider().newAbilityGeneric(name, abilityDataObj);
 			if (abilityDataMap.containsKey("level")) { // set the level if possible (it should already be set by the
 														// method above, but ... just in case)
 				Object maybeLevel = abilityDataMap.get("level");

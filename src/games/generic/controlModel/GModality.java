@@ -5,8 +5,6 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import games.generic.GameOptions;
-import games.generic.controlModel.abilities.AbilityGeneric;
-import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
@@ -54,9 +52,15 @@ import tools.ObjectWithID;
  */
 public abstract class GModality implements ObjectNamed {
 	public static final Comparator<GModality> COMPARATOR_GAME_MODALITY = (o1, o2) -> {
-		if (o1 == o2) { return 0; }
-		if (o1 == null) { return -1; }
-		if (o2 == null) { return 1; }
+		if (o1 == o2) {
+			return 0;
+		}
+		if (o1 == null) {
+			return -1;
+		}
+		if (o2 == null) {
+			return 1;
+		}
 		return Comparators.STRING_COMPARATOR.compare(o1.getName(), o2.getName());
 	};
 
@@ -93,7 +97,9 @@ public abstract class GModality implements ObjectNamed {
 	 * Used to check if the game is SHUTTED-OFF. <br>
 	 * Differs from {@link #isRunning()}, see it for differences.
 	 */
-	public boolean isAlive() { return this.controller.isAlive(); }
+	public boolean isAlive() {
+		return this.controller.isAlive();
+	}
 
 	/**
 	 * Simply return a flag. Used to check if the game is running or not (i.e.: the
@@ -102,35 +108,55 @@ public abstract class GModality implements ObjectNamed {
 	 * <br>
 	 * Differs from {@link #isAlive()}, see it for differences.
 	 */
-	public boolean isRunning() { return this.isRunning; }
+	public boolean isRunning() {
+		return this.isRunning;
+	}
 
-	public PlayerGeneric getPlayer() { return player; }
+	public PlayerGeneric getPlayer() {
+		return player;
+	}
 
-	public String getModalityName() { return modalityName; }
+	public String getModalityName() {
+		return modalityName;
+	}
 
 	@Override
-	public String getName() { return this.modalityName; }
+	public String getName() {
+		return this.modalityName;
+	}
 
-	public GController getGameController() { return controller; }
+	public GController getGameController() {
+		return controller;
+	}
 
-	public Random getRandom() { return random; }
+	public Random getRandom() {
+		return random;
+	}
 
-	public GModel getModel() { return model; }
+	public GModel getModel() {
+		return model;
+	}
 
-	public GMap getMapCurrent() { return model.getMapCurrent(); }
+	public GMap getMapCurrent() {
+		return model.getMapCurrent();
+	}
 
 	/**
 	 * Returns an instance of a holder of "providers", classes that are able to
 	 * provide (and probably instantiating as a new object) kinds of objects,
 	 * depending on the provider required.
 	 */
-	public GameObjectsProvidersHolder getGameObjectsProvider() { return gameObjectsProviderHolder; }
+	public GameObjectsProvidersHolder getGameObjectsProvider() {
+		return gameObjectsProviderHolder;
+	}
 
 	/**
 	 * Get the HUGE delegate of almost everything. See {@link GameObjectsManager} to
 	 * understand what it hold.
 	 */
-	public GameObjectsManager getGameObjectsManager() { return gomDelegated; }
+	public GameObjectsManager getGameObjectsManager() {
+		return gomDelegated;
+	}
 
 	/**
 	 * Delegates the results to {@link GameObjectsManager} returned by
@@ -146,11 +172,15 @@ public abstract class GModality implements ObjectNamed {
 
 	// setter
 
-	public void setModel(GModel model) { this.model = model; }
+	public void setModel(GModel model) {
+		this.model = model;
+	}
 
 	public void setPlayer(PlayerGeneric player) {
 		this.player = player;
-		if (this.player != null) { this.removeGameObject(this.player); }
+		if (this.player != null) {
+			this.removeGameObject(this.player);
+		}
 		if (player != null) {
 			this.addGameObject(player);
 //			player.setGameModality(this);
@@ -158,9 +188,13 @@ public abstract class GModality implements ObjectNamed {
 	}
 
 	// proxy
-	public void setMapCurrent(GMap mapCurrent) { this.model.setMapCurrent(mapCurrent); }
+	public void setMapCurrent(GMap mapCurrent) {
+		this.model.setMapCurrent(mapCurrent);
+	}
 
-	public void setRandomSeed(long seed) { this.random.setSeed(seed); }
+	public void setRandomSeed(long seed) {
+		this.random.setSeed(seed);
+	}
 
 	//
 
@@ -181,8 +215,6 @@ public abstract class GModality implements ObjectNamed {
 	// NEW-STUFF METHODS
 
 	public abstract GModel newGameModel();
-
-	public abstract CurrencySet newCurrencyHolder();
 
 	/** See {@link #newPlayerInGame(UserAccountGeneric, ObjectNamedID)}. */
 	protected PlayerGeneric newPlayerInGame(UserAccountGeneric superPlayer) {
@@ -220,14 +252,6 @@ public abstract class GModality implements ObjectNamed {
 
 	public abstract void loadFrom(GController gc, GameOptions gameOpt, LoaderGeneric loader);
 
-	/**
-	 * Instantiate a new Ability, given some kind of context to it (various initializiation/constructor parameters)
-	 * @param abilityName
-	 * @param abilityContext
-	 * @return
-	 */
-	public abstract AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext);
-
 	//
 
 	// game object handler
@@ -251,14 +275,19 @@ public abstract class GModality implements ObjectNamed {
 	 */
 	public boolean addGameObject(GameObjectGeneric o) {
 		GModel gm;
-		if (o == null)
+		if (o == null) {
 			return false;
-		if (o instanceof GModalityHolder) { ((GModalityHolder) o).setGameModality(this); }
+		}
+		if (o instanceof GModalityHolder) {
+			o.setGameModality(this);
+		}
 		gm = this.getModel();
 		if (gm != null) {
 			boolean added;
 			added = gm.add(o);
-			if (added) { o.onAddedToGame(this); }
+			if (added) {
+				o.onAddedToGame(this);
+			}
 			return added;
 		}
 		return false;
@@ -273,15 +302,19 @@ public abstract class GModality implements ObjectNamed {
 	 */
 	public boolean removeGameObject(GameObjectGeneric o) {
 		GModel gm;
-		if (o == null)
+		if (o == null) {
 			return false;
-		if (o instanceof GModalityHolder) { ((GModalityHolder) o).setGameModality(null); }
+		}
+		if (o instanceof GModalityHolder) {
+			o.setGameModality(null);
+		}
 		gm = this.getModel();
 		if (gm != null) {
 			boolean removed;
 			removed = gm.remove(o);
-			if (removed)
+			if (removed) {
 				o.onRemovedFromGame(this);
+			}
 			return removed;
 		}
 		return false;
@@ -290,25 +323,33 @@ public abstract class GModality implements ObjectNamed {
 	public boolean removeAllGameObjects() {
 		GModel gm;
 		gm = this.getModel();
-		if (gm != null) { return gm.removeAll(); }
+		if (gm != null) {
+			return gm.removeAll();
+		}
 		return false;
 	}
 
 	public boolean containsGameObject(ObjectWithID o) {
 		GModel gm;
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		gm = this.getModel();
-		if (gm != null) { return gm.contains(o); }
+		if (gm != null) {
+			return gm.contains(o);
+		}
 		return false;
 	}
 
 	public void forEachGameObject(Consumer<ObjectWithID> action) {
 		GModel gm;
-		if (action == null)
+		if (action == null) {
 			return;
+		}
 		gm = this.getModel();
-		if (gm != null) { gm.forEach(action); }
+		if (gm != null) {
+			gm.forEach(action);
+		}
 	}
 
 	//
@@ -325,10 +366,16 @@ public abstract class GModality implements ObjectNamed {
 	 */
 	public abstract void startGame();
 
-	public void pause() { this.isRunning = false; }
+	public void pause() {
+		this.isRunning = false;
+	}
 
-	public void resume() { this.isRunning = true; }
+	public void resume() {
+		this.isRunning = true;
+	}
 
 	/** Override AND call the super implementation. */
-	public void closeAll() { this.pause(); }
+	public void closeAll() {
+		this.pause();
+	}
 }

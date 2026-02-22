@@ -5,11 +5,15 @@ import java.util.Map;
 import java.util.SortedSet;
 
 import dataStructures.minorUtils.SortedSetEnhancedDelegating;
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EssenceStorage;
 import tools.json.JSONTypes;
+import tools.json.JSONValue;
+import tools.json.JSONable;
+import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
 /**
@@ -75,18 +79,18 @@ public interface AttributesUpgrade
 		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, attributesJsoned);
 	}
 
-	// TODO IL RESTO
+	public abstract void loadAttributeUpgrade(GModality gm, String attributeName, int value);
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
-		ObjectNamed.super.loadFromJSONObject(wrapper);
-		RarityHolder.super.loadFromJSONObject(wrapper);
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
+		RarityHolder.super.loadFromJSONObject(gm, wrapper);
 		// attribute modifiers
 		// get the field
 		if (!wrapper.hasField(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
 		}
-		JSONOValue jsonedAttributeModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
+		JSONValue jsonedAttributeModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
 		// now de-serialize it
 		if (!jsonedAttributeModifiers_value.isType(JSONTypes.Object)) {
 			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
@@ -95,15 +99,66 @@ public interface AttributesUpgrade
 		JSONObject jsonedAttributeModifiers = (JSONObject) jsonedAttributeModifiers_value;
 		jsonedAttributeModifiers.forEachField((name, jsonedAttributeModifier_value) -> {
 			int value;
-			AttributeModification am = new AttributeModification();
+			JSONObject jsonedAttributeModifier;
+			// load the "attributeModifier" by-hand because it's probably an Enum instance
+			if (!jsonedAttributeModifier_value.isType(JSONTypes.Object)) {
+				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
+						JSONTypes.Object, jsonedAttributeModifiers_value);
+			}
+			jsonedAttributeModifier = (JSONObject) jsonedAttributeModifier_value;
+			if (!jsonedAttributeModifier.hasField("value")) {
+				this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+						+ JSONable.SEPARATOR_FIELD + "value", null);
+			}
+			JSONValue valueJSONed_value = jsonedAttributeModifier.getFieldValue("value");
+			if (!valueJSONed_value.isType(JSONTypes.Int)) {
+				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+						+ JSONable.SEPARATOR_FIELD + "value", JSONTypes.Int, valueJSONed_value);
+			}
+			JSONInt valueJSONed = (JSONInt) valueJSONed_value;
+			value = valueJSONed.asInt();
+			this.loadAttributeUpgrade(gm, name, value);
 		});
-		// TODO
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
-		ObjectNamed.super.loadFromJSONMap(jsonMap);
-		RarityHolder.super.loadFromJSONMap(jsonMap);
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
+		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
 		//
+		// get the field
+		if (!jsonMap.containsKey(FIELD_ATTRIBUTE_MODIFIERS)) {
+			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
+		}
+		Object jsonedAttributeModifiers_value = jsonMap.get(FIELD_ATTRIBUTE_MODIFIERS);
+		// now de-serialize it
+		if (!(jsonedAttributeModifiers_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
+					jsonedAttributeModifiers_value);
+		}
+		Map<String, Object> jsonedAttributeModifiers = (Map<String, Object>) jsonedAttributeModifiers_value;
+		jsonedAttributeModifiers.forEach((name, jsonedAttributeModifier_value) -> {
+			int value;
+			Map<String, Object> jsonedAttributeModifier;
+
+			// load the "attributeModifier" by-hand because it's probably an Enum instance
+			if (!(jsonedAttributeModifier_value instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
+						JSONTypes.Object, jsonedAttributeModifiers_value);
+			}
+			jsonedAttributeModifier = (Map<String, Object>) jsonedAttributeModifier_value;
+			if (!jsonedAttributeModifier.containsKey("value")) {
+				this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+						+ JSONable.SEPARATOR_FIELD + "value", null);
+			}
+			Object valueJSONed_value = jsonedAttributeModifier.get("value");
+			if (!(valueJSONed_value instanceof Integer)) {
+				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+						+ JSONable.SEPARATOR_FIELD + "value", JSONTypes.Int, valueJSONed_value);
+			}
+			Integer valueJSONed = (Integer) valueJSONed_value;
+			value = valueJSONed;
+			this.loadAttributeUpgrade(gm, name, value);
+		});
 	}
 }

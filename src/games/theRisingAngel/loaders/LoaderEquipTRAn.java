@@ -225,9 +225,9 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 
 	public void toJSONValue(JSONObject wrapper);
 
-	public void loadFromJSONMap(Map<String, Object> jsonMap);
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap);
 
-	public void loadFromJSONObject(JSONObject wrapper);
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper);
 
 	@Override
 	public JSONValue toJSON() {

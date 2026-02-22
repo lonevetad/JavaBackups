@@ -2,6 +2,7 @@ package games.generic.controlModel.holders;
 
 import java.util.Map;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.items.EquipmentItem;
 import tools.WeightedSetOfRandomOutcomes;
 import tools.json.JSONTypes;
@@ -44,7 +45,7 @@ public interface RarityHolder extends JSONable {
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (!wrapper.hasField(FIELD_RARITY_INDEX)) {
 			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
 		}
@@ -52,7 +53,7 @@ public interface RarityHolder extends JSONable {
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

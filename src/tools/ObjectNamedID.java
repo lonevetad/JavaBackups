@@ -3,6 +3,7 @@ package tools;
 import java.util.Comparator;
 import java.util.Map;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import tools.json.types.JSONObject;
 
@@ -36,21 +37,21 @@ public interface ObjectNamedID extends ObjectWithID, ObjectNamed {
 	//
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
-		ObjectWithID.super.loadFromJSONObject(wrapper);
-		ObjectNamed.super.loadFromJSONObject(wrapper);
-	}
-
-	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		ObjectWithID.super.toJSONValue(wrapper);
 		ObjectNamed.super.toJSONValue(wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
-		ObjectWithID.super.loadFromJSONMap(jsonMap);
-		ObjectNamed.super.loadFromJSONMap(jsonMap);
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		ObjectWithID.super.loadFromJSONObject(gm, wrapper);
+		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		ObjectWithID.super.loadFromJSONMap(gm, jsonMap);
+		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
 	}
 
 }

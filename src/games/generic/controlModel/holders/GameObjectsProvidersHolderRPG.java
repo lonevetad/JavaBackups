@@ -7,6 +7,7 @@ import dataStructures.MapTreeAVL;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.items.EquipmentItem;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.InventoryItem;
 import games.generic.controlModel.items.InventoryItemNotEquippable;
 import games.generic.controlModel.misc.GMapProvider;
@@ -16,6 +17,7 @@ import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.providers.AbilitiesProvider;
 import games.generic.controlModel.providers.CreaturesProvider;
 import games.generic.controlModel.providers.EquipItemProvider;
+import games.generic.controlModel.providers.EquipmentUpgradesCategoryProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesProvider;
 import games.generic.controlModel.providers.ItemProvider;
 import games.generic.controlModel.subimpl.GModalityRPG;
@@ -52,19 +54,7 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 
 	public GameObjectsProvidersHolderRPG(GModalityRPG gModality) {
 		this.gameModality = gModality;
-		this.providers = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
-		this.abilitiesProvider = newAbilitiesProvider();
-		this.equipmentsProvider = newEquipItemProvider();
-		this.creaturesProvider = newCreatureProvider();
-		this.equipUpgradesProvider = newEquipUpgradesProvider();
-		this.mapsProvider = newMapsProvider();
-		this.itemsProvider = newItemProvider();
-		this.providers.put(EquipItemProvider.NAME, equipmentsProvider);
-		this.providers.put(EquipmentUpgradesProvider.NAME, equipUpgradesProvider);
-		this.providers.put(AbilitiesProvider.NAME, abilitiesProvider);
-		this.providers.put(ItemProvider.NAME, itemsProvider);
-		this.providers.put(CreaturesProvider.NAME, creaturesProvider);
-		this.providers.put(GMapProvider.NAME_FOR_GOPROVIDER, mapsProvider);
+		this.initialize();
 //		this.random = new Random();
 	}
 
@@ -73,6 +63,7 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 	protected AbilitiesProvider abilitiesProvider;
 	protected EquipItemProvider equipmentsProvider;
 	protected ItemProvider itemsProvider;
+	protected EquipmentUpgradesCategoryProvider<?> equipUpgradesCategoryProvider;
 	protected EquipmentUpgradesProvider equipUpgradesProvider;
 	protected CreaturesProvider<BaseCreatureRPG> creaturesProvider;
 	protected GMapProvider mapsProvider;
@@ -80,27 +71,67 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 //	protected RandomWeightedIndexes equipItemsWeights;
 //	protected Random random;
 
+	@Override
+	public void initialize() {
+		this.providers = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
+		this.abilitiesProvider = newAbilitiesProvider();
+		this.equipmentsProvider = newEquipItemProvider();
+		this.creaturesProvider = newCreatureProvider();
+		this.equipUpgradesProvider = newEquipUpgradesProvider();
+		this.equipUpgradesCategoryProvider = newEquipUpgradesCategoryProvider();
+		this.mapsProvider = newMapsProvider();
+		this.itemsProvider = newItemProvider();
+		this.providers.put(EquipItemProvider.NAME, equipmentsProvider);
+		this.providers.put(EquipmentUpgradesProvider.NAME, equipUpgradesProvider);
+		this.providers.put(AbilitiesProvider.NAME, abilitiesProvider);
+		this.providers.put(ItemProvider.NAME, itemsProvider);
+		this.providers.put(CreaturesProvider.NAME, creaturesProvider);
+		this.providers.put(GMapProvider.NAME_FOR_GOPROVIDER, mapsProvider);
+	}
+
 	//
 	@Override
-	public Map<String, GameObjectsProvider<? extends ObjectNamed>> getProviders() { return providers; }
+	public Map<String, GameObjectsProvider<? extends ObjectNamed>> getProviders() {
+		return providers;
+	}
 
-	public GModalityRPG getGameModality() { return gameModality; }
+	public GModalityRPG getGameModality() {
+		return gameModality;
+	}
 
-	public AbilitiesProvider getAbilitiesProvider() { return abilitiesProvider; }
+	public AbilitiesProvider getAbilitiesProvider() {
+		return abilitiesProvider;
+	}
 
-	public ItemProvider getItemsProvider() { return itemsProvider; }
+	public ItemProvider getItemsProvider() {
+		return itemsProvider;
+	}
 
-	public EquipItemProvider getEquipmentsProvider() { return equipmentsProvider; }
+	public EquipItemProvider getEquipmentsProvider() {
+		return equipmentsProvider;
+	}
 
-	public EquipmentUpgradesProvider getEquipUpgradesProvider() { return equipUpgradesProvider; }
+	public EquipmentUpgradesCategoryProvider<?> getEquipUpgradesCategoryProvider() {
+		return equipUpgradesCategoryProvider;
+	}
 
-	public CreaturesProvider<BaseCreatureRPG> getCreaturesProvider() { return creaturesProvider; }
+	public EquipmentUpgradesProvider getEquipUpgradesProvider() {
+		return equipUpgradesProvider;
+	}
 
-	public Random getRandom() { return gameModality.getRandom(); }
+	public CreaturesProvider<BaseCreatureRPG> getCreaturesProvider() {
+		return creaturesProvider;
+	}
+
+	public Random getRandom() {
+		return gameModality.getRandom();
+	}
 
 //
 
-	public void setAbilitiesProvider(AbilitiesProvider ap) { this.abilitiesProvider = ap; }
+	public void setAbilitiesProvider(AbilitiesProvider ap) {
+		this.abilitiesProvider = ap;
+	}
 
 	public void setEquipmentsProvider(EquipItemProvider equipmentsProvider) {
 		this.equipmentsProvider = equipmentsProvider;
@@ -114,27 +145,47 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		this.creaturesProvider = creaturesProvider;
 	}
 
-	public GMapProvider getMapsProvider() { return mapsProvider; }
+	public GMapProvider getMapsProvider() {
+		return mapsProvider;
+	}
 
 //	public void setEquipItemsWeights(RandomWeightedIndexes equipItemsWeights) {this.equipItemsWeights = equipItemsWeights;}
 
 	//
 
-	public void setItemsProvider(ItemProvider itemsProvider) { this.itemsProvider = itemsProvider; }
+	public void setItemsProvider(ItemProvider itemsProvider) {
+		this.itemsProvider = itemsProvider;
+	}
 
-	public void setGameModality(GModalityRPG gModality) { this.gameModality = gModality; }
+	public void setGameModality(GModalityRPG gModality) {
+		this.gameModality = gModality;
+	}
 
 	// TODO new-methods
 
-	public AbilitiesProvider newAbilitiesProvider() { return new AbilitiesProvider(); }
+	public AbilitiesProvider newAbilitiesProvider() {
+		return new AbilitiesProvider();
+	}
 
-	public EquipItemProvider newEquipItemProvider() { return new EquipItemProvider(); }
+	public EquipItemProvider newEquipItemProvider() {
+		return new EquipItemProvider();
+	}
 
-	public EquipmentUpgradesProvider newEquipUpgradesProvider() { return new EquipmentUpgradesProvider(); }
+	public EquipmentUpgradesProvider newEquipUpgradesProvider() {
+		return new EquipmentUpgradesProvider();
+	}
 
-	public CreaturesProvider<BaseCreatureRPG> newCreatureProvider() { return new CreaturesProvider<>(); }
+	public abstract EquipmentUpgradesCategoryProvider<?> newEquipUpgradesCategoryProvider();
 
-	public GMapProvider newMapsProvider() { return new GMapProvider(); }
+	public CreaturesProvider<BaseCreatureRPG> newCreatureProvider() {
+		return new CreaturesProvider<>();
+	}
 
-	public ItemProvider newItemProvider() { return new ItemProvider(); }
+	public GMapProvider newMapsProvider() {
+		return new GMapProvider();
+	}
+
+	public ItemProvider newItemProvider() {
+		return new ItemProvider();
+	}
 }
