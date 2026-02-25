@@ -2821,7 +2821,8 @@
     ],
     "category": "Refining",
     "attributeModifiers": {
-      "LifeMax": 80
+      "LifeMax": 80,
+      "PhysicalDamageMultiplierPercentageReduction": 5
     }
   },
   {
@@ -2832,7 +2833,25 @@
     ],
     "category": "Refining",
     "attributeModifiers": {
-      "ManaMax": 75
+      "ManaMax": 75,
+      "MagicalDamageMultiplierPercentageReduction": 5
+    }
+  },
+  {
+    "name": "of Stone",
+    "rarity": 1,
+    "price": [
+      5
+    ],
+    "category": "Material",
+    "attributeModifiers": {
+      "Defense": 12,
+      "Dexterity": -6,
+      "PhysicalProbabilityPerThousandAvoid": -100,
+      "MagicalProbabilityPerThousandAvoid": -100,
+      "CriticalProbabilityPerThousandAvoid": 50,
+      "PhysicalDamageMultiplierPercentageReduction": 5,
+      "MagicalDamageMultiplierPercentageReduction": 5
     }
   },
   {

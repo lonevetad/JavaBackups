@@ -93,8 +93,7 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 		// mapping each ability
 		this.getAbilities().forEach((abilityName, ability) -> {
 			JSONObject abilityJSONed = new JSONObject();
-			abilityJSONed.addField("name", new JSONString(ability.getName()));
-			abilityJSONed.addField("level", new JSONInt(ability.getLevel()));
+			ability.toJSONValue(abilityJSONed);
 			abilitiesArrayjsoned[index[0]++] = abilityJSONed;
 		});
 		JSONArray jsonedAbilitiesArrayed = new JSONArray(JSONTypes.ArrayHomogeneousType, abilitiesArrayjsoned,
@@ -103,8 +102,8 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
-		GameObjectGeneric.super.loadFromJSONObject(wrapper);
+	public default void loadFromJSONObject(final GModality gm, JSONObject wrapper) {
+		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
 		//
 		if (!wrapper.hasField(FIELD_ABILITIES)) {
 			this.raiseExceptionMissingField(FIELD_ABILITIES, JSONTypes.Object);
@@ -114,7 +113,6 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType,
 					jsonedAbilitiesArrayed);
 		}
-		final GModality gm = this.getGameModality();
 		// JSONValue[] abilitiesArrayjsoned ;
 		((JSONArray) jsonedAbilitiesArrayed).forEach((index, abilityJSONed) -> {
 			if (!abilityJSONed.isType(JSONTypes.Object)) {
@@ -143,17 +141,16 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(final GModality gm, Map<String, Object> jsonMap) {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
-		GameObjectGeneric.super.loadFromJSONMap(jsonMap);
+		GameObjectGeneric.super.loadFromJSONMap(gm, jsonMap);
 		//
 		if (!jsonMap.containsKey(FIELD_ABILITIES) /* || !(jsonMap.get(FIELD_ABILITIES) instanceof Map<?,?>) */) {
 			this.raiseExceptionIllegalTypeField(FIELD_ABILITIES, JSONTypes.ArrayHomogeneousType,
 					jsonMap.get(FIELD_ABILITIES));
 		}
-		final GModality gm = this.getGameModality();
 		Map<String, Object> abilitiesMap = (Map<String, Object>) jsonMap.get(FIELD_ABILITIES);
 		abilitiesMap.forEach((name, abilityDataObj) -> {
 			if (!(abilityDataObj instanceof Map<?, ?>)) {

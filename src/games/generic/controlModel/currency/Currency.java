@@ -1,7 +1,7 @@
 package games.generic.controlModel.currency;
 
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 
 /** A kind of a currency in the game. */
-public interface Currency extends IndexableObject {
+public interface Currency extends IEnumAlike {
 }

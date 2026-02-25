@@ -4,7 +4,6 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
-import games.generic.controlModel.misc.IndexableObject;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.rechargeable.resources.holders.ShieldHavingObject;
 import games.theRisingAngel.enums.AttributesTRAn;
@@ -13,7 +12,7 @@ import games.theRisingAngel.enums.RaritiesTRAn;
 public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime {
 	private static final long serialVersionUID = -5601561564544L;
 	public static final String NAME = "Repulsive Mindfield";
-	public static final IndexableObject RARITY = RaritiesTRAn.Rare;
+	public static final RaritiesTRAn RARITY = RaritiesTRAn.Rare;
 	protected static final AttributeModification[] SHIELD_PARAMS = {
 			new AttributeModification(AttributesTRAn.ShieldMax, 0), //
 			new AttributeModification(AttributesTRAn.ShieldRegen, 0), //
@@ -28,7 +27,9 @@ public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime {
 	protected boolean hasLostShieldAmountDuringUpdate;
 	protected int shieldAmoutPreUpdate;
 
-	protected ShieldHavingObject getAbilityOwner() { return (ShieldHavingObject) this.getOwner(); }
+	protected ShieldHavingObject getAbilityOwner() {
+		return (ShieldHavingObject) this.getOwner();
+	}
 
 	@Override
 	protected void actionPreAttributeModificationUpdates() {

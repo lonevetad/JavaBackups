@@ -1,5 +1,6 @@
 package games.generic.controlModel.enums;
 
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.subimpl.GObjectsHolderImpl;
 import tools.Comparators;
 import tools.ObjectNamedID;
@@ -26,19 +27,28 @@ public class GEnumeration extends GObjectsHolderImpl<String, GEnumInstance> impl
 	//
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
 	public boolean setID(Long newID) {
-		if (this.ID != null || newID == null) { return false; }
+		if (this.ID != null || newID == null) {
+			return false;
+		}
 		this.ID = newID;
 		return true;
 	}
 
 	@Override
-	public String getName() { return name; }
+	public String getName() {
+		return name;
+	}
 
-	public void setName(String name) { this.name = name; }
+	public ObjectNamed setName(String name) {
+		this.name = name;
+		return this;
+	}
 
 	//
 

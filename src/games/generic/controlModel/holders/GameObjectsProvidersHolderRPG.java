@@ -15,6 +15,7 @@ import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.providers.AbilitiesProvider;
+import games.generic.controlModel.providers.AttributesProvider;
 import games.generic.controlModel.providers.CreaturesProvider;
 import games.generic.controlModel.providers.EquipItemProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesCategoryProvider;
@@ -55,11 +56,12 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 	public GameObjectsProvidersHolderRPG(GModalityRPG gModality) {
 		this.gameModality = gModality;
 		this.initialize();
-//		this.random = new Random();
+		// this.random = new Random();
 	}
 
 	protected GModalityRPG gameModality;
 	protected Map<String, GameObjectsProvider<? extends ObjectNamed>> providers;
+	protected AttributesProvider<?> attributesProvider;
 	protected AbilitiesProvider abilitiesProvider;
 	protected EquipItemProvider equipmentsProvider;
 	protected ItemProvider itemsProvider;
@@ -68,8 +70,8 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 	protected CreaturesProvider<BaseCreatureRPG> creaturesProvider;
 	protected GMapProvider mapsProvider;
 	// for random stuffs
-//	protected RandomWeightedIndexes equipItemsWeights;
-//	protected Random random;
+	// protected RandomWeightedIndexes equipItemsWeights;
+	// protected Random random;
 
 	@Override
 	public void initialize() {
@@ -78,15 +80,18 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		this.equipmentsProvider = newEquipItemProvider();
 		this.creaturesProvider = newCreatureProvider();
 		this.equipUpgradesProvider = newEquipUpgradesProvider();
-		this.equipUpgradesCategoryProvider = newEquipUpgradesCategoryProvider();
 		this.mapsProvider = newMapsProvider();
 		this.itemsProvider = newItemProvider();
-		this.providers.put(EquipItemProvider.NAME, equipmentsProvider);
-		this.providers.put(EquipmentUpgradesProvider.NAME, equipUpgradesProvider);
-		this.providers.put(AbilitiesProvider.NAME, abilitiesProvider);
-		this.providers.put(ItemProvider.NAME, itemsProvider);
-		this.providers.put(CreaturesProvider.NAME, creaturesProvider);
-		this.providers.put(GMapProvider.NAME_FOR_GOPROVIDER, mapsProvider);
+		this.addProvider(EquipItemProvider.NAME, equipmentsProvider);
+		this.addProvider(EquipmentUpgradesProvider.NAME, equipUpgradesProvider);
+		this.addProvider(AbilitiesProvider.NAME, abilitiesProvider);
+		this.addProvider(ItemProvider.NAME, itemsProvider);
+		this.addProvider(CreaturesProvider.NAME, creaturesProvider);
+		this.addProvider(GMapProvider.NAME_FOR_GOPROVIDER, mapsProvider);
+		// "register" not called yet: in a subclass, to allow flexibility in choosing
+		// the name (key)
+		this.equipUpgradesCategoryProvider = newEquipUpgradesCategoryProvider();
+		this.attributesProvider = newAttributesProvider();
 	}
 
 	//
@@ -127,7 +132,7 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		return gameModality.getRandom();
 	}
 
-//
+	//
 
 	public void setAbilitiesProvider(AbilitiesProvider ap) {
 		this.abilitiesProvider = ap;
@@ -149,7 +154,8 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		return mapsProvider;
 	}
 
-//	public void setEquipItemsWeights(RandomWeightedIndexes equipItemsWeights) {this.equipItemsWeights = equipItemsWeights;}
+	// public void setEquipItemsWeights(RandomWeightedIndexes equipItemsWeights)
+	// {this.equipItemsWeights = equipItemsWeights;}
 
 	//
 
@@ -176,6 +182,8 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 	}
 
 	public abstract EquipmentUpgradesCategoryProvider<?> newEquipUpgradesCategoryProvider();
+
+	public abstract AttributesProvider<?> newAttributesProvider();
 
 	public CreaturesProvider<BaseCreatureRPG> newCreatureProvider() {
 		return new CreaturesProvider<>();

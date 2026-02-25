@@ -11,10 +11,11 @@ import java.util.Set;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
 import games.generic.controlModel.subimpl.GModalityRPG;
@@ -135,7 +136,7 @@ public class TribesTRAn {
 	 * another one. Being devoted to an Attribute gives more bonus than the malus
 	 * provided by the hating.
 	 */
-	public static enum Tribe implements IndexableObject {
+	public static enum Tribe implements IEnumAlike {
 		Apebz, Asexiso, Buavoj, Bifod, Cobahir, Cugujab, Dokosok, Domonoleg, Drovovomir, Epewuv, Equaks, Fidnox,
 		Folottuj, Gamaskov, Gizix, Gokuq, Guwaddarg, Hansyn, Hitifa, Hugupad, Icibiup, Innizay, Jaonuvup, Jawueqk,
 		Jikitiwumo, Kantiw, Kefmah, Kemaf, Lamahaya, Lezerto, Lijislaer, Liwed, Maxibos, Mijumey, Muffinex, Muvuduk,
@@ -160,7 +161,7 @@ public class TribesTRAn {
 
 		//
 
-//		Tribe(TribeReligion religion) { this.religion = religion; }
+		// Tribe(TribeReligion religion) { this.religion = religion; }
 
 		protected TribeReligion religion;
 
@@ -224,7 +225,7 @@ public class TribesTRAn {
 			eu.addAttributeModifier(new AttributeModification(rel.religionDevotedTo, relAlMod.getBonus()));
 			eu.addAttributeModifier(new AttributeModification(rel.religionHated, relAlMod.getMalus()));
 
-			cs = gmrpg.newCurrencyHolder();
+			cs = gmrpg.getGameObjectsProvider().newCurrencyHolder();
 			currencies = cs.getCurrencies();
 			cs.setGameModaliy(gmrpg);
 			n = variation.addedPrices.length;
@@ -291,7 +292,7 @@ public class TribesTRAn {
 
 			equipPiece.setDimensionInInventory(ped.dimensionInventory);
 
-			cs = gmrpg.newCurrencyHolder();
+			cs = gmrpg.getGameObjectsProvider().newCurrencyHolder();
 			currencies = cs.getCurrencies();
 			cs.setGameModaliy(gmrpg);
 			n = variation.addedPrices.length;
@@ -368,10 +369,10 @@ public class TribesTRAn {
 		}
 	}
 
-//
+	//
 
-// TODO : TribeWarStatus enum
-	public static enum TribeWarStatus implements IndexableObject {
+	// TODO : TribeWarStatus enum
+	public static enum TribeWarStatus implements IEnumAlike {
 		Neutral, War, Ally;
 
 		public static final TribeWarStatus[] ALL_TRIBE_WAR_STATUS;
@@ -573,36 +574,36 @@ public class TribesTRAn {
 				religAlign = ReligionAlignment.Canon;
 			}
 			switch (religAlign) {
-			case Canon: {
-				isnegativePriceChanging = false;
-				bonus = variation.bonus;
-				malus = variation.malus;
-				break;
-			}
-			case Fanatic: {
-				// OLD: false
-				isnegativePriceChanging = true;
-				/*
-				 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
-				 * -variation.bonus;
-				 */
-				bonus = variation.bonus << 1;
-				malus = variation.malus * 2;
-				break;
-			}
-			case Heretic: {
-				isnegativePriceChanging = true;
-				// turns positive
-				malus = -variation.malus;
-				/*
-				 * then balance: remove the "new malus" and how the bonus have balanced the
-				 * original malus; in total, it's twice the Math.abs of the original malus
-				 */
-				bonus = variation.bonus - (malus << 1);
-				break;
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected religion: " + religAlign);
+				case Canon: {
+					isnegativePriceChanging = false;
+					bonus = variation.bonus;
+					malus = variation.malus;
+					break;
+				}
+				case Fanatic: {
+					// OLD: false
+					isnegativePriceChanging = true;
+					/*
+					 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
+					 * -variation.bonus;
+					 */
+					bonus = variation.bonus << 1;
+					malus = variation.malus * 2;
+					break;
+				}
+				case Heretic: {
+					isnegativePriceChanging = true;
+					// turns positive
+					malus = -variation.malus;
+					/*
+					 * then balance: remove the "new malus" and how the bonus have balanced the
+					 * original malus; in total, it's twice the Math.abs of the original malus
+					 */
+					bonus = variation.bonus - (malus << 1);
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected religion: " + religAlign);
 			}
 		}
 
@@ -660,11 +661,14 @@ public class TribesTRAn {
 			return canBeEquipUpgrade;
 		}
 		//
-//		public void setVariationName(String variationName) { this.variationName = variationName; }
-//		public void setBonus(int bonus) { this.bonus = bonus; }
-//		public void setMalus(int malus) { this.malus = malus; }
-//		public void setAddedPrices(int[] addedPrices) { this.addedPrices = addedPrices; }
-//		public void setCanBeEquipUpgrade(boolean canBeEquipUpgrade) { this.canBeEquipUpgrade = canBeEquipUpgrade; }
+		// public void setVariationName(String variationName) { this.variationName =
+		// variationName; }
+		// public void setBonus(int bonus) { this.bonus = bonus; }
+		// public void setMalus(int malus) { this.malus = malus; }
+		// public void setAddedPrices(int[] addedPrices) { this.addedPrices =
+		// addedPrices; }
+		// public void setCanBeEquipUpgrade(boolean canBeEquipUpgrade) {
+		// this.canBeEquipUpgrade = canBeEquipUpgrade; }
 
 		@Override
 		public String toString() {

@@ -5,6 +5,7 @@ import java.util.Map;
 import games.generic.controlModel.GModality;
 import tools.ObjectNamedID;
 import tools.json.JSONTypes;
+import tools.json.JSONValue;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
@@ -65,7 +66,7 @@ public interface IndexableObject extends ObjectNamedID {
 		if (!wrapper.hasField(FIELD_INDEX)) {
 			this.raiseExceptionMissingField(FIELD_INDEX, JSONTypes.Int);
 		}
-		JSONOValue jsonedIndex_value = wrapper.getFieldValue(FIELD_INDEX);
+		JSONValue jsonedIndex_value = wrapper.getFieldValue(FIELD_INDEX);
 		// TODO
 		// now de-serialize it
 		if (!jsonedIndex_value.isType(JSONTypes.Int)) {
@@ -77,7 +78,8 @@ public interface IndexableObject extends ObjectNamedID {
 	@Override
 	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
-		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
+		// TODO
+		TODO;
 	}
 
 }

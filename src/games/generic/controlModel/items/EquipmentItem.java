@@ -23,6 +23,7 @@ import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import tools.Comparators;
 import tools.ObjectWithID;
+import tools.json.types.JSONObject;
 
 /**
  * Top class for equippable object.<br>
@@ -40,14 +41,18 @@ import tools.ObjectWithID;
  */
 public abstract class EquipmentItem extends InventoryItem implements AbilitiesHolder {
 	private static final long serialVersionUID = -55232021L;
+	public static final String FIELD_EQUIPMENT_TYPE = "equipmentType";
+	public static final String FIELD_MAX_UPGRADES_PER_CATEGORY = "maxUpgradesPerCategory";
+	public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributeModifiers";
+	public static final String FIELD_UPGRADES = "upgrades";
 
 	protected final EquipmentType equipmentType;
-	protected EquipmentSet belongingEquipmentSet;
+	protected transient EquipmentSet belongingEquipmentSet;
 	protected final List<AttributeModification> baseAttributeModifiers;
 	protected MapTreeAVL<String, AbilityGeneric> backMapAbilities;
-	protected Set<AbilityGeneric> abilities;
+	protected transient Set<AbilityGeneric> abilities;
 	protected MapTreeAVL<String, IEquipmentUpgrade> backMapEquipUpgrades; //
-	protected Set<IEquipmentUpgrade> upgrades;
+	protected transient Set<IEquipmentUpgrade> upgrades;
 	protected MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> maxUpgradesPerCategory;
 
 	public EquipmentItem(GModalityRPG gmrpg, EquipmentType equipmentType, String name) {
@@ -225,7 +230,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		if (am != null) {
 			checkAbilitiesSet();
 			this.abilities.add(am);
-//			am.setEquipItem(this);
+			// am.setEquipItem(this);
 			BaseCreatureRPG owner = getCreatureWearingEquipments();
 			if (owner != null) {
 				am.setOwner(owner);
@@ -243,7 +248,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		if (am != null) {
 			checkAbilitiesSet();
 			if (this.abilities.remove(am)) {
-//				am.setEquipItem(null);
+				// am.setEquipItem(null);
 				if (getCreatureWearingEquipments() != null) {
 					am.onRemovingFromOwner(getGameModality());
 				}
@@ -265,7 +270,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			am = backMap.get(name);
 			if (am != null) {
 				backMap.remove(name);
-//				am.setEquipItem(null);
+				// am.setEquipItem(null);
 				am.onRemovingFromOwner(getGameModality());
 			}
 		}
@@ -394,7 +399,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		super.onAddingToOwner(gm);
 		abl = this.getAbilitiesSet();
 		if (abl != null) {
-//			abl.forEach(ea -> ea.onEquip(gm));
+			// abl.forEach(ea -> ea.onEquip(gm));
 			abl.forEach(ea -> {
 				ea.setOwner(o);
 				ea.onAddingToOwner(gm);
@@ -413,7 +418,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		super.onRemovingFromOwner(gm);
 		abl = this.getAbilitiesSet();
 		if (abl != null) {
-//			abl.forEach(ea -> ea.onUnEquipping(gm));
+			// abl.forEach(ea -> ea.onUnEquipping(gm));
 			abl.forEach(ea -> {
 				ea.onRemovingFromOwner(gm);
 			});
@@ -457,5 +462,25 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		sb.append('\n');
 		upgrades.forEach(eu -> sb.append('\t').append(eu).append('\n'));
 		return sb.toString();
+	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	@Override
+	public void toJSONValue(JSONObject wrapper) {
+		InventoryItem.super.toJSONValue(wrapper);
+		AbilitiesHolder.super.toJSONValue(wrapper);
+		// equipment type
+		JSONObject equipmentTypeJsoned = new JSONObject();
+		this.getEquipmentType().toJSONValue(equipmentTypeJsoned);
+		wrapper.addField(FIELD_EQUIPMENT_TYPE, equipmentTypeJsoned);
+		// base attribute modifiers
+		public static final String FIELD_MAX_UPGRADES_PER_CATEGORY = "maxUpgradesPerCategory";
+		public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributeModifiers";
+		public static final String FIELD_UPGRADES = "upgrades";
 	}
 }

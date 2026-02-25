@@ -57,7 +57,6 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	 */
 	public void onCreate(GModality gm);
 
-	
 	//
 
 	// JSON-related
@@ -70,13 +69,13 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	}
 
 	@Override
-	public default void loadFromJSONObject(JSONObject wrapper) {
-		ObjectNamedID.super.loadFromJSONObject(wrapper);
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		ObjectNamedID.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(Map<String, Object> jsonMap) {
-		ObjectNamedID.super.loadFromJSONMap(jsonMap);
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
 	}
 
 }

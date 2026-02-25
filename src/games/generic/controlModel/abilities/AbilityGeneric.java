@@ -1,5 +1,6 @@
 package games.generic.controlModel.abilities;
 
+import java.util.Map;
 import java.util.function.Function;
 
 import games.generic.controlModel.GModality;
@@ -11,11 +12,15 @@ import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListe
 import games.generic.controlModel.misc.uidp.UIDPLoadableFacade;
 import games.generic.controlModel.objects.AssignableObject;
 import games.generic.controlModel.objects.DestructibleObject;
-import games.generic.controlModel.objects.GameObjectGeneric;
 import tools.ObjectWithID;
 import tools.UniqueIDProvider;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
+import tools.json.types.JSONInt;
+import tools.json.types.JSONObject;
 
-public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObjectGeneric {
+public interface AbilityGeneric extends AssignableObject, RarityHolder {
+	public static final String FIELD_LEVEL = "level";
 	public static final Function<AbilityGeneric, String> NAME_EXTRACTOR = AbilityGeneric::getName;// e -> e.getName();
 	public static final UniqueIDProvider UIDP_ABILITY = new UIDPLoadableFacade<>(AbilityGeneric.class);
 	@SuppressWarnings("unchecked")
@@ -43,7 +48,9 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObje
 	 * Calls {@link #performAbility(GModality, int)} providing {@code 0} as the
 	 * second parameter.
 	 */
-	public default void performAbility(GModality gm) { this.performAbility(gm, 0); }
+	public default void performAbility(GModality gm) {
+		this.performAbility(gm, 0);
+	}
 
 	/**
 	 * Detects and returns if the ability can be performed. Should be called inside
@@ -73,12 +80,14 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObje
 	 * {@inheritDoc}
 	 */
 	@Override
-	public default void resetStuffs() { resetAbility(); }
+	public default void resetStuffs() {
+		resetAbility();
+	}
 
 	/**
 	 * Clone the ability.
 	 */
-//	public AbilityGeneric cloneAbility();
+	// public AbilityGeneric cloneAbility();
 
 	/**
 	 * Returns by default <code>0</code>.
@@ -86,10 +95,14 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObje
 	 * {@inheritDoc}
 	 */
 	@Override
-	public default int getRarityIndex() { return 0; }
+	public default int getRarityIndex() {
+		return 0;
+	}
 
 	@Override
-	public default RarityHolder setRarityIndex(int rarityIndex) { return this; }
+	public default RarityHolder setRarityIndex(int rarityIndex) {
+		return this;
+	}
 
 	@Override
 	public default void onAddedToGame(GModality gm) {
@@ -110,7 +123,7 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObje
 		resetAbility();
 	}
 
-//
+	//
 
 	// TODO UTILS
 
@@ -131,5 +144,51 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder, GameObje
 	public default void onRemoving(GModality gm) {
 		resetAbility();
 		setOwner(null);
+	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	@Override
+	public default void toJSONValue(JSONObject wrapper) {
+		AssignableObject.super.toJSONValue(wrapper);
+		RarityHolder.super.toJSONValue(wrapper);
+		wrapper.addField(FIELD_LEVEL, new JSONInt(this.getLevel()));
+	}
+
+	@Override
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		AssignableObject.super.loadFromJSONObject(gm, wrapper);
+		RarityHolder.super.loadFromJSONObject(gm, wrapper);
+		// level
+		if (!wrapper.hasField(FIELD_LEVEL)) {
+			this.raiseExceptionMissingField(FIELD_LEVEL, JSONTypes.Int);
+		}
+		JSONValue levelIndexValue = wrapper.getFieldValue(FIELD_LEVEL);
+		if (!levelIndexValue.isType(JSONTypes.Int)) {
+			this.raiseExceptionIllegalTypeField(FIELD_LEVEL, JSONTypes.Int, levelIndexValue);
+		}
+		this.setLevel(levelIndexValue.asInt());
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSON map cannot be null");
+		}
+		AssignableObject.super.loadFromJSONMap(gm, jsonMap);
+		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
+		// level
+		if (!jsonMap.containsKey(FIELD_LEVEL)) {
+			this.raiseExceptionMissingField(FIELD_LEVEL, JSONTypes.Int);
+		}
+		Object levelIndexValue = jsonMap.get(FIELD_LEVEL);
+		if (!(levelIndexValue instanceof Integer)) {
+			this.raiseExceptionIllegalTypeField(FIELD_LEVEL, JSONTypes.Int, levelIndexValue);
+		}
+		this.setLevel((Integer) levelIndexValue);
 	}
 }

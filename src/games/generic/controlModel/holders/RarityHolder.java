@@ -6,6 +6,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.items.EquipmentItem;
 import tools.WeightedSetOfRandomOutcomes;
 import tools.json.JSONTypes;
+import tools.json.JSONValue;
 import tools.json.JSONable;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
@@ -49,7 +50,11 @@ public interface RarityHolder extends JSONable {
 		if (!wrapper.hasField(FIELD_RARITY_INDEX)) {
 			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
 		}
-		this.setRarityIndex(wrapper.getFieldValue(FIELD_RARITY_INDEX).asInt());
+		JSONValue rarityIndexValue = wrapper.getFieldValue(FIELD_RARITY_INDEX);
+		if (!rarityIndexValue.isType(JSONTypes.Int)) {
+			this.raiseExceptionIllegalTypeField(FIELD_RARITY_INDEX, JSONTypes.Int, rarityIndexValue);
+		}
+		this.setRarityIndex(rarityIndexValue.asInt());
 	}
 
 	@Override

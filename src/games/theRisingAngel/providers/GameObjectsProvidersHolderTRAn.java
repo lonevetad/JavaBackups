@@ -3,8 +3,10 @@ package games.theRisingAngel.providers;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
+import games.generic.controlModel.providers.AttributesProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesCategoryProvider;
 import games.generic.controlModel.subimpl.GModalityRPG;
+import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
 import games.theRisingAngel.misc.CurrencySetTRAn;
 
@@ -16,12 +18,18 @@ public class GameObjectsProvidersHolderTRAn extends GameObjectsProvidersHolderRP
 	@Override
 	public void initialize() {
 		super.initialize();
-		this.providers.put(EquipmentUpgradeCategory.NAME, this.equipUpgradesCategoryProvider);
+		this.registerEnumBasedProvider(EquipmentUpgradeCategory.NAME, this.equipUpgradesCategoryProvider);
+		this.registerEnumBasedProvider(AttributesTRAn.NAME, this.equipUpgradesCategoryProvider);
+
 	}
 
 	@Override
 	public EquipmentUpgradesCategoryProvider<?> newEquipUpgradesCategoryProvider() {
 		return new EquipmentUpgradesCategoryProviderTRAn();
+	}
+
+	public AttributesProvider<?> newAttributesProvider() {
+		return new AttributesProviderTRAn();
 	}
 
 	//

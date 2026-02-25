@@ -77,12 +77,13 @@ public class AmountNamed implements ObjectNamed {
 	@Override
 	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		if (!wrapper.hasField(FIELD_VALUE)) {
-			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
+			this.raiseExceptionMissingField(FIELD_VALUE, JSONTypes.Int);
 		}
+		// TODO
 	}
 
 	@Override
 	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-
+		// TODO
 	}
 }

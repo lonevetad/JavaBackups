@@ -3,19 +3,17 @@ package games.generic.controlModel.subimpl;
 import java.util.SortedSet;
 
 import dataStructures.MapTreeAVL;
-import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgradeCategory;
-import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
 import tools.ClosestMatch;
 import tools.Comparators;
 
-public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
+public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	private static final long serialVersionUID = 780874070330924608L;
 
 	public EquipmentUpgradeImpl(int rarityIndex, String name) {
@@ -135,17 +133,4 @@ public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 		var cm = backMapAttrMods.closestMatchOf(AttributeModification.KEY_EXTRACTOR.apply(key));
 		return cm.convertTo(AttributeModification.COMPARATOR, e -> e.getValue());
 	}
-
-	// JSONed-related
-
-	@Override
-	public void loadAttributeUpgrade(GModality gm, String attributeName, int value) {
-		this.getAttributeModifiers().add(new AttributeModification(AttributesTRAn.valueOf(attributeName), value));
-	}
-
-	@Override
-	public void loadIEquipmentUpgradeCategory(GModality gm, String categoryName) {
-		this.setUpgradeCategory(EquipmentUpgradeCategory.valueOf(categoryName));
-	}
-
 }

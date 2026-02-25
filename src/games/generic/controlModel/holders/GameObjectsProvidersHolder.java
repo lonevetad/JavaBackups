@@ -5,9 +5,10 @@ import java.util.Map;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.currency.CurrencySet;
-import games.generic.controlModel.abilities.AbilityGeneric;
-import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.misc.GameObjectsProvider;
+import games.generic.controlModel.misc.IEnumAlike;
+import games.generic.controlModel.providers.EnumBasedObjectProvider;
+import tools.json.JSONable;
 
 /**
  * One of the core classes.
@@ -27,6 +28,64 @@ public interface GameObjectsProvidersHolder {
 
 	public default void addProvider(String name, GameObjectsProvider<? extends ObjectNamed> provider) {
 		getProviders().put(name, provider);
+	}
+
+	/**
+	 * See {@link #getEnumBasedProviderByClass(Class)}.
+	 * 
+	 * @param <E>
+	 * @param enumClassName
+	 * @param provider
+	 */
+	public default <E extends Enum<E> & IEnumAlike> void registerEnumBasedProvider(String enumClassName,
+			EnumBasedObjectProvider<E> provider) {
+		this.addProvider(enumClassName, provider);
+	}
+
+	/**
+	 * See {@link #registerEnumBasedProvider(String, EnumBasedObjectProvider)}.
+	 * 
+	 * @param <E>
+	 * @param enumClass
+	 * @param provider
+	 */
+	public default <E extends Enum<E> & IEnumAlike> void registerEnumBasedProvider(Class<E> enumClass,
+			EnumBasedObjectProvider<E> provider) {
+		this.registerEnumBasedProvider(enumClass.getName(), provider);
+	}
+
+	/**
+	 * See {@link #getEnumBasedProviderByClass(Class, String)}, where the class's
+	 * name ({@link Class#getName()}) is passed as the name parameter.
+	 * 
+	 * @param <E>
+	 * @param enumClass
+	 * @return
+	 */
+	public default <E extends Enum<E> & IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(
+			Class<E> enumClass) {
+		return this.getEnumBasedProviderByClass(enumClass, enumClass.getName());
+	}
+
+	/**
+	 * Used in {@link JSONable}'s methods to recycle the Enum's instances. The same
+	 * "name" used upon calling
+	 * {@link #registerEnumBasedProvider(String, EnumBasedObjectProvider)} is
+	 * required.
+	 * 
+	 * @param <E>
+	 * @param enumClass
+	 * @return
+	 */
+	public default <E extends Enum<E> & IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(
+			Class<E> enumClass, String name) {
+		GameObjectsProvider<? extends ObjectNamed> p = this.getProvider(name);
+		if (!(EnumBasedObjectProvider.class.isAssignableFrom(p.getClass()))) {
+			throw new IllegalStateException(
+					"The provider for class \"" + enumClass.getName() + "\" and key \"" + name
+							+ "\" is not an EnumBasedObjectProvider");
+		}
+		return (EnumBasedObjectProvider<E>) p;
 	}
 
 	// other factories

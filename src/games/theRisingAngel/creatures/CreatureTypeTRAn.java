@@ -1,8 +1,7 @@
 package games.theRisingAngel.creatures;
 
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 import games.theRisingAngel.enums.CreatureTypesTRAn;
-import tools.ObjectNamedID;
 
 /**
  * Marker interface, used in the enum {@link CreatureTypesTRAn}.
@@ -10,8 +9,10 @@ import tools.ObjectNamedID;
  * @author ottin
  *
  */
-public interface CreatureTypeTRAn extends ObjectNamedID, IndexableObject {
+public interface CreatureTypeTRAn extends IEnumAlike {
 
 	@Override
-	public default boolean setID(Long ID) { return false; }
+	public default boolean setID(Long ID) {
+		return false;
+	}
 }

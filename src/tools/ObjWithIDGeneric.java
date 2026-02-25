@@ -44,7 +44,7 @@ public interface ObjWithIDGeneric<IDType> extends JSONable {
 
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
-		JSONValue jsonedIndex = this.newJSONValueForID();
-		wrapper.addField(FIELD_ID, jsonedIndex);
+		JSONValue jsonedID = this.newJSONValueForID();
+		wrapper.addField(FIELD_ID, jsonedID);
 	}
 }

@@ -1,9 +1,12 @@
 package games.generic.controlModel.objects;
 
+import java.util.Map;
+
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.items.EquipmentItem;
 import tools.ObjectWithID;
+import tools.json.types.JSONObject;
 
 /** And be assigned to an owner. */
 public interface AssignableObject extends GameObjectGeneric {
@@ -30,10 +33,13 @@ public interface AssignableObject extends GameObjectGeneric {
 	 * The latter is performed in this default implementation because it calls
 	 * {@link GameObjectGeneric#addMeToGame(GModality)}.
 	 */
-	public default void onAddingToOwner(GModality gm) { this.addMeToGame(gm); }
+	public default void onAddingToOwner(GModality gm) {
+		this.addMeToGame(gm);
+	}
 
 	@Override
-	public default void onAddedToGame(GModality gm) {}
+	public default void onAddedToGame(GModality gm) {
+	}
 
 	/**
 	 * Override designed.<br>
@@ -48,5 +54,28 @@ public interface AssignableObject extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void onRemovedFromGame(GModality gm) {}
+	public default void onRemovedFromGame(GModality gm) {
+	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	@Override
+	public default void toJSONValue(JSONObject wrapper) {
+		GameObjectGeneric.super.toJSONValue(wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		GameObjectGeneric.super.loadFromJSONMap(gm, jsonMap);
+	}
+
 }

@@ -1,9 +1,9 @@
 package games.generic.controlModel.providers;
 
 import games.generic.controlModel.misc.GameObjectsProvider;
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 
-public abstract class EnumBasedObjectProvider<E extends Enum<E> & IndexableObject> extends GameObjectsProvider<E> {
+public abstract class EnumBasedObjectProvider<E extends Enum<E> & IEnumAlike> extends GameObjectsProvider<E> {
 	public EnumBasedObjectProvider() {
 		super();
 	}

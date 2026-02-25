@@ -1,6 +1,6 @@
 package games.generic.controlModel.enums;
 
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 
 /**
  * Marker-like interface to define instances of an enumeration ({@link Enum}).
@@ -12,7 +12,7 @@ import games.generic.controlModel.misc.IndexableObject;
  * @author ottin
  *
  */
-public interface GEnumInstance extends IndexableObject {
+public interface GEnumInstance extends IEnumAlike {
 
 	/**
 	 * Set the ID of this enumeration instance. Should be invoked only by the

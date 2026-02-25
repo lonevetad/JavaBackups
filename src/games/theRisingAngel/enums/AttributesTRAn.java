@@ -61,13 +61,15 @@ public enum AttributesTRAn implements AttributeIdentifier {
 			ATTRIBUTES_UPGRADABLE_COUNT;
 	public static final AttributesTRAn[] ALL_ATTRIBUTES;
 	public static final IndexToObjectBackmapping INDEX_TO_ATTRIBUTE_TRAn;
-	private static Map<String, AttributesTRAn> attTRArByName = null;
+	private static Map<String, AttributesTRAn> attTRArByName = null;	
+	public static final String NAME;
 	static {
 		FIRST_INDEX_ATTRIBUTE_UPGRADABLE = Strength.getIndex();
 		LAST_INDEX_ATTRIBUTE_UPGRADABLE = Faith.getIndex();
 		ATTRIBUTES_UPGRADABLE_COUNT = 1 + (LAST_INDEX_ATTRIBUTE_UPGRADABLE - FIRST_INDEX_ATTRIBUTE_UPGRADABLE);
 		ALL_ATTRIBUTES = AttributesTRAn.values();
 		INDEX_TO_ATTRIBUTE_TRAn = (int i) -> AttributesTRAn.ALL_ATTRIBUTES[i];
+		NAME = AttributesTRAn.class.getName();
 	}
 
 //
