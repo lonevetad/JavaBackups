@@ -76,8 +76,11 @@ public class AmountNamed implements ObjectNamed {
 
 	@Override
 	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSON map cannot be null");
+		}
 		if (!wrapper.hasField(FIELD_VALUE)) {
-			this.raiseExceptionMissingField(FIELD_VALUE, JSONTypes.Int);
+			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
 		}
 		// TODO
 	}

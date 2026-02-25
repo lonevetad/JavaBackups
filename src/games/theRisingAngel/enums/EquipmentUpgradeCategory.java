@@ -14,7 +14,7 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
     Refining(new MaxUpgradesPerCategory(new RangedAmountInt(2, 7))), //
     Coloring(new MaxUpgradesPerCategory(new RangedAmountInt(2, 4))), //
     Rune(new MaxUpgradesPerCategory(new RangedAmountInt(3, 10))), //
-    Enviromental(new MaxUpgradesPerCategory(new RangedAmountInt(1, 5))), //
+    Environmental(new MaxUpgradesPerCategory(new RangedAmountInt(1, 5))), //
     Incantation(new MaxUpgradesPerCategory(new RangedAmountInt(7, 25))), // almost everything, even "of Traitors"
     Blessing(new MaxUpgradesPerCategory(new RangedAmountInt(2, 8))), // "of the Sun", "Blessed by ..."
     Incarnation(new MaxUpgradesPerCategory(new RangedAmountInt(1, 3))), // divine being, spirit, soul, essence, ...

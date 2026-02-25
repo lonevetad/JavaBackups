@@ -23,9 +23,7 @@
   {
     "name": "of Flex",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 2
@@ -34,9 +32,7 @@
   {
     "name": "of Fat Belly",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": 2
@@ -45,9 +41,7 @@
   {
     "name": "Sweet",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 2
@@ -56,9 +50,7 @@
   {
     "name": "Compact",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Defense": 2
@@ -67,9 +59,7 @@
   {
     "name": "Lighter",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": 2
@@ -78,9 +68,7 @@
   {
     "name": "Not bended",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Structural",
     "attributeModifiers": {
       "Precision": 2
@@ -89,9 +77,7 @@
   {
     "name": "with Poetry Engraved",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Wisdom": 2
@@ -100,9 +86,7 @@
   {
     "name": "with Instructions",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Refining",
     "attributeModifiers": {
       "Intelligence": 2
@@ -111,9 +95,7 @@
   {
     "name": "of Fortune Cookie",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": 2
@@ -122,9 +104,7 @@
   {
     "name": "with Four-Leaf Clover",
     "rarity": 0,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Refining",
     "attributeModifiers": {
       "Luck": 2
@@ -133,9 +113,7 @@
   {
     "name": "Faster",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Refining",
     "attributeModifiers": {
       "Velocity": 5
@@ -144,9 +122,7 @@
   {
     "name": "with Glass Slivers",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Material",
     "attributeModifiers": {
       "ReflectionDamagePercentage": 3
@@ -155,9 +131,7 @@
   {
     "name": "with Glass Shards",
     "rarity": 1,
-    "price": [
-      -1
-    ],
+    "price": [-1],
     "category": "Material",
     "attributeModifiers": {
       "ReflectionDamagePercentage": 7,
@@ -167,9 +141,7 @@
   {
     "name": "Loosely Paramagnetic",
     "rarity": 0,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 5,
@@ -179,9 +151,7 @@
   {
     "name": "of Strength",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Strength": 16
@@ -190,9 +160,7 @@
   {
     "name": "of Constitution",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Constitution": 16
@@ -201,9 +169,7 @@
   {
     "name": "of Health",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Health": 16
@@ -212,9 +178,7 @@
   {
     "name": "of Defense",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Defense": 16
@@ -223,9 +187,7 @@
   {
     "name": "of Dexterity",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Dexterity": 16
@@ -234,9 +196,7 @@
   {
     "name": "of Precision",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Precision": 16
@@ -245,9 +205,7 @@
   {
     "name": "of Intelligence",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Intelligence": 16
@@ -256,9 +214,7 @@
   {
     "name": "of Wisdom",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Wisdom": 16
@@ -267,9 +223,7 @@
   {
     "name": "of Faith",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Focusing",
     "attributeModifiers": {
       "Faith": 16
@@ -278,9 +232,7 @@
   {
     "name": "Benedicted",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Blessing",
     "attributeModifiers": {
       "Faith": 6,
@@ -291,9 +243,7 @@
   {
     "name": "Strings-bended",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Structural",
     "attributeModifiers": {
       "Constitution": 1,
@@ -304,9 +254,7 @@
   {
     "name": "Consacrated",
     "rarity": 2,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Blessing",
     "attributeModifiers": {
       "Faith": 12,
@@ -317,9 +265,7 @@
   {
     "name": "Thick",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": 4,
@@ -329,9 +275,7 @@
   {
     "name": "Tempered",
     "rarity": 3,
-    "price": [
-      56
-    ],
+    "price": [56],
     "category": "Refining",
     "attributeModifiers": {
       "Defense": 9,
@@ -343,9 +287,7 @@
   {
     "name": "with Art Decorations",
     "rarity": 3,
-    "price": [
-      80
-    ],
+    "price": [80],
     "category": "Refining",
     "attributeModifiers": {
       "Wisdom": 6,
@@ -358,9 +300,7 @@
   {
     "name": "Moon Runed",
     "rarity": 3,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Rune",
     "attributeModifiers": {
       "ManaMax": 150,
@@ -376,9 +316,7 @@
   {
     "name": "Sun Runed",
     "rarity": 3,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Rune",
     "attributeModifiers": {
       "LifeMax": 150,
@@ -394,9 +332,7 @@
   {
     "name": "Earth Runed",
     "rarity": 3,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Rune",
     "attributeModifiers": {
       "Defense": 5,
@@ -410,9 +346,7 @@
   {
     "name": "Blood Runed",
     "rarity": 3,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Misc",
     "attributeModifiers": {
       "LifeLeechPercentage": 15,
@@ -427,9 +361,7 @@
   {
     "name": "Wind Runed",
     "rarity": 3,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Rune",
     "attributeModifiers": {
       "Velocity": 15,
@@ -445,9 +377,7 @@
   {
     "name": "Good",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": 3
@@ -456,9 +386,7 @@
   {
     "name": "Bad",
     "rarity": 1,
-    "price": [
-      -10
-    ],
+    "price": [-10],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": -2
@@ -467,9 +395,7 @@
   {
     "name": "Gummy",
     "rarity": 3,
-    "price": [
-      26
-    ],
+    "price": [26],
     "category": "Material",
     "attributeModifiers": {
       "PhysicalDamageReduction": 20,
@@ -483,9 +409,7 @@
   {
     "name": "Bouncy",
     "rarity": 2,
-    "price": [
-      26
-    ],
+    "price": [26],
     "category": "Material",
     "attributeModifiers": {
       "PhysicalDamageReduction": 13,
@@ -499,9 +423,7 @@
   {
     "name": "Warm",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Material",
     "attributeModifiers": {
       "Health": 2,
@@ -511,9 +433,7 @@
   {
     "name": "Cold",
     "rarity": 1,
-    "price": [
-      -3
-    ],
+    "price": [-3],
     "category": "Material",
     "attributeModifiers": {
       "Health": -1,
@@ -524,9 +444,7 @@
   {
     "name": "Slimy",
     "rarity": 3,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Misc",
     "attributeModifiers": {
       "PhysicalProbabilityPerThousandAvoid": 40,
@@ -536,9 +454,7 @@
   {
     "name": "Granata colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Strength": 6
@@ -547,9 +463,7 @@
   {
     "name": "Magenta colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Constitution": 6
@@ -558,9 +472,7 @@
   {
     "name": "Red colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Health": 6
@@ -569,9 +481,7 @@
   {
     "name": "Brown colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Defense": 6
@@ -580,9 +490,7 @@
   {
     "name": "Green colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Dexterity": 6
@@ -591,9 +499,7 @@
   {
     "name": "Yellow colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Precision": 6
@@ -602,9 +508,7 @@
   {
     "name": "Blue colored",
     "rarity": 1,
-    "price": [
-      1
-    ],
+    "price": [1],
     "category": "Coloring",
     "attributeModifiers": {
       "Intelligence": 6
@@ -613,9 +517,7 @@
   {
     "name": "Deep-Blue colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Wisdom": 6
@@ -624,9 +526,7 @@
   {
     "name": "Pearl colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Faith": 6
@@ -635,9 +535,7 @@
   {
     "name": "Light-Blue colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Intelligence": 4,
@@ -647,9 +545,7 @@
   {
     "name": "Light-Green colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Dexterity": 4,
@@ -659,9 +555,7 @@
   {
     "name": "Light-Red colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Strength": 4,
@@ -671,9 +565,7 @@
   {
     "name": "Light-Purple colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Wisdom": 4,
@@ -683,9 +575,7 @@
   {
     "name": "Light-Yellow colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Precision": 4,
@@ -695,9 +585,7 @@
   {
     "name": "Light-Orange colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Constitution": 4,
@@ -707,9 +595,7 @@
   {
     "name": "Pink colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Health": 4,
@@ -719,9 +605,7 @@
   {
     "name": "Cyan colored",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Coloring",
     "attributeModifiers": {
       "Faith": 4,
@@ -731,9 +615,7 @@
   {
     "name": "of Dwarf",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 11,
@@ -750,9 +632,7 @@
   {
     "name": "of Elf",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -3,
@@ -773,9 +653,7 @@
   {
     "name": "of Thief",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 1,
@@ -791,9 +669,7 @@
   {
     "name": "Opaline colored",
     "rarity": 2,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Coloring",
     "attributeModifiers": {
       "Strength": 1,
@@ -811,9 +687,7 @@
   {
     "name": "of Fanatic",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -827,9 +701,7 @@
   {
     "name": "of Explorer",
     "rarity": 2,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -841,9 +713,7 @@
   {
     "name": "of Thrull",
     "rarity": 3,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 13,
@@ -859,9 +729,7 @@
   {
     "name": "Heavily-plated",
     "rarity": 2,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Structural",
     "attributeModifiers": {
       "Constitution": 5,
@@ -876,9 +744,7 @@
   {
     "name": "Leaves adorned",
     "rarity": 2,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Refining",
     "attributeModifiers": {
       "Dexterity": 7,
@@ -890,9 +756,7 @@
   {
     "name": "Light",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": 3,
@@ -902,9 +766,7 @@
   {
     "name": "Used",
     "rarity": 1,
-    "price": [
-      -8
-    ],
+    "price": [-8],
     "category": "Refining",
     "attributeModifiers": {
       "Constitution": -3,
@@ -914,9 +776,7 @@
   {
     "name": "Ruined",
     "rarity": 2,
-    "price": [
-      -12
-    ],
+    "price": [-12],
     "category": "Refining",
     "attributeModifiers": {
       "Defense": -2,
@@ -927,9 +787,7 @@
   {
     "name": "Poor",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Material",
     "attributeModifiers": {
       "Health": -1,
@@ -940,9 +798,7 @@
   {
     "name": "Encrusted",
     "rarity": 1,
-    "price": [
-      1
-    ],
+    "price": [1],
     "category": "Refining",
     "attributeModifiers": {
       "Precision": 4,
@@ -954,9 +810,7 @@
   {
     "name": "Bendable",
     "rarity": 1,
-    "price": [
-      1
-    ],
+    "price": [1],
     "category": "Structural",
     "attributeModifiers": {
       "Precision": -2,
@@ -967,9 +821,7 @@
   {
     "name": "Flexible",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Structural",
     "attributeModifiers": {
       "Precision": 2,
@@ -979,9 +831,7 @@
   {
     "name": "Rough",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Refining",
     "attributeModifiers": {
       "Strength": -1,
@@ -994,9 +844,7 @@
   {
     "name": "Worn-out",
     "rarity": 2,
-    "price": [
-      -13
-    ],
+    "price": [-13],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": -2,
@@ -1006,9 +854,7 @@
   {
     "name": "Rusted",
     "rarity": 2,
-    "price": [
-      -10
-    ],
+    "price": [-10],
     "category": "Material",
     "attributeModifiers": {
       "Constitution": -2,
@@ -1024,9 +870,7 @@
   {
     "name": "Stinging",
     "rarity": 2,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Refining",
     "attributeModifiers": {
       "Dexterity": -7,
@@ -1041,9 +885,7 @@
   {
     "name": "Broken",
     "rarity": 2,
-    "price": [
-      -22
-    ],
+    "price": [-22],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": -3,
@@ -1056,9 +898,7 @@
   {
     "name": "Fragile",
     "rarity": 2,
-    "price": [
-      -18
-    ],
+    "price": [-18],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -1071,9 +911,7 @@
   {
     "name": "Thinner",
     "rarity": 1,
-    "price": [
-      -2
-    ],
+    "price": [-2],
     "category": "Structural",
     "attributeModifiers": {
       "PhysicalDamageBonus": -2,
@@ -1085,9 +923,7 @@
   {
     "name": "Bended",
     "rarity": 1,
-    "price": [
-      -7
-    ],
+    "price": [-7],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": -1,
@@ -1098,9 +934,7 @@
   {
     "name": "Well-balanced",
     "rarity": 2,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "Structural",
     "attributeModifiers": {
       "Precision": 6,
@@ -1110,9 +944,7 @@
   {
     "name": "Sharp",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "Refining",
     "attributeModifiers": {
       "PhysicalDamageBonus": 4,
@@ -1123,9 +955,7 @@
   {
     "name": "Well-sharpened",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Refining",
     "attributeModifiers": {
       "PhysicalDamageBonus": 7,
@@ -1137,9 +967,7 @@
   {
     "name": "Leather stuffed",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Material",
     "attributeModifiers": {
       "LifeMax": 55,
@@ -1152,9 +980,7 @@
   {
     "name": "Cloth stuffed",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Material",
     "attributeModifiers": {
       "LifeMax": 40,
@@ -1166,9 +992,7 @@
   {
     "name": "Comfortable",
     "rarity": 1,
-    "price": [
-      5
-    ],
+    "price": [5],
     "category": "Structural",
     "attributeModifiers": {
       "LifeMax": 35,
@@ -1180,9 +1004,7 @@
   {
     "name": "of Hulk",
     "rarity": 4,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 17,
@@ -1206,9 +1028,7 @@
   {
     "name": "of Shaman",
     "rarity": 4,
-    "price": [
-      27
-    ],
+    "price": [27],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -6,
@@ -1231,9 +1051,7 @@
   {
     "name": "of Sniper",
     "rarity": 4,
-    "price": [
-      39
-    ],
+    "price": [39],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Constitution": -2,
@@ -1251,9 +1069,7 @@
   {
     "name": "of Acrobat",
     "rarity": 4,
-    "price": [
-      41
-    ],
+    "price": [41],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 5,
@@ -1272,9 +1088,7 @@
   {
     "name": "of Hero",
     "rarity": 4,
-    "price": [
-      47
-    ],
+    "price": [47],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 6,
@@ -1291,9 +1105,7 @@
   {
     "name": "of Warrior",
     "rarity": 3,
-    "price": [
-      26
-    ],
+    "price": [26],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 7,
@@ -1315,9 +1127,7 @@
   {
     "name": "of Paladin",
     "rarity": 3,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 5,
@@ -1335,9 +1145,7 @@
   {
     "name": "of Assassin",
     "rarity": 3,
-    "price": [
-      39
-    ],
+    "price": [39],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -1363,9 +1171,7 @@
   {
     "name": "of Fighter",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -1384,9 +1190,7 @@
   {
     "name": "of Boxer",
     "rarity": 3,
-    "price": [
-      21
-    ],
+    "price": [21],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 5,
@@ -1404,9 +1208,7 @@
   {
     "name": "of Hermit",
     "rarity": 4,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeRegen": 6,
@@ -1419,9 +1221,7 @@
   {
     "name": "of Ranger",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -1439,9 +1239,7 @@
   {
     "name": "of Scout",
     "rarity": 1,
-    "price": [
-      16
-    ],
+    "price": [16],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 1,
@@ -1453,9 +1251,7 @@
   {
     "name": "of Archer",
     "rarity": 3,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -1470,9 +1266,7 @@
   {
     "name": "of Wizard",
     "rarity": 3,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -8,
@@ -1492,9 +1286,7 @@
   {
     "name": "of Druid",
     "rarity": 3,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -5,
@@ -1516,9 +1308,7 @@
   {
     "name": "of Knight",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 4,
@@ -1538,9 +1328,7 @@
   {
     "name": "of Woodcutter",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 6,
@@ -1555,9 +1343,7 @@
   {
     "name": "of the Bloodgus",
     "rarity": 3,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeLeechPercentage": 35,
@@ -1569,9 +1355,7 @@
   {
     "name": "of the Vampire",
     "rarity": 3,
-    "price": [
-      27
-    ],
+    "price": [27],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeLeechPercentage": 25,
@@ -1582,9 +1366,7 @@
   {
     "name": "of the Knives-thrower",
     "rarity": 3,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -1597,9 +1379,7 @@
   {
     "name": "of Darts-thrower",
     "rarity": 3,
-    "price": [
-      20
-    ],
+    "price": [20],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "PhysicalDamageBonus": -5,
@@ -1613,9 +1393,7 @@
   {
     "name": "with Sacred Oils",
     "rarity": 2,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": 2,
@@ -1626,9 +1404,7 @@
   {
     "name": "Dragon-scaled",
     "rarity": 4,
-    "price": [
-      56
-    ],
+    "price": [56],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 5,
@@ -1644,9 +1420,7 @@
   {
     "name": "Serpent-scaled",
     "rarity": 3,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "Misc",
     "attributeModifiers": {
       "Defense": 6,
@@ -1662,9 +1436,7 @@
   {
     "name": "Fly-bug-scaled",
     "rarity": 4,
-    "price": [
-      56
-    ],
+    "price": [56],
     "category": "Misc",
     "attributeModifiers": {
       "Defense": 5,
@@ -1680,9 +1452,7 @@
   {
     "name": "of Seaman",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Faith": 4,
@@ -1692,9 +1462,7 @@
   {
     "name": "Fight-escaper",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": 4,
@@ -1705,9 +1473,7 @@
   {
     "name": "of Cruelty",
     "rarity": 3,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Incantation",
     "attributeModifiers": {
       "Faith": -10,
@@ -1727,9 +1493,7 @@
   {
     "name": "of Hunter",
     "rarity": 2,
-    "price": [
-      26
-    ],
+    "price": [26],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -1744,9 +1508,7 @@
   {
     "name": "of the Riding Hunter",
     "rarity": 2,
-    "price": [
-      24
-    ],
+    "price": [24],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": 8,
@@ -1758,9 +1520,7 @@
   {
     "name": "of Pestilence",
     "rarity": 4,
-    "price": [
-      -32
-    ],
+    "price": [-32],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -27,
@@ -1781,9 +1541,7 @@
   {
     "name": "Cursed",
     "rarity": 3,
-    "price": [
-      -35
-    ],
+    "price": [-35],
     "category": "Blessing",
     "attributeModifiers": {
       "LifeMax": -100,
@@ -1799,9 +1557,7 @@
   {
     "name": "of Butcher",
     "rarity": 2,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 8,
@@ -1816,9 +1572,7 @@
   {
     "name": "of King",
     "rarity": 4,
-    "price": [
-      120
-    ],
+    "price": [120],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -1833,9 +1587,7 @@
   {
     "name": "of Drunk",
     "rarity": 2,
-    "price": [
-      -8
-    ],
+    "price": [-8],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Dexterity": 2,
@@ -1855,9 +1607,7 @@
   {
     "name": "of Farmer",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Intelligence": -6,
@@ -1871,9 +1621,7 @@
   {
     "name": "of Training",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 2,
@@ -1885,9 +1633,7 @@
   {
     "name": "Ancient",
     "rarity": 2,
-    "price": [
-      48
-    ],
+    "price": [48],
     "category": "Refining",
     "attributeModifiers": {
       "Wisdom": 6
@@ -1896,9 +1642,7 @@
   {
     "name": "of Runner",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Velocity": 20
@@ -1907,9 +1651,7 @@
   {
     "name": "of Relax",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 1,
@@ -1926,9 +1668,7 @@
   {
     "name": "of Equilibrium",
     "rarity": 3,
-    "price": [
-      38
-    ],
+    "price": [38],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 2,
@@ -1945,9 +1685,7 @@
   {
     "name": "of Happiness and Gratification",
     "rarity": 4,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 3,
@@ -1964,9 +1702,7 @@
   {
     "name": "of Inspiration",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "Faith": 3,
@@ -1976,9 +1712,7 @@
   {
     "name": "of Sadness",
     "rarity": 2,
-    "price": [
-      -24
-    ],
+    "price": [-24],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -2,
@@ -1995,9 +1729,7 @@
   {
     "name": "of Depression",
     "rarity": 3,
-    "price": [
-      -47
-    ],
+    "price": [-47],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -3,
@@ -2014,9 +1746,7 @@
   {
     "name": "with a Story",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Refining",
     "attributeModifiers": {
       "Health": 1,
@@ -2027,9 +1757,7 @@
   {
     "name": "of the Blowing Wind",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": 5,
@@ -2040,9 +1768,7 @@
   {
     "name": "of Gem-cutter",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": 8,
@@ -2053,9 +1779,7 @@
   {
     "name": "with Good Senses",
     "rarity": 3,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalProbabilityPerThousandHit": 50,
@@ -2070,9 +1794,7 @@
   {
     "name": "of Sensitive",
     "rarity": 3,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -9,
@@ -2092,9 +1814,7 @@
   {
     "name": "of Tireness",
     "rarity": 2,
-    "price": [
-      -35
-    ],
+    "price": [-35],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -2,
@@ -2113,9 +1833,7 @@
   {
     "name": "of Dark Theft",
     "rarity": 2,
-    "price": [
-      27
-    ],
+    "price": [27],
     "category": "Rune",
     "attributeModifiers": {
       "LifeLeechPercentage": 8,
@@ -2125,9 +1843,7 @@
   {
     "name": "of Void Siphoning",
     "rarity": 3,
-    "price": [
-      44
-    ],
+    "price": [44],
     "category": "Rune",
     "attributeModifiers": {
       "LifeLeechPercentage": 15,
@@ -2137,9 +1853,7 @@
   {
     "name": "of Sadism",
     "rarity": 2,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeLeechPercentage": 5
@@ -2148,9 +1862,7 @@
   {
     "name": "of Competition",
     "rarity": 2,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaLeechPercentage": 5
@@ -2159,9 +1871,7 @@
   {
     "name": "Pure",
     "rarity": 3,
-    "price": [
-      43
-    ],
+    "price": [43],
     "category": "Blessing",
     "attributeModifiers": {
       "ManaLeechPercentage": -10,
@@ -2172,9 +1882,7 @@
   {
     "name": "Pacific",
     "rarity": 3,
-    "price": [
-      43
-    ],
+    "price": [43],
     "category": "Blessing",
     "attributeModifiers": {
       "LifeLeechPercentage": -10,
@@ -2185,9 +1893,7 @@
   {
     "name": "of Sorrow",
     "rarity": 1,
-    "price": [
-      -10
-    ],
+    "price": [-10],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaLeechPercentage": -5,
@@ -2197,9 +1903,7 @@
   {
     "name": "of Puppy Hunt-play",
     "rarity": 2,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Misc",
     "attributeModifiers": {
       "ManaLeechPercentage": 2,
@@ -2209,9 +1913,7 @@
   {
     "name": "of Fear of fight",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": 7,
@@ -2230,9 +1932,7 @@
   {
     "name": "of Water Spirit",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Elemental",
     "attributeModifiers": {
       "Intelligence": 4,
@@ -2243,9 +1943,7 @@
   {
     "name": "of Wind Spirit",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Elemental",
     "attributeModifiers": {
       "Defense": 4,
@@ -2256,9 +1954,7 @@
   {
     "name": "of Fire Spirit",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Elemental",
     "attributeModifiers": {
       "Strength": 4,
@@ -2269,9 +1965,7 @@
   {
     "name": "of Rock Spirit",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Elemental",
     "attributeModifiers": {
       "PhysicalDamageReduction": 8,
@@ -2285,9 +1979,7 @@
   {
     "name": "of Leaf Spirit",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageReduction": -5,
@@ -2300,9 +1992,7 @@
   {
     "name": "of Envy",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -9,
@@ -2316,9 +2006,7 @@
   {
     "name": "of Thornbrush",
     "rarity": 2,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Elemental",
     "attributeModifiers": {
       "PhysicalDamageBonus": 15,
@@ -2333,9 +2021,7 @@
   {
     "name": "of Sleeper",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 80,
@@ -2348,9 +2034,7 @@
   {
     "name": "with Magic Stabilizers",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Structural",
     "attributeModifiers": {
       "ManaRegen": -6,
@@ -2362,9 +2046,7 @@
   {
     "name": "Ferromagnetic",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Structural",
     "attributeModifiers": {
       "ShieldMax": 10,
@@ -2374,9 +2056,7 @@
   {
     "name": "Paper Filled",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Material",
     "attributeModifiers": {
       "MagicalDamageReduction": 3,
@@ -2386,9 +2066,7 @@
   {
     "name": "Romantic",
     "rarity": 1,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -5,
@@ -2402,9 +2080,7 @@
   {
     "name": "Well-documented",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Refining",
     "attributeModifiers": {
       "Precision": 3,
@@ -2416,9 +2092,7 @@
   {
     "name": "Lucky",
     "rarity": 3,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Blessing",
     "attributeModifiers": {
       "Luck": 8
@@ -2427,9 +2101,7 @@
   {
     "name": "Blessed by Luck",
     "rarity": 4,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Blessing",
     "attributeModifiers": {
       "Luck": 10
@@ -2438,9 +2110,7 @@
   {
     "name": "Bad-designed usage",
     "rarity": 1,
-    "price": [
-      -12
-    ],
+    "price": [-12],
     "category": "Structural",
     "attributeModifiers": {
       "Intelligence": 2,
@@ -2453,9 +2123,7 @@
   {
     "name": "Unintelligible usage",
     "rarity": 2,
-    "price": [
-      -34
-    ],
+    "price": [-34],
     "category": "Structural",
     "attributeModifiers": {
       "Intelligence": -3,
@@ -2468,9 +2136,7 @@
   {
     "name": "Uncomfortable",
     "rarity": 1,
-    "price": [
-      -7
-    ],
+    "price": [-7],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -2481,9 +2147,7 @@
   {
     "name": "of Stupidity",
     "rarity": 2,
-    "price": [
-      -30
-    ],
+    "price": [-30],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": -7,
@@ -2494,9 +2158,7 @@
   {
     "name": "of Impatience",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 3,
@@ -2510,9 +2172,7 @@
   {
     "name": "of Patience",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -2,
@@ -2529,9 +2189,7 @@
   {
     "name": "blessed by Tech Angel",
     "rarity": 3,
-    "price": [
-      65
-    ],
+    "price": [65],
     "category": "Blessing",
     "attributeModifiers": {
       "ShieldMax": 50,
@@ -2543,9 +2201,7 @@
   {
     "name": "with Crystal Glass Marquetry",
     "rarity": 2,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "Refining",
     "attributeModifiers": {
       "ShieldMax": 35,
@@ -2556,9 +2212,7 @@
   {
     "name": "Adamantine",
     "rarity": 3,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 40,
@@ -2569,9 +2223,7 @@
   {
     "name": "Diamagnetic",
     "rarity": 2,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 18,
@@ -2581,9 +2233,7 @@
   {
     "name": "Dusty",
     "rarity": 1,
-    "price": [
-      -3
-    ],
+    "price": [-3],
     "category": "Material",
     "attributeModifiers": {
       "Health": -2,
@@ -2595,9 +2245,7 @@
   {
     "name": "of Animal",
     "rarity": 1,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 4,
@@ -2610,9 +2258,7 @@
   {
     "name": "Legendary",
     "rarity": 4,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 3,
@@ -2634,9 +2280,7 @@
   {
     "name": "Inauspicious",
     "rarity": 4,
-    "price": [
-      -75
-    ],
+    "price": [-75],
     "category": "Blessing",
     "attributeModifiers": {
       "Strength": -3,
@@ -2655,9 +2299,7 @@
   {
     "name": "of Genius",
     "rarity": 2,
-    "price": [
-      60
-    ],
+    "price": [60],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 15,
@@ -2668,9 +2310,7 @@
   {
     "name": "of Fat",
     "rarity": 1,
-    "price": [
-      -8
-    ],
+    "price": [-8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 300,
@@ -2681,9 +2321,7 @@
   {
     "name": "of Nerd",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": -3,
@@ -2696,9 +2334,7 @@
   {
     "name": "of Medic",
     "rarity": 3,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Health": 10,
@@ -2714,9 +2350,7 @@
   {
     "name": "of Programmer",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -2,
@@ -2740,9 +2374,7 @@
   {
     "name": "of Engineer",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": -7,
@@ -2766,9 +2398,7 @@
   {
     "name": "of Weakness",
     "rarity": 2,
-    "price": [
-      -25
-    ],
+    "price": [-25],
     "category": "Incantation",
     "attributeModifiers": {
       "Defense": -5,
@@ -2778,9 +2408,7 @@
   {
     "name": "of Disappointment",
     "rarity": 1,
-    "price": [
-      -17
-    ],
+    "price": [-17],
     "category": "Incantation",
     "attributeModifiers": {
       "Faith": -7
@@ -2789,9 +2417,7 @@
   {
     "name": "of Feeling Well",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 35,
@@ -2801,9 +2427,7 @@
   {
     "name": "of Freshness",
     "rarity": 1,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Refining",
     "attributeModifiers": {
       "Intelligence": 2,
@@ -2816,9 +2440,7 @@
   {
     "name": "Stones Intarsed",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Refining",
     "attributeModifiers": {
       "LifeMax": 80,
@@ -2828,9 +2450,7 @@
   {
     "name": "Wood Intarsed",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Refining",
     "attributeModifiers": {
       "ManaMax": 75,
@@ -2840,9 +2460,7 @@
   {
     "name": "of Stone",
     "rarity": 1,
-    "price": [
-      5
-    ],
+    "price": [5],
     "category": "Material",
     "attributeModifiers": {
       "Defense": 12,
@@ -2857,9 +2475,7 @@
   {
     "name": "Mana to Blood",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": 12,
@@ -2869,9 +2485,7 @@
   {
     "name": "Blood to Mana",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -6,
@@ -2881,9 +2495,7 @@
   {
     "name": "Mind to Matter",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 215,
@@ -2893,9 +2505,7 @@
   {
     "name": "Matter to Mind",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -150,
@@ -2905,9 +2515,7 @@
   {
     "name": "Dull",
     "rarity": 1,
-    "price": [
-      -3
-    ],
+    "price": [-3],
     "category": "Structural",
     "attributeModifiers": {
       "Strength": -3,
@@ -2919,9 +2527,7 @@
   {
     "name": "of Heartfullness",
     "rarity": 2,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Focusing",
     "attributeModifiers": {
       "LifeMax": 60,
@@ -2934,9 +2540,7 @@
   {
     "name": "of Deep Wisdom",
     "rarity": 2,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Focusing",
     "attributeModifiers": {
       "ManaMax": 60,
@@ -2949,9 +2553,7 @@
   {
     "name": "of Reactivity",
     "rarity": 2,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Incantation",
     "attributeModifiers": {
       "Defense": 5,
@@ -2968,9 +2570,7 @@
   {
     "name": "of Determination",
     "rarity": 2,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 7,
@@ -2984,9 +2584,7 @@
   {
     "name": "of late Man",
     "rarity": 2,
-    "price": [
-      -50
-    ],
+    "price": [-50],
     "category": "Misc",
     "attributeModifiers": {
       "PhysicalProbabilityPerThousandHit": -30,
@@ -3001,9 +2599,7 @@
   {
     "name": "of Complottist",
     "rarity": 2,
-    "price": [
-      -100
-    ],
+    "price": [-100],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Faith": 20,
@@ -3015,9 +2611,7 @@
   {
     "name": "of Bodybuilder",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeMax": 55,
@@ -3033,9 +2627,7 @@
   {
     "name": "of Book Lover",
     "rarity": 1,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Misc",
     "attributeModifiers": {
       "ManaMax": 40,
@@ -3051,9 +2643,7 @@
   {
     "name": "of Stretching",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 1,
@@ -3063,9 +2653,7 @@
   {
     "name": "of the Atheist",
     "rarity": 1,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Health": 2,
@@ -3076,9 +2664,7 @@
   {
     "name": "of the Agnostic",
     "rarity": 1,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Health": 3,
@@ -3090,9 +2676,7 @@
   {
     "name": "of Diet",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Incantation",
     "attributeModifiers": {
       "Wisdom": 2,
@@ -3104,9 +2688,7 @@
   {
     "name": "of Edonist",
     "rarity": 1,
-    "price": [
-      9
-    ],
+    "price": [9],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Health": 6,
@@ -3117,9 +2699,7 @@
   {
     "name": "of Sinner",
     "rarity": 1,
-    "price": [
-      -17
-    ],
+    "price": [-17],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeMax": 25,
@@ -3132,9 +2712,7 @@
   {
     "name": "Painted",
     "rarity": 1,
-    "price": [
-      5
-    ],
+    "price": [5],
     "category": "Coloring",
     "attributeModifiers": {
       "Health": 2,
@@ -3144,9 +2722,7 @@
   {
     "name": "Spitted over",
     "rarity": 1,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Material",
     "attributeModifiers": {
       "Health": -4,
@@ -3156,9 +2732,7 @@
   {
     "name": "Dirty",
     "rarity": 1,
-    "price": [
-      -3
-    ],
+    "price": [-3],
     "category": "Refining",
     "attributeModifiers": {
       "Constitution": -2
@@ -3167,9 +2741,7 @@
   {
     "name": "Mottled",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Coloring",
     "attributeModifiers": {
       "Strength": 1,
@@ -3182,9 +2754,7 @@
   {
     "name": "of Loathe",
     "rarity": 3,
-    "price": [
-      -12
-    ],
+    "price": [-12],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 7,
@@ -3201,9 +2771,7 @@
   {
     "name": "Polished",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Refining",
     "attributeModifiers": {
       "Dexterity": 3,
@@ -3213,9 +2781,7 @@
   {
     "name": "Shiny",
     "rarity": 2,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Refining",
     "attributeModifiers": {
       "LifeMax": -30,
@@ -3231,9 +2797,7 @@
   {
     "name": "Opaque",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Refining",
     "attributeModifiers": {
       "LifeMax": 30,
@@ -3243,9 +2807,7 @@
   {
     "name": "Torn apart",
     "rarity": 3,
-    "price": [
-      -27
-    ],
+    "price": [-27],
     "category": "Structural",
     "attributeModifiers": {
       "LifeMax": -150,
@@ -3259,9 +2821,7 @@
   {
     "name": "of Slave master",
     "rarity": 2,
-    "price": [
-      -19
-    ],
+    "price": [-19],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 4,
@@ -3275,9 +2835,7 @@
   {
     "name": "of Slave",
     "rarity": 1,
-    "price": [
-      2
-    ],
+    "price": [2],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -3290,9 +2848,7 @@
   {
     "name": "with Emblem",
     "rarity": 2,
-    "price": [
-      5
-    ],
+    "price": [5],
     "category": "Rune",
     "attributeModifiers": {
       "Wisdom": 3
@@ -3301,9 +2857,7 @@
   {
     "name": "of Callus",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -35,
@@ -3314,9 +2868,7 @@
   {
     "name": "of Guardian",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeMax": 65,
@@ -3328,9 +2880,7 @@
   {
     "name": "Gross",
     "rarity": 3,
-    "price": [
-      -30
-    ],
+    "price": [-30],
     "category": "Refining",
     "attributeModifiers": {
       "Health": -7,
@@ -3342,9 +2892,7 @@
   {
     "name": "of Cordierite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "ManaRegen": 10
@@ -3353,9 +2901,7 @@
   {
     "name": "of Spinel",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "LifeRegen": 10
@@ -3364,9 +2910,7 @@
   {
     "name": "of Dumortierite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 11,
@@ -3376,9 +2920,7 @@
   {
     "name": "of Larimar",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 7,
@@ -3389,9 +2931,7 @@
   {
     "name": "of Labradorite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "PhysicalDamageReduction": 8,
@@ -3401,9 +2941,7 @@
   {
     "name": "of Tourmaline",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Luck": 3
@@ -3412,9 +2950,7 @@
   {
     "name": "of Tiger's eye",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Defense": 5
@@ -3423,9 +2959,7 @@
   {
     "name": "of Jade",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Dexterity": 5
@@ -3434,9 +2968,7 @@
   {
     "name": "of Orthoclase",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Precision": 5
@@ -3445,9 +2977,7 @@
   {
     "name": "of Rhodochrosite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Strength": 3,
@@ -3457,9 +2987,7 @@
   {
     "name": "of Thulite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Health": 3,
@@ -3469,9 +2997,7 @@
   {
     "name": "of Turquoise",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Health": 2,
@@ -3481,9 +3007,7 @@
   {
     "name": "of Grossular",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Strength": 3,
@@ -3493,9 +3017,7 @@
   {
     "name": "of Kyanite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Intelligence": 3,
@@ -3505,9 +3027,7 @@
   {
     "name": "of Jasper",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Constitution": 3,
@@ -3517,9 +3037,7 @@
   {
     "name": "of Tanzanite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Wisdom": 3,
@@ -3530,9 +3048,7 @@
   {
     "name": "of Andradite",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Dexterity": 3,
@@ -3542,9 +3058,7 @@
   {
     "name": "of Chrysoberyl",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Dexterity": 2,
@@ -3554,9 +3068,7 @@
   {
     "name": "of Topaz",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Intelligence": 3,
@@ -3566,9 +3078,7 @@
   {
     "name": "of Spodumene",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Precision": 3,
@@ -3579,9 +3089,7 @@
   {
     "name": "of Ruby",
     "rarity": 3,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Material",
     "attributeModifiers": {
       "Strength": 2,
@@ -3593,9 +3101,7 @@
   {
     "name": "of Emerald",
     "rarity": 3,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Material",
     "attributeModifiers": {
       "Defense": 2,
@@ -3607,9 +3113,7 @@
   {
     "name": "of Sapphire",
     "rarity": 3,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Material",
     "attributeModifiers": {
       "Intelligence": 2,
@@ -3621,9 +3125,7 @@
   {
     "name": "of Diamond",
     "rarity": 4,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Material",
     "attributeModifiers": {
       "PhysicalDamageReduction": 42,
@@ -3636,9 +3138,7 @@
   {
     "name": "of Neodymium twin",
     "rarity": 4,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 50,
@@ -3649,9 +3149,7 @@
   {
     "name": "of Spodumene",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Material",
     "attributeModifiers": {
       "Precision": 3,
@@ -3662,9 +3160,7 @@
   {
     "name": "of Obsidian",
     "rarity": 2,
-    "price": [
-      29
-    ],
+    "price": [29],
     "category": "Material",
     "attributeModifiers": {
       "PhysicalDamageBonus": 15,
@@ -3676,9 +3172,7 @@
   {
     "name": "of Onix",
     "rarity": 2,
-    "price": [
-      21
-    ],
+    "price": [21],
     "category": "Material",
     "attributeModifiers": {
       "Health": 4,
@@ -3689,9 +3183,7 @@
   {
     "name": "Manifactured",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Structural",
     "attributeModifiers": {
       "PhysicalDamageReduction": 2,
@@ -3703,9 +3195,7 @@
   {
     "name": "Scratched",
     "rarity": 1,
-    "price": [
-      -3
-    ],
+    "price": [-3],
     "category": "Refining",
     "attributeModifiers": {
       "ManaMax": -10,
@@ -3715,9 +3205,7 @@
   {
     "name": "with bumps and hits",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Refining",
     "attributeModifiers": {
       "LifeMax": -20,
@@ -3727,9 +3215,7 @@
   {
     "name": "Stinky",
     "rarity": 1,
-    "price": [
-      -12
-    ],
+    "price": [-12],
     "category": "Refining",
     "attributeModifiers": {
       "Defense": 5,
@@ -3740,9 +3226,7 @@
   {
     "name": "of Pine tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 4,
@@ -3752,9 +3236,7 @@
   {
     "name": "of Apple tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": 4,
@@ -3764,9 +3246,7 @@
   {
     "name": "of Cherry tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Health": 4,
@@ -3776,9 +3256,7 @@
   {
     "name": "of Abies tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Defense": 4,
@@ -3788,9 +3266,7 @@
   {
     "name": "of Sycamore tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": 4,
@@ -3800,9 +3276,7 @@
   {
     "name": "of Birch tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Precision": 2,
@@ -3812,9 +3286,7 @@
   {
     "name": "of Pear tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 2,
@@ -3824,9 +3296,7 @@
   {
     "name": "of Oak tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Wisdom": 4,
@@ -3836,9 +3306,7 @@
   {
     "name": "of Willow tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Faith": 4,
@@ -3848,9 +3316,7 @@
   {
     "name": "of Juglans-Cinerea tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 150,
@@ -3860,9 +3326,7 @@
   {
     "name": "of Pink Dogwood tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": 5,
@@ -3872,9 +3336,7 @@
   {
     "name": "of Juglans-Regia tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": 150,
@@ -3884,9 +3346,7 @@
   {
     "name": "of Magnolia tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaRegen": 5,
@@ -3896,9 +3356,7 @@
   {
     "name": "of Corylus-Avellana tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": 75,
@@ -3909,9 +3367,7 @@
   {
     "name": "of Maple tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 40,
@@ -3924,9 +3380,7 @@
   {
     "name": "of Fir tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageBonus": 5,
@@ -3937,9 +3391,7 @@
   {
     "name": "of Elm tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalProbabilityPerThousandAvoid": 14,
@@ -3950,9 +3402,7 @@
   {
     "name": "of Acacia tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeLeechPercentage": 3,
@@ -3963,9 +3413,7 @@
   {
     "name": "of Kiwi tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageReduction": 6,
@@ -3976,9 +3424,7 @@
   {
     "name": "of Tilia tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageReduction": 4,
@@ -3989,9 +3435,7 @@
   {
     "name": "of Bristlecone tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageReduction": 5,
@@ -4002,9 +3446,7 @@
   {
     "name": "of Baobab tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -4016,9 +3458,7 @@
   {
     "name": "of Socotra Dragon tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "CriticalProbabilityPerThousandHit": 50,
@@ -4029,9 +3469,7 @@
   {
     "name": "of Malvaceae tree",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -3,
@@ -4044,9 +3482,7 @@
   {
     "name": "of Schipnosis tree",
     "rarity": 3,
-    "price": [
-      38
-    ],
+    "price": [38],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 3,
@@ -4064,9 +3500,7 @@
   {
     "name": "of the Peek",
     "rarity": 5,
-    "price": [
-      200
-    ],
+    "price": [200],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 7,
@@ -4092,9 +3526,7 @@
   {
     "name": "of the Gangrenous Wounds",
     "rarity": 5,
-    "price": [
-      -100
-    ],
+    "price": [-100],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 2000,
@@ -4105,9 +3537,7 @@
   {
     "name": "of the Gluey body",
     "rarity": 5,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -1500,
@@ -4117,9 +3547,7 @@
   {
     "name": "with Spiritual Sponge",
     "rarity": 5,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": 1750,
@@ -4130,9 +3558,7 @@
   {
     "name": "of the Oniric Flow",
     "rarity": 5,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": -1250,
@@ -4142,9 +3568,7 @@
   {
     "name": "with Mystical Amplifier",
     "rarity": 4,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaRegen": -150,
@@ -4154,9 +3578,7 @@
   {
     "name": "Blood Powered",
     "rarity": 4,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeRegen": -150,
@@ -4166,9 +3588,7 @@
   {
     "name": "of Obsessive Nenia",
     "rarity": 3,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": -250,
@@ -4179,9 +3599,7 @@
   {
     "name": "of Meadow",
     "rarity": 2,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 35,
@@ -4193,9 +3611,7 @@
   {
     "name": "of Shady Scrub",
     "rarity": 2,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 25,
@@ -4207,9 +3623,7 @@
   {
     "name": "of Narcissist",
     "rarity": 3,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": 45,
@@ -4220,9 +3634,7 @@
   {
     "name": "of Opportunist",
     "rarity": 3,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 50,
@@ -4233,9 +3645,7 @@
   {
     "name": "Consumed",
     "rarity": 2,
-    "price": [
-      -12
-    ],
+    "price": [-12],
     "category": "Structural",
     "attributeModifiers": {
       "LifeMax": -35,
@@ -4246,9 +3656,7 @@
   {
     "name": "of Carver",
     "rarity": 2,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": 6,
@@ -4259,9 +3667,7 @@
   {
     "name": "of Silence",
     "rarity": 2,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "PhysicalDamageBonus": -3,
@@ -4274,9 +3680,7 @@
   {
     "name": "of Insofference",
     "rarity": 3,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -135,
@@ -4288,9 +3692,7 @@
   {
     "name": "of Apathy",
     "rarity": 3,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": -120,
@@ -4302,9 +3704,7 @@
   {
     "name": "of Nihilism",
     "rarity": 4,
-    "price": [
-      -25
-    ],
+    "price": [-25],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -180,
@@ -4317,9 +3717,7 @@
   {
     "name": "of Compassion",
     "rarity": 4,
-    "price": [
-      20
-    ],
+    "price": [20],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 120,
@@ -4338,9 +3736,7 @@
   {
     "name": "of Pain",
     "rarity": 3,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": -7,
@@ -4355,9 +3751,7 @@
   {
     "name": "Patched",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Refining",
     "attributeModifiers": {
       "Defense": -1,
@@ -4367,9 +3761,7 @@
   {
     "name": "Elegant",
     "rarity": 1,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Refining",
     "attributeModifiers": {
       "Strength": -2,
@@ -4382,9 +3774,7 @@
   {
     "name": "Exited",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 1,
@@ -4397,9 +3787,7 @@
   {
     "name": "of a Good Mood",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": 1,
@@ -4410,9 +3798,7 @@
   {
     "name": "of a Bad Mood",
     "rarity": 1,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": -1,
@@ -4423,9 +3809,7 @@
   {
     "name": "of Breath",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Elemental",
     "attributeModifiers": {
       "Dexterity": 1,
@@ -4437,9 +3821,7 @@
   {
     "name": "of Controlled Breath",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -1,
@@ -4452,9 +3834,7 @@
   {
     "name": "of Demotivation",
     "rarity": 1,
-    "price": [
-      -17
-    ],
+    "price": [-17],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -3,
@@ -4468,9 +3848,7 @@
   {
     "name": "of Sweat",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Elemental",
     "attributeModifiers": {
       "ManaMax": -45,
@@ -4482,9 +3860,7 @@
   {
     "name": "of Sweating",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Incantation",
     "attributeModifiers": {
       "StaminaMax": 10,
@@ -4495,9 +3871,7 @@
   {
     "name": "of a Bad Sleep",
     "rarity": 1,
-    "price": [
-      -7
-    ],
+    "price": [-7],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -2,
@@ -4516,9 +3890,7 @@
   {
     "name": "of a Bad Sleeper",
     "rarity": 3,
-    "price": [
-      -47
-    ],
+    "price": [-47],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -3,
@@ -4538,9 +3910,7 @@
   {
     "name": "of Cyber Mosquito",
     "rarity": 3,
-    "price": [
-      66
-    ],
+    "price": [66],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "ShieldMax": 15,
@@ -4550,9 +3920,7 @@
   {
     "name": "of Cybervampire",
     "rarity": 4,
-    "price": [
-      99
-    ],
+    "price": [99],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "LifeRegen": -3,
@@ -4565,9 +3933,7 @@
   {
     "name": "with Batteries",
     "rarity": 3,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Material",
     "attributeModifiers": {
       "ShieldMax": 35
@@ -4576,9 +3942,7 @@
   {
     "name": "with Dynamos",
     "rarity": 3,
-    "price": [
-      66
-    ],
+    "price": [66],
     "category": "Structural",
     "attributeModifiers": {
       "Strength": -5,
@@ -4589,9 +3953,7 @@
   {
     "name": "of Logic",
     "rarity": 2,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 8,
@@ -4602,9 +3964,7 @@
   {
     "name": "of Reflexes",
     "rarity": 2,
-    "price": [
-      22
-    ],
+    "price": [22],
     "category": "Incantation",
     "attributeModifiers": {
       "Defense": 4,
@@ -4615,9 +3975,7 @@
   {
     "name": "of Dreams",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Health": 2,
@@ -4627,9 +3985,7 @@
   {
     "name": "of Fear of Fight",
     "rarity": 1,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Elemental",
     "attributeModifiers": {
       "Defense": 5,
@@ -4640,9 +3996,7 @@
   {
     "name": "of Slime",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -250,
@@ -4652,9 +4006,7 @@
   {
     "name": "of Lizard's Tail",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Structural",
     "attributeModifiers": {
       "LifeMax": -60,
@@ -4668,9 +4020,7 @@
   {
     "name": "of Starfish",
     "rarity": 1,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -40,
@@ -4682,9 +4032,7 @@
   {
     "name": "of Studying",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -7,
@@ -4696,9 +4044,7 @@
   {
     "name": "of Dietist",
     "rarity": 2,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "ManaMax": 35,
@@ -4710,9 +4056,7 @@
   {
     "name": "of Leech",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Elemental",
     "attributeModifiers": {
       "LifeLeechPercentage": 15
@@ -4721,9 +4065,7 @@
   {
     "name": "of Spiritual Leech",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Elemental",
     "attributeModifiers": {
       "ManaLeechPercentage": 15
@@ -4732,9 +4074,7 @@
   {
     "name": "of Narcissist",
     "rarity": 2,
-    "price": [
-      -15
-    ],
+    "price": [-15],
     "category": "Misc",
     "attributeModifiers": {
       "Intelligence": 5,
@@ -4747,9 +4087,7 @@
   {
     "name": "Bones Plated",
     "rarity": 2,
-    "price": [
-      16
-    ],
+    "price": [16],
     "category": "Misc",
     "attributeModifiers": {
       "Defense": 7,
@@ -4763,9 +4101,7 @@
   {
     "name": "Molded",
     "rarity": 2,
-    "price": [
-      -22
-    ],
+    "price": [-22],
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": -2,
@@ -4777,9 +4113,7 @@
   {
     "name": "of better health",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 4,
@@ -4789,9 +4123,7 @@
   {
     "name": "Enjoying the Wind",
     "rarity": 2,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 2,
@@ -4802,9 +4134,7 @@
   {
     "name": "of Boy-styled",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 2,
@@ -4815,9 +4145,7 @@
   {
     "name": "of Girl-styled",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 2,
@@ -4828,9 +4156,7 @@
   {
     "name": "of Youth",
     "rarity": 2,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 3,
@@ -4848,9 +4174,7 @@
   {
     "name": "of Grappling Hopep",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 1,
@@ -4862,9 +4186,7 @@
   {
     "name": "Silky & Sucky Touch",
     "rarity": 3,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Refining",
     "attributeModifiers": {
       "Faith": -3,
@@ -4877,9 +4199,7 @@
   {
     "name": "Well Covering",
     "rarity": 1,
-    "price": [
-      9
-    ],
+    "price": [9],
     "category": "Structural",
     "attributeModifiers": {
       "Constitution": 1,
@@ -4890,9 +4210,7 @@
   {
     "name": "of Runner",
     "rarity": 2,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Constitution": 3,
@@ -4904,9 +4222,7 @@
   {
     "name": "of the Wise",
     "rarity": 2,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Incantation",
     "attributeModifiers": {
       "Health": 2,
@@ -4917,9 +4233,7 @@
   {
     "name": "Rare",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "Misc",
     "attributeModifiers": {
       "ManaMax": 75,
@@ -4933,9 +4247,7 @@
   {
     "name": "made with Horn",
     "rarity": 2,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Material",
     "attributeModifiers": {
       "Strength": 3,
@@ -4950,9 +4262,7 @@
   {
     "name": "with Spikes",
     "rarity": 1,
-    "price": [
-      16
-    ],
+    "price": [16],
     "category": "Structural",
     "attributeModifiers": {
       "PhysicalDamageBonus": 3,
@@ -4964,9 +4274,7 @@
   {
     "name": "with a Talisman",
     "rarity": 2,
-    "price": [
-      16
-    ],
+    "price": [16],
     "category": "Refining",
     "attributeModifiers": {
       "ManaMax": 45,
@@ -4979,9 +4287,7 @@
   {
     "name": "with Sacred Icons",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "Misc",
     "attributeModifiers": {
       "ManaMax": 60,
@@ -4994,9 +4300,7 @@
   {
     "name": "of Ally",
     "rarity": 2,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 1,
@@ -5011,9 +4315,7 @@
   {
     "name": "of Hexoskeleton",
     "rarity": 3,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Misc",
     "attributeModifiers": {
       "ManaMax": -130,
@@ -5033,9 +4335,7 @@
   {
     "name": "of the Hurry one",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 3,
@@ -5050,9 +4350,7 @@
   {
     "name": "with Arnica oil",
     "rarity": 2,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Misc",
     "attributeModifiers": {
       "LifeRegen": 5
@@ -5061,9 +4359,7 @@
   {
     "name": "with Puppy drawnings",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Misc",
     "attributeModifiers": {
       "LifeRegen": 3
@@ -5072,9 +4368,7 @@
   {
     "name": "for the Novice Training",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 1,
@@ -5087,9 +4381,7 @@
   {
     "name": "of the Lecture",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 1,
@@ -5101,9 +4393,7 @@
   {
     "name": "with Magnetic Capacitors",
     "rarity": 3,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 30
@@ -5112,9 +4402,7 @@
   {
     "name": "with Permanent Static Electricity",
     "rarity": 3,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 5,
@@ -5127,9 +4415,7 @@
   {
     "name": "with a Magical Rune Shield",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 15,
@@ -5140,9 +4426,7 @@
   {
     "name": "with a Magnetic Rudimental Shield",
     "rarity": 2,
-    "price": [
-      15
-    ],
+    "price": [15],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 25,
@@ -5154,9 +4438,7 @@
   {
     "name": "with Conductive Wires",
     "rarity": 1,
-    "price": [
-      4
-    ],
+    "price": [4],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 5,
@@ -5166,9 +4448,7 @@
   {
     "name": "with Metal Strings",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 5,
@@ -5179,9 +4459,7 @@
   {
     "name": "of the Shrewd ones",
     "rarity": 3,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": 6,
@@ -5193,9 +4471,7 @@
   {
     "name": "of the Loss of Vision",
     "rarity": 3,
-    "price": [
-      -40
-    ],
+    "price": [-40],
     "category": "Misc",
     "attributeModifiers": {
       "Precision": -10,
@@ -5210,9 +4486,7 @@
   {
     "name": "of the Divine Guidance",
     "rarity": 4,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "Misc",
     "attributeModifiers": {
       "Precision": 8,
@@ -5228,9 +4502,7 @@
   {
     "name": "of Hard Skin",
     "rarity": 2,
-    "price": [
-      24
-    ],
+    "price": [24],
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": 7,
@@ -5242,9 +4514,7 @@
   {
     "name": "of Apostasy",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 5,
@@ -5257,9 +4527,7 @@
   {
     "name": "of Third Eye Blind",
     "rarity": 4,
-    "price": [
-      -34
-    ],
+    "price": [-34],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": -5,
@@ -5272,9 +4540,7 @@
   {
     "name": "of Blimping Consciousness",
     "rarity": 1,
-    "price": [
-      11
-    ],
+    "price": [11],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 1,
@@ -5284,9 +4550,7 @@
   {
     "name": "of Consciousness",
     "rarity": 3,
-    "price": [
-      33
-    ],
+    "price": [33],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 2,
@@ -5298,9 +4562,7 @@
   {
     "name": "of the Sleepy One",
     "rarity": 1,
-    "price": [
-      -17
-    ],
+    "price": [-17],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": -1,
@@ -5316,9 +4578,7 @@
   {
     "name": "of Infused Veins",
     "rarity": 4,
-    "price": [
-      41
-    ],
+    "price": [41],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 14,
@@ -5330,9 +4590,7 @@
   {
     "name": "of Master Bodybuilder",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Strength": 30
@@ -5341,9 +4599,7 @@
   {
     "name": "of Master Bulk",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Constitution": 30
@@ -5352,9 +4608,7 @@
   {
     "name": "of Master Medic",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Health": 30
@@ -5363,9 +4617,7 @@
   {
     "name": "of Master Guardian",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Defense": 30
@@ -5374,9 +4626,7 @@
   {
     "name": "of Master Stuntman",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Dexterity": 30
@@ -5385,9 +4635,7 @@
   {
     "name": "of Master Bowman",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Precision": 30
@@ -5396,9 +4644,7 @@
   {
     "name": "of Master Planner",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Intelligence": 30
@@ -5407,9 +4653,7 @@
   {
     "name": "of Master Philosopher",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Wisdom": 30
@@ -5418,9 +4662,7 @@
   {
     "name": "of Master Priest",
     "rarity": 5,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Faith": 30
@@ -5429,9 +4671,7 @@
   {
     "name": "of Anima Shielding",
     "rarity": 5,
-    "price": [
-      77
-    ],
+    "price": [77],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": -5,
@@ -5450,9 +4690,7 @@
   {
     "name": "of the Oaf",
     "rarity": 1,
-    "price": [
-      -8
-    ],
+    "price": [-8],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -5464,9 +4702,7 @@
   {
     "name": "of Death Thrill",
     "rarity": 3,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "Misc",
     "attributeModifiers": {
       "LifeMax": -350,
@@ -5482,9 +4718,7 @@
   {
     "name": "of Wealth Calm",
     "rarity": 3,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "Misc",
     "attributeModifiers": {
       "LifeMax": 200,
@@ -5498,9 +4732,7 @@
   {
     "name": "of the Revived",
     "rarity": 4,
-    "price": [
-      -8
-    ],
+    "price": [-8],
     "description": "Death cleans away all sufferings. Now answer me: why am I painless?",
     "category": "Misc",
     "attributeModifiers": {
@@ -5513,9 +4745,7 @@
   {
     "name": "of Gentle Blow",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Misc",
     "attributeModifiers": {
       "Velocity": 25,
@@ -5525,9 +4755,7 @@
   {
     "name": "of Pure Tungsten",
     "rarity": 4,
-    "price": [
-      54
-    ],
+    "price": [54],
     "category": "Misc",
     "attributeModifiers": {
       "Velocity": -25,
@@ -5540,9 +4768,7 @@
   {
     "name": "of Near Death Experience",
     "rarity": 4,
-    "price": [
-      -80
-    ],
+    "price": [-80],
     "category": "Misc",
     "attributeModifiers": {
       "Velocity": -10,
@@ -5556,9 +4782,7 @@
   {
     "name": "that Magically Sings",
     "rarity": 3,
-    "price": [
-      -80
-    ],
+    "price": [-80],
     "description": "It fights loneliness for a while, then your will power.\nIt's the same for bandits.",
     "category": "Misc",
     "attributeModifiers": {
@@ -5576,9 +4800,7 @@
   {
     "name": "of Caffeine",
     "rarity": 2,
-    "price": [
-      12
-    ],
+    "price": [12],
     "description": "It makes you fast, but it burns energies.",
     "category": "Material",
     "attributeModifiers": {
@@ -5602,9 +4824,7 @@
   {
     "name": "of The Snail",
     "rarity": 2,
-    "price": [
-      -17
-    ],
+    "price": [-17],
     "description": "Do you feel the weight of your house on your shoulder? Wasn't what you've desired, was it?.",
     "category": "Misc",
     "attributeModifiers": {
@@ -5621,9 +4841,7 @@
   {
     "name": "of Improved Reflexes",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": 5,
@@ -5633,9 +4851,7 @@
   {
     "name": "of Brown Fat Coated",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": -2,
@@ -5647,9 +4863,7 @@
   {
     "name": "of Brown Fat Coated",
     "rarity": 1,
-    "price": [
-      -6
-    ],
+    "price": [-6],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": -4,
@@ -5659,9 +4873,7 @@
   {
     "name": "from a Theatre Suit",
     "rarity": 1,
-    "price": [
-      20
-    ],
+    "price": [20],
     "category": "Misc",
     "attributeModifiers": {
       "Wisdom": 3,
@@ -5671,9 +4883,7 @@
   {
     "name": "of Self Control",
     "rarity": 3,
-    "price": [
-      27
-    ],
+    "price": [27],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 3,
@@ -5685,9 +4895,7 @@
   {
     "name": "with Gold Glowing Mucus",
     "rarity": 4,
-    "price": [
-      67
-    ],
+    "price": [67],
     "category": "Material",
     "attributeModifiers": {
       "Strength": -7,
@@ -5701,9 +4909,7 @@
   {
     "name": "causing Backpain",
     "rarity": 1,
-    "price": [
-      -18
-    ],
+    "price": [-18],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -5713,9 +4919,7 @@
   {
     "name": "causing Tongue Bites",
     "rarity": 1,
-    "price": [
-      -18
-    ],
+    "price": [-18],
     "category": "Misc",
     "attributeModifiers": {
       "Health": -3,
@@ -5725,9 +4929,7 @@
   {
     "name": "of Skin Rush",
     "rarity": 2,
-    "price": [
-      -23
-    ],
+    "price": [-23],
     "category": "Misc",
     "attributeModifiers": {
       "Health": -2,
@@ -5738,9 +4940,7 @@
   {
     "name": "emanating Breeze",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": 3,
@@ -5750,9 +4950,7 @@
   {
     "name": "of the Ancient Protector",
     "rarity": 4,
-    "price": [
-      58
-    ],
+    "price": [58],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": 8,
@@ -5763,9 +4961,7 @@
   {
     "name": "of Glowing Blue Salamander Skin",
     "rarity": 4,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": 5,
@@ -5777,9 +4973,7 @@
   {
     "name": "a bit Ugly",
     "rarity": 1,
-    "price": [
-      -5
-    ],
+    "price": [-5],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": -3,
@@ -5789,9 +4983,7 @@
   {
     "name": "of Bigotry Cleanse",
     "rarity": 2,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": -10,
@@ -5805,9 +4997,7 @@
   {
     "name": "of a Heresy",
     "rarity": 1,
-    "price": [
-      -7
-    ],
+    "price": [-7],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": -5
@@ -5816,9 +5006,7 @@
   {
     "name": "of Falling Hairs",
     "rarity": 2,
-    "price": [
-      -18
-    ],
+    "price": [-18],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": 4,
@@ -5832,9 +5020,7 @@
   {
     "name": "of Non Violence Preference",
     "rarity": 3,
-    "price": [
-      20
-    ],
+    "price": [20],
     "category": "Misc",
     "attributeModifiers": {
       "LifeRegen": 15,
@@ -5848,9 +5034,7 @@
   {
     "name": "of Fighting Thrill",
     "rarity": 3,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Misc",
     "attributeModifiers": {
       "LifeRegen": 5,
@@ -5864,9 +5048,7 @@
   {
     "name": "of Osmosis Skin",
     "rarity": 2,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Misc",
     "attributeModifiers": {
       "PhysicalDamageBonus": -5,
@@ -5878,9 +5060,7 @@
   {
     "name": "of Love Night",
     "rarity": 4,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Misc",
     "attributeModifiers": {
       "Health": 8,
@@ -5894,9 +5074,7 @@
   {
     "name": "of Delusion",
     "rarity": 1,
-    "price": [
-      -13
-    ],
+    "price": [-13],
     "category": "Misc",
     "attributeModifiers": {
       "Faith": -5
@@ -5905,9 +5083,7 @@
   {
     "name": "of Overconfident Body Awareness",
     "rarity": 1,
-    "price": [
-      16
-    ],
+    "price": [16],
     "category": "Misc",
     "attributeModifiers": {
       "Dexterity": 5,
@@ -5918,9 +5094,7 @@
   {
     "name": "of Overconfident Hard Skin",
     "rarity": 1,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Incantation",
     "attributeModifiers": {
       "Defense": 5,
@@ -5931,9 +5105,7 @@
   {
     "name": "of Mind Exercise",
     "rarity": 1,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 5,
@@ -5943,9 +5115,7 @@
   {
     "name": "of Meditation",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -1,
@@ -5958,9 +5128,7 @@
   {
     "name": "with Medic Patch",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Structural",
     "attributeModifiers": {
       "LifeRegen": 3
@@ -5969,9 +5137,7 @@
   {
     "name": "with Metal Diapason",
     "rarity": 3,
-    "price": [
-      21
-    ],
+    "price": [21],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": -3,
@@ -5986,9 +5152,7 @@
   {
     "name": "Noisy",
     "rarity": 1,
-    "price": [
-      -9
-    ],
+    "price": [-9],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": -2,
@@ -6000,9 +5164,7 @@
   {
     "name": "of Frenzy",
     "rarity": 2,
-    "price": [
-      -11
-    ],
+    "price": [-11],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": -2,
@@ -6017,9 +5179,7 @@
   {
     "name": "with Piercing",
     "rarity": 1,
-    "price": [
-      6
-    ],
+    "price": [6],
     "category": "Structural",
     "attributeModifiers": {
       "ShieldMax": 10
@@ -6028,9 +5188,7 @@
   {
     "name": "with Magic Shell",
     "rarity": 4,
-    "price": [
-      70
-    ],
+    "price": [70],
     "category": "Incantation",
     "attributeModifiers": {
       "MagicalDamageReduction": -15,
@@ -6043,9 +5201,7 @@
   {
     "name": "with Magic Shield",
     "rarity": 4,
-    "price": [
-      75
-    ],
+    "price": [75],
     "category": "Incantation",
     "attributeModifiers": {
       "MagicalDamageReduction": -10,
@@ -6058,9 +5214,7 @@
   {
     "name": "of Betrayal",
     "rarity": 2,
-    "price": [
-      -33
-    ],
+    "price": [-33],
     "category": "Incantation",
     "attributeModifiers": {
       "Health": -3,
@@ -6075,9 +5229,7 @@
   {
     "name": "of Traitor",
     "rarity": 4,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 3,
@@ -6091,9 +5243,7 @@
   {
     "name": "of Good Aiming",
     "rarity": 2,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": -1,
@@ -6106,9 +5256,7 @@
   {
     "name": "of Careful Aiming",
     "rarity": 4,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "Focusing",
     "attributeModifiers": {
       "Strength": -3,
@@ -6126,9 +5274,7 @@
   {
     "name": "of the Glass Cannon",
     "rarity": 4,
-    "price": [
-      20
-    ],
+    "price": [20],
     "category": "Focusing",
     "attributeModifiers": {
       "PhysicalDamageReduction": -25,
@@ -6140,9 +5286,7 @@
   {
     "name": "of the Cold Wind",
     "rarity": 2,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Elemental",
     "attributeModifiers": {
       "Velocity": 35,
@@ -7018,9 +6162,7 @@
   {
     "name": "of Healer Novice",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Strength": -3,
@@ -7031,9 +6173,7 @@
   {
     "name": "of Healer",
     "rarity": 3,
-    "price": [
-      25
-    ],
+    "price": [25],
     "category": "CharacterClass",
     "attributeModifiers": {
       "Health": 5,
@@ -7048,9 +6188,7 @@
   {
     "name": "Enhancing the Magnetic Field",
     "rarity": 4,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": -35,
@@ -7063,9 +6201,7 @@
   {
     "name": "of Isolating Capacitor",
     "rarity": 3,
-    "price": [
-      30
-    ],
+    "price": [30],
     "category": "Structural",
     "attributeModifiers": {
       "ManaRegen": -1,
@@ -7077,9 +6213,7 @@
   {
     "name": "of Dissipation Cycle",
     "rarity": 4,
-    "price": [
-      45
-    ],
+    "price": [45],
     "category": "Structural",
     "attributeModifiers": {
       "ShieldMax": 35,
@@ -7090,9 +6224,7 @@
   {
     "name": "of Metallic Blood",
     "rarity": 2,
-    "price": [
-      27
-    ],
+    "price": [27],
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": -25,
@@ -7105,9 +6237,7 @@
   {
     "name": "of Mystical Aura",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Misc",
     "attributeModifiers": {
       "ShieldMax": 15,
@@ -7120,9 +6250,7 @@
   {
     "name": "of Fresh Air",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Elemental",
     "attributeModifiers": {
       "LifeRegen": 1,
@@ -7137,9 +6265,7 @@
   {
     "name": "of Cold Air",
     "rarity": 1,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Elemental",
     "attributeModifiers": {
       "LifeMax": -15,
@@ -7154,9 +6280,7 @@
   {
     "name": "Magnificent",
     "rarity": 2,
-    "price": [
-      45
-    ],
+    "price": [45],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 1,
@@ -7173,9 +6297,7 @@
   {
     "name": "of the Raven",
     "rarity": 2,
-    "price": [
-      38
-    ],
+    "price": [38],
     "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 7,
@@ -7188,9 +6310,7 @@
   {
     "name": "with Light Shielding",
     "rarity": 3,
-    "price": [
-      70
-    ],
+    "price": [70],
     "category": "Incantation",
     "attributeModifiers": {
       "ShieldMax": 150,
@@ -7201,9 +6321,7 @@
   {
     "name": "of Boatsman",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Misc",
     "attributeModifiers": {
       "Strength": 1,
@@ -7215,9 +6333,7 @@
   {
     "name": "of Organza",
     "rarity": 2,
-    "price": [
-      40
-    ],
+    "price": [40],
     "category": "Material",
     "attributeModifiers": {
       "Wisdom": 4,
@@ -7229,9 +6345,7 @@
   {
     "name": "of the Sky",
     "rarity": 3,
-    "price": [
-      32
-    ],
+    "price": [32],
     "category": "Incantation",
     "attributeModifiers": {
       "Faith": 5,
@@ -7246,9 +6360,7 @@
   {
     "name": "of the Snow",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
       "Health": -5,
@@ -7259,9 +6371,7 @@
   {
     "name": "Gold Dusted",
     "rarity": 3,
-    "price": [
-      100
-    ],
+    "price": [100],
     "category": "Material",
     "attributeModifiers": {
       "Health": 10,
@@ -7271,9 +6381,7 @@
   {
     "name": "of the Purpleheart",
     "rarity": 3,
-    "price": [
-      80
-    ],
+    "price": [80],
     "category": "Material",
     "attributeModifiers": {
       "LifeMax": 75,
@@ -7283,9 +6391,7 @@
   {
     "name": "of Applewood",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Material",
     "attributeModifiers": {
       "LifeMax": 15,
@@ -7296,9 +6402,7 @@
   {
     "name": "of Cotton",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "Material",
     "attributeModifiers": {
       "Constitution": 2,
@@ -7309,9 +6413,7 @@
   {
     "name": "of Camouflage",
     "rarity": 3,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": 3,
@@ -7323,9 +6425,7 @@
   {
     "name": "of the Storm",
     "rarity": 3,
-    "price": [
-      35
-    ],
+    "price": [35],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": -5,
@@ -7342,9 +6442,7 @@
   {
     "name": "of the Thunder",
     "rarity": 4,
-    "price": [
-      50
-    ],
+    "price": [50],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": 10,
@@ -7364,9 +6462,7 @@
   {
     "name": "of the Crow",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Incantation",
     "attributeModifiers": {
       "Constitution": -3,
@@ -7379,9 +6475,7 @@
   {
     "name": "of Snowbird",
     "rarity": 2,
-    "price": [
-      18
-    ],
+    "price": [18],
     "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": 5,
@@ -7394,9 +6488,7 @@
   {
     "name": "of the Artisan",
     "rarity": 2,
-    "price": [
-      31
-    ],
+    "price": [31],
     "category": "Misc",
     "attributeModifiers": {
       "Precision": 9,
@@ -7406,9 +6498,7 @@
   {
     "name": "of the Sage",
     "rarity": 2,
-    "price": [
-      28
-    ],
+    "price": [28],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Wisdom": 13
@@ -7417,9 +6507,7 @@
   {
     "name": "Cruel",
     "rarity": 2,
-    "price": [
-      -13
-    ],
+    "price": [-13],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 13,
@@ -7432,9 +6520,7 @@
   {
     "name": "Corageous",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Refining",
     "attributeModifiers": {
       "Faith": 4,
@@ -7445,9 +6531,7 @@
   {
     "name": "Burnt",
     "rarity": 1,
-    "price": [
-      -7
-    ],
+    "price": [-7],
     "category": "Structural",
     "attributeModifiers": {
       "Defense": -3,
@@ -7458,9 +6542,7 @@
   {
     "name": "Fused",
     "rarity": 2,
-    "price": [
-      -13
-    ],
+    "price": [-13],
     "category": "Structural",
     "attributeModifiers": {
       "Dexterity": -4,
@@ -7471,9 +6553,7 @@
   {
     "name": "Molten",
     "rarity": 2,
-    "price": [
-      -24
-    ],
+    "price": [-24],
     "category": "Structural",
     "attributeModifiers": {
       "Velocity": -10,
@@ -7484,9 +6564,7 @@
   {
     "name": "of the Soldier",
     "rarity": 3,
-    "price": [
-      28
-    ],
+    "price": [28],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 6,
@@ -7506,9 +6584,7 @@
   {
     "name": "of the Artillerist",
     "rarity": 2,
-    "price": [
-      28
-    ],
+    "price": [28],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": 12,
@@ -7518,9 +6594,7 @@
   {
     "name": "Fierce",
     "rarity": 2,
-    "price": [
-      3
-    ],
+    "price": [3],
     "category": "Elemental",
     "attributeModifiers": {
       "Strength": 6,
@@ -7538,9 +6612,7 @@
   {
     "name": "of the Gymnast",
     "rarity": 3,
-    "price": [
-      28
-    ],
+    "price": [28],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 4,
@@ -7554,9 +6626,7 @@
   {
     "name": "of the Dancer",
     "rarity": 2,
-    "price": [
-      28
-    ],
+    "price": [28],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 2,
@@ -7570,9 +6640,7 @@
   {
     "name": "of Dance Training",
     "rarity": 1,
-    "price": [
-      12
-    ],
+    "price": [12],
     "category": "Structural",
     "attributeModifiers": {
       "Strength": 1,
@@ -7585,9 +6653,7 @@
   {
     "name": "Careful",
     "rarity": 1,
-    "price": [
-      13
-    ],
+    "price": [13],
     "category": "Misc",
     "attributeModifiers": {
       "Precision": 5,
@@ -7597,9 +6663,7 @@
   {
     "name": "of the Pikeman",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Strength": 3,
@@ -7610,9 +6674,7 @@
   {
     "name": "Burgundy",
     "rarity": 1,
-    "price": [
-      14
-    ],
+    "price": [14],
     "category": "Coloring",
     "attributeModifiers": {
       "Precision": 5,
@@ -7623,10 +6685,8 @@
   {
     "name": "Mountain's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Strength": 6,
       "Constitution": 10,
@@ -7641,10 +6701,8 @@
   {
     "name": "Plain's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Constitution": 5,
       "Strength": 2,
@@ -7661,10 +6719,8 @@
   {
     "name": "Sea's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Strength": 2,
       "Dexterity": 5,
@@ -7681,10 +6737,8 @@
   {
     "name": "Forest's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Dexterity": 3,
       "Precision": 7,
@@ -7701,10 +6755,8 @@
   {
     "name": "Sky's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Dexterity": 7,
       "Precision": 3,
@@ -7721,10 +6773,8 @@
   {
     "name": "River's",
     "rarity": 4,
-    "price": [
-      41
-    ],
-    "category": "Enviromental",
+    "price": [41],
+    "category": "Environmental",
     "attributeModifiers": {
       "Dexterity": 6,
       "Precision": 6,
@@ -7742,9 +6792,7 @@
   {
     "name": "Young Weaver's",
     "rarity": 1,
-    "price": [
-      7
-    ],
+    "price": [7],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
       "Precision": 5,
@@ -7754,9 +6802,7 @@
   {
     "name": "with a Four-Leaf Clover",
     "rarity": 1,
-    "price": [
-      10
-    ],
+    "price": [10],
     "category": "Material",
     "attributeModifiers": {
       "Health": 1,
@@ -7767,9 +6813,7 @@
   {
     "name": "with Four-Leaf Clover Blessing",
     "rarity": 3,
-    "price": [
-      128
-    ],
+    "price": [128],
     "category": "Blessing",
     "attributeModifiers": {
       "Health": 3,
@@ -7780,9 +6824,7 @@
   {
     "name": "Blessed by the Fortune Goddess",
     "rarity": 4,
-    "price": [
-      256
-    ],
+    "price": [256],
     "category": "Blessing",
     "attributeModifiers": {
       "Health": 5,
@@ -7793,9 +6835,7 @@
   {
     "name": "of the Fortune Goddess",
     "rarity": 5,
-    "price": [
-      1024
-    ],
+    "price": [1024],
     "category": "Incarnation",
     "attributeModifiers": {
       "Health": 25,
@@ -7806,9 +6846,7 @@
   {
     "name": "of the Negation",
     "rarity": 5,
-    "price": [
-      400
-    ],
+    "price": [400],
     "category": "Rune",
     "attributeModifiers": {
       "ShieldMax": 500,
@@ -7823,9 +6861,7 @@
   {
     "name": "made with Black Metal",
     "rarity": 4,
-    "price": [
-      170
-    ],
+    "price": [170],
     "category": "Material",
     "attributeModifiers": {
       "Luck": -15,
@@ -7842,9 +6878,7 @@
   {
     "name": "Burning Runed",
     "rarity": 2,
-    "price": [
-      23
-    ],
+    "price": [23],
     "category": "Rune",
     "attributeModifiers": {
       "LifeMax": -40,
@@ -7862,9 +6896,7 @@
   {
     "name": "Savage",
     "rarity": 2,
-    "price": [
-      17
-    ],
+    "price": [17],
     "category": "Incantation",
     "attributeModifiers": {
       "Strength": 7,
@@ -7883,9 +6915,7 @@
   {
     "name": "of the Keen Eyes",
     "rarity": 3,
-    "price": [
-      68
-    ],
+    "price": [68],
     "category": "Incarnation",
     "attributeModifiers": {
       "Precision": 15,
@@ -7895,9 +6925,7 @@
   {
     "name": "Heart-Warming",
     "rarity": 3,
-    "price": [
-      68
-    ],
+    "price": [68],
     "category": "Incarnation",
     "attributeModifiers": {
       "Precision": 15,
@@ -7907,9 +6935,7 @@
   {
     "name": "Handy",
     "rarity": 1,
-    "price": [
-      8
-    ],
+    "price": [8],
     "category": "Incarnation",
     "attributeModifiers": {
       "Precision": 2,
@@ -7920,9 +6946,7 @@
   {
     "name": "Deadly",
     "rarity": 3,
-    "price": [
-      37
-    ],
+    "price": [37],
     "category": "Incarnation",
     "attributeModifiers": {
       "Strength": 2,
@@ -7937,6 +6961,86 @@
       "MagicalProbabilityPerThousandHit": 5,
       "CriticalProbabilityPerThousandHit": 10,
       "CriticalMultiplierPercentageBonus": 5
+    }
+  },
+  {
+    "name": "Bull's",
+    "rarity": 2,
+    "price": [7],
+    "category": "Incarnation",
+    "attributeModifiers": {
+      "Strength": 6,
+      "Constitution": 5
+    }
+  },
+  {
+    "name": "Crystalline",
+    "rarity": 3,
+    "price": [36],
+    "category": "Structural",
+    "attributeModifiers": {
+      "Defense": 3,
+      "ShieldMax": 50,
+      "ShieldRegen": 4
+    }
+  },
+  {
+    "name": "Silver-threaded",
+    "rarity": 3,
+    "price": [64],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Luck": 3,
+      "ShieldMax": 20,
+      "ShieldRegen": 8
+    }
+  },
+  {
+    "name": "Gold-laced",
+    "rarity": 3,
+    "price": [82],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Luck": 7
+    }
+  },
+  {
+    "name": "Horseman's",
+    "rarity": 1,
+    "price": [12],
+    "category": "Incarnation",
+    "attributeModifiers": {
+      "Strength": 1,
+      "Constitution": 1,
+      "Dexterity": 3,
+      "Velocity": 20
+    }
+  },
+  {
+    "name": "Field-Green's",
+    "rarity": 2,
+    "price": [27],
+    "category": "Environmental",
+    "attributeModifiers": {
+      "Constitution": 1,
+      "Health": 1,
+      "Dexterity": 4,
+      "Precision": 4,
+      "Defense": 1,
+      "Velocity": 5
+    }
+  },
+  {
+    "name": "Honed",
+    "rarity": 3,
+    "price": [82],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Precision": 7,
+      "Dexterity": 3,
+      "Wisdom": 2,
+      "Intelligence": 1,
+      "Luck": 3
     }
   }
 ]
