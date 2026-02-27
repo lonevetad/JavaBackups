@@ -144,7 +144,7 @@
     "price": [4],
     "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 5,
+      "ShieldMax": 10,
       "ShieldRegen": 1
     }
   },
@@ -2047,10 +2047,10 @@
     "name": "Ferromagnetic",
     "rarity": 1,
     "price": [8],
-    "category": "Structural",
+    "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 10,
-      "ShieldRegen": 3
+      "ShieldMax": 35,
+      "ShieldRegen": 5
     }
   },
   {
@@ -2192,7 +2192,7 @@
     "price": [65],
     "category": "Blessing",
     "attributeModifiers": {
-      "ShieldMax": 50,
+      "ShieldMax": 150,
       "ShieldRegen": 7,
       "Faith": 8,
       "Luck": 2
@@ -2204,7 +2204,7 @@
     "price": [33],
     "category": "Refining",
     "attributeModifiers": {
-      "ShieldMax": 35,
+      "ShieldMax": 85,
       "ShieldRegen": 4,
       "Defense": -7
     }
@@ -2213,9 +2213,9 @@
     "name": "Adamantine",
     "rarity": 3,
     "price": [100],
-    "category": "Misc",
+    "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 40,
+      "ShieldMax": 70,
       "ShieldRegen": 3,
       "Luck": -5
     }
@@ -2226,7 +2226,7 @@
     "price": [37],
     "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 18,
+      "ShieldMax": 45,
       "ShieldRegen": 6
     }
   },
@@ -2362,7 +2362,7 @@
       "Wisdom": 8,
       "Faith": -7,
       "ManaMax": -25,
-      "ShieldMax": 8,
+      "ShieldMax": 20,
       "ShieldRegen": 5,
       "PhysicalProbabilityPerThousandAvoid": 20,
       "MagicalProbabilityPerThousandAvoid": 20,
@@ -2386,7 +2386,7 @@
       "Wisdom": 12,
       "Faith": -15,
       "ManaMax": -75,
-      "ShieldMax": 23,
+      "ShieldMax": 65,
       "ShieldRegen": 3,
       "PhysicalProbabilityPerThousandAvoid": 25,
       "MagicalProbabilityPerThousandAvoid": 25,
@@ -2913,7 +2913,7 @@
     "price": [23],
     "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 11,
+      "ShieldMax": 27,
       "ShieldRegen": 3
     }
   },
@@ -2923,7 +2923,7 @@
     "price": [23],
     "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 7,
+      "ShieldMax": 18,
       "ShieldRegen": 2,
       "ManaRegen": 3
     }
@@ -3041,7 +3041,7 @@
     "category": "Material",
     "attributeModifiers": {
       "Wisdom": 3,
-      "ShieldMax": 8,
+      "ShieldMax": 25,
       "ShieldRegen": 3
     }
   },
@@ -3141,8 +3141,8 @@
     "price": [50],
     "category": "Material",
     "attributeModifiers": {
-      "ShieldMax": 50,
-      "ShieldRegen": 2,
+      "ShieldMax": 200,
+      "ShieldRegen": 15,
       "ManaRegen": -3
     }
   },
@@ -3518,8 +3518,8 @@
       "ManaMax": -64,
       "LifeRegen": -24,
       "ManaRegen": -24,
-      "ShieldMax": 32,
-      "ShieldRegen": 4,
+      "ShieldMax": 135,
+      "ShieldRegen": 8,
       "Luck": -16
     }
   },
@@ -3679,12 +3679,12 @@
   },
   {
     "name": "of Insofference",
-    "rarity": 3,
+    "rarity": 2,
     "price": [10],
     "category": "Incantation",
     "attributeModifiers": {
-      "LifeMax": -135,
-      "ShieldMax": 25,
+      "LifeMax": -85,
+      "ShieldMax": 55,
       "ShieldRegen": 5,
       "Luck": -2
     }
@@ -3696,9 +3696,9 @@
     "category": "Incantation",
     "attributeModifiers": {
       "ManaMax": -120,
-      "ShieldMax": 25,
-      "ShieldRegen": 5,
-      "Luck": -2
+      "ShieldMax": 100,
+      "ShieldRegen": 7,
+      "Luck": -5
     }
   },
   {
@@ -3709,9 +3709,9 @@
     "attributeModifiers": {
       "LifeMax": -180,
       "ManaMax": -160,
-      "ShieldMax": 40,
+      "ShieldMax": 200,
       "ShieldRegen": 10,
-      "Luck": -5
+      "Luck": -10
     }
   },
   {
@@ -3721,16 +3721,16 @@
     "category": "Incantation",
     "attributeModifiers": {
       "LifeMax": 120,
+      "LifeRegen": 5,
       "ManaMax": 100,
-      "ShieldMax": 30,
-      "LifeRegen": 3,
-      "ManaRegen": 3,
+      "ManaRegen": 5,
+      "ShieldMax": 65,
       "ShieldRegen": 4,
       "PhysicalDamageBonus": -17,
       "MagicalDamageBonus": -17,
       "CriticalProbabilityPerThousandHit": -30,
       "CriticalMultiplierPercentageBonus": -15,
-      "Luck": 3
+      "Luck": 7
     }
   },
   {
@@ -3913,7 +3913,7 @@
     "price": [66],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
-      "ShieldMax": 15,
+      "ShieldMax": 40,
       "ShieldLeechPercentage": 10
     }
   },
@@ -3923,10 +3923,10 @@
     "price": [99],
     "category": "WorkersRolesRelated",
     "attributeModifiers": {
-      "LifeRegen": -3,
-      "ManaRegen": -3,
-      "ShieldMax": 35,
-      "ShieldRegen": -1,
+      "LifeRegen": -7,
+      "ManaRegen": -5,
+      "ShieldMax": 125,
+      "ShieldRegen": -7,
       "ShieldLeechPercentage": 20
     }
   },
@@ -3934,9 +3934,10 @@
     "name": "with Batteries",
     "rarity": 3,
     "price": [50],
-    "category": "Material",
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 35
+      "ShieldMax": 75,
+      "ShieldRegen": 1
     }
   },
   {
@@ -3946,7 +3947,7 @@
     "category": "Structural",
     "attributeModifiers": {
       "Strength": -5,
-      "ShieldMax": 10,
+      "ShieldMax": 35,
       "ShieldLeechPercentage": 15
     }
   },
@@ -4382,7 +4383,7 @@
     "name": "of the Lecture",
     "rarity": 1,
     "price": [3],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Health": 1,
       "Intelligence": 1,
@@ -4393,33 +4394,36 @@
   {
     "name": "with Magnetic Capacitors",
     "rarity": 3,
-    "price": [13],
-    "category": "Misc",
+    "price": [65],
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 30
+      "ShieldMax": 250
     }
   },
   {
     "name": "with Permanent Static Electricity",
     "rarity": 3,
     "price": [7],
-    "category": "Misc",
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 5,
-      "ShieldRegen": 5,
-      "MagicalDamageBonus": 3,
+      "ShieldMax": 35,
+      "ShieldRegen": 8,
+      "MagicalDamageBonus": 5,
       "PhysicalDamageReduction": -3,
-      "MagicalDamageReduction": -3
+      "MagicalDamageReduction": -3,
+      "MagicalDamageMultiplierPercentageBonus": 5,
+      "PhysicalDamageMultiplierPercentageReduction": -3,
+      "MagicalDamageMultiplierPercentageReduction": -3
     }
   },
   {
     "name": "with a Magical Rune Shield",
     "rarity": 2,
-    "price": [15],
-    "category": "Misc",
+    "price": [57],
+    "category": "Rune",
     "attributeModifiers": {
-      "ShieldMax": 15,
-      "ShieldRegen": 3,
+      "ShieldMax": 65,
+      "ShieldRegen": 6,
       "Faith": 1
     }
   },
@@ -4427,21 +4431,21 @@
     "name": "with a Magnetic Rudimental Shield",
     "rarity": 2,
     "price": [15],
-    "category": "Misc",
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 25,
-      "ShieldRegen": 2,
-      "Dexterity": -1,
-      "Intelligence": 1
+      "ShieldMax": 37,
+      "ShieldRegen": 10,
+      "Dexterity": -3,
+      "Intelligence": 2
     }
   },
   {
     "name": "with Conductive Wires",
     "rarity": 1,
     "price": [4],
-    "category": "Misc",
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 5,
+      "ShieldMax": 10,
       "ShieldLeechPercentage": 3
     }
   },
@@ -4449,9 +4453,9 @@
     "name": "with Metal Strings",
     "rarity": 1,
     "price": [3],
-    "category": "Misc",
+    "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 5,
+      "ShieldMax": 10,
       "ShieldLeechPercentage": 2,
       "ReflectionDamagePercentage": 1
     }
@@ -4460,7 +4464,7 @@
     "name": "of the Shrewd ones",
     "rarity": 3,
     "price": [23],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": 6,
       "Intelligence": 4,
@@ -4472,7 +4476,7 @@
     "name": "of the Loss of Vision",
     "rarity": 3,
     "price": [-40],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Precision": -10,
       "PhysicalProbabilityPerThousandHit": -100,
@@ -4719,7 +4723,7 @@
     "name": "of Wealth Calm",
     "rarity": 3,
     "price": [40],
-    "category": "Misc",
+    "category": "Intantation",
     "attributeModifiers": {
       "LifeMax": 200,
       "ManaMax": 100,
@@ -4734,7 +4738,7 @@
     "rarity": 4,
     "price": [-8],
     "description": "Death cleans away all sufferings. Now answer me: why am I painless?",
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Dexterity": -3,
       "Precision": -2,
@@ -4746,7 +4750,7 @@
     "name": "of Gentle Blow",
     "rarity": 1,
     "price": [8],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Velocity": 25,
       "Health": 1
@@ -4756,12 +4760,12 @@
     "name": "of Pure Tungsten",
     "rarity": 4,
     "price": [54],
-    "category": "Misc",
+    "category": "Material",
     "attributeModifiers": {
       "Velocity": -25,
       "Dexterity": -4,
       "Defense": 5,
-      "ShieldMax": 100,
+      "ShieldMax": 200,
       "ShieldRegen": 2
     }
   },
@@ -4944,7 +4948,8 @@
     "category": "Misc",
     "attributeModifiers": {
       "Constitution": 3,
-      "ShieldMax": 5
+      "ShieldMax": 15,
+      "ShieldRegen": 1
     }
   },
   {
@@ -4954,8 +4959,8 @@
     "category": "Misc",
     "attributeModifiers": {
       "Faith": 8,
-      "ShieldMax": 75,
-      "ShieldRegen": 3
+      "ShieldMax": 130,
+      "ShieldRegen": 17
     }
   },
   {
@@ -4964,10 +4969,11 @@
     "price": [50],
     "category": "Misc",
     "attributeModifiers": {
+      "Health": 5,
       "Constitution": 5,
       "Defense": 5,
-      "ShieldMax": 20,
-      "ShieldRegen": 20
+      "ShieldMax": 40,
+      "ShieldRegen": 10
     }
   },
   {
@@ -5143,7 +5149,7 @@
       "Dexterity": -3,
       "Precision": -3,
       "ManaRegen": -2,
-      "ShieldMax": 20,
+      "ShieldMax": 60,
       "ShieldRegen": 1,
       "MagicalDamageReduction": 5,
       "VelocitySpellCastPercentage": 10
@@ -5191,11 +5197,12 @@
     "price": [70],
     "category": "Incantation",
     "attributeModifiers": {
-      "MagicalDamageReduction": -15,
+      "ManaMax": -150,
+      "ManaRegen": -10,
       "ShieldMax": 80,
       "ShieldRegen": 6,
-      "ManaMax": -100,
-      "ManaRegen": -4
+      "MagicalDamageReduction": -20,
+      "MagicalDamageMultiplierPercentageReduction": -20
     }
   },
   {
@@ -5204,11 +5211,12 @@
     "price": [75],
     "category": "Incantation",
     "attributeModifiers": {
+      "ManaMax": -200,
+      "ManaRegen": -13,
+      "ShieldMax": 300,
+      "ShieldRegen": 15,
       "MagicalDamageReduction": -10,
-      "ShieldMax": 120,
-      "ShieldRegen": 10,
-      "ManaMax": -150,
-      "ManaRegen": -7
+      "MagicalDamageMultiplierPercentageReduction": -10
     }
   },
   {
@@ -6204,10 +6212,10 @@
     "price": [30],
     "category": "Structural",
     "attributeModifiers": {
-      "ManaRegen": -1,
-      "ShieldMax": 100,
-      "ShieldRegen": 2,
-      "ShieldDelayReduction": -300
+      "ManaRegen": -6,
+      "ShieldMax": 180,
+      "ShieldRegen": 4,
+      "ShieldDelayReduction": -3000
     }
   },
   {
@@ -6216,9 +6224,13 @@
     "price": [45],
     "category": "Structural",
     "attributeModifiers": {
-      "ShieldMax": 35,
+      "LifeMax": -75,
+      "LifeRegen": -12,
+      "ShieldMax": 135,
       "ShieldRegen": 15,
-      "ShieldDelayReduction": -1000
+      "ShieldDelayReduction": 1500,
+      "MagicalDamageReduction": -15,
+      "MagicalDamageMultiplierPercentageReduction": -10
     }
   },
   {
@@ -6229,7 +6241,7 @@
     "attributeModifiers": {
       "LifeMax": -25,
       "LifeRegen": -3,
-      "ShieldMax": 35,
+      "ShieldMax": 45,
       "ShieldRegen": 4,
       "ShieldDelayReduction": 150
     }
@@ -6238,10 +6250,10 @@
     "name": "of Mystical Aura",
     "rarity": 1,
     "price": [10],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
-      "ShieldMax": 15,
-      "ShieldRegen": 3,
+      "ShieldMax": 35,
+      "ShieldRegen": 2,
       "ShieldDelayReduction": 100,
       "PhysicalDamageBonus": -3,
       "MagicalDamageBonus": -3
@@ -6258,7 +6270,7 @@
       "StaminaMax": 5,
       "ManaRegen": 1,
       "StaminaRegen": 1,
-      "ShieldMax": 5,
+      "ShieldMax": 10,
       "ShieldRegen": 1
     }
   },
@@ -6273,7 +6285,7 @@
       "StaminaMax": -10,
       "ManaRegen": 1,
       "StaminaRegen": 1,
-      "ShieldMax": 15,
+      "ShieldMax": 20,
       "ShieldRegen": 2
     }
   },
@@ -6313,7 +6325,9 @@
     "price": [70],
     "category": "Incantation",
     "attributeModifiers": {
-      "ShieldMax": 150,
+      "ManaMax": -50,
+      "ManaRegen": -10,
+      "ShieldMax": 200,
       "ShieldRegen": 12,
       "Faith": 5
     }
@@ -6450,7 +6464,7 @@
       "Velocity": 25,
       "ManaMax": -50,
       "ManaRegen": 2,
-      "ShieldMax": 25,
+      "ShieldMax": 75,
       "ShieldRegen": 5,
       "MagicalDamageBonus": 15,
       "MagicalDamageMultiplierPercentageBonus": 15,
@@ -6693,7 +6707,7 @@
       "Intelligence": -4,
       "Wisdom": 2,
       "LifeMax": 100,
-      "ShieldMax": 150,
+      "ShieldMax": 80,
       "ShieldRegrn": 5,
       "Luck": 2
     }
@@ -6980,8 +6994,9 @@
     "category": "Structural",
     "attributeModifiers": {
       "Defense": 3,
-      "ShieldMax": 50,
-      "ShieldRegen": 4
+      "ShieldMax": 110,
+      "ShieldRegen": 4,
+      "ShieldDelayReduction": 1000
     }
   },
   {
@@ -6991,8 +7006,9 @@
     "category": "Refining",
     "attributeModifiers": {
       "Luck": 3,
-      "ShieldMax": 20,
-      "ShieldRegen": 8
+      "ShieldMax": 30,
+      "ShieldRegen": 8,
+      "ShieldDelayReduction": 200
     }
   },
   {
@@ -7041,6 +7057,22 @@
       "Wisdom": 2,
       "Intelligence": 1,
       "Luck": 3
+    }
+  },
+  {
+    "name": "of Avoidance",
+    "rarity": 4,
+    "price": [57],
+    "category": "Incantation",
+    "attributeModifiers": {
+      "Precision": 3,
+      "Dexterity": 5,
+      "Defense": 12,
+      "Intelligence": 1,
+      "Faith": -10,
+      "Velocity": 12,
+      "ShieldMax": 300,
+      "ShieldRegen": 15
     }
   }
 ]
