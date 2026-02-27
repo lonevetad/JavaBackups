@@ -1710,6 +1710,18 @@
     }
   },
   {
+    "name": "Inspiring",
+    "rarity": 1,
+    "price": [10],
+    "category": "Incantation",
+    "attributeModifiers": {
+      "Faith": 2,
+      "Luck": 1,
+      "StaminaMax": 7,
+      "StaminaRegen": 2
+    }
+  },
+  {
     "name": "of Sadness",
     "rarity": 2,
     "price": [-24],
@@ -4076,7 +4088,7 @@
     "name": "of Narcissist",
     "rarity": 2,
     "price": [-15],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Intelligence": 5,
       "Wisdom": -7,
@@ -4089,7 +4101,7 @@
     "name": "Bones Plated",
     "rarity": 2,
     "price": [16],
-    "category": "Misc",
+    "category": "Material",
     "attributeModifiers": {
       "Defense": 7,
       "Faith": -4,
@@ -4103,7 +4115,7 @@
     "name": "Molded",
     "rarity": 2,
     "price": [-22],
-    "category": "Misc",
+    "category": "Refining",
     "attributeModifiers": {
       "Constitution": -2,
       "Health": -2,
@@ -4112,10 +4124,10 @@
     }
   },
   {
-    "name": "of better health",
+    "name": "of Better Health",
     "rarity": 1,
     "price": [11],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Health": 4,
       "Constitution": 1
@@ -4158,7 +4170,7 @@
     "name": "of Youth",
     "rarity": 2,
     "price": [18],
-    "category": "Misc",
+    "category": "Incantation",
     "attributeModifiers": {
       "Strength": 3,
       "Constitution": 2,
@@ -4176,7 +4188,7 @@
     "name": "of Grappling Hopep",
     "rarity": 2,
     "price": [14],
-    "category": "Misc",
+    "category": "Structural",
     "attributeModifiers": {
       "Strength": 1,
       "Constitution": 3,
@@ -7073,6 +7085,125 @@
       "Velocity": 12,
       "ShieldMax": 300,
       "ShieldRegen": 15
+    }
+  },
+  {
+    "name": "Puissant Runed",
+    "rarity": 3,
+    "price": [33],
+    "description": "Inspire the wielder with an archaic, albeit a bit hardly controllable, power.",
+    "category": "Rune",
+    "attributeModifiers": {
+      "Strength": 14,
+      "Constitution": 6,
+      "Dexterity": -4
+    }
+  },
+  {
+    "name": "Hooded",
+    "rarity": 1,
+    "price": [4],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Constitution": 1,
+      "Dexterity": 2,
+      "Defense": 2
+    }
+  },
+  {
+    "name": "Starlit",
+    "rarity": 2,
+    "price": [20],
+    "category": "Blessing",
+    "attributeModifiers": {
+      "Faith": 4,
+      "Luck": 3,
+      "ManaRegen": 2,
+      "StaminaMax": 5,
+      "StaminaRegen": 2
+    }
+  },
+  {
+    "name": "Baron's",
+    "rarity": 3,
+    "price": [100],
+    "description": "Of course it values a lot: it belonged to a Baron! They had an exquisite taste!",
+    "category": "WorkersRolesRelated",
+    "attributeModifiers": {
+      "Wisdom": 5,
+      "Luck": 3
+    }
+  },
+  {
+    "name": "Lancer's",
+    "rarity": 3,
+    "price": [37],
+    "category": "WorkersRolesRelated",
+    "attributeModifiers": {
+      "Strength": 2,
+      "Precision": 10,
+      "Dexterity": 2,
+      "Defense": 2
+    }
+  },
+  {
+    "name": "Reinforced",
+    "rarity": 2,
+    "price": [20],
+    "category": "Structural",
+    "attributeModifiers": {
+      "Constitution": 2,
+      "Dexterity": 1,
+      "Defense": 5,
+      "MagicalDamageReduction": 5,
+      "PhysicalDamageReduction": 5,
+      "CriticalProbabilityPerThousandAvoid": 20,
+      "CriticalMultiplierPercentageReduction": 10
+    }
+  },
+  {
+    "name": "Hardened",
+    "rarity": 3,
+    "price": [35],
+    "category": "Structural",
+    "attributeModifiers": {
+      "Constitution": 4,
+      "Dexterity": 2,
+      "Defense": 8,
+      "MagicalDamageReduction": 5,
+      "MagicalDamageMultiplierPercentageReduction": 5,
+      "PhysicalDamageReduction": 5,
+      "PhysicalDamageMultiplierPercentageReduction": 5,
+      "CriticalProbabilityPerThousandAvoid": 50,
+      "CriticalMultiplierPercentageReduction": 15
+    }
+  },
+  {
+    "name": "Moqueshal",
+    "rarity": 1,
+    "price": [1],
+    "description": "A name that sounds like a sneeze, but actually means 'Blessing' in an ancient language. For unkown reasons, it strengthens the senses and the instinct, but makes the wielder overwhelmingly more cautious.",
+    "category": "Blessing",
+    "attributeModifiers": {
+      "Constitution": 1,
+      "Precision": 2,
+      "Dexterity": 2,
+      "Defense": 2,
+      "Velocity": -5
+    }
+  },
+  {
+    "name": "Spinel",
+    "rarity": 3,
+    "price": [44],
+    "description": "A very bright red gem that improves the physical attributes and instinct of the wielder.",
+    "category": "Material",
+    "attributeModifiers": {
+      "Constitution": 2,
+      "Health": 3,
+      "Precision": 4,
+      "Dexterity": 4,
+      "Defense": 4
     }
   }
 ]
