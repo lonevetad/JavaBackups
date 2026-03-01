@@ -7205,5 +7205,50 @@
       "Dexterity": 4,
       "Defense": 4
     }
+  },
+  {
+    "name": "Cunning Runed",
+    "rarity": 3,
+    "price": [52],
+    "category": "Rune",
+    "attributeModifiers": {
+      "Strength": -3,
+      "Precision": 2,
+      "Dexterity": 3,
+      "Defense": 6,
+      "Intelligence": 5,
+      "Wisdom": 3,
+      "Faith": -4,
+      "Luck": -2,
+      "Velocity": 7
+    }
+  },
+  {
+    "name": "Of the Citadel",
+    "rarity": 1,
+    "price": [17],
+    "category": "Incantation",
+    "attributeModifiers": {
+      "Strength": -1,
+      "Health": 2,
+      "Constitution": 2,
+      "Defense": 1,
+      "Luck": 2
+    }
+  },
+  {
+    "name": "Blemished",
+    "rarity": 2,
+    "price": [-16],
+    "category": "Structural",
+    "attributeModifiers": {
+      "Strength": -3,
+      "Constitution": -2,
+      "Precision": -3,
+      "Dexterity": -3,
+      "Defense": -4,
+      "CriticalProbabilityPerThousandHit": 15,
+      "CriticalMultiplierPercentageBonus": 5
+    }
   }
 ]
