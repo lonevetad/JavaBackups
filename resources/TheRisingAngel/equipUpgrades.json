@@ -2798,12 +2798,30 @@
     "attributeModifiers": {
       "LifeMax": -30,
       "ManaMax": -20,
+      "Defense": 3,
       "PhysicalProbabilityPerThousandHit": 20,
       "PhysicalProbabilityPerThousandAvoid": 20,
       "MagicalProbabilityPerThousandHit": 20,
       "MagicalProbabilityPerThousandAvoid": 20,
       "CriticalProbabilityPerThousandHit": 20,
       "CriticalProbabilityPerThousandAvoid": 20
+    }
+  },
+  {
+    "name": "Shining",
+    "rarity": 3,
+    "price": [41],
+    "category": "Refining",
+    "attributeModifiers": {
+      "LifeMax": -50,
+      "ManaMax": -30,
+      "Defense": 7,
+      "PhysicalProbabilityPerThousandHit": 30,
+      "PhysicalProbabilityPerThousandAvoid": 30,
+      "MagicalProbabilityPerThousandHit": 30,
+      "MagicalProbabilityPerThousandAvoid": 30,
+      "CriticalProbabilityPerThousandHit": 30,
+      "CriticalProbabilityPerThousandAvoid": 30
     }
   },
   {
@@ -7249,6 +7267,174 @@
       "Defense": -4,
       "CriticalProbabilityPerThousandHit": 15,
       "CriticalMultiplierPercentageBonus": 5
+    }
+  },
+  {
+    "name": "Azure colored",
+    "rarity": 1,
+    "price": [20],
+    "category": "Coloring",
+    "attributeModifiers": {
+      "ManaMax": 20,
+      "ManaRegen": 1,
+      "ShieldMax": 20,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "Aquamarine colored",
+    "rarity": 1,
+    "price": [20],
+    "category": "Coloring",
+    "attributeModifiers": {
+      "LifeMax": 20,
+      "LifeRegen": 1,
+      "ShieldMax": 20,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "Amethyst colored",
+    "rarity": 1,
+    "price": [20],
+    "category": "Coloring",
+    "attributeModifiers": {
+      "LifeMax": 20,
+      "LifeRegen": 1,
+      "ManaMax": 20,
+      "ManaRegen": 1
+    }
+  },
+  {
+    "name": "with Azure Gems",
+    "rarity": 3,
+    "price": [60],
+    "category": "Refining",
+    "attributeModifiers": {
+      "ManaMax": 50,
+      "ManaRegen": 3,
+      "ShieldMax": 50,
+      "ShieldRegen": 3
+    }
+  },
+  {
+    "name": "with Aquamarine Gems",
+    "rarity": 3,
+    "price": [60],
+    "category": "Refining",
+    "attributeModifiers": {
+      "LifeMax": 50,
+      "LifeRegen": 3,
+      "ShieldMax": 50,
+      "ShieldRegen": 3
+    }
+  },
+  {
+    "name": "with Amethyst Gems",
+    "rarity": 3,
+    "price": [60],
+    "category": "Refining",
+    "attributeModifiers": {
+      "LifeMax": 50,
+      "LifeRegen": 3,
+      "ManaMax": 50,
+      "ManaRegen": 3
+    }
+  },
+  {
+    "name": "with Opaline Gems",
+    "rarity": 3,
+    "price": [60],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Strength": 3,
+      "Constitution": 3,
+      "Health": 3,
+      "Defense": 3,
+      "Dexterity": 3,
+      "Precision": 3,
+      "Intelligence": 3,
+      "Wisdom": 3,
+      "Faith": 3,
+      "Luck": 7
+    }
+  },
+  {
+    "name": "Sigiled",
+    "rarity": 1,
+    "price": [17],
+    "category": "Runed",
+    "attributeModifiers": {
+      "Strength": 1,
+      "Constitution": 1,
+      "Health": 1,
+      "Defense": 1,
+      "Dexterity": 1,
+      "Precision": 1,
+      "Intelligence": 1,
+      "Wisdom": 1,
+      "Faith": 1
+    }
+  },
+  {
+    "name": "Glimmering",
+    "rarity": 1,
+    "price": [13],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Defense": 3,
+      "Precision": -2,
+      "Faith": 1,
+      "PhysicalProbabilityPerThousandAvoid": 50,
+      "MagicalProbabilityPerThousandAvoid": 50,
+      "CriticalProbabilityPerThousandAvoid": 50
+    }
+  },
+  {
+    "name": "Wool",
+    "rarity": 1,
+    "price": [6],
+    "category": "Material",
+    "attributeModifiers": {
+      "Constitution": 2,
+      "Defense": 3,
+      "PhysicalDamageReduction": 5,
+      "PhysicalDamageMultiplierPercentageReduction": 5,
+      "MagicalDamageReduction": 10,
+      "MagicalDamageMultiplierPercentageReduction": 5
+    }
+  },
+  {
+    "name": "Glowing",
+    "rarity": 2,
+    "price": [42],
+    "category": "Refining",
+    "attributeModifiers": {
+      "Faith": 3,
+      "ShieldMax": 40,
+      "ShieldRegen": 4,
+      "MagicalDamageBonus": 5,
+      "MagicalDamageMultiplierPercentageBonus": 3
+    }
+  },
+  {
+    "name": "Hearty",
+    "rarity": 1,
+    "price": [8],
+    "category": "Rune",
+    "attributeModifiers": {
+      "LifeMax": 30,
+      "Health": 4
+    }
+  },
+  {
+    "name": "of the Mill",
+    "rarity": 1,
+    "price": [4],
+    "category": "WorkersRolesRelated",
+    "attributeModifiers": {
+      "Constitution": 2,
+      "PhysicalDamageBonus": 10
     }
   }
 ]
