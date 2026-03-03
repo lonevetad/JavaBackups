@@ -29,11 +29,15 @@ public class TestExpr {
 			"a|b", // or
 			"-a", // not
 			"--a", // not not
+			"---a", // not not not
+			"------a", // 6*not
+			"-------a", // 7*not
 			"-(-a)", // not expr not
 			"(a)", // expression
 			"-(a)", // not expression
 			"-(a.b)", // not and
 			"-(a|b)", // not or
+			"a.(((b|c)))|d", // nested expressions
 			"a.b.c", // and and
 			"a|b|c", // or or
 			"a.-b", // and not
@@ -58,8 +62,8 @@ public class TestExpr {
 
 	public static void main(String[] args) {
 		String folderPath;
-		// folderPath = "C:\\Users\\marco\\";
-		folderPath = "C:\\Users\\ottin\\";
+		folderPath = "C:\\Users\\marco\\";
+		// folderPath = "C:\\Users\\ottin\\";
 		try (java.io.BufferedWriter writer = new java.io.BufferedWriter(
 				new java.io.FileWriter(folderPath + "Desktop\\prog\\Java\\JavaBackups\\src\\tests\\tUtils\\te.txt"))) {
 			System.out.println("START");
@@ -72,6 +76,14 @@ public class TestExpr {
 				try {
 					ParserNode node = parse(s);
 					writer.write(node.toString());
+					writer.newLine();
+					writer.flush();
+					writer.write("Optimized: ");
+					node.optimize();
+					writer.newLine();
+					writer.flush();
+					writer.write(node.toString());
+					writer.newLine();
 					writer.newLine();
 					writer.flush();
 				} catch (IllegalArgumentException e) {
@@ -239,6 +251,28 @@ public class TestExpr {
 			}
 		}
 
+		public void optimize() {
+			if (this.left != null) {
+				this.left.optimize();
+			}
+			if (this.right != null) {
+				this.right.optimize();
+			}
+			if (this.operator == Operator.EXPR) {
+				this.operator = this.left.operator;
+				this.value = this.left.value;
+				this.right = this.left.right;
+				this.left = this.left.left;
+			}
+			if (this.operator == Operator.NOT && this.left.operator == Operator.NOT) {
+				ParserNode notNode = this.left;
+				this.operator = notNode.left.operator;
+				this.value = notNode.left.value;
+				this.right = notNode.left.right;
+				this.left = notNode.left.left;
+			}
+		}
+
 		static void addTabs(StringBuilder sb, int d) {
 			while (d-- > 0) {
 				sb.append("  ");
@@ -255,29 +289,29 @@ public class TestExpr {
 		public void toString(StringBuilder sb) {
 			addTabs(sb, depth);
 			switch (operator) {
-			case AND:
-				sb.append("AND (").append(this.depth).append(")\n");
-				this.left.toString(sb);
-				this.right.toString(sb);
-				break;
-			case OR:
-				sb.append("OR (").append(this.depth).append(")\n");
-				this.left.toString(sb);
-				this.right.toString(sb);
-				break;
-			case NOT:
-				sb.append("NOT (").append(this.depth).append(")\n");
-				this.left.toString(sb);
-				break;
-			case EXPR:
-				sb.append("( (").append(this.depth).append(")\n");
-				this.left.toString(sb);
-				addTabs(sb, depth);
-				sb.append(")\n");
-				break;
-			case TERMINAL:
-				sb.append("T: (").append(this.depth).append(")").append(value).append("\n");
-				break;
+				case AND:
+					sb.append("AND (").append(this.depth).append(")\n");
+					this.left.toString(sb);
+					this.right.toString(sb);
+					break;
+				case OR:
+					sb.append("OR (").append(this.depth).append(")\n");
+					this.left.toString(sb);
+					this.right.toString(sb);
+					break;
+				case NOT:
+					sb.append("NOT (").append(this.depth).append(")\n");
+					this.left.toString(sb);
+					break;
+				case EXPR:
+					sb.append("( (").append(this.depth).append(")\n");
+					this.left.toString(sb);
+					addTabs(sb, depth);
+					sb.append(")\n");
+					break;
+				case TERMINAL:
+					sb.append("T: (").append(this.depth).append(")").append(value).append("\n");
+					break;
 			}
 		}
 
