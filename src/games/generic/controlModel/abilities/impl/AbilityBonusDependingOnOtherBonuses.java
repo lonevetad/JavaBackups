@@ -35,13 +35,16 @@ public class AbilityBonusDependingOnOtherBonuses extends AbilityModifyingAttribu
 	protected final AttributeIdentifier[][] modifcationsEachAttributes;
 
 	@Override
-	public GModality getGameModality() { return null; }
+	public GModality getGameModality() {
+		return null;
+	}
 
 	@Override
-	public void setGameModality(GModality gameModality) {}
+	public void setGameModality(GModality gameModality) {
+	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int targetLevel) {
 		int v, i;
 		AttributeModification am;

@@ -33,7 +33,7 @@ public class TestJSONParser {
 				"{ \"pi\" : 3.14159265, }", //
 				"{ \"name\" : \"Mario\", \"lastname\": \"ROssi\" }", //
 				"{ \"hotel ID\" : \"sdg4s8g54g84w0g\", \"description\": {\"it\": \"molto brutto\" , \"en\": \"ugly hotel\", } , \"price\": 7e2}", //
-				"{    \"name\": \"of the Hurry one\", \"rarity\": 1, \"price\": [4\n ],  \"attributeModifiers\": {    \"Strength\": 3,    \"Precision\": -2,   \"ProbabilityPerThousandAvoidPhysical\": 15, \"ProbabilityPerThousandAvoidMagical\": 15,    \"ProbabilityPerThousandHitPhysical\": -20, \"ProbabilityPerThousandHitMagical\": -20, \"CriticalProbabilityPerThousand\": 10 } }", //
+				"{    \"name\": \"of the Hurry one\", \"rarity\": 1, \"price\": [4\n ],  \"attributesModifiers\": {    \"Strength\": 3,    \"Precision\": -2,   \"ProbabilityPerThousandAvoidPhysical\": 15, \"ProbabilityPerThousandAvoidMagical\": 15,    \"ProbabilityPerThousandHitPhysical\": -20, \"ProbabilityPerThousandHitMagical\": -20, \"CriticalProbabilityPerThousand\": 10 } }", //
 				//
 				"[ {\"name\": \"meow\",\"animal type\":\"cat\"} ,\n {\"name\": \"bau\",\"animal type\":\"dog\", \"age\":7 } , {\"name\": \"chip\",\n \"animal type\":\"bird\", \"color\": \"blue\"}  ]" //
 		};
@@ -62,7 +62,7 @@ public class TestJSONParser {
 			System.out.println("file: " + fullPath);
 			o = JSONParser.parseFile(fullPath);
 			System.out.println(o.getType());
-//			System.out.println(Arrays.toString(o.asArrayObject()));
+			// System.out.println(Arrays.toString(o.asArrayObject()));
 
 			FileWriter wr;
 			wr = new FileWriter(outputPath);

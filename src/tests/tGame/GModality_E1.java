@@ -40,14 +40,18 @@ import tools.ObjectNamedID;
 public class GModality_E1 extends GModalityTRAnBaseWorld {
 	static final int STARTING_PLAYER_LIFE_MAX = 100;
 
-	public GModality_E1(GController controller, String modalityName) { super(controller, modalityName); }
+	public GModality_E1(GController controller, String modalityName) {
+		super(controller, modalityName);
+	}
 
-	public Player_E1 getPlayerRPG() { return (Player_E1) player; }
+	public Player_E1 getPlayerRPG() {
+		return (Player_E1) player;
+	}
 
 	@Override
 	public void startGame() {
 		super.startGame();
-//		getPlayerRPG().onEnteringInGame(this);
+		// getPlayerRPG().onEnteringInGame(this);
 	}
 
 	@Override
@@ -61,7 +65,7 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		CreatureAttributesBaseAndDerived ca;
 		CreatureAttributesBonusesCalculator cabc;
 		EquipmentItem equip;
-//		GC_E1 contr;
+		// GC_E1 contr;
 		GameObjectsProvidersHolderTRAn goph;
 		ObjPrinter_EventDeliver printerPlayer;
 		String equipmentName;
@@ -81,7 +85,7 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		isom.addMap(matrix, 0, 0);
 
 		//
-//		contr = (GC_E1) controller;
+		// contr = (GC_E1) controller;
 		gmodel = (GModel_E1) this.getModel();
 		goph = (GameObjectsProvidersHolderTRAn) this.getGameObjectsProvider();
 
@@ -94,25 +98,26 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		this.setPlayer(p);
 		p.setLifeMax((int) (p.getLife() * 1.5));
 		p.setGameModality(this);
-//		p.getCurrencies().setMoneyAmount(0, 100);
+		// p.getCurrencies().setMoneyAmount(0, 100);
 
 		this.addGameObject(p);
 		this.addGameObject(new ObjPrinterTO(this, 1250, "LongWaiting"));
-//		this.addGameObject(new ObjPrinterTO(333, "Short") {
-//
-//			@Override
-//			public void executeAction(GModality modality) {
-//				System.out.println("player's life: " + p.getLife() + ", life regen: " + p.getLifeRegenation());
-//			}
-//		});
-//		this.addGameObject(new ObjPrinter_EventDeliver(250, "Tiny"));
+		// this.addGameObject(new ObjPrinterTO(333, "Short") {
+		//
+		// @Override
+		// public void executeAction(GModality modality) {
+		// System.out.println("player's life: " + p.getLife() + ", life regen: " +
+		// p.getLifeRegenation());
+		// }
+		// });
+		// this.addGameObject(new ObjPrinter_EventDeliver(250, "Tiny"));
 		// gModelE.addTimeProgressingObject(odd);
 		printerPlayer = new ObjPrinter_EventDeliver(this, 2000, "HAKUNA MATATA") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public String getText() {
-//				return p.getAttributes().toString();
+				// return p.getAttributes().toString();
 				StringBuilder sb;
 				CreatureAttributes ca;
 				sb = new StringBuilder(127);
@@ -123,30 +128,31 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 				return sb.toString();
 			}
 		};
-//		this.addGameObject(printerPlayer);
+		// this.addGameObject(printerPlayer);
 		ope = new ObserverPrinterEvent();
-//		this.addEventObserver(ope);
+		// this.addEventObserver(ope);
 		this.addGameObject(ope);
 
-//		necklace_opr = (NecklaceOfPainRinvigoring) goph.getEquipmentsProvider()//
-//				.getNewObjByName(this, NecklaceOfPainRinvigoring.NAME);
-//		p.equip(necklace_opr);
-//
-//		armProtection_sdbm = (ArmProtectionShieldingDamageByMoney) goph.getEquipmentsProvider().getNewObjByName(this,
-//				ArmProtectionShieldingDamageByMoney.NAME);
-//		p.equip(armProtection_sdbm);
+		// necklace_opr = (NecklaceOfPainRinvigoring) goph.getEquipmentsProvider()//
+		// .getNewObjByName(this, NecklaceOfPainRinvigoring.NAME);
+		// p.equip(necklace_opr);
+		//
+		// armProtection_sdbm = (ArmProtectionShieldingDamageByMoney)
+		// goph.getEquipmentsProvider().getNewObjByName(this,
+		// ArmProtectionShieldingDamageByMoney.NAME);
+		// p.equip(armProtection_sdbm);
 
 		// TODO aggiungere gli esempi pensati negli Appunti e esempio
 		// first make the player, then the damager, the healer, the fairy, the
 		// money-maker, etc
 
 		int[][] damageDealers = { //
-//				 milliseconds (ms), damage, starting time (ms), damage index
+				// milliseconds (ms), damage, starting time (ms), damage index
 				{ 6000, 300, 5000, 0 }, //
 				{ 4000, 125, 2500, 0 }, //
 				{ 12000, 650, 125, 1 }, //
-//				{ 17000, 700, -5333, 0 }, //
-//				{ 1200, 20, 15, 0 }, //
+				// { 17000, 700, -5333, 0 }, //
+				// { 1200, 20, 15, 0 }, //
 		};
 		for (int[] damageData : damageDealers) {
 			odd = new ObjDamageDeliverE1(damageData[0]);
@@ -202,22 +208,26 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		p.equip(equip);
 
 		// another custom equip
-//		equipmentName = "Cloth Shoes";
-//		equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
-//		equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this, AMeditationMoreRegen.NAME));
-//		equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this, "Mag(ic)netic Dynamo"));
-//		equip.addUpgrade(goph.getEquipUpgradesProvider().getNewObjByName(this, "Of Diet"));
-//		p.equip(equip);
+		// equipmentName = "Cloth Shoes";
+		// equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
+		// equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this,
+		// AMeditationMoreRegen.NAME));
+		// equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this,
+		// "Mag(ic)netic Dynamo"));
+		// equip.addUpgrade(goph.getEquipUpgradesProvider().getNewObjByName(this, "Of
+		// Diet"));
+		// p.equip(equip);
 
 		equipmentName = "Snake Belt";
 		equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
 		equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this, AProtectButMakesSoft.NAME));
 		p.equip(equip);
 
-//		equipmentName = "Snake Belt";
-//		equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
-//		equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this, AProtectButMakesSoft.NAME));
-//		p.equip(equip);
+		// equipmentName = "Snake Belt";
+		// equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
+		// equip.addAbility(goph.getAbilitiesProvider().getNewObjByName(this,
+		// AProtectButMakesSoft.NAME));
+		// p.equip(equip);
 
 		//
 
@@ -248,7 +258,7 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		ca.setBonusCalculator(cabc);
 
 		// then ...
-//		checkAndRebuildThreads();
+		// checkAndRebuildThreads();
 
 		// let's try to sum up ALL equip upgrades
 		{
@@ -256,11 +266,13 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 			final CreatureAttributesTRAn caa;
 			caa = new CreatureAttributesTRAn();
 			p.setAttributes(caa);
-			amApplier = am -> { caa.applyAttributeModifier(am); };
+			amApplier = am -> {
+				caa.applyAttributeModifier(am);
+			};
 			goph.getEquipUpgradesProvider().forEachFactory((euName, f) -> {
 				IEquipmentUpgrade eu;
 				eu = f.newInstance(this);
-				eu.getAttributeModifiers().forEach(amApplier);
+				eu.getAttributesModifiers().forEach(amApplier);
 			});
 			System.out.println("\n\n All Attribute modifications all together would apply this modifications: ");
 			System.out.println(caa.toString());
@@ -273,7 +285,9 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 	}
 
 	@Override
-	public GModel newGameModel() { return new GModel_E1(); }
+	public GModel newGameModel() {
+		return new GModel_E1();
+	}
 
 	@Override
 	public GEventInterface newEventInterface() {

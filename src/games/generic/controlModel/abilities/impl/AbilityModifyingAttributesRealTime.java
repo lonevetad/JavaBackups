@@ -32,13 +32,19 @@ public abstract class AbilityModifyingAttributesRealTime extends AbilityBaseWith
 	/** Attributes this ability modifies. */
 	protected AttributeModification[] attributesToModify;
 
-	public AttributeModification[] getAttributesToModify() { return attributesToModify; }
+	public AttributeModification[] getAttributesToModify() {
+		return attributesToModify;
+	}
 
 	@Override
-	public long getAccumulatedTimeElapsed() { return accumulatedTimeElapsedForUpdating; }
+	public long getAccumulatedTimeElapsed() {
+		return accumulatedTimeElapsedForUpdating;
+	}
 
 	@Override
-	public long getTimeThreshold() { return MILLISEC_ATTRIBUTE_UPDATE; }
+	public long getTimeThreshold() {
+		return MILLISEC_ATTRIBUTE_UPDATE;
+	}
 
 	public void setAttributesToModify(AttributeIdentifier[] attributesModified) {
 		if (attributesModified != null) {
@@ -52,12 +58,15 @@ public abstract class AbilityModifyingAttributesRealTime extends AbilityBaseWith
 	}
 
 	@Override
-	public GModality getGameModality() { return null; }
+	public GModality getGameModality() {
+		return null;
+	}
 
 	//
 
 	@Override
-	public void setGameModality(GModality gameModality) {}
+	public void setGameModality(GModality gameModality) {
+	}
 
 	protected void applyAttributeModifications() {
 		CreatureAttributes ca;
@@ -113,13 +122,14 @@ public abstract class AbilityModifyingAttributesRealTime extends AbilityBaseWith
 		this.updateAttributeModifications(modality, ah, ca, targetLevel);
 	}
 
-	protected void actionPreAttributeModificationUpdates() {}
+	protected void actionPreAttributeModificationUpdates() {
+	}
 
 	/**
 	 * Update the values of all {@link AttributeModification} (returned by
 	 * {@link #getAttributesToModify()}) applied to the {@link CreatureAttributes}
 	 * of a {@link CreatureSimple}. The update is performed by the
-	 * {@link #updateAttributeModifiersValues(GModality, CreatureSimple, CreatureAttributes)}
+	 * {@link #updateAttributesModifiersValues(GModality, CreatureSimple, CreatureAttributes)}
 	 * method.<br>
 	 * This method is called by the {@link #performAbility(GModality, int)}
 	 * function.
@@ -132,26 +142,27 @@ public abstract class AbilityModifyingAttributesRealTime extends AbilityBaseWith
 		for (AttributeModification am : this.attributesToModify) {
 			ca.removeAttributeModifier(am);
 		}
-		updateAttributeModifiersValues(gm, ah, ca, targetLevel);
+		updateAttributesModifiersValues(gm, ah, ca, targetLevel);
 		for (AttributeModification am : this.attributesToModify) {
 			ca.applyAttributeModifier(am);
 		}
 	}
 
-//
+	//
 
 	/**
 	 * Should alter the {@link AttributeModification}s returned by
 	 * {@link #getAttributesToModify()}, updating the value. The alteration can be
 	 * based on the last parameter, which is the {@code targetLevel}.
 	 */
-	public abstract void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public abstract void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int targetLevel);
 
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + " [name=" + name + ", ID=" + ID +
-//			+	"\n\t equipped to: " + (this.getEquipItem() == null ? "null" : this.getEquipItem().getName())
+		// + "\n\t equipped to: " + (this.getEquipItem() == null ? "null" :
+		// this.getEquipItem().getName())
 				",\n\t attributesToModify=" + Arrays.toString(attributesToModify) + "]";
 	}
 }

@@ -35,7 +35,9 @@ public abstract class CreatureAttributes {
 
 	//
 
-	public int getAttributesCount() { return attributesCount; }
+	public int getAttributesCount() {
+		return attributesCount;
+	}
 
 	/**
 	 * Calls {@link #getOriginalValue(AttributeIdentifier)} through the
@@ -91,9 +93,13 @@ public abstract class CreatureAttributes {
 	 * invocation of {@link AttributeIdentifier#getIndex()} over the first
 	 * parameter.
 	 */
-	public int getValue(AttributeIdentifier identifier) { return this.originalValues[identifier.getIndex()]; }
+	public int getValue(AttributeIdentifier identifier) {
+		return this.originalValues[identifier.getIndex()];
+	}
 
-	public IndexToObjectBackmapping getIndexToAttributeIdentifier() { return indexToAttributeIdentifier; }
+	public IndexToObjectBackmapping getIndexToAttributeIdentifier() {
+		return indexToAttributeIdentifier;
+	}
 
 	//
 
@@ -113,19 +119,21 @@ public abstract class CreatureAttributes {
 		int temp;
 		if ((temp = identifier.lowerBound()) > value) {
 			value = temp;
-		} else if ((temp = identifier.upperBound()) < value) { value = temp; }
+		} else if ((temp = identifier.upperBound()) < value) {
+			value = temp;
+		}
 		this.originalValues[identifier.getIndex()] = value;
 	}
 
 	//
 
-//	public abstract void addAttributeModification(int index, int value);
-//	public abstract void removeAttributeModification(int index, int value);
+	// public abstract void addAttributeModification(int index, int value);
+	// public abstract void removeAttributeModification(int index, int value);
 
 	/**
 	 * Apply (add) the given {@link AttributeModification} to this set of
 	 * attributes.<br>
-	 * Usually it's provided by {@link EquipmentItem#getBaseAttributeModifiers()}
+	 * Usually it's provided by {@link EquipmentItem#getBaseAttributesModifiers()}
 	 * and usually this method is invoked during
 	 * {@link EquipmentItem#onEquip(GModality)}, that is invoked by
 	 * {@link EquipmentSet#addEquipmentItem(GModality, EquipmentItem)}.
@@ -141,7 +149,9 @@ public abstract class CreatureAttributes {
 	public abstract void removeAttributeModifier(AttributeModification eam);
 
 	@Override
-	public String toString() { return "CreatureAttributes [originalValues=" + Arrays.toString(originalValues) + "]"; }
+	public String toString() {
+		return "CreatureAttributes [originalValues=" + Arrays.toString(originalValues) + "]";
+	}
 
 	//
 

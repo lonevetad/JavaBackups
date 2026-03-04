@@ -1,65 +1,66 @@
 import fs from "fs";
 import { loadConstants, RARITY_TRIBE_EQUIPMENT_PIECES } from "./constants";
 import {
-    EquipmentTypesTRAn,
-    newEquipmentPieceForTribe,
-    TribeEquipmentPieces,
-    forEachRaritiesOfTribeAttributesVariations,
-    forEachTribeAttributesInfluence,
-    forEachTribeEquipmentPieces,
-    newEquipUpgradesForTribeRarity,
-    TRIBES_NAME_ATTRIBUTES_INFLUENCE,
-    TRIBE_PIECE_OF_EQUIPMENT_SET_DATA,
-    RARITY_NAMES,
-    RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS,
-    TribesNamesTRAn,
-    loadEnums
+  EquipmentTypesTRAn,
+  newEquipmentPieceForTribe,
+  TribeEquipmentPieces,
+  forEachRaritiesOfTribeAttributesVariations,
+  forEachTribeAttributesInfluence,
+  forEachTribeEquipmentPieces,
+  newEquipUpgradesForTribeRarity,
+  TRIBES_NAME_ATTRIBUTES_INFLUENCE,
+  TRIBE_PIECE_OF_EQUIPMENT_SET_DATA,
+  RARITY_NAMES,
+  RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS,
+  TribesNamesTRAn,
+  loadEnums,
 } from "./enums";
-import { AttributeMod_V01, DimensionInventory, EquipItem_V03, EquipUpgrade_V02, loadTypes } from "./types"
+import {
+  AttributeMod_V01,
+  DimensionInventory,
+  EquipItem_V03,
+  EquipUpgrade_V02,
+  loadTypes,
+} from "./types";
 import { writeInFile } from "./utils";
-
 
 // ----------------------
 
 export type TribeAttributesInfluence = {
-    tribeName: string;
-    attributeBonus: string;
-    attributeMalus: string;
-}
+  tribeName: string;
+  attributeBonus: string;
+  attributeMalus: string;
+};
 
 /**
  * The AttributesVariation type is a bonus and a malus amounts designed to define
  * the TribeAttributesInfluence values
  */
 export type AttributesVariation = {
-    canBeEquipUpgrade: boolean;
-    variationName: string;
-    bonus: number;
-    malus: number;
-    addedPrice: number;
+  canBeEquipUpgrade: boolean;
+  variationName: string;
+  bonus: number;
+  malus: number;
+  addedPrice: number;
 };
 
 /**
  * The AttributesVariationsByRarity type is a mapping between rarities and AttributesVariation
  */
 export type AttributesVariationsByRarity = {
-    [rarity: number]: AttributesVariation
-}
-
-export type PieceOfEquipmentSetData = {
-    namePrefix: string,
-    type: EquipmentTypesTRAn,
-    dimensionInventory: DimensionInventory,
-    additionalAttributeModifiers: AttributeMod_V01[]
-}
-
-
-
-export type EquipUpgradeByRarity = {
-    [rarity: number]: EquipUpgrade_V02
+  [rarity: number]: AttributesVariation;
 };
 
+export type PieceOfEquipmentSetData = {
+  namePrefix: string;
+  type: EquipmentTypesTRAn;
+  dimensionInventory: DimensionInventory;
+  additionalAttributesModifiers: AttributeMod_V01[];
+};
 
+export type EquipUpgradeByRarity = {
+  [rarity: number]: EquipUpgrade_V02;
+};
 
 // ----------------------
 
@@ -78,7 +79,7 @@ export const PAIR_GENERATOR: {
                     name: "",
                     rarity: 0,
                     price: [],
-                    attributeModifiers: {}
+                    attributesModifiers: {}
                 };
 
                 attrMod[pair.attributeBonus] = aen.bonus;
@@ -87,7 +88,7 @@ export const PAIR_GENERATOR: {
                 equipUp.name = `of ${pair.tribeName} ${aen.variationName}`;
                 equipUp.rarity = rarity;
                 equipUp.price = [aen.addedPrice];
-                equipUp.attributeModifiers = attrMod;
+                equipUp.attributesModifiers = attrMod;
 
                 upgrades[rarity] = equipUp;
             }
@@ -109,56 +110,61 @@ export const PAIR_GENERATOR: {
 };
 */
 
-
 // ----------------------
 
-
-
-
 // ----------------------
-
 
 export function generateJSONTribeInfluences(): void {
-    writeInFile("./tribesName.json", Object.keys(TRIBES_NAME_ATTRIBUTES_INFLUENCE));
-    writeInFile("./tribeAttributeInfluences.json", TRIBES_NAME_ATTRIBUTES_INFLUENCE);
+  writeInFile(
+    "./tribesName.json",
+    Object.keys(TRIBES_NAME_ATTRIBUTES_INFLUENCE),
+  );
+  writeInFile(
+    "./tribeAttributeInfluences.json",
+    TRIBES_NAME_ATTRIBUTES_INFLUENCE,
+  );
 }
 
 export function generateJSONEquipmentUpgrades(): void {
-    var equipUpgrades: Array<EquipUpgrade_V02> = [];
-    forEachRaritiesOfTribeAttributesVariations((rarity: number, attrVar: AttributesVariation) => {
-        if (attrVar.canBeEquipUpgrade) {
-            forEachTribeAttributesInfluence(
-                (attrInfluence) => {
-                    equipUpgrades.push(newEquipUpgradesForTribeRarity(attrInfluence, rarity));
-                }
-            )
-        }
-    });
-    writeInFile("./tribe_equipUpgrades.json", equipUpgrades);
+  var equipUpgrades: Array<EquipUpgrade_V02> = [];
+  forEachRaritiesOfTribeAttributesVariations(
+    (rarity: number, attrVar: AttributesVariation) => {
+      if (attrVar.canBeEquipUpgrade) {
+        forEachTribeAttributesInfluence((attrInfluence) => {
+          equipUpgrades.push(
+            newEquipUpgradesForTribeRarity(attrInfluence, rarity),
+          );
+        });
+      }
+    },
+  );
+  writeInFile("./tribe_equipUpgrades.json", equipUpgrades);
 }
 
 export function generateJSONEquipments(): void {
-    var equipPieces: Array<EquipItem_V03> = [];
-    forEachTribeAttributesInfluence(tribe => {
-        forEachTribeEquipmentPieces((equipPiece: TribeEquipmentPieces) => {
-            equipPieces.push(
-                newEquipmentPieceForTribe(tribe.tribeName as TribesNamesTRAn, equipPiece as unknown as EquipmentTypesTRAn)
-            );
-        });
+  var equipPieces: Array<EquipItem_V03> = [];
+  forEachTribeAttributesInfluence((tribe) => {
+    forEachTribeEquipmentPieces((equipPiece: TribeEquipmentPieces) => {
+      equipPieces.push(
+        newEquipmentPieceForTribe(
+          tribe.tribeName as TribesNamesTRAn,
+          equipPiece as unknown as EquipmentTypesTRAn,
+        ),
+      );
     });
-    writeInFile("./tribe_equipPieces.json", equipPieces);
+  });
+  writeInFile("./tribe_equipPieces.json", equipPieces);
 }
 
-
 export function toJava() {
-    const SRC = "./java-gen/";
-    if (!fs.existsSync(SRC)) {
-        fs.mkdirSync(SRC);
-    }
+  const SRC = "./java-gen/";
+  if (!fs.existsSync(SRC)) {
+    fs.mkdirSync(SRC);
+  }
 
-    // writeInFile(`${SRC}`, ``` ```);
+  // writeInFile(`${SRC}`, ``` ```);
 
-    /*
+  /*
         writeInFile(`${SRC}TribeEquipmentPiecesTRAn.java`,
     `
     package games.theRisingAngel.enums;
@@ -198,9 +204,10 @@ export function toJava() {
         );
     */
 
-    writeInFile(`${SRC}TribesTRAn.java`,
-        /*enumKeys(TribesNamesTRAn).join(", ") */
-        `
+  writeInFile(
+    `${SRC}TribesTRAn.java`,
+    /*enumKeys(TribesNamesTRAn).join(", ") */
+    `
 package games.theRisingAngel.enums;
 
 import java.util.Collections;
@@ -248,27 +255,35 @@ public class TribesTRAn {
         RARITY_TRIBE_EQUIPMENT_PIECES = RaritiesTRAn.HighQuality;
 
         mrta = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, RaritiesTRAn.COMPARATOR_RARITY_TRAn); 
-        ${ //mapValues<{[equipPiece: string]: PieceOfEquipmentSetData},PieceOfEquipmentSetData>(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
-        Object.keys(RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS).map((rarityAsString, _, __) => Number(rarityAsString)).filter((n, _, __) => n !== undefined)
+        ${
+          //mapValues<{[equipPiece: string]: PieceOfEquipmentSetData},PieceOfEquipmentSetData>(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
+          Object.keys(RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS)
+            .map((rarityAsString, _, __) => Number(rarityAsString))
+            .filter((n, _, __) => n !== undefined)
             .map((rarity, _, __) => {
-                const av = RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS[rarity];
-                return `
-        mrta.put(RaritiesTRAn.${RARITY_NAMES[rarity]}, new AttributesVariationTribeEquip("${av.variationName}", ${av.bonus}, ${av.malus}, new int[]{${av.addedPrice}}, ${av.canBeEquipUpgrade}));`
-            }
-            ).join("")}
+              const av = RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS[rarity];
+              return `
+        mrta.put(RaritiesTRAn.${RARITY_NAMES[rarity]}, new AttributesVariationTribeEquip("${av.variationName}", ${av.bonus}, ${av.malus}, new int[]{${av.addedPrice}}, ${av.canBeEquipUpgrade}));`;
+            })
+            .join("")
+        }
         ALL_EQUIP_UPGRADES_RARITIES = Collections.unmodifiableSet(mrta.keySet());
         MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE = Collections.unmodifiableMap(mrta);
 
         metd = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, EquipmentTypesTRAn.COMPARATOR_EQUIP_TYPES_TRAn); 
         ${Object.keys(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
-            .map((equipName, _, __) => (equipName as unknown as TribeEquipmentPieces) as unknown as EquipmentTypesTRAn)
-            .map((equipType, _, __) => {
-                const ped: PieceOfEquipmentSetData = TRIBE_PIECE_OF_EQUIPMENT_SET_DATA[equipType];
-                return `
+          .map(
+            (equipName, _, __) =>
+              equipName as unknown as TribeEquipmentPieces as unknown as EquipmentTypesTRAn,
+          )
+          .map((equipType, _, __) => {
+            const ped: PieceOfEquipmentSetData =
+              TRIBE_PIECE_OF_EQUIPMENT_SET_DATA[equipType];
+            return `
         metd.put(EquipmentTypesTRAn.${ped.type},
-            new PieceOfEquipmentSetData("${ped.namePrefix}", EquipmentTypesTRAn.${ped.type}, new Dimension(${ped.dimensionInventory.width}, ${ped.dimensionInventory.height}), //\n\t\tnew AttributeModification[]{${ped.additionalAttributeModifiers.map((am, _, __) => `new AttributeModification(AttributesTRAn.${am.attribute},${am.value})`).join(", ")}}));`
-            }
-            ).join("")}
+            new PieceOfEquipmentSetData("${ped.namePrefix}", EquipmentTypesTRAn.${ped.type}, new Dimension(${ped.dimensionInventory.width}, ${ped.dimensionInventory.height}), //\n\t\tnew AttributeModification[]{${ped.additionalAttributesModifiers.map((am, _, __) => `new AttributeModification(AttributesTRAn.${am.attribute},${am.value})`).join(", ")}}));`;
+          })
+          .join("")}
         ALL_EQUIP_TYPES_ON_TRIBE_SETS = Collections.unmodifiableSet(metd.keySet());
         MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE = Collections.unmodifiableMap(metd);
 
@@ -282,10 +297,12 @@ public class TribesTRAn {
     //
 
     public static enum Tribe implements IndexableObject {
-        ${Object.keys(TRIBES_NAME_ATTRIBUTES_INFLUENCE).map((tribeName, _, __) => {
-                const infl = TRIBES_NAME_ATTRIBUTES_INFLUENCE[tribeName];
-                return `${tribeName}(new TribeReligion(AttributesTRAn.${infl.attributeBonus}, AttributesTRAn.${infl.attributeMalus}))`
-            }).join(", //\n\t\t")};
+        ${Object.keys(TRIBES_NAME_ATTRIBUTES_INFLUENCE)
+          .map((tribeName, _, __) => {
+            const infl = TRIBES_NAME_ATTRIBUTES_INFLUENCE[tribeName];
+            return `${tribeName}(new TribeReligion(AttributesTRAn.${infl.attributeBonus}, AttributesTRAn.${infl.attributeMalus}))`;
+          })
+          .join(", //\n\t\t")};
 
         //
 
@@ -357,10 +374,10 @@ public class TribesTRAn {
                 CurrencySet cs;
                 Currency[] currencies;
 
-                allAttributes = new AttributeModification[2 + ped.additionalAttributeModifiers.length];
+                allAttributes = new AttributeModification[2 + ped.additionalAttributesModifiers.length];
                 allAttributes[0] = new AttributeModification(rel.religionDevotedTo, variation.bonus);
                 allAttributes[1] = new AttributeModification(rel.religionHated, variation.malus);
-                System.arraycopy(ped.additionalAttributeModifiers, 0, allAttributes, 2, ped.additionalAttributeModifiers.length);
+                System.arraycopy(ped.additionalAttributesModifiers, 0, allAttributes, 2, ped.additionalAttributesModifiers.length);
 
                 equipPiece = new EINotJewelry(gmrpg, eqType, getNameEquipFor(thisTribe, eqType), allAttributes);
 
@@ -517,40 +534,40 @@ public class TribesTRAn {
     //
 
     public static class PieceOfEquipmentSetData {
-        public PieceOfEquipmentSetData(String namePrefix, EquipmentTypesTRAn equipType, Dimension dimensionInventory, AttributeModification[] additionalAttributeModifiers) {
+        public PieceOfEquipmentSetData(String namePrefix, EquipmentTypesTRAn equipType, Dimension dimensionInventory, AttributeModification[] additionalAttributesModifiers) {
             super();
             this.namePrefix = namePrefix;
             this.equipType = equipType;
             this.dimensionInventory = dimensionInventory;
-            this.additionalAttributeModifiers = additionalAttributeModifiers;
+            this.additionalAttributesModifiers = additionalAttributesModifiers;
         }
         protected String namePrefix;
         protected EquipmentTypesTRAn equipType;
         protected Dimension dimensionInventory;
-        protected AttributeModification[] additionalAttributeModifiers;
+        protected AttributeModification[] additionalAttributesModifiers;
         //
         public String getNamePrefix() { return namePrefix; }
         public EquipmentTypesTRAn getEquipType() { return equipType; }
         public Dimension getDimensionInventory() { return dimensionInventory; }
-        public AttributeModification[] getAdditionalAttributeModifiers() { return additionalAttributeModifiers; }
+        public AttributeModification[] getAdditionalAttributesModifiers() { return additionalAttributesModifiers; }
         //
         // public void setNamePrefix(String namePrefix) { this.namePrefix = namePrefix; }
         // public void setEquipType(EquipmentTypesTRAn equipType) { this.equipType = equipType; }
         // public void setDimensionInventory(Dimension dimensionInventory) { this.dimensionInventory = dimensionInventory; }
-        // public void setAdditionalAttributeModifiers(AttributeModification[] additionalAttributeModifiers) { this.additionalAttributeModifiers = additionalAttributeModifiers; }
+        // public void setAdditionalAttributesModifiers(AttributeModification[] additionalAttributesModifiers) { this.additionalAttributesModifiers = additionalAttributesModifiers; }
     }
-}`);
+}`,
+  );
 }
-
 
 //
 
 console.log("START combinatory generator about TribeAttributesInfluence");
 
-const loaders: Array<(() => void)> = [loadTypes, loadEnums, loadConstants];
+const loaders: Array<() => void> = [loadTypes, loadEnums, loadConstants];
 
 for (const loader of loaders) {
-    loader();
+  loader();
 }
 
 /*

@@ -25,7 +25,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2
     }
   },
@@ -33,8 +33,8 @@
     "name": "of Fat Belly",
     "rarity": 0,
     "price": [4],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Incantation",
+    "attributesModifiers": {
       "Constitution": 2
     }
   },
@@ -42,8 +42,8 @@
     "name": "Sweet",
     "rarity": 0,
     "price": [4],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Incantation",
+    "attributesModifiers": {
       "Health": 2
     }
   },
@@ -51,8 +51,8 @@
     "name": "Compact",
     "rarity": 0,
     "price": [4],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Structural",
+    "attributesModifiers": {
       "Defense": 2
     }
   },
@@ -61,7 +61,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 2
     }
   },
@@ -70,7 +70,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 2
     }
   },
@@ -78,8 +78,8 @@
     "name": "with Poetry Engraved",
     "rarity": 0,
     "price": [4],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Refining",
+    "attributesModifiers": {
       "Wisdom": 2
     }
   },
@@ -88,7 +88,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 2
     }
   },
@@ -96,8 +96,8 @@
     "name": "of Fortune Cookie",
     "rarity": 0,
     "price": [4],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Incantation",
+    "attributesModifiers": {
       "Faith": 2
     }
   },
@@ -106,7 +106,7 @@
     "rarity": 0,
     "price": [7],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 2
     }
   },
@@ -115,7 +115,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 5
     }
   },
@@ -124,7 +124,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ReflectionDamagePercentage": 3
     }
   },
@@ -133,7 +133,7 @@
     "rarity": 1,
     "price": [-1],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ReflectionDamagePercentage": 7,
       "Constitution": -2
     }
@@ -143,7 +143,7 @@
     "rarity": 0,
     "price": [4],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 10,
       "ShieldRegen": 1
     }
@@ -153,7 +153,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 16
     }
   },
@@ -162,7 +162,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 16
     }
   },
@@ -171,7 +171,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 16
     }
   },
@@ -180,7 +180,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 16
     }
   },
@@ -189,7 +189,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 16
     }
   },
@@ -198,7 +198,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 16
     }
   },
@@ -207,7 +207,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 16
     }
   },
@@ -216,7 +216,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 16
     }
   },
@@ -225,7 +225,7 @@
     "rarity": 3,
     "price": [25],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 16
     }
   },
@@ -234,7 +234,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 6,
       "Wisdom": 2,
       "Intelligence": -2
@@ -245,7 +245,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Dexterity": 3,
       "Precision": 2
@@ -256,7 +256,7 @@
     "rarity": 2,
     "price": [10],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 12,
       "Wisdom": 5,
       "Intelligence": -6
@@ -267,7 +267,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 4,
       "Constitution": 2
     }
@@ -277,7 +277,7 @@
     "rarity": 3,
     "price": [56],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 9,
       "Constitution": 4,
       "PhysicalDamageReduction": 8,
@@ -289,7 +289,7 @@
     "rarity": 3,
     "price": [80],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 6,
       "Health": 2,
       "MagicalDamageBonus": 5,
@@ -302,7 +302,7 @@
     "rarity": 3,
     "price": [100],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 150,
       "ManaRegen": 15,
       "Intelligence": 5,
@@ -318,7 +318,7 @@
     "rarity": 3,
     "price": [100],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 150,
       "LifeRegen": 15,
       "Strength": 5,
@@ -334,7 +334,7 @@
     "rarity": 3,
     "price": [100],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Dexterity": 5,
       "Precision": 5,
@@ -348,7 +348,7 @@
     "rarity": 3,
     "price": [30],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 15,
       "ManaLeechPercentage": 15,
       "CriticalProbabilityPerThousandHit": 25,
@@ -363,7 +363,7 @@
     "rarity": 3,
     "price": [50],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 15,
       "PhysicalProbabilityPerThousandHit": 15,
       "PhysicalProbabilityPerThousandAvoid": 25,
@@ -379,7 +379,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3
     }
   },
@@ -388,7 +388,7 @@
     "rarity": 1,
     "price": [-10],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -2
     }
   },
@@ -397,7 +397,7 @@
     "rarity": 3,
     "price": [26],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 20,
       "MagicalDamageReduction": 20,
       "PhysicalDamageMultiplierPercentageReduction": 12,
@@ -411,7 +411,7 @@
     "rarity": 2,
     "price": [26],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 13,
       "MagicalDamageReduction": 13,
       "PhysicalDamageMultiplierPercentageReduction": 8,
@@ -425,7 +425,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 1
     }
@@ -435,7 +435,7 @@
     "rarity": 1,
     "price": [-3],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -1,
       "Constitution": -1,
       "Defense": 1
@@ -446,7 +446,7 @@
     "rarity": 3,
     "price": [6],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalProbabilityPerThousandAvoid": 40,
       "MagicalProbabilityPerThousandAvoid": 40
     }
@@ -456,7 +456,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6
     }
   },
@@ -465,7 +465,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 6
     }
   },
@@ -474,7 +474,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 6
     }
   },
@@ -483,7 +483,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 6
     }
   },
@@ -492,7 +492,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 6
     }
   },
@@ -501,7 +501,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 6
     }
   },
@@ -510,7 +510,7 @@
     "rarity": 1,
     "price": [1],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 6
     }
   },
@@ -519,7 +519,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 6
     }
   },
@@ -528,7 +528,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 6
     }
   },
@@ -537,7 +537,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 4,
       "Wisdom": 2
     }
@@ -547,7 +547,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4,
       "Precision": 2
     }
@@ -557,7 +557,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Constitution": 2
     }
@@ -567,7 +567,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 4,
       "Intelligence": 2
     }
@@ -577,7 +577,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 4,
       "Dexterity": 2
     }
@@ -587,7 +587,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 4,
       "Strength": 2
     }
@@ -597,7 +597,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "Faith": 2
     }
@@ -607,7 +607,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Health": 2
     }
@@ -617,7 +617,7 @@
     "rarity": 3,
     "price": [25],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 11,
       "Constitution": 9,
       "Defense": 7,
@@ -634,7 +634,7 @@
     "rarity": 3,
     "price": [25],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Precision": 7,
       "Dexterity": 7,
@@ -655,7 +655,7 @@
     "rarity": 3,
     "price": [25],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Precision": 6,
       "Dexterity": 7,
@@ -671,7 +671,7 @@
     "rarity": 2,
     "price": [35],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Health": 1,
@@ -689,7 +689,7 @@
     "rarity": 3,
     "price": [25],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Faith": 15,
       "Intelligence": -9,
@@ -703,7 +703,7 @@
     "rarity": 2,
     "price": [25],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Dexterity": 4,
       "Wisdom": 4,
@@ -715,7 +715,7 @@
     "rarity": 3,
     "price": [3],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 13,
       "Constitution": 12,
       "Defense": 10,
@@ -731,7 +731,7 @@
     "rarity": 2,
     "price": [12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 5,
       "Defense": 11,
       "Dexterity": -6,
@@ -746,7 +746,7 @@
     "rarity": 2,
     "price": [8],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Velocity": 5,
       "VelocityAttackStrikePercentage": 3,
@@ -758,7 +758,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 3
     }
@@ -768,7 +768,7 @@
     "rarity": 1,
     "price": [-8],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -3,
       "Defense": -2
     }
@@ -778,7 +778,7 @@
     "rarity": 2,
     "price": [-12],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -2,
       "Dexterity": -2,
       "Faith": -3
@@ -789,7 +789,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -1,
       "Defense": -3,
       "Faith": -2
@@ -800,7 +800,7 @@
     "rarity": 1,
     "price": [1],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 4,
       "Defense": 4,
       "Dexterity": -3,
@@ -812,7 +812,7 @@
     "rarity": 1,
     "price": [1],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": -2,
       "Defense": 2,
       "Dexterity": 6
@@ -823,7 +823,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 2,
       "Dexterity": 4
     }
@@ -833,7 +833,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Constitution": 1,
       "Defense": 1,
@@ -846,7 +846,7 @@
     "rarity": 2,
     "price": [-13],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -2,
       "Precision": -2
     }
@@ -856,7 +856,7 @@
     "rarity": 2,
     "price": [-10],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -2,
       "Defense": -3,
       "Health": -1,
@@ -872,7 +872,7 @@
     "rarity": 2,
     "price": [6],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -7,
       "Defense": -3,
       "Constitution": -2,
@@ -887,7 +887,7 @@
     "rarity": 2,
     "price": [-22],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -3,
       "Precision": -3,
       "Strength": -2,
@@ -900,7 +900,7 @@
     "rarity": 2,
     "price": [-18],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "Precision": -2,
       "Strength": -1,
@@ -913,7 +913,7 @@
     "rarity": 1,
     "price": [-2],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": -2,
       "MagicalDamageBonus": -2,
       "Dexterity": 3,
@@ -925,7 +925,7 @@
     "rarity": 1,
     "price": [-7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -1,
       "Precision": -4,
       "Dexterity": -2
@@ -936,7 +936,7 @@
     "rarity": 2,
     "price": [22],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 6,
       "Dexterity": 6
     }
@@ -946,7 +946,7 @@
     "rarity": 1,
     "price": [11],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 4,
       "PhysicalDamageMultiplierPercentageBonus": 5,
       "CriticalMultiplierPercentageBonus": 5
@@ -957,7 +957,7 @@
     "rarity": 2,
     "price": [17],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 7,
       "PhysicalDamageMultiplierPercentageBonus": 7,
       "CriticalMultiplierPercentageBonus": 10,
@@ -969,7 +969,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 55,
       "PhysicalDamageReduction": 2,
       "Defense": 4,
@@ -982,7 +982,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 40,
       "Health": 1,
       "Defense": 2,
@@ -994,7 +994,7 @@
     "rarity": 1,
     "price": [5],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 35,
       "Dexterity": 2,
       "Health": 2,
@@ -1006,7 +1006,7 @@
     "rarity": 4,
     "price": [37],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 17,
       "Constitution": 15,
       "Health": 7,
@@ -1030,7 +1030,7 @@
     "rarity": 4,
     "price": [27],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -6,
       "Constitution": -4,
       "Health": 2,
@@ -1053,7 +1053,7 @@
     "rarity": 4,
     "price": [39],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -2,
       "Defense": -7,
       "Precision": 15,
@@ -1071,7 +1071,7 @@
     "rarity": 4,
     "price": [41],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Defense": -4,
       "Precision": 5,
@@ -1090,7 +1090,7 @@
     "rarity": 4,
     "price": [47],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 2,
       "Precision": 3,
@@ -1107,7 +1107,7 @@
     "rarity": 3,
     "price": [26],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Constitution": 4,
       "Defense": 4,
@@ -1129,7 +1129,7 @@
     "rarity": 3,
     "price": [37],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Constitution": 5,
       "Defense": 3,
@@ -1147,7 +1147,7 @@
     "rarity": 3,
     "price": [39],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Constitution": -2,
       "Precision": 11,
@@ -1173,7 +1173,7 @@
     "rarity": 2,
     "price": [17],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 3,
       "Defense": 2,
@@ -1192,7 +1192,7 @@
     "rarity": 3,
     "price": [21],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Constitution": 4,
       "Precision": 3,
@@ -1210,7 +1210,7 @@
     "rarity": 4,
     "price": [40],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 6,
       "Health": -5,
       "Constitution": 4,
@@ -1223,7 +1223,7 @@
     "rarity": 2,
     "price": [23],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Precision": 4,
       "Dexterity": 4,
@@ -1241,7 +1241,7 @@
     "rarity": 1,
     "price": [16],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Precision": 3,
       "Dexterity": 3,
@@ -1253,7 +1253,7 @@
     "rarity": 3,
     "price": [33],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Precision": 11,
       "Dexterity": 5,
@@ -1268,7 +1268,7 @@
     "rarity": 3,
     "price": [33],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -8,
       "Constitution": -4,
       "Defense": -4,
@@ -1288,7 +1288,7 @@
     "rarity": 3,
     "price": [33],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -5,
       "Constitution": -2,
       "Health": 2,
@@ -1310,7 +1310,7 @@
     "rarity": 3,
     "price": [40],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Constitution": 2,
       "Defense": 3,
@@ -1330,7 +1330,7 @@
     "rarity": 2,
     "price": [17],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 4,
       "Precision": 2,
@@ -1345,7 +1345,7 @@
     "rarity": 3,
     "price": [22],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 35,
       "ManaLeechPercentage": 35,
       "LifeMax": 175,
@@ -1357,7 +1357,7 @@
     "rarity": 3,
     "price": [27],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 25,
       "LifeMax": 100,
       "LifeRegen": -30
@@ -1368,7 +1368,7 @@
     "rarity": 3,
     "price": [37],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Precision": 8,
       "Intelligence": 1,
@@ -1381,7 +1381,7 @@
     "rarity": 3,
     "price": [20],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": -5,
       "MagicalDamageBonus": -5,
       "Strength": -3,
@@ -1395,7 +1395,7 @@
     "rarity": 2,
     "price": [22],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 2,
       "MagicalDamageBonus": 4,
       "MagicalDamageReduction": 3
@@ -1406,7 +1406,7 @@
     "rarity": 4,
     "price": [56],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Defense": 12,
       "Dexterity": -3,
@@ -1422,7 +1422,7 @@
     "rarity": 3,
     "price": [33],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 6,
       "Precision": 3,
       "Dexterity": 3,
@@ -1438,7 +1438,7 @@
     "rarity": 4,
     "price": [56],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Precision": -5,
       "Dexterity": 12,
@@ -1454,7 +1454,7 @@
     "rarity": 1,
     "price": [11],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Precision": 3
     }
@@ -1464,7 +1464,7 @@
     "rarity": 1,
     "price": [11],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4,
       "Precision": 1,
       "Wisdom": 1
@@ -1475,7 +1475,7 @@
     "rarity": 3,
     "price": [17],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -10,
       "Health": -3,
       "Luck": -10,
@@ -1495,7 +1495,7 @@
     "rarity": 2,
     "price": [26],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": -2,
       "Precision": 7,
@@ -1510,7 +1510,7 @@
     "rarity": 2,
     "price": [24],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 8,
       "Dexterity": 42,
       "Defense": -2,
@@ -1522,7 +1522,7 @@
     "rarity": 4,
     "price": [-32],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -27,
       "ManaRegen": -18,
       "Faith": -7,
@@ -1543,7 +1543,7 @@
     "rarity": 3,
     "price": [-35],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -100,
       "Faith": -8,
       "Constitution": -6,
@@ -1559,7 +1559,7 @@
     "rarity": 2,
     "price": [13],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 8,
       "Constitution": 5,
       "Wisdom": -3,
@@ -1574,7 +1574,7 @@
     "rarity": 4,
     "price": [120],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Health": -6,
       "Dexterity": -3,
@@ -1589,7 +1589,7 @@
     "rarity": 2,
     "price": [-8],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 2,
       "Precision": -5,
       "Strength": 2,
@@ -1609,7 +1609,7 @@
     "rarity": 1,
     "price": [6],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": -6,
       "Wisdom": 2,
       "Faith": 3,
@@ -1623,7 +1623,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Constitution": 1,
       "Wisdom": 1,
@@ -1635,7 +1635,7 @@
     "rarity": 2,
     "price": [48],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 6
     }
   },
@@ -1644,7 +1644,7 @@
     "rarity": 1,
     "price": [3],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 20
     }
   },
@@ -1653,7 +1653,7 @@
     "rarity": 2,
     "price": [15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Health": 1,
@@ -1670,7 +1670,7 @@
     "rarity": 3,
     "price": [38],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Constitution": 2,
       "Health": 2,
@@ -1687,7 +1687,7 @@
     "rarity": 4,
     "price": [100],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 3,
       "Health": 3,
@@ -1704,7 +1704,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 3,
       "Luck": 3
     }
@@ -1714,7 +1714,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 2,
       "Luck": 1,
       "StaminaMax": 7,
@@ -1726,7 +1726,7 @@
     "rarity": 2,
     "price": [-24],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Constitution": -2,
       "Health": -2,
@@ -1743,7 +1743,7 @@
     "rarity": 3,
     "price": [-47],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Constitution": -3,
       "Health": -3,
@@ -1760,7 +1760,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Wisdom": 2,
       "Intelligence": 1
@@ -1771,7 +1771,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 5,
       "Defense": 2,
       "Velocity": 20
@@ -1782,7 +1782,7 @@
     "rarity": 3,
     "price": [40],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 8,
       "Faith": 3,
       "Luck": 5
@@ -1793,7 +1793,7 @@
     "rarity": 3,
     "price": [35],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalProbabilityPerThousandHit": 50,
       "PhysicalProbabilityPerThousandAvoid": 50,
       "MagicalProbabilityPerThousandHit": 50,
@@ -1808,7 +1808,7 @@
     "rarity": 3,
     "price": [35],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -9,
       "ManaRegen": -9,
       "LifeMax": -66,
@@ -1828,7 +1828,7 @@
     "rarity": 2,
     "price": [-35],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Constitution": -2,
       "Health": -2,
@@ -1847,7 +1847,7 @@
     "rarity": 2,
     "price": [27],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 8,
       "ManaLeechPercentage": 4
     }
@@ -1857,7 +1857,7 @@
     "rarity": 3,
     "price": [44],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 15,
       "ManaLeechPercentage": 7
     }
@@ -1867,7 +1867,7 @@
     "rarity": 2,
     "price": [13],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 5
     }
   },
@@ -1876,7 +1876,7 @@
     "rarity": 2,
     "price": [13],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": 5
     }
   },
@@ -1885,7 +1885,7 @@
     "rarity": 3,
     "price": [43],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": -10,
       "Faith": 10,
       "Luck": 4
@@ -1896,7 +1896,7 @@
     "rarity": 3,
     "price": [43],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": -10,
       "Health": 10,
       "Luck": 4
@@ -1907,7 +1907,7 @@
     "rarity": 1,
     "price": [-10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": -5,
       "LifeLeechPercentage": -5
     }
@@ -1917,7 +1917,7 @@
     "rarity": 2,
     "price": [7],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": 2,
       "LifeLeechPercentage": 2
     }
@@ -1927,7 +1927,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Defense": 3,
       "Precision": -2,
@@ -1946,7 +1946,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 4,
       "Wisdom": 4,
       "Faith": 4
@@ -1957,7 +1957,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 4,
       "Dexterity": 4,
       "Precision": 4
@@ -1968,7 +1968,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Constitution": 4,
       "Health": 4
@@ -1979,7 +1979,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 8,
       "MagicalDamageReduction": 8,
       "CriticalMultiplierPercentageReduction": 17,
@@ -1993,7 +1993,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": -5,
       "MagicalDamageReduction": -5,
       "PhysicalProbabilityPerThousandAvoid": 12,
@@ -2006,7 +2006,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -9,
       "ManaRegen": -9,
       "Health": -5,
@@ -2020,7 +2020,7 @@
     "rarity": 2,
     "price": [32],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 15,
       "MagicalDamageBonus": 15,
       "ReflectionDamagePercentage": 15,
@@ -2035,7 +2035,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 80,
       "ManaMax": 65,
       "Defense": -3,
@@ -2048,7 +2048,7 @@
     "rarity": 2,
     "price": [17],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": -6,
       "ManaMax": -40,
       "Precision": 6,
@@ -2060,7 +2060,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 35,
       "ShieldRegen": 5
     }
@@ -2070,7 +2070,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageReduction": 3,
       "PhysicalDamageReduction": 2
     }
@@ -2080,7 +2080,7 @@
     "rarity": 1,
     "price": [22],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -5,
       "Intelligence": -2,
       "Wisdom": -4,
@@ -2094,7 +2094,7 @@
     "rarity": 2,
     "price": [15],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 3,
       "Dexterity": 2,
       "Intelligence": 1,
@@ -2106,7 +2106,7 @@
     "rarity": 3,
     "price": [75],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 8
     }
   },
@@ -2115,7 +2115,7 @@
     "rarity": 4,
     "price": [100],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 10
     }
   },
@@ -2124,7 +2124,7 @@
     "rarity": 1,
     "price": [-12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 2,
       "Wisdom": -4,
       "Strength": -1,
@@ -2137,7 +2137,7 @@
     "rarity": 2,
     "price": [-34],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": -3,
       "Wisdom": -4,
       "Precision": -3,
@@ -2150,7 +2150,7 @@
     "rarity": 1,
     "price": [-7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "Constitution": -4,
       "Faith": -1
@@ -2161,7 +2161,7 @@
     "rarity": 2,
     "price": [-30],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": -7,
       "Wisdom": -7,
       "Faith": 2
@@ -2172,7 +2172,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Precision": -3,
       "Intelligence": -3,
@@ -2186,7 +2186,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Precision": 4,
       "Intelligence": 2,
@@ -2203,7 +2203,7 @@
     "rarity": 3,
     "price": [65],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 150,
       "ShieldRegen": 7,
       "Faith": 8,
@@ -2215,7 +2215,7 @@
     "rarity": 2,
     "price": [33],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 85,
       "ShieldRegen": 4,
       "Defense": -7
@@ -2226,7 +2226,7 @@
     "rarity": 3,
     "price": [100],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 70,
       "ShieldRegen": 3,
       "Luck": -5
@@ -2237,7 +2237,7 @@
     "rarity": 2,
     "price": [37],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 45,
       "ShieldRegen": 6
     }
@@ -2247,7 +2247,7 @@
     "rarity": 1,
     "price": [-3],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -2,
       "Defense": 2,
       "Precision": -2,
@@ -2259,7 +2259,7 @@
     "rarity": 1,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Dexterity": 5,
       "Precision": 7,
@@ -2272,7 +2272,7 @@
     "rarity": 4,
     "price": [100],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 3,
       "Health": 3,
@@ -2294,7 +2294,7 @@
     "rarity": 4,
     "price": [-75],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Constitution": -3,
       "Health": -3,
@@ -2305,7 +2305,7 @@
       "Wisdom": -3,
       "Faith": -3,
       "CriticalMultiplierPercentageBonus": 15,
-      "CriticalProbabilityPerThousandHit": 15
+      "CriticalProbabilityPerThousandHit": 150
     }
   },
   {
@@ -2313,7 +2313,7 @@
     "rarity": 2,
     "price": [60],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 15,
       "Wisdom": 7,
       "Faith": -10
@@ -2324,7 +2324,7 @@
     "rarity": 1,
     "price": [-8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 300,
       "Precision": -7,
       "Dexterity": -7
@@ -2335,7 +2335,7 @@
     "rarity": 1,
     "price": [4],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": -3,
       "Dexterity": -3,
       "Intelligence": 4,
@@ -2348,7 +2348,7 @@
     "rarity": 3,
     "price": [37],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 10,
       "Intelligence": 3,
       "Wisdom": 7,
@@ -2364,7 +2364,7 @@
     "rarity": 3,
     "price": [40],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Constitution": -2,
       "Health": -5,
@@ -2388,7 +2388,7 @@
     "rarity": 3,
     "price": [40],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -7,
       "Constitution": -5,
       "Health": -3,
@@ -2412,7 +2412,7 @@
     "rarity": 2,
     "price": [-25],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -5,
       "Dexterity": -3
     }
@@ -2422,7 +2422,7 @@
     "rarity": 1,
     "price": [-17],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -7
     }
   },
@@ -2431,7 +2431,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 35,
       "Health": 4
     }
@@ -2441,7 +2441,7 @@
     "rarity": 1,
     "price": [14],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 2,
       "Constitution": 3,
       "Dexterity": 1,
@@ -2454,7 +2454,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 80,
       "PhysicalDamageMultiplierPercentageReduction": 5
     }
@@ -2464,7 +2464,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 75,
       "MagicalDamageMultiplierPercentageReduction": 5
     }
@@ -2474,7 +2474,7 @@
     "rarity": 1,
     "price": [5],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 12,
       "Dexterity": -6,
       "PhysicalProbabilityPerThousandAvoid": -100,
@@ -2489,7 +2489,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 12,
       "ManaRegen": -6
     }
@@ -2499,7 +2499,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -6,
       "ManaRegen": 12
     }
@@ -2509,7 +2509,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 215,
       "ManaMax": -150
     }
@@ -2519,7 +2519,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -150,
       "ManaMax": 200
     }
@@ -2529,7 +2529,7 @@
     "rarity": 1,
     "price": [-3],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Intelligence": -3,
       "Constitution": -2,
@@ -2541,7 +2541,7 @@
     "rarity": 2,
     "price": [50],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 60,
       "LifeRegen": 8,
       "Defense": 3,
@@ -2554,7 +2554,7 @@
     "rarity": 2,
     "price": [50],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 60,
       "Defense": 2,
       "Dexterity": 2,
@@ -2567,7 +2567,7 @@
     "rarity": 2,
     "price": [50],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Dexterity": 5,
       "Precision": 5,
@@ -2584,7 +2584,7 @@
     "rarity": 2,
     "price": [50],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Constitution": 5,
       "Defense": 4,
@@ -2598,7 +2598,7 @@
     "rarity": 2,
     "price": [-50],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalProbabilityPerThousandHit": -30,
       "MagicalProbabilityPerThousandHit": -30,
       "CriticalProbabilityPerThousandHit": -30,
@@ -2613,8 +2613,8 @@
     "rarity": 2,
     "price": [-100],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
-      "Faith": 20,
+    "attributesModifiers": {
+      "Faith": 27,
       "Intelligence": -15,
       "Wisdom": -15,
       "Health": -5
@@ -2625,7 +2625,7 @@
     "rarity": 1,
     "price": [11],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 55,
       "Strength": 15,
       "Constitution": 6,
@@ -2641,7 +2641,7 @@
     "rarity": 1,
     "price": [18],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 40,
       "Strength": -1,
       "Constitution": -3,
@@ -2657,7 +2657,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Dexterity": 5
     }
@@ -2667,7 +2667,7 @@
     "rarity": 1,
     "price": [18],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Wisdom": -1,
       "Faith": 5
@@ -2678,7 +2678,7 @@
     "rarity": 1,
     "price": [18],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Precision": 3,
       "Wisdom": 2,
@@ -2690,7 +2690,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 2,
       "ManaRegen": -8,
       "Constitution": 3,
@@ -2702,7 +2702,7 @@
     "rarity": 1,
     "price": [9],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 6,
       "Faith": -4,
       "Wisdom": 3
@@ -2713,7 +2713,7 @@
     "rarity": 1,
     "price": [-17],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "ManaMax": -15,
       "Wisdom": -3,
@@ -2726,7 +2726,7 @@
     "rarity": 1,
     "price": [5],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Wisdom": 2
     }
@@ -2736,9 +2736,11 @@
     "rarity": 1,
     "price": [-15],
     "category": "Material",
-    "attributeModifiers": {
-      "Health": -4,
-      "Constitution": -2
+    "attributesModifiers": {
+      "Health": -3,
+      "Constitution": -2,
+      "Defense": 7,
+      "Dexterity": -3
     }
   },
   {
@@ -2746,7 +2748,7 @@
     "rarity": 1,
     "price": [-3],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -2
     }
   },
@@ -2755,7 +2757,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Dexterity": 1,
       "Precision": 1,
@@ -2768,7 +2770,7 @@
     "rarity": 3,
     "price": [-12],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Health": -8,
       "Constitution": 3,
@@ -2785,7 +2787,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 2
     }
@@ -2795,7 +2797,7 @@
     "rarity": 2,
     "price": [30],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -30,
       "ManaMax": -20,
       "Defense": 3,
@@ -2812,7 +2814,7 @@
     "rarity": 3,
     "price": [41],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -50,
       "ManaMax": -30,
       "Defense": 7,
@@ -2829,7 +2831,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 30,
       "Defense": 2
     }
@@ -2839,7 +2841,7 @@
     "rarity": 3,
     "price": [-27],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -150,
       "Defense": -7,
       "Precision": -4,
@@ -2853,7 +2855,7 @@
     "rarity": 2,
     "price": [-19],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Defense": 2,
       "Precision": 5,
@@ -2867,7 +2869,7 @@
     "rarity": 1,
     "price": [2],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Faith": -5,
       "LifeMax": -55,
@@ -2880,7 +2882,7 @@
     "rarity": 2,
     "price": [5],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 3
     }
   },
@@ -2889,7 +2891,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -35,
       "PhysicalDamageReduction": -5,
       "MagicalDamageReduction": -3
@@ -2900,7 +2902,7 @@
     "rarity": 2,
     "price": [15],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 65,
       "Defense": 7,
       "PhysicalDamageReduction": 12,
@@ -2912,7 +2914,7 @@
     "rarity": 3,
     "price": [-30],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -7,
       "Faith": -7,
       "PhysicalDamageBonus": 17,
@@ -2924,7 +2926,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": 10
     }
   },
@@ -2933,7 +2935,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 10
     }
   },
@@ -2942,7 +2944,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 27,
       "ShieldRegen": 3
     }
@@ -2952,7 +2954,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 18,
       "ShieldRegen": 2,
       "ManaRegen": 3
@@ -2963,7 +2965,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 8,
       "MagicalDamageReduction": 8
     }
@@ -2973,7 +2975,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 3
     }
   },
@@ -2982,7 +2984,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5
     }
   },
@@ -2991,7 +2993,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 5
     }
   },
@@ -3000,7 +3002,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 5
     }
   },
@@ -3009,7 +3011,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 2
     }
@@ -3019,7 +3021,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Faith": 2
     }
@@ -3029,7 +3031,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 3
     }
@@ -3039,7 +3041,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Precision": 2
     }
@@ -3049,7 +3051,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 3,
       "Dexterity": 2
     }
@@ -3059,7 +3061,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 3,
       "Defense": 2
     }
@@ -3069,7 +3071,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 3,
       "ShieldMax": 25,
       "ShieldRegen": 3
@@ -3080,7 +3082,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 2
     }
@@ -3090,7 +3092,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 2,
       "Precision": 3
     }
@@ -3100,7 +3102,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 3,
       "Wisdom": 2
     }
@@ -3110,7 +3112,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 3,
       "Constitution": 1,
       "Defense": 1
@@ -3121,7 +3123,7 @@
     "rarity": 3,
     "price": [30],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Constitution": 2,
       "Health": 2,
@@ -3133,7 +3135,7 @@
     "rarity": 3,
     "price": [30],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 2,
       "Dexterity": 2,
       "Precision": 2,
@@ -3145,7 +3147,7 @@
     "rarity": 3,
     "price": [30],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 2,
       "Wisdom": 2,
       "Faith": 2,
@@ -3157,7 +3159,7 @@
     "rarity": 4,
     "price": [50],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 42,
       "MagicalDamageReduction": 42,
       "CriticalProbabilityPerThousandAvoid": -20,
@@ -3170,7 +3172,7 @@
     "rarity": 4,
     "price": [50],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 200,
       "ShieldRegen": 15,
       "ManaRegen": -3
@@ -3181,7 +3183,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 3,
       "Constitution": 1,
       "Defense": 1
@@ -3192,7 +3194,7 @@
     "rarity": 2,
     "price": [29],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 15,
       "PhysicalDamageMultiplierPercentageBonus": 5,
       "PhysicalDamageReduction": -20,
@@ -3204,7 +3206,7 @@
     "rarity": 2,
     "price": [21],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "Precision": 4,
       "Faith": 3
@@ -3215,7 +3217,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 2,
       "Faith": 2,
@@ -3227,7 +3229,7 @@
     "rarity": 1,
     "price": [-3],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -10,
       "Defense": -1
     }
@@ -3237,7 +3239,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -20,
       "Dexterity": -1
     }
@@ -3247,7 +3249,7 @@
     "rarity": 1,
     "price": [-12],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Health": -3,
       "Precision": -3
@@ -3258,7 +3260,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Luck": 1
     }
@@ -3268,7 +3270,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 4,
       "Luck": 1
     }
@@ -3278,7 +3280,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "Luck": 1
     }
@@ -3288,7 +3290,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 4,
       "Luck": 1
     }
@@ -3298,7 +3300,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4,
       "Luck": 1
     }
@@ -3308,7 +3310,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 2,
       "Luck": 1
     }
@@ -3318,7 +3320,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 2,
       "Luck": 1
     }
@@ -3328,7 +3330,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 4,
       "Luck": 1
     }
@@ -3338,7 +3340,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Luck": 1
     }
@@ -3348,7 +3350,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 150,
       "Luck": 1
     }
@@ -3358,7 +3360,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 5,
       "Luck": 1
     }
@@ -3368,7 +3370,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 150,
       "Luck": 1
     }
@@ -3378,7 +3380,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": 5,
       "Luck": 1
     }
@@ -3388,7 +3390,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 75,
       "LifeMax": 75,
       "Luck": 1
@@ -3399,7 +3401,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 40,
       "ManaMax": 40,
       "PhysicalProbabilityPerThousandAvoid": 8,
@@ -3412,7 +3414,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 5,
       "MagicalDamageBonus": 5,
       "Luck": 1
@@ -3423,7 +3425,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalProbabilityPerThousandAvoid": 14,
       "MagicalProbabilityPerThousandAvoid": 14,
       "Luck": 1
@@ -3434,7 +3436,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 3,
       "ManaLeechPercentage": 3,
       "Luck": 1
@@ -3445,7 +3447,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 6,
       "MagicalDamageReduction": 4,
       "Luck": 1
@@ -3456,7 +3458,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 4,
       "MagicalDamageReduction": 6,
       "Luck": 1
@@ -3467,7 +3469,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 5,
       "MagicalDamageReduction": 5,
       "Luck": 1
@@ -3478,7 +3480,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "PhysicalDamageReduction": 8,
       "MagicalDamageReduction": 8,
@@ -3490,7 +3492,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "CriticalProbabilityPerThousandHit": 50,
       "CriticalProbabilityPerThousandAvoid": 50,
       "Luck": 1
@@ -3501,7 +3503,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -3,
       "ManaRegen": -3,
       "LifeLeechPercentage": 5,
@@ -3514,7 +3516,7 @@
     "rarity": 3,
     "price": [38],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": -3,
       "Defense": 7,
@@ -3532,7 +3534,7 @@
     "rarity": 5,
     "price": [200],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Constitution": 7,
       "Health": 7,
@@ -3558,7 +3560,7 @@
     "rarity": 5,
     "price": [-100],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 2000,
       "LifeRegen": -150,
       "LifeLeechPercentage": 10
@@ -3569,7 +3571,7 @@
     "rarity": 5,
     "price": [25],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -1500,
       "LifeRegen": 200
     }
@@ -3579,7 +3581,7 @@
     "rarity": 5,
     "price": [35],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 1750,
       "ManaRegen": -125,
       "ManaLeechPercentage": 10
@@ -3590,7 +3592,7 @@
     "rarity": 5,
     "price": [50],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -1250,
       "ManaRegen": 175
     }
@@ -3600,9 +3602,10 @@
     "rarity": 4,
     "price": [75],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": -150,
-      "MagicalDamageBonus": 50
+      "MagicalDamageBonus": 50,
+      "MagicalDamageMultiplierPercentageBonus": 20
     }
   },
   {
@@ -3610,9 +3613,10 @@
     "rarity": 4,
     "price": [75],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -150,
-      "PhysicalDamageBonus": 50
+      "PhysicalDamageBonus": 50,
+      "PhysicalDamageMultiplierPercentageBonus": 20
     }
   },
   {
@@ -3620,7 +3624,7 @@
     "rarity": 3,
     "price": [75],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -250,
       "LifeRegen": 15,
       "ManaRegen": 10
@@ -3631,7 +3635,7 @@
     "rarity": 2,
     "price": [18],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 35,
       "ManaMax": 25,
       "LifeRegen": 3,
@@ -3643,7 +3647,7 @@
     "rarity": 2,
     "price": [18],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "ManaMax": 35,
       "LifeRegen": 3,
@@ -3655,7 +3659,7 @@
     "rarity": 3,
     "price": [-15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 45,
       "ManaRegen": -12,
       "ManaLeechPercentage": 15
@@ -3666,7 +3670,7 @@
     "rarity": 3,
     "price": [-15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 50,
       "LifeRegen": -12,
       "LifeLeechPercentage": 15
@@ -3677,7 +3681,7 @@
     "rarity": 2,
     "price": [-12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -35,
       "PhysicalDamageReduction": -10,
       "MagicalDamageReduction": -10
@@ -3688,7 +3692,7 @@
     "rarity": 2,
     "price": [13],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 6,
       "Strength": -2,
       "CriticalProbabilityPerThousandHit": 20
@@ -3699,7 +3703,7 @@
     "rarity": 2,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": -3,
       "MagicalDamageBonus": -3,
       "CriticalProbabilityPerThousandHit": 70,
@@ -3712,7 +3716,7 @@
     "rarity": 2,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -85,
       "ShieldMax": 55,
       "ShieldRegen": 5,
@@ -3724,7 +3728,7 @@
     "rarity": 3,
     "price": [15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -120,
       "ShieldMax": 100,
       "ShieldRegen": 7,
@@ -3736,7 +3740,7 @@
     "rarity": 4,
     "price": [-25],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -180,
       "ManaMax": -160,
       "ShieldMax": 200,
@@ -3749,7 +3753,7 @@
     "rarity": 4,
     "price": [20],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 120,
       "LifeRegen": 5,
       "ManaMax": 100,
@@ -3768,7 +3772,7 @@
     "rarity": 3,
     "price": [7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -7,
       "Wisdom": -7,
       "LifeRegen": -9,
@@ -3783,7 +3787,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -1,
       "Faith": 1
     }
@@ -3793,7 +3797,7 @@
     "rarity": 1,
     "price": [50],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Health": 2,
       "Dexterity": -4,
@@ -3806,7 +3810,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Health": 1,
       "Dexterity": 4,
@@ -3819,7 +3823,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Health": 2,
       "Faith": 2
@@ -3830,7 +3834,7 @@
     "rarity": 1,
     "price": [-15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -1,
       "Health": -1,
       "Faith": -1
@@ -3841,7 +3845,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 1,
       "Precision": 1,
       "LifeRegen": 3,
@@ -3853,7 +3857,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Dexterity": 2,
       "Precision": 2,
@@ -3866,7 +3870,7 @@
     "rarity": 1,
     "price": [-17],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Intelligence": -2,
       "LifeRegen": -3,
@@ -3880,7 +3884,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -45,
       "Constitution": -1,
       "LifeRegen": 9,
@@ -3892,7 +3896,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "StaminaMax": 10,
       "Constitution": 1,
       "StaminaRegen": 4
@@ -3903,7 +3907,7 @@
     "rarity": 1,
     "price": [-7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Constitution": -2,
       "Health": -2,
@@ -3922,7 +3926,7 @@
     "rarity": 3,
     "price": [-47],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Constitution": -3,
       "Health": -3,
@@ -3942,7 +3946,7 @@
     "rarity": 3,
     "price": [66],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 40,
       "ShieldLeechPercentage": 10
     }
@@ -3952,7 +3956,7 @@
     "rarity": 4,
     "price": [99],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -7,
       "ManaRegen": -5,
       "ShieldMax": 125,
@@ -3965,7 +3969,7 @@
     "rarity": 3,
     "price": [50],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 75,
       "ShieldRegen": 1
     }
@@ -3975,7 +3979,7 @@
     "rarity": 3,
     "price": [66],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -5,
       "ShieldMax": 35,
       "ShieldLeechPercentage": 15
@@ -3986,7 +3990,7 @@
     "rarity": 2,
     "price": [22],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 8,
       "Wisdom": 4,
       "Faith": -3
@@ -3997,7 +4001,7 @@
     "rarity": 2,
     "price": [22],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 4,
       "Dexterity": 9,
       "Intelligence": -2
@@ -4008,7 +4012,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 4
     }
@@ -4018,7 +4022,7 @@
     "rarity": 1,
     "price": [-15],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Dexterity": 5,
       "Precision": -4
@@ -4029,7 +4033,7 @@
     "rarity": 2,
     "price": [15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -250,
       "LifeRegen": 60
     }
@@ -4039,7 +4043,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -60,
       "Health": 1,
       "Dexterity": 3,
@@ -4053,7 +4057,7 @@
     "rarity": 1,
     "price": [15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -40,
       "Defense": -3,
       "Velocity": -15,
@@ -4065,7 +4069,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -7,
       "Constitution": -4,
       "Intelligence": 11,
@@ -4077,7 +4081,7 @@
     "rarity": 2,
     "price": [35],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 35,
       "Strength": 2,
       "Constitution": 3,
@@ -4089,7 +4093,7 @@
     "rarity": 2,
     "price": [17],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 15
     }
   },
@@ -4098,7 +4102,7 @@
     "rarity": 2,
     "price": [17],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": 15
     }
   },
@@ -4107,7 +4111,7 @@
     "rarity": 2,
     "price": [-15],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 5,
       "Wisdom": -7,
       "Faith": 3,
@@ -4120,7 +4124,7 @@
     "rarity": 2,
     "price": [16],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 7,
       "Faith": -4,
       "PhysicalDamageBonus": 2,
@@ -4134,7 +4138,7 @@
     "rarity": 2,
     "price": [-22],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -2,
       "Health": -2,
       "Defense": -3,
@@ -4146,7 +4150,7 @@
     "rarity": 1,
     "price": [11],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "Constitution": 1
     }
@@ -4156,7 +4160,7 @@
     "rarity": 2,
     "price": [8],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Dexterity": 2,
       "Velocity": 5
@@ -4167,7 +4171,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Constitution": 2,
       "Defense": 2
@@ -4178,7 +4182,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Dexterity": 2,
       "Wisdom": 2
@@ -4189,7 +4193,7 @@
     "rarity": 2,
     "price": [18],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 2,
       "Health": 2,
@@ -4207,7 +4211,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 3,
       "Defense": 2,
@@ -4219,7 +4223,7 @@
     "rarity": 3,
     "price": [17],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -3,
       "PhysicalDamageBonus": -7,
       "MagicalDamageBonus": -7,
@@ -4232,7 +4236,7 @@
     "rarity": 1,
     "price": [9],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Defense": 2,
       "Intelligence": 1
@@ -4243,7 +4247,7 @@
     "rarity": 2,
     "price": [11],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 3,
       "Health": 2,
       "Dexterity": 6,
@@ -4255,7 +4259,7 @@
     "rarity": 2,
     "price": [25],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Wisdom": 6,
       "Intelligence": 3
@@ -4266,7 +4270,7 @@
     "rarity": 3,
     "price": [40],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 75,
       "Health": 5,
       "Wisdom": 5,
@@ -4280,7 +4284,7 @@
     "rarity": 2,
     "price": [8],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 2,
       "Defense": 3,
@@ -4295,7 +4299,7 @@
     "rarity": 1,
     "price": [16],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 3,
       "CriticalProbabilityPerThousandHit": 10,
       "CriticalMultiplierPercentageBonus": 5,
@@ -4307,7 +4311,7 @@
     "rarity": 2,
     "price": [16],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 45,
       "ManaRegen": 4,
       "MagicalDamageBonus": 5,
@@ -4320,7 +4324,7 @@
     "rarity": 3,
     "price": [40],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 60,
       "Faith": 10,
       "ManaRegen": 7,
@@ -4333,7 +4337,7 @@
     "rarity": 2,
     "price": [25],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Dexterity": 2,
       "Precision": 2,
@@ -4348,7 +4352,7 @@
     "rarity": 3,
     "price": [35],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -130,
       "Strength": 2,
       "Constitution": 4,
@@ -4368,7 +4372,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Precision": -2,
       "PhysicalProbabilityPerThousandAvoid": 15,
@@ -4383,7 +4387,7 @@
     "rarity": 2,
     "price": [10],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 5
     }
   },
@@ -4392,7 +4396,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 3
     }
   },
@@ -4401,7 +4405,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Defense": 1,
@@ -4414,7 +4418,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Intelligence": 1,
       "Wisdom": 2,
@@ -4426,7 +4430,7 @@
     "rarity": 3,
     "price": [65],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 250
     }
   },
@@ -4435,7 +4439,7 @@
     "rarity": 3,
     "price": [7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 35,
       "ShieldRegen": 8,
       "MagicalDamageBonus": 5,
@@ -4451,7 +4455,7 @@
     "rarity": 2,
     "price": [57],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 65,
       "ShieldRegen": 6,
       "Faith": 1
@@ -4462,7 +4466,7 @@
     "rarity": 2,
     "price": [15],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 37,
       "ShieldRegen": 10,
       "Dexterity": -3,
@@ -4474,7 +4478,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 10,
       "ShieldLeechPercentage": 3
     }
@@ -4484,7 +4488,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 10,
       "ShieldLeechPercentage": 2,
       "ReflectionDamagePercentage": 1
@@ -4495,7 +4499,7 @@
     "rarity": 3,
     "price": [23],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 6,
       "Intelligence": 4,
       "LifeRegen": 4,
@@ -4507,7 +4511,7 @@
     "rarity": 3,
     "price": [-40],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": -10,
       "PhysicalProbabilityPerThousandHit": -100,
       "MagicalProbabilityPerThousandHit": -100,
@@ -4522,7 +4526,7 @@
     "rarity": 4,
     "price": [33],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 8,
       "Dexterity": 4,
       "PhysicalProbabilityPerThousandHit": 120,
@@ -4538,7 +4542,7 @@
     "rarity": 2,
     "price": [24],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 7,
       "Defense": 5,
       "Health": 2,
@@ -4550,7 +4554,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 5,
       "Intelligence": 2,
       "Wisdom": 3,
@@ -4563,7 +4567,7 @@
     "rarity": 4,
     "price": [-34],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -5,
       "MagicalDamageBonus": -15,
       "MagicalDamageReduction": 11,
@@ -4576,7 +4580,7 @@
     "rarity": 1,
     "price": [11],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Wisdom": 4
     }
@@ -4586,7 +4590,7 @@
     "rarity": 3,
     "price": [33],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Intelligence": 2,
       "Wisdom": 8,
@@ -4598,7 +4602,7 @@
     "rarity": 1,
     "price": [-17],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Constitution": -1,
       "Health": -1,
@@ -4614,7 +4618,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 14,
       "Constitution": 7,
       "Defense": 9,
@@ -4626,7 +4630,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 30
     }
   },
@@ -4635,7 +4639,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 30
     }
   },
@@ -4644,7 +4648,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 30
     }
   },
@@ -4653,7 +4657,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 30
     }
   },
@@ -4662,7 +4666,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 30
     }
   },
@@ -4671,7 +4675,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 30
     }
   },
@@ -4680,7 +4684,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 30
     }
   },
@@ -4689,7 +4693,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 30
     }
   },
@@ -4698,7 +4702,7 @@
     "rarity": 5,
     "price": [100],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 30
     }
   },
@@ -4706,8 +4710,8 @@
     "name": "of Anima Shielding",
     "rarity": 5,
     "price": [77],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Incantation",
+    "attributesModifiers": {
       "Strength": -5,
       "Constitution": -5,
       "Health": -5,
@@ -4726,7 +4730,7 @@
     "rarity": 1,
     "price": [-8],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "Precision": -2,
       "Intelligence": -1,
@@ -4738,7 +4742,7 @@
     "rarity": 3,
     "price": [37],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -350,
       "ManaMax": -150,
       "Defense": -20,
@@ -4754,7 +4758,7 @@
     "rarity": 3,
     "price": [40],
     "category": "Intantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 200,
       "ManaMax": 100,
       "PhysicalDamageReduction": 10,
@@ -4769,7 +4773,7 @@
     "price": [-8],
     "description": "Death cleans away all sufferings. Now answer me: why am I painless?",
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "Precision": -2,
       "Intelligence": -1,
@@ -4781,7 +4785,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 25,
       "Health": 1
     }
@@ -4791,7 +4795,7 @@
     "rarity": 4,
     "price": [54],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": -25,
       "Dexterity": -4,
       "Defense": 5,
@@ -4803,8 +4807,8 @@
     "name": "of Near Death Experience",
     "rarity": 4,
     "price": [-80],
-    "category": "Misc",
-    "attributeModifiers": {
+    "category": "Incarnation",
+    "attributesModifiers": {
       "Velocity": -10,
       "Constitution": -5,
       "Health": -3,
@@ -4819,7 +4823,7 @@
     "price": [-80],
     "description": "It fights loneliness for a while, then your will power.\nIt's the same for bandits.",
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -3,
       "ManaMax": -35,
       "LifeRegen": 5,
@@ -4837,7 +4841,7 @@
     "price": [12],
     "description": "It makes you fast, but it burns energies.",
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -75,
       "ManaMax": -40,
       "LifeRegen": -5,
@@ -4861,7 +4865,7 @@
     "price": [-17],
     "description": "Do you feel the weight of your house on your shoulder? Wasn't what you've desired, was it?.",
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 75,
       "Velocity": -25,
       "VelocityAttackStrikePercentage": 15,
@@ -4877,7 +4881,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 5,
       "Intelligence": 1
     }
@@ -4887,7 +4891,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Dexterity": -3,
       "Constitution": 6,
@@ -4899,7 +4903,7 @@
     "rarity": 1,
     "price": [-6],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -4,
       "Constitution": 4
     }
@@ -4909,7 +4913,7 @@
     "rarity": 1,
     "price": [20],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 3,
       "Luck": 1
     }
@@ -4919,7 +4923,7 @@
     "rarity": 3,
     "price": [27],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Wisdom": 7,
       "Precision": 4,
@@ -4931,7 +4935,7 @@
     "rarity": 4,
     "price": [67],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -7,
       "Constitution": 5,
       "Health": 15,
@@ -4945,7 +4949,7 @@
     "rarity": 1,
     "price": [-18],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "VelocityAttackStrikePercentage": -15
     }
@@ -4955,7 +4959,7 @@
     "rarity": 1,
     "price": [-18],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -3,
       "VelocitySpellCastPercentage": -15
     }
@@ -4965,7 +4969,7 @@
     "rarity": 2,
     "price": [-23],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -2,
       "Constitution": -6,
       "Defense": -3
@@ -4976,7 +4980,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 3,
       "ShieldMax": 15,
       "ShieldRegen": 1
@@ -4987,7 +4991,7 @@
     "rarity": 4,
     "price": [58],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 8,
       "ShieldMax": 130,
       "ShieldRegen": 17
@@ -4998,7 +5002,7 @@
     "rarity": 4,
     "price": [50],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 5,
       "Constitution": 5,
       "Defense": 5,
@@ -5011,7 +5015,7 @@
     "rarity": 1,
     "price": [-5],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -3,
       "Luck": -1
     }
@@ -5021,7 +5025,7 @@
     "rarity": 2,
     "price": [14],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -10,
       "Wisdom": 8,
       "Health": 6,
@@ -5035,7 +5039,7 @@
     "rarity": 1,
     "price": [-7],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -5
     }
   },
@@ -5044,7 +5048,7 @@
     "rarity": 2,
     "price": [-18],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Health": -3,
       "Constitution": -2,
@@ -5058,7 +5062,7 @@
     "rarity": 3,
     "price": [20],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 15,
       "ManaRegen": 15,
       "PhysicalDamageBonus": 10,
@@ -5072,7 +5076,7 @@
     "rarity": 3,
     "price": [50],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 5,
       "ManaRegen": 5,
       "PhysicalDamageBonus": 15,
@@ -5086,7 +5090,7 @@
     "rarity": 2,
     "price": [10],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": -5,
       "MagicalDamageReduction": -5,
       "LifeLeechPercentage": 15,
@@ -5098,7 +5102,7 @@
     "rarity": 4,
     "price": [75],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 8,
       "Constitution": 3,
       "Intelligence": 2,
@@ -5112,7 +5116,7 @@
     "rarity": 1,
     "price": [-13],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": -5
     }
   },
@@ -5121,7 +5125,7 @@
     "rarity": 1,
     "price": [16],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 5,
       "Precision": 5,
       "Faith": -4
@@ -5132,7 +5136,7 @@
     "rarity": 1,
     "price": [14],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Constitution": 4,
       "Faith": -3
@@ -5143,7 +5147,7 @@
     "rarity": 1,
     "price": [13],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 5,
       "Wisdom": 1
     }
@@ -5153,7 +5157,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Health": 2,
       "Faith": 4,
@@ -5166,7 +5170,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 3
     }
   },
@@ -5175,7 +5179,7 @@
     "rarity": 3,
     "price": [21],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -3,
       "Precision": -3,
       "ManaRegen": -2,
@@ -5190,7 +5194,7 @@
     "rarity": 1,
     "price": [-9],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -2,
       "Precision": -2,
       "Health": -1,
@@ -5202,7 +5206,7 @@
     "rarity": 2,
     "price": [-11],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -2,
       "Precision": -2,
       "PhysicalDamageBonus": 3,
@@ -5217,7 +5221,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 10
     }
   },
@@ -5226,7 +5230,7 @@
     "rarity": 4,
     "price": [70],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -150,
       "ManaRegen": -10,
       "ShieldMax": 80,
@@ -5240,7 +5244,7 @@
     "rarity": 4,
     "price": [75],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -200,
       "ManaRegen": -13,
       "ShieldMax": 300,
@@ -5254,7 +5258,7 @@
     "rarity": 2,
     "price": [-33],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -3,
       "Faith": -7,
       "PhysicalProbabilityPerThousandHit": -13,
@@ -5269,7 +5273,7 @@
     "rarity": 4,
     "price": [7],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 3,
       "Faith": -13,
       "PhysicalProbabilityPerThousandHit": 15,
@@ -5283,7 +5287,7 @@
     "rarity": 2,
     "price": [13],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Dexterity": -2,
       "Precision": 8,
@@ -5296,7 +5300,7 @@
     "rarity": 4,
     "price": [37],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Dexterity": -7,
       "Precision": 15,
@@ -5314,7 +5318,7 @@
     "rarity": 4,
     "price": [20],
     "category": "Focusing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": -25,
       "MagicalDamageBonus": 35,
       "MagicalDamageReduction": -25,
@@ -5326,7 +5330,7 @@
     "rarity": 2,
     "price": [18],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 35,
       "ManaRegen": -10
     }
@@ -5339,7 +5343,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Constitution": -2
 		}
@@ -5351,7 +5355,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Health": -2
 		}
@@ -5363,7 +5367,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Defense": -2
 		}
@@ -5375,7 +5379,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Dexterity": -2
 		}
@@ -5387,7 +5391,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Precision": -2
 		}
@@ -5399,7 +5403,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Intelligence": -2
 		}
@@ -5411,7 +5415,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Wisdom": -2
 		}
@@ -5423,7 +5427,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Strength": 7,
 			"Faith": -2
 		}
@@ -5435,7 +5439,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Strength": -2
 		}
@@ -5447,7 +5451,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Health": -2
 		}
@@ -5459,7 +5463,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Defense": -2
 		}
@@ -5471,7 +5475,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Dexterity": -2
 		}
@@ -5483,7 +5487,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Precision": -2
 		}
@@ -5495,7 +5499,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Intelligence": -2
 		}
@@ -5507,7 +5511,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Wisdom": -2
 		}
@@ -5519,7 +5523,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Constitution": 7,
 			"Faith": -2
 		}
@@ -5531,7 +5535,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Strength": -2
 		}
@@ -5543,7 +5547,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Constitution": -2
 		}
@@ -5555,7 +5559,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Defense": -2
 		}
@@ -5567,7 +5571,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Dexterity": -2
 		}
@@ -5579,7 +5583,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Precision": -2
 		}
@@ -5591,7 +5595,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Intelligence": -2
 		}
@@ -5603,7 +5607,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Wisdom": -2
 		}
@@ -5615,7 +5619,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Health": 7,
 			"Faith": -2
 		}
@@ -5627,7 +5631,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Strength": -2
 		}
@@ -5639,7 +5643,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Constitution": -2
 		}
@@ -5651,7 +5655,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Health": -2
 		}
@@ -5663,7 +5667,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Dexterity": -2
 		}
@@ -5675,7 +5679,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Precision": -2
 		}
@@ -5687,7 +5691,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Intelligence": -2
 		}
@@ -5699,7 +5703,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Wisdom": -2
 		}
@@ -5711,7 +5715,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Defense": 7,
 			"Faith": -2
 		}
@@ -5723,7 +5727,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Strength": -2
 		}
@@ -5735,7 +5739,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Constitution": -2
 		}
@@ -5747,7 +5751,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Health": -2
 		}
@@ -5759,7 +5763,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Defense": -2
 		}
@@ -5771,7 +5775,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Precision": -2
 		}
@@ -5783,7 +5787,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Intelligence": -2
 		}
@@ -5795,7 +5799,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Wisdom": -2
 		}
@@ -5807,7 +5811,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Dexterity": 7,
 			"Faith": -2
 		}
@@ -5819,7 +5823,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Strength": -2
 		}
@@ -5831,7 +5835,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Constitution": -2
 		}
@@ -5843,7 +5847,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Health": -2
 		}
@@ -5855,7 +5859,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Defense": -2
 		}
@@ -5867,7 +5871,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Dexterity": -2
 		}
@@ -5879,7 +5883,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Intelligence": -2
 		}
@@ -5891,7 +5895,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Wisdom": -2
 		}
@@ -5903,7 +5907,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Precision": 7,
 			"Faith": -2
 		}
@@ -5915,7 +5919,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Strength": -2
 		}
@@ -5927,7 +5931,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Constitution": -2
 		}
@@ -5939,7 +5943,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Health": -2
 		}
@@ -5951,7 +5955,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Defense": -2
 		}
@@ -5963,7 +5967,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Dexterity": -2
 		}
@@ -5975,7 +5979,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Precision": -2
 		}
@@ -5987,7 +5991,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Wisdom": -2
 		}
@@ -5999,7 +6003,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Intelligence": 7,
 			"Faith": -2
 		}
@@ -6011,7 +6015,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Strength": -2
 		}
@@ -6023,7 +6027,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Constitution": -2
 		}
@@ -6035,7 +6039,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Health": -2
 		}
@@ -6047,7 +6051,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Defense": -2
 		}
@@ -6059,7 +6063,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Dexterity": -2
 		}
@@ -6071,7 +6075,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Precision": -2
 		}
@@ -6083,7 +6087,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Intelligence": -2
 		}
@@ -6095,7 +6099,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Wisdom": 7,
 			"Faith": -2
 		}
@@ -6107,7 +6111,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Strength": -2
 		}
@@ -6119,7 +6123,7 @@
 			8
 		],
 		"category": "Tribe",
-			"attributeModifiers": {
+			"attributesModifiers": {
 			"Faith": 7,
 			"Constitution": -2
 		}
@@ -6131,7 +6135,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Health": -2
 		}
@@ -6143,7 +6147,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Defense": -2
 		}
@@ -6155,7 +6159,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Dexterity": -2
 		}
@@ -6167,7 +6171,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Precision": -2
 		}
@@ -6179,7 +6183,7 @@
 			8
 		],
 		"category": "Tribe",
-			"attributeModifiers": {
+			"attributesModifiers": {
 			"Faith": 7,
 			"Intelligence": -2
 		}
@@ -6191,7 +6195,7 @@
 			8
 		],
 		"category": "Tribe",
-		"attributeModifiers": {
+		"attributesModifiers": {
 			"Faith": 7,
 			"Wisdom": -2
 		}
@@ -6202,7 +6206,7 @@
     "rarity": 2,
     "price": [17],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "LifeRegen": 3,
       "StaminaRegen": 2
@@ -6213,7 +6217,7 @@
     "rarity": 3,
     "price": [25],
     "category": "CharacterClass",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 5,
       "LifeMax": 20,
       "LifeRegen": 5,
@@ -6228,7 +6232,7 @@
     "rarity": 4,
     "price": [50],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -35,
       "ManaRegen": -6,
       "ShieldMax": 75,
@@ -6241,7 +6245,7 @@
     "rarity": 3,
     "price": [30],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": -6,
       "ShieldMax": 180,
       "ShieldRegen": 4,
@@ -6253,7 +6257,7 @@
     "rarity": 4,
     "price": [45],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -75,
       "LifeRegen": -12,
       "ShieldMax": 135,
@@ -6268,12 +6272,25 @@
     "rarity": 2,
     "price": [27],
     "category": "Incantation",
-    "attributeModifiers": {
-      "LifeMax": -25,
+    "attributesModifiers": {
+      "LifeMax": -75,
       "LifeRegen": -3,
-      "ShieldMax": 45,
+      "ShieldMax": 65,
       "ShieldRegen": 4,
       "ShieldDelayReduction": 150
+    }
+  },
+  {
+    "name": "of Magnetic Blood",
+    "rarity": 3,
+    "price": [34],
+    "category": "Incantation",
+    "attributesModifiers": {
+      "LifeMax": -150,
+      "LifeRegen": -7,
+      "ShieldMax": 120,
+      "ShieldRegen": 8,
+      "ShieldDelayReduction": 500
     }
   },
   {
@@ -6281,7 +6298,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 35,
       "ShieldRegen": 2,
       "ShieldDelayReduction": 100,
@@ -6294,7 +6311,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 1,
       "ManaMax": 5,
       "StaminaMax": 5,
@@ -6309,7 +6326,7 @@
     "rarity": 1,
     "price": [3],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -15,
       "ManaMax": -5,
       "StaminaMax": -10,
@@ -6324,7 +6341,7 @@
     "rarity": 2,
     "price": [45],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Health": 1,
@@ -6341,7 +6358,7 @@
     "rarity": 2,
     "price": [38],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 7,
       "ShieldMax": 20,
       "ShieldRegen": 1,
@@ -6354,7 +6371,7 @@
     "rarity": 3,
     "price": [70],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -50,
       "ManaRegen": -10,
       "ShieldMax": 200,
@@ -6367,7 +6384,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Wisdom": 2,
@@ -6379,7 +6396,7 @@
     "rarity": 2,
     "price": [40],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 4,
       "Luck": 2,
       "ManaMax": 25,
@@ -6391,7 +6408,7 @@
     "rarity": 3,
     "price": [32],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 5,
       "Dexterity": 3,
       "Precision": 3,
@@ -6406,7 +6423,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -5,
       "MagicalDamageBonus": 5,
       "MagicalDamageMultiplierPercentageBonus": 5
@@ -6417,7 +6434,7 @@
     "rarity": 3,
     "price": [100],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 10,
       "Luck": 10
     }
@@ -6427,7 +6444,7 @@
     "rarity": 3,
     "price": [80],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 75,
       "LifeRegen": 5
     }
@@ -6437,7 +6454,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 15,
       "LifeRegen": 1,
       "StaminaMax": 15
@@ -6448,7 +6465,7 @@
     "rarity": 1,
     "price": [7],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Health": 2,
       "Defense": 1
@@ -6459,7 +6476,7 @@
     "rarity": 3,
     "price": [13],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 3,
       "Defense": 15,
       "Dexterity": 3,
@@ -6471,7 +6488,7 @@
     "rarity": 3,
     "price": [35],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -5,
       "Dexterity": 5,
       "Precision": 5,
@@ -6488,7 +6505,7 @@
     "rarity": 4,
     "price": [50],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 10,
       "Precision": 10,
       "Velocity": 25,
@@ -6508,11 +6525,15 @@
     "rarity": 2,
     "price": [23],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": -3,
-      "Dexterity": 5,
+      "Precision": 2,
+      "Dexterity": 3,
       "Intelligence": 8,
-      "Schivata": 10,
+      "Velocity": -5,
+      "PhysicalProbabilityPerThousandAvoid": 50,
+      "MagicalProbabilityPerThousandAvoid": 50,
+      "CriticalProbabilityPerThousandAvoid": 50,
       "CriticalProbabilityPerThousandHit": 25
     }
   },
@@ -6521,7 +6542,7 @@
     "rarity": 2,
     "price": [18],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 5,
       "Precision": 3,
       "Velocity": 10,
@@ -6534,7 +6555,7 @@
     "rarity": 2,
     "price": [31],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 9,
       "Intelligence": 2
     }
@@ -6544,7 +6565,7 @@
     "rarity": 2,
     "price": [28],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 13
     }
   },
@@ -6553,7 +6574,7 @@
     "rarity": 2,
     "price": [-13],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 13,
       "Wisdom": -8,
       "Faith": -8,
@@ -6566,7 +6587,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Wisdom": -2,
       "Luck": 3
@@ -6577,7 +6598,7 @@
     "rarity": 1,
     "price": [-7],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": -3,
       "Dexterity": -3,
       "MagicalDamageBonus": 4
@@ -6588,7 +6609,7 @@
     "rarity": 2,
     "price": [-13],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": -4,
       "PhysicalDamageReduction": -4,
       "MagicalDamageReduction": -4
@@ -6599,7 +6620,7 @@
     "rarity": 2,
     "price": [-24],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": -10,
       "PhysicalDamageReduction": -4,
       "MagicalDamageReduction": -4
@@ -6610,7 +6631,7 @@
     "rarity": 3,
     "price": [28],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 4,
       "Health": -3,
@@ -6630,7 +6651,7 @@
     "rarity": 2,
     "price": [28],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 12,
       "Intelligence": 4
     }
@@ -6640,7 +6661,7 @@
     "rarity": 2,
     "price": [3],
     "category": "Elemental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 2,
       "Health": -3,
@@ -6658,7 +6679,7 @@
     "rarity": 3,
     "price": [28],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Precision": 7,
       "Dexterity": 7,
@@ -6672,7 +6693,7 @@
     "rarity": 2,
     "price": [28],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Precision": 6,
       "Dexterity": 6,
@@ -6686,7 +6707,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Dexterity": 2,
       "Precision": 2,
@@ -6699,7 +6720,7 @@
     "rarity": 1,
     "price": [13],
     "category": "Misc",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 5,
       "Luck": 1
     }
@@ -6709,7 +6730,7 @@
     "rarity": 2,
     "price": [17],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Precision": 7,
       "Constitution": 1
@@ -6720,7 +6741,7 @@
     "rarity": 1,
     "price": [14],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 5,
       "PhysicalDamageBonus": 2,
       "PhysicalDamageMultiplierPercentageBonus": 2
@@ -6731,14 +6752,14 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 10,
       "Intelligence": -4,
       "Wisdom": 2,
       "LifeMax": 100,
       "ShieldMax": 80,
-      "ShieldRegrn": 5,
+      "ShieldRegen": 5,
       "Luck": 2
     }
   },
@@ -6747,7 +6768,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 5,
       "Strength": 2,
       "Velocity": 12,
@@ -6765,7 +6786,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Dexterity": 5,
       "Precision": 5,
@@ -6783,7 +6804,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 7,
       "Faith": 3,
@@ -6801,7 +6822,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Precision": 3,
       "Faith": 2,
@@ -6819,7 +6840,7 @@
     "rarity": 4,
     "price": [41],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 6,
       "Precision": 6,
       "Faith": 2,
@@ -6838,7 +6859,7 @@
     "rarity": 1,
     "price": [7],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 5,
       "Intelligence": 1
     }
@@ -6848,7 +6869,7 @@
     "rarity": 1,
     "price": [10],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Faith": 1,
       "Luck": 5
@@ -6859,7 +6880,7 @@
     "rarity": 3,
     "price": [128],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Faith": 3,
       "Luck": 10
@@ -6870,7 +6891,7 @@
     "rarity": 4,
     "price": [256],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 5,
       "Faith": 5,
       "Luck": 20
@@ -6881,7 +6902,7 @@
     "rarity": 5,
     "price": [1024],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 25,
       "Faith": 25,
       "Luck": 50
@@ -6892,7 +6913,7 @@
     "rarity": 5,
     "price": [400],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 500,
       "ShieldRegen": 25,
       "ShieldDelayReduction": 2000,
@@ -6907,7 +6928,7 @@
     "rarity": 4,
     "price": [170],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": -15,
       "PhysicalDamageMultiplierPercentageBonus": 20,
       "PhysicalDamageMultiplierPercentageReduction": 20,
@@ -6924,7 +6945,7 @@
     "rarity": 2,
     "price": [23],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -40,
       "LifeRegen": -25,
       "PhysicalDamageBonus": 8,
@@ -6942,7 +6963,7 @@
     "rarity": 2,
     "price": [17],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Precision": 5,
       "Dexterity": 5,
@@ -6961,7 +6982,7 @@
     "rarity": 3,
     "price": [68],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 15,
       "Luck": 12
     }
@@ -6971,7 +6992,7 @@
     "rarity": 3,
     "price": [68],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 15,
       "Luck": 12
     }
@@ -6981,10 +7002,21 @@
     "rarity": 1,
     "price": [8],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 2,
       "Dexterity": 2,
       "Defense": 2
+    }
+  },
+  {
+    "name": "of Quick Hand",
+    "rarity": 1,
+    "price": [6],
+    "category": "WorkersRolesRelated",
+    "attributesModifiers": {
+      "Precision": 4,
+      "Dexterity": 1,
+      "Intelligence": 1
     }
   },
   {
@@ -6992,7 +7024,7 @@
     "rarity": 3,
     "price": [37],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Precision": 8,
       "Dexterity": 3,
@@ -7012,7 +7044,7 @@
     "rarity": 2,
     "price": [7],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 6,
       "Constitution": 5
     }
@@ -7022,7 +7054,7 @@
     "rarity": 3,
     "price": [36],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "ShieldMax": 110,
       "ShieldRegen": 4,
@@ -7034,7 +7066,7 @@
     "rarity": 3,
     "price": [64],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 3,
       "ShieldMax": 30,
       "ShieldRegen": 8,
@@ -7046,7 +7078,7 @@
     "rarity": 3,
     "price": [82],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 7
     }
   },
@@ -7055,7 +7087,7 @@
     "rarity": 1,
     "price": [12],
     "category": "Incarnation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Dexterity": 3,
@@ -7067,7 +7099,7 @@
     "rarity": 2,
     "price": [27],
     "category": "Environmental",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Health": 1,
       "Dexterity": 4,
@@ -7081,7 +7113,7 @@
     "rarity": 3,
     "price": [82],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 7,
       "Dexterity": 3,
       "Wisdom": 2,
@@ -7094,7 +7126,7 @@
     "rarity": 4,
     "price": [57],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 3,
       "Dexterity": 5,
       "Defense": 12,
@@ -7111,7 +7143,7 @@
     "price": [33],
     "description": "Inspire the wielder with an archaic, albeit a bit hardly controllable, power.",
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 14,
       "Constitution": 6,
       "Dexterity": -4
@@ -7122,7 +7154,7 @@
     "rarity": 1,
     "price": [4],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Dexterity": 2,
       "Defense": 2
@@ -7133,7 +7165,7 @@
     "rarity": 2,
     "price": [20],
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "Luck": 3,
       "ManaRegen": 2,
@@ -7147,7 +7179,7 @@
     "price": [100],
     "description": "Of course it values a lot: it belonged to a Baron! They had an exquisite taste!",
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 5,
       "Luck": 3
     }
@@ -7157,7 +7189,7 @@
     "rarity": 3,
     "price": [37],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "Precision": 10,
       "Dexterity": 2,
@@ -7169,7 +7201,7 @@
     "rarity": 2,
     "price": [20],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Dexterity": 1,
       "Defense": 5,
@@ -7184,7 +7216,7 @@
     "rarity": 3,
     "price": [35],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 4,
       "Dexterity": 2,
       "Defense": 8,
@@ -7202,7 +7234,7 @@
     "price": [1],
     "description": "A name that sounds like a sneeze, but actually means 'Blessing' in an ancient language. For unkown reasons, it strengthens the senses and the instinct, but makes the wielder overwhelmingly more cautious.",
     "category": "Blessing",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Precision": 2,
       "Dexterity": 2,
@@ -7216,7 +7248,7 @@
     "price": [44],
     "description": "A very bright red gem that improves the physical attributes and instinct of the wielder.",
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Health": 3,
       "Precision": 4,
@@ -7229,7 +7261,7 @@
     "rarity": 3,
     "price": [52],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Precision": 2,
       "Dexterity": 3,
@@ -7246,7 +7278,7 @@
     "rarity": 1,
     "price": [17],
     "category": "Incantation",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -1,
       "Health": 2,
       "Constitution": 2,
@@ -7259,7 +7291,7 @@
     "rarity": 2,
     "price": [-16],
     "category": "Structural",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Constitution": -2,
       "Precision": -3,
@@ -7274,7 +7306,7 @@
     "rarity": 1,
     "price": [20],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 20,
       "ManaRegen": 1,
       "ShieldMax": 20,
@@ -7286,7 +7318,7 @@
     "rarity": 1,
     "price": [20],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 20,
       "LifeRegen": 1,
       "ShieldMax": 20,
@@ -7298,7 +7330,7 @@
     "rarity": 1,
     "price": [20],
     "category": "Coloring",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 20,
       "LifeRegen": 1,
       "ManaMax": 20,
@@ -7310,7 +7342,7 @@
     "rarity": 3,
     "price": [60],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 50,
       "ManaRegen": 3,
       "ShieldMax": 50,
@@ -7322,7 +7354,7 @@
     "rarity": 3,
     "price": [60],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 50,
       "LifeRegen": 3,
       "ShieldMax": 50,
@@ -7334,7 +7366,7 @@
     "rarity": 3,
     "price": [60],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 50,
       "LifeRegen": 3,
       "ManaMax": 50,
@@ -7346,7 +7378,7 @@
     "rarity": 3,
     "price": [60],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 3,
       "Health": 3,
@@ -7364,7 +7396,7 @@
     "rarity": 1,
     "price": [17],
     "category": "Runed",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,
       "Health": 1,
@@ -7381,7 +7413,7 @@
     "rarity": 1,
     "price": [13],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Precision": -2,
       "Faith": 1,
@@ -7395,7 +7427,7 @@
     "rarity": 1,
     "price": [6],
     "category": "Material",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Defense": 3,
       "PhysicalDamageReduction": 5,
@@ -7409,7 +7441,7 @@
     "rarity": 2,
     "price": [42],
     "category": "Refining",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 3,
       "ShieldMax": 40,
       "ShieldRegen": 4,
@@ -7422,7 +7454,7 @@
     "rarity": 1,
     "price": [8],
     "category": "Rune",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 30,
       "Health": 4
     }
@@ -7432,9 +7464,188 @@
     "rarity": 1,
     "price": [4],
     "category": "WorkersRolesRelated",
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "PhysicalDamageBonus": 10
+    }
+  },
+  {
+    "name": "Preserved",
+    "rarity": 1,
+    "price": [15],
+    "category": "Refining",
+    "attributesModifiers": {
+      "LifeMax": 25,
+      "ManaMax": 25,
+      "ShieldMax": 5,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "with Silk",
+    "rarity": 1,
+    "price": [11],
+    "category": "Material",
+    "attributesModifiers": {
+      "LifeMax": 10,
+      "ManaMax": 5,
+      "Health": 1,
+      "Dexterity": 1
+    }
+  },
+  {
+    "name": "White runed",
+    "rarity": 3,
+    "price": [23],
+    "category": "Rune",
+    "attributesModifiers": {
+      "Health": 2,
+      "Precision": 5,
+      "Dexterity": 5,
+      "Defense": 2,
+      "Faith": 4,
+      "VelocitySpellCastPercentage": -5,
+      "CostCastReductionPercentage": -5
+    }
+  },
+  {
+    "name": "Smoky",
+    "rarity": 1,
+    "price": [-7],
+    "category": "Refining",
+    "attributesModifiers": {
+      "Health": -2,
+      "Constitution": -3,
+      "Precision": 2,
+      "Defense": 3,
+      "Dexterity": 2
+    }
+  },
+  {
+    "name": "of the Smoke",
+    "rarity": 3,
+    "price": [70],
+    "category": "Incantation",
+    "attributesModifiers": {
+      "Health": -6,
+      "Constitution": -9,
+      "Precision": 4,
+      "Defense": 7,
+      "Dexterity": 20,
+      "Velocity": -20,
+      "PhysicalProbabilityPerThousandAvoid": 200,
+      "MagicalProbabilityPerThousandAvoid": 200,
+      "CriticalProbabilityPerThousandAvoid": 200
+    }
+  },
+  {
+    "name": "Navigator's",
+    "rarity": 3,
+    "price": [32],
+    "category": "WorkersRolesRelated",
+    "attributesModifiers": {
+      "Precision": 6,
+      "Dexterity": 1,
+      "Intelligence": 2,
+      "Wisdom": 4,
+      "Faith": 2
+    }
+  },
+  {
+    "name": "Nice",
+    "rarity": 1,
+    "price": [5],
+    "category": "Refining",
+    "attributesModifiers": {
+      "Health": 1,
+      "Faith": 1,
+      "LifeMax": 20,
+      "StaminaMax": 5
+    }
+  },
+  {
+    "name": "Burly",
+    "rarity": 1,
+    "price": [3],
+    "category": "Structural",
+    "attributesModifiers": {
+      "Strength": 2,
+      "Constitution": 3,
+      "Defense": 2,
+      "Dexterity": -1,
+      "Velocity": -10
+    }
+  },
+  {
+    "name": "Agile",
+    "rarity": 1,
+    "price": [3],
+    "category": "Structural",
+    "attributesModifiers": {
+      "Constitution": 1,
+      "Defense": 2,
+      "Dexterity": 3,
+      "Velocity": 5
+    }
+  },
+  {
+    "name": "Accurate",
+    "rarity": 2,
+    "price": [11],
+    "category": "Refining",
+    "attributesModifiers": {
+      "Defense": 1,
+      "Precision": 6,
+      "Dexterity": 2,
+      "VelocitySpellCastPercentage": 5,
+      "CostCastReductionPercentage": 5
+    }
+  },
+  {
+    "name": "of the Bookworm",
+    "rarity": 2,
+    "price": [13],
+    "category": "WorkersRolesRelated",
+    "attributesModifiers": {
+      "Health": 3,
+      "Wisdom": 7,
+      "Intelligence": 1
+    }
+  },
+  {
+    "name": "Rugged",
+    "rarity": 1,
+    "price": [5],
+    "category": "Structural",
+    "attributesModifiers": {
+      "Constitution": 3,
+      "Defense": 3
+    }
+  },
+  {
+    "name": "of Bones",
+    "rarity": 2,
+    "price": [5],
+    "category": "Structural",
+    "attributesModifiers": {
+      "Constitution": 5,
+      "Defense": 5,
+      "Faith": -8,
+      "ManaMax": 50,
+      "ManaRegen": 4,
+      "ShieldMax": 7,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "of the Lucky Cumbersome",
+    "rarity": 2,
+    "price": [1],
+    "category": "Structural",
+    "attributesModifiers": {
+      "Dexterity": -7,
+      "Precision": -5,
+      "Luck": 12
     }
   }
 ]

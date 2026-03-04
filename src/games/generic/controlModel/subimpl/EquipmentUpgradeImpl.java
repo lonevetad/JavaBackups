@@ -21,7 +21,7 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 		this.rarityIndex = rarityIndex;
 		this.name = name;
 		this.backMapAttrMods = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
-		this.attributeModifiers = backMapAttrMods.toSetValue(AttributeModification.KEY_EXTRACTOR);
+		this.attributesModifiers = backMapAttrMods.toSetValue(AttributeModification.KEY_EXTRACTOR);
 		this.description = null;
 		this.equipmentUpgradeCategory = null;
 	}
@@ -30,13 +30,13 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	protected String name, description;
 	protected EquipmentUpgradeCategory equipmentUpgradeCategory;
 	protected final MapTreeAVL<String, AttributeModification> backMapAttrMods;
-	protected final SortedSet<AttributeModification> attributeModifiers;
+	protected final SortedSet<AttributeModification> attributesModifiers;
 	protected EquipmentItem equipmentAssigned;
 	protected CurrencySet priceModifications;
 
 	@Override
-	public SortedSet<AttributeModification> getAttributeModifiers() {
-		return this.attributeModifiers;
+	public SortedSet<AttributeModification> getAttributesModifiers() {
+		return this.attributesModifiers;
 	}
 
 	@Override
@@ -112,19 +112,19 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 		return "\tEquipmentUpgradeImpl [\n\t\tname=" + name + ", rarityIndex=" + rarityIndex
 				+ ",\n\t\tpriceModifications=" + priceModifications
 				+ (this.description != null ? (",\n\t" + this.description) : "")//
-				+ ",\n\t\tattributeModifiers=" + attributeModifiersToString() + "]";
+				+ ",\n\t\tattributesModifiers=" + attributesModifiersToString() + "]";
 	}
 
-	public String attributeModifiersToString() {
+	public String attributesModifiersToString() {
 		StringBuilder sb;
-		if (attributeModifiers == null) {
+		if (attributesModifiers == null) {
 			return "null";
 		}
-		if (attributeModifiers.isEmpty()) {
+		if (attributesModifiers.isEmpty()) {
 			return "";
 		}
 		sb = new StringBuilder(16);
-		attributeModifiers.forEach(am -> sb.append("\n\t\t\t").append(am));
+		attributesModifiers.forEach(am -> sb.append("\n\t\t\t").append(am));
 		return sb.toString();
 	}
 

@@ -26,7 +26,7 @@ public class ARegenBonusPayingPrecisionBasedOnLifeMissing extends AbilityModifyi
 	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca, int level) {
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca, int level) {
 		int val, maxLife, missingLife;
 		AttributeModification[] ams;
 		ams = this.getAttributesToModify();

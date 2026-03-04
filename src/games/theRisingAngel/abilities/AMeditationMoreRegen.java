@@ -65,7 +65,9 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 	//
 
 	@Override
-	public void performAbility(GModality modality, int targetLevel) { super.performAbility(modality, this.level); }
+	public void performAbility(GModality modality, int targetLevel) {
+		super.performAbility(modality, this.level);
+	}
 
 	protected void resetLevelDependentStuffs() {
 		int val;
@@ -78,10 +80,14 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 	}
 
 	@Override
-	public long getTimeThreshold() { return timeThreshold; }
+	public long getTimeThreshold() {
+		return timeThreshold;
+	}
 
 	@Override
-	public List<String> getEventsWatching() { return getEventsWatching_MMR(); }
+	public List<String> getEventsWatching() {
+		return getEventsWatching_MMR();
+	}
 
 	@Override
 	public void act(GModality modality, int timeUnits) {
@@ -118,19 +124,24 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 		if (eventRelatedObject != getOwner())
 			return; // not related to me
 		// if modifiers are applied, then remove them
-		if (isActive) { removeAttributeModifications(); }
+		if (isActive) {
+			removeAttributeModifications();
+		}
 		resetAbility();
 		// TODO
 	}
 
 	@Override
-	public int getLevel() { return level; }
+	public int getLevel() {
+		return level;
+	}
 
 	@Override
-	public void setLevel(int level) {}
+	public void setLevel(int level) {
+	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int targetLevel) {
 		isActive = true;
 		applyAttributeModifications();

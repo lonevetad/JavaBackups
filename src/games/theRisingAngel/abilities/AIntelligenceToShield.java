@@ -39,7 +39,7 @@ public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime {
 	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int targetLevel) {
 		int intell;
 		intell = ca.getValue(AttributesTRAn.Intelligence);

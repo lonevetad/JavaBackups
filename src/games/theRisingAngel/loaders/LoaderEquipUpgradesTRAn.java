@@ -45,19 +45,22 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
 	// end COMBINATORIC GENERATION SETUP
 
-	public LoaderEquipUpgradesTRAn(GameObjectsProvider<IEquipmentUpgrade> objProvider) { super(objProvider); }
+	public LoaderEquipUpgradesTRAn(GameObjectsProvider<IEquipmentUpgrade> objProvider) {
+		super(objProvider);
+	}
 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {
 		int[] index = { 0 };
-//		JSONArray equipments;
+		// JSONArray equipments;
 		final LoaderEquipUpgradesTRAn thisLoader = this;
 
 		try {
-//			equipments = (JSONArray) JSONParser
-//					.parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT + "equipUpgrades.json");
-//
-//			equipments.forEach(
+			// equipments = (JSONArray) JSONParser
+			// .parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT +
+			// "equipUpgrades.json");
+			//
+			// equipments.forEach(
 
 			JSONParser.forEachInArray(//
 					JSONParser.charactersIteratorFrom(
@@ -72,7 +75,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 						factory.rarity = equipEquipJSON.getFieldValue("rarity").asInt();
 						factory.bonusPriceSell = equipEquipJSON.getFieldValue("price").asArrayInt();
 
-						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributeModifiers");
+						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributesModifiers");
 						attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()];
 						index[0] = 0;
 						attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {
@@ -90,7 +93,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
 		} catch (FileNotFoundException e) {
 			gc.getLogger().logException(e);
-//			e.printStackTrace();
+			// e.printStackTrace();
 			return LoadStatusResult.CriticalFail;
 		}
 
@@ -102,10 +105,10 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			rel = RELIGION_ALIGNMENT_CANON_ONLY ? new ReligionAlignment[] { ReligionAlignment.Canon }
 					: ReligionAlignment.values();
 
-//			for(Tribe tribe: TribesTRAn.ALL_TRIBES) {
-//				tribe.newEquipmentSet(null)
-//				thisLoader.saveObjectFactory(startPath, sc, null);
-//			}
+			// for(Tribe tribe: TribesTRAn.ALL_TRIBES) {
+			// tribe.newEquipmentSet(null)
+			// thisLoader.saveObjectFactory(startPath, sc, null);
+			// }
 			TribesTRAn.MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE.forEach((rarity, attrVariationForUpgrade) -> {
 				if (attrVariationForUpgrade.isCanBeEquipUpgrade()) {
 					for (ReligionAlignment religAlign : rel) {
@@ -132,9 +135,13 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			this.religionAlignment = religionAlignment;
 		}
 
-		public Tribe getTribe() { return tribe; }
+		public Tribe getTribe() {
+			return tribe;
+		}
 
-		public RaritiesTRAn getRarity() { return rarity; }
+		public RaritiesTRAn getRarity() {
+			return rarity;
+		}
 
 		@Override
 		public IEquipmentUpgrade newInstance(GModality gm) {
@@ -165,7 +172,8 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			rarity = eu.getRarityIndex();
 			curr = eu.getPricesModifications();
 			price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
-			attrMods = eu.getAttributeModifiers().toArray(new AttributeModification[eu.getAttributeModifiers().size()]);
+			attrMods = eu.getAttributesModifiers()
+					.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
 		}
 		l.add("name:" + name);
 		l.add("\trarity :" + rarity);
@@ -188,9 +196,9 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 	public static void main(String[] args) {
 		int size;
 		int[] rarities, priceStatistics;
-//		LoaderEquipUpgradeFromFile leuff;
-//		LinkedList<FactoryEquipUpgrade> factories;
-//		FactoryEquipUpgrade fe;
+		// LoaderEquipUpgradeFromFile leuff;
+		// LinkedList<FactoryEquipUpgrade> factories;
+		// FactoryEquipUpgrade fe;
 		LoaderEquipUpgradesTRAn loader;
 		EquipmentUpgradesProvider equipUpgradeProvider;
 		Map<String, FactoryObjGModalityBased<IEquipmentUpgrade>> allObjectFactories;
@@ -267,8 +275,8 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 				curr = eu.getPricesModifications();
 				price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
 
-				attrMods = eu.getAttributeModifiers()
-						.toArray(new AttributeModification[eu.getAttributeModifiers().size()]);
+				attrMods = eu.getAttributesModifiers()
+						.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
 			}
 
 			rarities[rarity]++;

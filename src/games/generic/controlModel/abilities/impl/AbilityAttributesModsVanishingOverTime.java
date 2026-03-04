@@ -32,7 +32,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	public AbilityAttributesModsVanishingOverTime(GModality gameModality, String name,
 			AttributeIdentifier[] attributesModified) {
 		super(gameModality, name, attributesModified);
-//		setAttributesToModify(attributesModified);
+		// setAttributesToModify(attributesModified);
 		initAAMVOT();
 	}
 
@@ -57,7 +57,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	 */
 	protected int accumulatedTimePhaseAbililty, vanishUpdateTimeMacrounits;
 	protected int[] newModifiersAmountOnVanishing;
-//	protected int abilityEffectDuration, vanishingEffectDuration;
+	// protected int abilityEffectDuration, vanishingEffectDuration;
 	protected PhaseAbilityVanishing phaseAbilityCurrent;
 	protected List<String> eventsWatching;
 	/**
@@ -78,7 +78,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 		this.eventsReceivedBeweenUpdateds = 0;
 		this.accumulatedTimePhaseAbililty = 0;
 		this.vanishUpdateTimeMacrounits = 0;
-//		this.modificationsAppliedAtLeastOnce = false;
+		// this.modificationsAppliedAtLeastOnce = false;
 		this.maxAmountStackedTriggerCharges = this.stackedTriggerCharges = 0;
 	}
 
@@ -87,22 +87,32 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	// TODO GETTER
 
 	@Override
-	public List<String> getEventsWatching() { return eventsWatching; }
+	public List<String> getEventsWatching() {
+		return eventsWatching;
+	}
 
 	@Override
-	public boolean isCumulative() { return isCumulative; }
+	public boolean isCumulative() {
+		return isCumulative;
+	}
 
 	@Override
-	public PhaseAbilityVanishing getPhaseAbilityCurrent() { return phaseAbilityCurrent; }
+	public PhaseAbilityVanishing getPhaseAbilityCurrent() {
+		return phaseAbilityCurrent;
+	}
 
 	@Override
-	public int getAccumulatedTimePhaseAbililty() { return accumulatedTimePhaseAbililty; }
+	public int getAccumulatedTimePhaseAbililty() {
+		return accumulatedTimePhaseAbililty;
+	}
 
 	/**
 	 * Returns the amount of cumulated effect activation, if any. See
 	 * {@link #getMaxAmountStackedTriggerCharges()}.
 	 */
-	public int getStackedTriggerCharges() { return stackedTriggerCharges; }
+	public int getStackedTriggerCharges() {
+		return stackedTriggerCharges;
+	}
 
 	/**
 	 * If this ability {@link #isCumulative()}, then the ability can stack and the
@@ -117,7 +127,9 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	 * this value o <code>1</code> makes the same effect of setting the flag to
 	 * <code>false</code>.
 	 */
-	public int getMaxAmountStackedTriggerCharges() { return maxAmountStackedTriggerCharges; }
+	public int getMaxAmountStackedTriggerCharges() {
+		return maxAmountStackedTriggerCharges;
+	}
 
 	/**
 	 * When the time goes by and the ability is in phase
@@ -126,12 +138,15 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	public abstract int getVanishingTimeThresholdUpdate();
 
 	@Override
-	public GModality getGameModality() { return null; }
+	public GModality getGameModality() {
+		return null;
+	}
 
 	//
 
 	@Override
-	public void setGameModality(GModality gameModality) {}
+	public void setGameModality(GModality gameModality) {
+	}
 
 	/** See [{@link #getMaxAmountStackedTriggerCharges()}. */
 	public void setMaxAmountStackedTriggerCharges(int maxAmountStackedTriggerCharges) {
@@ -163,7 +178,9 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	}
 
 	@Override
-	public void setPhaseAbilityCurrent(PhaseAbilityVanishing pav) { this.phaseAbilityCurrent = pav; }
+	public void setPhaseAbilityCurrent(PhaseAbilityVanishing pav) {
+		this.phaseAbilityCurrent = pav;
+	}
 
 	@Override
 	public void setAccumulatedTimePhaseAbililty(int accumulatedTimeAbililtyVanishing) {
@@ -199,12 +216,12 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	public void onRemovingFromOwner(GModality gm) {
 		super.onRemovingFromOwner(gm);
 		// remove previously added attributes
-//		if (modificationsAppliedAtLeastOnce) {
+		// if (modificationsAppliedAtLeastOnce) {
 		// do not remove more than once
-//			modificationsAppliedAtLeastOnce = false;
-//		removeAndNullifyEffects();
+		// modificationsAppliedAtLeastOnce = false;
+		// removeAndNullifyEffects();
 		resetAbility();
-//		}
+		// }
 	}
 
 	protected void removeAndNullifyEffects() {
@@ -218,18 +235,22 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 		}
 	}
 
-//	public void onEquip(GModality gm) {
-//		modificationsAppliedAtLeastOnce = true;
-//		super.onEquip(gm);
-//	}
+	// public void onEquip(GModality gm) {
+	// modificationsAppliedAtLeastOnce = true;
+	// super.onEquip(gm);
+	// }
 
-	protected boolean isAcceptableEvent(IGEvent e) { return this.eventsWatching.contains(e.getName()); }
+	protected boolean isAcceptableEvent(IGEvent e) {
+		return this.eventsWatching.contains(e.getName());
+	}
 
 	/**
 	 * Override designed.<br>
 	 * Default implementation returns the half of the current value.
 	 */
-	protected int computeNewAmountOnVanishing(AttributeModification am) { return am.getValue() >> 1; }
+	protected int computeNewAmountOnVanishing(AttributeModification am) {
+		return am.getValue() >> 1;
+	}
 
 	@Override
 	protected void applyAttributeModifications() {
@@ -315,7 +336,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	 * moved to the upper interface: previously was using the instance fields, now
 	 * calls the getters and setters
 	 */
-//	public void evolveAbilityStatus(GModality modality, int timeUnits) { .. }
+	// public void evolveAbilityStatus(GModality modality, int timeUnits) { .. }
 
 	@Override
 	public void notifyEvent(GModality modality, IGEvent ge) {
@@ -335,7 +356,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int targetLevel) {
 		PhaseAbilityVanishing phaseAbility;
 		phaseAbility = phaseAbilityCurrent;
@@ -355,12 +376,12 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 		this.vanishUpdateTimeMacrounits += timeUnits;
 		while (this.vanishUpdateTimeMacrounits >= (t = getTimeSubUnitsEachUnit())) {
 			this.vanishUpdateTimeMacrounits -= t;
-//			for (AttributeModification am : this.attributesToModify) {
+			// for (AttributeModification am : this.attributesToModify) {
 
 			s = this.attributesToModify.length;
 			while (--s >= 0) {
 				am = this.attributesToModify[s];
-//				this.attributesToModify[s].setValue(this.newModifiersAmountOnVanishing[s]);
+				// this.attributesToModify[s].setValue(this.newModifiersAmountOnVanishing[s]);
 				oldValue = am.getValue();
 				if (oldValue != 0) {
 					newValue = computeNewAmountOnVanishing(am);

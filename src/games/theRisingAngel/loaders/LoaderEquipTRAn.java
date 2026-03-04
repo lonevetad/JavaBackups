@@ -117,7 +117,7 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 						factoryItem.rarity = equipEquipJSON.getFieldValue("rarity").asInt();
 						factoryItem.price = equipEquipJSON.getFieldValue("price").asArrayInt();
 
-						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributeModifiers");
+						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributesModifiers");
 						attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()];
 						index[0] = 0;
 						attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {

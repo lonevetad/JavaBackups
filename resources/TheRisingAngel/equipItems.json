@@ -22,7 +22,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4,
       "Precision": 2,
       "Constitution": 2,
@@ -43,7 +43,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 3,
       "Constitution": 1,
@@ -63,7 +63,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 2,
       "Precision": 4,
       "Constitution": 1,
@@ -84,7 +84,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4,
       "Constitution": 1,
       "Defense": 2,
@@ -106,7 +106,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Constitution": 2,
       "Precision": 2,
@@ -126,7 +126,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Constitution": 3,
       "CriticalMultiplierPercentageReduction": 5,
@@ -145,7 +145,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 2,
       "Constitution": 1,
       "Precision": 4,
@@ -165,7 +165,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 5,
       "Constitution": 3,
       "Dexterity": -2,
@@ -187,7 +187,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 10,
       "Constitution": 4,
       "Health": 1,
@@ -209,7 +209,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 5,
       "Strength": 2,
       "Constitution": 2,
@@ -232,7 +232,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Defense": 5,
       "Constitution": 3,
@@ -254,7 +254,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 20,
       "Defense": 7,
       "Constitution": 3,
@@ -277,7 +277,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "Defense": 7,
       "Constitution": 4,
@@ -300,7 +300,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Constitution": 2,
       "Health": 1,
@@ -322,7 +322,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 15,
       "Defense": 8,
       "Constitution": 5,
@@ -345,7 +345,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "Defense": 6,
       "Constitution": 7,
@@ -367,7 +367,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 35,
       "Defense": 7,
       "Constitution": 8,
@@ -389,7 +389,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 10,
       "Defense": 5,
       "Constitution": 7,
@@ -412,7 +412,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 6,
       "Constitution": 8,
       "Health": -2,
@@ -435,7 +435,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 11,
       "Defense": 4,
       "Constitution": 5,
@@ -456,7 +456,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 10,
       "Defense": 3,
       "Constitution": 2,
@@ -479,7 +479,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 5,
       "Strength": 3,
       "Defense": 4,
@@ -503,7 +503,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 40,
       "Defense": 10,
       "Constitution": 10,
@@ -526,7 +526,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -20,
       "Defense": 6,
       "Constitution": 5,
@@ -547,7 +547,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -20,
       "Defense": 7,
       "Constitution": 8,
@@ -569,7 +569,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -10,
       "Defense": 6,
       "Constitution": 5,
@@ -590,7 +590,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Defense": 5,
       "Constitution": 4,
@@ -611,7 +611,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -15,
       "Defense": 6,
       "Constitution": 5,
@@ -632,7 +632,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -20,
       "Defense": 8,
       "Constitution": 4,
@@ -653,7 +653,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -30,
       "Defense": 11,
       "Constitution": 9,
@@ -678,7 +678,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -35,
       "Defense": 13,
       "Constitution": 11,
@@ -704,7 +704,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -16,
       "Defense": 7,
       "Constitution": 5,
@@ -729,7 +729,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -19,
       "Defense": 8,
       "Constitution": 7,
@@ -754,7 +754,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -7,
       "Defense": 6,
       "Constitution": 3,
@@ -779,7 +779,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Defense": 6,
       "Constitution": 2,
@@ -803,7 +803,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -15,
       "ManaMax": -15,
       "Strength": 7,
@@ -830,7 +830,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -10,
       "ManaMax": -20,
       "Defense": 8,
@@ -856,7 +856,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Precision": -3,
       "Wisdom": -2,
@@ -877,7 +877,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 12,
       "Health": 3,
       "Faith": 7,
@@ -901,7 +901,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 8,
       "Precision": 4,
       "Strength": 7,
@@ -925,7 +925,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 6,
       "Constitution": 3,
       "Dexterity": -4,
@@ -949,7 +949,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -4,
       "Defense": 6,
       "Constitution": -2,
@@ -972,7 +972,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -2,
       "Defense": 4,
       "Constitution": -2,
@@ -998,7 +998,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -3,
       "Defense": 4,
       "Constitution": -5,
@@ -1021,7 +1021,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Defense": 5,
       "Constitution": 3,
@@ -1047,7 +1047,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 11,
       "Defense": 4,
       "Constitution": 5,
@@ -1068,7 +1068,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4,
       "Constitution": 3,
       "Dexterity": 2,
@@ -1086,7 +1086,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 3,
       "Constitution": 5,
       "Defense": 5,
@@ -1105,7 +1105,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Constitution": 2,
       "Defense": 3,
@@ -1124,7 +1124,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 2,
       "LifeMax": 50,
       "ManaMax": 70
@@ -1141,7 +1141,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 4
     }
   },
@@ -1156,7 +1156,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 30
     }
   },
@@ -1171,7 +1171,7 @@
     },
     "maxUpgradesPerCategory": {},
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 25
     }
   },
@@ -1185,7 +1185,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 4
     }
   },
@@ -1199,7 +1199,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 4
     }
   },
@@ -1213,7 +1213,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Intelligence": -2,
       "Wisdom": -1,
@@ -1230,7 +1230,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 4
     }
   },
@@ -1244,7 +1244,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 2
     }
   },
@@ -1258,7 +1258,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaRegen": 2
     }
   },
@@ -1272,7 +1272,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 4
     }
   },
@@ -1286,7 +1286,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 1,
       "ManaRegen": 1
     }
@@ -1301,7 +1301,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 3,
       "ManaRegen": -1
     }
@@ -1316,7 +1316,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -1,
       "ManaRegen": 3
     }
@@ -1331,7 +1331,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 1,
       "LifeMax": 20
     }
@@ -1346,7 +1346,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 20,
       "ManaRegen": 1
     }
@@ -1361,7 +1361,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 2,
       "Dexterity": 2,
       "Precision": 2
@@ -1377,7 +1377,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4
     }
   },
@@ -1391,7 +1391,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Luck": 5
     }
   },
@@ -1405,7 +1405,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 4
     }
   },
@@ -1419,7 +1419,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4
     }
   },
@@ -1433,7 +1433,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 10
     }
   },
@@ -1447,7 +1447,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageBonus": 2
     }
   },
@@ -1461,7 +1461,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageReduction": 2
     }
   },
@@ -1475,7 +1475,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 2
     }
   },
@@ -1489,7 +1489,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2
     }
   },
@@ -1503,7 +1503,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "CriticalProbabilityPerThousandHit": 10
     }
   },
@@ -1517,7 +1517,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "CriticalMultiplierPercentage": 5
     }
   },
@@ -1531,7 +1531,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageBonus": 2,
       "MagicalDamageReduction": 1
     }
@@ -1546,7 +1546,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageBonus": 1,
       "MagicalDamageReduction": 2
     }
@@ -1561,7 +1561,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 2
     }
@@ -1576,7 +1576,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 2,
       "Precision": 3
     }
@@ -1591,7 +1591,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 2,
       "PhysicalDamageReduction": 1
     }
@@ -1606,7 +1606,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 1,
       "PhysicalDamageReduction": 2
     }
@@ -1621,7 +1621,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 40,
       "Strength": 2,
       "Constitution": 2,
@@ -1640,7 +1640,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 30,
       "Intelligence": 2,
       "Wisdom": 2,
@@ -1659,7 +1659,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": 2,
       "MagicalDamageBonus": 2,
       "LifeRegen": -1,
@@ -1676,7 +1676,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 2,
       "Luck": -1
@@ -1697,7 +1697,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 200,
       "Constitution": 4,
       "Defense": 15,
@@ -1722,7 +1722,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 2,
       "Luck": -4
     }
@@ -1737,7 +1737,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Faith": 2,
       "Luck": 2
@@ -1753,7 +1753,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Wisdom": 1,
       "Faith": 2,
@@ -1770,7 +1770,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Dexterity": 2,
       "Wisdom": 1,
@@ -1787,7 +1787,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 5,
       "Precision": 6,
       "Dexterity": 4,
@@ -1804,7 +1804,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 3,
       "Wisdom": 3,
       "Faith": 3,
@@ -1821,7 +1821,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -10,
       "MagicalDamageReduction": 2,
       "PhysicalDamageReduction": 5,
@@ -1838,7 +1838,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 15,
       "ManaRegen": 2,
       "MagicalDamageReduction": 8,
@@ -1857,7 +1857,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Faith": 1,
       "MagicalDamageBonus": 2,
@@ -1874,7 +1874,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageBonus": 3,
       "MagicalDamageReduction": 4,
       "Luck": -5,
@@ -1891,7 +1891,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "MagicalDamageBonus": 1,
       "MagicalDamageReduction": 2,
       "Luck": -2,
@@ -1908,7 +1908,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 7,
       "Constitution": 5,
       "Health": 3,
@@ -1926,7 +1926,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Dexterity": 6,
       "Precision": 6,
@@ -1944,7 +1944,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": 4,
       "Wisdom": 5,
       "Faith": 6,
@@ -1962,7 +1962,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -5,
       "LifeRegen": 2
     }
@@ -1977,7 +1977,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 2,
       "Luck": -1,
@@ -1995,7 +1995,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 2,
       "Health": -3,
       "Defense": 4,
@@ -2019,7 +2019,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Strength": 4,
       "Precision": 2,
@@ -2041,7 +2041,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "LifeLeechPercentage": 10,
       "Precision": 7,
@@ -2060,7 +2060,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "Dexterity": 4,
       "Health": 3
@@ -2076,7 +2076,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 30,
       "Precision": 4
     }
@@ -2091,7 +2091,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 2,
       "ManaRegen": 2,
       "Intelligence": -3,
@@ -2108,7 +2108,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "Faith": 4,
       "PhysicalDamageBonus": -1,
@@ -2125,7 +2125,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 4,
       "LifeRegen": 1,
       "MagicalDamageReduction": -2
@@ -2141,7 +2141,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": -25,
       "ManaRegen": -7,
       "MagicalDamageReduction": 8,
@@ -2159,7 +2159,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageBonus": -10,
       "MagicalDamageBonus": -10,
       "CriticalMultiplierPercentage": 30
@@ -2175,7 +2175,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 5,
       "Faith": 3,
       "PhysicalDamageBonus": -7,
@@ -2196,7 +2196,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 50,
       "ShieldRegen": 5,
       "MagicalDamageBonus": 12,
@@ -2214,7 +2214,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -30,
       "ManaMax": -30,
       "ManaRegen": -7,
@@ -2246,7 +2246,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": 2,
       "ManaRegen": 2,
       "Health": 4,
@@ -2266,7 +2266,7 @@
       "height": 3
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": -5,
       "LifeRegen": -2,
       "Defense": 3,
@@ -2296,7 +2296,7 @@
       "height": 3
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Precision": 8,
       "Dexterity": 4,
       "Constitution": 2,
@@ -2319,7 +2319,7 @@
       "height": 4
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": -30,
       "ManaMax": -20,
       "Defense": 20,
@@ -2341,7 +2341,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 25,
       "ManaMax": 10
     }
@@ -2356,7 +2356,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaLeechPercentage": 15,
       "ManaRegen": -2,
       "ManaMax": -20
@@ -2372,7 +2372,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 15,
       "LifeRegen": -2,
       "LifeMax": -30
@@ -2388,7 +2388,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 10,
       "Intelligence": 3,
       "Constitution": -5,
@@ -2408,7 +2408,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 15,
       "ShieldRegen": 1
     }
@@ -2423,7 +2423,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 15,
       "ShieldRegen": 1
     }
@@ -2438,7 +2438,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 15,
       "ShieldRegen": 1
     }
@@ -2453,7 +2453,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 15,
       "ShieldRegen": 1
     }
@@ -2468,7 +2468,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": -10,
       "Faith": -8,
       "Defense": 5,
@@ -2490,7 +2490,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 15,
       "ManaLeechPercentage": 15,
       "LifeRegen": -2,
@@ -2509,7 +2509,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeLeechPercentage": 10,
       "ManaLeechPercentage": 10,
       "LifeRegen": -1,
@@ -2528,7 +2528,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Strength": 1,
       "Defense": 2,
       "Precision": 4,
@@ -2548,7 +2548,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 3,
       "Precision": 2,
       "Constitution": 1
@@ -2564,7 +2564,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Health": 2,
       "Strength": 1,
@@ -2582,7 +2582,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Dexterity": 7,
       "Defense": 2,
       "Strength": 2,
@@ -2599,7 +2599,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -2,
       "Strength": 2,
       "Intelligence": 2,
@@ -2629,7 +2629,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Strength": 4,
       "Precision": 2,
@@ -2652,7 +2652,7 @@
         "level": 0
       }
     ],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Faith": 4,
       "LifeLeechPercentage": 10,
       "Precision": 7,
@@ -2671,7 +2671,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 4,
       "Faith": 7,
       "ShieldMax": 15,
@@ -2689,7 +2689,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Wisdom": 2,
       "Faith": 3,
       "ShieldMax": 25,
@@ -2707,7 +2707,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 3,
       "MagicalDamageReduction": 1,
       "ShieldMax": 75,
@@ -2724,7 +2724,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 5,
       "ShieldMax": 65,
@@ -2743,7 +2743,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 5,
       "MagicalDamageReduction": 2,
       "ShieldMax": 65,
@@ -2762,7 +2762,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Velocity": 50,
       "Dexterity": 15,
       "PhysicalDamageReduction": 5,
@@ -2781,7 +2781,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 5,
       "MagicalDamageReduction": 5,
       "CriticalMultiplierPercentage": 20,
@@ -2803,7 +2803,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Intelligence": -17,
       "ManaRegen": -3,
       "ShieldMax": 100,
@@ -2821,7 +2821,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Constitution": 1,
       "PhysicalDamageReduction": 1,
@@ -2838,7 +2838,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeMax": 100,
       "LifeRegen": 10
     }
@@ -2853,7 +2853,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ManaMax": 100,
       "ManaRegen": 10
     }
@@ -2868,7 +2868,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "ShieldMax": 100,
       "ShieldRegen": 10
     }
@@ -2883,7 +2883,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocitySpellCastPercentage": 15,
       "Defense": 3,
       "PhysicalDamageReduction": 2,
@@ -2900,7 +2900,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocityAttackStrikePercentage": 15,
       "Defense": 3,
       "PhysicalDamageReduction": 8,
@@ -2917,7 +2917,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "CostCastReductionPercentage": 20,
       "Defense": 2
     }
@@ -2932,7 +2932,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocitySpellCastPercentage": 10,
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 4
@@ -2948,7 +2948,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocityAttackStrikePercentage": 10,
       "Defense": 2,
       "Constitution": 2,
@@ -2966,7 +2966,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 3,
       "Constitution": 2,
       "StaminaMax": 15,
@@ -2985,7 +2985,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 1,
       "Constitution": 1,
       "PhysicalDamageReduction": 1
@@ -3001,7 +3001,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 2,
       "Luck": 2,
       "Velocity": 20,
@@ -3020,7 +3020,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Defense": 3,
       "Dexterity": 6,
       "ShieldMax": 45,
@@ -3039,7 +3039,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocitySpellCastPercentage": -7,
       "CostCastReductionPercentage": -25,
       "ManaMax": -125,
@@ -3057,7 +3057,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocitySpellCastPercentage": -15,
       "CostCastReductionPercentage": -40,
       "ManaMax": -200,
@@ -3075,7 +3075,7 @@
       "height": 1
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "VelocitySpellCastPercentage": -10,
       "CostCastReductionPercentage": -32,
       "ManaMax": -175,
@@ -3093,7 +3093,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "LifeRegen": -25,
       "PhysicalDamageReduction": 5,
       "MagicalDamageReduction": 5,
@@ -3114,7 +3114,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 2,
       "MagicalDamageReduction": 2,
       "Defense": 2,
@@ -3135,7 +3135,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 8,
       "MagicalDamageReduction": 8,
       "PhysicalDamageMultiplierPercentageReduction": 7,
@@ -3160,7 +3160,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 8,
       "MagicalDamageReduction": 8,
       "PhysicalDamageMultiplierPercentageReduction": 7,
@@ -3187,7 +3187,7 @@
       "height": 2
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "PhysicalDamageReduction": 7,
       "MagicalDamageReduction": -2,
       "LifeMax": -50,
@@ -3216,7 +3216,7 @@
     },
     "description": "They provide pure and evil advices. Constantly. Without being asked.",
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "StaminaRegen": -1,
       "Wisdom": 20,
       "Intelligence": -5,
@@ -3236,7 +3236,7 @@
     },
     "description": "A small wire of metal.",
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 1,
       "Faith": 1,
       "Luck": 1
@@ -3253,7 +3253,7 @@
     },
     "description": "A small wire of metal.",
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 2,
       "Luck": 2
@@ -3270,7 +3270,7 @@
     },
     "description": "A small wire of metal.",
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 2,
       "Luck": 2
@@ -3287,7 +3287,7 @@
     },
     "description": "A small wire of metal.",
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Health": 2,
       "Faith": 2,
       "Luck": 2
@@ -3303,7 +3303,7 @@
       "height": 3
     },
     "abilities": [],
-    "attributeModifiers": {
+    "attributesModifiers": {
       "Constitution": 1,
       "Defense": 1,
       "PhysicalDamageReduction": 1,

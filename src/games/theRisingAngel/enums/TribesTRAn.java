@@ -279,12 +279,12 @@ public class TribesTRAn {
 			}
 
 			rel = tribe.religion;
-			allAttributes = new AttributeModification[2 + ped.additionalAttributeModifiers.length];
+			allAttributes = new AttributeModification[2 + ped.additionalAttributesModifiers.length];
 			relAlMod = new TribeReligionAlignmentModification(variation, religAlign);
 			allAttributes[0] = new AttributeModification(rel.religionDevotedTo, relAlMod.getBonus());
 			allAttributes[1] = new AttributeModification(rel.religionHated, relAlMod.getMalus());
-			System.arraycopy(ped.additionalAttributeModifiers, 0, allAttributes, 2,
-					ped.additionalAttributeModifiers.length);
+			System.arraycopy(ped.additionalAttributesModifiers, 0, allAttributes, 2,
+					ped.additionalAttributesModifiers.length);
 
 			equipFactory = EquipItemFactory.getDefaultFactoryFor(pieceType);
 			equipPiece = equipFactory.newEquipItem(gmrpg, pieceType, getNameEquipFor(tribe, pieceType, religAlign),
@@ -681,18 +681,18 @@ public class TribesTRAn {
 
 	public static class PieceOfEquipmentSetData {
 		public PieceOfEquipmentSetData(String namePrefix, EquipmentTypesTRAn equipType, Dimension dimensionInventory,
-				AttributeModification[] additionalAttributeModifiers) {
+				AttributeModification[] additionalAttributesModifiers) {
 			super();
 			this.namePrefix = namePrefix;
 			this.equipType = equipType;
 			this.dimensionInventory = dimensionInventory;
-			this.additionalAttributeModifiers = additionalAttributeModifiers;
+			this.additionalAttributesModifiers = additionalAttributesModifiers;
 		}
 
 		protected String namePrefix;
 		protected EquipmentTypesTRAn equipType;
 		protected Dimension dimensionInventory;
-		protected AttributeModification[] additionalAttributeModifiers;
+		protected AttributeModification[] additionalAttributesModifiers;
 
 		//
 		public String getNamePrefix() {
@@ -707,8 +707,8 @@ public class TribesTRAn {
 			return dimensionInventory;
 		}
 
-		public AttributeModification[] getAdditionalAttributeModifiers() {
-			return additionalAttributeModifiers;
+		public AttributeModification[] getAdditionalAttributesModifiers() {
+			return additionalAttributesModifiers;
 		}
 		//
 		// public void setNamePrefix(String namePrefix) { this.namePrefix = namePrefix;
@@ -717,15 +717,15 @@ public class TribesTRAn {
 		// equipType; }
 		// public void setDimensionInventory(Dimension dimensionInventory) {
 		// this.dimensionInventory = dimensionInventory; }
-		// public void setAdditionalAttributeModifiers(AttributeModification[]
-		// additionalAttributeModifiers) { this.additionalAttributeModifiers =
-		// additionalAttributeModifiers; }
+		// public void setAdditionalAttributesModifiers(AttributeModification[]
+		// additionalAttributesModifiers) { this.additionalAttributesModifiers =
+		// additionalAttributesModifiers; }
 
 		@Override
 		public String toString() {
 			return "PieceOfEquipmentSetData [namePrefix=" + namePrefix + ", equipType=" + equipType
-					+ ", dimensionInventory=" + dimensionInventory + ", additionalAttributeModifiers="
-					+ Arrays.toString(additionalAttributeModifiers) + "]";
+					+ ", dimensionInventory=" + dimensionInventory + ", additionalAttributesModifiers="
+					+ Arrays.toString(additionalAttributesModifiers) + "]";
 		}
 
 	}

@@ -24,7 +24,9 @@ public class ARegenToLeech extends AbilityModifyingAttributesRealTime {
 			{ AttributesTRAn.LifeRegen, AttributesTRAn.LifeLeechPercentage },
 			{ AttributesTRAn.ManaRegen, AttributesTRAn.ManaLeechPercentage } };
 
-	public ARegenToLeech(GModality gm) { super(gm, NAME, RESOURCES_TO_CONVERT); }
+	public ARegenToLeech(GModality gm) {
+		super(gm, NAME, RESOURCES_TO_CONVERT);
+	}
 
 	protected static final AttributesTRAn[] RESOURCES_TO_CONVERT;
 	static {
@@ -39,7 +41,7 @@ public class ARegenToLeech extends AbilityModifyingAttributesRealTime {
 	}
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int levelAbility) {
 		int regen, i, n, maxLeechBonus;
 		CreatureAttributesTRAn cat;

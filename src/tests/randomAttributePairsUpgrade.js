@@ -16,7 +16,7 @@ stats.forEach((v1, i1,_)=>{
 	      "name": (maiusc.charAt(r(26))+n),
 	      "rarity": 1,
 	      "price":[8],
-	      "attributeModifiers": {
+	      "attributesModifiers": {
 	         v1: 7,
 	         v2: -2
 	      }

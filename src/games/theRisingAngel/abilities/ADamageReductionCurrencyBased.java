@@ -28,7 +28,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	}
 
 	public ADamageReductionCurrencyBased(GModality gameModality, int rarity) {
-//			super(NAME + dt.getName(), AttributesTRAn.damageReductionByType(dt));
+		// super(NAME + dt.getName(), AttributesTRAn.damageReductionByType(dt));
 		super(gameModality, NAME + rarity,
 				new AttributesTRAn[] { AttributesTRAn.PhysicalDamageReduction, AttributesTRAn.MagicalDamageReduction });
 		this.eventsWatching = new ArrayList<>(2);
@@ -46,18 +46,26 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	//
 
 	@Override
-	public Long getObserverID() { return getID(); }
+	public Long getObserverID() {
+		return getID();
+	}
 
 	/**
 	 * Get the "percentage" (but it's over a thousand, 1000, not the classical
 	 * hundred of "%") of the currency held to be converted to
 	 * {@link AttributesTRAn.PhysicalDamageReduction}.
 	 */
-	public int getPerThousandFraction() { return perThousandFraction; }
+	public int getPerThousandFraction() {
+		return perThousandFraction;
+	}
 
-	public int getMaximumReduction() { return maximumReduction; }
+	public int getMaximumReduction() {
+		return maximumReduction;
+	}
 
-	public void setMaximumReduction(int maximumReduction) { this.maximumReduction = maximumReduction; }
+	public void setMaximumReduction(int maximumReduction) {
+		this.maximumReduction = maximumReduction;
+	}
 
 	protected int getDefaultCurrencyAmount(CreatureSimple c) {
 		int a;
@@ -70,21 +78,27 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	}
 
 	@Override
-	public List<String> getEventsWatching() { return eventsWatching; }
+	public List<String> getEventsWatching() {
+		return eventsWatching;
+	}
 
 	//
 
-	public void setPerThousandFraction(int perThousandFraction) { this.perThousandFraction = perThousandFraction; }
+	public void setPerThousandFraction(int perThousandFraction) {
+		this.perThousandFraction = perThousandFraction;
+	}
 
 	//
 
 	@Override
-	public void updateAttributeModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
+	public void updateAttributesModifiersValues(GModality gm, CreatureSimple ah, CreatureAttributes ca,
 			int levelAbility) {
 		int reduct;
 		AttributeModification am;
 		reduct = (getDefaultCurrencyAmount(ah) * getPerThousandFraction()) / 1000;
-		if (maximumReduction > 0 && reduct > maximumReduction) { reduct = maximumReduction; }
+		if (maximumReduction > 0 && reduct > maximumReduction) {
+			reduct = maximumReduction;
+		}
 		am = super.getAttributesToModify()[0];
 		am.setValue(reduct);
 	}
@@ -98,7 +112,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 		Currency curr;
 		if (ge.getName() == EventsTRAn.DamageReceived.getName()) {
 			ed = (EventDamageTRAn) ge;
-//			damage = ed.getDamage();
+			// damage = ed.getDamage();
 			c = (BaseCreatureRPG) ed.getTarget();
 			if (!(c instanceof CurrencyHolder))
 				return;
@@ -110,7 +124,7 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 					((maximumReduction * getPerThousandFraction()) / 1000));
 			ch.setCurrencyAmount(curr, //
 					a > 0 ? a : 0);
-//	super.getAttributeToModify().
+			// super.getAttributeToModify().
 		}
 	}
 }

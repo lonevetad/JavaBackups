@@ -31,24 +31,24 @@ import tools.json.types.JSONObject;
  * <p>
  * Each Equipment should implements the set of "character attribute/statistics
  * modifiers" (i.e.: {@link AttributeModification}) as it's suggested by
- * {@link #getBaseAttributeModifiers()} and {@link #getUpgrades()}.
+ * {@link #getBaseAttributesModifiers()} and {@link #getUpgrades()}.
  * <p>
  * Note: Instead of creating an array of attributes (that mimics the character's
  * attributes) and apply to that array all modifiers, wasting memory in
  * almost-empty arrays, just collect all those {@link AttributeModification}
- * (into {@link #getBaseAttributeModifiers()} and {@link #getUpgrades()} that
+ * (into {@link #getBaseAttributesModifiers()} and {@link #getUpgrades()} that
  * provides a set of {@link AttributeModification}) and apply them one by one.
  */
 public abstract class EquipmentItem extends InventoryItem implements AbilitiesHolder {
 	private static final long serialVersionUID = -55232021L;
 	public static final String FIELD_EQUIPMENT_TYPE = "equipmentType";
 	public static final String FIELD_MAX_UPGRADES_PER_CATEGORY = "maxUpgradesPerCategory";
-	public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributeModifiers";
+	public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributesModifiers";
 	public static final String FIELD_UPGRADES = "upgrades";
 
 	protected final EquipmentType equipmentType;
 	protected transient EquipmentSet belongingEquipmentSet;
-	protected final List<AttributeModification> baseAttributeModifiers;
+	protected final List<AttributeModification> baseAttributesModifiers;
 	protected MapTreeAVL<String, AbilityGeneric> backMapAbilities;
 	protected transient Set<AbilityGeneric> abilities;
 	protected MapTreeAVL<String, IEquipmentUpgrade> backMapEquipUpgrades; //
@@ -65,7 +65,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		this.belongingEquipmentSet = null;
 		this.abilities = null;
 		this.equipmentType = equipmentType;
-		this.baseAttributeModifiers = //
+		this.baseAttributesModifiers = //
 				(baseAttributeMods == null) ? //
 						Collections.unmodifiableList(new LinkedList<>())
 						: Collections.unmodifiableList(Arrays.asList(baseAttributeMods));
@@ -87,8 +87,8 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	 * equipment, that defines it. It's embedded in its definition and should not be
 	 * modified. Use {@link #addUpgrade(IEquipmentUpgrade)} instead.
 	 */
-	public List<AttributeModification> getBaseAttributeModifiers() {
-		return this.baseAttributeModifiers;
+	public List<AttributeModification> getBaseAttributesModifiers() {
+		return this.baseAttributesModifiers;
 	}
 
 	/** Beware: could return null if this item has no abilities. */
@@ -217,7 +217,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	/*
 	 * public EquipmentItem addAttributeModifier(AttributeModification am) { if (am
-	 * != null) { this.baseAttributeModifiers.add(am); } return this; }
+	 * != null) { this.baseAttributesModifiers.add(am); } return this; }
 	 */
 
 	@Override
@@ -292,7 +292,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			ah = this.getCreatureWearingEquipments();
 			if (ah != null) {
 				ca = ah.getAttributes();
-				up.getAttributeModifiers().forEach(eam -> ca.applyAttributeModifier(eam));
+				up.getAttributesModifiers().forEach(eam -> ca.applyAttributeModifier(eam));
 			}
 		}
 		return this;
@@ -313,7 +313,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			ah = this.getCreatureWearingEquipments();
 			if (ah != null) {
 				ca = ah.getAttributes();
-				up.getAttributeModifiers().forEach(eam -> ca.removeAttributeModifier(eam));
+				up.getAttributesModifiers().forEach(eam -> ca.removeAttributeModifier(eam));
 			}
 		}
 		return this;
@@ -348,7 +348,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		ah = this.getCreatureWearingEquipments(); // assumed to be true
 		ca = ah.getAttributes();
 		modifierApplier = eam -> ca.applyAttributeModifier(eam);
-		attmod = this.getBaseAttributeModifiers();
+		attmod = this.getBaseAttributesModifiers();
 		this.onAddingToOwner(gm);
 		if (attmod != null) {
 			attmod.forEach(modifierApplier);
@@ -357,7 +357,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		if (upg != null) {
 			upg.forEach(up -> {
 				// apply all upgrade's modifiers
-				up.getAttributeModifiers().forEach(modifierApplier);
+				up.getAttributesModifiers().forEach(modifierApplier);
 			});
 		}
 	}
@@ -375,7 +375,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		ah = this.getCreatureWearingEquipments();
 		ca = ah.getAttributes();
 		modifierRemover = eam -> ca.removeAttributeModifier(eam);
-		attmod = this.getBaseAttributeModifiers();
+		attmod = this.getBaseAttributesModifiers();
 
 		gm.removeGameObject(this);
 		this.onRemovingFromOwner(gm);
@@ -386,7 +386,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		if (upg != null) {
 			upg.forEach(up -> {
 				// remove all upgrade's modifiers
-				up.getAttributeModifiers().forEach(modifierRemover);
+				up.getAttributesModifiers().forEach(modifierRemover);
 			});
 		}
 	}
@@ -435,7 +435,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	public String toString() {
 		return this.getClass().getSimpleName() + " [name=" + name + ", ID=" + getID() + ",\n\t rarityIndex, ="
 				+ rarityIndex + ", equipmentType=" + equipmentType + ",\n\t prices to sell: " + this.sellPrice
-				+ ",\n\tbaseAttributeModifiers=" + baseAttributeModifiers + ",\n\t upgrades=[" + upgradesToString()
+				+ ",\n\tbaseAttributesModifiers=" + baseAttributesModifiers + ",\n\t upgrades=[" + upgradesToString()
 				+ "],\n\t abilities=" + //
 				abilitiesToString() + "]";
 	}
@@ -480,7 +480,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		wrapper.addField(FIELD_EQUIPMENT_TYPE, equipmentTypeJsoned);
 		// base attribute modifiers
 		public static final String FIELD_MAX_UPGRADES_PER_CATEGORY = "maxUpgradesPerCategory";
-		public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributeModifiers";
+		public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributesModifiers";
 		public static final String FIELD_UPGRADES = "upgrades";
 	}
 }

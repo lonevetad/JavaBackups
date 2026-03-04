@@ -30,14 +30,14 @@ import tools.json.types.JSONObject;
 public interface AttributesUpgrade
 		extends RarityHolder, ObjectNamed, SortedSetEnhancedDelegating<AttributeModification> {
 
-	public static final String FIELD_ATTRIBUTE_MODIFIERS = "attributeModifiers";
+	public static final String FIELD_ATTRIBUTE_MODIFIERS = "attributesModifiers";
 
 	/** BEWARE: do not modify the set. */
-	public SortedSet<AttributeModification> getAttributeModifiers();
+	public SortedSet<AttributeModification> getAttributesModifiers();
 
 	@Override
 	public default SortedSet<AttributeModification> getDelegator() {
-		return this.getAttributeModifiers();
+		return this.getAttributesModifiers();
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public interface AttributesUpgrade
 		if (am == null) {
 			return null;
 		}
-		getAttributeModifiers().add(am);
+		getAttributesModifiers().add(am);
 		return this;
 	}
 
@@ -71,7 +71,7 @@ public interface AttributesUpgrade
 		ObjectNamed.super.toJSONValue(wrapper);
 		RarityHolder.super.toJSONValue(wrapper);
 		final JSONObject attributesJsoned = new JSONObject();
-		this.getAttributeModifiers().forEach(am -> {
+		this.getAttributesModifiers().forEach(am -> {
 			JSONObject amJSONed = new JSONObject();
 			am.toJSONValue(amJSONed);
 			attributesJsoned.addField(am.getName(), amJSONed);
@@ -90,20 +90,20 @@ public interface AttributesUpgrade
 		if (!wrapper.hasField(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
 		}
-		JSONValue jsonedAttributeModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
+		JSONValue jsonedAttributesModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
 		// now de-serialize it
-		if (!jsonedAttributeModifiers_value.isType(JSONTypes.Object)) {
+		if (!jsonedAttributesModifiers_value.isType(JSONTypes.Object)) {
 			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
-					jsonedAttributeModifiers_value);
+					jsonedAttributesModifiers_value);
 		}
-		JSONObject jsonedAttributeModifiers = (JSONObject) jsonedAttributeModifiers_value;
-		jsonedAttributeModifiers.forEachField((name, jsonedAttributeModifier_value) -> {
+		JSONObject jsonedAttributesModifiers = (JSONObject) jsonedAttributesModifiers_value;
+		jsonedAttributesModifiers.forEachField((name, jsonedAttributeModifier_value) -> {
 			int value;
 			JSONObject jsonedAttributeModifier;
 			// load the "attributeModifier" by-hand because it's probably an Enum instance
 			if (!jsonedAttributeModifier_value.isType(JSONTypes.Object)) {
 				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
-						JSONTypes.Object, jsonedAttributeModifiers_value);
+						JSONTypes.Object, jsonedAttributesModifiers_value);
 			}
 			jsonedAttributeModifier = (JSONObject) jsonedAttributeModifier_value;
 			if (!jsonedAttributeModifier.hasField("value")) {
@@ -130,21 +130,21 @@ public interface AttributesUpgrade
 		if (!jsonMap.containsKey(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
 		}
-		Object jsonedAttributeModifiers_value = jsonMap.get(FIELD_ATTRIBUTE_MODIFIERS);
+		Object jsonedAttributesModifiers_value = jsonMap.get(FIELD_ATTRIBUTE_MODIFIERS);
 		// now de-serialize it
-		if (!(jsonedAttributeModifiers_value instanceof Map<?, ?>)) {
+		if (!(jsonedAttributesModifiers_value instanceof Map<?, ?>)) {
 			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
-					jsonedAttributeModifiers_value);
+					jsonedAttributesModifiers_value);
 		}
-		Map<String, Object> jsonedAttributeModifiers = (Map<String, Object>) jsonedAttributeModifiers_value;
-		jsonedAttributeModifiers.forEach((name, jsonedAttributeModifier_value) -> {
+		Map<String, Object> jsonedAttributesModifiers = (Map<String, Object>) jsonedAttributesModifiers_value;
+		jsonedAttributesModifiers.forEach((name, jsonedAttributeModifier_value) -> {
 			int value;
 			Map<String, Object> jsonedAttributeModifier;
 
 			// load the "attributeModifier" by-hand because it's probably an Enum instance
 			if (!(jsonedAttributeModifier_value instanceof Map<?, ?>)) {
 				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
-						JSONTypes.Object, jsonedAttributeModifiers_value);
+						JSONTypes.Object, jsonedAttributesModifiers_value);
 			}
 			jsonedAttributeModifier = (Map<String, Object>) jsonedAttributeModifier_value;
 			if (!jsonedAttributeModifier.containsKey("value")) {

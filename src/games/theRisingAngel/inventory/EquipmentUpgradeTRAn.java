@@ -17,7 +17,7 @@ public class EquipmentUpgradeTRAn extends EquipmentUpgradeImpl {
 
     @Override
     public void loadAttributeUpgrade(GModality gm, String attributeName, int value) {
-        this.getAttributeModifiers().add(new AttributeModification(AttributesTRAn.valueOf(attributeName), value));
+        this.getAttributesModifiers().add(new AttributeModification(AttributesTRAn.valueOf(attributeName), value));
     }
 
     @Override
