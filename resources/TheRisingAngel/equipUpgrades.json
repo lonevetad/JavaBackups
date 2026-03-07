@@ -7647,5 +7647,143 @@
       "Precision": -5,
       "Luck": 12
     }
+  },
+  {
+    "name": "of the Livestock",
+    "rarity": 2,
+    "price": [12],
+    "category": "Misc",
+    "attributesModifiers": {
+      "Strength": 2,
+      "Health": -4,
+      "Constitution": 15,
+      "Defense": 3,
+      "Dexterity": -5,
+      "Velocity": -20,
+      "Intelligence": -2
+    }
+  },
+  {
+    "name": "Beryl's",
+    "rarity": 3,
+    "price": [88],
+    "category": "Material",
+    "attributesModifiers": {
+      "ShieldMax": 200,
+      "Shield Regen": 1
+    }
+  },
+  {
+    "name": "Dirty by Dirt",
+    "rarity": 0,
+    "price": [-7],
+    "category": "Misc",
+    "attributesModifiers": {
+      "Health": -2,
+      "ManaMax": 20
+    }
+  },
+  {
+    "name": "Dirty by Dirt",
+    "rarity": 2,
+    "price": [17],
+    "category": "Incantation",
+    "description": "Inspired by the common knowledge and folklore, the love of Mother Earth, natural cycles and vegetation's life force.",
+    "attributesModifiers": {
+      "Faith": 1, 
+      "LifeRegen": 5,
+      "ManaRegen": 4,
+      "ShieldMax": 5,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "Heavily Used",
+    "rarity": 0,
+    "price": [-5],
+    "category": "Misc",
+    "attributesModifiers": {
+      "PhysicalDamageBonus": -2,
+      "PhysicalDamageMultiplierPercentageBonus": -5,
+      "MagicalDamageBonus": -2,
+      "MagicalDamageMultiplierPercentageBonus": -5
+    }
+  },
+  {
+    "name": "Common",
+    "rarity": 0,
+    "price": [-3],
+    "category": "Misc",
+    "attributesModifiers": {
+      "Strength": 1,
+      "Constitution": 1,
+      "Health": 1,
+      "Defense": 1,
+      "Dexterity": 1,
+      "Precision": 1,
+      "Intelligence": 1,
+      "Wisdom": 1,
+      "Faith": 1,
+      "LifeMax": -50
+    }
+  },
+  {
+    "name": "Ordinary",
+    "rarity": 0,
+    "price": [-3],
+    "category": "Misc",
+    "attributesModifiers": {
+      "Strength": 1,
+      "Constitution": 1,
+      "Health": 1,
+      "Defense": 1,
+      "Dexterity": 1,
+      "Precision": 1,
+      "Intelligence": 1,
+      "Wisdom": 1,
+      "Faith": 1,
+      "ManaMax": -50
+    }
+  },
+  { 
+    "name": "Threadbare", 
+    "rarity": 3, 
+    "price": [-37],
+    "description": "Consumed beyond recognition, it's hard to actually find its usefulness after so much damage", 
+    "category": "Structural", 
+    "attributesModifiers": { 
+      "LifeMax": -65,
+      "ManaMax": -45,
+      "Dexterity": -5, 
+      "PhysicalDamageReduction": -15, 
+      "MagicalDamageReduction": -15 
+    } 
+  },
+  {
+    "name": "Worn Out",
+    "rarity": 2,
+    "price": [-12],
+    "category": "Structural",
+    "attributesModifiers": {
+      "LifeMax": -25,
+      "PhysicalDamageBonus": -10,
+      "MagicalDamageBonus": -10,
+      "CriticalMultiplierPercentageBonus": -10
+    } 
+  },
+  { 
+    "name": "Shabby", 
+    "rarity": 3, 
+    "price": [-27], 
+    "category": "Misc",
+    "description": "It reminds of forgotten self-love, when dignity falls and basic aesthetic taste becomes disgust.",
+    "attributesModifiers": { 
+      "Luck": -3,
+      "LifeMax": -40,
+      "LifeRegen": -4,
+      "ManaMax": -40,
+      "ManaRegen": -4,
+      "ExperienceBonusPercentage": -5
+    } 
   }
 ]
