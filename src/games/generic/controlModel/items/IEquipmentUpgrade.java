@@ -9,6 +9,7 @@ import games.generic.controlModel.currency.CurrencySet;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.JSONable;
+import tools.json.types.JSONBoolean;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
 
@@ -18,9 +19,12 @@ import tools.json.types.JSONString;
  */
 public interface IEquipmentUpgrade extends AttributesUpgrade {
 	public static final Function<IEquipmentUpgrade, String> KEY_EXTRACTOR = eu -> eu.getName();
+	public static final String FIELD_IS_PREFIX = "isPrefix";
 	public static final String FIELD_DESCRIPTION = "description";
 	public static final String FIELD_UPGRADE_CATEGORY = "upgradeCategory";
 	public static final String FIELD_PRICES_MODIFICATIONS = "pricesModifications";
+
+	public boolean isPrefix();
 
 	public String getDescription();
 
@@ -38,6 +42,8 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	public CurrencySet getPricesModifications();
 
 	//
+
+	public void setIsPrefix(boolean flag);
 
 	public void setDescription(String description);
 
@@ -59,6 +65,7 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		JSONObject priceModsJsoned = new JSONObject();
 		this.getPricesModifications().toJSONValue(priceModsJsoned);
 		wrapper.addField(FIELD_PRICES_MODIFICATIONS, priceModsJsoned);
+		wrapper.addField(FIELD_IS_PREFIX, new JSONBoolean(this.isPrefix()));
 		wrapper.addField(FIELD_DESCRIPTION, new JSONString(this.getDescription()));
 		JSONObject upgradeCategoryJsoned = new JSONObject();
 		this.getUpgradeCategory().toJSONValue(upgradeCategoryJsoned);
@@ -74,6 +81,12 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		AttributesUpgrade.super.loadFromJSONObject(gm, wrapper);
+		// isPrefix
+		if (!wrapper.hasField(FIELD_IS_PREFIX)) {
+			this.setIsPrefix(false);
+		} else {
+			this.setIsPrefix(wrapper.getFieldValue(FIELD_IS_PREFIX).asBoolean());
+		}
 		// description
 		if (!wrapper.hasField(FIELD_DESCRIPTION)) {
 			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);
@@ -118,6 +131,12 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		AttributesUpgrade.super.loadFromJSONMap(gm, jsonMap);
+		// isPrefix
+		if (!jsonMap.containsKey(FIELD_IS_PREFIX)) {
+			this.setIsPrefix(false);
+		} else {
+			this.setIsPrefix((Boolean) jsonMap.get(FIELD_IS_PREFIX));
+		}
 		// description
 		if (!jsonMap.containsKey(FIELD_DESCRIPTION)) {
 			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);

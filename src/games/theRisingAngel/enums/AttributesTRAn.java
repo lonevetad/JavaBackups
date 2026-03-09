@@ -36,28 +36,36 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	StaminaMax(0), StaminaRegen, //
 	/**
 	 * Expressed in milliseconds, delay from starting the sheild recharging after being depleated.
+	 * EDIT 09-03-2026: see Velocity cast/attack formula
 	 */
 	ShieldDelayReduction, //
-	//
+	// physical things
 	PhysicalDamageBonus, PhysicalDamageMultiplierPercentageBonus, //
 	PhysicalDamageReduction, PhysicalDamageMultiplierPercentageReduction, //
 	PhysicalProbabilityPerThousandHit, PhysicalProbabilityPerThousandAvoid, //
 	VelocityAttackStrikePercentage(1), //  // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocityAttackStrikePercentage)) ?
+	// magical things
 	MagicalDamageBonus, MagicalDamageMultiplierPercentageBonus, //
 	MagicalDamageReduction, MagicalDamageMultiplierPercentageReduction, //
 	MagicalProbabilityPerThousandHit, MagicalProbabilityPerThousandAvoid, //
+	// velocity cast/attack
 	VelocitySpellCastPercentage(-99, 10000), // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocitySpellCastPercentage)) ?
 	CostCastReductionPercentage(-10000, 99), //
-	//
+	// crit
 	CriticalProbabilityPerThousandHit, CriticalMultiplierPercentageBonus(0), //
 	CriticalProbabilityPerThousandAvoid, CriticalMultiplierPercentageReduction, //
-	LifeLeechPercentage(-1000, 1000), ManaLeechPercentage(-1000, 1000), ShieldLeechPercentage(-1000, 1000),
+	// leech
+	LifeLeechPercentage(-1000, 1000), //
+	ManaLeechPercentage(-1000, 1000), //
+	ShieldLeechPercentage(-1000, 1000), //
 	StaminaLeechPercentage(-1000, 1000), //
-	ReflectionDamagePercentage(0), ExperienceBonusPercentage(0, 10000);
+	// misc
+	ReflectionDamagePercentage(0), //
+	ExperienceBonusPercentage(0, 10000);
 
 	//
 
-	public static final int FIRST_INDEX_ATTRIBUTE_UPGRADABLE, LAST_INDEX_ATTRIBUTE_UPGRADABLE,
+	public static final int FIRST_INDEX_ATTRIBUTE_UPGRADABLE, LAST_INDEX_ATTRIBUTE_UPGRADABLE, INDEX_LUCK,
 			ATTRIBUTES_UPGRADABLE_COUNT;
 	public static final AttributesTRAn[] ALL_ATTRIBUTES;
 	public static final IndexToObjectBackmapping INDEX_TO_ATTRIBUTE_TRAn;
@@ -66,6 +74,7 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	static {
 		FIRST_INDEX_ATTRIBUTE_UPGRADABLE = Strength.getIndex();
 		LAST_INDEX_ATTRIBUTE_UPGRADABLE = Faith.getIndex();
+		INDEX_LUCK = Luck.getIndex();
 		ATTRIBUTES_UPGRADABLE_COUNT = 1 + (LAST_INDEX_ATTRIBUTE_UPGRADABLE - FIRST_INDEX_ATTRIBUTE_UPGRADABLE);
 		ALL_ATTRIBUTES = AttributesTRAn.values();
 		INDEX_TO_ATTRIBUTE_TRAn = (int i) -> AttributesTRAn.ALL_ATTRIBUTES[i];

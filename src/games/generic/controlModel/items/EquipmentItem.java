@@ -1,5 +1,6 @@
 package games.generic.controlModel.items;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -223,6 +224,32 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	@Override
 	public GModality getGameModality() {
 		return getCreatureWearingEquipments().getGameModality();
+	}
+
+	public String getNameWithUpgrades() {
+		Set<IEquipmentUpgrade> upg = this.getUpgrades();
+		if (upg == null) {
+			return super.getName();
+		}
+		StringBuilder sb = new StringBuilder();
+		final List<IEquipmentUpgrade> prefixes = new ArrayList<>(), suffixes = new ArrayList<>();
+		upg.forEach(up -> {
+			(up.isPrefix() ? prefixes : suffixes).add(up);
+		});
+		boolean firstSuffixDone = false;
+		for (IEquipmentUpgrade p : prefixes) {
+			sb.append(p.getName()).append(' ');
+		}
+		sb.append(super.getName());
+		for (IEquipmentUpgrade p : suffixes) {
+			if (firstSuffixDone) {
+				sb.append(',');
+			} else {
+				firstSuffixDone = true;
+			}
+			sb.append(' ').append(p.getName());
+		}
+		return sb.toString();
 	}
 
 	@Override

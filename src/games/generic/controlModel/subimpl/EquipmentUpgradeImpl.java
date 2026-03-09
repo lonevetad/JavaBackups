@@ -22,10 +22,12 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 		this.name = name;
 		this.backMapAttrMods = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
 		this.attributesModifiers = backMapAttrMods.toSetValue(AttributeModification.KEY_EXTRACTOR);
+		this.isPrefix = false;
 		this.description = null;
 		this.equipmentUpgradeCategory = null;
 	}
 
+	protected boolean isPrefix;
 	protected int rarityIndex;
 	protected String name, description;
 	protected EquipmentUpgradeCategory equipmentUpgradeCategory;
@@ -42,6 +44,11 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public boolean isPrefix() {
+		return this.isPrefix;
 	}
 
 	@Override
@@ -82,6 +89,11 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	//
 
 	@Override
+	public void setIsPrefix(boolean flag) {
+		this.isPrefix = flag;
+	}
+
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -107,13 +119,16 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return "\tEquipmentUpgradeImpl [\n\t\tname=" + name + ", rarityIndex=" + rarityIndex
-				+ ",\n\t\tpriceModifications=" + priceModifications
-				+ (this.description != null ? (",\n\t" + this.description) : "")//
-				+ ",\n\t\tattributesModifiers=" + attributesModifiersToString() + "]";
-	}
+	/*
+	 * @Override
+	 * public String toString() {
+	 * return "\tEquipmentUpgradeImpl [\n\t\tname=" + name + ", rarityIndex=" +
+	 * rarityIndex
+	 * + ",\n\t\tpriceModifications=" + priceModifications
+	 * + (this.description != null ? (",\n\t" + this.description) : "")//
+	 * + ",\n\t\tattributesModifiers=" + attributesModifiersToString() + "]";
+	 * }
+	 */
 
 	public String attributesModifiersToString() {
 		StringBuilder sb;
