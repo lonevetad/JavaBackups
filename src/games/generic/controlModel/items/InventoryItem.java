@@ -228,6 +228,9 @@ public abstract class InventoryItem extends OWIDLongImpl
 
 	@Override
 	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
+		}
 		RarityHolder.super.loadFromJSONObject(gm, wrapper);
 		AssignableObject.super.loadFromJSONObject(gm, wrapper);
 		// dimensionInInventory

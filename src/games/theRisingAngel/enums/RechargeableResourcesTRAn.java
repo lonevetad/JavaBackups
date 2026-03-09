@@ -26,7 +26,7 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 	public static final IndexToObjectBackmapping INDEX_TO_RECHARGEABLE_RESOURCES_TRAn;
 	static {
 		RechargeableResourcesTRAn[] vals = values();
-		ALL_RECHARGEABLE_RESOURCES_TRAn = new ArrayList<RechargeableResourceType>(vals.length);
+		ALL_RECHARGEABLE_RESOURCES_TRAn = new ArrayList<>(vals.length);
 		for (RechargeableResourcesTRAn resource : vals) {
 			resource.ID = RECHARGEABLE_RESOURCES_TRAn_UID_PROVIDER.getNewID();
 			ALL_RECHARGEABLE_RESOURCES_TRAn.add(resource);
@@ -39,13 +39,19 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 	protected Long ID;
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
-	public String getName() { return name(); }
+	public String getName() {
+		return name();
+	}
 
 	@Override
-	public int getIndex() { return ordinal(); }
+	public int getIndex() {
+		return ordinal();
+	}
 
 	@Override
 	public RechargableResource newRechargableResource(ResourceRechargeableHolder holder) {
@@ -57,11 +63,13 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 	}
 
 	@Override
-	public IndexToObjectBackmapping getFromIndexBackmapping() { return INDEX_TO_RECHARGEABLE_RESOURCES_TRAn; }
+	public IndexToObjectBackmapping getFromIndexBackmapping() {
+		return INDEX_TO_RECHARGEABLE_RESOURCES_TRAn;
+	}
 
 	@Override
 	public boolean setID(Long newID) {
-		if (newID == null || newID == this.ID || (this.ID != null && this.ID.longValue() == newID.longValue())) {
+		if ((newID == null) || (newID == this.ID) || (this.ID != null && this.ID.longValue() == newID.longValue())) {
 			return false;
 		}
 		this.ID = newID;

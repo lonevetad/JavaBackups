@@ -8,6 +8,7 @@ import java.util.Set;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.GameObjectsManager;
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
@@ -90,8 +91,10 @@ public abstract class OrbitingInteractiveObject extends OWIDLongImpl implements 
 	@Override
 	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
 
-	public void setName(String name) {
+	@Override
+	public ObjectNamed setName(String name) {
 //		this.name = name;
+		return this;
 	}
 
 	public void setOwner(ObjectWithID owner) { this.owner = owner; }

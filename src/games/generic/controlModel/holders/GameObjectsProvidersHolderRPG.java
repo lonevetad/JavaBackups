@@ -17,6 +17,7 @@ import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.providers.AbilitiesProvider;
 import games.generic.controlModel.providers.AttributesProvider;
 import games.generic.controlModel.providers.CreaturesProvider;
+import games.generic.controlModel.providers.DamageTypesProvider;
 import games.generic.controlModel.providers.EquipItemProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesCategoryProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesProvider;
@@ -61,12 +62,15 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 
 	protected GModalityRPG gameModality;
 	protected Map<String, GameObjectsProvider<? extends ObjectNamed>> providers;
-	protected AttributesProvider<?> attributesProvider;
 	protected AbilitiesProvider abilitiesProvider;
 	protected EquipItemProvider equipmentsProvider;
 	protected ItemProvider itemsProvider;
-	protected EquipmentUpgradesCategoryProvider<?> equipUpgradesCategoryProvider;
 	protected EquipmentUpgradesProvider equipUpgradesProvider;
+	// enum-based providers
+	protected EquipmentUpgradesCategoryProvider<?> equipUpgradesCategoryProvider;
+	protected AttributesProvider<?> attributesProvider;
+	protected DamageTypesProvider<?> damageTypesProvider;
+	//
 	protected CreaturesProvider<BaseCreatureRPG> creaturesProvider;
 	protected GMapProvider mapsProvider;
 	// for random stuffs
@@ -92,6 +96,7 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		// the name (key)
 		this.equipUpgradesCategoryProvider = newEquipUpgradesCategoryProvider();
 		this.attributesProvider = newAttributesProvider();
+		this.damageTypesProvider = newDamageTypesProvider();
 	}
 
 	//
@@ -187,10 +192,10 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 
 	public abstract AttributesProvider<?> newAttributesProvider();
 
-	public abstract DamageTypesProvider
-	
+	public abstract DamageTypesProvider<?> newDamageTypesProvider();
+
 	//
-	
+
 	public CreaturesProvider<BaseCreatureRPG> newCreatureProvider() {
 		return new CreaturesProvider<>();
 	}

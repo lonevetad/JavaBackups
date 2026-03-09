@@ -27,13 +27,14 @@ public abstract class HealableResource implements ObjectNamedID {
 	 * <p>
 	 * See {@link RechargeableResourceType}.
 	 */
-	public RechargeableResourceType getResourceType() { return resourceType; }
+	public RechargeableResourceType getResourceType() {
+		return resourceType;
+	}
 
 	@Override
-	public Integer getID() { return resourceType.getID(); }
-
-	@Override
-	public String getName() { return resourceType.getName(); }
+	public String getName() {
+		return resourceType.getName();
+	}
 
 	public abstract int getAmount();
 
@@ -51,5 +52,7 @@ public abstract class HealableResource implements ObjectNamedID {
 
 	public abstract void setRegenerationAmount(int regenerationAmount);
 
-	public void alterResourceAmount(int delta) { setAmount(this.getAmount() + delta); }
+	public void alterResourceAmount(int delta) {
+		setAmount(this.getAmount() + delta);
+	}
 }

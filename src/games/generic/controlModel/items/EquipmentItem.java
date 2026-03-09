@@ -499,7 +499,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
-		InventoryItem.super.toJSONValue(wrapper);
+		super.toJSONValue(wrapper);
 		AbilitiesHolder.super.toJSONValue(wrapper);
 		// equipment type
 		JSONObject equipmentTypeJsoned = new JSONObject();

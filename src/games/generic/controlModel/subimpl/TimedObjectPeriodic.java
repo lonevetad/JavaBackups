@@ -38,10 +38,11 @@ public interface TimedObjectPeriodic extends TimedObject {
 	@Override
 	public default void act(GModality modality, int timeUnits) {
 		if (timeUnits > 0) {
-			setAccumulatedTimeElapsed(timeUnits + getAccumulatedTimeElapsed());
-			while (getAccumulatedTimeElapsed() > getTimeThreshold()) {
+			long newAccumulatedTime = timeUnits + getAccumulatedTimeElapsed();
+			setAccumulatedTimeElapsed(newAccumulatedTime);
+			while (newAccumulatedTime > getTimeThreshold()) {
 				// decrement the counter and execute the action
-				setAccumulatedTimeElapsed(getAccumulatedTimeElapsed() - getTimeThreshold());
+				setAccumulatedTimeElapsed(newAccumulatedTime - getTimeThreshold());
 				executeAction(modality);
 			}
 		}

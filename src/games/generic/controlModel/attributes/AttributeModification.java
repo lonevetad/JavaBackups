@@ -16,7 +16,7 @@ import tools.ObjectNamedID;
  * instances by invoking
  * {@link CreatureAttributes#applyAttributeModifier(EquipmentAttributeModifier)}.
  */
-public class AttributeModification extends AmountNamed {
+public abstract class AttributeModification extends AmountNamed {
 	private static final long serialVersionUID = -88782140147L;
 	public static final Function<AttributeModification, String> KEY_EXTRACTOR = eu -> eu.getAttributeModified()
 			.getName();
@@ -30,10 +30,6 @@ public class AttributeModification extends AmountNamed {
 		return Comparators.STRING_COMPARATOR.compare(KEY_EXTRACTOR.apply(am1), KEY_EXTRACTOR.apply(am2));
 	};
 
-	public static AttributeModification newEmpty(AttributeIdentifier attributeModified) {
-		return new AttributeModification(attributeModified, 0);
-	}
-
 	public static AttributeModification[] newEmptyArray(AttributeIdentifier[] attributesModified) {
 		int n;
 		AttributeModification[] r;
@@ -46,11 +42,17 @@ public class AttributeModification extends AmountNamed {
 
 	//
 
-	public AttributeModification(AttributeIdentifier attributeModified, int value) { super(attributeModified, value); }
+	public AttributeModification(AttributeIdentifier attributeModified, int value) {
+		super(attributeModified, value);
+	}
 
-	public AttributeIdentifier getAttributeModified() { return (AttributeIdentifier) super.type; }
+	public AttributeIdentifier getAttributeModified() {
+		return (AttributeIdentifier) super.type;
+	}
 
-	public void setAttributeModified(AttributeIdentifier attributeModified) { super.setType(attributeModified); }
+	public void setAttributeModified(AttributeIdentifier attributeModified) {
+		super.setType(attributeModified);
+	}
 
 	@Override
 	public void setType(ObjectNamedID type) {
@@ -65,4 +67,5 @@ public class AttributeModification extends AmountNamed {
 	public String toString() {
 		return "AttributeModification: (attr=" + getAttributeModified() + "; value=" + value + ")";
 	}
+
 }

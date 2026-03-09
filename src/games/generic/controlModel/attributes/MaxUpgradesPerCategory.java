@@ -3,13 +3,16 @@ package games.generic.controlModel.attributes;
 import java.util.Map;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgradeCategory;
 import games.generic.controlModel.misc.RangedAmountInt;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
 import tools.json.JSONable;
-import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 /**
  * An {@link EquipmentItem} might have some restrictions about the amount of
@@ -17,8 +20,10 @@ import tools.json.types.JSONObject;
  * be either a general one, or a specific one, i.e. a
  * per-{@link IEquipmentUpgradeCategory}
  */
-public class MaxUpgradesPerCategory implements JSONable {
+public abstract class MaxUpgradesPerCategory implements JSONable {
 	private static final long serialVersionUID = -4000000102054402248L;
+	public static final String FIELD_MAX_UPGRADABLE_AMOUNTS = "maxUpgradableAmounts";
+	public static final String FIELD_UPGRADE_CATEGORY = "upgradeCategory";
 
 	protected RangedAmountInt maxUpgradableAmounts;
 	protected IEquipmentUpgradeCategory upgradeCategory;
@@ -76,22 +81,101 @@ public class MaxUpgradesPerCategory implements JSONable {
 
 	//
 
+	public abstract void loadEquipmentUpgradeCategory(GModality gm, String name);
+
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
-		JSONInt jsonedIndexRarity = new JSONInt(this.getRarityIndex());
-		wrapper.addField(FIELD_RARITY_INDEX, jsonedIndexRarity);
+		JSONObject maxUpgradableAmountsJSONed = new JSONObject();
+		this.maxUpgradableAmounts.toJSONValue(maxUpgradableAmountsJSONed);
+		wrapper.addField(FIELD_MAX_UPGRADABLE_AMOUNTS, maxUpgradableAmountsJSONed);
+		JSONObject upgradeCategoryJSONed = new JSONObject();
+		this.upgradeCategory.toJSONValue(upgradeCategoryJSONed);
+		wrapper.addField(FIELD_UPGRADE_CATEGORY, upgradeCategoryJSONed);
+
 	}
 
 	@Override
 	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
-		// TODO Auto-generated method stub
-
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
+		}
+		// maxUpgradableAmounts
+		if (!wrapper.hasField(FIELD_MAX_UPGRADABLE_AMOUNTS)) {
+			this.raiseExceptionMissingField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object);
+		}
+		JSONValue maxUpgradableAmountsJSONed_value = wrapper.getFieldValue(FIELD_MAX_UPGRADABLE_AMOUNTS);
+		if (!maxUpgradableAmountsJSONed_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object,
+					maxUpgradableAmountsJSONed_value);
+		}
+		JSONObject maxUpgradableAmountsJSONed = (JSONObject) maxUpgradableAmountsJSONed_value;
+		if (this.getMaxUpgradableAmounts() == null) {
+			this.setMaxUpgradableAmounts(new RangedAmountInt(1)); // dummy default
+		}
+		this.getMaxUpgradableAmounts().loadFromJSONObject(gm, maxUpgradableAmountsJSONed);
+		// upgradeCategory
+		if (!wrapper.hasField(FIELD_UPGRADE_CATEGORY)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+		}
+		JSONValue upgradeCategoryJSONed_value = wrapper.getFieldValue(FIELD_UPGRADE_CATEGORY);
+		if (!upgradeCategoryJSONed_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object, upgradeCategoryJSONed_value);
+		}
+		JSONObject upgradeCategoryJSONed = (JSONObject) upgradeCategoryJSONed_value;
+		if (!upgradeCategoryJSONed.hasField(ObjectNamed.FIELD_NAME)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+					JSONTypes.String);
+		}
+		JSONValue upgradeCategory_Name_JSONed_value = upgradeCategoryJSONed.getFieldValue(ObjectNamed.FIELD_NAME);
+		if (!upgradeCategory_Name_JSONed_value.isType(JSONTypes.String)) {
+			this.raiseExceptionIllegalTypeField(
+					FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String,
+					upgradeCategory_Name_JSONed_value);
+		}
+		JSONString upgradeCategory_Name_JSONed = (JSONString) upgradeCategory_Name_JSONed_value;
+		this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name_JSONed.asString());
 	}
 
 	@Override
 	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-		// TODO Auto-generated method stub
-
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSON map cannot be null");
+		}
+		// maxUpgradableAmounts
+		if (!jsonMap.containsKey(FIELD_MAX_UPGRADABLE_AMOUNTS)) {
+			this.raiseExceptionMissingField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object);
+		}
+		Object maxUpgradableAmountsJSONed_value = jsonMap.get(FIELD_MAX_UPGRADABLE_AMOUNTS);
+		if (!(maxUpgradableAmountsJSONed_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object,
+					maxUpgradableAmountsJSONed_value);
+		}
+		Map<String, Object> maxUpgradableAmountsJSONed = (Map<String, Object>) maxUpgradableAmountsJSONed_value;
+		if (this.getMaxUpgradableAmounts() == null) {
+			this.setMaxUpgradableAmounts(new RangedAmountInt(1)); // dummy default
+		}
+		this.getMaxUpgradableAmounts().loadFromJSONMap(gm, maxUpgradableAmountsJSONed);
+		// upgradeCategory
+		if (!jsonMap.containsKey(FIELD_UPGRADE_CATEGORY)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+		}
+		Object upgradeCategoryJSONed_value = jsonMap.get(FIELD_UPGRADE_CATEGORY);
+		if (!(upgradeCategoryJSONed_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object, upgradeCategoryJSONed_value);
+		}
+		Map<String, Object> upgradeCategoryJSONed = (Map<String, Object>) upgradeCategoryJSONed_value;
+		if (!upgradeCategoryJSONed.containsKey(ObjectNamed.FIELD_NAME)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+					JSONTypes.String);
+		}
+		Object upgradeCategory_Name_value = upgradeCategoryJSONed.get(ObjectNamed.FIELD_NAME);
+		if (!(upgradeCategory_Name_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(
+					FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String,
+					upgradeCategory_Name_value);
+		}
+		String upgradeCategory_Name = (String) upgradeCategory_Name_value;
+		this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name);
 	}
 
 }

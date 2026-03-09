@@ -37,7 +37,7 @@ public interface GameObjectsProvidersHolder {
 	 * @param enumClassName
 	 * @param provider
 	 */
-	public default <E extends Enum<E> & IEnumAlike> void registerEnumBasedProvider(String enumClassName,
+	public default <E extends IEnumAlike> void registerEnumBasedProvider(String enumClassName,
 			EnumBasedObjectProvider<E> provider) {
 		this.addProvider(enumClassName, provider);
 	}
@@ -49,7 +49,7 @@ public interface GameObjectsProvidersHolder {
 	 * @param enumClass
 	 * @param provider
 	 */
-	public default <E extends Enum<E> & IEnumAlike> void registerEnumBasedProvider(Class<E> enumClass,
+	public default <E extends IEnumAlike> void registerEnumBasedProvider(Class<E> enumClass,
 			EnumBasedObjectProvider<E> provider) {
 		this.registerEnumBasedProvider(enumClass.getName(), provider);
 	}
@@ -62,8 +62,7 @@ public interface GameObjectsProvidersHolder {
 	 * @param enumClass
 	 * @return
 	 */
-	public default <E extends Enum<E> & IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(
-			Class<E> enumClass) {
+	public default <E extends IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(Class<E> enumClass) {
 		return this.getEnumBasedProviderByClass(enumClass, enumClass.getName());
 	}
 
@@ -77,13 +76,12 @@ public interface GameObjectsProvidersHolder {
 	 * @param enumClass
 	 * @return
 	 */
-	public default <E extends Enum<E> & IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(
-			Class<E> enumClass, String name) {
+	public default <E extends IEnumAlike> EnumBasedObjectProvider<E> getEnumBasedProviderByClass(Class<E> enumClass,
+			String name) {
 		GameObjectsProvider<? extends ObjectNamed> p = this.getProvider(name);
 		if (!(EnumBasedObjectProvider.class.isAssignableFrom(p.getClass()))) {
-			throw new IllegalStateException(
-					"The provider for class \"" + enumClass.getName() + "\" and key \"" + name
-							+ "\" is not an EnumBasedObjectProvider");
+			throw new IllegalStateException("The provider for class \"" + enumClass.getName() + "\" and key \"" + name
+					+ "\" is not an EnumBasedObjectProvider");
 		}
 		return (EnumBasedObjectProvider<E>) p;
 	}

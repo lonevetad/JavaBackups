@@ -53,17 +53,22 @@ public interface CreatureSimple
 	public static final int MILLIS_REGEN_LIFE_MANA = 1000 / TICKS_PER_SECONDS;
 
 	@Override
-	public default int getRarityIndex() { return 0; }
+	public default int getRarityIndex() {
+		return 0;
+	}
 
 	//
 
 	@Override
-	public default RarityHolder setRarityIndex(int rarityIndex) { return this; }
+	public default RarityHolder setRarityIndex(int rarityIndex) {
+		return this;
+	}
 
 	@Override
 	public default void act(GModality modality, int timeUnits) {
-		if (isDestroyed())
+		if (isDestroyed()) {
 			return;
+		}
 		MovingObject.super.act(modality, timeUnits);
 //		LivingObject.super.act(modality, timeUnits); // this is the same of the below :
 //		ObjectHealing.super.act(modality, timeUnits);
@@ -81,11 +86,23 @@ public interface CreatureSimple
 		this.getAbilitiesAllocations().forEach(action);
 	}
 
-	//
+	// AttributeModificationTRAn
 
 	@Override
-	public default void initSetRechargeableResources() { LivingObject.super.initSetRechargeableResources(); }
+	public default void initSetRechargeableResources() {
+		LivingObject.super.initSetRechargeableResources();
+	}
 
 	@Override
-	public default int getLuckPerThousand() { return LivingObject.super.getLuckPerThousand(); }
+	public default int getLuckPerThousand() {
+		return LivingObject.super.getLuckPerThousand();
+	}
+
+	@Override
+	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		// TODO Auto-generated method stub
+		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
+		AbilitiesHolder.super.loadFromJSONMap(gm, jsonMap);
+		// TODO ALTRO? DA AGGIUSTARE
+	}
 }

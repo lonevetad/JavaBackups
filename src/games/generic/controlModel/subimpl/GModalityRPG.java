@@ -20,6 +20,8 @@ import tools.ObjectWithID;
 
 public abstract class GModalityRPG extends GModalityET {
 
+	private static final long serialVersionUID = 1L;
+
 	public GModalityRPG(GController controller, String modalityName) {
 		super(controller, modalityName);
 //		this.gameObjectsProviderHolderRPG = gomp;
@@ -87,18 +89,26 @@ public abstract class GModalityRPG extends GModalityET {
 		GEventInterfaceRPG geiRPG;
 		ObjectWithID owner;
 
-		if (!this.addGameObject(item)) { return false; }
+		if (!this.addGameObject(item)) {
+			return false;
+		}
 
 		gei = this.getEventInterface();
-		if (!(gei instanceof GEventInterfaceRPG)) { return false; }
+		if (!(gei instanceof GEventInterfaceRPG)) {
+			return false;
+		}
 		geiRPG = (GEventInterfaceRPG) gei;
 
 		if (this.getModel().contains(item)) {
-			if (this.getModel().remove(item)) { geiRPG.fireGameObjectRemoved(this, item); }
+			if (this.getModel().remove(item)) {
+				geiRPG.fireGameObjectRemoved(this, item);
+			}
 		}
 
 		owner = item.getOwner();
-		if (owner instanceof ObjectLocated) { item.setLocation(((ObjectLocated) owner).getLocation()); }
+		if (owner instanceof ObjectLocated) {
+			item.setLocation(((ObjectLocated) owner).getLocation());
+		}
 
 		item.onDrop(this);
 		geiRPG.fireGameObjectAdded(this, item);
@@ -117,5 +127,7 @@ public abstract class GModalityRPG extends GModalityET {
 	}
 
 	/** Just a proxy */
-	public void spawnObjInMap(ObjectInSpace ois) { this.getGameObjectsManager().addToSpace(ois); }
+	public void spawnObjInMap(ObjectInSpace ois) {
+		this.getGameObjectsManager().addToSpace(ois);
+	}
 }

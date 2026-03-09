@@ -4,8 +4,6 @@ import java.util.Map;
 
 import games.generic.controlModel.GModality;
 import tools.ObjectNamedID;
-import tools.json.JSONTypes;
-import tools.json.JSONValue;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 
@@ -54,6 +52,7 @@ public interface IndexableObject extends ObjectNamedID {
 
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
+		ObjectNamedID.super.toJSONValue(wrapper);
 		JSONInt jsonedIndex = new JSONInt(this.getIndex());
 		wrapper.addField(FIELD_INDEX, jsonedIndex);
 	}
@@ -62,24 +61,27 @@ public interface IndexableObject extends ObjectNamedID {
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		ObjectNamedID.super.loadFromJSONObject(gm, wrapper);
 		// index
-		// get the field
-		if (!wrapper.hasField(FIELD_INDEX)) {
-			this.raiseExceptionMissingField(FIELD_INDEX, JSONTypes.Int);
-		}
-		JSONValue jsonedIndex_value = wrapper.getFieldValue(FIELD_INDEX);
-		// TODO
-		// now de-serialize it
-		if (!jsonedIndex_value.isType(JSONTypes.Int)) {
-			this.raiseExceptionIllegalTypeField(FIELD_INDEX, JSONTypes.Int, jsonedIndex_value);
-		}
-		JSONObject jsonedIndex = (JSONObject) jsonedIndex_value;
+		/*
+		 * DELEGATED TO THE CALLER DUE TO THE IMPOSSIBILITY OF SETTING THE INDEX
+		 * if (!wrapper.hasField(FIELD_INDEX)) {
+		 * this.raiseExceptionMissingField(FIELD_INDEX, JSONTypes.Int);
+		 * }
+		 * JSONValue jsonedIndex_value = wrapper.getFieldValue(FIELD_INDEX);
+		 * if (!jsonedIndex_value.isType(JSONTypes.Int)) {
+		 * this.raiseExceptionIllegalTypeField(FIELD_INDEX, JSONTypes.Int,
+		 * jsonedIndex_value);
+		 * }
+		 * JSONObject jsonedIndex = (JSONObject) jsonedIndex_value;
+		 */
 	}
 
 	@Override
 	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
 		// TODO
-		TODO;
+		/*
+		 * DELEGATED TO THE CALLER DUE TO THE IMPOSSIBILITY OF SETTING THE INDEX
+		 */
 	}
 
 }

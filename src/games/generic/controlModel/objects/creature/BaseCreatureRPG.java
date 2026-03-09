@@ -1,5 +1,6 @@
 package games.generic.controlModel.objects.creature;
 
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 import games.generic.controlModel.GModality;
@@ -18,30 +19,46 @@ public interface BaseCreatureRPG
 	public RechargeableResourceType getShieldResourceType();
 
 	@Override
-	public default int getMana() { return this.getAmount(getManaResourceType()); }
+	public default int getMana() {
+		return this.getAmount(getManaResourceType());
+	}
 
 	@Override
-	public default int getManaMax() { return this.getMaxAmount(getManaResourceType()); }
+	public default int getManaMax() {
+		return this.getMaxAmount(getManaResourceType());
+	}
 
 	@Override
-	public default int getManaRegeneration() { return this.getRechargeAmount(getManaResourceType()); }
+	public default int getManaRegeneration() {
+		return this.getRechargeAmount(getManaResourceType());
+	}
 
 	@Override
-	public default int getShield() { return this.getAmount(getShieldResourceType()); }
+	public default int getShield() {
+		return this.getAmount(getShieldResourceType());
+	}
 
 	@Override
-	public default int getShieldMax() { return this.getMaxAmount(getShieldResourceType()); }
+	public default int getShieldMax() {
+		return this.getMaxAmount(getShieldResourceType());
+	}
 
 	@Override
-	public default int getShieldRegeneration() { return this.getRechargeAmount(getShieldResourceType()); }
+	public default int getShieldRegeneration() {
+		return this.getRechargeAmount(getShieldResourceType());
+	}
 
 	//
 
 	@Override
-	public default void setMana(int mana) { this.setAmount(getManaResourceType(), mana); }
+	public default void setMana(int mana) {
+		this.setAmount(getManaResourceType(), mana);
+	}
 
 	@Override
-	public default void setManaMax(int manaMax) { this.setMaxAmount(getManaResourceType(), manaMax); }
+	public default void setManaMax(int manaMax) {
+		this.setMaxAmount(getManaResourceType(), manaMax);
+	}
 
 	@Override
 	public default void setManaRegeneration(int manaRegenation) {
@@ -49,10 +66,14 @@ public interface BaseCreatureRPG
 	}
 
 	@Override
-	public default void setShield(int shield) { this.setAmount(getShieldResourceType(), shield); }
+	public default void setShield(int shield) {
+		this.setAmount(getShieldResourceType(), shield);
+	}
 
 	@Override
-	public default void setShieldMax(int shieldMax) { this.setMaxAmount(getShieldResourceType(), shieldMax); }
+	public default void setShieldMax(int shieldMax) {
+		this.setMaxAmount(getShieldResourceType(), shieldMax);
+	}
 
 	@Override
 	public default void setShieldRegeneration(int shieldRegenation) {
@@ -75,7 +96,11 @@ public interface BaseCreatureRPG
 		// Add equips and abilities on GMod
 		abilityAdderToGModality = (n, ab) -> ab.onAddedToGame(gm);
 		this.getAbilities().forEach(abilityAdderToGModality);
-		this.getEquipmentSet().forEachEquipment((e, i) -> { if (e != null) { e.onAddedToGame(gm); } });
+		this.getEquipmentSet().forEachEquipment((e, i) -> {
+			if (e != null) {
+				e.onAddedToGame(gm);
+			}
+		});
 	}
 
 	@Override
@@ -160,5 +185,13 @@ public interface BaseCreatureRPG
 	}
 
 	@Override
-	public default int getLuckPerThousand() { return CreatureSimple.super.getLuckPerThousand(); }
+	public default int getLuckPerThousand() {
+		return CreatureSimple.super.getLuckPerThousand();
+	}
+
+	@Override
+	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		// TODO Auto-generated method stub
+		CreatureSimple.super.loadFromJSONMap(gm, jsonMap);
+	}
 }

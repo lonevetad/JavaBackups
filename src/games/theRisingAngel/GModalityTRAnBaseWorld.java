@@ -20,6 +20,7 @@ import tools.ObjectNamedID;
 
 // TODO todo tons of stuffs
 public class GModalityTRAnBaseWorld extends GModalityRPG {
+	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Basic World";
 	public static final int ATTRIBUTES_POINTS_GAINED_ON_LEVELING = 5;
 	/** See {@link GModalityRPG#SPACE_SUB_UNITS_EVERY_UNIT_EXAMPLE} */

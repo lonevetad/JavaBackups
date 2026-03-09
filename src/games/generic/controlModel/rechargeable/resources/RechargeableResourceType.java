@@ -6,7 +6,6 @@ import games.generic.controlModel.holders.ResourceRechargeableHolder;
 import games.generic.controlModel.misc.IndexableObject;
 import games.generic.controlModel.rechargeable.resources.examples.ExampleHealingType;
 import tools.Comparators;
-import tools.ObjectNamedID;
 
 /**
  * Marks a resource as something that can be recharged in some way (like
@@ -14,7 +13,7 @@ import tools.ObjectNamedID;
  * It also defines an upper bound and a lower bound of the value (assuming that
  * this resource is an integer).
  */
-public interface RechargeableResourceType extends ObjectNamedID, IndexableObject {
+public interface RechargeableResourceType extends IndexableObject {
 	public static final Comparator<RechargeableResourceType> COMPARATOR_RECHARGEABLE_RESOURCE_TYPE = (ht1, ht2) -> {
 		int c;
 		if (ht1 == ht2)
@@ -30,12 +29,16 @@ public interface RechargeableResourceType extends ObjectNamedID, IndexableObject
 	/**
 	 * Returns the minimum value this resource can have.
 	 */
-	public default int getLowerBound() { return Integer.MIN_VALUE; }
+	public default int getLowerBound() {
+		return Integer.MIN_VALUE;
+	}
 
 	/**
 	 * Returns the maximum value this resource can have.
 	 */
-	public default int getUpperBound() { return Integer.MAX_VALUE; }
+	public default int getUpperBound() {
+		return Integer.MAX_VALUE;
+	}
 
 	//
 
