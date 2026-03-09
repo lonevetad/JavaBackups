@@ -1,5 +1,6 @@
 package games.generic.controlModel.damage;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.misc.AmountNamed;
 
 /**
@@ -36,5 +37,11 @@ public class DamageGeneric extends AmountNamed {
 	@Override
 	public String toString() {
 		return "DamageGeneric [damageAmount=" + getDamageAmount() + ", damageType=" + getDamageType() + "]";
+	}
+
+	@Override
+	protected void loadInnerObjectNamedID(GModality gm, String name) {
+		// TODO Auto-generated method stub
+		//
 	}
 }

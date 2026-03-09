@@ -3,7 +3,7 @@ package games.generic.controlModel.providers;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.misc.IEnumAlike;
 
-public abstract class EnumBasedObjectProvider<E extends Enum<E> & IEnumAlike> extends GameObjectsProvider<E> {
+public abstract class EnumBasedObjectProvider<E extends IEnumAlike> extends GameObjectsProvider<E> {
 	public EnumBasedObjectProvider() {
 		super();
 	}
@@ -15,7 +15,7 @@ public abstract class EnumBasedObjectProvider<E extends Enum<E> & IEnumAlike> ex
 		super.initialize();
 		// define the factories for all enums' values
 		for (E e : this.getEnumValues()) {
-			this.addObj(e.getName(), gm -> e);
+			this.addObj(e.getName(), _ -> e);
 		}
 	}
 

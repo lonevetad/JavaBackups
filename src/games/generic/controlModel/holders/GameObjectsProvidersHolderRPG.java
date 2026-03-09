@@ -181,10 +181,16 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		return new EquipmentUpgradesProvider();
 	}
 
+	// ENUM-ALIKE providers
+
 	public abstract EquipmentUpgradesCategoryProvider<?> newEquipUpgradesCategoryProvider();
 
 	public abstract AttributesProvider<?> newAttributesProvider();
 
+	public abstract DamageTypesProvider
+	
+	//
+	
 	public CreaturesProvider<BaseCreatureRPG> newCreatureProvider() {
 		return new CreaturesProvider<>();
 	}
