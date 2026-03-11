@@ -5,6 +5,7 @@ import java.util.Map;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.items.EquipmentSet;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.misc.IEnumAlike;
 import games.generic.controlModel.providers.EnumBasedObjectProvider;
@@ -99,5 +100,7 @@ public interface GameObjectsProvidersHolder {
 	 * @return
 	 */
 	public abstract AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext);
+
+	public abstract EquipmentSet newEquipmentSet();
 
 }

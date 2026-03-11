@@ -55,7 +55,8 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	 * Function to be called on creation time, upon instantiation, to define its
 	 * internal fields, default values, etc.
 	 */
-	public void onCreate(GModality gm);
+	public default void onCreate(GModality gm) {
+	}
 
 	//
 

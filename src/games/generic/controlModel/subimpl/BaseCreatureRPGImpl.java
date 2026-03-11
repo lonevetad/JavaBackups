@@ -7,6 +7,7 @@ import dataStructures.MapMapped;
 import dataStructures.MapTreeAVL;
 import dataStructures.MapTreeAVL.Optimizations;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.abilities.AbilityAllocation;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.abilities.impl.AbilityAllocationImpl;
@@ -164,8 +165,10 @@ public abstract class BaseCreatureRPGImpl implements BaseCreatureRPG {
 		this.gModalityRPG = (GModalityRPG) gameModality;
 	}
 
-	public void setName(String name) {
+	@Override
+	public ObjectNamed setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	@Override
@@ -256,15 +259,17 @@ public abstract class BaseCreatureRPGImpl implements BaseCreatureRPG {
 
 	@Override
 	public void act(GModality modality, int timeUnits) {
-		if (isDestroyed())
+		if (isDestroyed()) {
 			return;
+		}
 		BaseCreatureRPG.super.act(modality, timeUnits);
 	}
 
 	@Override
 	public void move(GModality modality, int timeUnits) {
-		if (movementImplementation != null)
+		if (movementImplementation != null) {
 			movementImplementation.act(modality, timeUnits);
+		}
 	}
 
 	@Override
@@ -341,8 +346,9 @@ public abstract class BaseCreatureRPGImpl implements BaseCreatureRPG {
 		int damageAmountToBeApplied, damageReallyReceived, shield; // originalDamageAmount
 //		GModalityRPG gmrpg;
 		EventDamage eventDamageProcessed;
-		if (originalDamage.getDamageAmount() <= 0)
+		if (originalDamage.getDamageAmount() <= 0) {
 			return;
+		}
 //		gmrpg = (GModalityRPG) gm;
 //		// check the type
 //		gmrpg.getGameObjectsManager().dealsDamageTo(source, this, originalDamage);

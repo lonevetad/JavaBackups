@@ -8,7 +8,6 @@ import games.generic.controlModel.attributes.AttributesUpgrade;
 import games.generic.controlModel.currency.CurrencySet;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
-import tools.json.JSONable;
 import tools.json.types.JSONBoolean;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
@@ -62,14 +61,10 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		AttributesUpgrade.super.toJSONValue(wrapper);
-		JSONObject priceModsJsoned = new JSONObject();
-		this.getPricesModifications().toJSONValue(priceModsJsoned);
-		wrapper.addField(FIELD_PRICES_MODIFICATIONS, priceModsJsoned);
 		wrapper.addField(FIELD_IS_PREFIX, new JSONBoolean(this.isPrefix()));
+		wrapper.addField(FIELD_PRICES_MODIFICATIONS, this.getPricesModifications().toJSONValue());
 		wrapper.addField(FIELD_DESCRIPTION, new JSONString(this.getDescription()));
-		JSONObject upgradeCategoryJsoned = new JSONObject();
-		this.getUpgradeCategory().toJSONValue(upgradeCategoryJsoned);
-		wrapper.addField(FIELD_UPGRADE_CATEGORY, upgradeCategoryJsoned);
+		wrapper.addField(FIELD_UPGRADE_CATEGORY, this.getUpgradeCategory().toJSONValue());
 	}
 
 	/**
@@ -102,30 +97,17 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		}
 		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
 		cs.loadFromJSONObject(gm, (JSONObject) pricesModsJSONed);
+		this.setPricesModifications(cs);
 		// UpgradeCategory's name
 		// equip upgrade category
 		if (!wrapper.hasField(FIELD_UPGRADE_CATEGORY)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.String);
 		}
 		JSONValue upgradeCategoryJSONed_value = wrapper.getFieldValue(FIELD_UPGRADE_CATEGORY);
-		if (!upgradeCategoryJSONed_value.isType(JSONTypes.Object)) {
-			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object, upgradeCategoryJSONed_value);
+		if (!upgradeCategoryJSONed_value.isType(JSONTypes.String)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.String, upgradeCategoryJSONed_value);
 		}
-		JSONObject upgradeCategoryJSONed = (JSONObject) upgradeCategoryJSONed_value;
-		// the instances of the UpgradeCategory might be an enum, so a custom loading
-		// process is needed -> get just the name
-		if (!upgradeCategoryJSONed.hasField(FIELD_NAME)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + FIELD_NAME,
-					JSONTypes.String);
-		}
-		JSONValue upgradeCategoryJSONed_name_value = upgradeCategoryJSONed.getFieldValue(FIELD_NAME);
-		if (!upgradeCategoryJSONed_name_value.isType(JSONTypes.String)) {
-			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + FIELD_NAME,
-					JSONTypes.String,
-					upgradeCategoryJSONed_name_value);
-		}
-		JSONString upgradeCategoryJSONed_name = (JSONString) upgradeCategoryJSONed_name_value;
-		loadIEquipmentUpgradeCategory(gm, upgradeCategoryJSONed_name.asString());
+		loadIEquipmentUpgradeCategory(gm, upgradeCategoryJSONed_value.asString());
 	}
 
 	@Override
@@ -154,26 +136,13 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		cs.loadFromJSONMap(gm, (Map<String, Object>) pricesModsJSONed);
 		// equip upgrade category
 		if (!jsonMap.containsKey(FIELD_UPGRADE_CATEGORY)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.String);
 		}
 		Object upgradeCategoryMapped_value = jsonMap.get(FIELD_UPGRADE_CATEGORY);
-		if (!(upgradeCategoryMapped_value instanceof Map<?, ?>)) {
-			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object, upgradeCategoryMapped_value);
+		if (!(upgradeCategoryMapped_value instanceof String)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.String, upgradeCategoryMapped_value);
 		}
-		Map<String, Object> upgradeCategoryMapped = (Map<String, Object>) upgradeCategoryMapped_value;
-		// the instances of the UpgradeCategory might be an enum, so a custom loading
-		// process is needed -> get just the name
-		if (!upgradeCategoryMapped.containsKey(FIELD_NAME)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + FIELD_NAME,
-					JSONTypes.String);
-		}
-		Object upgradeCategoryMapped_name_value = upgradeCategoryMapped.get(FIELD_NAME);
-		if (!(upgradeCategoryMapped_name_value instanceof String)) {
-			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + FIELD_NAME,
-					JSONTypes.String,
-					upgradeCategoryMapped_name_value);
-		}
-		String upgradeCategoryName = (String) upgradeCategoryMapped_name_value;
+		String upgradeCategoryName = (String) upgradeCategoryMapped_value;
 		loadIEquipmentUpgradeCategory(gm, upgradeCategoryName);
 	}
 }

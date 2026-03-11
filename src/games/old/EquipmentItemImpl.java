@@ -22,19 +22,19 @@ public class EquipmentItemImpl extends EquipmentItem {
 	public EquipmentItemImpl(GModalityRPG gmrpg, EquipmentType equipmentType, String name) { // , List<String>
 																								// abilitiesName
 		super(gmrpg, equipmentType, name);
-//		this.abilitiesName = abilitiesName;
+		// this.abilitiesName = abilitiesName;
 		onCreateAfterAssigningAbilitiesName(gmrpg);
 	}
 
-//	protected List<String> abilitiesName; // TODO what about
-//
-//	public List<String> getAbilitiesName() {
-//		return abilitiesName;
-//	}
-//
-//	public void setAbilitiesName(List<String> abilitiesName) {
-//		this.abilitiesName = abilitiesName;
-//	}
+	// protected List<String> abilitiesName; // TODO what about
+	//
+	// public List<String> getAbilitiesName() {
+	// return abilitiesName;
+	// }
+	//
+	// public void setAbilitiesName(List<String> abilitiesName) {
+	// this.abilitiesName = abilitiesName;
+	// }
 
 	@Override
 	public void onCreate(GModality gm) {
@@ -47,19 +47,30 @@ public class EquipmentItemImpl extends EquipmentItem {
 
 	@Override
 	protected void enrichEquipment(GModality gm, GameObjectsProvidersHolder providersHolder) {
-		super.enrichEquipment(gm, providersHolder);
-//		AbilityGeneric a;
-//		AbilitiesProvider ap;
-//		GameObjectsProvidersHolderRPG prpg;
-//		prpg = (GameObjectsProvidersHolderRPG) providersHolder;
+		// AbilityGeneric a;
+		// AbilitiesProvider ap;
+		// GameObjectsProvidersHolderRPG prpg;
+		// prpg = (GameObjectsProvidersHolderRPG) providersHolder;
 		////		super.enr
-//		ap = prpg.getAbilitiesProvider();
-//		if (this.abilitiesName != null) {
-//			for (String abilityName : this.abilitiesName) {
-//				a = ap.getNewObjByName(gm, abilityName);
-//				this.addAbility((EquipItemAbility) a);
-//			}
-//			this.abilitiesName = null;
-//		}
+		// ap = prpg.getAbilitiesProvider();
+		// if (this.abilitiesName != null) {
+		// for (String abilityName : this.abilitiesName) {
+		// a = ap.getNewObjByName(gm, abilityName);
+		// this.addAbility((EquipItemAbility) a);
+		// }
+		// this.abilitiesName = null;
+		// }
+	}
+
+	@Override
+	public void onDrop(GModalityRPG gmRPG) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'onDrop'");
+	}
+
+	@Override
+	public void onPickUp(GModalityRPG gmRPG) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'onPickUp'");
 	}
 }

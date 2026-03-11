@@ -59,7 +59,7 @@ public interface JSONable extends Stringable {
 	 * Convert this instance into a {@link JSONObject}, which can be easily
 	 * String-ed.
 	 */
-	public default JSONObject toJSONValue() {
+	public default JSONValue toJSONValue() {
 		JSONObject wrapper = new JSONObject();
 		toJSONValue(wrapper);
 		return wrapper;
@@ -71,7 +71,13 @@ public interface JSONable extends Stringable {
 	 * @return a map name-value of the fields of this instance
 	 */
 	public default Map<String, Object> toJSONMap() {
-		JSONObject jvThis = this.toJSONValue();
+		JSONValue jvThis_value = this.toJSONValue();
+		if (!jvThis_value.isType(JSONTypes.Object)) {
+			throw new RuntimeException("ERROR: " + this.getClass().getName()
+					+ " should have returned a JSONObject while calling toJSONMap(), but a "
+					+ jvThis_value.getType().name() + " has been returned instead");
+		}
+		JSONObject jvThis = (JSONObject) jvThis_value;
 		return jvThis.toMapFields();
 	}
 
@@ -101,6 +107,15 @@ public interface JSONable extends Stringable {
 	}
 
 	// exceptions
+
+	public default void raiseUnsupportedOperationException(String msg) throws UnsupportedOperationException {
+		throw new UnsupportedOperationException(msg);
+	}
+
+	public default void raiseUnsupportedOperationExceptionForMethod(String methodName)
+			throws UnsupportedOperationException {
+		this.raiseUnsupportedOperationException("ERROR: unsupported execution of the method: " + methodName);
+	}
 
 	public default void raiseExceptionIllegalTypeField(String fieldName, JSONTypes expectedType, Object actualValue)
 			throws IllegalArgumentException {

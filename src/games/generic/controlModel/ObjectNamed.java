@@ -44,6 +44,9 @@ public interface ObjectNamed extends JSONable {
 
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
+		if (wrapper.hasField(FIELD_NAME)) {
+			return; // already done
+		}
 		JSONString jsonedName = new JSONString(this.getName());
 		wrapper.addField(FIELD_NAME, jsonedName);
 	}

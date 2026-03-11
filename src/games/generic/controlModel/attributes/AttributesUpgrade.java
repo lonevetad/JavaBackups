@@ -72,9 +72,7 @@ public interface AttributesUpgrade
 		RarityHolder.super.toJSONValue(wrapper);
 		final JSONObject attributesJsoned = new JSONObject();
 		this.getAttributesModifiers().forEach(am -> {
-			JSONObject amJSONed = new JSONObject();
-			am.toJSONValue(amJSONed);
-			attributesJsoned.addField(am.getName(), amJSONed);
+			attributesJsoned.addField(am.getName(), am.toJSONValue());
 		});
 		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, attributesJsoned);
 	}

@@ -1,6 +1,7 @@
 package games.theRisingAngel.enums;
 
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Random;
 
 import games.generic.controlModel.GModality;
@@ -9,7 +10,9 @@ import games.generic.controlModel.misc.IEnumAlike;
 import tools.Comparators;
 import tools.ObjWithRarityWeight;
 import tools.WeightedSetOfRandomOutcomes;
+import tools.json.JSONValue;
 import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlike {
 	Scrap(200), Common(550), Good(280), Awesome(150), Rare(60), Epic(25), Legendary(10);
@@ -17,10 +20,12 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 	public static final RaritiesTRAn[] ALL_RARITIES_TRAn;
 	public static final IndexToObjectBackmapping INDEX_TO_RARITY_TRAn;
 	public static final Comparator<RaritiesTRAn> COMPARATOR_RARITY_TRAn;
+	public static final String NAME;
 	private static WeightedSetOfRandomOutcomes RANDOM_WEIGTHED_INDEXES;
 
 	static {
 		RANDOM_WEIGTHED_INDEXES = null;
+		NAME = RaritiesTRAn.class.getName();
 		ALL_RARITIES_TRAn = RaritiesTRAn.values();
 		INDEX_TO_RARITY_TRAn = (int i) -> ALL_RARITIES_TRAn[i];
 		COMPARATOR_RARITY_TRAn = (r1, r2) -> {
@@ -122,19 +127,29 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 		return INDEX_TO_RARITY_TRAn;
 	}
 
+	//
+
+	// JSON-related
+
+	//
+
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
-		// TODO Auto-generated method stub
-		IEnumAlike.super.toJSONValue(wrapper);
-		RarityHolder.super.toJSONValue(wrapper);
-		ObjWithRarityWeight.super.toJSONValue(wrapper);
+		this.raiseUnsupportedOperationException("RaritiesTRAn should be transformed into a JSON String");
+	}
+
+	@Override
+	public JSONValue toJSONValue() {
+		return new JSONString(this.getName());
 	}
 
 	@Override
 	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
-		// TODO Auto-generated method stub
 		IEnumAlike.super.loadFromJSONObject(gm, wrapper);
-		RarityHolder.super.loadFromJSONObject(gm, wrapper);
-		ObjWithRarityWeight.super.loadFromJSONObject(gm, wrapper);
+	}
+
+	@Override
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		IEnumAlike.super.loadFromJSONMap(gm, jsonMap);
 	}
 }

@@ -10,6 +10,7 @@ import games.generic.controlModel.objects.InteractingObj;
 import games.generic.controlModel.rechargeable.resources.RechargeableResourceType;
 import games.generic.controlModel.rechargeable.resources.holders.ManaHavingObject;
 import games.generic.controlModel.rechargeable.resources.holders.ShieldHavingObject;
+import tools.json.types.JSONObject;
 
 public interface BaseCreatureRPG
 		extends EquipmentsHolder, CreatureSimple, ManaHavingObject, ShieldHavingObject, InteractingObj {
@@ -116,71 +117,6 @@ public interface BaseCreatureRPG
 
 	@Override
 	public default void initSetRechargeableResources() {
-//		this.addRechargableResource(new RechargableResource(this, getLifeResourceType()) {
-//			private static final long serialVersionUID = 4444444444L;
-//
-//			@Override
-//			public void setRechargeAmount(int regenerationAmount) { setLifeRegeneration(regenerationAmount); }
-//
-//			@Override
-//			public void setAmountMax(int resourceAmountMax) { setLifeMax(resourceAmountMax); }
-//
-//			@Override
-//			public void setAmount(int resourceAmount) { setLife(resourceAmount); }
-//
-//			@Override
-//			public int getRechargeAmount() { return getLifeRegeneration(); }
-//
-//			@Override
-//			public int getMaxAmount() { return getLifeMax(); }
-//
-//			@Override
-//			public int getAmount() { return getLife(); }
-//		});
-//
-//		this.addRechargableResource(new RechargableResource(this, getManaResourceType()) {
-//			private static final long serialVersionUID = 55555555555555L;
-//
-//			@Override
-//			public void setRechargeAmount(int regenerationAmount) { setManaRegeneration(regenerationAmount); }
-//
-//			@Override
-//			public void setAmountMax(int resourceAmountMax) { setManaMax(resourceAmountMax); }
-//
-//			@Override
-//			public void setAmount(int resourceAmount) { setMana(resourceAmount); }
-//
-//			@Override
-//			public int getRechargeAmount() { return getManaRegeneration(); }
-//
-//			@Override
-//			public int getMaxAmount() { return getManaMax(); }
-//
-//			@Override
-//			public int getAmount() { return getMana(); }
-//		});
-//
-//		this.addRechargableResource(new RechargableResource(this, getShieldResourceType()) {
-//			private static final long serialVersionUID = 6666666666L;
-//
-//			@Override
-//			public void setRechargeAmount(int regenerationAmount) { setShieldRegeneration(regenerationAmount); }
-//
-//			@Override
-//			public void setAmountMax(int resourceAmountMax) { setShieldMax(resourceAmountMax); }
-//
-//			@Override
-//			public void setAmount(int resourceAmount) { setShield(resourceAmount); }
-//
-//			@Override
-//			public int getRechargeAmount() { return getShieldRegeneration(); }
-//
-//			@Override
-//			public int getMaxAmount() { return getShieldMax(); }
-//
-//			@Override
-//			public int getAmount() { return getShield(); }
-//		});
 		CreatureSimple.super.initSetRechargeableResources();
 	}
 
@@ -189,9 +125,30 @@ public interface BaseCreatureRPG
 		return CreatureSimple.super.getLuckPerThousand();
 	}
 
+	//
+
+	// JSON-related
+
+	//
+
 	@Override
-	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-		// TODO Auto-generated method stub
+	public default void toJSONValue(JSONObject wrapper) {
+		CreatureSimple.super.toJSONValue(wrapper);
+		EquipmentsHolder.super.toJSONValue(wrapper);
+		CreatureSimple.super.toJSONValue(wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		CreatureSimple.super.loadFromJSONObject(gm, wrapper);
+		EquipmentsHolder.super.loadFromJSONObject(gm, wrapper);
+		CreatureSimple.super.loadFromJSONObject(gm, wrapper);
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		CreatureSimple.super.loadFromJSONMap(gm, jsonMap);
+		EquipmentsHolder.super.loadFromJSONMap(gm, jsonMap);
 		CreatureSimple.super.loadFromJSONMap(gm, jsonMap);
 	}
 }

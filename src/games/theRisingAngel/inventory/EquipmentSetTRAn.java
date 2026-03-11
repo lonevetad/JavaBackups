@@ -6,6 +6,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EquipmentSet;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
+import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 
 /**
  *
@@ -39,7 +40,9 @@ public class EquipmentSetTRAn extends EquipmentSet {
 	}
 
 	@Override
-	public EquipmentItem[] getEquippedItems() { return equippedItems; }
+	public EquipmentItem[] getEquippedItems() {
+		return equippedItems;
+	}
 
 	/**
 	 * Configuration-like setting for setting the way to displace rings upon
@@ -50,10 +53,14 @@ public class EquipmentSetTRAn extends EquipmentSet {
 	 * available</li>
 	 * </ul>
 	 */
-	public boolean isNiceEquippingRings() { return isNiceEquippingRings; }
+	public boolean isNiceEquippingRings() {
+		return isNiceEquippingRings;
+	}
 
 	@Override
-	public EquipmentItem getEquippedItemAt(int index) { return equippedItems[index]; }
+	public EquipmentItem getEquippedItemAt(int index) {
+		return equippedItems[index];
+	}
 
 	public void setNiceEquippingRings(boolean isNiceEquippingRings) {
 		this.isNiceEquippingRings = isNiceEquippingRings;
@@ -61,8 +68,9 @@ public class EquipmentSetTRAn extends EquipmentSet {
 
 //	/**Returns <code>true</code> if the equip process was successful, <code>false</code> otherwise (meaning that a {@link #swapEquipmentItem(GModality, EquipmentItem, EquipmentItem)} should be required*/
 	public void addEquipmentItemAt(GModality gm, EquipmentItem ei, int index) {
-		if (ei == null)
+		if (ei == null) {
 			return;
+		}
 		if (equippedItems[index] == null) {
 			performEquipAt(gm, ei, index);
 		} else {
@@ -71,31 +79,33 @@ public class EquipmentSetTRAn extends EquipmentSet {
 	}
 
 	@Override
-	public void swapEquipmentItem(GModality gm, EquipmentItem newEI, EquipmentItem oldEI) {
-		// TODO
+	public EquippingProcessResult swapEquipmentItem(GModality gm, EquipmentItem newEI, EquipmentItem oldEI) {
+		return EquippingProcessResult.Failed;
+		// TODO 11-03-2026 rather than "void", " addEquipmentItem" should return a
+		// "Equipment"
 	}
 
-	public void swapEquipmentItem(GModality gm, EquipmentItem newEI, int index, EquipmentItem oldEI) {
-		// TODO
+	public EquippingProcessResult swapEquipmentItem(GModality gm, EquipmentItem newEI, int index, EquipmentItem oldEI) {
+		return EquippingProcessResult.Failed;
+		// TODO 11-03-2026 rather than "void", " addEquipmentItem" should return a
+		// "Equipment"
 	}
 
 	@Override
-	public void addEquipmentItem(GModality gm, EquipmentItem ei) {
+	public EquippingProcessResult addEquipmentItem(GModality gm, EquipmentItem ei) {
 		EquipmentTypesTRAn et;
-		if (ei == null)
-			return;
+		if (ei == null) {
+			return EquippingProcessResult.Failed;
+		}
 		et = (EquipmentTypesTRAn) ei.getEquipmentType();
 		switch (et) {
 //		case Earrings:break; // are put at the beginning
 		case Ring:
-			addRing(gm, (EIRing) ei);
-			break;
+			return addRing(gm, (EIRing) ei);
 		case Necklace:
-			addNecklaceOrBracelet(gm, ei, firstIndexNecklace, EquipmentTypesTRAn.NECKLACE_AMOUNT);
-			break;
+			return addNecklaceOrBracelet(gm, ei, firstIndexNecklace, EquipmentTypesTRAn.NECKLACE_AMOUNT);
 		case Bracelet:
-			addNecklaceOrBracelet(gm, ei, firstIndexBracelets, EquipmentTypesTRAn.BRACELET_AMOUNT);
-			break;
+			return addNecklaceOrBracelet(gm, ei, firstIndexBracelets, EquipmentTypesTRAn.BRACELET_AMOUNT);
 		default:
 			int i;
 			i = ei.getEquipmentType().getIndex(); // id as index
@@ -103,10 +113,11 @@ public class EquipmentSetTRAn extends EquipmentSet {
 			if (equippedItems[i] == null) {
 				equippedItems[i] = ei;
 				performEquipAt(gm, ei, i);
+				return EquippingProcessResult.Succeeded;
 			} else {
 				swapEquipmentItem(gm, ei, equippedItems[i]);
+				return EquippingProcessResult.Swapped;
 			}
-			break;
 		}
 	}
 
@@ -121,7 +132,8 @@ public class EquipmentSetTRAn extends EquipmentSet {
 		ei.onEquip(gm);
 	}
 
-	protected void addNecklaceOrBracelet(GModality gm, EquipmentItem ei, int index, int equipItemSlotToCheck) {
+	protected EquippingProcessResult addNecklaceOrBracelet(GModality gm, EquipmentItem ei, int index,
+			int equipItemSlotToCheck) {
 		boolean notAdded;
 		int firstIndex;
 		firstIndex = index;
@@ -136,10 +148,14 @@ public class EquipmentSetTRAn extends EquipmentSet {
 			equipItemSlotToCheck++;
 			index++;
 		}
-		if (notAdded) { swapEquipmentItem(gm, ei, equippedItems[firstIndex]); }
+		if (notAdded) {
+			swapEquipmentItem(gm, ei, equippedItems[firstIndex]);
+			return EquippingProcessResult.Swapped;
+		}
+		return EquippingProcessResult.Succeeded;
 	}
 
-	protected void addRing(GModality gm, EIRing ring) {
+	protected EquippingProcessResult addRing(GModality gm, EIRing ring) {
 		boolean notAdded;
 		int s, i, fingersRemainingToCheck, startingIndexSlot, maxIndexSlotToStart, k;
 		// cercare prima un posto libero
@@ -159,8 +175,9 @@ public class EquipmentSetTRAn extends EquipmentSet {
 				while (notAdded && fingersRemainingToCheck-- >= 0) {
 					// check all slots, an amount of slots equal to th ring's size
 					k = 0;
-					while (equippedItems[i + k] == null && ++k < s)
+					while (equippedItems[i + k] == null && ++k < s) {
 						;
+					}
 					if (k == s) { // found enough space for the ring, i.e. where to place the item
 						while (--k > 0) { // place the ring, ignore the 0: it's used in equipAt
 							equippedItems[i + k] = ring;
@@ -187,14 +204,16 @@ public class EquipmentSetTRAn extends EquipmentSet {
 				 * non-filled finger)
 				 */
 				startingIndexSlot = 0;
-				while (equippedItems[i + startingIndexSlot] != null && ++startingIndexSlot < maxIndexSlotToStart)
+				while (equippedItems[i + startingIndexSlot] != null && ++startingIndexSlot < maxIndexSlotToStart) {
 					;
+				}
 				if (startingIndexSlot < maxIndexSlotToStart) {
 					// found non-filled
 					k = 0;
 					// count the amount of available slot
-					while (equippedItems[i + startingIndexSlot + k] == null && ++k < s)
+					while (equippedItems[i + startingIndexSlot + k] == null && ++k < s) {
 						;
+					}
 					if (k == s) { // found enough space for the ring, i.e. where to place the item
 						while (--k > 0) { // place the ring, ignore the 0: it's used in equipAt
 							equippedItems[i + startingIndexSlot + k] = ring;
@@ -206,6 +225,7 @@ public class EquipmentSetTRAn extends EquipmentSet {
 				i += EquipmentTypesTRAn.RING_SLOTS_EACH_FINGERS; // jump to the next finger
 			} while (notAdded && ++fingerIndex < fingersRemainingToCheck);
 		}
+		return notAdded ? EquippingProcessResult.Failed : EquippingProcessResult.Succeeded;
 	}
 
 	@Override
@@ -216,5 +236,11 @@ public class EquipmentSetTRAn extends EquipmentSet {
 		while (++i < n) {
 			consumer.apply(equippedItems[i], i);
 		}
+	}
+
+	@Override
+	public <E extends EquipmentItem> E newEquipmentItemByName(GModality gm, String name) {
+		GameObjectsProvidersHolderTRAn goph = (GameObjectsProvidersHolderTRAn) gm.getGameObjectsProvider();
+		return (E) goph.getEquipmentsProvider().getNewObjByName(gm, name);
 	}
 }

@@ -3,6 +3,7 @@ package games.generic.controlModel.attributes;
 import java.util.Comparator;
 import java.util.function.Function;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.AttributesHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.misc.AmountNamed;
@@ -16,26 +17,30 @@ import tools.ObjectNamedID;
  * instances by invoking
  * {@link CreatureAttributes#applyAttributeModifier(EquipmentAttributeModifier)}.
  */
-public abstract class AttributeModification extends AmountNamed {
+public class AttributeModification extends AmountNamed {
 	private static final long serialVersionUID = -88782140147L;
 	public static final Function<AttributeModification, String> KEY_EXTRACTOR = eu -> eu.getAttributeModified()
 			.getName();
 	public static final Comparator<AttributeModification> COMPARATOR = (am1, am2) -> {
-		if (am1 == am2)
+		if (am1 == am2) {
 			return 0;
-		if (am1 == null)
+		}
+		if (am1 == null) {
 			return -1;
-		if (am2 == null)
+		}
+		if (am2 == null) {
 			return 1;
+		}
 		return Comparators.STRING_COMPARATOR.compare(KEY_EXTRACTOR.apply(am1), KEY_EXTRACTOR.apply(am2));
 	};
 
-	public static AttributeModification[] newEmptyArray(AttributeIdentifier[] attributesModified) {
+	public static <AM extends AttributeModification> AttributeModification[] newEmptyArray(
+			AttributeIdentifier[] attributesModified, Function<AttributeIdentifier, AM> attrModConstructor) {
 		int n;
 		AttributeModification[] r;
 		r = new AttributeModification[n = attributesModified.length];
 		while (--n >= 0) {
-			r[n] = newEmpty(attributesModified[n]);
+			r[n] = attrModConstructor.apply(attributesModified[n]);
 		}
 		return r;
 	}
@@ -68,4 +73,9 @@ public abstract class AttributeModification extends AmountNamed {
 		return "AttributeModification: (attr=" + getAttributeModified() + "; value=" + value + ")";
 	}
 
+	@Override
+	protected void loadInnerObjectNamedID(GModality gm, String name) {
+		throw new UnsupportedOperationException(
+				"Method not implemented in a general game: override in the game-specific environment");
+	}
 }

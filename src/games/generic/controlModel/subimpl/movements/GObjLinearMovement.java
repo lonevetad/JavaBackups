@@ -22,24 +22,38 @@ public class GObjLinearMovement extends GObjMovement {
 	protected GModality gameModality;
 
 	@Override
-	public int getDistanceTraveled() { return distanceTraveled; }
+	public int getDistanceTraveled() {
+		return distanceTraveled;
+	}
 
 	@Override
-	public int getVelocity() { return velocity; }
+	public int getVelocity() {
+		return velocity;
+	}
 
-	public int getDistanceToDestination() { return distanceToDestination; }
+	public int getDistanceToDestination() {
+		return distanceToDestination;
+	}
 
-	public Point getDestination() { return destination; }
+	public Point getDestination() {
+		return destination;
+	}
 
-	public Point getStartingPoint() { return startingPoint; }
+	public Point getStartingPoint() {
+		return startingPoint;
+	}
 
 	@Override
-	public GModality getGameModality() { return gameModality; }
+	public GModality getGameModality() {
+		return gameModality;
+	}
 
 	//
 
 	@Override
-	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
+	public void setGameModality(GModality gameModality) {
+		this.gameModality = gameModality;
+	}
 
 	public void setDestination(Point destination) {
 		this.destination = destination;
@@ -50,13 +64,16 @@ public class GObjLinearMovement extends GObjMovement {
 		updateDest();
 	}
 
-	public void setVelocity(int velocity) { this.velocity = velocity > 0 ? velocity : 0; }
+	public void setVelocity(int velocity) {
+		this.velocity = velocity > 0 ? velocity : 0;
+	}
 
 	@Override
 	public void setObjectToMove(MovingObject objectToMove) {
 		super.setObjectToMove(objectToMove);
-		if (objectToMove != null)
+		if (objectToMove != null) {
 			this.startingPoint = objectToMove.getLocation();
+		}
 	}
 
 	///
@@ -64,7 +81,9 @@ public class GObjLinearMovement extends GObjMovement {
 	public void resetStartingPoint() {
 		Point otml;
 		otml = this.objectToMove.getLocation();
-		if (this.startingPoint == null) { this.startingPoint = otml; }
+		if (this.startingPoint == null) {
+			this.startingPoint = otml;
+		}
 		this.startingPoint.x = otml.x;
 		this.startingPoint.y = otml.y;
 		this.tempTimeUnit = 0;
@@ -101,8 +120,9 @@ public class GObjLinearMovement extends GObjMovement {
 	@Override
 	public void act(GModality modality, int timeUnits) {
 		int distFromLastVelcityChange, totalDistTraveled;
-		if (velocity == 0)
+		if (velocity == 0) {
 			return;
+		}
 		/**
 		 * Singe velocity could change from time to time, let's update the total
 		 * distance traveled to make it more precise
@@ -128,11 +148,20 @@ public class GObjLinearMovement extends GObjMovement {
 	}
 
 	@Override
-	public void onAddedToGame(GModality gm) {}
+	public void onAddedToGame(GModality gm) {
+	}
 
 	@Override
-	public void onRemovedFromGame(GModality gm) {}
+	public void onRemovedFromGame(GModality gm) {
+	}
 
 	@Override
-	public String getName() { return "linear movement implementation"; }
+	public String getName() {
+		return "linear movement implementation";
+	}
+
+	@Override
+	public void onCreate(GModality gm) {
+		gm.addGameObject(this);
+	}
 }

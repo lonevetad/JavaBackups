@@ -58,10 +58,13 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 	}
 
 	@Override
-	public void onAddedToGame(GModality gm) { this.reset(); }
+	public void onAddedToGame(GModality gm) {
+		this.reset();
+	}
 
 	@Override
-	public void onRemovedFromGame(GModality gm) {}
+	public void onRemovedFromGame(GModality gm) {
+	}
 
 	@Override
 	public String getName() {
@@ -74,21 +77,29 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 	 *
 	 * @return
 	 */
-	public int getTicksEachTimeUnit() { return TICKS_EACH_TIME_UNIT; }
+	public int getTicksEachTimeUnit() {
+		return TICKS_EACH_TIME_UNIT;
+	}
 
 	/**
 	 * Returns an approximation of the amount of "time su
 	 * {@link TimedObject#getTimeSubUnitsEachUnit()}
 	 */
-	public int getTimeSubUnitsEachTicks() { return this.getTimeSubUnitsEachUnit() / this.getTicksEachTimeUnit(); }
+	public int getTimeSubUnitsEachTicks() {
+		return this.getTimeSubUnitsEachUnit() / this.getTicksEachTimeUnit();
+	}
 
 	@Override
-	public GModality getGameModality() { return gameModality; }
+	public GModality getGameModality() {
+		return gameModality;
+	}
 
 	//
 
 	@Override
-	public void setGameModality(GModality gameModality) { this.gameModality = gameModality; }
+	public void setGameModality(GModality gameModality) {
+		this.gameModality = gameModality;
+	}
 
 	//
 
@@ -103,7 +114,9 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 
 	@Override
 	public void rechargeResources(Map<RechargeableResourceType, RechargableResource> resources) {
-		if (this.subUnitTimeElapsed > 0) { resources.forEach(this.theResourceRecharger); }
+		if (this.subUnitTimeElapsed > 0) {
+			resources.forEach(this.theResourceRecharger);
+		}
 	}
 
 	protected void rechargeResource(RechargableResource resource) {
@@ -119,7 +132,9 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 		}
 
 		resource.advanceElapseTime(this.subUnitTimeElapsed);
-		if (!resource.canBeRecharged()) { return; }
+		if (!resource.canBeRecharged()) {
+			return;
+		}
 
 		// TODO:refactor as ...
 		/**
@@ -147,7 +162,9 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 
 		progress.subunitsTimeAccumulated += this.subUnitTimeElapsed;
 
-		if (progress.subunitsTimeAccumulated < timeSubunitPerTick) { return; }
+		if (progress.subunitsTimeAccumulated < timeSubunitPerTick) {
+			return;
+		}
 
 		while (progress.subunitsTimeAccumulated >= timeSubunitPerTick) {
 			if (progress.subunitsTimeAccumulated >= subunitTimeEachUnit) {
@@ -180,7 +197,7 @@ public class ResourceRechargeableStrategyTimeTickBased<Source extends ObjectWith
 //		amountToRecharge += rechargeTarget;
 //		while (progress.subunitsTimeAccumulated >= subunitTimeEachUnit) {
 //
-////			resource.performRechargeBy(amountToHeal, this.whoIsPerformingTheRecharge);
+		////			resource.performRechargeBy(amountToHeal, this.whoIsPerformingTheRecharge);
 //			progress.subunitsTimeAccumulated -= subunitTimeEachUnit;
 //			amountToRecharge += rechargeTarget;
 //		}

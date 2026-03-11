@@ -25,6 +25,7 @@ import games.generic.controlModel.subimpl.GModalityRPG;
 import tools.Comparators;
 import tools.ObjectWithID;
 import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 /**
  * Top class for equippable object.<br>
@@ -502,12 +503,34 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		super.toJSONValue(wrapper);
 		AbilitiesHolder.super.toJSONValue(wrapper);
 		// equipment type
-		JSONObject equipmentTypeJsoned = new JSONObject();
-		this.getEquipmentType().toJSONValue(equipmentTypeJsoned);
-		wrapper.addField(FIELD_EQUIPMENT_TYPE, equipmentTypeJsoned);
+		wrapper.addField(FIELD_EQUIPMENT_TYPE, new JSONString(this.getEquipmentType().getName()));
+		// maxUpgradesPerCategory
+		final JSONObject maxUpgradesPerCategoryJSONed = new JSONObject();
+		this.getMaxUpgradesPerCategory().forEach((category, maxUpgr) -> {
+			maxUpgradesPerCategoryJSONed.addField(category.getName(), maxUpgr.toJSONValue());
+		});
+		wrapper.addField(FIELD_MAX_UPGRADES_PER_CATEGORY, maxUpgradesPerCategoryJSONed);
 		// base attribute modifiers
-		public static final String FIELD_MAX_UPGRADES_PER_CATEGORY = "maxUpgradesPerCategory";
-		public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributesModifiers";
-		public static final String FIELD_UPGRADES = "upgrades";
+		final JSONObject baseAttributesModifiersJSONed = new JSONObject();
+		this.getBaseAttributesModifiers().forEach((am) -> {
+			baseAttributesModifiersJSONed.addField(am.getName(), am.toJSONValue());
+		});
+		wrapper.addField(FIELD_BASE_ATTRIBUTE_MODIFIERS, maxUpgradesPerCategoryJSONed);
+		// upgrades
+		final JSONObject upgradesJSONed = new JSONObject();
+		this.getUpgrades().forEach((eUpgrade) -> {
+			upgradesJSONed.addField(eUpgrade.getName(), eUpgrade.toJSONValue());
+		});
+		wrapper.addField(FIELD_UPGRADES, upgradesJSONed);
+	}
+
+	@Override
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		// TODO : da fare tutto
+	}
+
+	@Override
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+		// TODO : da fare tutto
 	}
 }

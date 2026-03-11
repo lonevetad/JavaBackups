@@ -246,7 +246,7 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 
 	@Override
 	public int getPercentageCriticalStrikeMultiplier(DamageTypeGeneric damageType) {
-		return this.getAttributes().getValue(AttributesTRAn.CriticalMultiplierPercentage);
+		return this.getAttributes().getValue(AttributesTRAn.CriticalMultiplierPercentageBonus);
 	}
 
 	@Override
@@ -422,41 +422,38 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 
 			@Override
 			public void setRechargeAmount(int regenerationAmount) {
-				setLifeRegeneration(regenerationAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setLifeRegeneration(regenerationAmount);
 			}
 
 			@Override
 			public void setAmountMax(int resourceAmountMax) {
-				setLifeMax(resourceAmountMax);
+				((BaseCreatureTRAn) getResourceHolder()).setLifeMax(resourceAmountMax);
 			}
 
 			@Override
 			public void setAmount(int resourceAmount) {
-				setLife(resourceAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setLife(resourceAmount);
 			}
 
 			@Override
 			public int getRechargeAmount() {
-				return getLifeRegeneration();
+				return ((BaseCreatureTRAn) getResourceHolder()).getLifeRegeneration();
 			}
 
 			@Override
 			public int getMaxAmount() {
-				return getLifeMax();
+				return ((BaseCreatureTRAn) getResourceHolder()).getLifeMax();
 			}
 
 			@Override
 			public int getAmount() {
-				return getLife();
+				return ((BaseCreatureTRAn) getResourceHolder()).getLife();
 			}
-
-			@Override
-			public void advanceElapseTime(int timeUnits) {
-			}
-
-			@Override
-			public void stopRechargeStartDelaying() {
-			}
+			/*
+			 * @Override public void advanceElapseTime(int timeUnits) { }
+			 * 
+			 * @Override public void stopRechargeStartDelaying() {}
+			 */
 		});
 
 		this.addRechargableResource(new RechResourceDelayAware(getManaResourceType(), this) {
@@ -464,41 +461,38 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 
 			@Override
 			public void setRechargeAmount(int regenerationAmount) {
-				setManaRegeneration(regenerationAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setManaRegeneration(regenerationAmount);
 			}
 
 			@Override
 			public void setAmountMax(int resourceAmountMax) {
-				setManaMax(resourceAmountMax);
+				((BaseCreatureTRAn) getResourceHolder()).setManaMax(resourceAmountMax);
 			}
 
 			@Override
 			public void setAmount(int resourceAmount) {
-				setMana(resourceAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setMana(resourceAmount);
 			}
 
 			@Override
 			public int getRechargeAmount() {
-				return getManaRegeneration();
+				return ((BaseCreatureTRAn) getResourceHolder()).getManaRegeneration();
 			}
 
 			@Override
 			public int getMaxAmount() {
-				return getManaMax();
+				return ((BaseCreatureTRAn) getResourceHolder()).getManaMax();
 			}
 
 			@Override
 			public int getAmount() {
-				return getMana();
+				return ((BaseCreatureTRAn) getResourceHolder()).getMana();
 			}
-
-			@Override
-			public void advanceElapseTime(int timeUnits) {
-			}
-
-			@Override
-			public void stopRechargeStartDelaying() {
-			}
+			/*
+			 * @Override public void advanceElapseTime(int timeUnits) {}
+			 * 
+			 * @Override public void stopRechargeStartDelaying() {}
+			 */
 		});
 
 		res = new RechResourceDelayAware(getShieldResourceType(), this) {
@@ -506,32 +500,32 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 
 			@Override
 			public void setRechargeAmount(int regenerationAmount) {
-				setShieldRegeneration(regenerationAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setShieldRegeneration(regenerationAmount);
 			}
 
 			@Override
 			public void setAmountMax(int resourceAmountMax) {
-				setShieldMax(resourceAmountMax);
+				((BaseCreatureTRAn) getResourceHolder()).setShieldMax(resourceAmountMax);
 			}
 
 			@Override
 			public void setAmount(int resourceAmount) {
-				setShield(resourceAmount);
+				((BaseCreatureTRAn) getResourceHolder()).setShield(resourceAmount);
 			}
 
 			@Override
 			public int getRechargeAmount() {
-				return getShieldRegeneration();
+				return ((BaseCreatureTRAn) getResourceHolder()).getShieldRegeneration();
 			}
 
 			@Override
 			public int getMaxAmount() {
-				return getShieldMax();
+				return ((BaseCreatureTRAn) getResourceHolder()).getShieldMax();
 			}
 
 			@Override
 			public int getAmount() {
-				return getShield();
+				return ((BaseCreatureTRAn) getResourceHolder()).getShield();
 			}
 
 			@Override
@@ -541,11 +535,51 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 				sd = getAttributes().getValue(getShieldDelayReductionAttribute());
 				return sd > d ? 0 : (d - sd);
 			}
-
 		};
+
 		res.setDelayBeforeRecharge(((GameOptionsTRAn) this.gModalityRPG.getGameController().getGameOptions())
 				.getShieldDelayMilliseconds());
 		this.addRechargableResource(res);
+
+		this.addRechargableResource(new RechResourceDelayAware(getStaminaResourceType(), this) {
+			private static final long serialVersionUID = 777777777777L;
+
+			@Override
+			public void setRechargeAmount(int regenerationAmount) {
+				((BaseCreatureTRAn) getResourceHolder()).setStaminaRegeneration(regenerationAmount);
+			}
+
+			@Override
+			public void setAmountMax(int resourceAmountMax) {
+				((BaseCreatureTRAn) getResourceHolder()).setStaminaRegeneration(resourceAmountMax);
+			}
+
+			@Override
+			public void setAmount(int resourceAmount) {
+				((BaseCreatureTRAn) getResourceHolder()).setStamina(resourceAmount);
+			}
+
+			@Override
+			public int getRechargeAmount() {
+				return ((BaseCreatureTRAn) getResourceHolder()).getStaminaRegeneration();
+			}
+
+			@Override
+			public int getMaxAmount() {
+				return ((BaseCreatureTRAn) getResourceHolder()).getStaminaMax();
+			}
+
+			@Override
+			public int getAmount() {
+				return ((BaseCreatureTRAn) getResourceHolder()).getStamina();
+			}
+			/*
+			 * @Override public void advanceElapseTime(int timeUnits) {}
+			 * 
+			 * @Override public void stopRechargeStartDelaying() {}
+			 */
+		});
+
 		super.initSetRechargeableResources();
 	}
 
@@ -571,8 +605,9 @@ public abstract class BaseCreatureTRAn extends BaseCreatureRPGImpl implements St
 	public EventDestructionObj fireDestructionEvent(GModality gm) {
 		GModalityET gmet;
 		GEventInterfaceRPG gei;
-		if (gm == null || (!(gm instanceof GModalityET)))
+		if (gm == null || (!(gm instanceof GModalityET))) {
 			return null;
+		}
 		gmet = (GModalityET) gm;
 		gei = (GEventInterfaceRPG) gmet.getEventInterface();
 		return gei.fireDestructionObjectEvent(gmet, this);

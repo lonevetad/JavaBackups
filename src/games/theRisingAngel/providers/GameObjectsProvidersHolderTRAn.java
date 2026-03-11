@@ -3,6 +3,7 @@ package games.theRisingAngel.providers;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
+import games.generic.controlModel.items.EquipmentSet;
 import games.generic.controlModel.providers.AttributesProvider;
 import games.generic.controlModel.providers.DamageTypesProvider;
 import games.generic.controlModel.providers.EquipmentUpgradesCategoryProvider;
@@ -10,6 +11,7 @@ import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.DamageTypesTRAn;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
+import games.theRisingAngel.inventory.EquipmentSetTRAn;
 import games.theRisingAngel.misc.CurrencySetTRAn;
 
 public class GameObjectsProvidersHolderTRAn extends GameObjectsProvidersHolderRPG {
@@ -52,6 +54,11 @@ public class GameObjectsProvidersHolderTRAn extends GameObjectsProvidersHolderRP
 	@Override
 	public AbilityGeneric newAbilityGeneric(String abilityName, Object abilityContext) {
 		return this.getAbilitiesProvider().getNewObjByName(this.getGameModality(), abilityName);
+	}
+
+	@Override
+	public EquipmentSet newEquipmentSet() {
+		return new EquipmentSetTRAn();
 	}
 
 	// @Override

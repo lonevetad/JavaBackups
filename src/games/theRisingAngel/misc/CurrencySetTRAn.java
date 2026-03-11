@@ -13,6 +13,7 @@ import tools.json.JSONValue;
 import tools.json.types.JSONObject;
 
 public class CurrencySetTRAn extends CurrencySet {
+	private static final long serialVersionUID = 198048378304102L;
 
 	public CurrencySetTRAn(GModality gameModality) {
 		super(gameModality, CurrenciesTRAn.CURRENCIES);
@@ -28,13 +29,13 @@ public class CurrencySetTRAn extends CurrencySet {
 	}
 
 	@Override
-	public Currency currencyFromJSONMap(Map<String, Object> jsonMap) {
+	public Currency currencyFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		String currName = (String) jsonMap.get(Currency.FIELD_NAME);
 		return CurrenciesTRAn.valueOf(currName);
 	}
 
 	@Override
-	public Currency currencyFromJSONObject(JSONObject jsonObj) {
+	public Currency currencyFromJSONObject(GModality gm, JSONObject jsonObj) {
 		JSONValue jsonValName = jsonObj.getFieldValue(Currency.FIELD_NAME);
 		if (!jsonValName.isType(JSONTypes.String)) {
 			this.raiseExceptionIllegalTypeField(Currency.FIELD_NAME, JSONTypes.String, jsonValName);

@@ -157,12 +157,15 @@ public abstract class CurrencySet implements JSONable {
 
 	//
 
-	public abstract Currency currencyFromJSONMap(Map<String, Object> jsonMap);
+	public abstract Currency currencyFromJSONMap(GModality gm, Map<String, Object> jsonMap);
 
-	public abstract Currency currencyFromJSONObject(JSONObject jsonObj);
+	public abstract Currency currencyFromJSONObject(GModality gm, JSONObject jsonObj);
 
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
+		}
 		// canFireCurrencyChangeEvent
 		JSONBoolean jsonedCFCCE = new JSONBoolean(this.canFireCurrencyChangeEvent());
 		wrapper.addField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, jsonedCFCCE);
@@ -220,7 +223,7 @@ public abstract class CurrencySet implements JSONable {
 			if (!(curr instanceof Map<?, ?>)) {
 				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + i, JSONTypes.Object, curr);
 			}
-			currArr[i] = this.currencyFromJSONMap((Map<String, Object>) curr);
+			currArr[i] = this.currencyFromJSONMap(gm, (Map<String, Object>) curr);
 		}
 		this.setCurrencies(currArr);
 	}
@@ -262,7 +265,7 @@ public abstract class CurrencySet implements JSONable {
 				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + JSONable.SEPARATOR_INDEX + index,
 						JSONTypes.Object, currJSON);
 			}
-			currArr[index] = currencyFromJSONObject((JSONObject) currJSON);
+			currArr[index] = currencyFromJSONObject(gm, (JSONObject) currJSON);
 		});
 		this.setCurrencies(currArr);
 	}
