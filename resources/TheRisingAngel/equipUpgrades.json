@@ -8132,5 +8132,60 @@
       "MagicalDamageMultiplierPercentageBonus": 10,
       "Luck": -8
     }
+  },
+  {
+    "name": "of Holy Hand",
+    "rarity": 3,
+    "price": [32],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Dexterity": 5,
+      "Precision": 5,
+      "Faith": 7,
+      "Intelligence": -2
+    }
+  },
+  {
+    "name": "of Holy Guidance",
+    "rarity": 3,
+    "price": [32],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Dexterity": 3,
+      "Precision": 3,
+      "Faith": 11,
+      "Intelligence": -2
+    }
+  },
+  {
+    "name": "of Holy Inspiration",
+    "rarity": 2,
+    "price": [26],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Dexterity": 2,
+      "Precision": 2,
+      "Wisdom": 2,
+      "Faith": 6,
+      "Intelligence": -1
+    }
+  },
+  {
+    "name": "Holly-decorated",
+    "rarity": 1,
+    "price": [12],
+    "description": "A tender decoration reminding you of kinder and warmer times; just be careful swinging it!",
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Dexterity": -1,
+      "LifeMax": 20,
+      "LifeRegen": 2,
+      "ManaMax": 15,
+      "ManaRegen": 3
+    }
   }
 ]
