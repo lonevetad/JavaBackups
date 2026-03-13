@@ -8185,7 +8185,67 @@
       "LifeMax": 20,
       "LifeRegen": 2,
       "ManaMax": 15,
-      "ManaRegen": 3
+      "ManaRegen": 3,
+      "ReflectionDamagePercentage": 3
+    }
+  },
+  {
+    "name": "of the Hedgehog",
+    "rarity": 2,
+    "price": [19],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Dexterity": -2,
+      "Defense": 5,
+      "ReflectionDamagePercentage": 10
+    }
+  },
+  {
+    "name": "of the Porcupine",
+    "rarity": 3,
+    "price": [23],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Dexterity": -3,
+      "Defense": 7,
+      "ReflectionDamagePercentage": 15
+    }
+  },
+  {
+    "name": "of Thorns",
+    "rarity": 2,
+    "price": [23],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -100,
+      "ReflectionDamagePercentage": 12
+    }
+  },
+  {
+    "name": "with Thorns",
+    "rarity": 1,
+    "price": [17],
+    "category": "Refining",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -50,
+      "ReflectionDamagePercentage": 7
+    }
+  },
+  {
+    "name": "of the Bat",
+    "rarity": 2,
+    "price": [18],
+    "category": "Refining",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Health": -3,
+      "Precision": 8,
+      "Dexterity": 2,
+      "LifeLeechPercentage": 6
     }
   }
 ]

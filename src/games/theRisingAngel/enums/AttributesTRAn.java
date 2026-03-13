@@ -3,8 +3,13 @@ package games.theRisingAngel.enums;
 import java.util.Map;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.providers.FactoryGeneric;
 import tools.Comparators;
+import tools.json.JSONValue;
+import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 /**
  * All attributes for creatures and player.
@@ -25,7 +30,8 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	Defense(0), Dexterity(0), Precision(0), //
 	Intelligence(0), Wisdom(0), Faith(0), //
 	//
-	Luck, // helps with drops, rarity, amount of modifiers and abilities and their rarities, and hitting, avoiding and critical probabilities
+	Luck, // helps with drops, rarity, amount of modifiers and abilities and their
+			// rarities, and hitting, avoiding and critical probabilities
 	/**
 	 * It's a percentage value
 	 */
@@ -35,21 +41,25 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	ShieldMax(0), ShieldRegen, //
 	StaminaMax(0), StaminaRegen, //
 	/**
-	 * Expressed in milliseconds, delay from starting the sheild recharging after being depleated.
-	 * EDIT 09-03-2026: see Velocity cast/attack formula
+	 * Expressed in milliseconds, delay from starting the sheild recharging after
+	 * being depleated. EDIT 09-03-2026: see Velocity cast/attack formula
 	 */
 	ShieldDelayReduction, //
 	// physical things
 	PhysicalDamageBonus, PhysicalDamageMultiplierPercentageBonus, //
 	PhysicalDamageReduction, PhysicalDamageMultiplierPercentageReduction, //
 	PhysicalProbabilityPerThousandHit, PhysicalProbabilityPerThousandAvoid, //
-	VelocityAttackStrikePercentage(1), //  // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocityAttackStrikePercentage)) ?
+	VelocityAttackStrikePercentage(1), // // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's
+										// faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 +
+										// Math.max(-99, VelocityAttackStrikePercentage)) ?
 	// magical things
 	MagicalDamageBonus, MagicalDamageMultiplierPercentageBonus, //
 	MagicalDamageReduction, MagicalDamageMultiplierPercentageReduction, //
 	MagicalProbabilityPerThousandHit, MagicalProbabilityPerThousandAvoid, //
 	// velocity cast/attack
-	VelocitySpellCastPercentage(-99, 10000), // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 + Math.max(-99, VelocitySpellCastPercentage)) ?
+	VelocitySpellCastPercentage(-99, 10000), // TODO (2026-02-13) shouldn't it be a "percentage of how much times it's
+												// faster"? i.e.: finalVelocity = (originalVelocity * 100) / (100 +
+												// Math.max(-99, VelocitySpellCastPercentage)) ?
 	CostCastReductionPercentage(-10000, 99), //
 	// crit
 	CriticalProbabilityPerThousandHit, CriticalMultiplierPercentageBonus(0), //
@@ -69,8 +79,9 @@ public enum AttributesTRAn implements AttributeIdentifier {
 			ATTRIBUTES_UPGRADABLE_COUNT;
 	public static final AttributesTRAn[] ALL_ATTRIBUTES;
 	public static final IndexToObjectBackmapping INDEX_TO_ATTRIBUTE_TRAn;
-	private static Map<String, AttributesTRAn> attTRArByName = null;	
+	private static Map<String, AttributesTRAn> attTRArByName = null;
 	public static final String NAME;
+	public static final FactoryGeneric<AttributesTRAn> FACTORY;
 	static {
 		FIRST_INDEX_ATTRIBUTE_UPGRADABLE = Strength.getIndex();
 		LAST_INDEX_ATTRIBUTE_UPGRADABLE = Faith.getIndex();
@@ -79,6 +90,8 @@ public enum AttributesTRAn implements AttributeIdentifier {
 		ALL_ATTRIBUTES = AttributesTRAn.values();
 		INDEX_TO_ATTRIBUTE_TRAn = (int i) -> AttributesTRAn.ALL_ATTRIBUTES[i];
 		NAME = AttributesTRAn.class.getName();
+		FACTORY = (GModality gm, Object nameOrID, Map<String, Object> constructorParameters) -> AttributesTRAn
+				.valueOf((String) nameOrID);
 	}
 
 //
@@ -136,8 +149,9 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	public static AttributesTRAn getAttributeTRArByName(String name) {
 		AttributesTRAn a;
 		Map<String, AttributesTRAn> m;
-		if (name == null)
+		if (name == null) {
 			throw new IllegalArgumentException("Name cannot be null");
+		}
 		if (attTRArByName == null) {
 			m = attTRArByName = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
 			for (AttributesTRAn at : ALL_ATTRIBUTES) {
@@ -145,8 +159,9 @@ public enum AttributesTRAn implements AttributeIdentifier {
 			}
 		}
 		a = attTRArByName.get(name);
-		if (a == null)
+		if (a == null) {
 			throw new IllegalArgumentException("Invalid name for AttributesTRAr: " + name);
+		}
 		return a;
 	}
 
@@ -162,5 +177,21 @@ public enum AttributesTRAn implements AttributeIdentifier {
 	public static AttributesTRAn damageBonusByType(DamageTypesTRAn dt) {
 		return (dt == DamageTypesTRAn.Physical) ? AttributesTRAn.PhysicalDamageBonus
 				: AttributesTRAn.MagicalDamageBonus;
+	}
+
+	//
+
+	// JSON-related
+
+	//
+
+	@Override
+	public JSONValue toJSONValue() {
+		return new JSONString(this.getName());
+	}
+
+	@Override
+	public void toJSONValue(JSONObject wrapper) {
+		wrapper.addField(FIELD_NAME, new JSONString(this.getName()));
 	}
 }

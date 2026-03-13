@@ -77,8 +77,6 @@ public interface AttributesUpgrade
 		wrapper.addField(FIELD_ATTRIBUTE_MODIFIERS, attributesJsoned);
 	}
 
-	public abstract void loadAttributeUpgrade(GModality gm, String attributeName, int value);
-
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
@@ -116,6 +114,13 @@ public interface AttributesUpgrade
 			JSONInt valueJSONed = (JSONInt) valueJSONed_value;
 			value = valueJSONed.asInt();
 			this.loadAttributeUpgrade(gm, name, value);
+
+			this.getAttributesModifiers().add(new AttributeModification(gm.getFactoryByClassnameProvider()));
+
+//			@Override
+//			public void loadAttributeUpgrade(GModality gm, String attributeName, int value) {
+//				this.getAttributesModifiers().add(new AttributeModification(AttributesTRAn.valueOf(attributeName), value));
+//			}
 		});
 	}
 

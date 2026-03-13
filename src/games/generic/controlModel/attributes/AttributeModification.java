@@ -3,7 +3,6 @@ package games.generic.controlModel.attributes;
 import java.util.Comparator;
 import java.util.function.Function;
 
-import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.AttributesHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.misc.AmountNamed;
@@ -35,12 +34,12 @@ public class AttributeModification extends AmountNamed {
 	};
 
 	public static <AM extends AttributeModification> AttributeModification[] newEmptyArray(
-			AttributeIdentifier[] attributesModified, Function<AttributeIdentifier, AM> attrModConstructor) {
+			AttributeIdentifier[] attributesModified) {
 		int n;
 		AttributeModification[] r;
 		r = new AttributeModification[n = attributesModified.length];
 		while (--n >= 0) {
-			r[n] = attrModConstructor.apply(attributesModified[n]);
+			r[n] = new AttributeModification(attributesModified[n], 0);
 		}
 		return r;
 	}
@@ -50,6 +49,8 @@ public class AttributeModification extends AmountNamed {
 	public AttributeModification(AttributeIdentifier attributeModified, int value) {
 		super(attributeModified, value);
 	}
+
+	//
 
 	public AttributeIdentifier getAttributeModified() {
 		return (AttributeIdentifier) super.type;
@@ -73,9 +74,4 @@ public class AttributeModification extends AmountNamed {
 		return "AttributeModification: (attr=" + getAttributeModified() + "; value=" + value + ")";
 	}
 
-	@Override
-	protected void loadInnerObjectNamedID(GModality gm, String name) {
-		throw new UnsupportedOperationException(
-				"Method not implemented in a general game: override in the game-specific environment");
-	}
 }

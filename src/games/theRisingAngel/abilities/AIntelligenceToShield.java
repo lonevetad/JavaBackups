@@ -46,7 +46,7 @@ public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime {
 		this.hasLostShieldAmountDuringUpdate = ca.getValue(AttributesTRAn.ShieldMax) < this.shieldAmoutPreUpdate;
 		if (intell > 0) {
 			this.attributesToModify[1].setValue(intell >> 1); // shield regen
-			if (intell > (Integer.MAX_VALUE << 2)) {
+			if (intell > (Integer.MAX_VALUE >> 2)) {
 				intell = Integer.MAX_VALUE;
 			} else {
 				intell <<= 2;

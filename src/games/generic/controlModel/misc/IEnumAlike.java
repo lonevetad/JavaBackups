@@ -6,8 +6,10 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
 import games.generic.controlModel.providers.EnumBasedObjectProvider;
+import tools.json.JSONValue;
 import tools.json.JSONable;
 import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 /**
  * Marker interface to define {@link Enum}s to both uniformize and simplify
@@ -33,8 +35,13 @@ public interface IEnumAlike extends IndexableObject {
 	//
 
 	@Override
+	public default JSONValue toJSONValue() {
+		return new JSONString(this.getName());
+	}
+
+	@Override
 	public default void toJSONValue(JSONObject wrapper) {
-		IndexableObject.super.toJSONValue(wrapper); // continue the chain of "super. ..."
+		wrapper.addField(FIELD_NAME, new JSONString(this.getName()));
 	}
 
 	public default String getExceptionMessageLoadJSON() {

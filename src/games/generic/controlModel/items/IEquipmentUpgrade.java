@@ -6,6 +6,7 @@ import java.util.function.Function;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributesUpgrade;
 import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.providers.FactoryGeneric;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.types.JSONBoolean;
@@ -71,7 +72,11 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	 * The UpgradeCategory are game-specific, so they cannot be loaded in the
 	 * generic package.
 	 */
-	public void loadIEquipmentUpgradeCategory(GModality gm, String categoryName);
+	public default IEquipmentUpgradeCategory loadIEquipmentUpgradeCategory(GModality gm, String categoryClassName,
+			String categoryName) {
+		FactoryGeneric<?> f = gm.getFactoryByClassnameProvider().getFactory(categoryClassName);
+		return (IEquipmentUpgradeCategory) f.create(gm, categoryName);
+	}
 
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
@@ -107,7 +112,8 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		if (!upgradeCategoryJSONed_value.isType(JSONTypes.String)) {
 			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.String, upgradeCategoryJSONed_value);
 		}
-		loadIEquipmentUpgradeCategory(gm, upgradeCategoryJSONed_value.asString());
+		this.setUpgradeCategory(this.loadIEquipmentUpgradeCategory(gm, this.getClass().getName(),
+				upgradeCategoryJSONed_value.asString()));
 	}
 
 	@Override
@@ -143,6 +149,6 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 			this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.String, upgradeCategoryMapped_value);
 		}
 		String upgradeCategoryName = (String) upgradeCategoryMapped_value;
-		loadIEquipmentUpgradeCategory(gm, upgradeCategoryName);
+		this.setUpgradeCategory(this.loadIEquipmentUpgradeCategory(gm, this.getClass().getName(), upgradeCategoryName));
 	}
 }

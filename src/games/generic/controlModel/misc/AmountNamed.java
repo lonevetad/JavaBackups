@@ -75,19 +75,9 @@ public abstract class AmountNamed implements ObjectNamed {
 		this.setValue(value);
 	}
 
-	/**
-	 * Customize the loading of its inner {@link ObjectNamedID} "type" because it
-	 * could be an instance of an {@link Enum}, therefore it can't be instantiated
-	 * with a plain old "new" (otherwise, memory address equality checks would
-	 * fail).
-	 * 
-	 * @param gm
-	 * @param name
-	 */
-	protected abstract void loadInnerObjectNamedID(GModality gm, String name);
-
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
+		wrapper.setClassName(this.getClass().getName());
 		// no super call due to delegation to the ObjectNamedID "value" field
 		JSONInt jsonedValue = new JSONInt(this.getValue());
 		wrapper.addField(FIELD_VALUE, jsonedValue);

@@ -177,7 +177,7 @@ public abstract class CurrencySet implements JSONable {
 		JSONArray jsonedValues = new JSONArray(true, valuesArray, JSONTypes.Int);
 		wrapper.addField(FIELD_VALUES, jsonedValues);
 		// currencies
-		JSONObject[] currenciesArray = new JSONObject[this.currencies.length];
+		JSONValue[] currenciesArray = new JSONValue[this.currencies.length];
 		for (int i = 0; i < this.currencies.length; i++) {
 			currenciesArray[i] = this.currencies[i].toJSONValue();
 		}

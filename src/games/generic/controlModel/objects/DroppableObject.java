@@ -10,7 +10,7 @@ import games.generic.controlModel.subimpl.GModalityRPG;
  * @author ottin
  *
  */
-public interface DroppableObj extends InteractableObject, ObjectInSpace {
+public interface DroppableObject extends InteractableObject, ObjectInSpace {
 
 	/**
 	 * Defines the actions to take upon dropping this item into the ground

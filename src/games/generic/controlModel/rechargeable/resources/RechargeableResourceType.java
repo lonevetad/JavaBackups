@@ -3,7 +3,7 @@ package games.generic.controlModel.rechargeable.resources;
 import java.util.Comparator;
 
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
-import games.generic.controlModel.misc.IndexableObject;
+import games.generic.controlModel.misc.IEnumAlike;
 import games.generic.controlModel.rechargeable.resources.examples.ExampleHealingType;
 import tools.Comparators;
 
@@ -13,15 +13,18 @@ import tools.Comparators;
  * It also defines an upper bound and a lower bound of the value (assuming that
  * this resource is an integer).
  */
-public interface RechargeableResourceType extends IndexableObject {
+public interface RechargeableResourceType extends IEnumAlike {
 	public static final Comparator<RechargeableResourceType> COMPARATOR_RECHARGEABLE_RESOURCE_TYPE = (ht1, ht2) -> {
 		int c;
-		if (ht1 == ht2)
+		if (ht1 == ht2) {
 			return 0;
-		if (ht1 == null)
+		}
+		if (ht1 == null) {
 			return -1;
-		if (ht2 == null)
+		}
+		if (ht2 == null) {
 			return 1;
+		}
 		c = Comparators.LONG_COMPARATOR.compare(ht1.getID(), ht2.getID());
 		return (c != 0) ? c : Comparators.STRING_COMPARATOR.compare(ht1.getName(), ht2.getName());
 	};

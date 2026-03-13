@@ -7,6 +7,7 @@ import java.util.Random;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.misc.IEnumAlike;
+import games.generic.controlModel.providers.FactoryGeneric;
 import tools.Comparators;
 import tools.ObjWithRarityWeight;
 import tools.WeightedSetOfRandomOutcomes;
@@ -21,6 +22,7 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 	public static final IndexToObjectBackmapping INDEX_TO_RARITY_TRAn;
 	public static final Comparator<RaritiesTRAn> COMPARATOR_RARITY_TRAn;
 	public static final String NAME;
+	public static final FactoryGeneric<RaritiesTRAn> FACTORY;
 	private static WeightedSetOfRandomOutcomes RANDOM_WEIGTHED_INDEXES;
 
 	static {
@@ -40,6 +42,8 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 			}
 			return Comparators.LONG_COMPARATOR.compare(r1.getID(), r2.getID());
 		};
+		FACTORY = (GModality gm, Object nameOrID, Map<String, Object> constructorParameters) -> RaritiesTRAn
+				.valueOf((String) nameOrID);
 	}
 
 	RaritiesTRAn() {
@@ -134,13 +138,13 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 	//
 
 	@Override
-	public void toJSONValue(JSONObject wrapper) {
-		this.raiseUnsupportedOperationException("RaritiesTRAn should be transformed into a JSON String");
+	public JSONValue toJSONValue() {
+		return new JSONString(this.getName());
 	}
 
 	@Override
-	public JSONValue toJSONValue() {
-		return new JSONString(this.getName());
+	public void toJSONValue(JSONObject wrapper) {
+		wrapper.addField(FIELD_NAME, new JSONString(this.getName()));
 	}
 
 	@Override
@@ -152,4 +156,5 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		IEnumAlike.super.loadFromJSONMap(gm, jsonMap);
 	}
+
 }

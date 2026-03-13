@@ -120,14 +120,11 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	}
 
 	/*
-	 * @Override
-	 * public String toString() {
-	 * return "\tEquipmentUpgradeImpl [\n\t\tname=" + name + ", rarityIndex=" +
-	 * rarityIndex
-	 * + ",\n\t\tpriceModifications=" + priceModifications
-	 * + (this.description != null ? (",\n\t" + this.description) : "")//
-	 * + ",\n\t\tattributesModifiers=" + attributesModifiersToString() + "]";
-	 * }
+	 * @Override public String toString() { return
+	 * "\tEquipmentUpgradeImpl [\n\t\tname=" + name + ", rarityIndex=" + rarityIndex
+	 * + ",\n\t\tpriceModifications=" + priceModifications + (this.description !=
+	 * null ? (",\n\t" + this.description) : "")// + ",\n\t\tattributesModifiers=" +
+	 * attributesModifiersToString() + "]"; }
 	 */
 
 	public String attributesModifiersToString() {

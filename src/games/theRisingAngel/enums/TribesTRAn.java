@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.currency.CurrencySet;
@@ -17,6 +18,7 @@ import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.IEnumAlike;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
+import games.generic.controlModel.providers.FactoryGeneric;
 import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.inventory.EquipItemFactory;
@@ -145,6 +147,8 @@ public class TribesTRAn {
 		Weakimit, Wujoweg, Wunocogdi, Xakonokork, Xayewi, Xecadyma, Xenagon, Yaexuf, Yaqenohz, Yikipq, Zanomozosya,
 		Zasitecyo, Zuwidon;
 
+		public static final String NAME;
+		public static final FactoryGeneric<Tribe> FACTORY;
 		static {
 			Tribe[] tribes = Tribe.values();
 			int indexTribe = 0;
@@ -157,6 +161,9 @@ public class TribesTRAn {
 					}
 				}
 			}
+			NAME = Tribe.class.getName();
+			FACTORY = (GModality gm, Object nameOrID, Map<String, Object> constructorParameters) -> Tribe
+					.valueOf((String) nameOrID);
 		}
 
 		//
@@ -367,6 +374,7 @@ public class TribesTRAn {
 		public boolean setID(Long newID) {
 			return false;
 		}
+
 	}
 
 	//
@@ -574,36 +582,36 @@ public class TribesTRAn {
 				religAlign = ReligionAlignment.Canon;
 			}
 			switch (religAlign) {
-				case Canon: {
-					isnegativePriceChanging = false;
-					bonus = variation.bonus;
-					malus = variation.malus;
-					break;
-				}
-				case Fanatic: {
-					// OLD: false
-					isnegativePriceChanging = true;
-					/*
-					 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
-					 * -variation.bonus;
-					 */
-					bonus = variation.bonus << 1;
-					malus = variation.malus * 2;
-					break;
-				}
-				case Heretic: {
-					isnegativePriceChanging = true;
-					// turns positive
-					malus = -variation.malus;
-					/*
-					 * then balance: remove the "new malus" and how the bonus have balanced the
-					 * original malus; in total, it's twice the Math.abs of the original malus
-					 */
-					bonus = variation.bonus - (malus << 1);
-					break;
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected religion: " + religAlign);
+			case Canon: {
+				isnegativePriceChanging = false;
+				bonus = variation.bonus;
+				malus = variation.malus;
+				break;
+			}
+			case Fanatic: {
+				// OLD: false
+				isnegativePriceChanging = true;
+				/*
+				 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
+				 * -variation.bonus;
+				 */
+				bonus = variation.bonus << 1;
+				malus = variation.malus * 2;
+				break;
+			}
+			case Heretic: {
+				isnegativePriceChanging = true;
+				// turns positive
+				malus = -variation.malus;
+				/*
+				 * then balance: remove the "new malus" and how the bonus have balanced the
+				 * original malus; in total, it's twice the Math.abs of the original malus
+				 */
+				bonus = variation.bonus - (malus << 1);
+				break;
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected religion: " + religAlign);
 			}
 		}
 

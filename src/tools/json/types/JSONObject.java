@@ -13,7 +13,20 @@ import tools.json.JSONValue;
 public class JSONObject extends JSONValue {
 	private static final long serialVersionUID = -5641554230425406L;
 	protected Map<String, JSONValue> fields = null;
+	protected String className = null;
 
+	public JSONObject(String className) {
+		super();
+		this.className = className;
+	}
+
+	public JSONObject() {
+		this(null);
+	}
+
+	//
+
+	@Override
 	public boolean isPrimitive() {
 		return false;
 	}
@@ -48,6 +61,18 @@ public class JSONObject extends JSONValue {
 	public JSONValue getFieldValue(String name) {
 		return this.hasField(name) ? this.fields.get(name) : null;
 	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	//
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	//
 
 	public void forEachField(BiConsumer<? super String, ? super JSONValue> action) {
 		if (this.fields == null || this.fields.isEmpty()) {
@@ -95,67 +120,66 @@ public class JSONObject extends JSONValue {
 			try {
 				Field field = instance.getClass().getField(fieldName);
 				switch (fieldValue.getType()) {
+				case Boolean: {
+					field.setBoolean(instance, fieldValue.asBoolean());
+					break;
+				}
+				case Int: {
+					field.setInt(instance, fieldValue.asInt());
+					break;
+				}
+				case Long: {
+					field.setLong(instance, fieldValue.asLong());
+					break;
+				}
+				case Double: {
+					field.setDouble(instance, fieldValue.asDouble());
+					break;
+				}
+				case String: {
+					field.set(instance, fieldValue.asString());
+					break;
+				}
+				case ArrayMiscTypes: {
+					field.set(instance, fieldValue.asArrayObject());
+					break;
+				}
+				case ArrayHomogeneousType: {
+					JSONArray fieldValueAsArray = (JSONArray) fieldValue;
+					switch (fieldValueAsArray.elementsTypes) {
 					case Boolean: {
-						field.setBoolean(instance, fieldValue.asBoolean());
+						field.set(instance, fieldValueAsArray.asArrayBoolean());
 						break;
 					}
 					case Int: {
-						field.setInt(instance, fieldValue.asInt());
+						field.set(instance, fieldValueAsArray.asArrayInt());
 						break;
 					}
 					case Long: {
-						field.setLong(instance, fieldValue.asLong());
+						field.set(instance, fieldValueAsArray.asArrayLong());
 						break;
 					}
 					case Double: {
-						field.setDouble(instance, fieldValue.asDouble());
+						field.set(instance, fieldValueAsArray.asArrayDouble());
 						break;
 					}
 					case String: {
-						field.set(instance, fieldValue.asString());
+						field.set(instance, fieldValueAsArray.asArrayString());
 						break;
 					}
-					case ArrayMiscTypes: {
-						field.set(instance, fieldValue.asArrayObject());
-						break;
-					}
+					case ArrayMiscTypes:
 					case ArrayHomogeneousType: {
-						JSONArray fieldValueAsArray = (JSONArray) fieldValue;
-						switch (fieldValueAsArray.elementsTypes) {
-							case Boolean: {
-								field.set(instance, fieldValueAsArray.asArrayBoolean());
-								break;
-							}
-							case Int: {
-								field.set(instance, fieldValueAsArray.asArrayInt());
-								break;
-							}
-							case Long: {
-								field.set(instance, fieldValueAsArray.asArrayLong());
-								break;
-							}
-							case Double: {
-								field.set(instance, fieldValueAsArray.asArrayDouble());
-								break;
-							}
-							case String: {
-								field.set(instance, fieldValueAsArray.asArrayString());
-								break;
-							}
-							case ArrayMiscTypes:
-							case ArrayHomogeneousType: {
-								field.set(instance, fieldValueAsArray.asArrayObject());
-								break;
-							}
-							default:
-								throw new IllegalArgumentException(
-										"Unexpected array homogeneous type upon setting it for the field: "
-												+ fieldName);
-						}
+						field.set(instance, fieldValueAsArray.asArrayObject());
 						break;
 					}
 					default:
-						throw new IllegalArgumentException("Unexpected field type: " + fieldValue.getType().name());
+						throw new IllegalArgumentException(
+								"Unexpected array homogeneous type upon setting it for the field: " + fieldName);
+					}
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected field type: " + fieldValue.getType().name());
 				}
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 				e.printStackTrace();

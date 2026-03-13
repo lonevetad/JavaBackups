@@ -2,8 +2,11 @@ package games.theRisingAngel.enums;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
+import games.generic.controlModel.providers.FactoryGeneric;
 import games.generic.controlModel.rechargeable.resources.RechargableResource;
 import games.generic.controlModel.rechargeable.resources.RechargeableResourceType;
 import games.generic.controlModel.rechargeable.resources.impl.RechargableResourceImpl;
@@ -24,6 +27,8 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 	 */
 	public static final List<RechargeableResourceType> ALL_RECHARGEABLE_RESOURCES_TRAn;
 	public static final IndexToObjectBackmapping INDEX_TO_RECHARGEABLE_RESOURCES_TRAn;
+	public static final String NAME;
+	public static final FactoryGeneric<RechargeableResourceType> FACTORY;
 	static {
 		RechargeableResourcesTRAn[] vals = values();
 		ALL_RECHARGEABLE_RESOURCES_TRAn = new ArrayList<>(vals.length);
@@ -32,6 +37,9 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 			ALL_RECHARGEABLE_RESOURCES_TRAn.add(resource);
 		}
 		INDEX_TO_RECHARGEABLE_RESOURCES_TRAn = ALL_RECHARGEABLE_RESOURCES_TRAn::get;
+		NAME = RechargeableResourceType.class.getName();
+		FACTORY = (GModality gm, Object nameOrID,
+				Map<String, Object> constructorParameters) -> RechargeableResourcesTRAn.valueOf((String) nameOrID);
 	}
 
 	//

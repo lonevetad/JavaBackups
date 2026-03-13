@@ -11,7 +11,7 @@ import games.generic.controlModel.holders.InventoryHolder;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import games.generic.controlModel.objects.AssignableObject;
-import games.generic.controlModel.objects.DroppableObj;
+import games.generic.controlModel.objects.DroppableObject;
 import games.generic.controlModel.objects.InteractingObj;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import geometry.AbstractShape2D;
@@ -29,7 +29,7 @@ import tools.json.types.JSONObject;
  * Used in RPGS
  */
 public abstract class InventoryItem extends OWIDLongImpl
-		implements RarityHolder, DroppableObj, AssignableObject {
+		implements RarityHolder, DroppableObject, AssignableObject {
 	private static final long serialVersionUID = 47104252L;
 
 	public static final String FIELD_SELL_PRICE = "sellPrice";

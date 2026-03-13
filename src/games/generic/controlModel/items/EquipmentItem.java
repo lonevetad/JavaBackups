@@ -24,6 +24,8 @@ import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import tools.Comparators;
 import tools.ObjectWithID;
+import tools.json.JSONTypes;
+import tools.json.JSONValue;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
 
@@ -498,6 +500,8 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	//
 
+	public abstract void loadEquipmentType(GModality gm, String typeName);
+
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
 		super.toJSONValue(wrapper);
@@ -526,6 +530,20 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
+		}
+		// equipmentType
+		if (!wrapper.hasField(FIELD_EQUIPMENT_TYPE)) {
+			this.raiseExceptionMissingField(FIELD_EQUIPMENT_TYPE, JSONTypes.String);
+		}
+		JSONValue equipTypeNameJSONed_value = wrapper.getFieldValue(FIELD_EQUIPMENT_TYPE);
+		if (!equipTypeNameJSONed_value.isType(JSONTypes.String)) {
+			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_TYPE, JSONTypes.String,
+					equipTypeNameJSONed_value);
+		}
+		this.loadEquipmentType(gm, ((JSONString) equipTypeNameJSONed_value).asString());
+		// maxUpgradesPerCategory
 		// TODO : da fare tutto
 	}
 
