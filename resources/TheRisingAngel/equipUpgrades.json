@@ -7862,7 +7862,7 @@
     "isPrefix": true,
     "attributesModifiers": {
       "ShieldMax": 200,
-      "Shield Regen": 1
+      "ShieldRegen": 1
     }
   },
   {
@@ -8246,6 +8246,219 @@
       "Precision": 8,
       "Dexterity": 2,
       "LifeLeechPercentage": 6
+    }
+  },
+  {
+    "name": "Soaking",
+    "rarity": 3,
+    "price": [56],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "LifeMax": -70,
+      "MagicalDamageReduction": 20,
+      "MagicalDamageMultiplierPercentageReduction": 13
+    }
+  },
+  {
+    "name": "Willow",
+    "rarity": 1,
+    "price": [12],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 2,
+      "Defense": 2,
+      "Faith": 2
+    }
+  },
+  {
+    "name": "of Weeping Willow's Tears",
+    "rarity": 2,
+    "price": [24],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": 20,
+      "LifeRegen": 2,
+      "ManaMax": 30,
+      "ManaRegen": 2,
+      "ExperienceBonusPercentage" : 5
+    }
+  },
+  {
+    "name": "Weeping Willow's Lymph Engraved",
+    "rarity": 3,
+    "price": [37],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ShieldMax": 50,
+      "ShieldRegen": 2,
+      "ExperienceBonusPercentage" : 5
+    }
+  },
+  {
+    "name": "Pinecone Decorated",
+    "rarity": 1,
+    "price": [8],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 2,
+      "Defense": 3,
+      "ReflectionDamagePercentage": 5
+    }
+  },
+  {
+    "name": "with Yew Berries",
+    "rarity": 1,
+    "price": [11],
+    "category": "Refining",
+    "description": "Delicious red and yellow berries from a tightly compacted and thorny tree.",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Health": 2,
+      "Precision": 2,
+      "MagicalProbabilityPerThousandAvoid": 5
+    }
+  },
+  {
+    "name": "Cherry Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 1,
+      "LifeRegen": 1
+    }
+  },
+  {
+    "name": "Lavander Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Faith": 1,
+      "ManaRegen": 1
+    }
+  },
+  {
+    "name": "Mint Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "StaminaMax": 5,
+      "StaminaRegen": 2
+    }
+  },
+  {
+    "name": "Basilico Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 1,
+      "Luck": 1
+    }
+  },
+  {
+    "name": "Lemon Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "MagicalDamageBonus": 2,
+      "MagicalDamageMultiplierPercentageBonus": 2
+    }
+  },
+  {
+    "name": "Pepper Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ReflectionDamagePercentage": 5
+    }
+  },
+  {
+    "name": "Citron Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "VelocitySpellCastPercentage": 5
+    }
+  },
+  {
+    "name": "Ginger Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ShieldMax": 5,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "Strawberry Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "LifeMax": 2
+    }
+  },
+  {
+    "name": "Jasmine Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ManaMax": 15
+    }
+  },
+  {
+    "name": "Apple Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 1,
+      "Constitution": 1
+    }
+  },
+  {
+    "name": "Pear Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 1,
+      "ManaRegen": 2
+    }
+  },
+  {
+    "name": "Banana Scented",
+    "rarity": 0,
+    "price": [7],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "StaminaRegen": 3
     }
   }
 ]
