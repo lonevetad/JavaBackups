@@ -5482,6 +5482,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Constitution": -2
@@ -5494,6 +5495,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Health": -2
@@ -5506,6 +5508,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Defense": -2
@@ -5518,6 +5521,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Dexterity": -2
@@ -5530,6 +5534,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Precision": -2
@@ -5542,6 +5547,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Intelligence": -2
@@ -5554,6 +5560,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Wisdom": -2
@@ -5566,6 +5573,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Strength": 7,
 			"Faith": -2
@@ -5578,6 +5586,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Strength": -2
@@ -5590,6 +5599,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Health": -2
@@ -5602,6 +5612,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Defense": -2
@@ -5614,6 +5625,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Dexterity": -2
@@ -5626,6 +5638,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Precision": -2
@@ -5638,6 +5651,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Intelligence": -2
@@ -5650,6 +5664,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Wisdom": -2
@@ -5662,6 +5677,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Constitution": 7,
 			"Faith": -2
@@ -5674,6 +5690,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Strength": -2
@@ -5686,6 +5703,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Constitution": -2
@@ -5698,6 +5716,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Defense": -2
@@ -5710,6 +5729,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Dexterity": -2
@@ -5722,6 +5742,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Precision": -2
@@ -5734,6 +5755,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Intelligence": -2
@@ -5746,6 +5768,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Wisdom": -2
@@ -5758,6 +5781,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Health": 7,
 			"Faith": -2
@@ -5770,6 +5794,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Strength": -2
@@ -5782,6 +5807,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Constitution": -2
@@ -5794,6 +5820,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Health": -2
@@ -5806,6 +5833,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Dexterity": -2
@@ -5818,6 +5846,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Precision": -2
@@ -5830,6 +5859,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Intelligence": -2
@@ -5842,6 +5872,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Wisdom": -2
@@ -5854,6 +5885,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Defense": 7,
 			"Faith": -2
@@ -5866,6 +5898,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Strength": -2
@@ -5878,6 +5911,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Constitution": -2
@@ -5890,6 +5924,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Health": -2
@@ -5902,6 +5937,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Defense": -2
@@ -5914,6 +5950,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Precision": -2
@@ -5926,6 +5963,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Intelligence": -2
@@ -5938,6 +5976,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Wisdom": -2
@@ -5950,6 +5989,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Dexterity": 7,
 			"Faith": -2
@@ -5962,6 +6002,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Strength": -2
@@ -5974,6 +6015,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Constitution": -2
@@ -5986,6 +6028,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Health": -2
@@ -5998,6 +6041,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Defense": -2
@@ -6010,6 +6054,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Dexterity": -2
@@ -6022,6 +6067,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Intelligence": -2
@@ -6034,6 +6080,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Wisdom": -2
@@ -6046,6 +6093,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Precision": 7,
 			"Faith": -2
@@ -6058,6 +6106,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Strength": -2
@@ -6070,6 +6119,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Constitution": -2
@@ -6082,6 +6132,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Health": -2
@@ -6094,6 +6145,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Defense": -2
@@ -6106,6 +6158,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Dexterity": -2
@@ -6118,6 +6171,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Precision": -2
@@ -6130,6 +6184,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Wisdom": -2
@@ -6142,6 +6197,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Intelligence": 7,
 			"Faith": -2
@@ -6154,6 +6210,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Strength": -2
@@ -6166,6 +6223,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Constitution": -2
@@ -6178,6 +6236,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Health": -2
@@ -6190,6 +6249,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Defense": -2
@@ -6202,6 +6262,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Dexterity": -2
@@ -6214,6 +6275,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Precision": -2
@@ -6226,6 +6288,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Intelligence": -2
@@ -6238,6 +6301,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Wisdom": 7,
 			"Faith": -2
@@ -6250,6 +6314,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Strength": -2
@@ -6262,6 +6327,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 			"attributesModifiers": {
 			"Faith": 7,
 			"Constitution": -2
@@ -6274,6 +6340,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Health": -2
@@ -6286,6 +6353,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Defense": -2
@@ -6298,6 +6366,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Dexterity": -2
@@ -6310,6 +6379,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Precision": -2
@@ -6322,6 +6392,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 			"attributesModifiers": {
 			"Faith": 7,
 			"Intelligence": -2
@@ -6334,6 +6405,7 @@
 			8
 		],
 		"category": "Tribe",
+    "isPrefix": false,
 		"attributesModifiers": {
 			"Faith": 7,
 			"Wisdom": -2
@@ -8283,7 +8355,7 @@
       "LifeRegen": 2,
       "ManaMax": 30,
       "ManaRegen": 2,
-      "ExperienceBonusPercentage" : 5
+      "ExperienceBonusPercentage": 5
     }
   },
   {
@@ -8295,7 +8367,7 @@
     "attributesModifiers": {
       "ShieldMax": 50,
       "ShieldRegen": 2,
-      "ExperienceBonusPercentage" : 5
+      "ExperienceBonusPercentage": 5
     }
   },
   {
@@ -8459,6 +8531,72 @@
     "isPrefix": true,
     "attributesModifiers": {
       "StaminaRegen": 3
+    }
+  },
+  {
+    "name": "Rascal's",
+    "rarity": 0,
+    "price": [-4],
+    "category": "Incantation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": -1,
+      "Precision": 1,
+      "Dexterity": 1,
+      "Intelligence": 2,
+      "ManaMax": -30
+    }
+  },
+  {
+    "name": "Scoundrel's",
+    "rarity": 2,
+    "price": [-24],
+    "category": "Blessing",
+    "description": "Is Greed and egocentrism the influences of some evil God or just part of the human nature?",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": -10,
+      "Precision": 4,
+      "Dexterity": 6,
+      "Defence": 2,
+      "Intelligence": 8,
+      "Faith": -15,
+      "Luck": -6,
+      "ReflectionDamagePercentage": 20,
+      "CriticalMultiplierPercentageBonus": 10,
+      "CriticalProbabilityPerThousandHit": 15,
+      "CriticalProbabilityPerThousandAvoid": 5
+    }
+  },
+  {
+    "name": "of Infatuation",
+    "rarity": 0,
+    "price": [5],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Health": 4,
+      "Intelligence": -3,
+      "Luck": 1
+    }
+  },
+  {
+    "name": "Fish Scaled",
+    "rarity": 1,
+    "price": [3],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": -2,
+      "Constitution": -1,
+      "Defense": 3,
+      "Dexterity": 2,
+      "PhysicalDamageReduction": 2,
+      "PhysicalDamageMultiplierPercentageReduction": 3,
+      "MagicalDamageReduction": 2,
+      "MagicalDamageMultiplierPercentageReduction": 2,
+      "PhysicalProbabilityPerThousandAvoid": 2,
+      "MagicalProbabilityPerThousandAvoid": 2
     }
   }
 ]

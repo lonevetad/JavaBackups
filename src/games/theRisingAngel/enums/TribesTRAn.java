@@ -1,14 +1,6 @@
 
 package games.theRisingAngel.enums;
 
-import java.awt.Dimension;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeModification;
@@ -23,6 +15,13 @@ import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.inventory.EquipItemFactory;
 import games.theRisingAngel.inventory.EquipItemTRAn;
+import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import tools.Comparators;
 
 public class TribesTRAn {
@@ -244,7 +243,7 @@ public class TribesTRAn {
 				cs.setCurrencyAmount(currencies[n], addedPrice);
 			}
 			eu.setPricesModifications(cs);
-
+			eu.setIsPrefix(false);
 			return eu;
 		}
 
@@ -582,36 +581,36 @@ public class TribesTRAn {
 				religAlign = ReligionAlignment.Canon;
 			}
 			switch (religAlign) {
-			case Canon: {
-				isnegativePriceChanging = false;
-				bonus = variation.bonus;
-				malus = variation.malus;
-				break;
-			}
-			case Fanatic: {
-				// OLD: false
-				isnegativePriceChanging = true;
-				/*
-				 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
-				 * -variation.bonus;
-				 */
-				bonus = variation.bonus << 1;
-				malus = variation.malus * 2;
-				break;
-			}
-			case Heretic: {
-				isnegativePriceChanging = true;
-				// turns positive
-				malus = -variation.malus;
-				/*
-				 * then balance: remove the "new malus" and how the bonus have balanced the
-				 * original malus; in total, it's twice the Math.abs of the original malus
-				 */
-				bonus = variation.bonus - (malus << 1);
-				break;
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected religion: " + religAlign);
+				case Canon: {
+					isnegativePriceChanging = false;
+					bonus = variation.bonus;
+					malus = variation.malus;
+					break;
+				}
+				case Fanatic: {
+					// OLD: false
+					isnegativePriceChanging = true;
+					/*
+					 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
+					 * -variation.bonus;
+					 */
+					bonus = variation.bonus << 1;
+					malus = variation.malus * 2;
+					break;
+				}
+				case Heretic: {
+					isnegativePriceChanging = true;
+					// turns positive
+					malus = -variation.malus;
+					/*
+					 * then balance: remove the "new malus" and how the bonus have balanced the
+					 * original malus; in total, it's twice the Math.abs of the original malus
+					 */
+					bonus = variation.bonus - (malus << 1);
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected religion: " + religAlign);
 			}
 		}
 
