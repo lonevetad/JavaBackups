@@ -2313,6 +2313,17 @@
     }
   },
   {
+    "name": "with Crystal Veins",
+    "rarity": 2,
+    "price": [27],
+    "category": "Structural",
+    "attributesModifiers": {
+      "ShieldMax": 60,
+      "ShieldRegen": 2,
+      "Constitution": -2
+    }
+  },
+  {
     "name": "Adamantine",
     "rarity": 3,
     "price": [100],
@@ -8597,6 +8608,65 @@
       "MagicalDamageMultiplierPercentageReduction": 2,
       "PhysicalProbabilityPerThousandAvoid": 2,
       "MagicalProbabilityPerThousandAvoid": 2
+    }
+  },
+  {
+    "name": "of Snoring",
+    "rarity": 1,
+    "price": [-10],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Health": -2,
+      "ManaRegen": -5,
+      "Luck": -1,
+      "PhysicalProbabilityPerThousandAvoid": 45,
+      "MagicalDamageBonus": 4,
+      "MagicalDamageMultiplierPercentageBonus": 3,
+      "MagicalProbabilityPerThousandAvoid": 45
+    }
+  },
+  {
+    "name": "Dried",
+    "rarity": 1,
+    "price": [-5],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": -1,
+      "Precision": 2,
+      "Dexterity": 3,
+      "ManaMax": -8,
+      "ManaRegen": -2,
+      "PhysicalDamageBonus": 2,
+      "MagicalDamageBonus": 4,
+      "MagicalDamageMultiplierPercentageBonus": 3
+    }
+  },
+  {
+    "name": "Sit-able",
+    "rarity": 1,
+    "price": [8],
+    "category": "Structural",
+    "isPrefix": true,
+    "description": "Yes! You can sit on it! Not particularly comfortable to wear, but it does the work.",
+    "attributesModifiers": {
+      "Constitution": 1,
+      "Health": 2,
+      "Velocity": -5
+    }
+  },
+  {
+    "name": "Dandelions Decorated",
+    "rarity": 0,
+    "price": [4],
+    "category": "Refining",
+    "isPrefix": true,
+    "description": "You can't help but smile at this.",
+    "attributesModifiers": {
+      "Health": 1,
+      "Faith": 1,
+      "Luck": 1
     }
   }
 ]
