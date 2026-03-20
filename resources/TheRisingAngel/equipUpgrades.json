@@ -8569,7 +8569,7 @@
       "Health": -10,
       "Precision": 4,
       "Dexterity": 6,
-      "Defence": 2,
+      "Defense": 2,
       "Intelligence": 8,
       "Faith": -15,
       "Luck": -6,
@@ -8621,7 +8621,7 @@
       "ManaRegen": -5,
       "Luck": -1,
       "PhysicalProbabilityPerThousandAvoid": 45,
-      "MagicalDamageBonus": 4, 
+      "MagicalDamageBonus": 4,
       "MagicalDamageMultiplierPercentageBonus": 3,
       "MagicalProbabilityPerThousandAvoid": 45
     }
@@ -8657,6 +8657,19 @@
     }
   },
   {
+    "name": "Dandelions Decorated",
+    "rarity": 0,
+    "price": [4],
+    "category": "Refining",
+    "isPrefix": true,
+    "description": "You can't help but smile at this.",
+    "attributesModifiers": {
+      "Health": 1,
+      "Faith": 1,
+      "Luck": 1
+    }
+  },
+  {
     "name": "Ruddy",
     "rarity": 1,
     "price": [6],
@@ -8665,6 +8678,89 @@
     "attributesModifiers": {
       "LifeMax": 15,
       "LifeRegen": 1
+    }
+  },
+  {
+    "name": "Precious",
+    "rarity": 3,
+    "price": [100],
+    "category": "Blessing",
+    "isPrefix": true,
+    "description": "Everyone feel it as precious, somehow.",
+    "attributesModifiers": {
+      "Luck": 5
+    }
+  },
+  {
+    "name": "Wonderful",
+    "rarity": 2,
+    "price": [40],
+    "category": "Incantation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 5,
+      "Faith": 5,
+      "Luck": 2
+    }
+  },
+  {
+    "name": "Awe-inspiring",
+    "rarity": 1,
+    "price": [20],
+    "category": "Incantation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 2,
+      "Faith": 2,
+      "Luck": 1
+    }
+  },
+  {
+    "name": "Swingy",
+    "rarity": 1,
+    "price": [12],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": 2,
+      "Dexterity": 3,
+      "Defense": 1
+    }
+  },
+  {
+    "name": "Arcane",
+    "rarity": 3,
+    "price": [48],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Faith": 5,
+      "Wisdom": 7,
+      "Intelligence": 2,
+      "ManaMax": 50,
+      "ManaRegen": 3,
+      "MagicalDamageBonus": 12,
+      "MagicalDamageMultiplierPercentageBonus": 15
+    }
+  },
+  {
+    "name": "Slayer's",
+    "rarity": 2,
+    "price": [-20],
+    "category": "WorkersRolesRelated",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 12,
+      "Health": -3,
+      "Precision": 6,
+      "Dexterity": -2,
+      "Defense": -4,
+      "Wisdom": -8,
+      "Faith": -6,
+      "PhysicalDamageBonus": 8,
+      "PhysicalDamageMultiplierPercentageBonus": 10,
+      "CriticalProbabilityPerThousandHit": 50,
+      "CriticalMultiplierPercentageBonus": 15
     }
   }
 ]
