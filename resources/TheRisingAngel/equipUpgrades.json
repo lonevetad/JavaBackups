@@ -8655,5 +8655,16 @@
       "Health": 2,
       "Velocity": -5
     }
+  },
+  {
+    "name": "Ruddy",
+    "rarity": 1,
+    "price": [6],
+    "category": "Coloring",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "LifeMax": 15,
+      "LifeRegen": 1
+    }
   }
 ]
