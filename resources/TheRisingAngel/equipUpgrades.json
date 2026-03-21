@@ -2645,8 +2645,9 @@
     "isPrefix": true,
     "attributesModifiers": {
       "Strength": -3,
-      "Intelligence": -3,
       "Constitution": -2,
+      "Defense": 4,
+      "Intelligence": -3,
       "Faith": -2
     }
   },
@@ -2867,6 +2868,17 @@
     "isPrefix": true,
     "attributesModifiers": {
       "Constitution": -2
+    }
+  },
+  {
+    "name": "Dirtied",
+    "rarity": 1,
+    "price": [-7],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": -2,
+      "Defense": 3
     }
   },
   {
@@ -5125,7 +5137,7 @@
     }
   },
   {
-    "name": "emanating Breeze",
+    "name": "Emanating Breeze",
     "rarity": 1,
     "price": [3],
     "category": "Misc",
@@ -8761,6 +8773,172 @@
       "PhysicalDamageMultiplierPercentageBonus": 10,
       "CriticalProbabilityPerThousandHit": 50,
       "CriticalMultiplierPercentageBonus": 15
+    }
+  },
+  {
+    "name": "Oversized",
+    "rarity": 0,
+    "price": [1],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 2,
+      "Dexterity": -3,
+      "Defense": 2,
+      "Velocity": -5,
+      "PhysicalDamageReduction": 2,
+      "MagicalDamageReduction": 2
+    }
+  },
+  {
+    "name": "Stained",
+    "rarity": 0,
+    "price": [-7],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": -2,
+      "Constitution": 1,
+      "Defense": 2,
+      "MagicalDamageBonus": 1
+    }
+  },
+  {
+    "name": "Tainted",
+    "rarity": 3,
+    "price": [-24],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 6,
+      "Health": -5,
+      "Precision": 4,
+      "Defense": -3,
+      "Faith": -8,
+      "Luck": -5,
+      "CriticalProbabilityPerThousandHit": 40,
+      "CriticalMultiplierPercentageBonus": 20,
+      "LifeLeechPercentage": 12,
+      "ManaLeechPercentage": 15
+    }
+  },
+  {
+    "name": "Waterstone",
+    "rarity": 2,
+    "price": [18],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": 3,
+      "Luck": 2,
+      "CriticalProbabilityPerThousandHit": 80,
+      "CriticalMultiplierPercentageBonus": 7
+    }
+  },
+  {
+    "name": "Oiled",
+    "rarity": 2,
+    "price": [7],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": 2,
+      "Dexterity": 4,
+      "Defense": 2,
+      "PhysicalDamageBonus": 3,
+      "MagicalDamageBonus": 3,
+      "PhysicalProbabilityPerThousandAvoid": 30,
+      "VelocityAttackStrikePercentage": 10,
+      "MagicalDamageReduction": -7,
+      "MagicalProbabilityPerThousandAvoid": -50
+    }
+  },
+  {
+    "name": "Skin",
+    "rarity": 1,
+    "price": [12],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 3,
+      "Defense": 3,
+      "PhysicalDamageReduction": 3,
+      "MagicalDamageReduction": 3
+    }
+  },
+  {
+    "name": "Sloppy",
+    "rarity": 1,
+    "price": [-9],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Defense": -3,
+      "Dexterity": -1
+    }
+  },
+  {
+    "name": "Gold Trimmed",
+    "rarity": 1,
+    "price": [20],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {}
+  },
+  {
+    "name": "Twistwood",
+    "rarity": 1,
+    "price": [11],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 2,
+      "Defense": 7,
+      "Dexterity": -3,
+      "Velocity": -8,
+      "ManaMax": 5
+    }
+  },
+  {
+    "name": "of the Tower",
+    "rarity": 3,
+    "price": [35],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Constitution": 8,
+      "Defense": 15,
+      "Dexterity": -5,
+      "Velocity": -20,
+      "LifeMax": 75,
+      "ManaMax": 10
+    }
+  },
+  {
+    "name": "of the Fox",
+    "rarity": 3,
+    "price": [28],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 4,
+      "Dexterity": 8,
+      "Intelligence": 5,
+      "Velocity": 15
+    }
+  },
+  {
+    "name": "of the Hill Folk",
+    "rarity": 1,
+    "price": [6],
+    "category": "WorkersRolesRelated",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Strength": 6,
+      "Constitution": 4,
+      "Dexterity": 2,
+      "Intelligence": -5,
+      "Wisdom": 1
     }
   }
 ]
