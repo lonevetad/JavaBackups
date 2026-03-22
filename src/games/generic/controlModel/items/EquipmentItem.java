@@ -50,7 +50,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	public static final String FIELD_BASE_ATTRIBUTE_MODIFIERS = "baseAttributesModifiers";
 	public static final String FIELD_UPGRADES = "upgrades";
 
-	protected final EquipmentType equipmentType;
+	protected EquipmentType equipmentType;
 	protected transient EquipmentSet belongingEquipmentSet;
 	protected final List<AttributeModification> baseAttributesModifiers;
 	protected MapTreeAVL<String, AbilityGeneric> backMapAbilities;
@@ -121,6 +121,10 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	}
 
 	//
+
+	protected void setEquipmentType(EquipmentType equipmentType) {
+		this.equipmentType = equipmentType;
+	}
 
 	public void setBelongingEquipmentSet(EquipmentSet belongingEquipmentSet) {
 		this.belongingEquipmentSet = belongingEquipmentSet;
@@ -539,8 +543,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		}
 		JSONValue equipTypeNameJSONed_value = wrapper.getFieldValue(FIELD_EQUIPMENT_TYPE);
 		if (!equipTypeNameJSONed_value.isType(JSONTypes.String)) {
-			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_TYPE, JSONTypes.String,
-					equipTypeNameJSONed_value);
+			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_TYPE, JSONTypes.String, equipTypeNameJSONed_value);
 		}
 		this.loadEquipmentType(gm, ((JSONString) equipTypeNameJSONed_value).asString());
 		// maxUpgradesPerCategory

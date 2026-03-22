@@ -1,5 +1,7 @@
 package games.generic.controlModel.subimpl;
 
+import java.util.SortedSet;
+
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.CurrencySet;
@@ -8,11 +10,10 @@ import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgradeCategory;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
-import java.util.SortedSet;
 import tools.ClosestMatch;
 import tools.Comparators;
 
-public class EquipmentUpgradeImpl implements IEquipmentUpgrade {
+public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	private static final long serialVersionUID = 780874070330924608L;
 
 	public EquipmentUpgradeImpl(int rarityIndex, String name) {

@@ -45,7 +45,7 @@ public interface AttributesUpgrade
 		return AttributeModification.COMPARATOR;
 	}
 
-	//
+//
 
 	public default AttributesUpgrade addAttributeModifier(AttributeModification am) {
 		if (am == null) {
@@ -60,11 +60,13 @@ public interface AttributesUpgrade
 		return this.addAttributeModifier(new AttributeModification(ai, value));
 	}
 
-	//
+	public AttributeIdentifier loadAttributeIdentifier(GModality gm, String attributeName, int attributeValue);
 
-	// JSON-related
+//
 
-	// TODO
+// JSON-related
+
+// TODO
 
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
@@ -81,13 +83,13 @@ public interface AttributesUpgrade
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
 		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
 		RarityHolder.super.loadFromJSONObject(gm, wrapper);
-		// attribute modifiers
-		// get the field
+// attribute modifiers
+// get the field
 		if (!wrapper.hasField(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
 		}
 		JSONValue jsonedAttributesModifiers_value = wrapper.getFieldValue(FIELD_ATTRIBUTE_MODIFIERS);
-		// now de-serialize it
+// now de-serialize it
 		if (!jsonedAttributesModifiers_value.isType(JSONTypes.Object)) {
 			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
 					jsonedAttributesModifiers_value);
@@ -96,7 +98,7 @@ public interface AttributesUpgrade
 		jsonedAttributesModifiers.forEachField((name, jsonedAttributeModifier_value) -> {
 			int value;
 			JSONObject jsonedAttributeModifier;
-			// load the "attributeModifier" by-hand because it's probably an Enum instance
+// load the "attributeModifier" by-hand because it's probably an Enum instance
 			if (!jsonedAttributeModifier_value.isType(JSONTypes.Object)) {
 				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
 						JSONTypes.Object, jsonedAttributesModifiers_value);
@@ -113,10 +115,7 @@ public interface AttributesUpgrade
 			}
 			JSONInt valueJSONed = (JSONInt) valueJSONed_value;
 			value = valueJSONed.asInt();
-			this.loadAttributeUpgrade(gm, name, value);
-
-			this.getAttributesModifiers().add(new AttributeModification(gm.getFactoryByClassnameProvider()));
-
+			this.addAttributeModifier(this.loadAttributeIdentifier(gm, name, value), value);
 //			@Override
 //			public void loadAttributeUpgrade(GModality gm, String attributeName, int value) {
 //				this.getAttributesModifiers().add(new AttributeModification(AttributesTRAn.valueOf(attributeName), value));
@@ -128,13 +127,13 @@ public interface AttributesUpgrade
 	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
 		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
 		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
-		//
-		// get the field
+//
+// get the field
 		if (!jsonMap.containsKey(FIELD_ATTRIBUTE_MODIFIERS)) {
 			this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
 		}
 		Object jsonedAttributesModifiers_value = jsonMap.get(FIELD_ATTRIBUTE_MODIFIERS);
-		// now de-serialize it
+// now de-serialize it
 		if (!(jsonedAttributesModifiers_value instanceof Map<?, ?>)) {
 			this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
 					jsonedAttributesModifiers_value);
@@ -144,7 +143,7 @@ public interface AttributesUpgrade
 			int value;
 			Map<String, Object> jsonedAttributeModifier;
 
-			// load the "attributeModifier" by-hand because it's probably an Enum instance
+// load the "attributeModifier" by-hand because it's probably an Enum instance
 			if (!(jsonedAttributeModifier_value instanceof Map<?, ?>)) {
 				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
 						JSONTypes.Object, jsonedAttributesModifiers_value);
@@ -161,7 +160,7 @@ public interface AttributesUpgrade
 			}
 			Integer valueJSONed = (Integer) valueJSONed_value;
 			value = valueJSONed;
-			this.loadAttributeUpgrade(gm, name, value);
+			this.addAttributeModifier(this.loadAttributeIdentifier(gm, name, value), value);
 		});
 	}
 }

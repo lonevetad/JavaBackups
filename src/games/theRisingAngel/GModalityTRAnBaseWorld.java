@@ -10,13 +10,11 @@ import games.generic.controlModel.items.InventoryItems;
 import games.generic.controlModel.player.BasePlayerRPG;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
-import games.generic.controlModel.providers.FactoryByClassnameProvider;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.events.GEventInterfaceTRAn;
 import games.theRisingAngel.inventory.InventoryTRAn;
 import games.theRisingAngel.misc.EssenceExtractorTRAn;
 import games.theRisingAngel.misc.PlayerCharacterTypesTRAn.PlayerCharacterTypes;
-import games.theRisingAngel.providers.FactoryByClassnameProviderTRAn;
 import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 import tools.ObjectNamedID;
 
@@ -65,13 +63,6 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 		inv = new InventoryTRAn();
 		inv.resizeBy(size);
 		return inv;
-	}
-
-	@Override
-	protected FactoryByClassnameProvider newFactoryByClassnameProvider() {
-		FactoryByClassnameProvider f = new FactoryByClassnameProviderTRAn();
-		f.loadAllFactories(this);
-		return f;
 	}
 
 	@Override

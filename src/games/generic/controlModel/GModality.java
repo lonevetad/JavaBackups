@@ -15,7 +15,6 @@ import games.generic.controlModel.misc.GThread;
 import games.generic.controlModel.objects.GameObjectGeneric;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
-import games.generic.controlModel.providers.FactoryByClassnameProvider;
 import tools.Comparators;
 import tools.ObjectNamedID;
 import tools.ObjectWithID;
@@ -72,7 +71,6 @@ public abstract class GModality implements ObjectNamed {
 	/** Used to suspend threads */
 	protected PlayerGeneric player;
 	protected final GameObjectsProvidersHolder gameObjectsProviderHolder;
-	protected final FactoryByClassnameProvider factoryByClassnameProvider;
 	protected final GameObjectsManager gomDelegated;
 	protected Random random;
 
@@ -82,7 +80,6 @@ public abstract class GModality implements ObjectNamed {
 		this.model = newGameModel();
 		this.random = new Random();
 		this.gameObjectsProviderHolder = controller.newGameObjectProvidersHolderFor(this);
-		this.factoryByClassnameProvider = this.newFactoryByClassnameProvider();
 		this.gomDelegated = newGameObjectsManager(); // ((GControllerRPG) controller).get; //
 		onCreate();
 		// il game model deve avere anche l'holder dovuto dal "Misom"
@@ -151,10 +148,6 @@ public abstract class GModality implements ObjectNamed {
 	 */
 	public GameObjectsProvidersHolder getGameObjectsProvider() {
 		return gameObjectsProviderHolder;
-	}
-
-	public FactoryByClassnameProvider getFactoryByClassnameProvider() {
-		return this.factoryByClassnameProvider;
 	}
 
 	/**
@@ -248,8 +241,6 @@ public abstract class GModality implements ObjectNamed {
 	 * Create a new {@link GMap}, depending on its name.
 	 */
 	protected abstract GMap newGameMap(String mapName);
-
-	protected abstract FactoryByClassnameProvider newFactoryByClassnameProvider();
 
 	/**
 	 * Publish and fire the event in some way, if and only if this current Game

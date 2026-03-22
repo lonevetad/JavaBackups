@@ -8,6 +8,7 @@ import games.theRisingAngel.enums.RaritiesTRAn;
 import games.theRisingAngel.enums.RechargeableResourcesTRAn;
 import games.theRisingAngel.enums.TribesTRAn;
 
+@Deprecated
 public class FactoryByClassnameProviderTRAn extends FactoryByClassnameProvider {
 
 	public FactoryByClassnameProviderTRAn() {

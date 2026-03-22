@@ -4,7 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import games.generic.controlModel.GModality;
+import tools.json.types.JSONObject;
 
+/**
+ * @deprecated because a lot of objects, especially Enums, are serialized by
+ *             their name only, so it's impossible to get back their classes;
+ *             therefore, {@link JSONObject} can't store their class name. So,
+ *             this factory is unusable.
+ */
+@Deprecated
 public abstract class FactoryByClassnameProvider {
 
 	public FactoryByClassnameProvider() {

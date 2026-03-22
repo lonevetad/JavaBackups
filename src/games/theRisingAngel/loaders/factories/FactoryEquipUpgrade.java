@@ -8,7 +8,7 @@ import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
-import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
+import games.theRisingAngel.inventory.EquipmentUpgradeTRAn;
 
 /**
  * A factory for {@link IEquipmentUpgrade}.
@@ -22,22 +22,27 @@ public class FactoryEquipUpgrade implements FactoryObjGModalityBased<IEquipmentU
 	public String name, description = null;
 	public AttributeModification[] attrMods = null;
 
-	public FactoryEquipUpgrade() { super(); }
+	public FactoryEquipUpgrade() {
+		super();
+	}
 
 	@Override
 	public IEquipmentUpgrade newInstance(GModality gm) {
 		IEquipmentUpgrade eu;
-		eu = new EquipmentUpgradeImpl(rarity, name);
-		if (description != null) { eu.setDescription(description); }
+		eu = new EquipmentUpgradeTRAn(rarity, name);
+		if (description != null) {
+			eu.setDescription(description);
+		}
 		if (attrMods != null) {
-			for (AttributeModification am : attrMods)
+			for (AttributeModification am : attrMods) {
 				eu.addAttributeModifier(am);
+			}
 		}
 		if (bonusPriceSell != null) {
 			int n;
 			CurrencySet cs;
 			Currency[] currencies;
-			cs = gm.newCurrencyHolder();
+			cs = gm.getGameObjectsProvider().newCurrencyHolder();
 			currencies = cs.getCurrencies();
 			cs.setGameModaliy(gm); // not needed
 			n = bonusPriceSell.length;

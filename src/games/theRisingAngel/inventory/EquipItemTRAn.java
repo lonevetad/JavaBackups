@@ -6,6 +6,7 @@ import games.generic.controlModel.holders.GameObjectsProvidersHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EquipmentType;
 import games.generic.controlModel.subimpl.GModalityRPG;
+import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
 
 public class EquipItemTRAn extends EquipmentItem {
@@ -18,6 +19,14 @@ public class EquipItemTRAn extends EquipmentItem {
 	public EquipItemTRAn(GModalityRPG gmrpg, EquipmentType equipmentType, String name,
 			AttributeModification[] baseAttributeMods) {
 		super(gmrpg, equipmentType, name, baseAttributeMods);
+	}
+
+	public EquipItemTRAn(GModalityRPG gmrpg, String name) {
+		this(gmrpg, null, name);
+	}
+
+	public EquipItemTRAn(GModalityRPG gmrpg, String name, AttributeModification[] baseAttributeMods) {
+		super(gmrpg, null, name, baseAttributeMods);
 	}
 
 	@Override
@@ -38,8 +47,12 @@ public class EquipItemTRAn extends EquipmentItem {
 
 	@Override
 	protected void enrichEquipment(GModality gm, GameObjectsProvidersHolder providersHolder) {
-		super.enrichEquipment(gm, providersHolder);
 		this.defineDefaultMaxUpgradesPerCategory(gm);
 		// other things to do?
+	}
+
+	@Override
+	public void loadEquipmentType(GModality gm, String typeName) {
+		this.setEquipmentType(EquipmentTypesTRAn.valueOf(typeName));
 	}
 }
