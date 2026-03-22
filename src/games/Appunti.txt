@@ -1,0 +1,394 @@
+
+2022-04-20
+
+HUGE REFACTORING:
+ogni OWID dovrà impostare dinamicamente il proprio ID, cioè renderlo non final:
+(aggiunto setter nell'interfaccia ObjWithIDGeneric
+
+
+2022-04-11
+EnumerationsManager + EnumerationGroup
+raccoglitore di enumerazioni, raggruppate in gruppi, per meglio gestire le "estensioni" (es, le creature di varie mappe, o le magie suddivise per tematica / classe di PG [druido, guerriero, assassino, etc])
+
+
+
+
+
+2022-04-09
+
+REFACTORING sistema di eventi
+separarli in due:
+- gli Event non sono eseguiti subito quando vengono creati, ma messi in una coda
+- vengono eseguiti dopo i TimedObject, cioe' "dispatch-ati" ai vari Listener
+- (forse gia' avviene cosi)
+- il Dispatcher potrebbe far ascoltare gli i alle varie "famiglie" di listener in parallelismo
+
+
+
+
+2022-04-02
+
+Per la meccanica di "riservare mana/vita/etc come costo di una abilita'", progettare
+un'altra abilita' che riduca l'ammontare di risorsa riservata.
+Tale abilita' applica delle riduzioni alla percentuale di "riservamento" del mana,
+piu' dei costi circa fissi come prezzo, che dipendono dal livello della abilita' allocata.
+Conviene quando si ha abbastanza mana. La formula e':
+
+m   = mana max
+r   = fattore di "riservamento" del mana \in [0, 1] ( 25% -> 0.25 )
+c   = fattore di conversione/riduzione
+f_c = costo fisso, da riservare, per la conversione
+m_c = costo fisso, da riservare, per la conversione MA dipendente dal fattore di conversione
+
+m * r >= 
+  m * r * (1 - c)  +  ( c * f_c + m_c )
+->
+  m*r*(1- [1-c]) >= c * f_c + m_c
+->
+  m*r*c >= ...
+-> m >= ( c * f_c + m_c ) / (r*c)
+
+ipotizando che "c" dipenda dal livello allocato "l \in N | 0 <= l <= 19" come
+  c = c_(l) := l / 5.0
+  f_c = 100 - (10 - l)*10  ->  (10-(10-l))*10 -> l*10
+  m_c = 15
+
+diventa:
+  m >= ((l/5) * l*10 + 15) / (r*l/5)
+  m >= ( 2*l^2 + 15 ) / (r*l/5)
+  m >= (10*l/r) + (75 / (l*r))
+
+
+old:
+  m >= ( (l/5) * (100-(10-l)*10) + 15 ) / (r*l/5)
+  m >= ( (l*(10-(10-l)))/2 + 15 ) / (r*l/5)
+  m >= ( ( 10*l - l*(10-l) )/2 +15) / (r*l/5)
+  m >= ( 5*l^2 + 15
+
+
+
+27/01/2022
+
+
+TODOOOOOOOOOO
+sostituire _quasi_ ogni estensione di AbilityBaseImpl con AbilityBaseWithCustomName
+
+
+14/02/2022
+
+PETS: animali che forniscono un certo bonus alle statistiche, che cresce col livello 
+(meccanismo di crescita indefinito pet ora) e raccogliono oro
+
+
+gli Inventory item dovrebbero avere un flag "already picked up" per evitare che i pet cerchino all'infinito di
+raccogliere una cosa già presa ... nel "on drop" si imposta questa a true
+
+
+aggiungere un DamgeBonusPercentage, assumendo che l'altro sia un valore assoluto, ed applicato 
+DOPO il bonus assoluto
+TODO:
+ - eventuale refactor includendo questo valore
+    (nota: questo bonus dovrebbe essere assai di valore e, quindi, raro)
+
+
+
+Interface ITimedObjectCategory extends ObjectNamedID{
+  static final Comparator ...
+
+  public boolean reliesOnMainSyncFlow();
+}
+
+enum TimedObjectCategoryDefault implements ITimedObjectCategory{
+DefaultOrSynch, ResourceRecharge, AttributesModificationsUpdate, Movements, 
+Audio (false), SpawnAndDrop /*addition in game map*/,
+
+// The following are doubtful: they may be put and rely on somewhere else, like a non-TimedObject related manager
+ ChunkLoader(false), MediaLoader(false), ConnectionManager
+
+
+
+TimedObjectManager o come si chiama, ha una Map< TimedObjectCategory, TimedObjectCategoryRunner> 
+ e per ogni Runner c'è un thread separato 
+ .. serve una pool, come quella già presente
+
+Ogni Runner deve aspettare la sequenza principale all'inizio di ogni ciclo (a meno che reliesOnMainSyncFlow()
+  restituisca false ), tramite il wait su un apposito ciclo. Alla fine di ogni ciclo, deve registrare 
+  in una variabile il numero di millisecondi che è durato, così da determinare l'avanzamento della futura 
+  iterazione di ogni thread
+  
+  protected Map< TimedObjectCategory, TimedObjectCategoryRunner>  tObjCategoryRunners;
+  
+  run
+  
+
+
+public static class TimedObjectCategoryRunner implements Runnable {
+	protected int elapsedTimeCurrentCycle;
+	protected final TimedObjectManager toManager;
+	protected final TimedObjectCategory categoryManaged;
+	protected final Set<TimedObject> activeTObjs = MapTreeAVL.new(MinMax, TimedObject.COMPARATOR).keySet();
+	protected LinkedList<TimedObject> objToBeAdded, objAboutToBeAdded;
+	
+	public void run(){
+		
+		while( gMod.isRunning() ...
+			.. after some whiles..
+				
+				// do the swap
+				LinkedList<TimedObject> t;
+				synchronized(this){
+					t = objToBeAdded;
+					objToBeAdded = objAboutToBeAdded;
+				}
+				
+				int elapsedTimeUnits = getGreatestTimeElapsed(this.activeTObjs);
+				
+				objAboutToBeAdded = t;
+				while(!objAboutToBeAdded.isEmpty()){
+					activeTObjs.put(objAboutToBeAdded.removeFirst());
+				}
+				
+				
+				if(elapsedTimeUnits < MINIMUM_TIME_ELAPSED) { elapsedTimeUnits = MINIMUM_TIME_ELAPSED; }
+				
+				toManager.waitNextCycleStart();
+				
+				activeTObjs.forEach(o->o.act(elapsedTimeUnits));
+	
+				// do other stuffs
+				
+				// then save the elapsed 
+	}
+
+}
+
+
+13/01/2022
+
+abilità che per da' ha dei bonus bassi e cresce col tempo:
+ - Status 0 - 10 secondi : +1 di tutti e 9 gli attributi, + 0 di velocità,
+ - Status 1 -  5 secondi : +2 di tutti e 9 gli attributi, + 5 di velocità,
+ - Status 2 -  5 secondi : +3 di tutti e 9 gli attributi, +10 di velocità,
+ - Status 3 -  3 secondi : +5 di tutti e 9 gli attributi, +15 di velocità, +10 di danni
+ - Status 4 -  3 secondi : +8 di tutti e 9 gli attributi, +25 di velocità, +25 di danni ,
+      +50 velocità attacco / difesa, + 50 costi, + 16 rigen vita, mana e stamina
+ - Status 5 -  4 secondi : ogni secondo dimezza i bonus, sottraendo almeno 1,
+      fino ad azzerarli. Ogni "tick" (ce ne sono TICKS_PER_TIME_UNIT=8 al secondo),
+      si aggiorna il valore di conseguenza. Quindi la formula e:
+      actualValue = maximalValue * Math.pow(0.5, ticksElapsed / (double)TICKS_PER_TIME_UNIT); ticksElapsed++;
+      (probabilmente si farà cache di tali coefficienti)
+      V2: semplicemente, ogni secondo si retrocede di 1 status
+Ad ogni scadenza delle tempistiche, si ha l'aggiornamento dei bonus
+
+
+-------
+
+Abilità Channel the Will
+Rarity 2
+Update real time
+Aumenta la percentuale di costi pari alla rigenerazione mana, ma fa guadagnare altrettanto di danno magico
+
+Channel the Wrath
+Uguale ma stamina e danno fisico
+Aggiornamento ogni sscondo
+
+Abilità Life Lessons
+Rarità 3
+Se Luck è negativa, allora +8% exp per ogni punto Luck negativo (ergo, Luck<0 ? ((- Luck)<<3) : 0 )
+Aggiornato ogni 10 secondi
+
+
+
+
+
+
+12/01/2022
+
+Ogni GameController ha un Observable che notifica i cambi di GModality, di SavedData ( il "salvataggio" di un giocatore), il salvataggio etc
+insomma, una VolatileStateInterface (AccountStateInterface / altro .. nome da revisionare)
+inoltre, dovrebbero essere tutti singleton e replicare una sorta di observable pattern.
+i Loader dovrebbero essere observer: per esempio, LoaderEquipTRAn dovrebbe salvare, ler ogni Tribe, quali pezzi del set jon sono ancora stati droppati (una volta esaurito il set, si riparte da capo)
+
+oltre a cio,servirebbe una interfaccia che definisca l'ogfetti come memorizzabile nel salvataggio e recuperabile da esso, tipo un Memento
+(LoaderEquip potrebbe salvare una mappa Tribe -> int[] ove associa ad ogniTribe tutti i pezzi di equipaggiamento che non sono ancora stati droppati.
+
+
+
+03/01/2022
+Ogni personaggio inizia con l'oggetto "Sandals of the Novice" già equipaggiato
+
+
+
+29/12/2021
+
+Creare un minion che ha un invwntario suo, MovingObj, Interacting, che ascolta gli eventi
+di drop e corre verso di essi. con l'interazione, si apre la GUI rrlativa2
+
+
+28/21/2021
+
+Aggiungere un Thread che riceva 1 o N InventoryItem da aggiungere all'inventario. Essi vengono aggiunti ad una lista (linkata) che il Thread switcha con un'altra di supporto (mentre ne elabora una, gli altri thread possono riempire l'altra). Ovviamente, tutto synchronized.
+I passi da compiere sono:
+- per ogni oggetto nella lista:
+- - prova a rimuoverlo dal GModality.remove...(..)
+- - aggiunge all'inventario del Player
+- - se non è stato aggiunto -> drop per terra -> Gmodality.add...(..)
+lo stesso thread può compattare gli Inventory
+
+
+17/12/2021
+aboutEquipUpgrade....
+the sum of all attribute modifiers has to follow this recursive function
+	 * sum(level) = (level < 0) ? 0 : (2+level+sum(level-1))
+	 * = 2+(((level+5)*level)/2)
+	 * which corresponds to this list:
+	 * 0) 2
+	 * 1) 5
+	 * 2) 9
+	 * 3) 14
+	 * 4) 20
+	 * 5) 27
+	 * 6) 35
+	 * 7) 44
+
+how rarity determines:
+-) Life  : 40 + level*25
+-) Mana  : 20 + level*20
+-) Shield: 30 + level*15
+-) Stamina: 10 + level*10
+
+
+
+
+30/11/2021
+
+l' "estrattore di essenze", cioè l' NPC adibito ad estrarre gli "EquipmentUpgrades" dai pezzi di Equipaggiamento
+per poi stoccarli nel EssenceStorage.
+Le estrazioni ed applicazioni potrebbero essere implementate come singolarmente e/o come "bulk": "tutto o niente".
+  Cioè, o si rimuovono TUTTI gli upgrade o nisba, ovviamente provvedendo abbastanza Storage idonei.
+Gli EssenceStorage potrebbero avere dei livelli massimi di rarità di contenimento (ma è un ulteriore casino .. evitabile)
+Si potrebbero implementare dei costi di estrazione ed applicazione:
+- lineari sul numero di cose da estrarre / applicare
+- il costo potrebbe invece dipendere linearmente dal "peso" complessivo dell'operazione, come segue:
+- - la rarita' dell'Upgrade ha peso pari ad una funzione positiva monotona crescente applicata alla rarita' (es: il suo quadrato)
+- - il peso totale di un "bulk" di estrazioni/applicazioni è la somma dei pesi individuali
+- - il prezzo è quindi lineare alla somma dei pesi
+- DISCOUNT:
+  in caso di soppesazione delle rarità, si potrebbero applicare dei discount:
+- - una funzione sigmoide che sconta fino al 50%, come "cap"
+
+                  
+50%                        ____|_____ fixed at 50% after 32
+                      _--''
+                    o'
+                  ,/
+25%               |
+                 /'
+                o'
+              _-
+00% ____---°°'
+   0 1 2 3 4 6 8 16 24 30 31 32
+
+proposte:
+a) (50/(1+1.375^(-(x-16))))
+b) 2+(49/(1+1.1875^(-(x-17)))
+c) 1.75+(49/(1+1.1875^(-(x-17))))
+best: c
+
+TODO 28/05/2020
+Il ISOM potrebbe essere formata da un insieme di sotto-isom-matrix, ciascuno avente una lista di adiacenza di altre matrix (inserite a mano)
+tale ISOM-WRAPPER e' anch'esso un "point provider", esattamente come le sotto-matrici, con la differenza che la prima fa cose del tipo
+
+public NodeIsom getAt(int x, int y){
+	ISOM matrix = getMatrixHolding(x,y);
+	return matrix.getAt(x,y);
+}
+Per fare RunShape sulla ISOM si fa
+- dato il centro della Shape, identificare quale matrix M la contiene
+- se la Shape ï¿½ interamente contenuta in M, allora eseguire il runner in tale M (ossia fornire al runner M come istanza di "point provider"
+- altrimenti usare "this" come "point provider" da fornire al runner
+
+TODO 10/05/2020
+-) cambiare TRAn LoaderGeneric cosï¿½ che il JSON abbia un oggetto (il ProbabilityOfContextesHolders appunto)
+	avente un array di oggetti: di coppie <nome, arraiDiProbabilita'> (ossia RandomWeightedIndexes)
+-) utilizzare in modo decente questa mappa in GModalityTRAn
+
+
+
+
+TODO:
+aggiunto nel 27/04/2020
+aggiungere metodo per il drop randomico degli oggetti (magari in parallelo e con un GThread a parte)
+
+
+
+
+TODO:
+aggiunto nel 20/04/2020
+
+Le spell devono essere un po' personalizzabili ed un po' specifiche:
+-) Tutti i personaggi possono fare tutto, ma inizialmente ogni personaggio ha un insieme di spell tipiche.
+-) Infatti ogni Player ha tre insiemi:
+- - quelle di default, fornite dalla propria classe di appartenenza (uno skill-tree, magari)
+- - - es: gli elfi spareranno molte frecce, i maghi palle di fuoco, gli ogre dei buff agli attributi d'attacco, gli umani evocano altri umani, ec
+- - quello di skill apprese (tramite libri e non solo), che possono essere TUTTE le magie esistenti, inizialmente quelle di cui sopra E sbloccate
+- - quello di skill attualmente equipaggiae ed utilizzabili in battaglia
+
+Il GameController dovrï¿½ poi definire i metodi di "caricamento dei salvataggi" (oltre a quello delle mappe)
+tra cui caricare un Player, col suo livello, inventario, etc. Saranno necessari dei loader apposa
+
+Definire poi gli altri CharacterType
+
+
+
+
+
+
+22/03/2020
+come scrissi, l'equipaggiamento ï¿½ complesso e diviso in 9 pezzi + 10 anelli + 3 collane
+orecchini	|	testa	|	mantello
+mani		|	busto	|	braccia
+piedi		|	cintura	|	gambe(pantaloni)
+arma primaria	((vuoto))	arma secondaria
+originariamente al posto degli orecchini c'erano le spalle .. le incorporo in "braccia", che prima erano "avambracci"
+poi una colonna per ciascuna mano, le 3 collane in colonna
+aggiungere i braccialetti alle due mani? troppo incasinato, ma ci sta: con le collane si otterrebbe una colonna completa alta 5
+magari al posto di "vuoto" metterci un "famiglio"
+per ogni mano, se il numero di anelli supera il 2 allora si ha un progressivo malus in agilitï¿½, forza, destrezza, precisione
+(tienila te una spada facendo presa con migliaia di anelli)
+originariamente ciascun dito poteva tenere 2 anelli (aveva 2 slot) e gli anelli erano divisi in "slot singolo" e "doppio slot"
+(un po' come le armi a due mani) e la regola di cui sopra si applicava per un numero di slot superiore a 3.
+Si potrebbe implementare, con l'accortezza perï¿½ che gli anelli "singoli" siano piï¿½ deboli dei "doppi".
+In tal caso, per calcolare il malus sopra, gli anelli doppi contano come 1.5 per tutto il dito
+(mentre due anelli singoli contano come 1 ciascuno, quindi 2), perchï¿½ per essere indossati hanno delle prese ergonomiche.
+
+
+
+
+
+
+
+
+
+
+
+
+
+_______________________________
+pre 19/03:
+_______________________________
+
+
+STRUTTURA GENERALE GROSSA
+
+
+Ogni istanza di GameLauncher ha una istanza di GameGUI e GameController.
+
+Quest'ultima gestisce un ControllerModel, che ne definisce lo "stato" appunto,
+il sistema di Input (mouse e tastiera, gamepad, touch, frecce direzionali, etc)
+e, soprattutto un insieme di GameModality
+(Es:
+- PvsIA, 1v1, Multi_VS_Multi, etc
+- dungeons, open world, YouVsWawesOfEnemies
+- chess like, usual RPG through maps, etc
+)

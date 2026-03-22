@@ -40,6 +40,18 @@ recommenders/*
 .recommenders
 .recommenders/
 .recommenders/*
+eclipseKeyBindings.*
+eclipseKeyBindings*
+eclipseKeyBindingsPreferences.*
+eclipseKeyBindingsPreferences*
+
+*.yml
 
 .*/
 !/.gitignore
+
+
+
+# MISC
+STATUS.*
+donuts-*
