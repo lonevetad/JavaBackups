@@ -1,0 +1,13 @@
+{
+	"probabilityOfContextesHolders": {
+		"ItemsRaritiesDefault": {
+				"Scrap":200,
+				"Common":750,
+				"WellManifactured":280,
+				"HighQuality":150,
+				"Rare":60,
+				"Epic":25,
+				"Legendary":10
+			}
+		}
+}
