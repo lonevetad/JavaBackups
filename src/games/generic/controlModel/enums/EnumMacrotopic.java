@@ -1,6 +1,7 @@
 package games.generic.controlModel.enums;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.subimpl.GObjectsHolderImpl;
 import tools.Comparators;
 import tools.ObjectNamedID;
@@ -26,10 +27,14 @@ public class EnumMacrotopic extends GObjectsHolderImpl<Long, GEnumeration> imple
 	protected Long ID;
 	protected String name;
 
-	public MapTreeAVL<String, GEnumeration> getSubclusterByName() { return subclusterByName; }
+	public MapTreeAVL<String, GEnumeration> getSubclusterByName() {
+		return subclusterByName;
+	}
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	/**
 	 * Name of the "macrotopic / theme", like "creatures", "spells", "runes", etc.
@@ -38,18 +43,27 @@ public class EnumMacrotopic extends GObjectsHolderImpl<Long, GEnumeration> imple
 	 *
 	 */
 	@Override
-	public String getName() { return name; }
+	public String getName() {
+		return name;
+	}
 
 	/**
 	 * See {@link #getName()}.
 	 *
 	 * @param name
+	 * @return
 	 */
-	public void setName(String name) { this.name = name; }
+	@Override
+	public ObjectNamed setName(String name) {
+		this.name = name;
+		return this;
+	}
 
 	@Override
 	public boolean setID(Long iD) {
-		if (iD == null || iD == this.ID) { return false; }
+		if (iD == null || iD == this.ID) {
+			return false;
+		}
 		ID = iD;
 		return true;
 	}

@@ -148,12 +148,12 @@ public enum RaritiesTRAn implements RarityHolder, ObjWithRarityWeight, IEnumAlik
 	}
 
 	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		IEnumAlike.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		IEnumAlike.super.loadFromJSONMap(gm, jsonMap);
 	}
 

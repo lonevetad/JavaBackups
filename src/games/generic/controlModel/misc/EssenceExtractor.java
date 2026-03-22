@@ -4,9 +4,11 @@ import java.util.Map;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.EssenceStorage;
+import games.generic.controlModel.items.FactoryEquipUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgrade;
 
 /**
  * NPC-like that manipulates {@link EquipmentItem} to extract (for example,
@@ -16,16 +18,18 @@ import games.generic.controlModel.items.EssenceStorage;
 public abstract class EssenceExtractor {
 
 	public static enum EssenceApplianceStatus {
-		Success, NullParameter, Error404EssenceNotFound, YetPresent, VialEmpty
+		Success, ErrorNullParameter, Error404EssenceNotFound, ErrorYetPresent, ErrorVialEmpty,
+		ErrorMaxCategoryCapacityReached
 	}
 
-	public EssenceExtractor() {}
+	public EssenceExtractor() {
+	}
 
 	//
 
 	/**
 	 * Get the name of the {@link GameObjectsProvider} associated with
-	 * {@link IEquipmentUpgrade}.
+	 * {@link IEquipmentUpgrade} (it will probably be a {@link FactoryEquipUpgrade}.
 	 */
 	public abstract String getEquipmentUpgradeObjProviderName(GModality gm);
 
@@ -36,15 +40,17 @@ public abstract class EssenceExtractor {
 	public abstract String getAbilityObjProviderName(GModality gm);
 
 	public boolean storeEssence(EssenceStorage vial, IEquipmentUpgrade upgrade) {
-		if (vial == null || upgrade == null || (!vial.isEmpty()))
+		if (vial == null || upgrade == null || (!vial.isEmpty())) {
 			return false;
+		}
 		vial.storeEssence(upgrade);
 		return true;
 	}
 
 	public boolean storeEssence(EssenceStorage vial, AbilityGeneric ability) {
-		if (vial == null || ability == null || (!vial.isEmpty()))
+		if (vial == null || ability == null || (!vial.isEmpty())) {
 			return false;
+		}
 		vial.storeEssence(ability);
 		return true;
 	}
@@ -59,8 +65,9 @@ public abstract class EssenceExtractor {
 		Map<String, AbilityGeneric> abil;
 		IEquipmentUpgrade upgrade;
 		AbilityGeneric ability;
-		if (vial == null || equipment == null || vial.isEmpty())
+		if (vial == null || equipment == null || vial.isEmpty()) {
 			return false;
+		}
 		abil = equipment.getAbilities();
 		equips = equipment.getUpgradesMap();
 		upgrade = equips.get(nameEssence);
@@ -81,6 +88,9 @@ public abstract class EssenceExtractor {
 	 * If possible, apply the given essence, taken from the given essence, to the
 	 * equipment, returning {@link EssenceApplianceStatus#Success}. In case of
 	 * error, another {@link EssenceApplianceStatus}'s value is returned.
+	 * 
+	 * TODO : 22/03/2026 : check for {@link MaxUpgradesPerCategory} inside the
+	 * equipment to limit the appliance (ErrorMaxCategoryCapacityReached)
 	 */
 	@SuppressWarnings("unchecked")
 	public EssenceApplianceStatus applyEssence(GModality gm, EssenceStorage vial, EquipmentItem equipment) {
@@ -89,10 +99,12 @@ public abstract class EssenceExtractor {
 		String essenceName;
 		FactoryObjGModalityBased<IEquipmentUpgrade> factoryEquipUpgrade;
 		FactoryObjGModalityBased<AbilityGeneric> factoryAbility;
-		if (gm == null || vial == null || equipment == null)
-			return EssenceApplianceStatus.NullParameter;
-		if (vial.isEmpty())
-			return EssenceApplianceStatus.VialEmpty;
+		if (gm == null || vial == null || equipment == null) {
+			return EssenceApplianceStatus.ErrorNullParameter;
+		}
+		if (vial.isEmpty()) {
+			return EssenceApplianceStatus.ErrorVialEmpty;
+		}
 		essenceName = vial.getEssenceName();
 		abil = equipment.getAbilities();
 		equips = equipment.getUpgradesMap();
@@ -101,13 +113,15 @@ public abstract class EssenceExtractor {
 		factoryAbility = (FactoryObjGModalityBased<AbilityGeneric>) gm.getGameObjectsProvider()
 				.getProvider(getAbilityObjProviderName(gm)).getObjByName(essenceName);
 		if (factoryEquipUpgrade != null) {
-			if (abil.containsKey(essenceName))
-				return EssenceApplianceStatus.YetPresent;
+			if (equips.containsKey(essenceName)) {
+				return EssenceApplianceStatus.ErrorYetPresent;
+			}
 			equipment.addUpgrade(factoryEquipUpgrade.newInstance(gm));
 			vial.removeEssence();
 		} else if (factoryAbility != null) {
-			if (equips.containsKey(essenceName))
-				return EssenceApplianceStatus.YetPresent;
+			if (abil.containsKey(essenceName)) {
+				return EssenceApplianceStatus.ErrorYetPresent;
+			}
 			equipment.addAbility(factoryAbility.newInstance(gm));
 			vial.removeEssence();
 		} else {

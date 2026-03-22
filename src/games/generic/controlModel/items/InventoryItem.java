@@ -227,7 +227,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 	}
 
 	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
 		}
@@ -298,7 +298,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 	}
 
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

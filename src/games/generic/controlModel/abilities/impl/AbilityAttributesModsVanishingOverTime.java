@@ -11,6 +11,7 @@ import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /**
  * See super-documentation of {@link AbilityVanishingOverTime}.<br>
@@ -195,7 +196,7 @@ public abstract class AbilityAttributesModsVanishingOverTime extends AbilityModi
 		attributesToModifyOriginal = new AttributeModification[n = attributesToModify.length];
 		while (--n >= 0) {
 			am = attributesToModify[n];
-			attributesToModifyOriginal[n] = new AttributeModification(am.getAttributeModified(), am.getValue());
+			attributesToModifyOriginal[n] = new AttributeModificationTRAn(am.getAttributeModified(), am.getValue());
 			am.setValue(0); // ability is inactive now
 		}
 	}

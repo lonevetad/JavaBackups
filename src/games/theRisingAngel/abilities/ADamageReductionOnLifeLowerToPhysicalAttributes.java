@@ -6,6 +6,7 @@ import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import tools.ObjectWithID;
 
@@ -19,7 +20,8 @@ import tools.ObjectWithID;
  */
 // * <code>a = 4; b = 1</code> and <code>c = d = e = 1</code>.
 public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModifyingAttributesRealTime
-// implements GEventObserver
+		implements HelperWithAttributeModificationsTRAn
+// , GEventObserver
 {
 	private static final long serialVersionUID = -4521020230699090L;
 	public static final String NAME = "Trained to Endure";
@@ -98,15 +100,6 @@ public class ADamageReductionOnLifeLowerToPhysicalAttributes extends AbilityModi
 				a.setValue(0);
 			}
 		}
-	}
-
-	@Override
-	public GModality getGameModality() { // TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
 	}
 
 }

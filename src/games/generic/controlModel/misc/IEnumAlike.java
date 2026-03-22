@@ -50,12 +50,12 @@ public interface IEnumAlike extends IndexableObject {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		this.raiseUnsupportedOperationException(this.getExceptionMessageLoadJSON());
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		this.raiseUnsupportedOperationException(this.getExceptionMessageLoadJSON());
 	}
 }

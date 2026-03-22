@@ -14,6 +14,7 @@ import games.generic.controlModel.attributes.AttributesUpgrade;
 import games.generic.controlModel.loaders.LoaderGeneric;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.loaders.LoaderUtilsTRAn.OLD_LOADERS_JSON.JSONLineReader;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /** Set of utilities for loading stuffs on TRAr. */
 public class LoaderUtilsTRAn {
@@ -79,7 +80,9 @@ public class LoaderUtilsTRAn {
 			temp = splitted[i];
 			if (temp.contains("width")) {
 				d.width = extractIntValue(temp.split(":")[1].trim());
-			} else if (temp.contains("height")) { d.height = extractIntValue(temp.split(":")[1].trim()); }
+			} else if (temp.contains("height")) {
+				d.height = extractIntValue(temp.split(":")[1].trim());
+			}
 		}
 		return d;
 	}
@@ -106,7 +109,7 @@ public class LoaderUtilsTRAn {
 			attr = AttributesTRAn.getAttributeTRArByName(temp);
 			temp = trimAll(splitted[1].split(":"))[1].trim();// value of attribute
 			v = extractIntValue(temp);
-			attrMods.add(new AttributeModification(attr, v));
+			attrMods.add(new AttributeModificationTRAn(attr, v));
 		}
 		AttributeModification[] a;
 		a = new AttributeModification[attrMods.size()];
@@ -120,16 +123,18 @@ public class LoaderUtilsTRAn {
 	public static String[] trimAll(String[] a) {
 		int i;
 		i = a.length;
-		while (--i >= 0)
+		while (--i >= 0) {
 			a[i] = a[i].trim();
+		}
 		return a;
 	}
 
 	public static String removeQuotes(String s) {
 		int i;
 		i = s.indexOf('\"');
-		if (i < 0)
+		if (i < 0) {
 			return s;
+		}
 		return s.substring(i + 1, s.lastIndexOf('\"'));
 	}
 
@@ -143,18 +148,21 @@ public class LoaderUtilsTRAn {
 		isNeg = (c = s.charAt(0)) == '-';
 		if (isNeg || c == '+') {
 			i = 0;
-			while (++i < len && ((c = s.charAt(i)) >= '0') && c <= '9')
+			while (++i < len && ((c = s.charAt(i)) >= '0') && c <= '9') {
 				;
+			}
 			while (--i >= 1) {
 				res += (s.charAt(i) - '0') * pow;
 				pow *= 10;
 			}
-			if (isNeg)
+			if (isNeg) {
 				res = -res;
+			}
 		} else {
 			i = -1;
-			while (++i < len && ((c = s.charAt(i)) >= '0') && c <= '9')
+			while (++i < len && ((c = s.charAt(i)) >= '0') && c <= '9') {
 				;
+			}
 			while (--i >= 0) {
 				res += (s.charAt(i) - '0') * pow;
 				pow *= 10;
@@ -188,7 +196,9 @@ public class LoaderUtilsTRAn {
 			}
 
 			@Override
-			public boolean hasNext() { return line != null && (!"}".equals(line)) && (!"]".equals(line)); }
+			public boolean hasNext() {
+				return line != null && (!"}".equals(line)) && (!"]".equals(line));
+			}
 
 			@Override
 			public String next() {
@@ -227,7 +237,9 @@ public class LoaderUtilsTRAn {
 
 			protected abstract void readAllFileImpl(String line);
 
-			public JSONLineReader getLineReader() { return lr; }
+			public JSONLineReader getLineReader() {
+				return lr;
+			}
 		}
 	}
 }

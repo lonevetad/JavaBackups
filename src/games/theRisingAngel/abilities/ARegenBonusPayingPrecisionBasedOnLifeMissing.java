@@ -5,6 +5,7 @@ import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealT
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 
 /**
@@ -14,7 +15,8 @@ import games.theRisingAngel.enums.AttributesTRAn;
  * regeneration (the perfect balance would be reached at 0 life, but now you
  * would be dead).
  */
-public class ARegenBonusPayingPrecisionBasedOnLifeMissing extends AbilityModifyingAttributesRealTime {
+public class ARegenBonusPayingPrecisionBasedOnLifeMissing extends AbilityModifyingAttributesRealTime
+		implements HelperWithAttributeModificationsTRAn {
 	private static final long serialVersionUID = -5649806420997L;
 	public static final String NAME = "Horror vacui";
 	public static final int RARITY = 4;
@@ -33,8 +35,9 @@ public class ARegenBonusPayingPrecisionBasedOnLifeMissing extends AbilityModifyi
 		val = ah.getLifeRegeneration();
 		if (val != 0) {
 			maxLife = ah.getLifeMax();
-			if (val < 0)
+			if (val < 0) {
 				val = -val;
+			}
 			val = (val * (missingLife = maxLife - ah.getLife()) / maxLife);
 			ams[0].setValue(val);
 			val = ca.getValue(AttributesTRAn.PhysicalProbabilityPerThousandHit);

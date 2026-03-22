@@ -10,6 +10,7 @@ import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.holders.AbilityBonusDependingOnOtherBonusesTRAn;
 import games.generic.controlModel.misc.GameObjectsProvider;
 import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.subimpl.LoaderAbilities;
@@ -37,18 +38,24 @@ import games.theRisingAngel.abilities.AVampireBerserker;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.enums.RaritiesTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 public class LoaderAbilityTRAn extends LoaderAbilities {
 
-	public LoaderAbilityTRAn(GameObjectsProvider<AbilityGeneric> objProvider) { super(objProvider); }
+	public LoaderAbilityTRAn(GameObjectsProvider<AbilityGeneric> objProvider) {
+		super(objProvider);
+	}
 
 	@Override
 	public LoadStatusResult loadInto(GController gcontroller) {
-//		objProvider.addObj(ADamageReductionCurrencyBased.NAME + DamageTypesTRAn.Physical.getName(),
-//				ADamageReductionCurrencyBased.RARITY,
-//				gc -> new ADamageReductionCurrencyBased(DamageTypesTRAn.Physical));
-//		objProvider.addObj(ADamageReductionCurrencyBased.NAME + DamageTypesTRAn.Magical.getName(),
-//				ADamageReductionCurrencyBased.RARITY, gc -> new ADamageReductionCurrencyBased(DamageTypesTRAn.Magical));
+		// objProvider.addObj(ADamageReductionCurrencyBased.NAME +
+		// DamageTypesTRAn.Physical.getName(),
+		// ADamageReductionCurrencyBased.RARITY,
+		// gc -> new ADamageReductionCurrencyBased(DamageTypesTRAn.Physical));
+		// objProvider.addObj(ADamageReductionCurrencyBased.NAME +
+		// DamageTypesTRAn.Magical.getName(),
+		// ADamageReductionCurrencyBased.RARITY, gc -> new
+		// ADamageReductionCurrencyBased(DamageTypesTRAn.Magical));
 		objProvider.addObj(AMoreDamageReceivedMoreLifeRegen.NAME, AMoreDamageReceivedMoreLifeRegen.RARITY,
 				AMoreDamageReceivedMoreLifeRegen::new);
 		objProvider.addObj(AFireShpereOrbiting.NAME, AFireShpereOrbiting.RARITY, AFireShpereOrbiting::new);
@@ -61,18 +68,18 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		objProvider.addObj("Wounded Berseker", 3, gm -> {
 			ASimpleFixedBufferVanishingTRAn a;
 			a = new ASimpleFixedBufferVanishingTRAn(gm, "Wounded Berseker",
-					new AttributeModification[] { new AttributeModification(AttributesTRAn.Strength, 8),
-							new AttributeModification(AttributesTRAn.Defense, 1),
-							new AttributeModification(AttributesTRAn.Constitution, 4),
-							new AttributeModification(AttributesTRAn.Intelligence, -6),
-							new AttributeModification(AttributesTRAn.Wisdom, -4) }) {
+					new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.Strength, 8),
+							new AttributeModificationTRAn(AttributesTRAn.Defense, 1),
+							new AttributeModificationTRAn(AttributesTRAn.Constitution, 4),
+							new AttributeModificationTRAn(AttributesTRAn.Intelligence, -6),
+							new AttributeModificationTRAn(AttributesTRAn.Wisdom, -4) }) {
 				private static final long serialVersionUID = 2588519748901517L;
 
 				@Override
 				protected boolean isAcceptableEvent(IGEvent e) {
 					return EventsTRAn.DamageReceived.getName() == e.getName() && //
 					// I am the receiver?
-					((EventDamage) e).isTarget((LivingObject) this.getOwner());
+							((EventDamage) e).isTarget((LivingObject) this.getOwner());
 				}
 			};
 			a.addEventWatched(EventsTRAn.DamageReceived);
@@ -86,12 +93,12 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		objProvider.addObj("Frenzy for a miss", 2, gm -> {
 			ASimpleFixedBufferVanishingTRAn a;
 			a = new ASimpleFixedBufferVanishingTRAn(gm, "Frenzy for a miss",
-					new AttributeModification[] { new AttributeModification(AttributesTRAn.Strength, 6),
-							new AttributeModification(AttributesTRAn.PhysicalProbabilityPerThousandHit, 4), // frenzy
-							new AttributeModification(AttributesTRAn.MagicalProbabilityPerThousandHit, 4), // frenzy
-							new AttributeModification(AttributesTRAn.Dexterity, -5),
-							new AttributeModification(AttributesTRAn.Intelligence, -6),
-							new AttributeModification(AttributesTRAn.Wisdom, -7) }) {
+					new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.Strength, 6),
+							new AttributeModificationTRAn(AttributesTRAn.PhysicalProbabilityPerThousandHit, 4), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.MagicalProbabilityPerThousandHit, 4), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.Dexterity, -5),
+							new AttributeModificationTRAn(AttributesTRAn.Intelligence, -6),
+							new AttributeModificationTRAn(AttributesTRAn.Wisdom, -7) }) {
 
 				private static final long serialVersionUID = 777962548965262L;
 
@@ -99,7 +106,7 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 				protected boolean isAcceptableEvent(IGEvent e) {
 					return EventsTRAn.DamageMissed.getName() == e.getName() && //
 					// I am the one who missed the attack?
-					((EventDamage) e).isSource((DamageDealerGeneric) this.getOwner());
+							((EventDamage) e).isSource((DamageDealerGeneric) this.getOwner());
 				}
 			};
 			a.setCumulative(false);
@@ -113,18 +120,19 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		objProvider.addObj("Immunoadrenaline", 2, gm -> {
 			ASimpleFixedBufferVanishingTRAn a;
 			a = new ASimpleFixedBufferVanishingTRAn(gm, "Immunoadrenaline",
-					new AttributeModification[] { new AttributeModification(AttributesTRAn.MagicalDamageReduction, -10),
-							new AttributeModification(AttributesTRAn.PhysicalDamageReduction, -10),
-							new AttributeModification(AttributesTRAn.Velocity,
+					new AttributeModification[] {
+							new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, -10),
+							new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, -10),
+							new AttributeModificationTRAn(AttributesTRAn.Velocity,
 									GModalityTRAnBaseWorld.SPACE_SUB_UNITS_EVERY_UNIT_EXAMPLE_TRAN), // frenzy
-							new AttributeModification(AttributesTRAn.LifeRegen, 10) }) {
+							new AttributeModificationTRAn(AttributesTRAn.LifeRegen, 10) }) {
 				private static final long serialVersionUID = 2588519748901515L;
 
 				@Override
 				protected boolean isAcceptableEvent(IGEvent e) {
 					return EventsTRAn.DamageReceived.getName() == e.getName() && //
 					// I am the receiver?
-					((EventDamage) e).isTarget((LivingObject) this.getOwner());
+							((EventDamage) e).isTarget((LivingObject) this.getOwner());
 				}
 			};
 			a.setCumulative(false);
@@ -137,21 +145,21 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		objProvider.addObj("Bloodlust", 3, gm -> {
 			ASimpleFixedBufferVanishingTRAn a;
 			a = new ASimpleFixedBufferVanishingTRAn(gm, "Bloodlust",
-					new AttributeModification[] { new AttributeModification(AttributesTRAn.Strength, 4),
-							new AttributeModification(AttributesTRAn.Health, 4),
-							new AttributeModification(AttributesTRAn.LifeRegen, 1),
-							new AttributeModification(AttributesTRAn.Velocity, // frenzy
+					new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.Strength, 4),
+							new AttributeModificationTRAn(AttributesTRAn.Health, 4),
+							new AttributeModificationTRAn(AttributesTRAn.LifeRegen, 1),
+							new AttributeModificationTRAn(AttributesTRAn.Velocity, // frenzy
 									GModalityTRAnBaseWorld.SPACE_SUB_UNITS_EVERY_UNIT_EXAMPLE_TRAN >> 2),
-							new AttributeModification(AttributesTRAn.Intelligence, -1),
-							new AttributeModification(AttributesTRAn.Wisdom, -3),
-							new AttributeModification(AttributesTRAn.ManaRegen, 2) }) {
+							new AttributeModificationTRAn(AttributesTRAn.Intelligence, -1),
+							new AttributeModificationTRAn(AttributesTRAn.Wisdom, -3),
+							new AttributeModificationTRAn(AttributesTRAn.ManaRegen, 2) }) {
 				private static final long serialVersionUID = 287962548965262L;
 
 				@Override
 				protected boolean isAcceptableEvent(IGEvent e) {
 					return EventsTRAn.DamageInflicted.getName() == e.getName() && //
 					// I am the one who missed the attack?
-					((EventDamage) e).isSource((DamageDealerGeneric) this.getOwner());
+							((EventDamage) e).isSource((DamageDealerGeneric) this.getOwner());
 				}
 			};
 			a.setCumulative(true);
@@ -175,9 +183,10 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		//
 		forEachLevel_ZeroToMaximum(ml -> {
 			objProvider.addObj(AMeditationMoreRegen.NAME + ml, ml,
-//					((Function<Integer, FactoryObjGModalityBased<AbilityGeneric>>) (level -> {
-//						return gm -> new AMeditationMoreRegen(level);
-//					})).apply(maxLevel) // moved to a function because reminds TOO MUCH to JavaScript ...
+					// ((Function<Integer, FactoryObjGModalityBased<AbilityGeneric>>) (level -> {
+					// return gm -> new AMeditationMoreRegen(level);
+					// })).apply(maxLevel) // moved to a function because reminds TOO MUCH to
+					// JavaScript ...
 					gm -> new AMeditationMoreRegen(gm, ml)//
 			);
 			objProvider.addObj(ADamageReductionCurrencyBased.NAME + ml, ml,
@@ -189,40 +198,40 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 
 		objProvider.addObj("Mag(ic)netic Dynamo", 3, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Mag(ic)netic Dynamo", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Mag(ic)netic Dynamo", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.MagicalDamageBonus, //
 							AttributesTRAn.MagicalDamageReduction, AttributesTRAn.ShieldMax, //
 							AttributesTRAn.ShieldRegen }//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.ShieldRegen }, //
-					new AttributeIdentifier[] { AttributesTRAn.ShieldMax }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalDamageBonus }//
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.ShieldRegen }, //
+							new AttributeIdentifier[] { AttributesTRAn.ShieldMax }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalDamageBonus }//
 			});
 			a.setRarityIndex(3);
 			return a;
 		});
 		objProvider.addObj("Muscles Meat", 3, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Muscles Meat", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Muscles Meat", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.PhysicalDamageBonus, //
 							AttributesTRAn.PhysicalDamageReduction, //
 							AttributesTRAn.LifeMax, //
 							AttributesTRAn.LifeRegen }//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.LifeRegen }, //
-					new AttributeIdentifier[] { AttributesTRAn.LifeMax }, //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageBonus }//
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.LifeRegen }, //
+							new AttributeIdentifier[] { AttributesTRAn.LifeMax }, //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageBonus }//
 			});
 			a.setRarityIndex(3);
 			return a;
 		});
 		objProvider.addObj("Assassin's Instinct", 3, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Assassin's Instinct", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Assassin's Instinct", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.PhysicalProbabilityPerThousandHit, //
 							AttributesTRAn.MagicalProbabilityPerThousandHit, //
@@ -231,73 +240,73 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 							AttributesTRAn.MagicalProbabilityPerThousandAvoid, //
 							AttributesTRAn.CriticalProbabilityPerThousandAvoid, //
 			}//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandAvoid }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandAvoid }, //
-					new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandAvoid }, //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandHit }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandHit }, //
-					new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandHit }//
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandAvoid }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandAvoid }, //
+							new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandAvoid }, //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandHit }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandHit }, //
+							new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandHit }//
 			});
 			a.setRarityIndex(3);
 			return a;
 		});
 		objProvider.addObj("Siphon of Will", 3, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Siphon of Will", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Siphon of Will", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.LifeLeechPercentage, //
 							AttributesTRAn.ManaLeechPercentage //
 			}//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.LifeRegen, AttributesTRAn.PhysicalDamageBonus }, //
-					new AttributeIdentifier[] { AttributesTRAn.ManaRegen, AttributesTRAn.MagicalDamageBonus } //
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.LifeRegen, AttributesTRAn.PhysicalDamageBonus }, //
+							new AttributeIdentifier[] { AttributesTRAn.ManaRegen, AttributesTRAn.MagicalDamageBonus } //
 			});
 			a.setRarityIndex(3);
 			return a;
 		});
 		objProvider.addObj("Offense is the best Defence", 3, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Offense is the best Defence", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Offense is the best Defence", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.PhysicalDamageBonus, //
 							AttributesTRAn.MagicalDamageBonus, //
 			}//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction } //
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction } //
 			});
 			a.setRarityIndex(3);
 			return a;
 		});
 		objProvider.addObj("You cannot touch me, but...", 2, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "You cannot touch me, but...", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "You cannot touch me, but...", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.PhysicalDamageReduction, //
 							AttributesTRAn.MagicalDamageReduction, //
 							AttributesTRAn.CriticalMultiplierPercentageReduction //
 			}//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandAvoid }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandAvoid }, //
-					new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandAvoid } //
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalProbabilityPerThousandAvoid }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalProbabilityPerThousandAvoid }, //
+							new AttributeIdentifier[] { AttributesTRAn.CriticalProbabilityPerThousandAvoid } //
 			});
 			a.setRarityIndex(2);
 			return a;
 		});
 		objProvider.addObj("Gonna deflect 'em all", 2, gm -> {
 			AbilityBonusDependingOnOtherBonuses a;
-			a = new AbilityBonusDependingOnOtherBonuses(gm, "Gonna deflect 'em all", //
+			a = new AbilityBonusDependingOnOtherBonusesTRAn(gm, "Gonna deflect 'em all", //
 					new AttributeIdentifier[] { //
 							AttributesTRAn.PhysicalProbabilityPerThousandAvoid, //
 							AttributesTRAn.MagicalProbabilityPerThousandAvoid, //
 							AttributesTRAn.CriticalProbabilityPerThousandAvoid//
 			}//
-			, new AttributeIdentifier[][] { //
-					new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
-					new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction }, //
-					new AttributeIdentifier[] { AttributesTRAn.CriticalMultiplierPercentageReduction } //
+					, new AttributeIdentifier[][] { //
+							new AttributeIdentifier[] { AttributesTRAn.PhysicalDamageReduction }, //
+							new AttributeIdentifier[] { AttributesTRAn.MagicalDamageReduction }, //
+							new AttributeIdentifier[] { AttributesTRAn.CriticalMultiplierPercentageReduction } //
 			});
 			a.setRarityIndex(2);
 			return a;

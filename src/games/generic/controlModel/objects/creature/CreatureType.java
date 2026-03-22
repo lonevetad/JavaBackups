@@ -38,13 +38,13 @@ public interface CreatureType extends ObjectNamed, RarityHolder {
 	}
 
 	@Override
-	default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
 		RarityHolder.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
 		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
 	}

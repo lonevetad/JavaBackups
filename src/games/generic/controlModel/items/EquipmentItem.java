@@ -13,6 +13,7 @@ import dataStructures.MapTreeAVL;
 import dataStructures.mtAvl.MapTreeAVLLightweight.TreeAVLDelegator;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
 import games.generic.controlModel.holders.AbilitiesHolder;
@@ -26,6 +27,8 @@ import tools.Comparators;
 import tools.ObjectWithID;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
+import tools.json.JSONable;
+import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
 
@@ -71,8 +74,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		this.equipmentType = equipmentType;
 		this.baseAttributesModifiers = //
 				(baseAttributeMods == null) ? //
-						Collections.unmodifiableList(new LinkedList<>())
-						: Collections.unmodifiableList(Arrays.asList(baseAttributeMods));
+						new LinkedList<>() : Collections.unmodifiableList(Arrays.asList(baseAttributeMods));
 		onCreate(gmrpg);
 	}
 
@@ -108,10 +110,12 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	}
 
 	public Map<String, IEquipmentUpgrade> getUpgradesMap() {
+		this.checkUpgradeSet();
 		return backMapEquipUpgrades;
 	}
 
 	public Set<IEquipmentUpgrade> getUpgrades() {
+		this.checkUpgradeSet();
 		return this.upgrades;
 	}
 
@@ -506,6 +510,19 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 
 	public abstract void loadEquipmentType(GModality gm, String typeName);
 
+	public abstract IEquipmentUpgradeCategory getEquipmentUpgradeCategoryByName(GModality gm,
+			String equipmentUpgradeCategoryName);
+
+	public abstract MaxUpgradesPerCategory newMaxUpgradesPerCategory(GModality gm,
+			IEquipmentUpgradeCategory equipUpgradeCategory);
+
+	public abstract AttributeIdentifier getAttributeIdentifierByName(GModality gm, String attributeName);
+
+	public abstract AttributeModification newAttributeModification(GModality gm, AttributeIdentifier attributeModified,
+			int value);
+
+	public abstract IEquipmentUpgrade newEquipmentUpgrade(GModality gm, String equipUpgradeName);
+
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
 		super.toJSONValue(wrapper);
@@ -521,7 +538,7 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		// base attribute modifiers
 		final JSONObject baseAttributesModifiersJSONed = new JSONObject();
 		this.getBaseAttributesModifiers().forEach((am) -> {
-			baseAttributesModifiersJSONed.addField(am.getName(), am.toJSONValue());
+			baseAttributesModifiersJSONed.addField(am.getName(), new JSONInt(am.getValue()));
 		});
 		wrapper.addField(FIELD_BASE_ATTRIBUTE_MODIFIERS, maxUpgradesPerCategoryJSONed);
 		// upgrades
@@ -533,10 +550,12 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
 		}
+		super.loadFromJSONObject(gm, wrapper);
+		AbilitiesHolder.super.loadFromJSONObject(gm, wrapper);
 		// equipmentType
 		if (!wrapper.hasField(FIELD_EQUIPMENT_TYPE)) {
 			this.raiseExceptionMissingField(FIELD_EQUIPMENT_TYPE, JSONTypes.String);
@@ -547,11 +566,149 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 		}
 		this.loadEquipmentType(gm, ((JSONString) equipTypeNameJSONed_value).asString());
 		// maxUpgradesPerCategory
-		// TODO : da fare tutto
+		if (!wrapper.hasField(FIELD_MAX_UPGRADES_PER_CATEGORY)) {
+			this.raiseExceptionMissingField(FIELD_MAX_UPGRADES_PER_CATEGORY, JSONTypes.Object);
+		}
+		JSONValue maxUpgradesPerCategoryJSONed_value = wrapper.getFieldValue(FIELD_MAX_UPGRADES_PER_CATEGORY);
+		if (!maxUpgradesPerCategoryJSONed_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADES_PER_CATEGORY, JSONTypes.Object,
+					maxUpgradesPerCategoryJSONed_value);
+		}
+		JSONObject maxUpgradesPerCategoryJSONed = (JSONObject) maxUpgradesPerCategoryJSONed_value;
+		final MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> mupcMap = this.getMaxUpgradesPerCategory();
+		maxUpgradesPerCategoryJSONed.forEachField((categoryName, maxUpgradeJSONed_value) -> {
+			if (!maxUpgradeJSONed_value.isType(JSONTypes.Object)) {
+				this.raiseExceptionIllegalTypeField(
+						FIELD_MAX_UPGRADES_PER_CATEGORY + JSONable.SEPARATOR_FIELD + categoryName, JSONTypes.Object,
+						maxUpgradeJSONed_value);
+			}
+			JSONObject maxUpgradeJSONed = (JSONObject) maxUpgradeJSONed_value;
+			IEquipmentUpgradeCategory equipUpCat = getEquipmentUpgradeCategoryByName(gm, categoryName);
+			MaxUpgradesPerCategory mup = newMaxUpgradesPerCategory(gm, equipUpCat);
+			mup.loadFromJSONObject(gm, maxUpgradeJSONed);
+			mupcMap.put(equipUpCat, mup);
+		});
+		// base attribute modifiers
+		if (!wrapper.hasField(FIELD_BASE_ATTRIBUTE_MODIFIERS)) {
+			this.raiseExceptionMissingField(FIELD_BASE_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
+		}
+		JSONValue baseAttributeModifiersJSONed_value = wrapper.getFieldValue(FIELD_BASE_ATTRIBUTE_MODIFIERS);
+		if (!maxUpgradesPerCategoryJSONed_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_BASE_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
+					maxUpgradesPerCategoryJSONed_value);
+		}
+		JSONObject baseAttributeModifiersJSONed = (JSONObject) baseAttributeModifiersJSONed_value;
+		baseAttributeModifiersJSONed.forEachField((attributeName, amValueJSONed_value) -> {
+			if (!amValueJSONed_value.isType(JSONTypes.Int)) {
+				this.raiseExceptionIllegalTypeField(
+						FIELD_BASE_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + attributeName, JSONTypes.Object,
+						amValueJSONed_value);
+			}
+			JSONInt amValue = (JSONInt) amValueJSONed_value;
+			AttributeIdentifier attributeModified = getAttributeIdentifierByName(gm, attributeName);
+			AttributeModification am = newAttributeModification(gm, attributeModified, amValue.asInt());
+			this.getBaseAttributesModifiers().add(am);
+		});
+		// upgrades
+		if (!wrapper.hasField(FIELD_UPGRADES)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADES, JSONTypes.Object);
+		}
+		JSONValue upgradesJSONed_value = wrapper.getFieldValue(FIELD_UPGRADES);
+		if (!upgradesJSONed_value.isType(JSONTypes.Object)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADES, JSONTypes.Object, upgradesJSONed_value);
+		}
+		JSONObject upgradesJSONed = (JSONObject) upgradesJSONed_value;
+		final Map<String, IEquipmentUpgrade> upsMap = this.getUpgradesMap();
+		upgradesJSONed.forEachField((equipUpgradeName, euValueJSONed_value) -> {
+			if (!euValueJSONed_value.isType(JSONTypes.Object)) {
+				this.raiseExceptionIllegalTypeField(FIELD_UPGRADES + JSONable.SEPARATOR_FIELD + equipUpgradeName,
+						JSONTypes.Object, euValueJSONed_value);
+			}
+			IEquipmentUpgrade eu = newEquipmentUpgrade(gm, equipUpgradeName);
+			eu.loadFromJSONObject(gm, (JSONObject) euValueJSONed_value);
+			upsMap.put(equipUpgradeName, eu);
+		});
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		// TODO : da fare tutto
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSONObject map cannot be null");
+		}
+		super.loadFromJSONMap(gm, jsonMap);
+		AbilitiesHolder.super.loadFromJSONMap(gm, jsonMap);
+		// equipmentType
+		if (!jsonMap.containsKey(FIELD_EQUIPMENT_TYPE)) {
+			this.raiseExceptionMissingField(FIELD_EQUIPMENT_TYPE, JSONTypes.String);
+		}
+		Object equipTypeNameJSONed_value = jsonMap.get(FIELD_EQUIPMENT_TYPE);
+		if (!(equipTypeNameJSONed_value instanceof String)) {
+			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_TYPE, JSONTypes.String, equipTypeNameJSONed_value);
+		}
+		this.loadEquipmentType(gm, ((JSONString) equipTypeNameJSONed_value).asString());
+		// maxUpgradesPerCategory
+		if (!jsonMap.containsKey(FIELD_MAX_UPGRADES_PER_CATEGORY)) {
+			this.raiseExceptionMissingField(FIELD_MAX_UPGRADES_PER_CATEGORY, JSONTypes.Object);
+		}
+		Object maxUpgradesPerCategoryJSONed_value = jsonMap.get(FIELD_MAX_UPGRADES_PER_CATEGORY);
+		if (!(maxUpgradesPerCategoryJSONed_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADES_PER_CATEGORY, JSONTypes.Object,
+					maxUpgradesPerCategoryJSONed_value);
+		}
+		Map<String, Object> maxUpgradesPerCategoryJSONed = (Map<String, Object>) maxUpgradesPerCategoryJSONed_value;
+		final MapTreeAVL<IEquipmentUpgradeCategory, MaxUpgradesPerCategory> mupcMap = this.getMaxUpgradesPerCategory();
+		maxUpgradesPerCategoryJSONed.forEach((categoryName, maxUpgradeJSONed_value) -> {
+			if (!(maxUpgradeJSONed_value instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(
+						FIELD_MAX_UPGRADES_PER_CATEGORY + JSONable.SEPARATOR_FIELD + categoryName, JSONTypes.Object,
+						maxUpgradeJSONed_value);
+			}
+			Map<String, Object> maxUpgradeJSONed = (Map<String, Object>) maxUpgradeJSONed_value;
+			IEquipmentUpgradeCategory equipUpCat = getEquipmentUpgradeCategoryByName(gm, categoryName);
+			MaxUpgradesPerCategory mup = newMaxUpgradesPerCategory(gm, equipUpCat);
+			mup.loadFromJSONMap(gm, maxUpgradeJSONed);
+			mupcMap.put(equipUpCat, mup);
+		});
+		// base attribute modifiers
+		if (!jsonMap.containsKey(FIELD_BASE_ATTRIBUTE_MODIFIERS)) {
+			this.raiseExceptionMissingField(FIELD_BASE_ATTRIBUTE_MODIFIERS, JSONTypes.Object);
+		}
+		Object baseAttributeModifiersJSONed_value = jsonMap.get(FIELD_BASE_ATTRIBUTE_MODIFIERS);
+		if (!(maxUpgradesPerCategoryJSONed_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_BASE_ATTRIBUTE_MODIFIERS, JSONTypes.Object,
+					maxUpgradesPerCategoryJSONed_value);
+		}
+		Map<String, Object> baseAttributeModifiersJSONed = (Map<String, Object>) baseAttributeModifiersJSONed_value;
+		baseAttributeModifiersJSONed.forEach((attributeName, amValueJSONed_value) -> {
+			if (!(amValueJSONed_value instanceof Integer)) {
+				this.raiseExceptionIllegalTypeField(
+						FIELD_BASE_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + attributeName, JSONTypes.Object,
+						amValueJSONed_value);
+			}
+			Integer amValue = (Integer) amValueJSONed_value;
+			AttributeIdentifier attributeModified = getAttributeIdentifierByName(gm, attributeName);
+			AttributeModification am = newAttributeModification(gm, attributeModified, amValue);
+			this.getBaseAttributesModifiers().add(am);
+		});
+		// upgrades
+		if (!jsonMap.containsKey(FIELD_UPGRADES)) {
+			this.raiseExceptionMissingField(FIELD_UPGRADES, JSONTypes.Object);
+		}
+		Object upgradesJSONed_value = jsonMap.get(FIELD_UPGRADES);
+		if (!(upgradesJSONed_value instanceof Map<?, ?>)) {
+			this.raiseExceptionIllegalTypeField(FIELD_UPGRADES, JSONTypes.Object, upgradesJSONed_value);
+		}
+		Map<String, Object> upgradesJSONed = (Map<String, Object>) upgradesJSONed_value;
+		final Map<String, IEquipmentUpgrade> upsMap = this.getUpgradesMap();
+		upgradesJSONed.forEach((equipUpgradeName, euValueJSONed_value) -> {
+			if (!(euValueJSONed_value instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_UPGRADES + JSONable.SEPARATOR_FIELD + equipUpgradeName,
+						JSONTypes.Object, euValueJSONed_value);
+			}
+			IEquipmentUpgrade eu = newEquipmentUpgrade(gm, equipUpgradeName);
+			eu.loadFromJSONMap(gm, (Map<String, Object>) euValueJSONed_value);
+			upsMap.put(equipUpgradeName, eu);
+		});
 	}
 }

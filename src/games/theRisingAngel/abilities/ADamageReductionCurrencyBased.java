@@ -14,11 +14,13 @@ import games.generic.controlModel.holders.CurrencyHolder;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
 
-public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRealTime implements GEventObserver {
+public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRealTime
+		implements HelperWithAttributeModificationsTRAn, GEventObserver {
 	private static final long serialVersionUID = -69287821202158L;
 	public static final String NAME = "Buying Reducion ";
 	public static final int RARITY = 3;
@@ -70,8 +72,9 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 	protected int getDefaultCurrencyAmount(CreatureSimple c) {
 		int a;
 		CurrencySet ch;
-		if (!(c instanceof CurrencyHolder))
+		if (!(c instanceof CurrencyHolder)) {
 			return 0;
+		}
 		ch = ((CurrencyHolder) c).getCurrencies();
 		a = ch.getCurrencyAmount(ch.getCurrencies()[CurrencySet.BASE_CURRENCY_INDEX]);
 		return a > 0 ? a : 0;
@@ -114,8 +117,9 @@ public class ADamageReductionCurrencyBased extends AbilityModifyingAttributesRea
 			ed = (EventDamageTRAn) ge;
 			// damage = ed.getDamage();
 			c = (BaseCreatureRPG) ed.getTarget();
-			if (!(c instanceof CurrencyHolder))
+			if (!(c instanceof CurrencyHolder)) {
 				return;
+			}
 			ch = ((CurrencyHolder) c).getCurrencies();
 			curr = ch.getCurrencies()[CurrencySet.BASE_CURRENCY_INDEX];
 			a = ch.getCurrencyAmount(curr);

@@ -69,7 +69,7 @@ public class ObjectIDInteger implements ObjWithIDGeneric<Integer> {
 	}
 
 	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
 		}
@@ -84,7 +84,7 @@ public class ObjectIDInteger implements ObjWithIDGeneric<Integer> {
 	}
 
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSONObject map cannot be null");
 		}

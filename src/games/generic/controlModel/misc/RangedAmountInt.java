@@ -94,7 +94,7 @@ public class RangedAmountInt implements JSONable {
 	}
 
 	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		JSONValue maybeMin = wrapper.getFieldValue(FIELD_MIN);
 		if (maybeMin.isType(JSONTypes.Int)) {
 			this.setMin(((JSONInt) maybeMin).asInt());
@@ -120,7 +120,7 @@ public class RangedAmountInt implements JSONable {
 	}
 
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.items.FactoryEquipUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.GameObjectsProvider;
@@ -14,7 +15,6 @@ import games.generic.controlModel.subimpl.LoaderEquipUpgrades;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.RaritiesTRAn;
 import games.theRisingAngel.loaders.LoaderUtilsTRAn;
-import games.theRisingAngel.loaders.factories.FactoryEquipUpgrade;
 import games.theRisingAngel.misc.CreatureAttributesTRAn;
 
 public class LoaderEquipUpgradesTRAn_V1 extends LoaderEquipUpgrades {

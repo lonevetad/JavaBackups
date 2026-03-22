@@ -102,7 +102,7 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONObject(final GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(final GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
 		//
 		if (!wrapper.hasField(FIELD_ABILITIES)) {
@@ -141,7 +141,8 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONMap(final GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(final GModality gm, Map<String, Object> jsonMap)
+			throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

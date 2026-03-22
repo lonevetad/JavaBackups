@@ -14,6 +14,14 @@ public class EquipmentUpgradeTRAn extends EquipmentUpgradeImpl {
 		super(rarityIndex, name);
 	}
 
+	/**
+	 * Just the empty constructor, used for loading (from JSON, usually): the
+	 * constructor parameters will be filled upon loading.
+	 */
+	public EquipmentUpgradeTRAn() {
+		this(0, null);
+	}
+
 	@Override
 	public IEquipmentUpgradeCategory loadIEquipmentUpgradeCategory(GModality gm, String categoryName) {
 		return EquipmentUpgradeCategory.valueOf(categoryName);

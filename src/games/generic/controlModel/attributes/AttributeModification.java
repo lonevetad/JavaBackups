@@ -16,7 +16,7 @@ import tools.ObjectNamedID;
  * instances by invoking
  * {@link CreatureAttributes#applyAttributeModifier(EquipmentAttributeModifier)}.
  */
-public class AttributeModification extends AmountNamed {
+public abstract class AttributeModification extends AmountNamed {
 	private static final long serialVersionUID = -88782140147L;
 	public static final Function<AttributeModification, String> KEY_EXTRACTOR = eu -> eu.getAttributeModified()
 			.getName();
@@ -32,17 +32,6 @@ public class AttributeModification extends AmountNamed {
 		}
 		return Comparators.STRING_COMPARATOR.compare(KEY_EXTRACTOR.apply(am1), KEY_EXTRACTOR.apply(am2));
 	};
-
-	public static <AM extends AttributeModification> AttributeModification[] newEmptyArray(
-			AttributeIdentifier[] attributesModified) {
-		int n;
-		AttributeModification[] r;
-		r = new AttributeModification[n = attributesModified.length];
-		while (--n >= 0) {
-			r[n] = new AttributeModification(attributesModified[n], 0);
-		}
-		return r;
-	}
 
 	//
 
@@ -72,6 +61,13 @@ public class AttributeModification extends AmountNamed {
 	@Override
 	public String toString() {
 		return "AttributeModification: (attr=" + getAttributeModified() + "; value=" + value + ")";
+	}
+
+	protected abstract AttributeModification newEmptyAttributeModification(AttributeIdentifier attributeModified,
+			int value);
+
+	public AttributeModification deepClone() {
+		return this.newEmptyAttributeModification(getAttributeModified(), getValue());
 	}
 
 }

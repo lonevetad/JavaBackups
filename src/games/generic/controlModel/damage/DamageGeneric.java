@@ -1,6 +1,5 @@
 package games.generic.controlModel.damage;
 
-import games.generic.controlModel.GModality;
 import games.generic.controlModel.misc.AmountNamed;
 
 /**
@@ -9,7 +8,7 @@ import games.generic.controlModel.misc.AmountNamed;
  * (lighter in terms of memory but a bit heavier in terms of execution time).
  * Use {@link #getDamageType()} to distinguish the type.
  */
-public class DamageGeneric extends AmountNamed {
+public abstract class DamageGeneric extends AmountNamed {
 	private static final long serialVersionUID = 894363018L;
 
 	public DamageGeneric(int damageAmount, DamageTypeGeneric damageType) {
@@ -37,11 +36,5 @@ public class DamageGeneric extends AmountNamed {
 	@Override
 	public String toString() {
 		return "DamageGeneric [damageAmount=" + getDamageAmount() + ", damageType=" + getDamageType() + "]";
-	}
-
-	@Override
-	protected void loadInnerObjectNamedID(GModality gm, String name) {
-		// TODO Auto-generated method stub
-		//
 	}
 }

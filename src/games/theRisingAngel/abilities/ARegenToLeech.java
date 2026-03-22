@@ -4,6 +4,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealTime;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.misc.CreatureAttributesTRAn;
 
@@ -16,7 +17,7 @@ import games.theRisingAngel.misc.CreatureAttributesTRAn;
  * * BEWARE: if the regeneration was negative, then is set to 1 but the resource
  * leech could became negative too.
  */
-public class ARegenToLeech extends AbilityModifyingAttributesRealTime {
+public class ARegenToLeech extends AbilityModifyingAttributesRealTime implements HelperWithAttributeModificationsTRAn {
 	private static final long serialVersionUID = -5649806420997L;
 	public static final String NAME = "Mors tua vita mea";
 	public static final int RARITY = 2;
@@ -74,4 +75,5 @@ public class ARegenToLeech extends AbilityModifyingAttributesRealTime {
 			}
 		}
 	}
+
 }

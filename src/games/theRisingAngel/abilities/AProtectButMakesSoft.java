@@ -7,6 +7,7 @@ import games.generic.controlModel.events.IGEvent;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /**
  * Upon receiving a damage, it is halved, but at the cost of a similar amount of
@@ -21,7 +22,7 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 			AttributesTRAn.PhysicalDamageReduction, AttributesTRAn.MagicalDamageReduction };
 
 	public AProtectButMakesSoft(GModality gameModality) {
-		super(gameModality, NAME, AttributeModification.newEmptyArray(WHAT_TO_MODIFY));
+		super(gameModality, NAME, AttributeModificationTRAn.newEmptyArray(WHAT_TO_MODIFY));
 		this.eventsWatching.add(EventsTRAn.DamageReceived.getName());
 		this.setCumulative(false);
 		super.setVanishingEffectDuration(DURATION_VANISH);
@@ -45,7 +46,9 @@ public class AProtectButMakesSoft extends ASimpleFixedBufferVanishingTRAn {
 			dEvent = (EventDamageTRAn) ge;
 			if (dEvent.getTarget() == this.getOwner()
 					// check equality because it's bounded to the "wearer"
-					&& dEvent.getDamageOriginal().getDamageAmount() > 0) { return true; }
+					&& dEvent.getDamageOriginal().getDamageAmount() > 0) {
+				return true;
+			}
 		}
 		return false;
 	}

@@ -1,19 +1,19 @@
 import fs from "fs";
-import { loadConstants, RARITY_TRIBE_EQUIPMENT_PIECES } from "./constants";
+import { loadConstants } from "./constants";
 import {
   EquipmentTypesTRAn,
-  newEquipmentPieceForTribe,
-  TribeEquipmentPieces,
   forEachRaritiesOfTribeAttributesVariations,
   forEachTribeAttributesInfluence,
   forEachTribeEquipmentPieces,
+  loadEnums,
+  newEquipmentPieceForTribe,
   newEquipUpgradesForTribeRarity,
-  TRIBES_NAME_ATTRIBUTES_INFLUENCE,
-  TRIBE_PIECE_OF_EQUIPMENT_SET_DATA,
   RARITY_NAMES,
   RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS,
+  TRIBE_PIECE_OF_EQUIPMENT_SET_DATA,
+  TribeEquipmentPieces,
+  TRIBES_NAME_ATTRIBUTES_INFLUENCE,
   TribesNamesTRAn,
-  loadEnums,
 } from "./enums";
 import {
   AttributeMod_V01,
@@ -256,34 +256,34 @@ public class TribesTRAn {
 
         mrta = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, RaritiesTRAn.COMPARATOR_RARITY_TRAn); 
         ${
-          //mapValues<{[equipPiece: string]: PieceOfEquipmentSetData},PieceOfEquipmentSetData>(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
-          Object.keys(RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS)
-            .map((rarityAsString, _, __) => Number(rarityAsString))
-            .filter((n, _, __) => n !== undefined)
-            .map((rarity, _, __) => {
-              const av = RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS[rarity];
-              return `
+    //mapValues<{[equipPiece: string]: PieceOfEquipmentSetData},PieceOfEquipmentSetData>(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
+    Object.keys(RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS)
+      .map((rarityAsString, _, __) => Number(rarityAsString))
+      .filter((n, _, __) => n !== undefined)
+      .map((rarity, _, __) => {
+        const av = RARITY_TO_TRIBE_ATTRIBUTES_VARIATIONS[rarity];
+        return `
         mrta.put(RaritiesTRAn.${RARITY_NAMES[rarity]}, new AttributesVariationTribeEquip("${av.variationName}", ${av.bonus}, ${av.malus}, new int[]{${av.addedPrice}}, ${av.canBeEquipUpgrade}));`;
-            })
-            .join("")
-        }
+      })
+      .join("")
+    }
         ALL_EQUIP_UPGRADES_RARITIES = Collections.unmodifiableSet(mrta.keySet());
         MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE = Collections.unmodifiableMap(mrta);
 
         metd = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, EquipmentTypesTRAn.COMPARATOR_EQUIP_TYPES_TRAn); 
         ${Object.keys(TRIBE_PIECE_OF_EQUIPMENT_SET_DATA)
-          .map(
-            (equipName, _, __) =>
-              equipName as unknown as TribeEquipmentPieces as unknown as EquipmentTypesTRAn,
-          )
-          .map((equipType, _, __) => {
-            const ped: PieceOfEquipmentSetData =
-              TRIBE_PIECE_OF_EQUIPMENT_SET_DATA[equipType];
-            return `
+      .map(
+        (equipName, _, __) =>
+          equipName as unknown as TribeEquipmentPieces as unknown as EquipmentTypesTRAn,
+      )
+      .map((equipType, _, __) => {
+        const ped: PieceOfEquipmentSetData =
+          TRIBE_PIECE_OF_EQUIPMENT_SET_DATA[equipType];
+        return `
         metd.put(EquipmentTypesTRAn.${ped.type},
-            new PieceOfEquipmentSetData("${ped.namePrefix}", EquipmentTypesTRAn.${ped.type}, new Dimension(${ped.dimensionInventory.width}, ${ped.dimensionInventory.height}), //\n\t\tnew AttributeModification[]{${ped.additionalAttributesModifiers.map((am, _, __) => `new AttributeModification(AttributesTRAn.${am.attribute},${am.value})`).join(", ")}}));`;
-          })
-          .join("")}
+            new PieceOfEquipmentSetData("${ped.namePrefix}", EquipmentTypesTRAn.${ped.type}, new Dimension(${ped.dimensionInventory.width}, ${ped.dimensionInventory.height}), //\n\t\tnew AttributeModification[]{${ped.additionalAttributesModifiers.map((am, _, __) => `new AttributeModificationTRAn(AttributesTRAn.${am.attribute},${am.value})`).join(", ")}}));`;
+      })
+      .join("")}
         ALL_EQUIP_TYPES_ON_TRIBE_SETS = Collections.unmodifiableSet(metd.keySet());
         MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE = Collections.unmodifiableMap(metd);
 
@@ -298,11 +298,11 @@ public class TribesTRAn {
 
     public static enum Tribe implements IndexableObject {
         ${Object.keys(TRIBES_NAME_ATTRIBUTES_INFLUENCE)
-          .map((tribeName, _, __) => {
-            const infl = TRIBES_NAME_ATTRIBUTES_INFLUENCE[tribeName];
-            return `${tribeName}(new TribeReligion(AttributesTRAn.${infl.attributeBonus}, AttributesTRAn.${infl.attributeMalus}))`;
-          })
-          .join(", //\n\t\t")};
+      .map((tribeName, _, __) => {
+        const infl = TRIBES_NAME_ATTRIBUTES_INFLUENCE[tribeName];
+        return `${tribeName}(new TribeReligion(AttributesTRAn.${infl.attributeBonus}, AttributesTRAn.${infl.attributeMalus}))`;
+      })
+      .join(", //\n\t\t")};
 
         //
 
@@ -340,8 +340,8 @@ public class TribesTRAn {
             variation = MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE.get(rar);
             eu = new EquipmentUpgradeImpl(rar.getIndex(), getNameEquipUgradeFor(this, rar));
             
-            eu.addAttributeModifier(new AttributeModification(rel.religionDevotedTo, variation.bonus));
-            eu.addAttributeModifier(new AttributeModification(rel.religionHated, variation.malus));
+            eu.addAttributeModifier(new AttributeModificationTRAn(rel.religionDevotedTo, variation.bonus));
+            eu.addAttributeModifier(new AttributeModificationTRAn(rel.religionHated, variation.malus));
             
             cs = gmrpg.newCurrencyHolder();
             currencies = cs.getCurrencies();
@@ -375,8 +375,8 @@ public class TribesTRAn {
                 Currency[] currencies;
 
                 allAttributes = new AttributeModification[2 + ped.additionalAttributesModifiers.length];
-                allAttributes[0] = new AttributeModification(rel.religionDevotedTo, variation.bonus);
-                allAttributes[1] = new AttributeModification(rel.religionHated, variation.malus);
+                allAttributes[0] = new AttributeModificationTRAn(rel.religionDevotedTo, variation.bonus);
+                allAttributes[1] = new AttributeModificationTRAn(rel.religionHated, variation.malus);
                 System.arraycopy(ped.additionalAttributesModifiers, 0, allAttributes, 2, ped.additionalAttributesModifiers.length);
 
                 equipPiece = new EINotJewelry(gmrpg, eqType, getNameEquipFor(thisTribe, eqType), allAttributes);

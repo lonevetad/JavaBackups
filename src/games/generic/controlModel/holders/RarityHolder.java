@@ -46,7 +46,7 @@ public interface RarityHolder extends JSONable {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (!wrapper.hasField(FIELD_RARITY_INDEX)) {
 			this.raiseExceptionMissingField(FIELD_RARITY_INDEX, JSONTypes.Int);
 		}
@@ -58,7 +58,7 @@ public interface RarityHolder extends JSONable {
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

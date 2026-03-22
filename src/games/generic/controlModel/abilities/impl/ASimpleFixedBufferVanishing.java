@@ -5,7 +5,7 @@ import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
 
-public class ASimpleFixedBufferVanishing extends AbilityAttributesModsVanishingOverTime {
+public abstract class ASimpleFixedBufferVanishing extends AbilityAttributesModsVanishingOverTime {
 	private static final long serialVersionUID = 6560887921022805536L;
 
 	public ASimpleFixedBufferVanishing(GModality gm, String name, AttributeModification[] attributesMods) {
@@ -33,10 +33,14 @@ public class ASimpleFixedBufferVanishing extends AbilityAttributesModsVanishingO
 	//
 
 	@Override
-	public int getAbilityEffectDuration() { return abilityEffectDuration; }
+	public int getAbilityEffectDuration() {
+		return abilityEffectDuration;
+	}
 
 	@Override
-	public int getVanishingEffectDuration() { return vanishingEffectDuration; }
+	public int getVanishingEffectDuration() {
+		return vanishingEffectDuration;
+	}
 
 	@Override
 	public void setAbilityEffectDuration(int abilityEffectDuration) {
@@ -55,11 +59,15 @@ public class ASimpleFixedBufferVanishing extends AbilityAttributesModsVanishingO
 	}
 
 	@Override
-	public void doUponAbilityRefreshed() {}
+	public void doUponAbilityRefreshed() {
+	}
 
 	@Override
-	public void doUponAbilityStartsVanishing() {}
+	public void doUponAbilityStartsVanishing() {
+	}
 
 	@Override
-	public int getVanishingTimeThresholdUpdate() { return 0; }
+	public int getVanishingTimeThresholdUpdate() {
+		return 0;
+	}
 }

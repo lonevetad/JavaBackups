@@ -14,6 +14,7 @@ import games.generic.controlModel.events.event.EventMoviment;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import tools.ObjectWithID;
@@ -28,7 +29,8 @@ import tools.ObjectWithID;
  * <p>
  * Currently, N = 4.
  */
-public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime implements GEventObserver {
+public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime
+		implements HelperWithAttributeModificationsTRAn, GEventObserver {
 	private static final long serialVersionUID = -95598741022024L;
 	public static final int HEALING_FACTOR = 4;
 	public static final String NAME = "Meditation ";
@@ -37,20 +39,22 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 			AttributesTRAn.LifeRegen, AttributesTRAn.ManaRegen, AttributesTRAn.StaminaRegen };
 
 	protected static List<String> getEventsWatching_MMR() {
-		if (EVENTS_WATCHING_MMR == null)
+		if (EVENTS_WATCHING_MMR == null) {
 			EVENTS_WATCHING_MMR = Arrays.asList(new String[] { //
 					EventsTRAn.ObjectMoved.getName(), //
 					EventsTRAn.DamageReceived.getName(), //
 					EventsTRAn.AttackPerformed.getName(), //
 					EventsTRAn.SpellCasted.getName() //
 			});
+		}
 		return EVENTS_WATCHING_MMR;
 	}
 
 	public AMeditationMoreRegen(GModality gm, int level) {
 		super(gm, NAME + level, ATTRIBUTES_MODIFIED_MMR);
-		if (level < 0)
+		if (level < 0) {
 			throw new IllegalArgumentException("Negative level: " + level);
+		}
 		this.level = level;
 		this.isActive = false;
 		this.accumulatedTimeElapsedForUpdating = 0;
@@ -91,8 +95,9 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 
 	@Override
 	public void act(GModality modality, int timeUnits) {
-		if (isActive)
+		if (isActive) {
 			return;
+		}
 		super.act(modality, timeUnits);
 	}
 
@@ -113,16 +118,18 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime imp
 		} else if (isDamage) {
 			EventDamage ed;
 			ed = ((EventDamage) ge);
-			if (ed.getDamageOriginal().getType() == EventsTRAn.DamageInflicted)
+			if (ed.getDamageOriginal().getType() == EventsTRAn.DamageInflicted) {
 				eventRelatedObject = ed.getSource();
-			else
+			} else {
 				eventRelatedObject = ed.getTarget();
+			}
 		} else {
 			System.out.println("WEIRD event in AMeditationMoreRegen: " + ge);
 			return;
 		}
-		if (eventRelatedObject != getOwner())
+		if (eventRelatedObject != getOwner()) {
 			return; // not related to me
+		}
 		// if modifiers are applied, then remove them
 		if (isActive) {
 			removeAttributeModifications();

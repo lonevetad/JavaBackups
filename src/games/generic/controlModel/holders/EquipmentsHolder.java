@@ -86,11 +86,11 @@ public interface EquipmentsHolder extends GModalityHolder, GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
-		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
 		}
+		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
 		// equipmentSet
 		if (!wrapper.hasField(FIELD_EQUIPMENT_SET)) {
 			this.raiseExceptionMissingField(FIELD_EQUIPMENT_SET, JSONTypes.ArrayHomogeneousType);
@@ -102,27 +102,26 @@ public interface EquipmentsHolder extends GModalityHolder, GameObjectGeneric {
 		}
 		JSONArray equipmentSetJSONed = (JSONArray) equipmentSetJSONed_value;
 		EquipmentSet equipSet = gm.getGameObjectsProvider().newEquipmentSet();
-		equipmentSetJSONed.forEach((index, equipJSONed) -> {
-			if (equipJSONed != null) {
-				if (!equipJSONed.isType(JSONTypes.Object)) {
-					this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_SET + SEPARATOR_INDEX + index, JSONTypes.Object,
-							equipJSONed);
-				}
-				JSONObject equipJSONed_obj = (JSONObject) equipJSONed;
-				if (!equipJSONed_obj.hasField(FIELD_NAME)) {
-					this.raiseExceptionMissingField(
-							FIELD_EQUIPMENT_SET + SEPARATOR_INDEX + index + SEPARATOR_FIELD + FIELD_NAME,
-							JSONTypes.Object);
-				}
-				String equipName = equipJSONed_obj.getFieldValue(FIELD_NAME).asString();
-				this.equip(equipSet.newEquipmentItemByName(gm, equipName));
-			}
-		});
-		wrapper.addField(FIELD_EQUIPMENT_SET, this.getEquipmentSet().toJSONValue());
+		equipSet.loadFromJSONArray(gm, equipmentSetJSONed);
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
+		if (jsonMap == null) {
+			throw new IllegalArgumentException("Provided JSONObject jsonMap cannot be null");
+		}
+		GameObjectGeneric.super.loadFromJSONMap(gm, jsonMap);
+		// equipmentSet
+		if (!jsonMap.containsKey(FIELD_EQUIPMENT_SET)) {
+			this.raiseExceptionMissingField(FIELD_EQUIPMENT_SET, JSONTypes.ArrayHomogeneousType);
+		}
+		Object equipmentSetJSONed_value = jsonMap.get(FIELD_EQUIPMENT_SET);
+		if (!((equipmentSetJSONed_value instanceof Object[]) || (equipmentSetJSONed_value instanceof Map[]))) {
+			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_SET, JSONTypes.ArrayHomogeneousType,
+					equipmentSetJSONed_value);
+		}
+		Object[] equipmentSetJSONed = (Object[]) equipmentSetJSONed_value;
+		EquipmentSet equipSet = gm.getGameObjectsProvider().newEquipmentSet();
+		equipSet.loadFromObjectArray(gm, equipmentSetJSONed);
 	}
 }

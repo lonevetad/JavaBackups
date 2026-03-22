@@ -6,16 +6,19 @@ import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.rechargeable.resources.holders.ShieldHavingObject;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.RaritiesTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
-public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime {
+public class AIntelligenceToShield extends AbilityModifyingAttributesRealTime
+		implements HelperWithAttributeModificationsTRAn {
 	private static final long serialVersionUID = -5601561564544L;
 	public static final String NAME = "Repulsive Mindfield";
 	public static final RaritiesTRAn RARITY = RaritiesTRAn.Rare;
 	protected static final AttributeModification[] SHIELD_PARAMS = {
-			new AttributeModification(AttributesTRAn.ShieldMax, 0), //
-			new AttributeModification(AttributesTRAn.ShieldRegen, 0), //
+			new AttributeModificationTRAn(AttributesTRAn.ShieldMax, 0), //
+			new AttributeModificationTRAn(AttributesTRAn.ShieldRegen, 0), //
 	};
 
 	public AIntelligenceToShield(GModality gameModality) {

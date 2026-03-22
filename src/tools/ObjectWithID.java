@@ -56,7 +56,7 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
@@ -71,7 +71,7 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (!wrapper.hasField(FIELD_ID)) {
 			this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
 		}

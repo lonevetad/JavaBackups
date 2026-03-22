@@ -61,7 +61,7 @@ public interface IndexableObject extends ObjectNamedID {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONObject(gm, wrapper);
 		/*
 		 * Can't set the "index" field here
@@ -81,7 +81,7 @@ public interface IndexableObject extends ObjectNamedID {
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
 		/*
 		 * DELEGATED TO THE CALLER DUE TO THE IMPOSSIBILITY OF SETTING THE INDEX

@@ -40,6 +40,7 @@ import games.theRisingAngel.inventory.equipsWithAbilities.HelmetOfPlanetaryMeteo
 import games.theRisingAngel.inventory.equipsWithAbilities.NecklaceOfPainRinvigoring;
 import games.theRisingAngel.loaders.factories.FactoryEquip;
 import games.theRisingAngel.loaders.factories.FactoryItems;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 import tools.LoggerMessages;
 import tools.impl.LoggerOnFile;
 import tools.json.JSONParser;
@@ -51,6 +52,7 @@ import tools.json.types.JSONString;
 
 public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable {
 	private static final long serialVersionUID = 1L;
+	public static final String FIELD_TRIBES_FULL_SET_DROP_STATES = "tribesFullSetDropStates";
 
 	// START COMBINATORIC GENERATION SETUP
 	public static enum TribeEquipLoadMode {
@@ -123,7 +125,7 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 						attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {
 							AttributeIdentifier attribute;
 							attribute = AttributesTRAn.valueOf(fieldName);
-							attrMods[index[0]++] = new AttributeModification(attribute, attrValueJSON.asInt());
+							attrMods[index[0]++] = new AttributeModificationTRAn(attribute, attrValueJSON.asInt());
 						});
 						factory.attrMods = attrMods;
 						if (equipEquipJSON.hasField("description")) {
@@ -185,37 +187,37 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 
 		if (neverLoadedTribeSets) {
 			switch (TRIBE_EQUIP_LOAD_MODE) {
-				case EachItemsIndividually: {
-					int rarityIndex;
-					rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
-					TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(equipType -> {
-						for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
-							for (ReligionAlignment relAl : RELIGION_ALIGMENTS_TO_LOAD) {
-								thisLoader.saveObjectFactory(TribesTRAn.getNameEquipFor(tribe, equipType), rarityIndex,
-										new EquipTRAnFactoryTribeBased(tribe, equipType, relAl));
-							}
-						}
-					});
-					break;
-				}
-				case SetGrouped: {
-					int rarityIndex;
-					rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
+			case EachItemsIndividually: {
+				int rarityIndex;
+				rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
+				TribesTRAn.ALL_EQUIP_TYPES_ON_TRIBE_SETS.forEach(equipType -> {
 					for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
-						EquipTRAnFullSetFactory fullSetFactory;
-						fullSetFactory = new EquipTRAnFullSetFactory(tribe);
-						tribesFullSetDropStates.put(tribe, fullSetFactory);
-						thisLoader.saveObjectFactory(tribe.getName(), rarityIndex, fullSetFactory);
+						for (ReligionAlignment relAl : RELIGION_ALIGMENTS_TO_LOAD) {
+							thisLoader.saveObjectFactory(TribesTRAn.getNameEquipFor(tribe, equipType), rarityIndex,
+									new EquipTRAnFactoryTribeBased(tribe, equipType, relAl));
+						}
 					}
-					break;
+				});
+				break;
+			}
+			case SetGrouped: {
+				int rarityIndex;
+				rarityIndex = TribesTRAn.RARITY_TRIBE_EQUIPMENT_PIECES.getIndex();
+				for (Tribe tribe : TribesTRAn.ALL_TRIBES) {
+					EquipTRAnFullSetFactory fullSetFactory;
+					fullSetFactory = new EquipTRAnFullSetFactory(tribe);
+					tribesFullSetDropStates.put(tribe, fullSetFactory);
+					thisLoader.saveObjectFactory(tribe.getName(), rarityIndex, fullSetFactory);
 				}
-				case Ignore: {
-					break;
+				break;
+			}
+			case Ignore: {
+				break;
+			}
+			default:
+				if (TRIBE_EQUIP_LOAD_MODE != null) {
+					throw new IllegalArgumentException("Unexpected value: " + TRIBE_EQUIP_LOAD_MODE);
 				}
-				default:
-					if (TRIBE_EQUIP_LOAD_MODE != null) {
-						throw new IllegalArgumentException("Unexpected value: " + TRIBE_EQUIP_LOAD_MODE);
-					}
 			}
 			neverLoadedTribeSets = false;
 		}
@@ -223,24 +225,17 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 		return LoadStatusResult.Success;
 	}
 
-	public void toJSONValue(JSONObject wrapper);
-
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap);
-
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper);
-
 	@Override
-	public JSONValue toJSON() {
-		final JSONObject o;
-		Function<EquipmentTypesTRAn, JSONString> equipToJSONStringConverter;
+	public void toJSONValue(JSONObject wrapper) {
+		// TODO Auto-generated method stub
 
-		o = new JSONObject();
-		// TODO: SHOULD CALL toJSONValue
+		Function<EquipmentTypesTRAn, JSONString> equipToJSONStringConverter;
 		equipToJSONStringConverter = (eqType) -> {
 			return new JSONString(eqType.getName());
 		};
 
-		// produces all amount of pieces lef
+		// produces all amount of pieces left
+		final JSONObject tribesFullSetDropStatesJSONed = new JSONObject();
 		tribesFullSetDropStates.forEach((t, f) -> {
 
 			JSONObject objSingleTribe;
@@ -255,14 +250,26 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 								new SetMapped<EquipmentTypesTRAn, JSONString>(//
 										f.piecesNotYetDroppedByReligionAlign[relAl.ordinal()].keySet(),
 										equipToJSONStringConverter)//
-										.toArray(new JSONString[f.piecesNotYetDroppedByReligionAlign[relAl
-												.ordinal()].size()]), //
+										.toArray(new JSONString[f.piecesNotYetDroppedByReligionAlign[relAl.ordinal()]
+												.size()]), //
 								JSONTypes.String)//
 				);
 			}
-			o.addField(t.getName(), objSingleTribe);
+			tribesFullSetDropStatesJSONed.addField(t.getName(), objSingleTribe);
 		});
-		return o;
+		wrapper.addField(FIELD_TRIBES_FULL_SET_DROP_STATES, tribesFullSetDropStatesJSONed);
+	}
+
+	@Override
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+
 	}
 
 	//
@@ -534,4 +541,5 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 			log.logAndPrint("\n");
 		}
 	}
+
 }

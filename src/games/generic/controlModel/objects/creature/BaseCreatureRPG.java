@@ -139,14 +139,14 @@ public interface BaseCreatureRPG
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		CreatureSimple.super.loadFromJSONObject(gm, wrapper);
 		EquipmentsHolder.super.loadFromJSONObject(gm, wrapper);
 		CreatureSimple.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		CreatureSimple.super.loadFromJSONMap(gm, jsonMap);
 		EquipmentsHolder.super.loadFromJSONMap(gm, jsonMap);
 		CreatureSimple.super.loadFromJSONMap(gm, jsonMap);

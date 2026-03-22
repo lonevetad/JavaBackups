@@ -10,6 +10,7 @@ import games.theRisingAngel.abilities.AMoreDamageReceivedMoreLifeRegen;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.inventory.EIJewelry;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /** See {@link AMoreDamageReceivedMoreLifeRegen} */
 public class NecklaceOfPainRinvigoring extends EIJewelry {
@@ -19,8 +20,8 @@ public class NecklaceOfPainRinvigoring extends EIJewelry {
 
 	public NecklaceOfPainRinvigoring(GModalityRPG gmrpg) {
 		super(gmrpg, EquipmentTypesTRAn.Necklace, NAME, //
-				new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 35),
-						new AttributeModification(AttributesTRAn.LifeRegen, 1), });
+				new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 35),
+						new AttributeModificationTRAn(AttributesTRAn.LifeRegen, 1), });
 	}
 
 	@Override

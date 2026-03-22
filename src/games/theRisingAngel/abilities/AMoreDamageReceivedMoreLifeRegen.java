@@ -11,6 +11,7 @@ import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.creature.CreatureSimple;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
 import games.theRisingAngel.events.EventDamageTRAn;
@@ -24,7 +25,7 @@ import games.theRisingAngel.events.EventDamageTRAn;
  */
 // * 12.5%.
 public class AMoreDamageReceivedMoreLifeRegen extends AbilityModifyingSingleAttributeRealTime
-		implements GEventObserver {
+		implements HelperWithAttributeModificationsTRAn, GEventObserver {
 	private static final long serialVersionUID = 5411087000163L;
 	public static final int MIN_VALUE_DECREMENT = 4, RARITY = 3, THRESHOLD_DAMAGE_TO_TRIGGER = 8;
 	public static final String NAME = "Pain Rinvigoring";

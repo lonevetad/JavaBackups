@@ -9,7 +9,6 @@ import java.util.SortedSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import grammars.transfer.ATransferTranslationRuleBased;
 import tools.CloserGetter;
 import tools.ClosestMatch;
 import tools.Comparators;
@@ -30,7 +29,9 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 
 	public Comparator<E> getKeyComparator();
 
-	public default SortedSetEnhanced<E> newSortedSetEnhanced(Comparator<E> comp) { return newDefaultSet(comp); }
+	public default SortedSetEnhanced<E> newSortedSetEnhanced(Comparator<E> comp) {
+		return newDefaultSet(comp);
+	}
 
 	/** Just a builder. */
 	public default SortedSetEnhanced<E> newSortedSetEnhanced() {
@@ -40,29 +41,33 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 	// add from synonym
 
 	/**
-	 * Computes if there are at least one "alternatives" in common (i.e., those
-	 * ElementGrammarWithAlternatives are applicable in the context of
-	 * {@link ATransferTranslationRuleBased}).
+	 * Computes if there are at least one "alternatives" in common.
 	 */
 	public default boolean areIntersecting(SortedSetEnhanced<E> eg) {
 		int s1, s2;
 		Comparator<E> co = getKeyComparator();
-		if (eg == this)
+		if (eg == this) {
 			return true;
+		}
 		// since the sets are sorted .. check extremes
 		if (eg == null ||
 		// se uno � empty -> return false
-				((s1 = this.size()) > 0) != (((s2 = eg.size()) > 0)) || co.compare(this.last(), eg.first()) < 0 || co.compare(eg.last(), this.first()) < 0) { return false; }
+				((s1 = this.size()) > 0) != (((s2 = eg.size()) > 0)) || co.compare(this.last(), eg.first()) < 0
+				|| co.compare(eg.last(), this.first()) < 0) {
+			return false;
+		}
 		// basically, compute an intersection.. if they intersects -> true
 		if (s1 > s2) {// the tiniest check over the "less than linear" bigger
 			for (E s : this) {
-				if (eg.contains(s))
+				if (eg.contains(s)) {
 					return true;
+				}
 			}
 		} else {
 			for (E s : eg) {
-				if (this.contains(s))
+				if (this.contains(s)) {
 					return true;
+				}
 			}
 		}
 		return false;
@@ -73,15 +78,19 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 	 * invokes {@link #intersectionSize(SortedSetEnhanced<E>)} (this method is just
 	 * a synonym).
 	 */
-	public default int countIntersectionWith(SortedSetEnhanced<E> eg) { return intersectionSize(eg); }
+	public default int countIntersectionWith(SortedSetEnhanced<E> eg) {
+		return intersectionSize(eg);
+	}
 
 	public default SortedSetEnhanced<E> intersectionWith(SortedSetEnhanced<E> eg) {
 		SortedSetEnhanced<E> smallerSet, inters;
 		SortedSetEnhanced<E> biggerSetMap;
-		if (eg == null)
+		if (eg == null) {
 			return null;
-		if (eg == this)
+		}
+		if (eg == this) {
 			return this;
+		}
 		inters = newSortedSetEnhanced();
 		/*
 		 * since iterating is O(n) and "containsKey" is O(log(n)), iterates over the
@@ -143,7 +152,11 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 			smallerSet = eg;
 			biggerSetMap = this;
 		}
-		smallerSet.forEach((s) -> { if (biggerSetMap.contains(s)) { countIntersections[0]++; } });
+		smallerSet.forEach((s) -> {
+			if (biggerSetMap.contains(s)) {
+				countIntersections[0]++;
+			}
+		});
 		return countIntersections[0];
 	}
 
@@ -159,10 +172,12 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 	public default SortedSetEnhanced<E> symmetricDifference(SortedSetEnhanced<E> eg) {
 		SortedSetEnhanced<E> smallerSet, symmDiff;
 		SortedSetEnhanced<E> biggerSetMap;
-		if (eg == null)
+		if (eg == null) {
 			return null;
-		if (eg == this)
+		}
+		if (eg == this) {
 			return this;
+		}
 		symmDiff = newSortedSetEnhanced();
 		/*
 		 * since iterating is O(n) and "containsKey" is O(log(n)), iterates over the
@@ -194,10 +209,12 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 	 */
 	public default boolean isSubsetOf(SortedSetEnhanced<E> eg) {
 		int thisSize;
-		if ((thisSize = size()) == 0)
+		if ((thisSize = size()) == 0) {
 			return true;
-		if (thisSize > eg.size())
+		}
+		if (thisSize > eg.size()) {
 			return false;
+		}
 		return thisSize == intersectionSize(eg);
 	}
 
@@ -267,12 +284,15 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		MapTreeAVL<T, T> t;
 		Objects.requireNonNull(keyExtractor, "A key extractor must be provided");
 		t = MapTreeAVL.newMap(MapTreeAVL.Optimizations.MinMaxIndexIteration, (i1, i2) -> {
-			if (i1 == i2)
+			if (i1 == i2) {
 				return 0;
-			if (i1 == null)
+			}
+			if (i1 == null) {
 				return -1;
-			if (i2 == null)
+			}
+			if (i2 == null) {
 				return 1;
+			}
 			return keysComparator.compare(keyExtractor.apply(i1), keyExtractor.apply(i2));
 		});
 		return t.toSetKey();
@@ -320,8 +340,12 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 			 * to positive a negative value lesser than -(2^31) will result in a wrong
 			 * number.)
 			 */
-			if (c1 > 0) { c1 = -c1; }
-			if (c2 > 0) { c2 = -c2; }
+			if (c1 > 0) {
+				c1 = -c1;
+			}
+			if (c2 > 0) {
+				c2 = -c2;
+			}
 			return c1 < c2 ? o2 : o1;
 		};
 	}
@@ -425,20 +449,24 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 					@Override
 					public int compare(SortedSetEnhanced<T> s1, SortedSetEnhanced<T> s2) {
 						int c, c1, c2;
-						if (s1 == s2)
+						if (s1 == s2) {
 							return 0;
-						if (s1 == null)
+						}
+						if (s1 == null) {
 							return -1;
-						if (s2 == null)
+						}
+						if (s2 == null) {
 							return 1;
+						}
 						c1 = s1.size();
 						c2 = s2.size();
 						c = s1.intersectionSize(s2);
 						if (c == c1) {
 							return (c == c2) ? 0 : c - c2;
 							// it should be faster, in case of "0", than simply returning "c-c2"
-						} else if (c == c2)
+						} else if (c == c2) {
 							return c1 - c;
+						}
 						/*
 						 * no one is equal or a subset: everyone has something that the other has not
 						 * now check the "closest to intersection": which one has fewer elements more to
@@ -446,10 +474,11 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 						 */
 						c1 -= c;
 						c2 -= c;
-						if (c1 == c2) // tie: just compare elements
+						if (c1 == c2) { // tie: just compare elements
 							return compByKeyOrder.compare(s1, s2);
-						else
+						} else {
 							return c1 - c2; // (c1 < c2) ? -1 : 1;
+						}
 					}
 				};
 			}
@@ -495,12 +524,15 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 						SortedSetEnhanced<T> intersect;
 						Iterator<T> i1, i2;
 						T t1, t2;
-						if (s1 == s2)
+						if (s1 == s2) {
 							return 0;
-						if (s1 == null)
+						}
+						if (s1 == null) {
 							return -1;
-						if (s2 == null)
+						}
+						if (s2 == null) {
 							return 1;
+						}
 						c1 = s1.size();
 						c2 = s2.size();
 //							c = s1.intersectionSize(s2);
@@ -509,7 +541,9 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 						if (c == c1) {
 							return (c == c2) ? 0 : c - c2;
 							// it should be faster, in case of "0", than simply returning "c-c2"
-						} else if (c == c2) { return c1 - c; }
+						} else if (c == c2) {
+							return c1 - c;
+						}
 //							/*
 //							 * no one is equal or a subset: everyone has something that the other has not
 //							 * now check the "closest to intersection": which one has fewer elements more to
@@ -545,7 +579,9 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 
 		public final ComparatorSSEFactory factoryDelegate;
 
-		private ComparatorFactoriesSSE(ComparatorSSEFactory factoryDelegate) { this.factoryDelegate = factoryDelegate; }
+		private ComparatorFactoriesSSE(ComparatorSSEFactory factoryDelegate) {
+			this.factoryDelegate = factoryDelegate;
+		}
 
 		@Override
 		public <T> Comparator<SortedSetEnhanced<T>> newComparator(Comparator<T> comp) {
@@ -558,18 +594,23 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 			return (s1, s2) -> {
 				int c, size1, size2;
 				Iterator<T> i1, i2;
-				if (s1 == s2)
+				if (s1 == s2) {
 					return 0;
-				if (s1 == null)
+				}
+				if (s1 == null) {
 					return -1;
-				if (s2 == null)
+				}
+				if (s2 == null) {
 					return 1;
+				}
 				// smallest
 				size1 = s1.size();
 				size2 = s2.size();
 				if (size1 == 0) {
 					return size2 == 0 ? 0 : -size2;
-				} else if (size2 == 0) { return size1; }
+				} else if (size2 == 0) {
+					return size1;
+				}
 				/*
 				 * since synonyms are sortable and this set is sorted, then compare the elements
 				 * in order
@@ -578,8 +619,9 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 				i2 = s2.iterator();
 				c = 0;
 				while (i1.hasNext() && i2.hasNext() && //
-				((c = comp.compare(i1.next(), i2.next())) == 0))
+						((c = comp.compare(i1.next(), i2.next())) == 0)) {
 					;
+				}
 				return c != 0 ? c : size1 - size2; // (size1 >= size2 ? size1 - size2 : size2 - size1);
 			};
 		}
@@ -600,33 +642,39 @@ public interface SortedSetEnhanced<E> extends SortedSet<E> {
 		@Override
 		public int compare(SortedSetEnhanced<T> eg1, SortedSetEnhanced<T> eg2) {
 			int c, size2, intersCount;
-			if (eg1 == eg2)
+			if (eg1 == eg2) {
 				return 0;
-			if (eg1 == null)
+			}
+			if (eg1 == null) {
 				return -1;
-			if (eg2 == null)
+			}
+			if (eg2 == null) {
 				return 1;
+			}
 			/*
 			 * then, it depends on "subset" relation: the superset is the greatest (collapse
 			 * "identity" and "non-subset & non-empty-intersection" onto the same category)
 			 */
 			c = eg1.size();
 			size2 = eg2.size();
-			if (c == 0)
+			if (c == 0) {
 				return size2 == 0 ? 0 : -size2;
-			else if (size2 == 0)
+			} else if (size2 == 0) {
 				return c;
+			}
 			// they are not empty ..
 			intersCount = eg1.intersectionSize(eg2);
-			if (intersCount == 0)
+			if (intersCount == 0) {
 				return finishCompareOnIntersecting(eg1, eg2);
-			if (c == intersCount)
+			}
+			if (c == intersCount) {
 				// eg2 is equal or superset (eg1 == subset) ... if superset -> negative value
 				return size2 == intersCount ? 0 : intersCount - size2;
-			else if (size2 == intersCount)
+			} else if (size2 == intersCount) {
 				return c - intersCount; // eg1 cannot be equal: it's a superset (eg2 == subset) .. it's a positive value
-			else
+			} else {
 				return finishCompareOnIntersecting(eg1, eg2);
+			}
 		}
 
 		/** Override designed */

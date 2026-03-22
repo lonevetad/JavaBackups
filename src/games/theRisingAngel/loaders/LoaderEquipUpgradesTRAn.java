@@ -11,9 +11,9 @@ import java.util.Objects;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.items.FactoryEquipUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.misc.FactoryObjGModalityBased;
@@ -28,7 +28,8 @@ import games.theRisingAngel.enums.RaritiesTRAn;
 import games.theRisingAngel.enums.TribesTRAn;
 import games.theRisingAngel.enums.TribesTRAn.ReligionAlignment;
 import games.theRisingAngel.enums.TribesTRAn.Tribe;
-import games.theRisingAngel.loaders.factories.FactoryEquipUpgrade;
+import games.theRisingAngel.inventory.EquipmentUpgradeTRAn;
+import games.theRisingAngel.loaders.factories.FactoryEquipUpgradeTRAn;
 import games.theRisingAngel.misc.CreatureAttributesTRAn;
 import tools.LoggerMessages;
 import tools.impl.LoggerOnFile;
@@ -50,7 +51,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 	}
 
 	@Override
-	public LoadStatusResult loadInto(GController gc) {
+	public LoadStatusResult loadInto(final GController gc) {
 		int[] index = { 0 };
 		// JSONArray equipments;
 		final LoaderEquipUpgradesTRAn thisLoader = this;
@@ -67,28 +68,37 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 							new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + "equipUpgrades.json")),
 					(indexEquipUp, rawEquipUp) -> {
 						FactoryEquipUpgrade factory;
-						JSONObject equipEquipJSON, attributeModsJSON;
-						AttributeModification[] attrMods;
+						JSONObject equipEquipJSON; // , attributeModsJSON;
+						// AttributeModification[] attrMods;
 						equipEquipJSON = (JSONObject) rawEquipUp;
-						factory = new FactoryEquipUpgrade();
-						factory.name = equipEquipJSON.getFieldValue("name").asString();
-						factory.rarity = equipEquipJSON.getFieldValue("rarity").asInt();
-						factory.bonusPriceSell = equipEquipJSON.getFieldValue("price").asArrayInt();
-
-						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributesModifiers");
-						attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()];
-						index[0] = 0;
-						attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {
-							AttributeIdentifier attribute;
-							attribute = AttributesTRAn.valueOf(fieldName);
-							attrMods[index[0]++] = new AttributeModification(attribute, attrValueJSON.asInt());
-						});
-						factory.attrMods = attrMods;
-						if (equipEquipJSON.hasField("description")) {
-							factory.description = equipEquipJSON.getFieldValue("description").asString();
-						}
-
-						thisLoader.saveObjectFactory(factory.name, factory.rarity, factory);
+						factory = new FactoryEquipUpgradeTRAn();
+						/**
+						 * factory.name = equipEquipJSON.getFieldValue("name").asString(); // <br>
+						 * factory.rarity = equipEquipJSON.getFieldValue("rarity").asInt(); // <br>
+						 * factory.bonusPriceSell = equipEquipJSON.getFieldValue("price").asArrayInt();
+						 * // <br>
+						 * 
+						 * attributeModsJSON = (JSONObject)
+						 * equipEquipJSON.getFieldValue("attributesModifiers"); // <br>
+						 * attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()]; //
+						 * <br>
+						 * index[0] = 0; // <br>
+						 * attributeModsJSON.forEachField((fieldName, attrValueJSON) -> { // <br>
+						 * AttributeIdentifier attribute; // <br>
+						 * attribute = AttributesTRAn.valueOf(fieldName); // <br>
+						 * attrMods[index[0]++] = new AttributeModificationTRAn(attribute,
+						 * attrValueJSON.asInt()); // <br>
+						 * }); // <br>
+						 * factory.attrMods = attrMods; // <br>
+						 * if (equipEquipJSON.hasField("description")) { // <br>
+						 * factory.description = equipEquipJSON.getFieldValue("description").asString();
+						 * // <br>
+						 * } // <br>
+						 */
+						factory.prototype = new EquipmentUpgradeTRAn();
+						factory.prototype.loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
+						thisLoader.saveObjectFactory(factory.prototype.getName(), factory.prototype.getRarityIndex(),
+								factory);
 					});
 
 		} catch (FileNotFoundException e) {
@@ -154,30 +164,27 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 		final List<String> l;
 		String name, description;
 		AttributeModification[] attrMods;
+		CurrencySet curr;
+		IEquipmentUpgrade eu;
 		l = new LinkedList<>();
 		if (factory instanceof FactoryEquipUpgrade) {
 			FactoryEquipUpgrade fe;
 			fe = (FactoryEquipUpgrade) factory;
-			name = fe.name;
-			description = fe.description;
-			rarity = fe.rarity;
-			price = fe.bonusPriceSell[0];
-			attrMods = fe.attrMods;
+			eu = fe.prototype;
 		} else {
-			IEquipmentUpgrade eu;
-			CurrencySet curr;
 			eu = factory.newInstance(gm);
-			name = eu.getName();
-			description = eu.getDescription();
-			rarity = eu.getRarityIndex();
-			curr = eu.getPricesModifications();
-			price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
-			attrMods = eu.getAttributesModifiers()
-					.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
 		}
+		name = eu.getName();
+		description = eu.getDescription();
+		rarity = eu.getRarityIndex();
+		curr = eu.getPricesModifications();
+		price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
+		attrMods = eu.getAttributesModifiers().toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
 		l.add("name:" + name);
 		l.add("\trarity :" + rarity);
 		l.add("\tprice :" + price);
+		l.add("\tisPrefix:" + eu.isPrefix());
+		l.add("\tequipment Category:" + eu.getUpgradeCategory().getName());
 		l.add("\tdescription: " + description);
 		l.add("\tattribute modifications :");
 		for (AttributeModification am : attrMods) {
@@ -257,28 +264,25 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			int rarity, price;
 			AttributeModification[] attrMods;
 			CreatureAttributes caTempRarity;
-
+			IEquipmentUpgrade eu;
+			CurrencySet curr;
+			//
 			if (factoryEquip instanceof FactoryEquipUpgrade) {
 				FactoryEquipUpgrade fe;
 				fe = (FactoryEquipUpgrade) factoryEquip;
 				/*
 				 * log.logAndPrint("\n"); log.logAndPrint(fe.toString()); log.logAndPrint("\n");
 				 */
-				rarity = fe.rarity;
-				price = fe.bonusPriceSell[0];
-				attrMods = fe.attrMods;
+				eu = fe.prototype;
 			} else {
-				IEquipmentUpgrade eu;
-				CurrencySet curr;
 				eu = factoryEquip.newInstance(gm);
-				rarity = eu.getRarityIndex();
-				curr = eu.getPricesModifications();
-				price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
-
-				attrMods = eu.getAttributesModifiers()
-						.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
 			}
-
+			rarity = eu.getRarityIndex();
+			curr = eu.getPricesModifications();
+			price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
+			attrMods = eu.getAttributesModifiers()
+					.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
+			//
 			rarities[rarity]++;
 			priceStatistics[2] += price;
 			if (price >= 0) {
@@ -286,7 +290,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			} else {
 				priceStatistics[1]++;
 			}
-
+			//
 			caTempRarity = caEachRarity[rarity];
 			for (AttributeModification am : attrMods) {
 				caTotal.applyAttributeModifier(am);

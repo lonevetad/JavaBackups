@@ -17,6 +17,14 @@ public class MaxUpgradesPerCategoryTRAn extends MaxUpgradesPerCategory {
 		super(maxUpgradableAmounts);
 	}
 
+	public MaxUpgradesPerCategoryTRAn() {
+		super();
+	}
+
+	public MaxUpgradesPerCategoryTRAn(IEquipmentUpgradeCategory upgradeCategory) {
+		super(upgradeCategory);
+	}
+
 	@Override
 	public void loadEquipmentUpgradeCategory(GModality gm, String name) {
 		super.setUpgradeCategory(EquipmentUpgradeCategory.valueOf(name));

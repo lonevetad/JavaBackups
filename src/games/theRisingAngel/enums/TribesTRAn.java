@@ -1,6 +1,14 @@
 
 package games.theRisingAngel.enums;
 
+import java.awt.Dimension;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeModification;
@@ -11,17 +19,11 @@ import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.IEnumAlike;
 import games.generic.controlModel.misc.IndexableObject.IndexToObjectBackmapping;
 import games.generic.controlModel.providers.FactoryGeneric;
-import games.generic.controlModel.subimpl.EquipmentUpgradeImpl;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.inventory.EquipItemFactory;
 import games.theRisingAngel.inventory.EquipItemTRAn;
-import java.awt.Dimension;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import games.theRisingAngel.inventory.EquipmentUpgradeTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 import tools.Comparators;
 
 public class TribesTRAn {
@@ -67,56 +69,56 @@ public class TribesTRAn {
 
 		metd.put(EquipmentTypesTRAn.Head,
 				new PieceOfEquipmentSetData("Hat", EquipmentTypesTRAn.Head, new Dimension(2, 2), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 35),
-								new AttributeModification(AttributesTRAn.ManaMax, 20),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 3),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 3),
-								new AttributeModification(AttributesTRAn.PhysicalProbabilityPerThousandHit, -8),
-								new AttributeModification(AttributesTRAn.MagicalProbabilityPerThousandHit, -8) }));
-		metd.put(EquipmentTypesTRAn.Shoulder,
-				new PieceOfEquipmentSetData("Cloak", EquipmentTypesTRAn.Shoulder, new Dimension(2, 2), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 15),
-								new AttributeModification(AttributesTRAn.ManaMax, 40),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.PhysicalProbabilityPerThousandAvoid, -12),
-								new AttributeModification(AttributesTRAn.MagicalProbabilityPerThousandAvoid, -12) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 35),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 20),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 3),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 3),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalProbabilityPerThousandHit, -8),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalProbabilityPerThousandHit, -8) }));
+		metd.put(EquipmentTypesTRAn.Shoulder, new PieceOfEquipmentSetData("Cloak", EquipmentTypesTRAn.Shoulder,
+				new Dimension(2, 2), //
+				new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 15),
+						new AttributeModificationTRAn(AttributesTRAn.ManaMax, 40),
+						new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 2),
+						new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 2),
+						new AttributeModificationTRAn(AttributesTRAn.PhysicalProbabilityPerThousandAvoid, -12),
+						new AttributeModificationTRAn(AttributesTRAn.MagicalProbabilityPerThousandAvoid, -12) }));
 		metd.put(EquipmentTypesTRAn.Chest,
 				new PieceOfEquipmentSetData("Jacket", EquipmentTypesTRAn.Chest, new Dimension(3, 3), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 50),
-								new AttributeModification(AttributesTRAn.ManaMax, 5),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 5),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 5),
-								new AttributeModification(AttributesTRAn.Velocity, -15) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 50),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 5),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 5),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 5),
+								new AttributeModificationTRAn(AttributesTRAn.Velocity, -15) }));
 		metd.put(EquipmentTypesTRAn.Hands,
 				new PieceOfEquipmentSetData("Gloves", EquipmentTypesTRAn.Hands, new Dimension(1, 1), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 10),
-								new AttributeModification(AttributesTRAn.ManaMax, 45),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.VelocityAttackStrikePercentage, 10) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 10),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 45),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.VelocityAttackStrikePercentage, 10) }));
 		metd.put(EquipmentTypesTRAn.Arms,
 				new PieceOfEquipmentSetData("Sleeve", EquipmentTypesTRAn.Arms, new Dimension(1, 2), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 45),
-								new AttributeModification(AttributesTRAn.ManaMax, 10),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.VelocitySpellCastPercentage, 10) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 45),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 10),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.VelocitySpellCastPercentage, 10) }));
 		metd.put(EquipmentTypesTRAn.Legs,
 				new PieceOfEquipmentSetData("Pants", EquipmentTypesTRAn.Legs, new Dimension(2, 3), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 30),
-								new AttributeModification(AttributesTRAn.ManaMax, 25),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 3),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 3),
-								new AttributeModification(AttributesTRAn.StaminaMax, 5),
-								new AttributeModification(AttributesTRAn.StaminaRegen, 1) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 30),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 25),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 3),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 3),
+								new AttributeModificationTRAn(AttributesTRAn.StaminaMax, 5),
+								new AttributeModificationTRAn(AttributesTRAn.StaminaRegen, 1) }));
 		metd.put(EquipmentTypesTRAn.Feet,
 				new PieceOfEquipmentSetData("Boots", EquipmentTypesTRAn.Feet, new Dimension(2, 2), //
-						new AttributeModification[] { new AttributeModification(AttributesTRAn.LifeMax, 35),
-								new AttributeModification(AttributesTRAn.ManaMax, 20),
-								new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.MagicalDamageReduction, 2),
-								new AttributeModification(AttributesTRAn.Velocity, 10) }));
+						new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.LifeMax, 35),
+								new AttributeModificationTRAn(AttributesTRAn.ManaMax, 20),
+								new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 2),
+								new AttributeModificationTRAn(AttributesTRAn.Velocity, 10) }));
 
 		ALL_EQUIP_TYPES_ON_TRIBE_SETS = Collections.unmodifiableSet(metd.keySet());
 		MAP_EQUIPMENT_PIECE_TO_DATA_TRIBE = Collections.unmodifiableMap(metd);
@@ -225,11 +227,11 @@ public class TribesTRAn {
 
 			rel = this.religion;
 			variation = MAP_RARITY_TO_ATTRIBUTE_UPGRADES_TRIBE.get(rar);
-			eu = new EquipmentUpgradeImpl(rar.getIndex(), getNameEquipUgradeFor(this, rar, religAlign));
+			eu = new EquipmentUpgradeTRAn(rar.getIndex(), getNameEquipUgradeFor(this, rar, religAlign));
 
 			relAlMod = new TribeReligionAlignmentModification(variation, religAlign);
-			eu.addAttributeModifier(new AttributeModification(rel.religionDevotedTo, relAlMod.getBonus()));
-			eu.addAttributeModifier(new AttributeModification(rel.religionHated, relAlMod.getMalus()));
+			eu.addAttributeModifier(new AttributeModificationTRAn(rel.religionDevotedTo, relAlMod.getBonus()));
+			eu.addAttributeModifier(new AttributeModificationTRAn(rel.religionHated, relAlMod.getMalus()));
 
 			cs = gmrpg.getGameObjectsProvider().newCurrencyHolder();
 			currencies = cs.getCurrencies();
@@ -287,8 +289,8 @@ public class TribesTRAn {
 			rel = tribe.religion;
 			allAttributes = new AttributeModification[2 + ped.additionalAttributesModifiers.length];
 			relAlMod = new TribeReligionAlignmentModification(variation, religAlign);
-			allAttributes[0] = new AttributeModification(rel.religionDevotedTo, relAlMod.getBonus());
-			allAttributes[1] = new AttributeModification(rel.religionHated, relAlMod.getMalus());
+			allAttributes[0] = new AttributeModificationTRAn(rel.religionDevotedTo, relAlMod.getBonus());
+			allAttributes[1] = new AttributeModificationTRAn(rel.religionHated, relAlMod.getMalus());
 			System.arraycopy(ped.additionalAttributesModifiers, 0, allAttributes, 2,
 					ped.additionalAttributesModifiers.length);
 
@@ -581,36 +583,36 @@ public class TribesTRAn {
 				religAlign = ReligionAlignment.Canon;
 			}
 			switch (religAlign) {
-				case Canon: {
-					isnegativePriceChanging = false;
-					bonus = variation.bonus;
-					malus = variation.malus;
-					break;
-				}
-				case Fanatic: {
-					// OLD: false
-					isnegativePriceChanging = true;
-					/*
-					 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
-					 * -variation.bonus;
-					 */
-					bonus = variation.bonus << 1;
-					malus = variation.malus * 2;
-					break;
-				}
-				case Heretic: {
-					isnegativePriceChanging = true;
-					// turns positive
-					malus = -variation.malus;
-					/*
-					 * then balance: remove the "new malus" and how the bonus have balanced the
-					 * original malus; in total, it's twice the Math.abs of the original malus
-					 */
-					bonus = variation.bonus - (malus << 1);
-					break;
-				}
-				default:
-					throw new IllegalArgumentException("Unexpected religion: " + religAlign);
+			case Canon: {
+				isnegativePriceChanging = false;
+				bonus = variation.bonus;
+				malus = variation.malus;
+				break;
+			}
+			case Fanatic: {
+				// OLD: false
+				isnegativePriceChanging = true;
+				/*
+				 * OLD swap both bonus/malus and signs bonus = -variation.malus; malus =
+				 * -variation.bonus;
+				 */
+				bonus = variation.bonus << 1;
+				malus = variation.malus * 2;
+				break;
+			}
+			case Heretic: {
+				isnegativePriceChanging = true;
+				// turns positive
+				malus = -variation.malus;
+				/*
+				 * then balance: remove the "new malus" and how the bonus have balanced the
+				 * original malus; in total, it's twice the Math.abs of the original malus
+				 */
+				bonus = variation.bonus - (malus << 1);
+				break;
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected religion: " + religAlign);
 			}
 		}
 

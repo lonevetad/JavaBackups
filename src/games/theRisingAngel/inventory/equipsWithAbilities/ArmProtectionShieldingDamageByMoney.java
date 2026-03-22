@@ -10,6 +10,7 @@ import games.theRisingAngel.abilities.ADamageReductionCurrencyBased;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.inventory.EINotJewelry;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /**
  * See {@link ADamageReductionCurrencyBased} , grants 10% of money as damage
@@ -22,12 +23,12 @@ public class ArmProtectionShieldingDamageByMoney extends EINotJewelry {
 
 	public ArmProtectionShieldingDamageByMoney(GModalityRPG gmrpg) {
 		super(gmrpg, EquipmentTypesTRAn.Arms, NAME, //
-				new AttributeModification[] { new AttributeModification(AttributesTRAn.PhysicalDamageReduction, 3),
-						new AttributeModification(AttributesTRAn.MagicalDamageReduction, 5),
-						new AttributeModification(AttributesTRAn.Defense, 3),
-						new AttributeModification(AttributesTRAn.Dexterity, -5),
-						new AttributeModification(AttributesTRAn.Precision, -2),
-						new AttributeModification(AttributesTRAn.Strength, -1) });
+				new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.PhysicalDamageReduction, 3),
+						new AttributeModificationTRAn(AttributesTRAn.MagicalDamageReduction, 5),
+						new AttributeModificationTRAn(AttributesTRAn.Defense, 3),
+						new AttributeModificationTRAn(AttributesTRAn.Dexterity, -5),
+						new AttributeModificationTRAn(AttributesTRAn.Precision, -2),
+						new AttributeModificationTRAn(AttributesTRAn.Strength, -1) });
 	}
 
 	@Override
@@ -38,8 +39,8 @@ public class ArmProtectionShieldingDamageByMoney extends EINotJewelry {
 		this.abilityDamageReductionByPaying = (ADamageReductionCurrencyBased) ap.getAbilityByName(gm,
 				ADamageReductionCurrencyBased.NAME // + DamageTypesTRAn.Physical.getName()
 						+ ADamageReductionCurrencyBased.RARITY);
-//		this.abilityDamageReductionByPaying.setPerThousandFraction(100);
-//		this.abilityDamageReductionByPaying.setMaximumReduction(50);
+		// this.abilityDamageReductionByPaying.setPerThousandFraction(100);
+		// this.abilityDamageReductionByPaying.setMaximumReduction(50);
 		this.abilityDamageReductionByPaying.setOwner(this);
 		super.addAbility(this.abilityDamageReductionByPaying);
 	}

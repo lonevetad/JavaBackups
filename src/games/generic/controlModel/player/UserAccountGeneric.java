@@ -3,6 +3,7 @@ package games.generic.controlModel.player;
 import java.util.List;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.ObjectNamed;
 import tools.ObjectNamedID;
 import tools.impl.OWIDLongImpl;
 
@@ -14,13 +15,21 @@ import tools.impl.OWIDLongImpl;
 public abstract class UserAccountGeneric extends OWIDLongImpl implements ObjectNamedID {
 	private static final long serialVersionUID = 1L;
 
-	public UserAccountGeneric() { super(); }
+	public UserAccountGeneric() {
+		super();
+	}
 
 	protected String name;
 	protected List<Object> allCharacters; // all characters played, all saves
 
 	@Override
-	public String getName() { return name; }
+	public String getName() {
+		return name;
+	}
 
-	public void setName(String name) { this.name = name; }
+	@Override
+	public ObjectNamed setName(String name) {
+		this.name = name;
+		return this;
+	}
 }

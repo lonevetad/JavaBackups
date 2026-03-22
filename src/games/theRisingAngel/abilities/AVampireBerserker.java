@@ -6,10 +6,12 @@ import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.events.event.EventDamage;
 import games.generic.controlModel.objects.LivingObject;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EventsTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
-public class AVampireBerserker extends ASimpleFixedBufferVanishing {
+public class AVampireBerserker extends ASimpleFixedBufferVanishing implements HelperWithAttributeModificationsTRAn {
 	private static final long serialVersionUID = 624478230215L;
 	public static final String NAME = "Vampire Hunt";
 	public static final int RARITY = 4, BASE_LIFE_LEECH = 5;
@@ -17,9 +19,9 @@ public class AVampireBerserker extends ASimpleFixedBufferVanishing {
 	public AVampireBerserker(GModality gameModality) {
 		super(gameModality, NAME,
 				new AttributeModification[] {
-						new AttributeModification(AttributesTRAn.LifeLeechPercentage, BASE_LIFE_LEECH),
-						new AttributeModification(AttributesTRAn.LifeRegen, -1),
-						new AttributeModification(AttributesTRAn.ManaRegen, 0) });
+						new AttributeModificationTRAn(AttributesTRAn.LifeLeechPercentage, BASE_LIFE_LEECH),
+						new AttributeModificationTRAn(AttributesTRAn.LifeRegen, -1),
+						new AttributeModificationTRAn(AttributesTRAn.ManaRegen, 0) });
 		setCumulative(true);
 		addEventWatched(EventsTRAn.DamageReceived);
 		setAbilityEffectDuration(5000);
@@ -38,14 +40,15 @@ public class AVampireBerserker extends ASimpleFixedBufferVanishing {
 	@Override
 	public void doUponAbilityActivated() {
 		super.doUponAbilityActivated();
-//		removeAndNullifyEffects(); // jet done
+		// removeAndNullifyEffects(); // jet done
 		this.attributesToModify[0].setValue(BASE_LIFE_LEECH);
 		this.attributesToModify[1].setValue(-1);
 		this.attributesToModify[2].setValue(0);
 	}
 
 	@Override
-	public void doUponAbilityRefreshed() {}
+	public void doUponAbilityRefreshed() {
+	}
 
 	@Override
 	public void vanishEffect(int timeUnit) {// nothing
@@ -64,4 +67,5 @@ public class AVampireBerserker extends ASimpleFixedBufferVanishing {
 		super.doUponAbilityEffectEnds();
 		removeAndNullifyEffects();
 	}
+
 }

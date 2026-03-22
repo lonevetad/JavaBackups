@@ -10,7 +10,9 @@ import games.theRisingAngel.inventory.InventoryItemBaseTRAn;
 
 public class LoaderItemsTRAn extends LoaderItems {
 
-	public LoaderItemsTRAn(ItemProvider objProvider) { super(objProvider); }
+	public LoaderItemsTRAn(ItemProvider objProvider) {
+		super(objProvider);
+	}
 
 	@Override
 	public LoadStatusResult loadInto(GController gm) {

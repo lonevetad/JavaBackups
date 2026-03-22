@@ -29,7 +29,7 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 	public EquipmentItem newInstance(GModality gm) {
 		EquipmentItem ei;
 //	ei = new EquipmentItemImpl((GModalityRPG) gm, type, name);
-		ei = type.factory.newEquipItem((GModalityRPG) gm, type, getFactoryItem().name, attrMods);
+		ei = type.getFactory().newEquipItem((GModalityRPG) gm, type, getFactoryItem().name, attrMods);
 		setValuesInto(gm, ei);
 		return ei;
 	}
@@ -52,25 +52,45 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 		}
 	}
 
-	public FactoryItems getFactoryItem() { return fi; }
+	public FactoryItems getFactoryItem() {
+		return fi;
+	}
 
-	public int getRarity() { return fi.getRarity(); }
+	public int getRarity() {
+		return fi.getRarity();
+	}
 
-	public String getName() { return fi.getName(); }
+	public String getName() {
+		return fi.getName();
+	}
 
-	public String getDescription() { return fi.getDescription(); }
+	public String getDescription() {
+		return fi.getDescription();
+	}
 
-	public Dimension getDimensionInInventory() { return fi.getDimensionInInventory(); }
+	public Dimension getDimensionInInventory() {
+		return fi.getDimensionInInventory();
+	}
 
-	public int[] getPrice() { return fi.getPrice(); }
+	public int[] getPrice() {
+		return fi.getPrice();
+	}
 
-	public InventoryItemFactory getInventoryItemFactory() { return fi.getInventoryItemFactory(); }
+	public InventoryItemFactory getInventoryItemFactory() {
+		return fi.getInventoryItemFactory();
+	}
 
-	public EquipmentTypesTRAn getType() { return type; }
+	public EquipmentTypesTRAn getType() {
+		return type;
+	}
 
-	public List<AbilityData> getAbilities() { return abilities; }
+	public List<AbilityData> getAbilities() {
+		return abilities;
+	}
 
-	public AttributeModification[] getAttrMods() { return attrMods; }
+	public AttributeModification[] getAttrMods() {
+		return attrMods;
+	}
 
 	@Override
 	public String toString() {
@@ -89,6 +109,8 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 		public String name;
 
 		@Override
-		public String toString() { return "AbilityData [level=" + level + ", name=" + name + "]"; }
+		public String toString() {
+			return "AbilityData [level=" + level + ", name=" + name + "]";
+		}
 	}
 }

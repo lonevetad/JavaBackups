@@ -35,7 +35,7 @@ public interface JSONable extends Stringable {
 	 * @param gm
 	 * @param wrapper
 	 */
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper);
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException;
 
 	/**
 	 * Load the values of this instance using the informations from the provided
@@ -45,7 +45,7 @@ public interface JSONable extends Stringable {
 	 * @param gm
 	 * @param wrapper
 	 */
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap);
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException;
 
 	// "starter" methods: those who start the chain of invocations and deepening
 	// recursion

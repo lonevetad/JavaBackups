@@ -21,6 +21,7 @@ import games.generic.controlModel.objects.ObjectInSpace;
 import games.generic.controlModel.objects.TimedObject;
 import tools.ObjectNamedID;
 import tools.UniqueIDProvider;
+import tools.json.types.JSONObject;
 
 /**
  * Base interface for a "creature" for almost ALL games (RPG, RTS, etc).
@@ -70,8 +71,9 @@ public interface CreatureSimple
 			return;
 		}
 		MovingObject.super.act(modality, timeUnits);
-//		LivingObject.super.act(modality, timeUnits); // this is the same of the below :
-//		ObjectHealing.super.act(modality, timeUnits);
+		// LivingObject.super.act(modality, timeUnits); // this is the same of the below
+		// :
+		// ObjectHealing.super.act(modality, timeUnits);
 		LivingObject.super.rechargeResources();
 	}
 
@@ -98,11 +100,29 @@ public interface CreatureSimple
 		return LivingObject.super.getLuckPerThousand();
 	}
 
+	//
+
+	// JSON-related
+
+	//
+
 	@Override
-	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-		// TODO Auto-generated method stub
+	default void toJSONValue(JSONObject wrapper) {
+		RarityHolder.super.toJSONValue(wrapper);
+		AbilitiesHolder.super.toJSONValue(wrapper);
+	}
+
+	@Override
+	default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
 		AbilitiesHolder.super.loadFromJSONMap(gm, jsonMap);
-		// TODO ALTRO? DA AGGIUSTARE
+		// TODO ALTRO? DA AGGIUSTARE ?
 	}
+
+	@Override
+	default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
+		RarityHolder.super.loadFromJSONObject(gm, wrapper);
+		AbilitiesHolder.super.loadFromJSONObject(gm, wrapper);
+	}
+
 }

@@ -20,15 +20,16 @@ import games.generic.controlModel.subimpl.CreatureAttributesBaseAndDerivedCachin
  * {@link #computeBonusForAttributeDependingOnIdentifier(AttributeModification, CreatureAttributesBonusesCalculator, AttributeIdentifier)}
  * returns the 25% of the value.
  */
-public class AbilityBonusDependingOnOtherBonuses extends AbilityModifyingAttributesRealTime {
+public abstract class AbilityBonusDependingOnOtherBonuses extends AbilityModifyingAttributesRealTime {
 	private static final long serialVersionUID = 1L;
 
 	public AbilityBonusDependingOnOtherBonuses(GModality gameModality, String name,
 			AttributeIdentifier[] attributesToModify, AttributeIdentifier[][] modifcationsEachAttributes) {
 		super(gameModality, name, attributesToModify);
-		if (modifcationsEachAttributes == null || modifcationsEachAttributes.length != attributesToModify.length)
+		if (modifcationsEachAttributes == null || modifcationsEachAttributes.length != attributesToModify.length) {
 			throw new IllegalArgumentException("Null or incorrect amount of bonuses for attributes to modify (expected "
 					+ attributesToModify.length + " rows): " + Arrays.deepToString(modifcationsEachAttributes));
+		}
 		this.modifcationsEachAttributes = modifcationsEachAttributes;
 	}
 

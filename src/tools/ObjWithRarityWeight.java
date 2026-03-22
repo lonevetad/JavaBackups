@@ -31,7 +31,7 @@ public interface ObjWithRarityWeight extends ObjectNamedID {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONObject(gm, wrapper);
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
@@ -47,7 +47,7 @@ public interface ObjWithRarityWeight extends ObjectNamedID {
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSONObject map cannot be null");

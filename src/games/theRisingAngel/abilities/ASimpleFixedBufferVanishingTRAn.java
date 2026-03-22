@@ -4,8 +4,10 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.abilities.impl.ASimpleFixedBufferVanishing;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
+import games.theRisingAngel.HelperWithAttributeModificationsTRAn;
 
-public class ASimpleFixedBufferVanishingTRAn extends ASimpleFixedBufferVanishing {
+public class ASimpleFixedBufferVanishingTRAn extends ASimpleFixedBufferVanishing
+		implements HelperWithAttributeModificationsTRAn {
 	private static final long serialVersionUID = -5605240560L;
 	public static final String NAME = "Wounded Berseker";
 	public static final int RARITY = 2;
@@ -24,5 +26,8 @@ public class ASimpleFixedBufferVanishingTRAn extends ASimpleFixedBufferVanishing
 	}
 
 	@Override
-	public int getVanishingTimeThresholdUpdate() { return GModalityTRAnBaseWorld.TIME_SUBUNITS_EACH_TIME_UNIT_TRAn; }
+	public int getVanishingTimeThresholdUpdate() {
+		return GModalityTRAnBaseWorld.TIME_SUBUNITS_EACH_TIME_UNIT_TRAn;
+	}
+
 }

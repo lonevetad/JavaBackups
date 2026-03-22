@@ -43,13 +43,13 @@ public interface ObjectNamedID extends ObjectWithID, ObjectNamed {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		ObjectWithID.super.loadFromJSONObject(gm, wrapper);
 		ObjectNamed.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		ObjectWithID.super.loadFromJSONMap(gm, jsonMap);
 		ObjectNamed.super.loadFromJSONMap(gm, jsonMap);
 	}

@@ -17,7 +17,7 @@ import tools.json.types.JSONString;
  * {@link EquipmentItem}s.
  */
 public interface IEquipmentUpgrade extends AttributesUpgrade {
-	public static final Function<IEquipmentUpgrade, String> KEY_EXTRACTOR = eu -> eu.getName();
+	public static final Function<IEquipmentUpgrade, String> KEY_EXTRACTOR = IEquipmentUpgrade::getName;
 	public static final String FIELD_IS_PREFIX = "isPrefix";
 	public static final String FIELD_DESCRIPTION = "description";
 	public static final String FIELD_UPGRADE_CATEGORY = "upgradeCategory";
@@ -74,7 +74,7 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	public IEquipmentUpgradeCategory loadIEquipmentUpgradeCategory(GModality gm, String categoryName);
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		AttributesUpgrade.super.loadFromJSONObject(gm, wrapper);
 		// isPrefix
 		if (!wrapper.hasField(FIELD_IS_PREFIX)) {
@@ -111,7 +111,7 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		AttributesUpgrade.super.loadFromJSONMap(gm, jsonMap);
 		// isPrefix
 		if (!jsonMap.containsKey(FIELD_IS_PREFIX)) {

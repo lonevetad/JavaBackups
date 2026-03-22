@@ -1,6 +1,7 @@
 package games.generic.controlModel.events;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import tools.UniqueIDProvider;
 
 /**
@@ -14,14 +15,16 @@ public abstract class GEvent implements IGEvent {
 	private static final long serialVersionUID = -53224778410585340L;
 
 	private static UniqueIDProvider UIDP_EVENT = UniqueIDProvider.newBasicIDProvider();
-	/*
-	 * null; public static final UIDProviderLoadedListener
-	 * UIDP_LOADED_LISTENER_EVENT = uidp -> { if (uidp != null) { UIDP_EVENT = uidp;
-	 * } };
-	 *
-	 * public static UniqueIDProvider getUniqueIDProvider_Event() { return
-	 * UIDP_EVENT; }
-	 */
+	public static final UIDProviderLoadedListener UIDP_LOADED_LISTENER_EVENT = uidp -> {
+		if (uidp != null) {
+			UIDP_EVENT = uidp;
+		}
+	};
+
+	public static UniqueIDProvider getUniqueIDProvider_Event() {
+		return UIDP_EVENT;
+	}
+
 	//
 
 	public GEvent() {
@@ -41,10 +44,14 @@ public abstract class GEvent implements IGEvent {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
-	public String getName() { return this.getClass().getSimpleName(); }
+	public String getName() {
+		return this.getClass().getSimpleName();
+	}
 
 	/**
 	 * The event will have effect to, presumably, the actual game, represented by
@@ -54,5 +61,7 @@ public abstract class GEvent implements IGEvent {
 	// public void performEvent(GameModality gm);
 
 	@Override
-	public boolean setID(Long newID) { return false; }
+	public boolean setID(Long newID) {
+		return false;
+	}
 }

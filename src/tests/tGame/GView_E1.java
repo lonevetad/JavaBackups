@@ -61,7 +61,6 @@ import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.RechargeableResourcesTRAn;
 import games.theRisingAngel.loaders.LoaderEquipUpgradesTRAn;
 import games.theRisingAngel.loaders.factories.FactoryEquip;
-import games.theRisingAngel.misc.CurrencySetTRAn;
 import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 import tests.tGame.tgEvent1.GC_E1;
 import tools.Comparators;
@@ -169,7 +168,9 @@ public class GView_E1 extends GameView {
 							if (fe.abilities == null || fe.abilities.isEmpty()) {
 								sb.append("\t\t[]\n");
 							} else {
-								fe.abilities.forEach(a -> { sb.append('\t').append('\t').append(a).append('\n'); });
+								fe.abilities.forEach(a -> {
+									sb.append('\t').append('\t').append(a).append('\n');
+								});
 							}
 							sb.append('\n').append('\n');
 							return sb.toString();
@@ -227,7 +228,8 @@ public class GView_E1 extends GameView {
 	}
 
 	@Override
-	public void beginsPlayesInteraction(PlayerGeneric thisPlayer, PlayerGeneric otherPlayer) {}
+	public void beginsPlayesInteraction(PlayerGeneric thisPlayer, PlayerGeneric otherPlayer) {
+	}
 
 	@Override
 	public List<LoaderGeneric> getAllViewRelatedLoaders() { // TODO Auto-generated method stub
@@ -364,7 +366,9 @@ public class GView_E1 extends GameView {
 
 		initInspectorsView();
 
-		jpTabs.forEach(e -> { jtpHoldingAll.addTab(e.getKey(), e.getValue()); });
+		jpTabs.forEach(e -> {
+			jtpHoldingAll.addTab(e.getKey(), e.getValue());
+		});
 	}
 
 	public void initInspectorsView() {
@@ -380,7 +384,8 @@ public class GView_E1 extends GameView {
 
 		taInspector = new JTextArea("test");
 		JScrollPane jsp;
-		jsp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jsp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jsp.setViewportView(taInspector);
 		jpInsp.add(jsp, BorderLayout.CENTER);
 		taInspector.setSize(new Dimension(300, 400));
@@ -523,8 +528,9 @@ public class GView_E1 extends GameView {
 		JProgressBar jpb;
 		RechargeableResourcesTRAn curRes;
 		gmodalitye1 = (GModality_E1) super.gameController.getCurrentGameModality();
-		if (gmodalitye1 == null)
+		if (gmodalitye1 == null) {
 			return;
+		}
 		p = gmodalitye1.getPlayerRPG();
 		for (int i = 0; i < rechargeableResource.length; i++) {
 			jpb = jpbRechargeableResources[i];
@@ -600,10 +606,12 @@ public class GView_E1 extends GameView {
 		}
 
 		@Override
-		public void stopAndDie() {}
+		public void stopAndDie() {
+		}
 
 		@Override
-		public void restart() {}
+		public void restart() {
+		}
 	}
 
 	//
@@ -640,15 +648,25 @@ public class GView_E1 extends GameView {
 			this.inspectedElementConsumer = e -> this.elementStringifiedConsumer.accept(this.toStringer.apply(e));
 		}
 
-		public String getCollectionName() { return collectionName; }
+		public String getCollectionName() {
+			return collectionName;
+		}
 
-		public Function<E, String> getToStringer() { return toStringer; }
+		public Function<E, String> getToStringer() {
+			return toStringer;
+		}
 
-		public Consumer<Consumer<E>> getForEachCallFunction() { return forEachCallFunction; }
+		public Consumer<Consumer<E>> getForEachCallFunction() {
+			return forEachCallFunction;
+		}
 
-		public Consumer<E> getInspectedElementConsumer() { return inspectedElementConsumer; }
+		public Consumer<E> getInspectedElementConsumer() {
+			return inspectedElementConsumer;
+		}
 
 		@Override
-		public void run() { this.forEachCallFunction.accept(inspectedElementConsumer); }
+		public void run() {
+			this.forEachCallFunction.accept(inspectedElementConsumer);
+		}
 	}
 }

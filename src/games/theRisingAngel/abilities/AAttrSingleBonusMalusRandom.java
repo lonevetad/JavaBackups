@@ -7,6 +7,7 @@ import games.generic.controlModel.abilities.impl.AbilAttributesBonusMalusChangin
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.theRisingAngel.enums.AttributesTRAn;
+import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 /**
  * Apply a bonus and a malus of some attribute, at random, changing those two
@@ -21,23 +22,31 @@ public abstract class AAttrSingleBonusMalusRandom extends AbilAttributesBonusMal
 	public static final int RARITY = 2;
 	public static final long TIME_TRESHOLD_CHANGING = 4000;
 
-	public AAttrSingleBonusMalusRandom(GModality gameModality) { this(gameModality, NAME); }
+	public AAttrSingleBonusMalusRandom(GModality gameModality) {
+		this(gameModality, NAME);
+	}
 
-	public AAttrSingleBonusMalusRandom(GModality gameModality, int level) { this(gameModality, NAME, level); }
+	public AAttrSingleBonusMalusRandom(GModality gameModality, int level) {
+		this(gameModality, NAME, level);
+	}
 
-	public AAttrSingleBonusMalusRandom(GModality gameModality, String name) { this(gameModality, name, 0); }
+	public AAttrSingleBonusMalusRandom(GModality gameModality, String name) {
+		this(gameModality, name, 0);
+	}
 
 	public AAttrSingleBonusMalusRandom(GModality gameModality, String name, int level) {
 		super(gameModality, name, level);
-		bonus = new AttributeModification(AttributesTRAn.Luck, 0); // Luck will never be changed
-		malus = new AttributeModification(AttributesTRAn.Luck, 0); // Luck will never be changed
+		bonus = new AttributeModificationTRAn(AttributesTRAn.Luck, 0); // Luck will never be changed
+		malus = new AttributeModificationTRAn(AttributesTRAn.Luck, 0); // Luck will never be changed
 	}
 
-//	protected AttributesTRAn bonus, malus;
+	// protected AttributesTRAn bonus, malus;
 	protected AttributeModification bonus, malus;
 
 	@Override
-	public long getTimeThreshold() { return TIME_TRESHOLD_CHANGING; }
+	public long getTimeThreshold() {
+		return TIME_TRESHOLD_CHANGING;
+	}
 
 	@Override
 	public void removeAttributesBonusesMaluses(GModality gm, CreatureAttributes ca, int targetLevel) {

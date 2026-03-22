@@ -70,12 +70,12 @@ public interface GameObjectGeneric extends ObjectNamedID, GModalityHolder {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		ObjectNamedID.super.loadFromJSONMap(gm, jsonMap);
 	}
 

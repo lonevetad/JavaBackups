@@ -70,6 +70,8 @@ public abstract class AmountNamed implements ObjectNamed {
 
 	//
 
+	public abstract void loadInnerObjectNamedID(GModality gm, String typeName);
+
 	protected void loadNameValue(GModality gm, String name, int value) {
 		this.setName(name);
 		this.setValue(value);
@@ -87,7 +89,7 @@ public abstract class AmountNamed implements ObjectNamed {
 	}
 
 	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
 		}
@@ -125,7 +127,7 @@ public abstract class AmountNamed implements ObjectNamed {
 	}
 
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}

@@ -28,7 +28,7 @@ public enum RechargeableResourcesTRAn implements RechargeableResourceType {
 	public static final List<RechargeableResourceType> ALL_RECHARGEABLE_RESOURCES_TRAn;
 	public static final IndexToObjectBackmapping INDEX_TO_RECHARGEABLE_RESOURCES_TRAn;
 	public static final String NAME;
-	public static final FactoryGeneric<RechargeableResourceType> FACTORY;
+	public static final FactoryGeneric<RechargeableResourcesTRAn> FACTORY;
 	static {
 		RechargeableResourcesTRAn[] vals = values();
 		ALL_RECHARGEABLE_RESOURCES_TRAn = new ArrayList<>(vals.length);

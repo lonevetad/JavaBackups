@@ -69,12 +69,12 @@ public interface AssignableObject extends GameObjectGeneric {
 	}
 
 	@Override
-	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) {
+	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		GameObjectGeneric.super.loadFromJSONObject(gm, wrapper);
 	}
 
 	@Override
-	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		GameObjectGeneric.super.loadFromJSONMap(gm, jsonMap);
 	}
 

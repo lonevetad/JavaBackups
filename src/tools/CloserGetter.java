@@ -20,8 +20,12 @@ public interface CloserGetter<K> extends Serializable {
 		 * interval of values -> do not risk overflow 2) make the Different parameters'
 		 * order indifferent
 		 */
-		if (d1 > 0) { d1 = -d1; }
-		if (d2 > 0) { d2 = -d2; }
+		if (d1 > 0) {
+			d1 = -d1;
+		}
+		if (d2 > 0) {
+			d2 = -d2;
+		}
 		return d1 >= d2 ? option1 : option2;
 	}
 
@@ -67,7 +71,7 @@ public interface CloserGetter<K> extends Serializable {
 					flag[0] = false;
 					notYetCheckedAnElement[0] = k;
 				} else {
-					notYetCheckedAnElement[0] = getCloserTo(target, notYetCheckedAnElement[0], k);
+					notYetCheckedAnElement[0] = getCloserTo(target, (K) notYetCheckedAnElement[0], k);
 				}
 			});
 		}
