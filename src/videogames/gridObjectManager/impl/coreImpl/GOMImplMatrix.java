@@ -1,7 +1,7 @@
 package gridObjectManager.impl.coreImpl;
 
 import gridObjectManager.core.GridObjectManager;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 public class GOMImplMatrix implements GridObjectManager {
 

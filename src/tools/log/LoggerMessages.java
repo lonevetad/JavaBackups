@@ -1,4 +1,4 @@
-package tools;
+package tools.log;
 
 import java.io.File;
 import java.io.PrintStream;

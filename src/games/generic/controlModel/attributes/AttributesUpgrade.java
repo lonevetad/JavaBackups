@@ -105,22 +105,26 @@ public interface AttributesUpgrade
 			int value;
 			JSONObject jsonedAttributeModifier;
 			// load the "attributeModifier" by-hand because it's probably an Enum instance
-			if (!jsonedAttributeModifier_value.isType(JSONTypes.Object)) {
-				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
-						JSONTypes.Object, jsonedAttributesModifiers_value);
+			if (jsonedAttributeModifier_value.isType(JSONTypes.Int)) {
+				value = ((JSONInt) jsonedAttributeModifier_value).asInt();
+			} else {
+				if (!jsonedAttributeModifier_value.isType(JSONTypes.Object)) {
+					this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name,
+							JSONTypes.Object, jsonedAttributesModifiers_value);
+				}
+				jsonedAttributeModifier = (JSONObject) jsonedAttributeModifier_value;
+				if (!jsonedAttributeModifier.hasField("value")) {
+					this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+							+ JSONable.SEPARATOR_FIELD + "value", null);
+				}
+				JSONValue valueJSONed_value = jsonedAttributeModifier.getFieldValue("value");
+				if (!valueJSONed_value.isType(JSONTypes.Int)) {
+					this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
+							+ JSONable.SEPARATOR_FIELD + "value", JSONTypes.Int, valueJSONed_value);
+				}
+				JSONInt valueJSONed = (JSONInt) valueJSONed_value;
+				value = valueJSONed.asInt();
 			}
-			jsonedAttributeModifier = (JSONObject) jsonedAttributeModifier_value;
-			if (!jsonedAttributeModifier.hasField("value")) {
-				this.raiseExceptionMissingField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
-						+ JSONable.SEPARATOR_FIELD + "value", null);
-			}
-			JSONValue valueJSONed_value = jsonedAttributeModifier.getFieldValue("value");
-			if (!valueJSONed_value.isType(JSONTypes.Int)) {
-				this.raiseExceptionIllegalTypeField(FIELD_ATTRIBUTE_MODIFIERS + JSONable.SEPARATOR_FIELD + name
-						+ JSONable.SEPARATOR_FIELD + "value", JSONTypes.Int, valueJSONed_value);
-			}
-			JSONInt valueJSONed = (JSONInt) valueJSONed_value;
-			value = valueJSONed.asInt();
 			this.addAttributeModifier(this.loadAttributeIdentifier(gm, name, value), value);
 			// @Override
 			// public void loadAttributeUpgrade(GModality gm, String attributeName, int

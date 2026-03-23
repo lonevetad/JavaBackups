@@ -41,9 +41,9 @@ import geometry.implementations.shapes.ShapeRectangle;
 import geometry.pointTools.impl.ObjCollector;
 import stuffs.logic.AtomLogicProposition;
 import tools.Comparators;
-import tools.LoggerMessages;
 import tools.NumberManager;
 import tools.UniqueIDProvider;
+import tools.log.LoggerMessages;
 
 public class TestMultiMISOM_V4_PathFind {
 	public static final int MAXIMUM_SUBMAPS_EACH_SECTION = 4, MINIMUM_DIMENSION_MAP = 4, PIXEL_EACH_CELL = 10;

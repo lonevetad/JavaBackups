@@ -3,9 +3,9 @@ package gridObjectManager.core;
 import java.awt.Point;
 import java.io.Serializable;
 
-import tools.LoggerMessages;
 import tools.geometry.AbstractShape;
 import tools.geometry.AbstractShapeRunner;
+import tools.log.LoggerMessages;
 
 public interface GridObjectManager extends Serializable {
 

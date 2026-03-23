@@ -8,7 +8,7 @@ import java.util.function.BiConsumer;
 import dataStructures.MapTreeAVL;
 import dataStructures.graph.PathFindStrategy;
 import dataStructures.graph.PathGraph;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 @Deprecated
 public abstract class GraphSimple_Old<E> {

@@ -22,7 +22,7 @@ import tools.json.types.JSONObject;
  * Could be used with the {@link WeightedSetOfRandomOutcomes}.
  */
 public interface RarityHolder extends JSONable {
-	public static final String FIELD_RARITY_INDEX = "rarityIndex";
+	public static final String FIELD_RARITY_INDEX = "rarity";
 	/**
 	 * Value that can be used to identify the "null value" of a rarity index.
 	 */

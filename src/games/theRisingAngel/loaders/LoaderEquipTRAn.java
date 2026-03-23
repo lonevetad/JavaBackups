@@ -41,14 +41,14 @@ import games.theRisingAngel.inventory.equipsWithAbilities.NecklaceOfPainRinvigor
 import games.theRisingAngel.loaders.factories.FactoryEquip;
 import games.theRisingAngel.loaders.factories.FactoryItems;
 import games.theRisingAngel.misc.AttributeModificationTRAn;
-import tools.LoggerMessages;
-import tools.impl.LoggerOnFile;
 import tools.json.JSONParser;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.types.JSONArray;
 import tools.json.types.JSONObject;
 import tools.json.types.JSONString;
+import tools.log.LoggerMessages;
+import tools.log.LoggerOnFile;
 
 public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable {
 	private static final long serialVersionUID = 1L;

@@ -30,7 +30,11 @@ public class CurrencySetTRAn extends CurrencySet {
 
 	@Override
 	public Currency currencyFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
-		String currName = (String) jsonMap.get(Currency.FIELD_NAME);
+		Object currObj = jsonMap.get(Currency.FIELD_NAME);
+		if (!(currObj instanceof String)) {
+			this.raiseExceptionIllegalTypeField(Currency.FIELD_NAME, JSONTypes.String, currObj);
+		}
+		String currName = (String) currObj;
 		return CurrenciesTRAn.valueOf(currName);
 	}
 
@@ -42,5 +46,10 @@ public class CurrencySetTRAn extends CurrencySet {
 		}
 		String currName = jsonValName.asString();
 		return CurrenciesTRAn.valueOf(currName);
+	}
+
+	@Override
+	public Currency currencyFromIndex(GModality gm, int index, int amount) {
+		return CurrenciesTRAn.CURRENCIES[index];
 	}
 }

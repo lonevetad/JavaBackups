@@ -1,13 +1,29 @@
 package tests.tGame.tgEvent1;
 
+import java.io.IOException;
+
 import games.theRisingAngel.GControllerTRAn;
 import tests.tGame.GModality_E1;
+import tools.log.LoggerMessages;
+import tools.log.LoggerOnFile;
 
 public class GC_E1 extends GControllerTRAn {
 	public static final String GM_NAME = "TEST";
 
 	public GC_E1() {
 		super();
+	}
+
+	@Override
+	protected LoggerMessages newLogger(LoggerMessages log) {
+		try {
+			return (log != null) ? log : new LoggerOnFile();
+		} catch (IOException e) {
+			log = LoggerMessages.LOGGER_DEFAULT;
+			e.printStackTrace();
+			log.logException(e);
+			return log;
+		}
 	}
 
 	@Override

@@ -10,8 +10,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import dataStructures.PriorityQueueKey;
-import tools.LoggerMessages;
-import tools.impl.LoggerOnFile;
+import tools.log.LoggerMessages;
+import tools.log.LoggerOnFile;
 
 public class TestPriorityQueueKey {
 

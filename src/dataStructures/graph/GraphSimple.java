@@ -13,8 +13,8 @@ import java.util.function.Predicate;
 import dataStructures.MapTreeAVL;
 import dataStructures.graph.EdgesIntersectionDetector.IntersectionInstantiator;
 import dataStructures.graph.cycles.SubcyclesCollector;
-import tools.LoggerMessages;
 import tools.NumberManager;
+import tools.log.LoggerMessages;
 
 public abstract class GraphSimple<E, Distance extends Number> {
 

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 public class LoggerMessagesJScrollPane extends JScrollPane implements LoggerMessages {
 	private static final long serialVersionUID = 984015618044L;

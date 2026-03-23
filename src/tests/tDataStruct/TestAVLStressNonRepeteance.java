@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
 import tools.Comparators;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 public class TestAVLStressNonRepeteance {
 	static final int MAX_CARDINALITY = 100000, RANDOM_BOUND = MAX_CARDINALITY << 2,

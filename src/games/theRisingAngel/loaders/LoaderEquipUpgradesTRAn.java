@@ -31,10 +31,10 @@ import games.theRisingAngel.enums.TribesTRAn.Tribe;
 import games.theRisingAngel.inventory.EquipmentUpgradeTRAn;
 import games.theRisingAngel.loaders.factories.FactoryEquipUpgradeTRAn;
 import games.theRisingAngel.misc.CreatureAttributesTRAn;
-import tools.LoggerMessages;
-import tools.impl.LoggerOnFile;
 import tools.json.JSONParser;
 import tools.json.types.JSONObject;
+import tools.log.LoggerMessages;
+import tools.log.LoggerOnFile;
 
 public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
@@ -96,9 +96,16 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 						 * } // <br>
 						 */
 						factory.prototype = new EquipmentUpgradeTRAn();
-						factory.prototype.loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
-						thisLoader.saveObjectFactory(factory.prototype.getName(), factory.prototype.getRarityIndex(),
-								factory);
+						try {
+							factory.prototype.loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
+							thisLoader.saveObjectFactory(factory.prototype.getName(),
+									factory.prototype.getRarityIndex(), factory);
+						} catch (Exception ex) {
+							gc.getLogger()
+									.logAndPrintError("\n\n\n ERROR during reading equip upgrade at # " + indexEquipUp);
+							gc.getLogger().logAndPrintError(rawEquipUp.toString());
+							gc.getLogger().logException(ex);
+						}
 					});
 
 		} catch (FileNotFoundException e) {

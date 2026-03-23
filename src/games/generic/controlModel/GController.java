@@ -16,7 +16,7 @@ import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
 import games.generic.view.GameView;
 import tools.Comparators;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 /**
  * One of the Core classes.<br>
@@ -55,34 +55,52 @@ public abstract class GController {
 	public static final Random RANDOM = new Random();
 
 	/** Create everything and loads everything as well. */
-	public GController() { this(null); }
+	public GController() {
+		this(null);
+	}
 
 	public GController(LoggerMessages logger) {
 		this.isAlive = false;
-		this.logger = LoggerMessages.loggerOrDefault(logger);
+		this.logger = this.newLogger(logger);
 		this.loaderManager = this.newLoaderManager();
 		this.gameOptions = this.newGameOptions();
 	}
 
 	//
 
-	public GModality getCurrentGameModality() { return currentGameModality; }
+	public GModality getCurrentGameModality() {
+		return currentGameModality;
+	}
 
-	public Map<String, GModalityFactory> getGameModalitiesFactories() { return gameModalitiesFactories; }
+	public Map<String, GModalityFactory> getGameModalitiesFactories() {
+		return gameModalitiesFactories;
+	}
 
-	public ProbabilityOfContextesHolders getProbabilityOfContextesHolders() { return probabilityOfContextesHolders; }
+	public ProbabilityOfContextesHolders getProbabilityOfContextesHolders() {
+		return probabilityOfContextesHolders;
+	}
 
 //	public List<LoaderGameObjects<? extends ObjectNamed>> getGameObjectsLoader() { return gameObjectsLoader; }
 
-	public GameOptions getGameOptions() { return gameOptions; }
+	public GameOptions getGameOptions() {
+		return gameOptions;
+	}
 
-	public UserAccountGeneric getUser() { return user; }
+	public UserAccountGeneric getUser() {
+		return user;
+	}
 
-	public static Random getRandom() { return RANDOM; }
+	public static Random getRandom() {
+		return RANDOM;
+	}
 
-	public LoggerMessages getLogger() { return logger; }
+	public LoggerMessages getLogger() {
+		return logger;
+	}
 
-	public LoaderManager getLoaderManager() { return loaderManager; }
+	public LoaderManager getLoaderManager() {
+		return loaderManager;
+	}
 
 	//
 
@@ -101,6 +119,14 @@ public abstract class GController {
 	 * identified by {@link #getGameModalitiesFactories()}.
 	 */
 	protected abstract void defineGameModalitiesFactories();
+
+	protected LoggerMessages newLogger(LoggerMessages log) {
+		return LoggerMessages.loggerOrDefault(log);
+	}
+
+	protected LoggerMessages newLogger() {
+		return this.newLogger(null);
+	}
 
 	/**
 	 * Returns a new {@link GameOptions} instance.
@@ -157,20 +183,26 @@ public abstract class GController {
 	 * Delegates to {@link LoaderManager#addLoader(LoaderGeneric)}).
 	 */
 	public void addLoader(games.generic.controlModel.loaders.LoaderGeneric loader) {
-		if (loader != null) { this.loaderManager.addLoader(loader); }
+		if (loader != null) {
+			this.loaderManager.addLoader(loader);
+		}
 	}
 
 	/**
 	 * Delegates to {@link LoaderManager#addLoadingProcessObserver(LoaderGeneric)}).
 	 */
 	public void addLoadingProcessObserver(LoadingObserver lo) {
-		if (lo != null) { loaderManager.addLoadingProcessObserver(lo); }
+		if (lo != null) {
+			loaderManager.addLoadingProcessObserver(lo);
+		}
 	}
 
 	/**
 	 * Delegates to {@link LoaderManager#loadAll()}).
 	 */
-	public final List<LoaderGeneric> loadAll() { return this.loaderManager.loadAll(); }
+	public final List<LoaderGeneric> loadAll() {
+		return this.loaderManager.loadAll();
+	}
 
 //
 
@@ -178,7 +210,9 @@ public abstract class GController {
 
 	//
 
-	public boolean isAlive() { return isAlive; }
+	public boolean isAlive() {
+		return isAlive;
+	}
 
 	public boolean isPlaying() {
 		GModality gm;

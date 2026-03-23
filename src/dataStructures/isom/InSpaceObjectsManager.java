@@ -16,9 +16,9 @@ import geometry.PathOptimizer;
 import geometry.implementations.shapes.ShapeLine;
 import geometry.pointTools.PointConsumer;
 import geometry.pointTools.impl.ObjCollector;
-import tools.LoggerMessages;
 import tools.NumberManager;
 import tools.PathFinder;
+import tools.log.LoggerMessages;
 
 /**
  * Defines a class that manages (add, remove, search, collects, etc) instances

@@ -3,7 +3,7 @@ package games.generic.controlModel.loaders;
 import java.io.File;
 
 import games.generic.controlModel.GController;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 /**
  * Class that loads something, usually from file

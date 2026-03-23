@@ -157,6 +157,8 @@ public abstract class CurrencySet implements JSONable {
 
 	//
 
+	public abstract Currency currencyFromIndex(GModality gm, int index, int amount);
+
 	public abstract Currency currencyFromJSONMap(GModality gm, Map<String, Object> jsonMap);
 
 	public abstract Currency currencyFromJSONObject(GModality gm, JSONObject jsonObj);
@@ -185,9 +187,71 @@ public abstract class CurrencySet implements JSONable {
 		wrapper.addField(FIELD_CURRENCIES, jsonedCurrencies);
 	}
 
+	public void loadFromJSONArray(GModality gm, JSONValue valCurr) throws IllegalArgumentException {
+		if (!(valCurr.isType(JSONTypes.ArrayHomogeneousType))) {
+			this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES, JSONTypes.ArrayHomogeneousType, valCurr);
+		}
+		JSONArray valCurrArr = (JSONArray) valCurr;
+		final Currency[] currArr = new Currency[valCurrArr.getElementsAmount()];
+		valCurrArr.forEach((index, currJSON) -> {
+			if (currJSON.isType(JSONTypes.Int)) {
+				currArr[index] = currencyFromIndex(gm, index, ((JSONInt) currJSON).asInt());
+			} else {
+				if (!currJSON.isType(JSONTypes.Object)) {
+					this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + JSONable.SEPARATOR_INDEX + index,
+							JSONTypes.Object, currJSON);
+				}
+				currArr[index] = currencyFromJSONObject(gm, (JSONObject) currJSON);
+			}
+		});
+		this.setCurrencies(currArr);
+	}
+
+	@Override
+	public void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
+		if (wrapper == null) {
+			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
+		}
+		if (!wrapper.hasField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT)) {
+			this.raiseExceptionMissingField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean);
+		}
+		JSONValue valCFCCE = wrapper.getFieldValue(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT);
+		if (!valCFCCE.isType(JSONTypes.Boolean)) {
+			this.raiseExceptionIllegalTypeField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean, valCFCCE);
+		}
+		this.setCanFireCurrencyChangeEvent(valCFCCE.asBoolean());
+		//
+		if (!wrapper.hasField(FIELD_VALUES)) {
+			this.raiseExceptionMissingField(FIELD_VALUES, JSONTypes.Object);
+		}
+		JSONValue valValues = wrapper.getFieldValue(FIELD_VALUES);
+		if (!(valValues.isType(JSONTypes.ArrayHomogeneousType))) {
+			this.raiseExceptionIllegalTypeField(FIELD_VALUES, JSONTypes.ArrayHomogeneousType, valValues);
+		}
+		this.setValues(valValues.asArrayInt());
+		//
+		if (!wrapper.hasField(FIELD_CURRENCIES)) {
+			this.raiseExceptionMissingField(FIELD_CURRENCIES, JSONTypes.Object);
+		}
+		JSONValue valCurr = wrapper.getFieldValue(FIELD_CURRENCIES);
+		loadFromJSONArray(gm, valCurr);
+	}
+
+	public void loadFromJSONArray(GModality gm, Object[] valCurrArr) throws IllegalArgumentException {
+		Currency[] currArr = new Currency[valCurrArr.length];
+		for (int i = 0; i < valCurrArr.length; i++) {
+			Object curr = valCurrArr[i];
+			if (!(curr instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + i, JSONTypes.Object, curr);
+			}
+			currArr[i] = this.currencyFromJSONMap(gm, (Map<String, Object>) curr);
+		}
+		this.setCurrencies(currArr);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) {
+	public void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
@@ -217,57 +281,7 @@ public abstract class CurrencySet implements JSONable {
 			this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES, JSONTypes.ArrayHomogeneousType, valCurr);
 		}
 		Object[] valCurrArr = (Object[]) valCurr;
-		Currency[] currArr = new Currency[valCurrArr.length];
-		for (int i = 0; i < valCurrArr.length; i++) {
-			Object curr = valCurrArr[i];
-			if (!(curr instanceof Map<?, ?>)) {
-				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + "_#_" + i, JSONTypes.Object, curr);
-			}
-			currArr[i] = this.currencyFromJSONMap(gm, (Map<String, Object>) curr);
-		}
-		this.setCurrencies(currArr);
-	}
-
-	@Override
-	public void loadFromJSONObject(GModality gm, JSONObject wrapper) {
-		if (wrapper == null) {
-			throw new IllegalArgumentException("Provided JSONObject wrapper cannot be null");
-		}
-		if (!wrapper.hasField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT)) {
-			this.raiseExceptionMissingField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean);
-		}
-		JSONValue valCFCCE = wrapper.getFieldValue(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT);
-		if (!valCFCCE.isType(JSONTypes.Boolean)) {
-			this.raiseExceptionIllegalTypeField(FIELD_CAN_FIRE_CURRENCY_CHANGE_EVENT, JSONTypes.Boolean, valCFCCE);
-		}
-		this.setCanFireCurrencyChangeEvent(valCFCCE.asBoolean());
-		//
-		if (!wrapper.hasField(FIELD_VALUES)) {
-			this.raiseExceptionMissingField(FIELD_VALUES, JSONTypes.Object);
-		}
-		JSONValue valValues = wrapper.getFieldValue(FIELD_VALUES);
-		if (!(valValues.isType(JSONTypes.ArrayHomogeneousType))) {
-			this.raiseExceptionIllegalTypeField(FIELD_VALUES, JSONTypes.ArrayHomogeneousType, valValues);
-		}
-		this.setValues(valValues.asArrayInt());
-		//
-		if (!wrapper.hasField(FIELD_CURRENCIES)) {
-			this.raiseExceptionMissingField(FIELD_CURRENCIES, JSONTypes.Object);
-		}
-		JSONValue valCurr = wrapper.getFieldValue(FIELD_CURRENCIES);
-		if (!(valCurr.isType(JSONTypes.ArrayHomogeneousType))) {
-			this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES, JSONTypes.ArrayHomogeneousType, valCurr);
-		}
-		JSONArray valCurrArr = (JSONArray) valCurr;
-		final Currency[] currArr = new Currency[valCurrArr.getElementsAmount()];
-		valCurrArr.forEach((index, currJSON) -> {
-			if (!currJSON.isType(JSONTypes.Object)) {
-				this.raiseExceptionIllegalTypeField(FIELD_CURRENCIES + JSONable.SEPARATOR_INDEX + index,
-						JSONTypes.Object, currJSON);
-			}
-			currArr[index] = currencyFromJSONObject(gm, (JSONObject) currJSON);
-		});
-		this.setCurrencies(currArr);
+		loadFromJSONArray(gm, valCurrArr);
 	}
 
 }

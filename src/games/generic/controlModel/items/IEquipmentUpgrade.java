@@ -20,8 +20,8 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	public static final Function<IEquipmentUpgrade, String> KEY_EXTRACTOR = IEquipmentUpgrade::getName;
 	public static final String FIELD_IS_PREFIX = "isPrefix";
 	public static final String FIELD_DESCRIPTION = "description";
-	public static final String FIELD_UPGRADE_CATEGORY = "upgradeCategory";
-	public static final String FIELD_PRICES_MODIFICATIONS = "pricesModifications";
+	public static final String FIELD_UPGRADE_CATEGORY = "category"; // upgradeCategory
+	public static final String FIELD_PRICES_MODIFICATIONS = "price"; // pricesModifications
 
 	public boolean isPrefix();
 
@@ -82,21 +82,25 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		} else {
 			this.setIsPrefix(wrapper.getFieldValue(FIELD_IS_PREFIX).asBoolean());
 		}
-		// description
-		if (!wrapper.hasField(FIELD_DESCRIPTION)) {
-			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);
+		// description (optional)
+		if (wrapper.hasField(FIELD_DESCRIPTION)) {
+			this.setDescription(wrapper.getFieldValue(FIELD_DESCRIPTION).asString());
+		} else {
+			this.setDescription(null);
 		}
-		this.setDescription(wrapper.getFieldValue(FIELD_DESCRIPTION).asString());
 		// prices
 		if (!wrapper.hasField(FIELD_PRICES_MODIFICATIONS)) {
 			this.raiseExceptionMissingField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object);
 		}
 		JSONValue pricesModsJSONed = wrapper.getFieldValue(FIELD_PRICES_MODIFICATIONS);
-		if (!pricesModsJSONed.isType(JSONTypes.Object)) {
+		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
+		if (pricesModsJSONed.isType(JSONTypes.Object)) {
+			cs.loadFromJSONObject(gm, (JSONObject) pricesModsJSONed);
+		} else if (pricesModsJSONed.isType(JSONTypes.ArrayHomogeneousType)) {
+			cs.loadFromJSONArray(gm, pricesModsJSONed);
+		} else {
 			this.raiseExceptionIllegalTypeField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object, pricesModsJSONed);
 		}
-		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
-		cs.loadFromJSONObject(gm, (JSONObject) pricesModsJSONed);
 		this.setPricesModifications(cs);
 		// UpgradeCategory's name
 		// equip upgrade category

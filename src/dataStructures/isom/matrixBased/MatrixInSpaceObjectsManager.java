@@ -24,9 +24,9 @@ import geometry.implementations.ProviderShapeRunnerImpl;
 import geometry.implementations.shapes.ShapeRectangle;
 import geometry.pointTools.PointConsumer;
 import tools.Comparators;
-import tools.LoggerMessages;
 import tools.NumberManager;
 import tools.UniqueIDProvider;
+import tools.log.LoggerMessages;
 
 /** Rectangular matrix-based implementation */
 public abstract class MatrixInSpaceObjectsManager<Distance extends Number> extends InSpaceObjectsManagerImpl<Distance> {

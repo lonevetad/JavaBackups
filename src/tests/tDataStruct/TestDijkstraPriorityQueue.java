@@ -13,7 +13,7 @@ import dataStructures.graph.PathGraph;
 import dataStructures.graph.pathfind.PathFindAStar;
 import dataStructures.graph.pathfind.PathFinderDijkstra;
 import tools.Comparators;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 public class TestDijkstraPriorityQueue {
 	protected static final int numberNodeGraphs = 14;

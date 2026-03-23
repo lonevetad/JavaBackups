@@ -3,9 +3,9 @@ package dataStructures.isom;
 import java.awt.Point;
 
 import geometry.PathOptimizer;
-import tools.LoggerMessages;
 import tools.NumberManager;
 import tools.impl.OWIDLongImpl;
+import tools.log.LoggerMessages;
 
 public abstract class InSpaceObjectsManagerImpl<Distance extends Number> extends OWIDLongImpl
 		implements InSpaceObjectsManager<Distance> {

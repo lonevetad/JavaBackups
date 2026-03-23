@@ -7,7 +7,7 @@ import dataStructures.isom.PathFinderIsom;
 import geometry.implementations.PathOptimizerPoint;
 import geometry.implementations.ProviderShapeRunnerImpl;
 import tests.tDataStruct.Test_MultiISOMRetangularMap_V1;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 /** Refers to {@link Test_MultiISOMRetangularMap_V1}. */
 public abstract class AbstractMultiOISMRectangular<Distance extends Number> extends InSpaceObjectsManagerImpl<Distance>

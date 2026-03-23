@@ -14,7 +14,7 @@ import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.loaders.LoaderGeneric.LoadStatusResult;
 import tools.Comparators;
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 /**
  * A Manager that manages all {@link LoaderGeneric}, loads them and manages the

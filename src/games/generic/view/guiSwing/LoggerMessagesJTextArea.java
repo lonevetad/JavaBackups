@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
-import tools.LoggerMessages;
+import tools.log.LoggerMessages;
 
 public class LoggerMessagesJTextArea implements LoggerMessages {
 
