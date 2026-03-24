@@ -1442,7 +1442,7 @@
       "Precision": 8,
       "Intelligence": 1,
       "CriticalProbabilityPerThousandHit": 25,
-      "CriticalMultiplierPercentage": 17
+      "CriticalMultiplierPercentageBonus": 17
     }
   },
   {
@@ -1525,7 +1525,7 @@
     "name": "of Seaman",
     "rarity": 1,
     "price": [11],
-    "category": "",
+    "category": "WorkersRolesRelated",
     "attributesModifiers": {
       "Faith": 4,
       "Precision": 3
@@ -4918,7 +4918,7 @@
     "name": "of Wealth Calm",
     "rarity": 3,
     "price": [40],
-    "category": "Intantation",
+    "category": "Incantation",
     "attributesModifiers": {
       "LifeMax": 200,
       "ManaMax": 100,
@@ -5322,7 +5322,7 @@
       "Strength": -1,
       "Health": 2,
       "Faith": 4,
-      "Staminamax": 15,
+      "StaminaMax": 15,
       "StaminaRegen": 2
     }
   },
@@ -5427,7 +5427,7 @@
       "MagicalProbabilityPerThousandHit": -13,
       "PhysicalDamageBonus": 17,
       "MagicalDamageBonus": 17,
-      "CriticalMultiplierPercentage": 17
+      "CriticalMultiplierPercentageBonus": 17
     }
   },
   {
@@ -5441,7 +5441,7 @@
       "PhysicalProbabilityPerThousandHit": 15,
       "MagicalProbabilityPerThousandHit": 15,
       "CriticalProbabilityPerThousandHit": 175,
-      "CriticalMultiplierPercentage": 30
+      "CriticalMultiplierPercentageBonus": 30
     }
   },
   {
@@ -5472,7 +5472,7 @@
       "PhysicalProbabilityPerThousandHit": 30,
       "MagicalProbabilityPerThousandHit": 30,
       "CriticalProbabilityPerThousandHit": 45,
-      "CriticalMultiplierPercentage": 15
+      "CriticalMultiplierPercentageBonus": 15
     }
   },
   {
@@ -6753,7 +6753,7 @@
       "MagicalDamageMultiplierPercentageBonus": 15,
       "MagicalProbabilityPerThousandHit": 200,
       "CriticalProbabilityPerThousandHit": 100,
-      "CriticalMultiplierPercentage": 20
+      "CriticalMultiplierPercentageBonus": 20
     }
   },
   {
@@ -6925,7 +6925,7 @@
       "Strength": 4,
       "Precision": 7,
       "Dexterity": 7,
-      "Welocity": 10,
+      "Velocity": 10,
       "StaminaMax": 20,
       "StaminaRegen": 3
     }
@@ -6939,7 +6939,7 @@
       "Strength": 2,
       "Precision": 6,
       "Dexterity": 6,
-      "Welocity": 10,
+      "Velocity": 10,
       "StaminaMax": 15,
       "StaminaRegen": 3
     }
@@ -7018,7 +7018,7 @@
       "Constitution": 5,
       "Strength": 2,
       "Velocity": 12,
-      "FileMax": 25,
+      "LifeMax": 25,
       "LifeRegen": 5,
       "ManaMax": 10,
       "ManaRegen": 5,
@@ -7037,7 +7037,7 @@
       "Strength": 2,
       "Dexterity": 5,
       "Precision": 5,
-      "FileMax": 65,
+      "LifeMax": 65,
       "LifeRegen": 15,
       "ManaMax": 10,
       "ManaRegen": 5,
@@ -7056,7 +7056,7 @@
       "Dexterity": 3,
       "Precision": 7,
       "Faith": 3,
-      "FileMax": 15,
+      "LifeMax": 15,
       "LifeRegen": 2,
       "ManaMax": 40,
       "ManaRegen": 10,
@@ -7075,7 +7075,7 @@
       "Dexterity": 7,
       "Precision": 3,
       "Faith": 2,
-      "FileMax": 15,
+      "LifeMax": 15,
       "LifeRegen": 2,
       "ManaMax": 30,
       "ManaRegen": 8,
@@ -7095,7 +7095,7 @@
       "Precision": 6,
       "Faith": 2,
       "Defense": -2,
-      "FileMax": 30,
+      "LifeMax": 30,
       "LifeRegen": 8,
       "ManaMax": 30,
       "ManaRegen": 8,
@@ -7671,7 +7671,7 @@
     "isPrefix": true,
     "rarity": 1,
     "price": [17],
-    "category": "Runed",
+    "category": "Rune",
     "attributesModifiers": {
       "Strength": 1,
       "Constitution": 1,

@@ -52,25 +52,37 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	 * original implementation.<br>
 	 * Set it as <code>0 (zero)</code> to remove each limit, especially FPS limits.
 	 */
-	public int getMinimumMillisecondsEachCycle() { return MIN_DELTA; }
+	public int getMinimumMillisecondsEachCycle() {
+		return MIN_DELTA;
+	}
 
 	@Override
-	public GModelTimeBased getModelTimeBased() { return (GModelTimeBased) model; }
+	public GModelTimeBased getModelTimeBased() {
+		return (GModelTimeBased) model;
+	}
 
 	/** Access ALL {@link GEvent}-firing methods through this instance. */
 	@Override
-	public GEventInterface getEventInterface() { return eventInterface; }
+	public GEventInterface getEventInterface() {
+		return eventInterface;
+	}
 
 	/**
 	 * Should not be used, use with caution or use
 	 * {@link GModalityET#getEventInterface()}) instead.
 	 */
-	public GEventManager getEventManager() { return eventInterface.getGameEventManager(); }
+	public GEventManager getEventManager() {
+		return eventInterface.getGameEventManager();
+	}
 
-	public GModelET getGModelEventTimedObjectsHolder() { return (GModelET) this.getModel(); }
+	public GModelET getGModelEventTimedObjectsHolder() {
+		return (GModelET) this.getModel();
+	}
 
 	@Override
-	public int getMaxEventProcessedEachStep() { return maxEventProcessedEachStep; }
+	public int getMaxEventProcessedEachStep() {
+		return maxEventProcessedEachStep;
+	}
 
 	//
 
@@ -87,9 +99,13 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 
 	//
 	@Override
-	public GModel newGameModel() { return new GModelET(); }
+	public GModel newGameModel() {
+		return new GModelET();
+	}
 
-	public GameThreadsManager newGameThreadsManager() { return new GameThreadsManagerBase(this); }
+	public GameThreadsManager newGameThreadsManager() {
+		return new GameThreadsManagerBase(this);
+	}
 
 	@Override
 	public void onCreate() {
@@ -130,21 +146,29 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean removeAllGameObjects() { return super.removeAllGameObjects(); }
+	public boolean removeAllGameObjects() {
+		return super.removeAllGameObjects();
+	}
 
 	/**
 	 * Override designed, by default simply calls
 	 * {@link GameThreadsManager#instantiateAllThreads()}.
 	 */
-	protected void checkAndRebuildThreads() { this.gameThreadsManager.instantiateAllThreads(); }
+	protected void checkAndRebuildThreads() {
+		this.gameThreadsManager.instantiateAllThreads();
+	}
 
 	/**
 	 * Start all kinds of threads
 	 */
-	protected void startAllThreads() { this.gameThreadsManager.startGThreads(); }
+	protected void startAllThreads() {
+		this.gameThreadsManager.startGThreads();
+	}
 
 	@Override
-	public void addGameThread(GThread t) { this.gameThreadsManager.addGThread(t); }
+	public void addGameThread(GThread t) {
+		this.gameThreadsManager.addGThread(t);
+	}
 
 	public GThread addGameThread(GThread.GTRunnable runner) {
 		GThread gt;
@@ -161,7 +185,9 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	}
 
 	@Override
-	public void removeGameThread(GThread t) { this.gameThreadsManager.removeGThread(t); }
+	public void removeGameThread(GThread t) {
+		this.gameThreadsManager.removeGThread(t);
+	}
 
 	/**
 	 * Used by other objects and threads (like GUI, sound, animation, the game's
@@ -172,7 +198,9 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	 * Delegate the implementation to
 	 * {@link GameThreadsManager#isGModalityRunningOrSleep()}.
 	 */
-	public boolean isRunningOrSleep() { return this.gameThreadsManager.isGModalityRunningOrSleep(); }
+	public boolean isRunningOrSleep() {
+		return this.gameThreadsManager.isGModalityRunningOrSleep();
+	}
 
 	@Override
 	public void startGame() {
@@ -228,8 +256,9 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 			// rigenerazioni, movimento di proiettili e cose, etc
 		});
 		gem = this.eventInterface.getGameEventManager();
-		if (gem != null)
+		if (gem != null) {
 			gem.performAllEvents();
+		}
 	}
 
 	/**
@@ -258,15 +287,17 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 				start = System.currentTimeMillis();
 				doOnEachCycle(lastElapsedDeltaTime);
 				timeToSleep = ((int) (System.currentTimeMillis() - start)); // used as temp
-				if (timeToSleep > MAX_ELAPSED_TIME)
+				if (timeToSleep > MAX_ELAPSED_TIME) {
 					timeToSleep = MAX_ELAPSED_TIME;
+				}
 				lastElapsedDeltaTime = timeToSleep;
 				timeToSleep = (minDelta - timeToSleep + 1);
 
 				// "+1" as a rounding factor for nanoseconds
 				if (timeToSleep > 0) {
-					if (timeToSleep > MAX_DELTA)
+					if (timeToSleep > MAX_DELTA) {
 						timeToSleep = MAX_DELTA; // do not exceed
+					}
 					lastElapsedDeltaTime = minDelta; // because the total ime elapsed in this cycle is this amount
 					try {
 						Thread.sleep(timeToSleep);
@@ -292,12 +323,19 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	/**
 	 * Proxy-like method.
 	 */
-	public void addTimedObject(TimedObject to) { this.getModelTimeBased().addTimedObject(to); }
+	public void addTimedObject(TimedObject to) {
+		this.getModelTimeBased().addTimedObject(to);
+	}
 
 	/**
 	 * Proxy-like method.
 	 */
-	public void addEventObserver(GEventObserver geo) { this.getEventManager().addEventObserver(geo); }
+	public boolean addEventObserver(Object geo) {
+		if (!(geo instanceof GEventObserver)) {
+			return false;
+		}
+		return this.getEventManager().addEventObserver((GEventObserver) geo);
+	}
 
 //	public void fireEvent(GEvent event) { this.getEventManager(). }
 
@@ -315,10 +353,14 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	//
 
 	public static class GameThreadsManagerBase extends GameThreadsManager {
-		public GameThreadsManagerBase(GModalityET gmodality) { super(gmodality); }
+		public GameThreadsManagerBase(GModalityET gmodality) {
+			super(gmodality);
+		}
 
 		@Override
-		public void instantiateAllThreads() { this.addGThread(new GThread(new RunnerOnGameInstance(gmodality))); }
+		public void instantiateAllThreads() {
+			this.addGThread(new GThread(new RunnerOnGameInstance(gmodality)));
+		}
 	}
 
 	// previously was ThreadGame_GameRunner_E1
@@ -345,6 +387,8 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 		}
 
 		@Override
-		protected boolean canRunRunnerCycle() { return gameModality.isRunningOrSleep(); }
+		protected boolean canRunRunnerCycle() {
+			return gameModality.isRunningOrSleep();
+		}
 	}
 }

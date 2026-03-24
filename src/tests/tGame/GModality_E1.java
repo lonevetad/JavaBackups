@@ -200,21 +200,21 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 							getAbilityByName(this, ADamageReductionOnLifeLowerToPhysicalAttributes.NAME));
 		}
 		System.out.println("\n\n equipping: " + equipmentName);
-		System.out.println(equip.toString());
+		System.out.println(String.valueOf(equip));
 		System.out.println("\n\n");
 		p.equip(equip);
-		System.out.println("Plated Armor of Stonefying Skin has " + equip.getAbilities().size() + " abilities !!!");
+		System.out.println(equipmentName + " has " + equip.getAbilities().size() + " abilities !!!");
 
 		equipmentName = "Belt with Limph-made Walled";
 		equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
 		System.out.println("\n\n equipping: " + equipmentName);
-		System.out.println(equip.toString());
+		System.out.println(String.valueOf(equip));
 		System.out.println("\n\n");
 		p.equip(equip);
 
 		for (String en : new String[] { "Cloth Hat", "Ring of rusted plate", "Sunstone Ring", "Triphane Ring",
 				"Amazonite Ring", "Amazonite Ring", "Moonstone Ring", "Gloves of the mad hunter",
-				"Ferromagnetic Earrings", "Ferromagnetic Bracelet", "Ferromagnetic Chocker", "Crystal armguard" }) {
+				"Ferromagnetic Earrings", "Ferromagnetic Bracelet", "Ferromagnetic Chocker", "Crystal Armguard" }) {
 			equipmentName = en;
 			equip = goph.getEquipmentsProvider().getNewObjByName(this, equipmentName);
 			p.equip(equip);
