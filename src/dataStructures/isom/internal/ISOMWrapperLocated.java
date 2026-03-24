@@ -13,6 +13,7 @@ import dataStructures.isom.matrixBased.MatrixInSpaceObjectsManager;
 import games.generic.controlModel.objects.ObjectInSpace;
 import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
+import geometry.ObjectShaped;
 import geometry.PointInt;
 
 /**
@@ -41,7 +42,7 @@ import geometry.PointInt;
  * <code>{x:5, y:10} - {x:1, y:3} = {x:4, y:7}</code>, so the {@link NodeIsom}
  * located at <code>{x:4, y:7}</code> will be taken into account.
  */
-public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocated {
+public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocated, ObjectShaped {
 	private static final long serialVersionUID = 1L;
 	/** In Degreed */
 	protected int isomCacheWidth, isomCacheHeight;
@@ -83,10 +84,15 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 
 	//
 
-	public AbstractShape2D getShape() { return isomHeld.getShape(); }
+	@Override
+	public AbstractShape2D getShape() {
+		return isomHeld.getShape();
+	}
 
 	@Override
-	public Long getID() { return this.isomHeld.getID(); }
+	public Long getID() {
+		return this.isomHeld.getID();
+	}
 
 	/**
 	 * See {@link InSpaceObjectsManager#getLocation()}.
@@ -96,15 +102,65 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Point getLocation() { return isomHeld.getLocation(); }
+	public Point getLocation() {
+		return isomHeld.getLocation();
+	}
 
-	public InSpaceObjectsManager<Distance> getIsomHeld() { return isomHeld; }
+	@Override
+	public Point getCenter() {
+		return isomHeld.getCenter();
+	}
 
-	public double getSinCache() { return sinCache; }
+	public AbstractShape2D getBoundingShape() {
+		return isomHeld.getBoundingShape();
+	}
 
-	public double getCosCache() { return cosCache; }
+	@Override
+	public int getx() {
+		return isomHeld.getx();
+	}
 
-	public double getAngleRotationDegrees() { return angleRotationDegrees; }
+	@Override
+	public int gety() {
+		return isomHeld.gety();
+	}
+
+	public ObjectLocated getAt(Point location) {
+		return isomHeld.getAt(location);
+	}
+
+	public ObjectLocated getAt(int x, int y) {
+		return isomHeld.getAt(x, y);
+	}
+
+	public int getWidth() {
+		return isomHeld.getWidth();
+	}
+
+	public int getHeight() {
+		return isomHeld.getHeight();
+	}
+
+	@Override
+	public void setShape(AbstractShape2D shape) {
+		isomHeld.setShape(shape);
+	}
+
+	public InSpaceObjectsManager<Distance> getIsomHeld() {
+		return isomHeld;
+	}
+
+	public double getSinCache() {
+		return sinCache;
+	}
+
+	public double getCosCache() {
+		return cosCache;
+	}
+
+	public double getAngleRotationDegrees() {
+		return angleRotationDegrees;
+	}
 
 	public Entry<InSpaceObjectsManager<Distance>, PointInt> getIsomAndLocation() {
 		Point isomLoc;
@@ -116,13 +172,16 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 	//
 
 	@Override
-	public boolean setID(Long newID) { return false; }
+	public boolean setID(Long newID) {
+		return false;
+	}
 
 	public void setAngleRotationDegrees(double angleRotationDegrees) {
 		double temp;
 		this.angleRotationDegrees = angleRotationDegrees % 360.0;
-		if (this.angleRotationDegrees < 0.0)
+		if (this.angleRotationDegrees < 0.0) {
 			this.angleRotationDegrees += 360.0;
+		}
 		temp = Math.toRadians(this.angleRotationDegrees);
 		temp = (sinInverseCache = -(sinCache = Math.sin(temp)));
 //		cosInverseCache = cosCache = Math.cos(rad);
@@ -140,7 +199,9 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 	}
 
 	@Override
-	public void setLocation(Point p) { this.setLocation(p.x, p.y); }
+	public void setLocation(Point p) {
+		this.setLocation(p.x, p.y);
+	}
 
 	@Override
 	public void setLocation(int x, int y) {
@@ -192,7 +253,9 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 		return p;
 	}
 
-	public Point makePointAbsoluteToCenter(int x, int y) { return makePointAbsoluteToCenter(new Point(x, y)); }
+	public Point makePointAbsoluteToCenter(int x, int y) {
+		return makePointAbsoluteToCenter(new Point(x, y));
+	}
 
 	public Point makePointAbsoluteToCenter(Point p) {
 		Point location;
@@ -224,15 +287,21 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 	 * Calls {@link #makePointRelativeToTopLeftCorner(Point)} providing a newly
 	 * created {@link Point}.
 	 */
-	public Point applyIsomsRotation(int x, int y) { return applyIsomsRotation(new Point(x, y)); }
+	public Point applyIsomsRotation(int x, int y) {
+		return applyIsomsRotation(new Point(x, y));
+	}
 
 	/**
 	 * Apply both {@link #makePointRelativeToTopLeftCorner(Point)} and then
 	 * {@link #applyIsomsRotation(Point)} to the given <b>absolute</b> point.
 	 */
-	public Point makeRelativeToCenterAndRotate(Point p) { return applyIsomsRotation(makePointRelativeToCenter(p)); }
+	public Point makeRelativeToCenterAndRotate(Point p) {
+		return applyIsomsRotation(makePointRelativeToCenter(p));
+	}
 
-	public Point makeRelativeAndRotate(int x, int y) { return makeRelativeToCenterAndRotate(new Point(x, y)); }
+	public Point makeRelativeAndRotate(int x, int y) {
+		return makeRelativeToCenterAndRotate(new Point(x, y));
+	}
 
 	/** Absolute coordinates. */
 	public NodeIsom<Distance> getNodeAt(int x, int y) {
@@ -263,8 +332,9 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 		boolean c;
 		int xo, yo;// , x, y;
 		Point oldLocation;
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		oldLocation = o.getLocation(); // it's the center of the object
 		xo = oldLocation.x;
 		yo = oldLocation.y;
@@ -280,8 +350,9 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 		boolean c;
 		int xo, yo;// , x, y;
 		Point oldLocation;
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		oldLocation = o.getLocation();
 		xo = oldLocation.x;
 		yo = oldLocation.y;
@@ -297,8 +368,9 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 		int xo, yo;// , x, y;
 		Point oldLocation;
 //		misomLocation = this.isomHeld.getLocation();
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		oldLocation = o.getLocation();
 		xo = oldLocation.x;
 		yo = oldLocation.y;
@@ -389,21 +461,29 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 		}
 
 		@Override
-		public InSpaceObjectsManager<D> getKey() { return key; }
+		public InSpaceObjectsManager<D> getKey() {
+			return key;
+		}
 
 		@Override
-		public PointInt getValue() { return value; }
+		public PointInt getValue() {
+			return value;
+		}
 
 		/**
 		 * Try to update the location, given a floating-point {@link Point2D}.
 		 */
 		protected boolean updateLocation(Point2D p) {
-			if (p == null) { return false; }
+			if (p == null) {
+				return false;
+			}
 			return this.updateLocation((int) p.getX(), (int) p.getY());
 		}
 
 		protected boolean updateLocation(Point p) {
-			if (p == null) { return false; }
+			if (p == null) {
+				return false;
+			}
 			return this.updateLocation(p.x, p.y);
 		}
 
@@ -428,4 +508,5 @@ public class ISOMWrapperLocated<Distance extends Number> implements ObjectLocate
 			return oldValue;
 		}
 	}
+
 }

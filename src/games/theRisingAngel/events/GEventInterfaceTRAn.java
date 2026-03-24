@@ -12,6 +12,7 @@ import games.generic.controlModel.events.event.EventDestructionObj;
 import games.generic.controlModel.events.event.EventEnteringOnMap;
 import games.generic.controlModel.events.event.EventMoneyChange;
 import games.generic.controlModel.events.event.EventMoviment;
+import games.generic.controlModel.events.event.EventResourceLeeched;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
 import games.generic.controlModel.objects.DestructibleObject;
@@ -167,4 +168,13 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	public void fireLevelGainedEvent(GModalityET gm, int levelGained) { // TODO Auto-generated method stub
 	}
 
+	@Override
+	public <SourceRecharge extends ObjectWithID> EventResourceLeeched<SourceRecharge> fireResourceLeechedEvent(
+			GModalityET gaModality, SourceRecharge leecher, ResourceRechargeableHolder receiver,
+			EventResourceRecharge<SourceRecharge> rechargeEvent) {
+		EventResourceLeeched<SourceRecharge> eventLeechage;
+		eventLeechage = new EventResourceLeeched<>(EventsTRAn.ResourceLeeched, leecher, rechargeEvent);
+		this.getGameEventManager().fireEvent(eventLeechage);
+		return eventLeechage;
+	}
 }

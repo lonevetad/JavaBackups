@@ -14,6 +14,7 @@ import games.generic.controlModel.abilities.impl.AbilityAllocationImpl;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.EquipmentsHolder;
 import games.generic.controlModel.items.EquipmentSet;
 import games.generic.controlModel.misc.CreatureAttributes;
@@ -329,15 +330,15 @@ public abstract class BaseCreatureRPGImpl implements BaseCreatureRPG {
 	}
 
 	@Override
-	public <Source extends ObjectWithID> void performRechargeOf(ResourceAmountRecharged recharge,
-			Source whoIsPerformingTheRecharge) {
+	public <Source extends ObjectWithID> EventResourceRecharge<Source> performRechargeOf(
+			ResourceAmountRecharged recharge, Source whoIsPerformingTheRecharge) {
 		RechargableResource res;
 		res = this.rechargableResources.get(recharge.getRechargedResource());
 		if (res == null) {
 			throw new IllegalArgumentException("Resource to recharge not found: " + recharge);
 		}
 		res.performRechargeBy(recharge.getRechargedAmount());
-		this.fireRechargeEvent(recharge, whoIsPerformingTheRecharge);
+		return this.fireRechargeEvent(recharge, whoIsPerformingTheRecharge);
 	}
 
 	// TODO fire damage

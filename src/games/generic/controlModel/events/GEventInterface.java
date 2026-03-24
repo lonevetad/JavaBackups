@@ -7,6 +7,7 @@ import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.events.event.EventResourceLeeched;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
 import games.generic.controlModel.player.PlayerGeneric;
@@ -88,7 +89,8 @@ public interface GEventInterface extends Cloneable {
 	 *                                   operation.
 	 * @param receiver                   the {@link ResourceRechargeableHolder}
 	 *                                   which is receiving the recharge.
-	 * @param rechargeInstance
+	 * @param rechargeInstance           the amount of "recharge" that is being
+	 *                                   received
 	 * @return the event {@link EventResourceRecharge} describing this recharge
 	 */
 	public <SourceRecharge extends ObjectWithID> EventResourceRecharge<SourceRecharge> fireResourceRechargeReceivedEvent(
@@ -111,10 +113,30 @@ public interface GEventInterface extends Cloneable {
 	 *                                   operation.
 	 * @param receiver                   the {@link ResourceRechargeableHolder}
 	 *                                   which is receiving the recharge.
+	 * @param rechargeInstance           the amount of "recharge" that is being
+	 *                                   given
 	 * @return the event {@link EventResourceRecharge} describing this recharge
 	 */
 	public <SourceRecharge extends ObjectWithID> EventResourceRecharge<SourceRecharge> fireResourceRechargeGivenEvent(
 			GModalityET gaModality, SourceRecharge whoIsPerformingTheRecharge, ResourceRechargeableHolder receiver,
 			ResourceAmountRecharged rechargeInstance);
+
+	/**
+	 * @param <SourceRecharge>           The type of the object is performing the
+	 *                                   leeching operation (recharging a resource
+	 *                                   upon inflicting some {@link DamageGeneric})
+	 * @param gaModality                 {@link GModalityET}
+	 * @param whoIsPerformingTheRecharge The object who is performing the recharge
+	 *                                   operation.
+	 * @param receiver                   the {@link ResourceRechargeableHolder}
+	 *                                   which is receiving the recharge due to a
+	 *                                   leeching.
+	 * @param rechargeEvent              the recharge event subsequent to the
+	 *                                   leechage
+	 * @return the event {@link EventResourceLeeched} describing this leeching
+	 */
+	public <SourceRecharge extends ObjectWithID> EventResourceLeeched<SourceRecharge> fireResourceLeechedEvent(
+			GModalityET gaModality, SourceRecharge leecher, ResourceRechargeableHolder receiver,
+			EventResourceRecharge<SourceRecharge> rechargeEvent);
 
 }

@@ -60,21 +60,27 @@ public interface ResourceRechargeableHolder extends ObjectWithID, GModalityHolde
 	public default int getAmount(RechargeableResourceType resType) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		return res.getAmount();
 	}
 
 	public default int getMaxAmount(RechargeableResourceType resType) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		return res.getMaxAmount();
 	}
 
 	public default int getRechargeAmount(RechargeableResourceType resType) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		return res.getRechargeAmount();
 	}
 
@@ -83,21 +89,27 @@ public interface ResourceRechargeableHolder extends ObjectWithID, GModalityHolde
 	public default void setAmount(RechargeableResourceType resType, int amount) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		res.setAmount(amount);
 	}
 
 	public default void setMaxAmount(RechargeableResourceType resType, int amount) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		res.setAmountMax(amount);
 	}
 
 	public default void setRechargeAmount(RechargeableResourceType resType, int amount) {
 		RechargableResource res;
 		res = this.getRechargableResources().get(resType);
-		if (res == null) { throw new IllegalArgumentException("Resource " + resType + " not found."); }
+		if (res == null) {
+			throw new IllegalArgumentException("Resource " + resType + " not found.");
+		}
 		res.setRechargeAmount(amount);
 	}
 
@@ -117,7 +129,9 @@ public interface ResourceRechargeableHolder extends ObjectWithID, GModalityHolde
 	public default boolean addRechargableResource(RechargableResource resource) {
 		Map<RechargeableResourceType, RechargableResource> allResources;
 		allResources = this.getRechargableResources();
-		if (allResources.containsKey(resource.getResourceType())) { return false; }
+		if (allResources.containsKey(resource.getResourceType())) {
+			return false;
+		}
 		allResources.put(resource.getResourceType(), resource);
 		return true;
 	}
@@ -167,7 +181,9 @@ public interface ResourceRechargeableHolder extends ObjectWithID, GModalityHolde
 		GEventInterface eventInterface;
 		GModality gm;
 		gm = this.getGameModality();
-		if (!(gm instanceof GModalityET)) { return null; }
+		if (!(gm instanceof GModalityET)) {
+			return null;
+		}
 
 		eventInterface = gm.getGameObjectsManager().getGEventInterface();
 		eventInterface.fireResourceRechargeGivenEvent((GModalityET) gm, whoIsPerformingTheRecharge, this, recharge);
@@ -191,7 +207,7 @@ public interface ResourceRechargeableHolder extends ObjectWithID, GModalityHolde
 	 * @param whoIsPerformingTheRecharge The object who is performing the recharge
 	 *                                   operation.
 	 */
-	public <Source extends ObjectWithID> void performRechargeOf(ResourceAmountRecharged recharge,
-			Source whoIsPerformingTheRecharge);
+	public <Source extends ObjectWithID> EventResourceRecharge<Source> performRechargeOf(
+			ResourceAmountRecharged recharge, Source whoIsPerformingTheRecharge);
 
 }

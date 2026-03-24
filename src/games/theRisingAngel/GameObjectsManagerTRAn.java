@@ -14,6 +14,7 @@ import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
 import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.objects.creature.CreatureSimple;
 import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GModalityET;
@@ -210,8 +211,15 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 	 * @param damage the damage dealt
 	 */
 	public void leechDamage(BaseCreatureTRAn source, DamageReceiverGeneric target, DamageGeneric damage) {
-		ResourceAmountRecharged healing;
 		int damageDealt, leechablePercentage, i;
+		ResourceAmountRecharged healing;
+		GEventInterface eventInterface;
+		GEventInterfaceTRAn geiTran;
+		GModalityET gm;
+		//
+		gm = (GModalityET) getGameModality();
+		eventInterface = this.getGEventInterface();
+		geiTran = (GEventInterfaceTRAn) eventInterface;
 		damageDealt = damage.getDamageAmount();
 		i = leechableResources.length;
 		while (--i >= 0) {
@@ -220,8 +228,9 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 				leechablePercentage = (leechablePercentage * damageDealt) / 100;
 				if (leechablePercentage != 0) {
 					healing = new ResourceAmountRecharged(leechableResourcesType[i], leechablePercentage);
-					source.performRechargeOf(healing, source);
+					EventResourceRecharge<BaseCreatureTRAn> rechargeEvent = source.performRechargeOf(healing, source);
 					// TODO 2026-03-24: fire a "Resource Leeched event"
+					geiTran.fireResourceLeechedEvent(gm, source, source, rechargeEvent);
 				}
 			}
 		}

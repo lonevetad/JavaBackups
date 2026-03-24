@@ -8,7 +8,7 @@ public enum EventsTRAn implements IGEvent {
 	Destroyed("OIS"), ObjectAdded("OIS"), ObjectRemoved("OIS"), ObjectMoved("OIS"), // OIS = Object In Space
 	DamageInflicted("Dmg"), DamageReceived("Dmg"), DamageCriticalInflicted("Dmg"), DamageCriticalReceived("Dmg"),
 	DamageMissed("Dmg"), DamageAvoided("Dmg"), //
-	ResourceRechargeReceived("ResRech"), ResourceRechargeGiven("ResRech"), //
+	ResourceRechargeReceived("ResRech"), ResourceRechargeGiven("ResRech"), ResourceLeeched("ResRech"), //
 	PickedUpMoney("Money"), MoneyChanged("Money"), PickedUpDrop("Drop"), DropReleased("Drop"),
 	//
 	AttackPerformed("User"), SpellCasted("User"), //
@@ -16,13 +16,21 @@ public enum EventsTRAn implements IGEvent {
 
 	protected final String type;
 
-	EventsTRAn(String t) { this.type = t; }
+	EventsTRAn(String t) {
+		this.type = t;
+	}
 
 	@Override
-	public Long getID() { return (long) ordinal(); }
+	public Long getID() {
+		return (long) ordinal();
+	}
 
-	public String getSuperType() { return type; }
+	public String getSuperType() {
+		return type;
+	}
 
 	@Override
-	public String getName() { return name(); }
+	public String getName() {
+		return name();
+	}
 }
