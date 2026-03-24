@@ -7,7 +7,16 @@ import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 
 public class LoaderCreatureTRAn extends LoaderGameObjects<BaseCreatureRPG> {
 
-	public LoaderCreatureTRAn(GameObjectsProvider<BaseCreatureRPG> objProvider) { super(objProvider); }
+	public static final String LOADER_NAME_LoaderConfigurationsTRAn = "LoaderConfigurationsTRAn";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderConfigurationsTRAn;
+	}
+
+	public LoaderCreatureTRAn(GameObjectsProvider<BaseCreatureRPG> objProvider) {
+		super(objProvider);
+	}
 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {

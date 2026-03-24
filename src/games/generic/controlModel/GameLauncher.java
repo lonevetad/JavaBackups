@@ -2,15 +2,24 @@ package games.generic.controlModel;
 
 import games.generic.view.GameView;
 
+/**
+ * Acts as a bridge across the GUI and the overall manager of the game (the
+ * {@link GController}).
+ */
 public abstract class GameLauncher {
-	public GameLauncher() {}
+	public GameLauncher() {
+	}
 
 	protected GController controller;
 	protected GameView view;
 
-	public GController getController() { return controller; }
+	public GController getController() {
+		return controller;
+	}
 
-	public GameView getView() { return view; }
+	public GameView getView() {
+		return view;
+	}
 
 	public abstract GController newController();
 

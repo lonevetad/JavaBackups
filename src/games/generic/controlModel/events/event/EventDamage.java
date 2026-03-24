@@ -5,6 +5,7 @@ import games.generic.controlModel.abilities.impl.AbilityModifyingAttributesRealT
 import games.generic.controlModel.abilities.impl.AbilityVanishingOverTime;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
+import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.damage.DamageTypeGeneric;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
@@ -12,15 +13,16 @@ import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.LivingObject;
 
-public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, LivingObject> {
+public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, DamageReceiverGeneric> {
 	private static final long serialVersionUID = 1L;
 
-	public EventDamage(IGEvent eventIdentifier, DamageDealerGeneric source, LivingObject target, DamageGeneric damage) {
+	public EventDamage(IGEvent eventIdentifier, DamageDealerGeneric source, DamageReceiverGeneric target,
+			DamageGeneric damage) {
 		this(eventIdentifier, source, target, damage, damage.getDamageAmount());
 	}
 
-	public EventDamage(IGEvent eventIdentifier, DamageDealerGeneric source, LivingObject target, DamageGeneric damage,
-			int damageReductedByArmour) {
+	public EventDamage(IGEvent eventIdentifier, DamageDealerGeneric source, DamageReceiverGeneric target,
+			DamageGeneric damage, int damageReductedByArmour) {
 		super(eventIdentifier, source, target);
 		this.damageOriginal = damage;
 		this.damageAmountToBeApplied = this.damageReducedByTargetArmors = damageReductedByArmour;
@@ -35,18 +37,24 @@ public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, L
 	 * Returns the original damage with related informations. See
 	 * {@link DamageGeneric}.
 	 */
-	public DamageGeneric getDamageOriginal() { return damageOriginal; }
+	public DamageGeneric getDamageOriginal() {
+		return damageOriginal;
+	}
 
 	/**
 	 * Proxy for calling <code>{@link #getDamageOriginal()}.getDamageType()</code>.
 	 */
-	public DamageTypeGeneric getDamageType() { return damageOriginal.getDamageType(); }
+	public DamageTypeGeneric getDamageType() {
+		return damageOriginal.getDamageType();
+	}
 
 	/**
 	 * Proxy for calling
 	 * <code>{@link #getDamageOriginal()}.getDamageAmount()</code>.
 	 */
-	public int getDamageAmountOriginal() { return damageOriginal.getDamageAmount(); }
+	public int getDamageAmountOriginal() {
+		return damageOriginal.getDamageAmount();
+	}
 
 	/**
 	 * The amount of damage that will be dealt to the target, computed considering
@@ -62,16 +70,22 @@ public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, L
 	 * Each ability (in general, an {@link GEventObserver} able to react to damage,
 	 * i.e.: this event) should modify this value.
 	 */
-	public int getDamageAmountToBeApplied() { return damageAmountToBeApplied; }
+	public int getDamageAmountToBeApplied() {
+		return damageAmountToBeApplied;
+	}
 
 	/**
 	 * Upon receiving some damage, a {@link LivingObject} may apply some reductions
 	 * or some malus, maybe based on some kind of "armor/reduction", which could be
 	 * calculated considering that object's attributes ({@link CreatureAttributes}).
 	 */
-	public int getDamageReducedByTargetArmors() { return damageReducedByTargetArmors; }
+	public int getDamageReducedByTargetArmors() {
+		return damageReducedByTargetArmors;
+	}
 
-	public void setDamageOriginal(DamageGeneric damage) { this.damageOriginal = damage; }
+	public void setDamageOriginal(DamageGeneric damage) {
+		this.damageOriginal = damage;
+	}
 
 	/** See {@link #getDamageAmountToBeApplied()}. */
 	public void setDamageAmountToBeApplied(int damageAmountToBeApplied) {
@@ -79,7 +93,9 @@ public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, L
 	}
 
 	@Override
-	public boolean isRequirigImmediateProcessing() { return true; }
+	public boolean isRequirigImmediateProcessing() {
+		return true;
+	}
 
 	/**
 	 * Check if the provided object is the source of the {@link Damage AAAAAA TODO
@@ -89,7 +105,9 @@ public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, L
 	 * @param ddg the object that may be the source of this damage event.
 	 * @return the check result
 	 */
-	public boolean isSource(DamageDealerGeneric ddg) { return super.source == ddg; }
+	public boolean isSource(DamageDealerGeneric ddg) {
+		return super.source == ddg;
+	}
 
 	/**
 	 * Check if the provided object is the target of the {@link Damage AAAAAA TODO
@@ -99,7 +117,9 @@ public class EventDamage extends EventInfo_SourceToTarget<DamageDealerGeneric, L
 	 * @param ddg the object that may be the target of this damage event.
 	 * @return the check result
 	 */
-	public boolean isTarget(LivingObject ddg) { return super.target == ddg; }
+	public boolean isTarget(DamageReceiverGeneric ddg) {
+		return super.target == ddg;
+	}
 
 	@Override
 	public String toString() {

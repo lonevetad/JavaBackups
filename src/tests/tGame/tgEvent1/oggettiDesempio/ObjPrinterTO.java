@@ -22,37 +22,62 @@ public class ObjPrinterTO implements TimedObjectPeriodic {
 	}
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
-	public String getText() { return text; }
+	public String getText() {
+		return text;
+	}
 
-	public void setText(String text) { this.text = text; }
-
-	@Override
-	public long getAccumulatedTimeElapsed() { return accumulatedTimeElapsed; }
-
-	@Override
-	public void setAccumulatedTimeElapsed(long newAccumulated) { this.accumulatedTimeElapsed = newAccumulated; }
-
-	@Override
-	public long getTimeThreshold() { return timeThreshold; }
+	public void setText(String text) {
+		this.text = text;
+	}
 
 	@Override
-	public void executeAction(GModality modality) { System.out.println(text); }
+	public long getAccumulatedTimeElapsed() {
+		return accumulatedTimeElapsed;
+	}
 
 	@Override
-	public void onAddedToGame(GModality gm) {}
+	public void setAccumulatedTimeElapsed(long newAccumulated) {
+		this.accumulatedTimeElapsed = newAccumulated;
+	}
 
 	@Override
-	public void onRemovedFromGame(GModality gm) {}
+	public long getTimeThreshold() {
+		return timeThreshold;
+	}
 
 	@Override
-	public String getName() { return "PRINTEEEEEEEEEEEEEEEEEEER"; }
+	public void executeAction(GModality modality) {
+		System.out.println(text);
+	}
 
 	@Override
-	public GModality getGameModality() { return gm; }
+	public void onAddedToGame(GModality gm) {
+	}
+
+	@Override
+	public void onRemovedFromGame(GModality gm) {
+	}
+
+	@Override
+	public String getName() {
+		return "PRINTEEEEEEEEEEEEEEEEEEER";
+	}
+
+	@Override
+	public GModality getGameModality() {
+		return gm;
+	}
 
 	@Override
 	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean setID(Long newID) {
+		return false;
 	}
 }

@@ -29,7 +29,16 @@ public class LoaderConfigurationsTRAn extends LoaderConfigurationsRPG {
 	public static final String RESOURCE_REPOSITORY_PULL_FACT = LoaderGeneric.startPath + RESOURCE_REPOSITORY
 			+ File.separatorChar;
 
-	public LoaderConfigurationsTRAn() { super(); }
+	public static final String LOADER_NAME_LoaderConfigurationsTRAn = "LoaderConfigurationsTRAn";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderConfigurationsTRAn;
+	}
+
+	public LoaderConfigurationsTRAn() {
+		super();
+	}
 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {
@@ -39,7 +48,9 @@ public class LoaderConfigurationsTRAn extends LoaderConfigurationsRPG {
 		gcTrar = (GControllerTRAn) gc;
 
 		superRes = LoaderConfigurationsTRAn.super.loadInto(gc);
-		if (superRes != LoadStatusResult.Success) { return superRes; }
+		if (superRes != LoadStatusResult.Success) {
+			return superRes;
+		}
 
 		go = (GameOptionsTRAn) gcTrar.getGameOptions();
 		loadGameOptions(go);

@@ -70,6 +70,14 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 
 	// END COMBINATORIC GENERATION SETUP
 
+	public static final String LOADER_NAME_LoaderEquipTRAn = "LoaderEquipTRAn";
+	public static final String FILE_NAME__EQUIP_ITEMS = "equipItems";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderEquipTRAn;
+	}
+
 	public LoaderEquipTRAn(GameObjectsProvider<EquipmentItem> objProvider) {
 		super(objProvider);
 		this.tribesFullSetDropStates = new EnumMap<>(Tribe.class);
@@ -104,8 +112,8 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 			//
 			// equips.forEach(
 			JSONParser.forEachInArray(//
-					JSONParser.charactersIteratorFrom(
-							new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + "equipItems.json")),
+					JSONParser.charactersIteratorFrom(new File(
+							LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + FILE_NAME__EQUIP_ITEMS + ".json")),
 					(indexEquip, rawEquip) -> {
 						// TODO
 						FactoryEquip factory;

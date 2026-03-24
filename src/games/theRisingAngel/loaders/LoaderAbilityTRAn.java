@@ -42,6 +42,13 @@ import games.theRisingAngel.misc.AttributeModificationTRAn;
 
 public class LoaderAbilityTRAn extends LoaderAbilities {
 
+	public static final String LOADER_NAME_LoaderAbilityTRAn = "LoaderAbilityTRAn";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderAbilityTRAn;
+	}
+
 	public LoaderAbilityTRAn(GameObjectsProvider<AbilityGeneric> objProvider) {
 		super(objProvider);
 	}
@@ -333,4 +340,5 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 			c.accept(lowestLevel);
 		}
 	}
+
 }

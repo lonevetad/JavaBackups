@@ -10,6 +10,13 @@ import games.theRisingAngel.inventory.InventoryItemBaseTRAn;
 
 public class LoaderItemsTRAn extends LoaderItems {
 
+	public static final String LOADER_NAME_LoaderItemsTRAn = "LoaderItemsTRAn";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderItemsTRAn;
+	}
+
 	public LoaderItemsTRAn(ItemProvider objProvider) {
 		super(objProvider);
 	}
@@ -18,7 +25,7 @@ public class LoaderItemsTRAn extends LoaderItems {
 	public LoadStatusResult loadInto(GController gm) {
 		// TODO use it
 
-		// nothing to load wight now
+		// nothing to load right now
 
 		return LoadStatusResult.Success;
 	}

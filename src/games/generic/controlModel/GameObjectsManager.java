@@ -8,6 +8,7 @@ import dataStructures.SetMapped;
 import dataStructures.isom.InSpaceObjectsManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
+import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
 import games.generic.controlModel.events.GEventObserver;
@@ -42,7 +43,7 @@ import tools.ObjectWithID;
  * instance)</li>
  * <li>{@link LivingObject} (through methods like
  * {@link #dealsDamageTo(DamageDealerGeneric, CreatureSimple, DamageGeneric)}).</li>
- * <li>{@link ObjectInSpace} (as n°1)</li>
+ * <li>{@link ObjectInSpace} (as nï¿½1)</li>
  * <li>{@link GEventObserver} (through {@link GEventInterface} instance)</li>
  * </ol>
  */
@@ -64,9 +65,13 @@ public interface GameObjectsManager extends GModalityHolder {
 
 	//
 
-	public default void addToSpace(ObjectInSpace mo) { getGObjectInSpaceManager().addObject(mo); }
+	public default void addToSpace(ObjectInSpace mo) {
+		getGObjectInSpaceManager().addObject(mo);
+	}
 
-	public default void removeFromSpace(ObjectInSpace mo) { getGObjectInSpaceManager().removeObject(mo); }
+	public default void removeFromSpace(ObjectInSpace mo) {
+		getGObjectInSpaceManager().removeObject(mo);
+	}
 
 	/** See {@link #findInArea(AbstractShape2D, Predicate)}. */
 	public default Set<ObjectInSpace> findInArea(AbstractShape2D shape) {
@@ -88,8 +93,9 @@ public interface GameObjectsManager extends GModalityHolder {
 			};
 		}
 		r = getGObjectInSpaceManager().findAll(shape, pOL);
-		if (r == null)
+		if (r == null) {
 			return null;
+		}
 		s = new SetMapped<>(r, ol -> (ObjectInSpace) ol);
 		return s;
 	}
@@ -104,8 +110,9 @@ public interface GameObjectsManager extends GModalityHolder {
 	 * {@link #addToSpace(MovingObject)}.
 	 */
 	public default void moveTo(ObjectInSpace mo, Point newLocation) {
-		if (mo == null)
+		if (mo == null) {
 			throw new IllegalArgumentException("The object to move is null");
+		}
 		removeFromSpace(mo);
 		mo.setLocation(newLocation);
 		addToSpace(mo);
@@ -123,7 +130,7 @@ public interface GameObjectsManager extends GModalityHolder {
 	 * {@link LivingObject#receiveDamage(GModality, DamageGeneric, ObjectWithID)}
 	 * and so on.
 	 */
-	public default void dealsDamageTo(DamageDealerGeneric source, CreatureSimple target, DamageGeneric damage) {
+	public default void dealsDamageTo(DamageDealerGeneric source, DamageReceiverGeneric target, DamageGeneric damage) {
 		this.getGEventInterface().fireDamageDealtEvent((GModalityET) getGameModality(), source, target, damage);
 		target.receiveDamage(getGameModality(), damage, source);
 	}

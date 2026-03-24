@@ -8,6 +8,7 @@ import games.generic.controlModel.GObjectsInSpaceManager;
 import games.generic.controlModel.GameObjectsManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
+import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.damage.DamageTypeGeneric;
 import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
@@ -50,19 +51,29 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 	protected GObjectsInSpaceManager goism;
 
 	@Override
-	public GModality getGameModality() { return gmodalityTran; }
+	public GModality getGameModality() {
+		return gmodalityTran;
+	}
 
 	@Override
-	public void setGameModality(GModality gameModality) { this.gmodalityTran = (GModalityTRAnBaseWorld) gameModality; }
+	public void setGameModality(GModality gameModality) {
+		this.gmodalityTran = (GModalityTRAnBaseWorld) gameModality;
+	}
 
 	@Override
-	public GObjectsInSpaceManager getGObjectInSpaceManager() { return goism; }
+	public GObjectsInSpaceManager getGObjectInSpaceManager() {
+		return goism;
+	}
 
 	@Override
-	public GEventInterface getGEventInterface() { return gmodalityTran.getEventInterface(); }
+	public GEventInterface getGEventInterface() {
+		return gmodalityTran.getEventInterface();
+	}
 
 	@Override
-	public void setGObjectsInSpaceManager(GObjectsInSpaceManager gisom) { this.goism = gisom; }
+	public void setGObjectsInSpaceManager(GObjectsInSpaceManager gisom) {
+		this.goism = gisom;
+	}
 
 	@Override
 	public void setGEventInterface(GEventInterface gei) {
@@ -86,7 +97,7 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void dealsDamageTo(DamageDealerGeneric source, CreatureSimple target, DamageGeneric damage) {
+	public void dealsDamageTo(DamageDealerGeneric source, DamageReceiverGeneric target, DamageGeneric damage) {
 		int rollOfHitting, thresholdWithinHitting;
 		final int luckAdvantage;
 		DamageTypeGeneric damageType;
@@ -94,6 +105,11 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 		EventDamage ed;
 		GModalityET gm;
 		GEventInterface eventInterface;
+		CreatureSimple targetCreature = null;
+
+		if (target instanceof CreatureSimple) {
+			targetCreature = (CreatureSimple) target;
+		}
 
 		rand = this.getGameModality().getRandom();
 		luckAdvantage = (source.getLuckPerThousand() - target.getLuckPerThousand());
@@ -106,15 +122,21 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 			damageAmount = damage.getDamageAmount();
 			// bonus and reductions
 			damageAmount += source.getDamageBonus(damageType) - target.getDamageReduction(damageType);
-			if (damageAmount <= 0) { return; }
-			multiplierPercentage = source.getDamageBonusPercentage(damageType)
-					- target.getDamageBonusPercentage(damageType);
+			if (damageAmount <= 0) {
+				return;
+			}
+			multiplierPercentage = source.getDamageBonusPercentage(damageType);
+			if (targetCreature != null) {
+				multiplierPercentage -= targetCreature.getDamageBonusPercentage(damageType);
+			}
 			if (multiplierPercentage != 0) {
 				damageAmount = (int) (//
 				((100 + multiplierPercentage) * (long) damageAmount) //
 						/ 100);
 			}
-			if (damageAmount <= 0) { return; }
+			if (damageAmount <= 0) {
+				return;
+			}
 			damage.setDamageAmount(damageAmount);
 		}
 
@@ -144,9 +166,10 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 									- target.getPercentageCriticalStrikeReduction(damageType));
 
 					// use thresholdWithinHitting as "is positive: crit"
-					thresholdWithinHitting = luckAdvantage + //
-							(source.getProbabilityPerThousandCriticalStrike(damageType)
-									- target.getProbabilityPerThousandCriticalStrike(damageType));
+					thresholdWithinHitting = luckAdvantage + source.getProbabilityPerThousandCriticalStrike(damageType);
+					if (targetCreature != null) {
+						thresholdWithinHitting -= targetCreature.getProbabilityPerThousandCriticalStrike(damageType);
+					}
 
 					thresholdWithinHitting -= rand.nextInt(MAX_PROBABILITY_VALUE_PER_THOUSAND);
 					if (thresholdWithinHitting >= 0) {
@@ -163,24 +186,8 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 					if (source instanceof BaseCreatureTRAn) {
 						int i;
 						BaseCreatureTRAn bc;
-						ResourceAmountRecharged healing;
 						bc = (BaseCreatureTRAn) source;
-						/*
-						 * Recycle "thresholdToHitting" as "amount to leech". Also accepts negative
-						 * values: some mechanism like "guilt".
-						 */
-						i = leechableResources.length;
-						while (--i >= 0) {
-							thresholdWithinHitting = bc.getAttributes().getValue(leechableResources[i]);
-							if (thresholdWithinHitting != 0) {
-								thresholdWithinHitting = (thresholdWithinHitting * rollOfHitting) / 100;
-								if (thresholdWithinHitting != 0) {
-									healing = new ResourceAmountRecharged(leechableResourcesType[i],
-											thresholdWithinHitting);
-									bc.performRechargeOf(healing, source);
-								}
-							}
-						}
+						leechDamage(bc, target, damage);
 					}
 					// in the end, the damage is ready to be delivered
 					target.receiveDamage(gm, damage, source);
@@ -191,6 +198,32 @@ public class GameObjectsManagerTRAn implements GameObjectsManager {
 			geiTran = (GEventInterfaceTRAn) eventInterface; // this.getGEventInterface();
 			geiTran.fireDamageAvoidedEvent(gm, source, target, damage);
 			geiTran.fireDamageMissedEvent(gm, source, target, damage);
+		}
+	}
+
+	/**
+	 * Leech the damage to recharge the resources (or depletes them by accepting
+	 * negative values, to implement some mechanism of punishment like "guilt").
+	 * 
+	 * @param source the one dealing the damage
+	 * @param target creature receiving the damage
+	 * @param damage the damage dealt
+	 */
+	public void leechDamage(BaseCreatureTRAn source, DamageReceiverGeneric target, DamageGeneric damage) {
+		ResourceAmountRecharged healing;
+		int damageDealt, leechablePercentage, i;
+		damageDealt = damage.getDamageAmount();
+		i = leechableResources.length;
+		while (--i >= 0) {
+			leechablePercentage = source.getAttributes().getValue(leechableResources[i]);
+			if (leechablePercentage != 0) {
+				leechablePercentage = (leechablePercentage * damageDealt) / 100;
+				if (leechablePercentage != 0) {
+					healing = new ResourceAmountRecharged(leechableResourcesType[i], leechablePercentage);
+					source.performRechargeOf(healing, source);
+					// TODO 2026-03-24: fire a "Resource Leeched event"
+				}
+			}
 		}
 	}
 }

@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GController;
@@ -47,6 +48,8 @@ public abstract class LoaderManager {
 	 *
 	 */
 	public static interface LoadingObserver extends Serializable {
+		public void notifyLoadingProcessStarted(LoaderGeneric loader);
+
 		/**
 		 * Notifies the observer (the class implementing this {@link LoadingObserver}
 		 * instance.<br>
@@ -92,10 +95,7 @@ public abstract class LoaderManager {
 		this.hasAlreadyLoaded = false;
 		this.gameController = gameController;
 
-		this.prioritaryLoaders = new LoaderGeneric[LoaderManager.LoadersPrimary.values().length];
-		this.prioritaryLoaders[LoadersPrimary.UIDPState.ordinal()] = this.newLoaderUniqueIDProvidersState();
-		this.prioritaryLoaders[LoadersPrimary.Configurations.ordinal()] = this.newLoaderConfigurations();
-		this.prioritaryLoaders[LoadersPrimary.GameMods.ordinal()] = this.newLoaderGameMods();
+		this.prioritaryLoaders = new ArrayList<>(LoaderManager.LoadersPrimary.values().length);
 
 		this.poolParallelLoaders = null;
 		this.otherLoaders = new ArrayList<>();
@@ -108,7 +108,7 @@ public abstract class LoaderManager {
 	protected boolean loadOnlyOnce, hasAlreadyLoaded;
 //	protected final List<LoaderGameObjects<? extends ObjectNamed>> gameObjectsLoader;
 	protected final GController gameController;
-	protected final LoaderGeneric[] prioritaryLoaders;
+	protected final List<LoaderGeneric> prioritaryLoaders;
 	protected final List<LoaderGeneric> otherLoaders;
 	protected final List<LoadingObserver> loadersAndStatusObservers;
 	protected ExecutorService poolParallelLoaders;
@@ -116,27 +116,41 @@ public abstract class LoaderManager {
 
 	// getters
 
-	public GController getGameController() { return gameController; }
+	public GController getGameController() {
+		return gameController;
+	}
 
-	public List<LoaderGeneric> getLoaders() { return otherLoaders; }
+	public List<LoaderGeneric> getLoaders() {
+		return otherLoaders;
+	}
 
-	public boolean isLoadOnlyOnce() { return loadOnlyOnce; }
+	public boolean isLoadOnlyOnce() {
+		return loadOnlyOnce;
+	}
 
-	public boolean isHasAlreadyLoaded() { return hasAlreadyLoaded; }
+	public boolean isHasAlreadyLoaded() {
+		return hasAlreadyLoaded;
+	}
 
 	public LoaderUniqueIDProvidersState getLoaderUIDPStates() {
-		return (LoaderUniqueIDProvidersState) this.prioritaryLoaders[LoadersPrimary.UIDPState.ordinal()];
+		return (LoaderUniqueIDProvidersState) this.prioritaryLoaders.get(LoadersPrimary.UIDPState.ordinal());
 	}
 
 	public LoaderConfigurations getLoaderConfigurations() {
-		return (LoaderConfigurations) prioritaryLoaders[LoadersPrimary.Configurations.ordinal()];
+		return (LoaderConfigurations) prioritaryLoaders.get(LoadersPrimary.Configurations.ordinal());
 	}
 
-	public LoaderGMod getLoaderGameMods() { return (LoaderGMod) prioritaryLoaders[LoadersPrimary.GameMods.ordinal()]; }
+	public LoaderGMod getLoaderGameMods() {
+		return (LoaderGMod) prioritaryLoaders.get(LoadersPrimary.GameMods.ordinal());
+	}
 
-	public ExecutorService getPoolParallelLoaders() { return poolParallelLoaders; }
+	public ExecutorService getPoolParallelLoaders() {
+		return poolParallelLoaders;
+	}
 
-	public long getMillisecondsMaximumWaitLoadingProcess() { return millisecondsMaximumWaitLoadingProcess; }
+	public long getMillisecondsMaximumWaitLoadingProcess() {
+		return millisecondsMaximumWaitLoadingProcess;
+	}
 
 	// setters
 
@@ -144,13 +158,28 @@ public abstract class LoaderManager {
 		this.millisecondsMaximumWaitLoadingProcess = millisecondsMaximumWaitLoadingProcess;
 	}
 
-	public void setLoadOnlyOnce(boolean loadOnlyOnce) { this.loadOnlyOnce = loadOnlyOnce; }
+	public void setLoadOnlyOnce(boolean loadOnlyOnce) {
+		this.loadOnlyOnce = loadOnlyOnce;
+	}
 
 	//
 
 	// TODO
 
 	//
+
+	/***
+	 * Override-designed
+	 */
+	protected void defineAdditionalPrimaryLoaders(Consumer<LoaderGeneric> loaderAdder) {
+	}
+
+	protected final void definePrimaryLoaders() {
+		this.prioritaryLoaders.add(this.newLoaderUniqueIDProvidersState());
+		this.prioritaryLoaders.add(this.newLoaderConfigurations());
+		this.prioritaryLoaders.add(this.newLoaderGameMods());
+		defineAdditionalPrimaryLoaders(this.prioritaryLoaders::add);
+	}
 
 	//
 
@@ -170,7 +199,9 @@ public abstract class LoaderManager {
 	 *
 	 * @return
 	 */
-	protected ExecutorService newExecutorForParallelLoading() { return Executors.newWorkStealingPool(); }
+	protected ExecutorService newExecutorForParallelLoading() {
+		return Executors.newWorkStealingPool();
+	}
 
 	//
 
@@ -203,10 +234,16 @@ public abstract class LoaderManager {
 	 *
 	 * @param loader the loader that is desired to be run
 	 */
-	public void addLoader(LoaderGeneric loader) { if (loader != null) { this.otherLoaders.add(loader); } }
+	public void addLoader(LoaderGeneric loader) {
+		if (loader != null) {
+			this.otherLoaders.add(loader);
+		}
+	}
 
 	public void addLoadingProcessObserver(LoadingObserver lo) {
-		if (lo != null) { this.loadersAndStatusObservers.add(lo); }
+		if (lo != null) {
+			this.loadersAndStatusObservers.add(lo);
+		}
 	}
 
 	/**
@@ -216,9 +253,12 @@ public abstract class LoaderManager {
 		Map<Class<?>, LoaderGeneric> loaders;
 		loaders = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.CLASS_COMPARATOR);
 
-		enrichSetLoaderManagers(loaders);
+		this.definePrimaryLoaders();
+		this.enrichSetLoaderManagers(loaders);
 
-		loaders.forEach((c, loader) -> { this.addLoader(loader); });
+		loaders.forEach((c, loader) -> {
+			this.addLoader(loader);
+		});
 	}
 
 	//
@@ -242,11 +282,14 @@ public abstract class LoaderManager {
 	public List<LoaderGeneric> loadAll() {
 		List<LoaderGeneric> failedLoaders;
 		final LoaderGeneric.LoadStatusResult[] results;
-		final BiConsumer<LoaderGeneric, LoaderGeneric.LoadStatusResult> allObserversNotifier;
+		final BiConsumer<LoaderGeneric, LoaderGeneric.LoadStatusResult> allObserversNotifierStart,
+				allObserversNotifierComplete;
 		int[] index = { 0 };
 
 		System.out.println("\n\n\n\n start loading :D \n\n\n");
-		if (loadOnlyOnce && this.hasAlreadyLoaded) { return null; }
+		if (loadOnlyOnce && this.hasAlreadyLoaded) {
+			return null;
+		}
 
 //		getAllKnownLoaders().forEach(this::addLoader);
 
@@ -254,7 +297,14 @@ public abstract class LoaderManager {
 
 		results = new LoaderGeneric.LoadStatusResult[this.otherLoaders.size()];
 
-		allObserversNotifier = (loader, status) -> {
+		allObserversNotifierComplete = (loader, status) -> {
+			try {
+				this.loadersAndStatusObservers.forEach(lo -> lo.notifyLoadingProcessCompleted(loader, status));
+			} catch (Exception e) {
+				this.gameController.getLogger().logException(e);
+			}
+		};
+		allObserversNotifierStart = (loader, status) -> {
 			try {
 				this.loadersAndStatusObservers.forEach(lo -> lo.notifyLoadingProcessCompleted(loader, status));
 			} catch (Exception e) {
@@ -263,7 +313,7 @@ public abstract class LoaderManager {
 		};
 
 		this.loadersAndStatusObservers
-				.forEach(lo -> lo.notifyAllLoadingProcessStarted(results.length + this.prioritaryLoaders.length));
+				.forEach(lo -> lo.notifyAllLoadingProcessStarted(results.length + this.prioritaryLoaders.size()));
 
 		int ii = 0;
 		for (LoaderGeneric loaderPrioritary : this.prioritaryLoaders) {
@@ -276,12 +326,14 @@ public abstract class LoaderManager {
 			if (res == LoadStatusResult.CriticalFail) {
 				throw new RuntimeException("The loader " + loaderPrioritary.getClass() + " failed loading.");
 			}
-			allObserversNotifier.accept(loaderPrioritary, res);
+			allObserversNotifierComplete.accept(loaderPrioritary, res);
 		}
 
 		// now non-prioritary loaders
 		System.out.println("this.otherLoaders size: " + this.otherLoaders.size());
-		if (this.poolParallelLoaders == null) { this.poolParallelLoaders = this.newExecutorForParallelLoading(); }
+		if (this.poolParallelLoaders == null) {
+			this.poolParallelLoaders = this.newExecutorForParallelLoading();
+		}
 		if (this.poolParallelLoaders != null) {
 
 			this.otherLoaders.forEach(l -> {
@@ -289,7 +341,7 @@ public abstract class LoaderManager {
 				poolParallelLoaders.execute(() -> {
 					LoaderGeneric.LoadStatusResult res;
 					results[i] = res = l.loadInto(this.gameController);
-					allObserversNotifier.accept(l, res);
+					allObserversNotifierComplete.accept(l, res);
 				});
 			});
 			poolParallelLoaders.shutdown();
@@ -305,7 +357,7 @@ public abstract class LoaderManager {
 				final int i = index[0]++;
 				LoaderGeneric.LoadStatusResult res;
 				results[i] = res = l.loadInto(this.gameController);
-				allObserversNotifier.accept(l, res);
+				allObserversNotifierComplete.accept(l, res);
 			});
 		}
 
@@ -340,7 +392,9 @@ public abstract class LoaderManager {
 			}
 			i++;
 		}
-		if (failedLoadersIndexes.isEmpty()) { return failedLoadersIndexes; }
+		if (failedLoadersIndexes.isEmpty()) {
+			return failedLoadersIndexes;
+		}
 
 		log = this.gameController.getLogger();
 		failedLoadersIndexes.forEach(loaderFailed -> {

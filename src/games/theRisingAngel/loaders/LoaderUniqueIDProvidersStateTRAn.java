@@ -13,8 +13,16 @@ import tools.json.JSONValue;
 import tools.json.types.JSONObject;
 
 public class LoaderUniqueIDProvidersStateTRAn extends LoaderUniqueIDProvidersState {
+	public static final String LOADER_NAME_LoaderUniqueIDProvidersStateTRAn = "LoaderUniqueIDProvidersStateTRAn";
 
-	public LoaderUniqueIDProvidersStateTRAn() { super(); }
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderUniqueIDProvidersStateTRAn;
+	}
+
+	public LoaderUniqueIDProvidersStateTRAn() {
+		super();
+	}
 
 	@Override
 	public void enrichAllKnownUIDPLoadedListenerList(Map<Class<?>, UIDProviderLoadedListener> list) {
@@ -56,7 +64,9 @@ public class LoaderUniqueIDProvidersStateTRAn extends LoaderUniqueIDProvidersSta
 						}
 
 						@Override
-						public boolean hasNext() { return iterRaw.hasNext(); }
+						public boolean hasNext() {
+							return iterRaw.hasNext();
+						}
 					};
 				}
 			};

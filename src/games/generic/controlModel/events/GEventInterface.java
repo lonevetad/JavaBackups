@@ -5,10 +5,10 @@ import java.awt.Point;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
+import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.events.event.EventDamage;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
-import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GModalityET;
@@ -52,7 +52,7 @@ public interface GEventInterface extends Cloneable {
 	 * left empty if not needed. <br>
 	 * TODO docs
 	 */
-	public EventDamage fireDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public EventDamage fireDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric damage);
 
 	/**
@@ -65,18 +65,18 @@ public interface GEventInterface extends Cloneable {
 	 *                                 (usually, those two damages amounts are the
 	 *                                 same)
 	 */
-	public EventDamage fireDamageReceivedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public EventDamage fireDamageReceivedEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric originalDamage, int damageAmountToBeApplied);
 
-	public EventDamage fireCriticalDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
-			DamageGeneric damage);
+	public EventDamage fireCriticalDamageDealtEvent(GModalityET gm, DamageDealerGeneric source,
+			DamageReceiverGeneric target, DamageGeneric damage);
 
 	/**
 	 * See
-	 * {@link #fireDamageReceivedEvent(GModalityET, DamageDealerGeneric, LivingObject, DamageGeneric, int)}.
+	 * {@link #fireDamageReceivedEvent(GModalityET, DamageDealerGeneric, DamageReceiverGeneric, DamageGeneric, int)}.
 	 */
-	public EventDamage fireDamageCriticalReceivedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
-			DamageGeneric originalDamage, int damageAmountToBeApplied);
+	public EventDamage fireDamageCriticalReceivedEvent(GModalityET gm, DamageDealerGeneric source,
+			DamageReceiverGeneric target, DamageGeneric originalDamage, int damageAmountToBeApplied);
 
 	/**
 	 * After someone's resource is being recharge, fire this event.<br>
@@ -97,11 +97,11 @@ public interface GEventInterface extends Cloneable {
 
 	/**
 	 * Similar to
-	 * {@link #fireResourceRechargeReceivedEvent(GModalityET, ObjectWithID, LivingObject, ResourceAmountRecharged)},
+	 * {@link #fireResourceRechargeReceivedEvent(GModalityET, ObjectWithID, DamageReceiverGeneric, ResourceAmountRecharged)},
 	 * but this event is fired upon recharging someone else (the source of the
 	 * recharge is the fourth parameter while the second parameter is the target;
 	 * the target is the same of
-	 * {@link #fireResourceRechargeReceivedEvent(GModalityET, ObjectWithID, LivingObject, ResourceAmountRecharged)}).
+	 * {@link #fireResourceRechargeReceivedEvent(GModalityET, ObjectWithID, DamageReceiverGeneric, ResourceAmountRecharged)}).
 	 *
 	 *
 	 * @param <SourceRecharge>           The type of the object is performing the

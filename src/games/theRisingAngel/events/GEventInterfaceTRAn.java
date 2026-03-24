@@ -5,16 +5,16 @@ import java.awt.Point;
 import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.damage.DamageDealerGeneric;
 import games.generic.controlModel.damage.DamageGeneric;
+import games.generic.controlModel.damage.DamageReceiverGeneric;
 import games.generic.controlModel.events.GEventManager;
-import games.generic.controlModel.events.event.EventDestructionObj;
 import games.generic.controlModel.events.event.EventDamage;
+import games.generic.controlModel.events.event.EventDestructionObj;
 import games.generic.controlModel.events.event.EventEnteringOnMap;
 import games.generic.controlModel.events.event.EventMoneyChange;
 import games.generic.controlModel.events.event.EventMoviment;
 import games.generic.controlModel.events.event.EventResourceRecharge;
 import games.generic.controlModel.holders.ResourceRechargeableHolder;
 import games.generic.controlModel.objects.DestructibleObject;
-import games.generic.controlModel.objects.LivingObject;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.rechargeable.resources.ResourceAmountRecharged;
 import games.generic.controlModel.subimpl.GEventInterfaceRPG;
@@ -26,7 +26,9 @@ import tools.ObjectWithID;
 
 public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 
-	public GEventInterfaceTRAn() { super(); }
+	public GEventInterfaceTRAn() {
+		super();
+	}
 
 	protected GEventManager gem;
 
@@ -36,7 +38,9 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public GEventManager getGameEventManager() { return gem; }
+	public GEventManager getGameEventManager() {
+		return gem;
+	}
 
 	//
 
@@ -73,7 +77,7 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public EventDamage fireDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public EventDamage fireDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric damage) {
 		EventDamage ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageInflicted, source, target, damage);
@@ -81,14 +85,14 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 		return ed;
 	}
 
-	public void fireDamageAvoidedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public void fireDamageAvoidedEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric damage) {
 		EventDamage ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageAvoided, source, target, damage);
 		this.getGameEventManager().fireEvent(ed);
 	}
 
-	public void fireDamageMissedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public void fireDamageMissedEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric damage) {
 		EventDamage ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageMissed, source, target, damage);
@@ -96,8 +100,8 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public EventDamage fireCriticalDamageDealtEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
-			DamageGeneric originalDamage) {
+	public EventDamage fireCriticalDamageDealtEvent(GModalityET gm, DamageDealerGeneric source,
+			DamageReceiverGeneric target, DamageGeneric originalDamage) {
 		EventDamage ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageCriticalInflicted, source, target, originalDamage);
 		this.getGameEventManager().fireEvent(ed);
@@ -105,7 +109,7 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public EventDamage fireDamageReceivedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
+	public EventDamage fireDamageReceivedEvent(GModalityET gm, DamageDealerGeneric source, DamageReceiverGeneric target,
 			DamageGeneric originalDamage, int damageAmountToBeApplied) {
 		EventDamageTRAn ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageReceived, source, target, originalDamage, damageAmountToBeApplied);
@@ -114,8 +118,8 @@ public class GEventInterfaceTRAn implements GEventInterfaceRPG {
 	}
 
 	@Override
-	public EventDamage fireDamageCriticalReceivedEvent(GModalityET gm, DamageDealerGeneric source, LivingObject target,
-			DamageGeneric originalDamage, int damageAmountToBeApplied) {
+	public EventDamage fireDamageCriticalReceivedEvent(GModalityET gm, DamageDealerGeneric source,
+			DamageReceiverGeneric target, DamageGeneric originalDamage, int damageAmountToBeApplied) {
 		EventDamageTRAn ed;
 		ed = new EventDamageTRAn(EventsTRAn.DamageCriticalReceived, source, target, originalDamage,
 				damageAmountToBeApplied);

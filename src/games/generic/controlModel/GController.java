@@ -198,10 +198,20 @@ public abstract class GController {
 	}
 
 	/**
+	 * Additional preparations; it rarely occours
+	 */
+	public abstract void prepareLoadingAll();
+
+	public abstract void afterLoadingAll();
+
+	/**
 	 * Delegates to {@link LoaderManager#loadAll()}).
 	 */
 	public final List<LoaderGeneric> loadAll() {
-		return this.loaderManager.loadAll();
+		this.prepareLoadingAll();
+		var allLoaders = this.loaderManager.loadAll();
+		this.afterLoadingAll();
+		return allLoaders;
 	}
 
 //

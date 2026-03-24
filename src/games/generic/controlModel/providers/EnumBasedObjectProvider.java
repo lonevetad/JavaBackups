@@ -15,7 +15,7 @@ public abstract class EnumBasedObjectProvider<E extends IEnumAlike> extends Game
 		super.initialize();
 		// define the factories for all enums' values
 		for (E e : this.getEnumValues()) {
-			this.addObj(e.getName(), _ -> e);
+			this.addObj(e.getName(), _x -> e);
 		}
 	}
 

@@ -15,7 +15,9 @@ import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 
 public class LoaderManagerTRAn extends LoaderManager {
 
-	public LoaderManagerTRAn(GController gameController) { super(gameController); }
+	public LoaderManagerTRAn(GController gameController) {
+		super(gameController);
+	}
 
 	@Override
 	protected LoaderUniqueIDProvidersState newLoaderUniqueIDProvidersState() { // TODO Auto-generated method stub
@@ -23,7 +25,9 @@ public class LoaderManagerTRAn extends LoaderManager {
 	}
 
 	@Override
-	protected LoaderConfigurations newLoaderConfigurations() { return new LoaderConfigurationsTRAn(); }
+	protected LoaderConfigurations newLoaderConfigurations() {
+		return new LoaderConfigurationsTRAn();
+	}
 
 	@Override
 	protected void enrichSetLoaderManagers(Map<Class<?>, LoaderGeneric> loaders) {
@@ -40,18 +44,34 @@ public class LoaderManagerTRAn extends LoaderManager {
 
 	@Override
 	protected LoaderGMod newLoaderGameMods() { // TODO Auto-generated method stub
-		return new LoaderGMod(this.getGameController()) {
-
-			@Override
-			public LoadStatusResult loadInto(GController gc) { // TODO Auto-generated method stub
-				System.out.println("mmmmmmmmmmmmmmmmmmmmMOD MANAGER TRAN");
-				return LoadStatusResult.Success;
-			}
-
-			@Override
-			public List<GModInterface> getAllLoadableGameMods() { // TODO Auto-generated method stub
-				return null;
-			}
-		};
+		return new LoaderGModTRAn(this.getGameController());
 	}
+
+	//
+
+	public static class LoaderGModTRAn extends LoaderGMod {
+
+		public static final String LOADER_NAME_LoaderGModTRAn = "LoaderGModTRAn";
+
+		@Override
+		public String getNameID() {
+			return LOADER_NAME_LoaderGModTRAn;
+		}
+
+		public LoaderGModTRAn(GController gameController) {
+			super(gameController);
+		}
+
+		@Override
+		public LoadStatusResult loadInto(GController gc) { // TODO Auto-generated method stub
+			System.out.println("mmmmmmmmmmmmmmmmmmmmMOD MANAGER TRAN");
+			return LoadStatusResult.Success;
+		}
+
+		@Override
+		public List<GModInterface> getAllLoadableGameMods() { // TODO Auto-generated method stub
+			return null;
+		}
+	}
+
 }

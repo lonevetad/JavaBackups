@@ -218,6 +218,11 @@ public class GView_E1 extends GameView {
 					System.out.println(Arrays.toString(failedLoaders.toArray()));
 				}
 			}
+
+			@Override
+			public void notifyLoadingProcessStarted(LoaderGeneric loader) {
+				System.out.println("START Loading " + loader.getNameID() + " loader (in LoadingProcessView class)");
+			}
 		};
 	}
 

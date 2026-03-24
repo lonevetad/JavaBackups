@@ -46,13 +46,20 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
 	// end COMBINATORIC GENERATION SETUP
 
+	public static final String LOADER_NAME_LoaderEquipUpgradesTRAn = "LoaderEquipUpgradesTRAn";
+	public static final String FILE_NAME__EQUIP_UPGRADES = "equipUpgrades";
+
+	@Override
+	public String getNameID() {
+		return LOADER_NAME_LoaderEquipUpgradesTRAn;
+	}
+
 	public LoaderEquipUpgradesTRAn(GameObjectsProvider<IEquipmentUpgrade> objProvider) {
 		super(objProvider);
 	}
 
 	@Override
 	public LoadStatusResult loadInto(final GController gc) {
-		int[] index = { 0 };
 		// JSONArray equipments;
 		final LoaderEquipUpgradesTRAn thisLoader = this;
 
@@ -64,8 +71,8 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 			// equipments.forEach(
 
 			JSONParser.forEachInArray(//
-					JSONParser.charactersIteratorFrom(
-							new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + "equipUpgrades.json")),
+					JSONParser.charactersIteratorFrom(new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT
+							+ FILE_NAME__EQUIP_UPGRADES + ".json")),
 					(indexEquipUp, rawEquipUp) -> {
 						FactoryEquipUpgrade factory;
 						JSONObject equipEquipJSON; // , attributeModsJSON;
@@ -82,11 +89,11 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 						 * equipEquipJSON.getFieldValue("attributesModifiers"); // <br>
 						 * attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()]; //
 						 * <br>
-						 * index[0] = 0; // <br>
+						 * int[] index[0] = 0; // <br>
 						 * attributeModsJSON.forEachField((fieldName, attrValueJSON) -> { // <br>
 						 * AttributeIdentifier attribute; // <br>
 						 * attribute = AttributesTRAn.valueOf(fieldName); // <br>
-						 * attrMods[index[0]++] = new AttributeModificationTRAn(attribute,
+						 * attrMods[index[0]] = new AttributeModificationTRAn(attribute,
 						 * attrValueJSON.asInt()); // <br>
 						 * }); // <br>
 						 * factory.attrMods = attrMods; // <br>

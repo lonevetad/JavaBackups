@@ -529,7 +529,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		changed = false;
 		if (r.x < getxLeftTop()) {
 			changed = true;
-			xLeftTop = r.x;
+			xLeftTop = r.getx();
 		}
 		if (r.y < getyLeftTop()) {
 			changed = true;

@@ -100,12 +100,19 @@ public class GModalityTRAnBaseWorld extends GModalityRPG {
 		player.getCharacterType().applyStartingAttributes(player);
 	}
 
+	public void preStartActions() {
+	}
+
+	public void postStartActions() {
+	}
+
 	@Override
-	public void startGame() {
+	public final void startGame() {
 		// ((GameObjectsProvidersHolderRPG)
 		// this.getGameObjectsProvider()).setgModality(this);
+		this.preStartActions();
 		super.startGame();
-		// and then? TODO
+		this.postStartActions();
 	}
 
 	// TODO to do definire un metodo di dropping degli oggetti, con abilit� e

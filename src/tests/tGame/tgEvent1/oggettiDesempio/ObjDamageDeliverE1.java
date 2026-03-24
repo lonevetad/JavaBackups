@@ -8,6 +8,7 @@ import games.generic.controlModel.objects.creature.BaseCreatureRPG;
 import games.generic.controlModel.subimpl.TimedObjectPeriodic;
 import games.theRisingAngel.GameObjectsManagerTRAn;
 import games.theRisingAngel.enums.DamageTypesTRAn;
+import games.theRisingAngel.misc.DamageGenericTRAn;
 import tests.tGame.GModality_E1;
 import tools.UniqueIDProvider;
 
@@ -32,30 +33,50 @@ public class ObjDamageDeliverE1 implements TimedObjectPeriodic, DamageDealerGene
 	}
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
-	public long getAccumulatedTimeElapsed() { return timeElapsed; }
+	public long getAccumulatedTimeElapsed() {
+		return timeElapsed;
+	}
 
 	@Override
-	public long getTimeThreshold() { return timeThreshold; }
+	public long getTimeThreshold() {
+		return timeThreshold;
+	}
 
-	public BaseCreatureRPG getTarget() { return target; }
+	public BaseCreatureRPG getTarget() {
+		return target;
+	}
 
-	public int getDamageAmount() { return damageAmount; }
+	public int getDamageAmount() {
+		return damageAmount;
+	}
 
-	public DamageTypesTRAn getDamageType() { return damageType; }
+	public DamageTypesTRAn getDamageType() {
+		return damageType;
+	}
 
 	//
 
-	public void setDamageType(DamageTypesTRAn damageType) { this.damageType = damageType; }
+	public void setDamageType(DamageTypesTRAn damageType) {
+		this.damageType = damageType;
+	}
 
-	public void setDamageAmount(int damageAmount) { this.damageAmount = damageAmount; }
+	public void setDamageAmount(int damageAmount) {
+		this.damageAmount = damageAmount;
+	}
 
-	public void setTarget(BaseCreatureRPG target) { this.target = target; }
+	public void setTarget(BaseCreatureRPG target) {
+		this.target = target;
+	}
 
 	@Override
-	public void setAccumulatedTimeElapsed(long newAccumulated) { this.timeElapsed = newAccumulated; }
+	public void setAccumulatedTimeElapsed(long newAccumulated) {
+		this.timeElapsed = newAccumulated;
+	}
 
 	//
 
@@ -64,7 +85,7 @@ public class ObjDamageDeliverE1 implements TimedObjectPeriodic, DamageDealerGene
 		GModality_E1 gmodtrar;
 		GameObjectsManagerTRAn gomTrar;
 		DamageGeneric d;
-		d = new DamageGeneric(damageAmount, this.damageType);
+		d = new DamageGenericTRAn(damageAmount, this.damageType);
 		System.out.println("Damage fired this amont of times: " + c++ + ", dealing " + damageAmount + " "
 				+ this.damageType.name());
 		gmodtrar = (GModality_E1) modality;
@@ -73,22 +94,32 @@ public class ObjDamageDeliverE1 implements TimedObjectPeriodic, DamageDealerGene
 	}
 
 	@Override
-	public String getName() { return "Obj damage dealer"; }
+	public String getName() {
+		return "Obj damage dealer";
+	}
 
 	@Override
-	public int getProbabilityPerThousandHit(DamageTypeGeneric damageType) { return 250; }
+	public int getProbabilityPerThousandHit(DamageTypeGeneric damageType) {
+		return 250;
+	}
 
 	@Override
-	public int getProbabilityPerThousandCriticalStrike(DamageTypeGeneric damageType) { return 0; }
+	public int getProbabilityPerThousandCriticalStrike(DamageTypeGeneric damageType) {
+		return 0;
+	}
 
 	@Override
-	public int getPercentageCriticalStrikeMultiplier(DamageTypeGeneric damageType) { return 0; }
+	public int getPercentageCriticalStrikeMultiplier(DamageTypeGeneric damageType) {
+		return 0;
+	}
 
 	@Override
-	public void onAddedToGame(GModality gm) {}
+	public void onAddedToGame(GModality gm) {
+	}
 
 	@Override
-	public void onRemovedFromGame(GModality gm) {}
+	public void onRemovedFromGame(GModality gm) {
+	}
 
 	@Override
 	public GModality getGameModality() { // TODO Auto-generated method stub
@@ -97,5 +128,23 @@ public class ObjDamageDeliverE1 implements TimedObjectPeriodic, DamageDealerGene
 
 	@Override
 	public void setGameModality(GModality gameModality) { // TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean setID(Long newID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getDamageBonus(DamageTypeGeneric damageType) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getDamageBonusPercentage(DamageTypeGeneric damageType) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -39,9 +39,10 @@ import tools.ObjectNamedID;
 
 public class GModality_E1 extends GModalityTRAnBaseWorld {
 	static final int STARTING_PLAYER_LIFE_MAX = 100;
+	public static final String NAME = "GModality_E1";
 
-	public GModality_E1(GController controller, String modalityName) {
-		super(controller, modalityName);
+	public GModality_E1(GController controller) {
+		super(controller, NAME);
 	}
 
 	public Player_E1 getPlayerRPG() {
@@ -49,13 +50,42 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 	}
 
 	@Override
-	public void startGame() {
-		super.startGame();
-		// getPlayerRPG().onEnteringInGame(this);
+	public void onCreate() {
+		super.onCreate();
+		super.setRandomSeed(0);
+
+		System.out.println("\n\n\n on create MY NAME: " + getModalityName() + "\n\n");
+
 	}
 
 	@Override
-	public void onCreate() {
+	public GModel newGameModel() {
+		return new GModel_E1();
+	}
+
+	@Override
+	public GEventInterface newEventInterface() {
+		GEventInterface_E1 gei;
+		gei = new GEventInterface_E1();
+		gei.setNewGameEventManager(this);
+		return gei;
+	}
+
+	@Override
+	protected PlayerGeneric newPlayerInGame(UserAccountGeneric superPlayer, ObjectNamedID playerType) {
+		Player_E1 p;
+		p = new Player_E1(this, (PlayerCharacterTypes) playerType);
+		setStartingBaseAttributes(p);
+		p.setLifeMax(STARTING_PLAYER_LIFE_MAX);
+		p.setLife(STARTING_PLAYER_LIFE_MAX);
+		p.setCurrencies(this.getGameObjectsProvider().newCurrencyHolder());
+		return p;
+	}
+
+	@Override
+	public void postStartActions() {
+		super.postStartActions();
+		// getPlayerRPG().onEnteringInGame(this);
 		GModel_E1 gmodel;
 		Player_E1 p;
 		ObjDamageDeliverE1 odd;
@@ -72,11 +102,6 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		GObjectsInSpaceManager goism;
 		MultiISOMRetangularMap<Double> isom;
 		MatrixInSpaceObjectsManager<Double> matrix;
-
-		super.onCreate();
-		super.setRandomSeed(0);
-
-		System.out.println("\n\n\n MY NAME: " + getModalityName() + "\n\n");
 
 		// create a fake ISOMMatrix to add the player in
 		goism = this.getGameObjectsManager().getGObjectInSpaceManager();
@@ -123,8 +148,9 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 				sb = new StringBuilder(127);
 				ca = p.getAttributes();
 				sb.append("Player life ").append(p.getLife()).append(", current values: ");
-				for (int i = 0; i < ca.getAttributesCount(); i++)
+				for (int i = 0; i < ca.getAttributesCount(); i++) {
 					sb.append(ca.getValue(AttributesTRAn.ALL_ATTRIBUTES[i])).append(", ");
+				}
 				return sb.toString();
 			}
 		};
@@ -243,8 +269,9 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		});
 		System.out.println("and then\n\n\n equipment set:");
 		p.getEquipmentSet().forEachEquipment((e, i) -> {
-			if (e != null)
+			if (e != null) {
 				System.out.println(i + "-> " + e);
+			}
 		});
 		System.out.println("\n\n at the end, the player looks like:");
 		ca = (CreatureAttributesBaseAndDerived) p.getAttributes();
@@ -284,27 +311,4 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 		}
 	}
 
-	@Override
-	public GModel newGameModel() {
-		return new GModel_E1();
-	}
-
-	@Override
-	public GEventInterface newEventInterface() {
-		GEventInterface_E1 gei;
-		gei = new GEventInterface_E1();
-		gei.setNewGameEventManager(this);
-		return gei;
-	}
-
-	@Override
-	protected PlayerGeneric newPlayerInGame(UserAccountGeneric superPlayer, ObjectNamedID playerType) {
-		Player_E1 p;
-		p = new Player_E1(this, (PlayerCharacterTypes) playerType);
-		setStartingBaseAttributes(p);
-		p.setLifeMax(STARTING_PLAYER_LIFE_MAX);
-		p.setLife(STARTING_PLAYER_LIFE_MAX);
-		p.setCurrencies(newCurrencyHolder());
-		return p;
-	}
 }

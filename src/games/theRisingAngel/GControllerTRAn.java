@@ -14,7 +14,7 @@ public class GControllerTRAn extends GControllerRPG {
 
 	public GControllerTRAn() {
 		super();
-		this.initNonFinalStuffs();
+		// this.initNonFinalStuffs(); delegated to the loader
 	}
 
 	//
@@ -24,7 +24,9 @@ public class GControllerTRAn extends GControllerRPG {
 	//
 
 	@Override
-	protected GameOptions newGameOptions() { return new GameOptionsTRAn(this); }
+	protected GameOptions newGameOptions() {
+		return new GameOptionsTRAn(this);
+	}
 
 	@Override
 	protected void defineGameModalitiesFactories() {
@@ -39,7 +41,9 @@ public class GControllerTRAn extends GControllerRPG {
 	}
 
 	@Override
-	protected LoaderManager newLoaderManager() { return new LoaderManagerTRAn(this); }
+	protected LoaderManager newLoaderManager() {
+		return new LoaderManagerTRAn(this);
+	}
 
 	@Override
 	protected UserAccountGeneric newUserAccount() {
@@ -49,14 +53,21 @@ public class GControllerTRAn extends GControllerRPG {
 
 	@Override
 	protected void initNonFinalStuffs() {
-		((GameObjectsProvidersHolderTRAn) getGameObjectsProvidersHolder())
-				.setGameModality((GModalityRPG) getCurrentGameModality());
+		getGameObjectsProvidersHolder().setGameModality((GModalityRPG) getCurrentGameModality());
 
 		super.initNonFinalStuffs();
 		System.out.println("GControllerTRAn init non final stuff done\n\n");
 //		this.gameObjectsProvidersHolderRPG.getEquipmentsProvider().getObjectsIdentified().forEach((n, f) -> {
 //			System.out.println("daffaking equip name: " + n);
 //		});
+	}
+
+	@Override
+	public void prepareLoadingAll() {
+	}
+
+	@Override
+	public void afterLoadingAll() {
 	}
 
 }

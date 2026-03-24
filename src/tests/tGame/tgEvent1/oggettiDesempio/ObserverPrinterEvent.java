@@ -12,11 +12,13 @@ import tools.UniqueIDProvider;
 public class ObserverPrinterEvent implements GEventObserver, GameObjectGeneric {
 	protected Long ID;
 	protected List<String> eventsWatching;
+	protected GModality gameModality;
 
 	public ObserverPrinterEvent() {
 		this.ID = UniqueIDProvider.UDIP_GENERAL.getNewID();
 		this.eventsWatching = new ArrayList<>(2);
 		this.eventsWatching.add(EventPrinter.PRINTER_EVENT_NAME);
+		this.gameModality = null;
 	}
 
 	@Override
@@ -27,17 +29,40 @@ public class ObserverPrinterEvent implements GEventObserver, GameObjectGeneric {
 	}
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
-	public List<String> getEventsWatching() { return this.eventsWatching; }
+	public List<String> getEventsWatching() {
+		return this.eventsWatching;
+	}
 
 	@Override
-	public String getName() { return "ObserverPrinterEvent"; }
+	public String getName() {
+		return "ObserverPrinterEvent";
+	}
 
 	@Override
-	public void onAddedToGame(GModality gm) {}
+	public void onAddedToGame(GModality gm) {
+	}
 
 	@Override
-	public void onRemovedFromGame(GModality gm) {}
+	public void onRemovedFromGame(GModality gm) {
+	}
+
+	@Override
+	public boolean setID(Long newID) {
+		return false;
+	}
+
+	@Override
+	public GModality getGameModality() {
+		return gameModality;
+	}
+
+	@Override
+	public void setGameModality(GModality gameModality) {
+		this.gameModality = gameModality;
+	}
 }

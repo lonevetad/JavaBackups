@@ -20,7 +20,9 @@ public abstract class LoaderGeneric {
 	public static enum LoadStatusResult {
 		Success, CriticalFail, MinorFail;
 
-		public boolean isFailed() { return this.ordinal() != 0; }
+		public boolean isFailed() {
+			return this.ordinal() != 0;
+		}
 	}
 
 	public static final char sc = File.separatorChar;
@@ -35,6 +37,8 @@ public abstract class LoaderGeneric {
 	}
 
 	//
+
+	public abstract String getNameID();
 
 	public abstract LoadStatusResult loadInto(GController gc);
 
