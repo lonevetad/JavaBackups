@@ -115,6 +115,12 @@ public abstract class CurrencySet implements JSONable {
 
 	//
 
+	public int[] getCurrencyAmounts() {
+		int[] valuesToReturn = new int[this.values.length];
+		System.arraycopy(this.values, 0, valuesToReturn, 0, this.values.length);
+		return valuesToReturn;
+	}
+
 	/**
 	 * Shorthand to
 	 * <code>{@link #setCurrencyAmount(int, int)}( indexType, {@link #getCurrencyAmount(int)}(indexType) + delta)</code>

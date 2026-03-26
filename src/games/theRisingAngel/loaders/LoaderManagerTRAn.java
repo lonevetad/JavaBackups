@@ -39,6 +39,7 @@ public class LoaderManagerTRAn extends LoaderManager {
 		loaders.put(LoaderAbilityTRAn.class, new LoaderAbilityTRAn(goph.getAbilitiesProvider()));
 		loaders.put(LoaderEquipUpgradesTRAn.class, new LoaderEquipUpgradesTRAn(goph.getEquipUpgradesProvider()));
 		loaders.put(LoaderItemsTRAn.class, new LoaderItemsTRAn(goph.getItemsProvider()));
+		loaders.put(LoaderEquipTRAn.class, new LoaderEquipTRAn(goph.getEquipmentsProvider()));
 		loaders.put(LoaderCreatureTRAn.class, new LoaderCreatureTRAn(goph.getCreaturesProvider()));
 	}
 

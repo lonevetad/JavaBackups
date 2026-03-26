@@ -4935,10 +4935,11 @@
     "description": "Death cleans away all sufferings. Now answer me: why am I painless?",
     "category": "Incantation",
     "attributesModifiers": {
-      "Dexterity": -3,
-      "Precision": -2,
-      "Intelligence": -1,
-      "Wisdom": -1
+      "Dexterity": -8,
+      "Precision": -8,
+      "Intelligence": -6,
+      "Wisdom": -4,
+      "LifeMax": 1000
     }
   },
   {
@@ -8939,6 +8940,51 @@
       "Dexterity": 2,
       "Intelligence": -5,
       "Wisdom": 1
+    }
+  },
+  {
+    "name": "Fearless",
+    "rarity": 3,
+    "price": [28],
+    "category": "Blessing",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 7,
+      "Constitution": 4,
+      "Intelligence": 2,
+      "Wisdom": 3,
+      "StaminaRegen": 3
+    }
+  },
+  {
+    "name": "Ally's",
+    "rarity": 2,
+    "price": [14],
+    "category": "Blessing",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 2,
+      "Defense": 2,
+      "Faith": 4,
+      "LifeMax": 40,
+      "ManaMax": 20
+    }
+  },
+  {
+    "name": "Beaded",
+    "rarity": 3,
+    "price": [37],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": 5,
+      "Faith": 5,
+      "ShieldMax": 15,
+      "ShieldRegen": 2,
+      "MagicalDamageReduction": 3, 
+      "MagicalDamageMultiplierPercentageReduction": 5,
+      "VelocitySpellCastPercentage": 5,
+      "CostCastReductionPercentage": 5
     }
   }
 ]

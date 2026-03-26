@@ -54,7 +54,7 @@ public class GameObjectsProvider<E extends ObjectNamed> {
 		/*
 		 * if (objsByName.get(name) == null) {
 		 * System.err.println("WTF not present after putting?"); System.exit(1); } else
-		 * { System.out.println("sucessfully added for ++" + name + "--: " +
+		 * { System.out.println("successfully added for ++" + name + "--: " +
 		 * objsByName.get(name)); }
 		 */
 	}

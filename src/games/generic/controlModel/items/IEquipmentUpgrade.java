@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributesUpgrade;
-import games.generic.controlModel.currency.CurrencySet;
+import games.generic.controlModel.holders.PriceHolder;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.types.JSONBoolean;
@@ -16,12 +16,11 @@ import tools.json.types.JSONString;
  * Simple extension to mark an {@link AttributeUpgrade} designed for
  * {@link EquipmentItem}s.
  */
-public interface IEquipmentUpgrade extends AttributesUpgrade {
+public interface IEquipmentUpgrade extends AttributesUpgrade, PriceHolder {
 	public static final Function<IEquipmentUpgrade, String> KEY_EXTRACTOR = IEquipmentUpgrade::getName;
 	public static final String FIELD_IS_PREFIX = "isPrefix";
 	public static final String FIELD_DESCRIPTION = "description";
 	public static final String FIELD_UPGRADE_CATEGORY = "category"; // upgradeCategory
-	public static final String FIELD_PRICES_MODIFICATIONS = "price"; // pricesModifications
 
 	public boolean isPrefix();
 
@@ -34,12 +33,6 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 
 	public IEquipmentUpgradeCategory getUpgradeCategory();
 
-	/**
-	 * Any attributes could apply a bonus or a malus to the price of everything it's
-	 * applied on.
-	 */
-	public CurrencySet getPricesModifications();
-
 	//
 
 	public void setIsPrefix(boolean flag);
@@ -50,8 +43,6 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 
 	public void setUpgradeCategory(IEquipmentUpgradeCategory upgradeCategory);
 
-	public void setPricesModifications(CurrencySet priceModifications);
-
 	//
 
 	// JSON-related
@@ -61,8 +52,8 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void toJSONValue(JSONObject wrapper) {
 		AttributesUpgrade.super.toJSONValue(wrapper);
+		PriceHolder.super.toJSONValue(wrapper);
 		wrapper.addField(FIELD_IS_PREFIX, new JSONBoolean(this.isPrefix()));
-		wrapper.addField(FIELD_PRICES_MODIFICATIONS, this.getPricesModifications().toJSONValue());
 		wrapper.addField(FIELD_DESCRIPTION, new JSONString(this.getDescription()));
 		wrapper.addField(FIELD_UPGRADE_CATEGORY, this.getUpgradeCategory().toJSONValue());
 	}
@@ -76,6 +67,7 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		AttributesUpgrade.super.loadFromJSONObject(gm, wrapper);
+		PriceHolder.super.loadFromJSONObject(gm, wrapper);
 		// isPrefix
 		if (!wrapper.hasField(FIELD_IS_PREFIX)) {
 			this.setIsPrefix(false);
@@ -88,20 +80,6 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 		} else {
 			this.setDescription(null);
 		}
-		// prices
-		if (!wrapper.hasField(FIELD_PRICES_MODIFICATIONS)) {
-			this.raiseExceptionMissingField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object);
-		}
-		JSONValue pricesModsJSONed = wrapper.getFieldValue(FIELD_PRICES_MODIFICATIONS);
-		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
-		if (pricesModsJSONed.isType(JSONTypes.Object)) {
-			cs.loadFromJSONObject(gm, (JSONObject) pricesModsJSONed);
-		} else if (pricesModsJSONed.isType(JSONTypes.ArrayHomogeneousType)) {
-			cs.loadFromJSONArray(gm, pricesModsJSONed);
-		} else {
-			this.raiseExceptionIllegalTypeField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object, pricesModsJSONed);
-		}
-		this.setPricesModifications(cs);
 		// UpgradeCategory's name
 		// equip upgrade category
 		if (!wrapper.hasField(FIELD_UPGRADE_CATEGORY)) {
@@ -117,6 +95,7 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 	@Override
 	public default void loadFromJSONMap(GModality gm, Map<String, Object> jsonMap) throws IllegalArgumentException {
 		AttributesUpgrade.super.loadFromJSONMap(gm, jsonMap);
+		PriceHolder.super.loadFromJSONMap(gm, jsonMap);
 		// isPrefix
 		if (!jsonMap.containsKey(FIELD_IS_PREFIX)) {
 			this.setIsPrefix(false);
@@ -128,16 +107,6 @@ public interface IEquipmentUpgrade extends AttributesUpgrade {
 			this.raiseExceptionMissingField(FIELD_DESCRIPTION, JSONTypes.String);
 		}
 		this.setDescription((String) jsonMap.get(FIELD_DESCRIPTION));
-		// prices
-		if (!jsonMap.containsKey(FIELD_PRICES_MODIFICATIONS)) {
-			this.raiseExceptionMissingField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object);
-		}
-		Object pricesModsJSONed = jsonMap.get(FIELD_PRICES_MODIFICATIONS);
-		if (!(pricesModsJSONed instanceof Map<?, ?>)) {
-			this.raiseExceptionIllegalTypeField(FIELD_PRICES_MODIFICATIONS, JSONTypes.Object, pricesModsJSONed);
-		}
-		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
-		cs.loadFromJSONMap(gm, (Map<String, Object>) pricesModsJSONed);
 		// equip upgrade category
 		if (!jsonMap.containsKey(FIELD_UPGRADE_CATEGORY)) {
 			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.String);

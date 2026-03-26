@@ -1,10 +1,8 @@
 package games.theRisingAngel.loaders;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,7 +15,7 @@ import dataStructures.MapTreeAVL;
 import dataStructures.SetMapped;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
-import games.generic.controlModel.attributes.AttributeIdentifier;
+import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.loaders.ObjectLoadable;
@@ -28,7 +26,6 @@ import games.generic.controlModel.subimpl.GModalityRPG;
 import games.generic.controlModel.subimpl.LoaderEquipments;
 import games.theRisingAngel.GControllerTRAn;
 import games.theRisingAngel.GModalityTRAnBaseWorld;
-import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.enums.RaritiesTRAn;
 import games.theRisingAngel.enums.TribesTRAn;
@@ -40,7 +37,6 @@ import games.theRisingAngel.inventory.equipsWithAbilities.HelmetOfPlanetaryMeteo
 import games.theRisingAngel.inventory.equipsWithAbilities.NecklaceOfPainRinvigoring;
 import games.theRisingAngel.loaders.factories.FactoryEquip;
 import games.theRisingAngel.loaders.factories.FactoryItems;
-import games.theRisingAngel.misc.AttributeModificationTRAn;
 import tools.json.JSONParser;
 import tools.json.JSONTypes;
 import tools.json.JSONValue;
@@ -97,94 +93,135 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 		// objProvider.addObj(AMoreDamageReceivedMoreLifeRegen.NAME, gmm -> new
 		// AMoreDamageReceivedMoreLifeRegen());
 		objProvider.addObj(ArmProtectionShieldingDamageByMoney.NAME,
-				(gm) -> new ArmProtectionShieldingDamageByMoney((GModalityRPG) gm));
+				(GModality gm) -> new ArmProtectionShieldingDamageByMoney((GModalityRPG) gm));
 		objProvider.addObj(NecklaceOfPainRinvigoring.NAME, //
-				(gm) -> new NecklaceOfPainRinvigoring((GModalityRPG) gm));
+				(GModality gm) -> new NecklaceOfPainRinvigoring((GModalityRPG) gm));
 
-		objProvider.addObj(HelmetOfPlanetaryMeteors.NAME, (gm) -> new HelmetOfPlanetaryMeteors((GModalityRPG) gm));
+		objProvider.addObj(HelmetOfPlanetaryMeteors.NAME,
+				(GModality gm) -> new HelmetOfPlanetaryMeteors((GModalityRPG) gm));
 
 		try {
-			final int[] index = { 0 };
-			// JSONArray equips;
-			// equips = (JSONArray) JSONParser
-			// .parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT +
-			// "equipItems.json");
-			//
-			// equips.forEach(
 			JSONParser.forEachInArray(//
 					JSONParser.charactersIteratorFrom(new File(
 							LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT + FILE_NAME__EQUIP_ITEMS + ".json")),
 					(indexEquip, rawEquip) -> {
-						// TODO
 						FactoryEquip factory;
 						FactoryItems factoryItem;
 						JSONObject equipEquipJSON, attributeModsJSON;
 						AttributeModification[] attrMods;
+						String typeName, equipName;
+						GModalityTRAnBaseWorld gm = (GModalityTRAnBaseWorld) gc.getCurrentGameModality();
+						equipName = null;
+						typeName = null;
 						equipEquipJSON = (JSONObject) rawEquip;
 						factory = new FactoryEquip();
-						factoryItem = factory.getFactoryItem(); // it's a delegator that recycles code
-						factoryItem.name = equipEquipJSON.getFieldValue("name").asString();
-						factoryItem.rarity = equipEquipJSON.getFieldValue("rarity").asInt();
-						factoryItem.price = equipEquipJSON.getFieldValue("price").asArrayInt();
-
-						attributeModsJSON = (JSONObject) equipEquipJSON.getFieldValue("attributesModifiers");
-						attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()];
-						index[0] = 0;
-						attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {
-							AttributeIdentifier attribute;
-							attribute = AttributesTRAn.valueOf(fieldName);
-							attrMods[index[0]++] = new AttributeModificationTRAn(attribute, attrValueJSON.asInt());
-						});
-						factory.attrMods = attrMods;
-						if (equipEquipJSON.hasField("description")) {
-							factoryItem.description = equipEquipJSON.getFieldValue("description").asString();
+						factoryItem = factory.getFactoryItem();
+						if (!equipEquipJSON.hasField(ObjectNamed.FIELD_NAME)) {
+							raiseExceptionMissingField(ObjectNamed.FIELD_NAME, JSONTypes.String);
 						}
+						equipName = ((JSONString) equipEquipJSON.getFieldValue(ObjectNamed.FIELD_NAME)).asString();
 
-						{ // abilities
-							JSONValue a;
-							JSONArray abilArray;
-							a = equipEquipJSON.getFieldValue("abilities");
-							if (a != null) {
-								if (a.isType(JSONTypes.ArrayHomogeneousType)
-										&& (abilArray = (JSONArray) a).length() > 0) {
-									factory.abilities = new ArrayList<>(abilArray.length());
-									abilArray.forEach((indexAbil, abilityDataRaw) -> {
-										JSONObject ao;
-										ao = (JSONObject) abilityDataRaw;
-										FactoryEquip.AbilityData data;
-										data = new FactoryEquip.AbilityData();
-										data.name = ao.getFieldValue("name").asString();
-										if (ao.hasField("level")) {
-											data.level = ao.getFieldValue("level").asInt();
-										} else {
-											data.level = 0;
-										}
-										factory.abilities.add(data);
-									});
-								}
+						if (!equipEquipJSON.hasField(EquipmentItem.FIELD_EQUIPMENT_TYPE)) { // a blank new Equip
+							factory.setPrototype(new EquipItemTRAn(gm, equipName));
+						} else { // create a new Equip prototype from its type
+							JSONValue typeNameJSONed_value = equipEquipJSON
+									.getFieldValue(EquipmentItem.FIELD_EQUIPMENT_TYPE);
+							if (!typeNameJSONed_value.isType(JSONTypes.String)) {
+								raiseExceptionIllegalTypeField(EquipmentItem.FIELD_EQUIPMENT_TYPE, JSONTypes.String,
+										typeNameJSONed_value);
 							}
+							typeName = ((JSONString) typeNameJSONed_value).asString();
+							EquipmentTypesTRAn typeEquip = EquipmentTypesTRAn.valueOf(typeName);
+							factory.setPrototype(typeEquip.newEquipItem(gm, equipName));
 						}
-						{
-							JSONObject dimensionRaw = (JSONObject) equipEquipJSON.getFieldValue("dimensionInventory");
-							factoryItem.dimensionInInventory = new Dimension(
-									dimensionRaw.getFieldValue("width").asInt(),
-									dimensionRaw.getFieldValue("height").asInt());
-						}
+
+						/**
+						 * factoryItem.name = equipEquipJSON.getFieldValue("name").asString();// <br>
+						 * factoryItem.rarity = equipEquipJSON.getFieldValue("rarity").asInt();// <br>
+						 * factoryItem.price = equipEquipJSON.getFieldValue("price").asArrayInt();//
+						 * attributeModsJSON = (JSONObject)
+						 * equipEquipJSON.getFieldValue("attributesModifiers");// <br>
+						 * attrMods = new AttributeModification[attributeModsJSON.getFieldsAmount()];//
+						 * <br>
+						 * int[] index[0] = 0;// <br>
+						 * attributeModsJSON.forEachField((fieldName, attrValueJSON) -> {// <br>
+						 * AttributeIdentifier attribute;// <br>
+						 * attribute = AttributesTRAn.valueOf(fieldName);// <br>
+						 * attrMods[index[0]++] = new AttributeModificationTRAn(attribute,
+						 * attrValueJSON.asInt());// <br>
+						 * });// <br>
+						 * factory.attrMods = attrMods;// <br>
+						 * if (equipEquipJSON.hasField("description")) {// <br>
+						 * factoryItem.description =
+						 * equipEquipJSON.getFieldValue("description").asString();// <br>
+						 * }// <br>
+						 * { // <br>
+						 * // abilities// <br>
+						 * JSONValue a;// <br>
+						 * JSONArray abilArray;// <br>
+						 * a = equipEquipJSON.getFieldValue("abilities");// <br>
+						 * if (a != null) {// <br>
+						 * if (a.isType(JSONTypes.ArrayHomogeneousType)// <br>
+						 * && (abilArray = (JSONArray) a).length() > 0) {// <br>
+						 * factory.abilities = new ArrayList<>(abilArray.length());// <br>
+						 * abilArray.forEach((indexAbil, abilityDataRaw) -> {// <br>
+						 * JSONObject ao;// <br>
+						 * ao = (JSONObject) abilityDataRaw;// <br>
+						 * FactoryEquip.AbilityData data;// <br>
+						 * data = new FactoryEquip.AbilityData();// <br>
+						 * data.name = ao.getFieldValue("name").asString();// <br>
+						 * if (ao.hasField("level")) {// <br>
+						 * data.level = ao.getFieldValue("level").asInt();// <br>
+						 * } else {// <br>
+						 * data.level = 0;// <br>
+						 * }// <br>
+						 * factory.abilities.add(data);// <br>
+						 * });// <br>
+						 * }// <br>
+						 * }// <br>
+						 * }// <br>
+						 * {// <br>
+						 * JSONObject dimensionRaw = (JSONObject)
+						 * equipEquipJSON.getFieldValue("dimensionInventory");// <br>
+						 * factoryItem.dimensionInInventory = new Dimension(// <br>
+						 * dimensionRaw.getFieldValue("width").asInt(),// <br>
+						 * dimensionRaw.getFieldValue("height").asInt());// <br>
+						 * }// <br>
+						 * try {// <br>
+						 * factory.type =
+						 * EquipmentTypesTRAn.valueOf(equipEquipJSON.getFieldValue("type").asString());//
+						 * <br>
+						 * } catch (Exception e) {// <br>
+						 * System.out.println("Unknown type for equip ++" + factoryItem.name + "++ :
+						 * --"// <br>
+						 * + equipEquipJSON.getFieldValue("type") + "--");// <br>
+						 * e.printStackTrace();// <br>
+						 * factory.type = EquipmentTypesTRAn.Special;// <br>
+						 * }// <br>
+						 * // <br>
+						 * thisLoader.saveObjectFactory(factoryItem.name, factory);// <br>
+						 */
 						try {
-							factory.type = EquipmentTypesTRAn.valueOf(equipEquipJSON.getFieldValue("type").asString());
-						} catch (Exception e) {
-							System.out.println("Unknown type for equip ++" + factoryItem.name + "++ : --"
-									+ equipEquipJSON.getFieldValue("type") + "--");
-							e.printStackTrace();
-							factory.type = EquipmentTypesTRAn.Special;
+							factory.getPrototype().loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
+							thisLoader.saveObjectFactory(factory.getPrototype().getName(),
+									factory.getPrototype().getRarityIndex(), factory);
+						} catch (Exception ex) {
+							gc.getLogger()
+									.logAndPrintError("\n\n\n ERROR during reading equip upgrade at # " + indexEquip);
+							gc.getLogger().logAndPrintError(rawEquip.toString());
+							gc.getLogger().logException(ex);
 						}
-						thisLoader.saveObjectFactory(factoryItem.name, factory);
+
 					});
 
 		} catch (FileNotFoundException e) {
 			gc.getLogger().logException(e);
+			e.printStackTrace();
 			return LoadStatusResult.CriticalFail;
 		}
+		gc.getLogger().logAndPrint("LoaderEquipTRAn loader has "
+				+ thisLoader.getObjProvider().getObjectsFactoriesCount() + " equipments from file");
+		gc.getLogger().logAndPrint("\n");
 
 		// leff = new LoaderEquipFromFile("", "equipItems.json");
 		// leff.readAllFile();
@@ -229,14 +266,15 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 			}
 			neverLoadedTribeSets = false;
 		}
-		System.out.println("::: LOADED " + thisLoader.objProvider.getObjectsFactoriesCount() + " equip factories");
+
+		gc.getLogger().logAndPrint("..... LoaderEquipTRAn loader has "
+				+ thisLoader.getObjProvider().getObjectsFactoriesCount() + " equipments in TOTAL");
+		gc.getLogger().logAndPrint("\n");
 		return LoadStatusResult.Success;
 	}
 
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
-		// TODO Auto-generated method stub
-
 		Function<EquipmentTypesTRAn, JSONString> equipToJSONStringConverter;
 		equipToJSONStringConverter = (eqType) -> {
 			return new JSONString(eqType.getName());
@@ -481,7 +519,7 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 					// log.logAndPrint(fe.toString());
 					// log.logAndPrint("\n");
 					fi = fe.getFactoryItem();
-					rarity = fi.rarity;
+					rarity = fi.getRarity();
 					eqType = fe.type;
 				} else {
 					try {

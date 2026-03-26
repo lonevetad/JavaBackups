@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -88,7 +89,8 @@ public class GView_E1 extends GameView {
 	JLabel[] jlPlayerStatText, jlPlayerStatValue;
 //	TextArea taLog;
 	JTextArea jtaLog;
-	JTextArea taInspector;
+	TextArea taInspector;
+	JScrollPane jspTaInspector;
 	LoggerMessagesJTextArea logTextArea;
 	RechargeableResourcesTRAn[] rechargeableResource = { RechargeableResourcesTRAn.Life, RechargeableResourcesTRAn.Mana,
 			RechargeableResourcesTRAn.Shield };
@@ -160,7 +162,7 @@ public class GView_E1 extends GameView {
 									.append(fe.getDimensionInInventory().toString());
 							sb.append('\n').append('\t').append("description :").append(fe.getDescription());
 							sb.append('\n').append('\t').append("attribute modifications :\n");
-							for (AttributeModification am : fe.attrMods) {
+							for (AttributeModification am : fe.getAttrMods()) {
 								sb.append('\t').append('\t').append(am.getName()).append(" -> ").append(am.getValue())
 										.append('\n');
 							}
@@ -387,12 +389,11 @@ public class GView_E1 extends GameView {
 		jpInsp.setLayout(new BorderLayout());
 		jpTabs.add(Map.entry("Inspector", jpInsp));
 
-		taInspector = new JTextArea("test");
-		JScrollPane jsp;
-		jsp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		jsp.setViewportView(taInspector);
-		jpInsp.add(jsp, BorderLayout.CENTER);
+		taInspector = new TextArea("test"); // JTextArea("test");
+		jspTaInspector = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		jspTaInspector.setViewportView(taInspector);
+		jpInsp.add(jspTaInspector, BorderLayout.CENTER);
 		taInspector.setSize(new Dimension(300, 400));
 		taInspector.setPreferredSize(taInspector.getSize());
 
@@ -437,7 +438,7 @@ public class GView_E1 extends GameView {
 		jpInsp.setLayout(new BorderLayout());
 		jpTabs.add(Map.entry("Inspector", jpInsp));
 
-		taInspector = new JTextArea();
+		taInspector = new TextArea();
 		jpInsp.add(taInspector, BorderLayout.CENTER);
 		taInspector.setSize(new Dimension(300, 400));
 		taInspector.setPreferredSize(taInspector.getSize());
@@ -566,8 +567,16 @@ public class GView_E1 extends GameView {
 
 // TODO logInspectedElementStringified
 	protected void logInspectedElementStringified(String text) {
+		int maxW, maxH;
 		System.out.println(text);
 		taInspector.append(text);
+		maxW = Math.max((int) taInspector.getSize().getWidth(), (int) taInspector.getPreferredSize().getWidth());
+		maxH = Math.max((int) taInspector.getSize().getHeight(), (int) taInspector.getPreferredSize().getHeight());
+		taInspector.setSize(maxW, maxH);
+		taInspector.setPreferredSize(taInspector.getSize());
+		// jspTaInspector.setPreferredSize(taInspector.getSize());
+		// System.out.println("maxW: " + maxW + " ; maxH: " + maxH);
+		// jspTaInspector.repaint();
 	}
 
 	void singleRepaintCycle() {

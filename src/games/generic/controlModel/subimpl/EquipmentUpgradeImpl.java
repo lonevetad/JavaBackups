@@ -3,6 +3,8 @@ package games.generic.controlModel.subimpl;
 import java.util.SortedSet;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.ObjectNamed;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.RarityHolder;
@@ -89,6 +91,12 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	//
 
 	@Override
+	public ObjectNamed setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	@Override
 	public void setIsPrefix(boolean flag) {
 		this.isPrefix = flag;
 	}
@@ -126,6 +134,16 @@ public abstract class EquipmentUpgradeImpl implements IEquipmentUpgrade {
 	 * null ? (",\n\t" + this.description) : "")// + ",\n\t\tattributesModifiers=" +
 	 * attributesModifiersToString() + "]"; }
 	 */
+
+	@Override
+	public boolean removeAttributeModifier(AttributeIdentifier attributeIdentifier) {
+		String attrName = attributeIdentifier.getName();
+		if (!this.backMapAttrMods.containsKey(attrName)) {
+			return false;
+		}
+		this.backMapAttrMods.remove(attrName);
+		return true;
+	}
 
 	public String attributesModifiersToString() {
 		StringBuilder sb;

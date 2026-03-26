@@ -62,7 +62,8 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 		}
 
 		if (!jsonMap.containsKey(FIELD_ID)) {
-			this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
+			// this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
+			return; // optional
 		}
 		if (!((jsonMap.get(FIELD_ID) instanceof Integer) || (jsonMap.get(FIELD_ID) instanceof Long))) {
 			this.raiseExceptionIllegalTypeField(FIELD_ID, JSONTypes.Long, jsonMap.get(FIELD_ID));
@@ -73,7 +74,8 @@ public interface ObjectWithID extends ObjWithIDGeneric<Long> {
 	@Override
 	public default void loadFromJSONObject(GModality gm, JSONObject wrapper) throws IllegalArgumentException {
 		if (!wrapper.hasField(FIELD_ID)) {
-			this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
+			// this.raiseExceptionMissingField(FIELD_ID, JSONTypes.Long);
+			return; // optional
 		}
 		setID(wrapper.getFieldValue(FIELD_ID).asLong());
 	}

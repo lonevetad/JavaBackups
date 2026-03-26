@@ -9,16 +9,18 @@ import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
 import games.generic.controlModel.items.EquipmentItem;
-import games.generic.controlModel.misc.FactoryObjGModalityBased;
+import games.generic.controlModel.misc.FactoryObjPrototypedGModalityBased;
 import games.generic.controlModel.providers.AbilitiesProvider;
 import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 
-public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
+public class FactoryEquip implements FactoryObjPrototypedGModalityBased<EquipmentItem> {
 	public final FactoryItems fi;
 	public EquipmentTypesTRAn type;
 	public List<AbilityData> abilities = null;
-	public AttributeModification[] attrMods = null;
+	protected AttributeModification[] attrMods = null;
+	/*
+	*/
 
 	public FactoryEquip() {
 		super();
@@ -26,10 +28,29 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 	}
 
 	@Override
+	public EquipmentItem getPrototype() {
+		return (EquipmentItem) fi.getPrototype();
+	}
+
+	@Override
+	public void setPrototype(EquipmentItem prototype) {
+		this.fi.setPrototype(prototype);
+	}
+
+	@Override
 	public EquipmentItem newInstance(GModality gm) {
 		EquipmentItem ei;
 //	ei = new EquipmentItemImpl((GModalityRPG) gm, type, name);
-		ei = type.getFactory().newEquipItem((GModalityRPG) gm, type, getFactoryItem().name, attrMods);
+		if (this.attrMods == null) {
+			this.attrMods = this.getPrototype().getBaseAttributesModifiers()
+					.toArray(new AttributeModification[this.getPrototype().getBaseAttributesModifiers().size()]);
+		}
+		ei = type.getFactory().newEquipItem( //
+				(GModalityRPG) gm, //
+				type, //
+				getFactoryItem().getName(), //
+				attrMods //
+		);
 		setValuesInto(gm, ei);
 		return ei;
 	}
@@ -89,7 +110,7 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 	}
 
 	public AttributeModification[] getAttrMods() {
-		return attrMods;
+		return this.attrMods;
 	}
 
 	@Override
@@ -97,7 +118,7 @@ public class FactoryEquip implements FactoryObjGModalityBased<EquipmentItem> {
 		return "FactoryEquip [\n name=" + getName() + ", type=" + type + //
 				",\n description: " + getDescription() + ",\n rarity=" + getRarity() + ", sell price: "
 				+ Arrays.toString(getPrice())//
-				+ ",\n dimensions in inventory: " + getFactoryItem().dimensionInInventory + ",\n abilities=\n\t"
+				+ ",\n dimensions in inventory: " + getFactoryItem().getDimensionInInventory() + ",\n abilities=\n\t"
 				+ (abilities == null ? "null" : Arrays.toString(abilities.toArray()))//
 				+ ",\n attrMods=\n\t" + Arrays.toString(attrMods) + "]";
 	}

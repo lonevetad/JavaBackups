@@ -18,6 +18,7 @@ import tools.json.JSONTypes;
 import tools.json.JSONValue;
 import tools.json.types.JSONInt;
 import tools.json.types.JSONObject;
+import tools.json.types.JSONString;
 
 public interface AbilityGeneric extends AssignableObject, RarityHolder {
 	public static final String FIELD_LEVEL = "level";
@@ -59,10 +60,12 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder {
 	public default boolean canBePerformed(GModality gm) {
 		ObjectWithID o;
 		o = getOwner();
-		if (o == null)
+		if (o == null) {
 			return true;
-		if (o instanceof DestructibleObject)
+		}
+		if (o instanceof DestructibleObject) {
 			return !((DestructibleObject) o).isDestroyed();
+		}
 		return true;
 	}
 
@@ -130,8 +133,9 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder {
 	public default CreatureAttributes getOwnerAttributes() {
 		ObjectWithID o;
 		o = getOwner();
-		if (o == null || (!(o instanceof AttributesHolder)))
+		if (o == null || (!(o instanceof AttributesHolder))) {
 			return null;
+		}
 		return ((AttributesHolder) o).getAttributes();
 	}
 
@@ -157,6 +161,11 @@ public interface AbilityGeneric extends AssignableObject, RarityHolder {
 		AssignableObject.super.toJSONValue(wrapper);
 		RarityHolder.super.toJSONValue(wrapper);
 		wrapper.addField(FIELD_LEVEL, new JSONInt(this.getLevel()));
+	}
+
+	@Override
+	public default JSONValue toJSONValue() {
+		return new JSONString(getName()); // just the name, right now ... otherwise : delete this override
 	}
 
 	@Override

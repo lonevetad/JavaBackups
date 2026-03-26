@@ -1,5 +1,6 @@
 package games.generic.controlModel.items;
 
+import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
 import games.generic.controlModel.misc.IEnumAlike;
 import tools.Comparators;
 import tools.Comparators.MyComparator;
@@ -9,8 +10,7 @@ import tools.json.types.JSONString;
 
 /**
  * A marker-interface for {@link IEquipmentUpgrade} to define the category that
- * Upgrade belongs to.
- * This interface might be incorporated in an {@link Enum}-
+ * Upgrade belongs to. This interface might be incorporated in an {@link Enum}-
  */
 public interface IEquipmentUpgradeCategory extends IEnumAlike {
 	public static final MyComparator<IEquipmentUpgradeCategory> COMPARATOR_IEQUIPMENT_UPGRADE_CATEGORY = (ec1, ec2) -> {
@@ -25,6 +25,8 @@ public interface IEquipmentUpgradeCategory extends IEnumAlike {
 		}
 		return Comparators.STRING_COMPARATOR.compare(ec1.getName(), ec2.getName());
 	};
+
+	public MaxUpgradesPerCategory getDefaultMaxUpgradesPerCategory();
 
 	//
 

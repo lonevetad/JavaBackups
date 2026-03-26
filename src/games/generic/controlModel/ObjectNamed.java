@@ -47,8 +47,7 @@ public interface ObjectNamed extends JSONable {
 		if (wrapper.hasField(FIELD_NAME)) {
 			return; // already done
 		}
-		JSONString jsonedName = new JSONString(this.getName());
-		wrapper.addField(FIELD_NAME, jsonedName);
+		wrapper.addField(FIELD_NAME, new JSONString(this.getName()));
 	}
 
 	@Override
@@ -57,7 +56,7 @@ public interface ObjectNamed extends JSONable {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
 		if (!jsonMap.containsKey(FIELD_NAME) || !(jsonMap.get(FIELD_NAME) instanceof String)) {
-			this.raiseExceptionIllegalTypeField(FIELD_NAME);
+			this.raiseExceptionIllegalTypeField(FIELD_NAME, JSONTypes.String, jsonMap);
 		}
 		this.setName((String) jsonMap.get(FIELD_NAME));
 	}

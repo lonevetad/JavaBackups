@@ -81,8 +81,9 @@ public enum EquipmentUpgradeCategory implements IEquipmentUpgradeCategory {
 		return BACKMAPPING;
 	}
 
+	@Override
 	public MaxUpgradesPerCategory getDefaultMaxUpgradesPerCategory() {
-		return defaultMaxUpgradesPerCategory;
+		return defaultMaxUpgradesPerCategory.clone();
 	}
 
 	@Override

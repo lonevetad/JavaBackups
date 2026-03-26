@@ -22,10 +22,12 @@ public class LoaderItemsTRAn extends LoaderItems {
 	}
 
 	@Override
-	public LoadStatusResult loadInto(GController gm) {
+	public LoadStatusResult loadInto(GController gc) {
 		// TODO use it
 
 		// nothing to load right now
+
+		gc.getLogger().logAndPrint("LoaderItemsTRAn HAS NOTHING TO LOAD NOW \n");
 
 		return LoadStatusResult.Success;
 	}

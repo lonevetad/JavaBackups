@@ -5,7 +5,10 @@ import java.util.Map;
 import java.util.Objects;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EquipmentType;
+import games.theRisingAngel.GModalityTRAnBaseWorld;
 import games.theRisingAngel.inventory.EquipItemFactory;
 import tools.Comparators;
 
@@ -52,6 +55,11 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 			}
 			return Comparators.LONG_COMPARATOR.compare(e1.getID(), e2.getID());
 		};
+
+		// build the factories
+		for (EquipmentTypesTRAn et : ALL_EQUIP_TYPES_TRAn) {
+			et.getFactory();
+		}
 	}
 
 	private EquipmentTypesTRAn(int am) {
@@ -100,10 +108,10 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 		 * change this implementation.
 		 */
 		return switch (thisInstance) {
-			case Earrings, Necklace, Bracelet -> EquipItemFactory.DefaultEIF.JewelryFactory;
-			case Ring -> EquipItemFactory.DefaultEIF.RingFactory;
-			case MainWeapon, SecodaryWeapon -> EquipItemFactory.DefaultEIF.WeaponFactory;
-			default -> EquipItemFactory.DefaultEIF.NonJewelryFacory;
+		case Earrings, Necklace, Bracelet -> EquipItemFactory.DefaultEIF.JewelryFactory;
+		case Ring -> EquipItemFactory.DefaultEIF.RingFactory;
+		case MainWeapon, SecodaryWeapon -> EquipItemFactory.DefaultEIF.WeaponFactory;
+		default -> EquipItemFactory.DefaultEIF.NonJewelryFacory;
 		};
 	}
 
@@ -114,8 +122,9 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 	public static EquipmentTypesTRAn getEquipTypeTRArByName(String name) {
 		EquipmentTypesTRAn e;
 		Map<String, EquipmentTypesTRAn> m;
-		if (name == null)
+		if (name == null) {
 			throw new IllegalArgumentException("Name cannot be null");
+		}
 		if (attTRArByName == null) {
 			m = attTRArByName = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.STRING_COMPARATOR);
 			for (EquipmentTypesTRAn eq : ALL_EQUIP_TYPES_TRAn) {
@@ -123,8 +132,9 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 			}
 		}
 		e = attTRArByName.get(name);
-		if (e == null)
+		if (e == null) {
 			throw new IllegalArgumentException("Invalid name for AttributesTRAr: " + name);
+		}
 		return e;
 	}
 
@@ -134,17 +144,17 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 
 	public static int getAmountItemsEquippables(EquipmentTypesTRAn et) {
 		switch (et) {
-			case Necklace: {
-				return NECKLACE_AMOUNT;
-			}
-			case Bracelet: {
-				return BRACELET_AMOUNT;
-			}
-			case Ring: {
-				return TOTAL_RINGS_SLOTS_AMOUNT;
-			}
-			default:
-				return 1;
+		case Necklace: {
+			return NECKLACE_AMOUNT;
+		}
+		case Bracelet: {
+			return BRACELET_AMOUNT;
+		}
+		case Ring: {
+			return TOTAL_RINGS_SLOTS_AMOUNT;
+		}
+		default:
+			return 1;
 		}
 	}
 
@@ -159,4 +169,12 @@ public enum EquipmentTypesTRAn implements EquipmentType {
 				|| et == EquipmentTypesTRAn.Bracelet || et == EquipmentTypesTRAn.Ring);
 	}
 
+	public EquipmentItem newEquipItem(GModalityTRAnBaseWorld gm, String equipName,
+			AttributeModification[] baseAttributeMods) {
+		return this.getFactory().newEquipItem(gm, this, equipName, baseAttributeMods);
+	}
+
+	public EquipmentItem newEquipItem(GModalityTRAnBaseWorld gm, String equipName) {
+		return this.newEquipItem(gm, equipName, null);
+	}
 }

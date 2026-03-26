@@ -64,12 +64,6 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 		final LoaderEquipUpgradesTRAn thisLoader = this;
 
 		try {
-			// equipments = (JSONArray) JSONParser
-			// .parseFile(LoaderConfigurations.RESOURCE_REPOSITORY_PULL_FACT +
-			// "equipUpgrades.json");
-			//
-			// equipments.forEach(
-
 			JSONParser.forEachInArray(//
 					JSONParser.charactersIteratorFrom(new File(LoaderConfigurationsTRAn.RESOURCE_REPOSITORY_PULL_FACT
 							+ FILE_NAME__EQUIP_UPGRADES + ".json")),
@@ -102,11 +96,11 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 						 * // <br>
 						 * } // <br>
 						 */
-						factory.prototype = new EquipmentUpgradeTRAn();
+						factory.setPrototype(new EquipmentUpgradeTRAn());
 						try {
-							factory.prototype.loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
-							thisLoader.saveObjectFactory(factory.prototype.getName(),
-									factory.prototype.getRarityIndex(), factory);
+							factory.getPrototype().loadFromJSONObject(gc.getCurrentGameModality(), equipEquipJSON);
+							thisLoader.saveObjectFactory(factory.getPrototype().getName(),
+									factory.getPrototype().getRarityIndex(), factory);
 						} catch (Exception ex) {
 							gc.getLogger()
 									.logAndPrintError("\n\n\n ERROR during reading equip upgrade at # " + indexEquipUp);
@@ -117,12 +111,13 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 
 		} catch (FileNotFoundException e) {
 			gc.getLogger().logException(e);
-			// e.printStackTrace();
+			e.printStackTrace();
 			return LoadStatusResult.CriticalFail;
 		}
 
-		System.out.println("LoaderEquipUpgradesTRAn loader has "
+		gc.getLogger().logAndPrint("LoaderEquipUpgradesTRAn loader has "
 				+ thisLoader.getObjProvider().getObjectsFactoriesCount() + " non tribe counters");
+		gc.getLogger().logAndPrint("\n");
 
 		if (ADD_TRIBES_UPGRADES) {
 			final ReligionAlignment[] rel;
@@ -144,6 +139,10 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 				}
 			});
 		}
+		gc.getLogger().logAndPrint(".... LoaderEquipUpgradesTRAn loader has "
+				+ thisLoader.getObjProvider().getObjectsFactoriesCount() + " IN TOTAL");
+		gc.getLogger().logAndPrint("\n");
+
 		return LoadStatusResult.Success;
 	}
 
@@ -176,7 +175,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 	public static List<String> factoryToLinesString(GModality gm, FactoryObjGModalityBased<IEquipmentUpgrade> factory) {
 		int rarity, price;
 		final List<String> l;
-		String name, description;
+		String name = "N/A", description;
 		AttributeModification[] attrMods;
 		CurrencySet curr;
 		IEquipmentUpgrade eu;
@@ -184,32 +183,39 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 		if (factory instanceof FactoryEquipUpgrade) {
 			FactoryEquipUpgrade fe;
 			fe = (FactoryEquipUpgrade) factory;
-			eu = fe.prototype;
+			eu = fe.getPrototype();
 		} else {
 			eu = factory.newInstance(gm);
 		}
-		name = eu.getName();
-		description = eu.getDescription();
-		rarity = eu.getRarityIndex();
-		curr = eu.getPricesModifications();
-		price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
-		attrMods = eu.getAttributesModifiers().toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
-		l.add("name:" + name);
-		l.add("\trarity :" + rarity);
-		l.add("\tprice :" + price);
-		l.add("\tisPrefix:" + eu.isPrefix());
-		l.add("\tequipment Category:" + eu.getUpgradeCategory().getName());
-		l.add("\tdescription: " + description);
-		l.add("\tattribute modifications :");
-		for (AttributeModification am : attrMods) {
-			l.add("\t\t" + am.getName() + " -> " + am.getValue());
-		}
+		try {
+			name = eu.getName();
+			description = eu.getDescription();
+			rarity = eu.getRarityIndex();
+			curr = eu.getPricesModifications();
+			price = curr.getCurrencyAmount(curr.getCurrencies()[0]);
+			attrMods = eu.getAttributesModifiers()
+					.toArray(new AttributeModification[eu.getAttributesModifiers().size()]);
+			l.add("name:" + name);
+			l.add("\trarity :" + rarity);
+			l.add("\tprice :" + price);
+			l.add("\tisPrefix:" + eu.isPrefix());
+			l.add("\tequipment Category:" + eu.getUpgradeCategory().getName());
+			l.add("\tdescription: " + description);
+			l.add("\tattribute modifications :");
+			for (AttributeModification am : attrMods) {
+				l.add("\t\t" + am.getName() + " -> " + am.getValue());
+			}
 
-		if (factory instanceof EquipUpgradeTribeFactoryTRAn) {
-			EquipUpgradeTribeFactoryTRAn fa;
-			fa = (EquipUpgradeTribeFactoryTRAn) factory;
-			l.add("\ttribe: " + fa.tribe.name());
-			l.add("\treligionAlignment: " + fa.religionAlignment.name());
+			if (factory instanceof EquipUpgradeTribeFactoryTRAn) {
+				EquipUpgradeTribeFactoryTRAn fa;
+				fa = (EquipUpgradeTribeFactoryTRAn) factory;
+				l.add("\ttribe: " + fa.tribe.name());
+				l.add("\treligionAlignment: " + fa.religionAlignment.name());
+			}
+		} catch (Exception e) {
+			System.err.println("ERROR for things with name: " + name);
+			l.forEach(System.err::println);
+			e.printStackTrace();
 		}
 		return l;
 	}
@@ -287,7 +293,7 @@ public class LoaderEquipUpgradesTRAn extends LoaderEquipUpgrades {
 				/*
 				 * log.logAndPrint("\n"); log.logAndPrint(fe.toString()); log.logAndPrint("\n");
 				 */
-				eu = fe.prototype;
+				eu = fe.getPrototype();
 			} else {
 				eu = factoryEquip.newInstance(gm);
 			}

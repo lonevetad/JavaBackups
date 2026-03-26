@@ -246,6 +246,7 @@ public class TribesTRAn {
 			}
 			eu.setPricesModifications(cs);
 			eu.setIsPrefix(false);
+			eu.setUpgradeCategory(EquipmentUpgradeCategory.Tribal);
 			return eu;
 		}
 

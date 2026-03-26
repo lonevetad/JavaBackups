@@ -22,7 +22,6 @@ import tools.json.types.JSONString;
  */
 public abstract class MaxUpgradesPerCategory implements JSONable {
 	private static final long serialVersionUID = -4000000102054402248L;
-	public static final String FIELD_MAX_UPGRADABLE_AMOUNTS = "maxUpgradableAmounts";
 	public static final String FIELD_UPGRADE_CATEGORY = "upgradeCategory";
 
 	protected RangedAmountInt maxUpgradableAmounts;
@@ -90,8 +89,13 @@ public abstract class MaxUpgradesPerCategory implements JSONable {
 
 	@Override
 	public void toJSONValue(JSONObject wrapper) {
-		wrapper.addField(FIELD_MAX_UPGRADABLE_AMOUNTS, this.maxUpgradableAmounts.toJSONValue());
-		wrapper.addField(FIELD_UPGRADE_CATEGORY, this.upgradeCategory.toJSONValue());
+		this.maxUpgradableAmounts.toJSONValue(wrapper);
+		// wrapper.addField(FIELD_UPGRADE_CATEGORY, this.upgradeCategory.toJSONValue());
+	}
+
+	@Override
+	public JSONValue toJSONValue() {
+		return this.maxUpgradableAmounts.toJSONValue();
 	}
 
 	@Override
@@ -99,47 +103,39 @@ public abstract class MaxUpgradesPerCategory implements JSONable {
 		if (wrapper == null) {
 			throw new IllegalArgumentException("Provided JSON wrapper cannot be null");
 		}
-		// maxUpgradableAmounts
-		if (!wrapper.hasField(FIELD_MAX_UPGRADABLE_AMOUNTS)) {
-			this.raiseExceptionMissingField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object);
-		}
-		JSONValue maxUpgradableAmountsJSONed_value = wrapper.getFieldValue(FIELD_MAX_UPGRADABLE_AMOUNTS);
-		if (!maxUpgradableAmountsJSONed_value.isType(JSONTypes.Object)) {
-			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object,
-					maxUpgradableAmountsJSONed_value);
-		}
-		JSONObject maxUpgradableAmountsJSONed = (JSONObject) maxUpgradableAmountsJSONed_value;
 		if (this.getMaxUpgradableAmounts() == null) {
 			this.setMaxUpgradableAmounts(new RangedAmountInt(1)); // dummy default
 		}
-		this.getMaxUpgradableAmounts().loadFromJSONObject(gm, maxUpgradableAmountsJSONed);
+		this.getMaxUpgradableAmounts().loadFromJSONObject(gm, wrapper);
 		// upgradeCategory
-		if (!wrapper.hasField(FIELD_UPGRADE_CATEGORY)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+		if (wrapper.hasField(FIELD_UPGRADE_CATEGORY)) { // optional
+			// this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+			JSONValue upgradeCategoryJSONed_value = wrapper.getFieldValue(FIELD_UPGRADE_CATEGORY);
+			JSONString upgradeCategory_Name_JSONed = null;
+			if (upgradeCategoryJSONed_value.isType(JSONTypes.String)) {
+				upgradeCategory_Name_JSONed = (JSONString) upgradeCategoryJSONed_value;
+			} else {
+				if (!upgradeCategoryJSONed_value.isType(JSONTypes.Object)) {
+					this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object,
+							upgradeCategoryJSONed_value);
+				}
+				JSONObject upgradeCategoryJSONed = (JSONObject) upgradeCategoryJSONed_value;
+				if (!upgradeCategoryJSONed.hasField(ObjectNamed.FIELD_NAME)) {
+					this.raiseExceptionMissingField(
+							FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+							JSONTypes.String);
+				}
+				JSONValue upgradeCategory_Name_JSONed_value = upgradeCategoryJSONed
+						.getFieldValue(ObjectNamed.FIELD_NAME);
+				if (!upgradeCategory_Name_JSONed_value.isType(JSONTypes.String)) {
+					this.raiseExceptionIllegalTypeField(
+							FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+							JSONTypes.String, upgradeCategory_Name_JSONed_value);
+				}
+				upgradeCategory_Name_JSONed = (JSONString) upgradeCategory_Name_JSONed_value;
+			}
+			this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name_JSONed.asString());
 		}
-		JSONValue upgradeCategoryJSONed_value = wrapper.getFieldValue(FIELD_UPGRADE_CATEGORY);
-		JSONString upgradeCategory_Name_JSONed = null;
-		if (upgradeCategoryJSONed_value.isType(JSONTypes.String)) {
-			upgradeCategory_Name_JSONed = (JSONString) upgradeCategoryJSONed_value;
-		} else {
-			if (!upgradeCategoryJSONed_value.isType(JSONTypes.Object)) {
-				this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object,
-						upgradeCategoryJSONed_value);
-			}
-			JSONObject upgradeCategoryJSONed = (JSONObject) upgradeCategoryJSONed_value;
-			if (!upgradeCategoryJSONed.hasField(ObjectNamed.FIELD_NAME)) {
-				this.raiseExceptionMissingField(
-						FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String);
-			}
-			JSONValue upgradeCategory_Name_JSONed_value = upgradeCategoryJSONed.getFieldValue(ObjectNamed.FIELD_NAME);
-			if (!upgradeCategory_Name_JSONed_value.isType(JSONTypes.String)) {
-				this.raiseExceptionIllegalTypeField(
-						FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String,
-						upgradeCategory_Name_JSONed_value);
-			}
-			upgradeCategory_Name_JSONed = (JSONString) upgradeCategory_Name_JSONed_value;
-		}
-		this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name_JSONed.asString());
 	}
 
 	@Override
@@ -147,47 +143,40 @@ public abstract class MaxUpgradesPerCategory implements JSONable {
 		if (jsonMap == null) {
 			throw new IllegalArgumentException("Provided JSON map cannot be null");
 		}
-		// maxUpgradableAmounts
-		if (!jsonMap.containsKey(FIELD_MAX_UPGRADABLE_AMOUNTS)) {
-			this.raiseExceptionMissingField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object);
-		}
-		Object maxUpgradableAmountsJSONed_value = jsonMap.get(FIELD_MAX_UPGRADABLE_AMOUNTS);
-		if (!(maxUpgradableAmountsJSONed_value instanceof Map<?, ?>)) {
-			this.raiseExceptionIllegalTypeField(FIELD_MAX_UPGRADABLE_AMOUNTS, JSONTypes.Object,
-					maxUpgradableAmountsJSONed_value);
-		}
-		Map<String, Object> maxUpgradableAmountsJSONed = (Map<String, Object>) maxUpgradableAmountsJSONed_value;
 		if (this.getMaxUpgradableAmounts() == null) {
 			this.setMaxUpgradableAmounts(new RangedAmountInt(1)); // dummy default
 		}
-		this.getMaxUpgradableAmounts().loadFromJSONMap(gm, maxUpgradableAmountsJSONed);
+		this.getMaxUpgradableAmounts().loadFromJSONMap(gm, jsonMap);
 		// upgradeCategory
-		if (!jsonMap.containsKey(FIELD_UPGRADE_CATEGORY)) {
-			this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+		if (jsonMap.containsKey(FIELD_UPGRADE_CATEGORY)) { // optional
+			// this.raiseExceptionMissingField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object);
+			Object upgradeCategoryJSONed_value = jsonMap.get(FIELD_UPGRADE_CATEGORY);
+			String upgradeCategory_Name = null;
+			if (upgradeCategoryJSONed_value instanceof String) {
+				upgradeCategory_Name = (String) upgradeCategoryJSONed_value;
+			} else {
+				if (!(upgradeCategoryJSONed_value instanceof Map<?, ?>)) {
+					this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object,
+							upgradeCategoryJSONed_value);
+				}
+				Map<String, Object> upgradeCategoryJSONed = (Map<String, Object>) upgradeCategoryJSONed_value;
+				if (!upgradeCategoryJSONed.containsKey(ObjectNamed.FIELD_NAME)) {
+					this.raiseExceptionMissingField(
+							FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+							JSONTypes.String);
+				}
+				Object upgradeCategory_Name_value = upgradeCategoryJSONed.get(ObjectNamed.FIELD_NAME);
+				if (!(upgradeCategory_Name_value instanceof Map<?, ?>)) {
+					this.raiseExceptionIllegalTypeField(
+							FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME,
+							JSONTypes.String, upgradeCategory_Name_value);
+				}
+				upgradeCategory_Name = (String) upgradeCategory_Name_value;
+			}
+			this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name);
 		}
-		Object upgradeCategoryJSONed_value = jsonMap.get(FIELD_UPGRADE_CATEGORY);
-		String upgradeCategory_Name = null;
-		if (upgradeCategoryJSONed_value instanceof String) {
-			upgradeCategory_Name = (String) upgradeCategoryJSONed_value;
-		} else {
-			if (!(upgradeCategoryJSONed_value instanceof Map<?, ?>)) {
-				this.raiseExceptionIllegalTypeField(FIELD_UPGRADE_CATEGORY, JSONTypes.Object,
-						upgradeCategoryJSONed_value);
-			}
-			Map<String, Object> upgradeCategoryJSONed = (Map<String, Object>) upgradeCategoryJSONed_value;
-			if (!upgradeCategoryJSONed.containsKey(ObjectNamed.FIELD_NAME)) {
-				this.raiseExceptionMissingField(
-						FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String);
-			}
-			Object upgradeCategory_Name_value = upgradeCategoryJSONed.get(ObjectNamed.FIELD_NAME);
-			if (!(upgradeCategory_Name_value instanceof Map<?, ?>)) {
-				this.raiseExceptionIllegalTypeField(
-						FIELD_UPGRADE_CATEGORY + JSONable.SEPARATOR_FIELD + ObjectNamed.FIELD_NAME, JSONTypes.String,
-						upgradeCategory_Name_value);
-			}
-			upgradeCategory_Name = (String) upgradeCategory_Name_value;
-		}
-		this.loadEquipmentUpgradeCategory(gm, upgradeCategory_Name);
 	}
 
+	@Override
+	public abstract MaxUpgradesPerCategory clone();
 }

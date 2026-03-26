@@ -4,7 +4,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.currency.Currency;
 import games.generic.controlModel.currency.CurrencySet;
-import games.generic.controlModel.misc.FactoryObjGModalityBased;
+import games.generic.controlModel.misc.FactoryObjPrototypedGModalityBased;
 
 /**
  * A factory for {@link IEquipmentUpgrade}.
@@ -12,15 +12,25 @@ import games.generic.controlModel.misc.FactoryObjGModalityBased;
  * @author ottin
  *
  */
-public abstract class FactoryEquipUpgrade implements FactoryObjGModalityBased<IEquipmentUpgrade> {
+public abstract class FactoryEquipUpgrade implements FactoryObjPrototypedGModalityBased<IEquipmentUpgrade> {
 	/*
 	 * public int rarity; public int[] bonusPriceSell = null; public String name,
 	 * description = null; public AttributeModification[] attrMods = null;
 	 */
-	public IEquipmentUpgrade prototype;
+	protected IEquipmentUpgrade prototype;
 
 	public FactoryEquipUpgrade() {
 		super();
+	}
+
+	@Override
+	public IEquipmentUpgrade getPrototype() {
+		return prototype;
+	}
+
+	@Override
+	public void setPrototype(IEquipmentUpgrade prototype) {
+		this.prototype = prototype;
 	}
 
 	protected abstract IEquipmentUpgrade newEquipmentUpgrade(String equipUpgradeName, int rarityIndex);
@@ -47,7 +57,7 @@ public abstract class FactoryEquipUpgrade implements FactoryObjGModalityBased<IE
 			cs.setGameModaliy(gm); // not needed
 			n = csPrototype.getCurrencies().length;
 			while (--n >= 0) {
-				cs.setCurrencyAmount(currencies[n], cs.getCurrencyAmount(currencies[n]));
+				cs.setCurrencyAmount(currencies[n], csPrototype.getCurrencyAmount(currencies[n]));
 			}
 			eu.setPricesModifications(cs);
 		}

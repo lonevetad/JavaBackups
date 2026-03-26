@@ -1,11 +1,15 @@
 package games.old;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.abilities.AbilityGeneric;
+import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
+import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.EquipmentType;
 import games.generic.controlModel.items.IEquipmentUpgrade;
+import games.generic.controlModel.items.IEquipmentUpgradeCategory;
 import games.generic.controlModel.subimpl.GModalityRPG;
 
 /**
@@ -72,5 +76,56 @@ public class EquipmentItemImpl extends EquipmentItem {
 	public void onPickUp(GModalityRPG gmRPG) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'onPickUp'");
+	}
+
+	@Override
+	public void loadEquipmentType(GModality gm, String typeName) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IEquipmentUpgradeCategory getEquipmentUpgradeCategoryByName(GModality gm,
+			String equipmentUpgradeCategoryName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MaxUpgradesPerCategory newMaxUpgradesPerCategory(GModality gm,
+			IEquipmentUpgradeCategory equipUpgradeCategory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AttributeIdentifier getAttributeIdentifierByName(GModality gm, String attributeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AttributeModification newAttributeModification(GModality gm, AttributeIdentifier attributeModified,
+			int value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IEquipmentUpgrade newEquipmentUpgrade(GModality gm, String equipUpgradeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AbilityGeneric newAbility(GModality gm, String abilityName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IEquipmentUpgradeCategory[] getAllEquipmentUpgradeCategory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

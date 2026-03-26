@@ -1,6 +1,7 @@
 package games.generic.controlModel.holders;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -115,28 +116,38 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 		}
 		// JSONValue[] abilitiesArrayjsoned ;
 		((JSONArray) jsonedAbilitiesArrayed).forEach((index, abilityJSONed) -> {
-			if (!abilityJSONed.isType(JSONTypes.Object)) {
+			String abilityName = null;
+			int level = 0;
+			Map<String, Object> extraParameters = null;
+			if (abilityJSONed.isType(JSONTypes.String)) {
+				abilityName = ((JSONString) abilityJSONed).asString();
+			} else if (abilityJSONed.isType(JSONTypes.Object)) {
+
+				JSONObject ablJSON = (JSONObject) abilityJSONed;
+				extraParameters = JSONable.newFieldValuesMap();
+				// name
+				JSONValue abilityNameJSONed = ablJSON.getFieldValue("name");
+				if (!abilityNameJSONed.isType(JSONTypes.String)) {
+					this.raiseExceptionIllegalTypeField("name", JSONTypes.String, abilityNameJSONed);
+				}
+				abilityName = ((JSONString) abilityNameJSONed).asString();
+				// level
+				JSONValue abilityLevelJSONed = ablJSON.getFieldValue(AbilityGeneric.FIELD_LEVEL);
+				if (!abilityLevelJSONed.isType(JSONTypes.Int)) {
+					this.raiseExceptionIllegalTypeField(AbilityGeneric.FIELD_LEVEL, JSONTypes.Int, abilityLevelJSONed);
+				}
+				Integer abilityLevel = ((JSONInt) abilityLevelJSONed).asInt();
+				level = abilityLevel;
+				extraParameters.put(AbilityGeneric.FIELD_LEVEL, abilityLevel);
+			} else {
 				this.raiseExceptionIllegalTypeField(FIELD_ABILITIES + JSONable.SEPARATOR_INDEX + index,
 						JSONTypes.Object, abilityJSONed);
 			}
-			JSONObject ablJSON = (JSONObject) abilityJSONed;
-			Map<String, Object> extraParameters = JSONable.newFieldValuesMap();
-			// name
-			JSONValue abilityNameJSONed = ablJSON.getFieldValue("name");
-			if (!abilityNameJSONed.isType(JSONTypes.String)) {
-				this.raiseExceptionIllegalTypeField("name", JSONTypes.String, abilityNameJSONed);
-			}
-			String abilityName = ((JSONString) abilityNameJSONed).asString();
-			// level
-			JSONValue abilityLevelJSONed = ablJSON.getFieldValue("level");
-			if (!abilityLevelJSONed.isType(JSONTypes.Int)) {
-				this.raiseExceptionIllegalTypeField("level", JSONTypes.Int, abilityLevelJSONed);
-			}
-			Integer abilityLevel = ((JSONInt) abilityLevelJSONed).asInt();
-			extraParameters.put("level", abilityLevel);
 			// create the Ability
-			AbilityGeneric ag = gm.getGameObjectsProvider().newAbilityGeneric(abilityName, extraParameters);
-			this.addAbility(ag);
+			AbilityGeneric ability = gm.getGameObjectsProvider().newAbilityGeneric(abilityName, extraParameters);
+			Objects.requireNonNull(ability);
+			ability.setLevel(level);
+			this.addAbility(ability);
 		});
 	}
 
@@ -154,18 +165,29 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 		}
 		Map<String, Object> abilitiesMap = (Map<String, Object>) jsonMap.get(FIELD_ABILITIES);
 		abilitiesMap.forEach((name, abilityDataObj) -> {
-			if (!(abilityDataObj instanceof Map<?, ?>)) {
+			String abilityName = null;
+			Map<String, Object> extraParameters = null;
+			int level = 0;
+			if (abilityDataObj instanceof String) {
+				abilityName = (String) abilityDataObj;
+			} else if (!(abilityDataObj instanceof Map<?, ?>)) {
+
+				Map<String, Object> abilityDataMap = JSONable.newFieldValuesMap();
+				if (abilityDataMap.containsKey(AbilityGeneric.FIELD_LEVEL)) { // set the level if possible (it should
+																				// already be set by the
+					// method above, but ... just in case)
+					Object maybeLevel = abilityDataMap.get(AbilityGeneric.FIELD_LEVEL);
+					if (maybeLevel instanceof Integer levelInt) {
+						level = levelInt;
+					}
+				}
+			} else {
 				this.raiseExceptionIllegalTypeField(FIELD_NAME + "#(" + name + ")", JSONTypes.Object, abilityDataObj);
 			}
-			Map<String, Object> abilityDataMap = (Map<String, Object>) abilityDataObj;
-			AbilityGeneric ability = gm.getGameObjectsProvider().newAbilityGeneric(name, abilityDataObj);
-			if (abilityDataMap.containsKey("level")) { // set the level if possible (it should already be set by the
-														// method above, but ... just in case)
-				Object maybeLevel = abilityDataMap.get("level");
-				if (maybeLevel instanceof Integer levelInt) {
-					ability.setLevel(levelInt);
-				}
-			}
+			// create the Ability
+			AbilityGeneric ability = gm.getGameObjectsProvider().newAbilityGeneric(name, extraParameters);
+			Objects.requireNonNull(ability);
+			ability.setLevel(level);
 			this.addAbility(ability);
 		});
 	}

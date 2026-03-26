@@ -8,6 +8,7 @@ import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.currency.CurrencySet;
 import games.generic.controlModel.holders.InventoryHolder;
+import games.generic.controlModel.holders.PriceHolder;
 import games.generic.controlModel.holders.RarityHolder;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import games.generic.controlModel.objects.AssignableObject;
@@ -29,12 +30,11 @@ import tools.json.types.JSONObject;
  * Used in RPGS
  */
 public abstract class InventoryItem extends OWIDLongImpl
-		implements RarityHolder, DroppableObject, AssignableObject {
+		implements RarityHolder, DroppableObject, AssignableObject, PriceHolder {
 	private static final long serialVersionUID = 47104252L;
 
-	public static final String FIELD_SELL_PRICE = "sellPrice";
-	public static final String FIELD_DIMENSION_IN_INVENTORY = "dimensionInInventory";
-	public static final String FIELD_LOCATION_IN_INVENTORY = "locationInInventory";
+	public static final String FIELD_DIMENSION_IN_INVENTORY = "dimensionInventory";
+	public static final String FIELD_LOCATION_IN_INVENTORY = "locationInventory";
 	private static UniqueIDProvider UIDP_INVENTORY = UniqueIDProvider.newBasicIDProvider();
 	public static final UIDProviderLoadedListener UIDP_LOADED_LISTENER_INVENTORY = uidp -> {
 		if (uidp != null) {
@@ -95,6 +95,11 @@ public abstract class InventoryItem extends OWIDLongImpl
 	}
 
 	public CurrencySet getSellPrice() {
+		return this.getPricesModifications();
+	}
+
+	@Override
+	public CurrencySet getPricesModifications() {
 		return sellPrice;
 	}
 
@@ -131,7 +136,12 @@ public abstract class InventoryItem extends OWIDLongImpl
 	}
 
 	public void setSellPrice(CurrencySet sellPrice) {
-		this.sellPrice = sellPrice;
+		this.setSellPrice(sellPrice);
+	}
+
+	@Override
+	public void setPricesModifications(CurrencySet priceModifications) {
+		this.sellPrice = priceModifications;
 	}
 
 	public void setDimensionInInventory(Dimension dimensionInInventory) {
@@ -210,6 +220,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 	public void toJSONValue(JSONObject wrapper) {
 		RarityHolder.super.toJSONValue(wrapper);
 		AssignableObject.super.toJSONValue(wrapper);
+		PriceHolder.super.toJSONValue(wrapper);
 		// dimensionInInventory
 		JSONObject dimensionInInventoryJsoned = new JSONObject();
 		dimensionInInventoryJsoned.addField("width", new JSONInt(this.getDimensionInInventory().width));
@@ -220,10 +231,6 @@ public abstract class InventoryItem extends OWIDLongImpl
 		locationInInventoryJsoned.addField("x", new JSONInt(this.getLocationInInventory().x));
 		locationInInventoryJsoned.addField("y", new JSONInt(this.getLocationInInventory().y));
 		wrapper.addField(FIELD_LOCATION_IN_INVENTORY, locationInInventoryJsoned);
-		// sellPrice
-		JSONObject sellPriceJsoned = new JSONObject();
-		this.getSellPrice().toJSONValue(sellPriceJsoned);
-		wrapper.addField(FIELD_SELL_PRICE, sellPriceJsoned);
 	}
 
 	@Override
@@ -233,6 +240,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 		}
 		RarityHolder.super.loadFromJSONObject(gm, wrapper);
 		AssignableObject.super.loadFromJSONObject(gm, wrapper);
+		PriceHolder.super.loadFromJSONObject(gm, wrapper);
 		// dimensionInInventory
 		if (!wrapper.hasField(FIELD_DIMENSION_IN_INVENTORY)) {
 			this.raiseExceptionMissingField(FIELD_DIMENSION_IN_INVENTORY, JSONTypes.Object);
@@ -260,41 +268,30 @@ public abstract class InventoryItem extends OWIDLongImpl
 		int height = ((JSONInt) heightJSONVal).asInt();
 		this.setDimensionInInventory(new Dimension(width, height));
 		// locationInInventory
-		if (!wrapper.hasField(FIELD_LOCATION_IN_INVENTORY)) {
-			this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY, JSONTypes.Object);
+		int x = 0, y = 0;
+		if (wrapper.hasField(FIELD_LOCATION_IN_INVENTORY)) { // optional
+			if (!dimensionInInventoryJSON.hasField("x")) {
+				this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
+						JSONTypes.Int);
+			}
+			if (!dimensionInInventoryJSON.hasField("y")) {
+				this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
+						JSONTypes.Int);
+			}
+			JSONValue xJSONVal = dimensionInInventoryJSON.getFieldValue("x");
+			if (!xJSONVal.isType(JSONTypes.Int)) {
+				this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
+						JSONTypes.Int, xJSONVal);
+			}
+			JSONValue yJSONVal = dimensionInInventoryJSON.getFieldValue("y");
+			if (!yJSONVal.isType(JSONTypes.Int)) {
+				this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
+						JSONTypes.Int, yJSONVal);
+			}
+			x = ((JSONInt) xJSONVal).asInt();
+			y = ((JSONInt) yJSONVal).asInt();
 		}
-		if (!dimensionInInventoryJSON.hasField("x")) {
-			this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
-					JSONTypes.Int);
-		}
-		if (!dimensionInInventoryJSON.hasField("y")) {
-			this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
-					JSONTypes.Int);
-		}
-		JSONValue xJSONVal = dimensionInInventoryJSON.getFieldValue("x");
-		if (!xJSONVal.isType(JSONTypes.Int)) {
-			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
-					JSONTypes.Int, xJSONVal);
-		}
-		JSONValue yJSONVal = dimensionInInventoryJSON.getFieldValue("y");
-		if (!yJSONVal.isType(JSONTypes.Int)) {
-			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
-					JSONTypes.Int, yJSONVal);
-		}
-		int x = ((JSONInt) xJSONVal).asInt();
-		int y = ((JSONInt) yJSONVal).asInt();
 		this.setLocationInInventory(new Point(x, y));
-		// sellPrice
-		if (!wrapper.hasField(FIELD_SELL_PRICE)) {
-			this.raiseExceptionMissingField(FIELD_SELL_PRICE, JSONTypes.Object);
-		}
-		JSONValue sellPriceJSONVal = wrapper.getFieldValue(FIELD_SELL_PRICE);
-		if (!sellPriceJSONVal.isType(JSONTypes.Object)) {
-			this.raiseExceptionIllegalTypeField(FIELD_SELL_PRICE, JSONTypes.Object, sellPriceJSONVal);
-		}
-		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
-		cs.loadFromJSONObject(gm, (JSONObject) sellPriceJSONVal);
-		this.setSellPrice(cs);
 	}
 
 	@Override
@@ -304,6 +301,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 		}
 		RarityHolder.super.loadFromJSONMap(gm, jsonMap);
 		AssignableObject.super.loadFromJSONMap(gm, jsonMap);
+		PriceHolder.super.loadFromJSONMap(gm, jsonMap);
 		// dimensionInInventory
 		if (!jsonMap.containsKey(FIELD_DIMENSION_IN_INVENTORY)
 				|| !(jsonMap.get(FIELD_DIMENSION_IN_INVENTORY) instanceof Integer)) {
@@ -337,45 +335,38 @@ public abstract class InventoryItem extends OWIDLongImpl
 		int height = ((Integer) heightObj);
 		this.setDimensionInInventory(new Dimension(width, height));
 		// locationInInventoryld
-		if (!jsonMap.containsKey(FIELD_LOCATION_IN_INVENTORY)
-				|| !(jsonMap.get(FIELD_LOCATION_IN_INVENTORY) instanceof Integer)) {
+		int x = 0, y = 0;
+		if (jsonMap.containsKey(FIELD_LOCATION_IN_INVENTORY)) { // optional
 			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY);
+
+			Object locationInInventoryObj = jsonMap.get(FIELD_LOCATION_IN_INVENTORY);
+			if (!(locationInInventoryObj instanceof Map<?, ?>)) {
+				this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY, JSONTypes.Object,
+						locationInInventoryObj);
+			}
+			Map<String, Object> locationInInventoryMap = (Map<String, Object>) locationInInventoryObj;
+			if (!locationInInventoryMap.containsKey("x")) {
+				this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
+						JSONTypes.Int);
+			}
+			if (!locationInInventoryMap.containsKey("y")) {
+				this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
+						JSONTypes.Int);
+			}
+			Object xObj = locationInInventoryMap.get("x");
+			if (!(xObj instanceof Integer)) {
+				this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
+						JSONTypes.Int, xObj);
+			}
+			Object yObj = locationInInventoryMap.get("y");
+			if (!(yObj instanceof Integer)) {
+				this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
+						JSONTypes.Int, yObj);
+			}
+			x = ((Integer) xObj);
+			y = ((Integer) yObj);
 		}
-		Object locationInInventoryObj = jsonMap.get(FIELD_LOCATION_IN_INVENTORY);
-		if (!(locationInInventoryObj instanceof Map<?, ?>)) {
-			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY, JSONTypes.Object,
-					locationInInventoryObj);
-		}
-		Map<String, Object> locationInInventoryMap = (Map<String, Object>) locationInInventoryObj;
-		if (!locationInInventoryMap.containsKey("x")) {
-			this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
-					JSONTypes.Int);
-		}
-		if (!locationInInventoryMap.containsKey("y")) {
-			this.raiseExceptionMissingField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
-					JSONTypes.Int);
-		}
-		Object xObj = locationInInventoryMap.get("x");
-		if (!(xObj instanceof Integer)) {
-			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "x",
-					JSONTypes.Int, xObj);
-		}
-		Object yObj = locationInInventoryMap.get("y");
-		if (!(yObj instanceof Integer)) {
-			this.raiseExceptionIllegalTypeField(FIELD_LOCATION_IN_INVENTORY + JSONable.SEPARATOR_FIELD + "y",
-					JSONTypes.Int, yObj);
-		}
-		int x = ((Integer) xObj);
-		int y = ((Integer) yObj);
 		this.setLocationInInventory(new Point(x, y));
-		//
-		if (!jsonMap.containsKey(FIELD_SELL_PRICE) || !(jsonMap.get(FIELD_SELL_PRICE) instanceof Map<?, ?>)) {
-			this.raiseExceptionIllegalTypeField(FIELD_SELL_PRICE, JSONTypes.Object, jsonMap.get(FIELD_SELL_PRICE));
-		}
-		Map<String, Object> sellPriceMap = (Map<String, Object>) jsonMap.get(FIELD_SELL_PRICE);
-		CurrencySet cs = gm.getGameObjectsProvider().newCurrencyHolder();
-		cs.loadFromJSONMap(gm, sellPriceMap);
-		this.setSellPrice(cs);
 	}
 
 }

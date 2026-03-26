@@ -30,4 +30,9 @@ public class MaxUpgradesPerCategoryTRAn extends MaxUpgradesPerCategory {
 		super.setUpgradeCategory(EquipmentUpgradeCategory.valueOf(name));
 	}
 
+	@Override
+	public MaxUpgradesPerCategory clone() {
+		return new MaxUpgradesPerCategoryTRAn(this.getMaxUpgradableAmounts(), this.getUpgradeCategory());
+	}
+
 }

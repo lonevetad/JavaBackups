@@ -1,6 +1,7 @@
 package games.theRisingAngel.inventory;
 
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.attributes.AttributeIdentifier;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.attributes.MaxUpgradesPerCategory;
@@ -10,11 +11,13 @@ import games.generic.controlModel.items.EquipmentType;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.items.IEquipmentUpgradeCategory;
 import games.generic.controlModel.subimpl.GModalityRPG;
+import games.theRisingAngel.GModalityTRAnBaseWorld;
 import games.theRisingAngel.enums.AttributesTRAn;
 import games.theRisingAngel.enums.EquipmentTypesTRAn;
 import games.theRisingAngel.enums.EquipmentUpgradeCategory;
 import games.theRisingAngel.misc.AttributeModificationTRAn;
 import games.theRisingAngel.misc.MaxUpgradesPerCategoryTRAn;
+import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 
 public class EquipItemTRAn extends EquipmentItem {
 	private static final long serialVersionUID = -893723490864580L;
@@ -95,5 +98,17 @@ public class EquipItemTRAn extends EquipmentItem {
 	@Override
 	public IEquipmentUpgrade newEquipmentUpgrade(GModality gm, String equipUpgradeName) {
 		return new EquipmentUpgradeTRAn(0, equipUpgradeName);
+	}
+
+	@Override
+	public AbilityGeneric newAbility(GModality gm, String abilityName) {
+		GModalityTRAnBaseWorld gmTRAn = (GModalityTRAnBaseWorld) gm;
+		GameObjectsProvidersHolderTRAn gophTRAn = (GameObjectsProvidersHolderTRAn) gmTRAn.getGameObjectsProvider();
+		return gophTRAn.newAbilityGeneric(abilityName, null);
+	}
+
+	@Override
+	public IEquipmentUpgradeCategory[] getAllEquipmentUpgradeCategory() {
+		return EquipmentUpgradeCategory.VALUES;
 	}
 }
