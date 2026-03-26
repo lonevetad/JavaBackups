@@ -7199,8 +7199,8 @@
     "price": [23],
     "category": "Rune",
     "attributesModifiers": {
-      "LifeMax": -40,
-      "LifeRegen": -25,
+      "LifeMax": -60,
+      "LifeRegen": -5,
       "PhysicalDamageBonus": 8,
       "PhysicalDamageMultiplierPercentageBonus": 12,
       "MagicalDamageBonus": 25,
@@ -8981,10 +8981,59 @@
       "Faith": 5,
       "ShieldMax": 15,
       "ShieldRegen": 2,
-      "MagicalDamageReduction": 3, 
+      "MagicalDamageReduction": 3,
       "MagicalDamageMultiplierPercentageReduction": 5,
       "VelocitySpellCastPercentage": 5,
       "CostCastReductionPercentage": 5
+    }
+  },
+  {
+    "name": "Blackheart",
+    "isPrefix": true,
+    "rarity": 4,
+    "price": [60],
+    "category": "Blessing",
+    "description": "Hate, rage, disdain, disgust, arrogance, pride, detachment, apathy, haughtiness, schadenfreude-ness ... everything deserve annihilation, when there's no hope for a Future and Light in you.",
+    "attributesModifiers": {
+      "Strength": 20,
+      "Constitution": -6,
+      "Health": -6,
+      "Defense": -10,
+      "Wisdom": -10,
+      "Intelligence": 8,
+      "Faith": -10,
+      "Luck": -15,
+      "LifeMax": -100,
+      "LifeRegen": -8,
+      "ManaMax": -200,
+      "ManaRegen": -15,
+      "StaminaMax": 50,
+      "StaminaRegen": 10,
+      "PhysicalDamageBonus": 25,
+      "PhysicalDamageMultiplierPercentageBonus": 20,
+      "PhysicalProbabilityPerThousandHit": 100,
+      "MagicalDamageBonus": 25,
+      "MagicalDamageMultiplierPercentageBonus": 20,
+      "MagicalProbabilityPerThousandHit": 100,
+      "CriticalProbabilityPerThousandHit": 100,
+      "CriticalMultiplierPercentageBonus": 40,
+      "LifeLeechPercentage": 25,
+      "VelocitySpellCastPercentage": 25,
+      "VelocityAttackStrikePercentage": 25
+    }
+  },
+  {
+    "name": "Coarse",
+    "rarity": 1,
+    "price": [-7],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": -2,
+      "Precision": 4,
+      "Dexterity": 2,
+      "Defense": -3,
+      "MagicalDamageReduction": 2
     }
   }
 ]
