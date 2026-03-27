@@ -108,7 +108,7 @@ public class GView_E1 extends GameView {
 
 	// TODO initInspectors
 	public void initInspectors() {
-		final Consumer<String> stringifiedElementPrinter;
+		final BiConsumer<Integer, String> stringifiedElementPrinter;
 		final GC_E1 gc;
 		final GameObjectsProvidersHolderTRAn goph;
 		final GView_E1 view = this;
@@ -566,14 +566,15 @@ public class GView_E1 extends GameView {
 	}
 
 // TODO logInspectedElementStringified
-	protected void logInspectedElementStringified(String text) {
+	protected void logInspectedElementStringified(Integer index, String text) {
 		int maxW, maxH;
-		System.out.println(text);
+		text = "# " + index.toString() + "\t): " + text;
+//		System.out.println(text);
 		taInspector.append(text);
 		maxW = Math.max((int) taInspector.getSize().getWidth(), (int) taInspector.getPreferredSize().getWidth());
 		maxH = Math.max((int) taInspector.getSize().getHeight(), (int) taInspector.getPreferredSize().getHeight());
-		taInspector.setSize(maxW, maxH);
-		taInspector.setPreferredSize(taInspector.getSize());
+		// taInspector.setSize(maxW, maxH);
+		taInspector.setPreferredSize(new Dimension(maxW, maxH));
 		// jspTaInspector.setPreferredSize(taInspector.getSize());
 		// System.out.println("maxW: " + maxW + " ; maxH: " + maxH);
 		// jspTaInspector.repaint();
@@ -641,17 +642,19 @@ public class GView_E1 extends GameView {
 	public static class InspectorElements<E> implements Runnable {
 		public final String collectionName;
 //		public final LoggerMessages log;
+		protected final int[] index;
 		public final Function<E, String> toStringer;
 		public final Consumer<Consumer<E>> forEachCallFunction;
 		public final Consumer<E> inspectedElementConsumer;
-		public final Consumer<String> elementStringifiedConsumer;
+		public final BiConsumer<Integer, String> elementStringifiedConsumer;
 
 		public InspectorElements(String collectionName, //
 //				LoggerMessages log, //
 				Consumer<Consumer<E>> forEachCallFunction, //
 				Function<E, String> toStringer, //
-				Consumer<String> elementStringifiedConsumer) {
+				BiConsumer<Integer, String> elementStringifiedConsumer) {
 			super();
+			this.index = new int[] { 0 };
 			this.collectionName = collectionName;
 //			this.log = log;
 			this.toStringer = ( //
@@ -659,7 +662,9 @@ public class GView_E1 extends GameView {
 			);
 			this.forEachCallFunction = forEachCallFunction;
 			this.elementStringifiedConsumer = elementStringifiedConsumer;
-			this.inspectedElementConsumer = e -> this.elementStringifiedConsumer.accept(this.toStringer.apply(e));
+			this.inspectedElementConsumer = (e) -> {
+				this.elementStringifiedConsumer.accept(this.index[0]++, this.toStringer.apply(e));
+			};
 		}
 
 		public String getCollectionName() {
@@ -680,6 +685,7 @@ public class GView_E1 extends GameView {
 
 		@Override
 		public void run() {
+			this.index[0] = 0; // reset
 			this.forEachCallFunction.accept(inspectedElementConsumer);
 		}
 	}

@@ -259,7 +259,7 @@
     }
   },
   {
-    "name": "Consacrated",
+    "name": "Consecrated",
     "rarity": 2,
     "price": [10],
     "category": "Blessing",
@@ -2263,29 +2263,35 @@
     "price": [-5],
     "category": "Incantation",
     "attributesModifiers": {
-      "Strength": 3,
+      "Strength": 6,
       "Precision": -3,
       "Intelligence": -3,
       "Wisdom": -4,
       "Health": -1,
-      "CriticalMultiplierPercentageBonus": 10
+      "CriticalMultiplierPercentageBonus": 10,
+      "PhysicalProbabilityPerThousandHit": -50,
+      "MagicalProbabilityPerThousandHit": -50,
+      "VelocitySpellCastPercentage": 15,
+      "VelocityAttackStrikePercentage": 15
     }
   },
   {
     "name": "of Patience",
-    "rarity": 1,
+    "rarity": 2,
     "price": [10],
     "category": "Incantation",
     "attributesModifiers": {
-      "Strength": -2,
+      "Strength": -3,
       "Precision": 4,
       "Intelligence": 2,
       "Wisdom": 4,
       "Health": 1,
-      "PhysicalProbabilityPerThousandHit": -15,
-      "MagicalProbabilityPerThousandHit": -15,
+      "PhysicalProbabilityPerThousandHit": 35,
+      "MagicalProbabilityPerThousandHit": 35,
       "PhysicalDamageBonus": 2,
-      "MagicalDamageBonus": 2
+      "MagicalDamageBonus": 2,
+      "VelocitySpellCastPercentage": -10,
+      "VelocityAttackStrikePercentage": -10
     }
   },
   {
@@ -2324,15 +2330,32 @@
     }
   },
   {
-    "name": "Adamantine",
+    "name": "of Adamantine",
     "rarity": 3,
     "price": [100],
     "category": "Material",
-    "isPrefix": true,
+    "isPrefix": false,
     "attributesModifiers": {
       "ShieldMax": 70,
       "ShieldRegen": 3,
       "Luck": -5
+    }
+  },
+  {
+    "name": "Adamant",
+    "rarity": 3,
+    "price": [80],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 8,
+      "Constitution": 6,
+      "Defense": 4,
+      "StaminaMax": 20,
+      "LifeMax": -50,
+      "ManaMax": -40,
+      "ShieldMax": 25,
+      "ShieldRegen": 4
     }
   },
   {
@@ -7499,6 +7522,17 @@
     }
   },
   {
+    "name": "Ash coated",
+    "rarity": 1,
+    "price": [8],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "MagicalDamageBonus": 8,
+      "MagicalDamageMultiplierPercentageBonus": 2
+    }
+  },
+  {
     "name": "Moqueshal",
     "rarity": 1,
     "price": [1],
@@ -7526,6 +7560,58 @@
       "Precision": 4,
       "Dexterity": 4,
       "Defense": 4
+    }
+  },
+  {
+    "name": "of Concentration",
+    "rarity": 3,
+    "price": [30],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 6,
+      "Dexterity": 2,
+      "Intelligence": 2,
+      "ManaRegen": 6,
+      "StaminaRegen": 4
+    }
+  },
+  {
+    "name": "of Focusing",
+    "rarity": 3,
+    "price": [30],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 10,
+      "Dexterity": 3,
+      "Wisdom": -2,
+      "PhysicalProbabilityPerThousandHit": 100,
+      "MagicalProbabilityPerThousandHit": 100
+    }
+  },
+  {
+    "name": "of Magical Condensation",
+    "rarity": 2,
+    "price": [45],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaRegen": -10,
+      "MagicalDamageBonus": 10,
+      "MagicalDamageMultiplierPercentageBonus": 10
+    }
+  },
+  {
+    "name": "of Magical Concentration",
+    "rarity": 3,
+    "price": [70],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaRegen": -25,
+      "MagicalDamageBonus": 15,
+      "MagicalDamageMultiplierPercentageBonus": 15
     }
   },
   {
@@ -9070,6 +9156,150 @@
       "LifeRegen": 2,
       "MagicalDamageReduction": 4,
       "PhysicalDamageReduction": 5
+    }
+  },
+  {
+    "name": "Historical",
+    "rarity": 2,
+    "price": [50],
+    "category": "Misc",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Wisdom": 6,
+      "ExperienceBonusPercentage": 15
+    }
+  },{
+    "name": "of Evenstar",
+    "rarity": 4,
+    "price": [4],
+    "isPrefix": false,
+    "category": "Incantation",
+    "attributesModifiers": {
+      "Faith": 8,
+      "ManaMax": 40,
+      "PhysicalProbabilityPerThousandAvoid": 100,
+      "MagicalProbabilityPerThousandAvoid": 100,
+      "CriticalProbabilityPerThousandAvoid": 100,
+      "VelocitySpellCastPercentage": 10
+    }
+  },{
+    "name": "of Torturer",
+    "rarity": 3,
+    "price": [-50],
+    "isPrefix": false,
+    "category": "WorkersRolesRelated",
+    "attributesModifiers": {
+      "Strength": 7,
+      "Faith": -12,
+      "Luck": -5,
+      "CriticalProbabilityPerThousandHit": 200,
+      "CriticalMultiplierPercentageBonus": 15
+    }
+  },
+  {
+    "name": "of the Mighty",
+    "rarity": 2,
+    "price": [12],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Strength": 8,
+      "Constitution": 3
+    }
+  },
+  {
+    "name": "Footsman's",
+    "rarity": 1,
+    "price": [12],
+    "category": "Incantation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 2,
+      "Dexterity": 3,
+      "Velocity": 10
+    }
+  },
+  {
+    "name": "Warped",
+    "rarity": 1,
+    "price": [-10],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Defense": 3,
+      "Precision": -2
+    }
+  },
+  {
+    "name": "Sturdy",
+    "rarity": 2,
+    "price": [18],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Defense": 6,
+      "Constitution": 2,
+      "PhysicalDamageReduction": 3
+    }
+  },
+  {
+    "name": "Massive",
+    "rarity": 2,
+    "price": [14],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 4,
+      "Constitution": 2,
+      "Defense": 8,
+      "Dexterity": -6,
+      "Velocity": -8
+    }
+  },
+  {
+    "name": "Bladesman's",
+    "rarity": 3,
+    "price": [35],
+    "category": "WorkersRolesRelated",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 5,
+      "Dexterity": 5,
+      "Precision": 6,
+      "PhysicalDamageBonus": 7,
+      "PhysicalDamageMultiplierPercentageBonus": 7
+    }
+  },
+  {
+    "name": "Expert's",
+    "rarity": 3,
+    "price": [28],
+    "category": "WorkersRolesRelated",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Wisdom": 7,
+      "Intelligence": 2,
+      "ExperienceBonusPercentage": 10,
+      "CriticalProbabilityPerThousandHit": 80,
+      "CriticalMultiplierPercentageBonus": 8
+    }
+  },
+  {
+    "name": "Stealthy",
+    "rarity": 3,
+    "price": [28],
+    "category": "WorkersRolesRelated",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": -5,
+      "Constitution": -3,
+      "Precision": 8,
+      "Dexterity": 6,
+      "Defense": 4,
+      "Wisdom": 2,
+      "Velocity": -20,
+      "CriticalProbabilityPerThousandHit": 150,
+      "CriticalMultiplierPercentageBonus": 20
     }
   }
 ]
