@@ -5,16 +5,14 @@ import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.loaders.LoaderUniqueIDProvidersState.UIDPLoadable;
-import games.generic.controlModel.loaders.LoaderUniqueIDProvidersState.UIDPState;
 import tools.Comparators;
 import tools.UniqueIDProvider;
-import tools.UniqueIDProvider.BaseUniqueIDProvider;
 
 public class UIDPCollector {
 
 	/**
 	 * Defines a listener of a {@link UniqueIDProvider} that listens when the
-	 * provided is loaded.
+	 * provider is loaded.
 	 *
 	 * May behave like a "setter"
 	 *
@@ -23,7 +21,9 @@ public class UIDPCollector {
 	 */
 	public static interface UIDProviderLoadedListener extends Consumer<UniqueIDProvider> {
 		@Override
-		public default void accept(UniqueIDProvider t) { this.notifyLoadedProvidedForClass(t); }
+		public default void accept(UniqueIDProvider t) {
+			this.notifyLoadedProvidedForClass(t);
+		}
 
 		public void notifyLoadedProvidedForClass(UniqueIDProvider loadedProvider);
 	}
@@ -49,11 +49,20 @@ public class UIDPCollector {
 		return getProvider(UIDPState.CLASS_TO_NAME.apply(clazz));
 	}
 
+	/***
+	 * Get the provider from cache (and create a new one if absent)
+	 * 
+	 * @param <E>
+	 * @param clazzName
+	 * @return
+	 */
 	public static <E> UniqueIDProvider getProvider(String clazzName) {
 		UniqueIDProvider uidp;
 		synchronized (providers) {
 			uidp = providers.get(clazzName);
-			if (uidp == null) { providers.put(clazzName, uidp = new BaseUniqueIDProvider()); }
+			if (uidp == null) {
+				providers.put(clazzName, uidp = new UIDPLoadable());
+			}
 		}
 		return uidp;
 	}
@@ -67,10 +76,14 @@ public class UIDPCollector {
 		synchronized (providers) {
 			UIDProviderLoadedListener loadListener;
 			uidp = (UIDPLoadable) providers.get(clazzName);
-			if (uidp == null) { providers.put(clazzName, uidp = new UIDPLoadable()); }
+			if (uidp == null) {
+				providers.put(clazzName, uidp = new UIDPLoadable());
+			}
 			uidp.loadState(state);
 			loadListener = provider_initializers_after_loading.get(clazzName);
-			if (loadListener != null) { loadListener.accept(uidp); }
+			if (loadListener != null) {
+				loadListener.accept(uidp);
+			}
 		}
 	}
 
@@ -80,7 +93,9 @@ public class UIDPCollector {
 		state = null;
 		synchronized (providers) {
 			uidp = (UIDPLoadable) providers.get(UIDPState.CLASS_TO_NAME.apply(clazz));
-			if (uidp != null) { state = uidp.getState(clazz); }
+			if (uidp != null) {
+				state = uidp.getState(clazz);
+			}
 		}
 		return state;
 	}

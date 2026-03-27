@@ -11,6 +11,7 @@ import games.generic.controlModel.GModel;
 import games.generic.controlModel.GObjectsInSpaceManager;
 import games.generic.controlModel.attributes.AttributeModification;
 import games.generic.controlModel.events.GEventInterface;
+import games.generic.controlModel.factories.GModalityFactoryContext;
 import games.generic.controlModel.items.EquipmentItem;
 import games.generic.controlModel.items.IEquipmentUpgrade;
 import games.generic.controlModel.misc.CreatureAttributes;
@@ -50,8 +51,8 @@ public class GModality_E1 extends GModalityTRAnBaseWorld {
 	}
 
 	@Override
-	public void onCreate() {
-		super.onCreate();
+	public void finishOnCreate(GModalityFactoryContext gModalityFactoryContex) {
+		super.finishOnCreate(gModalityFactoryContex);
 		super.setRandomSeed(0);
 
 		System.out.println("\n\n\n on create MY NAME: " + getModalityName() + "\n\n");

@@ -136,7 +136,7 @@ public abstract class InventoryItem extends OWIDLongImpl
 	}
 
 	public void setSellPrice(CurrencySet sellPrice) {
-		this.setSellPrice(sellPrice);
+		this.sellPrice = sellPrice;
 	}
 
 	@Override

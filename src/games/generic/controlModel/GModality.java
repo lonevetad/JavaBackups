@@ -1,16 +1,17 @@
 package games.generic.controlModel;
 
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import games.generic.GameOptions;
 import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
+import games.generic.controlModel.factories.GModalityFactory;
+import games.generic.controlModel.factories.GModalityFactoryContext;
 import games.generic.controlModel.holders.GModalityHolder;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
-import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.misc.GThread;
 import games.generic.controlModel.objects.GameObjectGeneric;
 import games.generic.controlModel.player.PlayerGeneric;
@@ -18,6 +19,7 @@ import games.generic.controlModel.player.UserAccountGeneric;
 import tools.Comparators;
 import tools.ObjectNamedID;
 import tools.ObjectWithID;
+import tools.log.LoggerMessages;
 
 /**
  * One of the core classes.
@@ -70,22 +72,19 @@ public abstract class GModality implements ObjectNamed {
 	protected String modalityName;
 	/** Used to suspend threads */
 	protected PlayerGeneric player;
-	protected final GameObjectsProvidersHolder gameObjectsProviderHolder;
-	protected final GameObjectsManager gomDelegated;
+	protected GameObjectsProvidersHolder gameObjectsProviderHolder;
+	protected GameObjectsManager gomDelegated;
 	protected Random random;
 
 	public GModality(GController controller, String modalityName) {
+		Objects.requireNonNull(controller);
+		Objects.requireNonNull(modalityName);
 		this.controller = controller;
 		this.modalityName = modalityName;
-		this.model = newGameModel();
 		this.random = new Random();
-		this.gameObjectsProviderHolder = controller.newGameObjectProvidersHolderFor(this);
-		this.gomDelegated = newGameObjectsManager(); // ((GControllerRPG) controller).get; //
-		onCreate();
-		// il game model deve avere anche l'holder dovuto dal "Misom"
-		assert this.getModel()
-				.containsObjHolder(this.getGameObjectsManager().getGObjectInSpaceManager().getNameGObjHolder()) : //
-				"The model does not have a \"GObjHolder\" instance for ObjectLocated (which is an instance of GObjectInSpaceManager)";
+		this.model = null;
+		this.gameObjectsProviderHolder = null;
+		this.gomDelegated = null;
 	}
 
 	//
@@ -168,12 +167,28 @@ public abstract class GModality implements ObjectNamed {
 		return gom == null ? null : gom.getGObjectInSpaceManager();
 	}
 
+	public LoggerMessages getLogger() {
+		return this.getGameController().getLogger();
+	}
+
+	protected GameObjectsProvidersHolder getGameObjectsProviderHolder() {
+		return gameObjectsProviderHolder;
+	}
+
 	//
 
 	// setter
 
 	public void setModel(GModel model) {
 		this.model = model;
+	}
+
+	protected void setGameObjectsProviderHolder(GameObjectsProvidersHolder gameObjectsProviderHolder) {
+		this.gameObjectsProviderHolder = gameObjectsProviderHolder;
+	}
+
+	protected void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
 	}
 
 	public void setPlayer(PlayerGeneric player) {
@@ -198,11 +213,43 @@ public abstract class GModality implements ObjectNamed {
 
 	//
 
-	// TODO ABSTRACT
+	// TODO ON CREATE
 
-	/** Override designed BUT call <code>super.</code>{@link #onCreate()}}. */
-	public void onCreate() {
+	/**
+	 * Method that finish ALL loadings previous from the actual start of the game;
+	 * taking things from the {@link GController}. It MUST be called by the
+	 * {@link GModalityFactory#newGameModality(GController, String)}
+	 * 
+	 * @param gc
+	 */
+	public final void onCreate(GModalityFactoryContext gModalityFactoryContext) {
+		GController gc = this.getGameController();
+		Objects.requireNonNull(gc);
+		doSetupFromGameController(gc);
+		finishOnCreate(gModalityFactoryContext);
+	}
+
+	/**
+	 * Perform some {@link GController}-specific setups; that instance is the same
+	 * one returned by {@link #getGameController()}, provided just for convenience.
+	 * Some setups might involve using a {@link GameObjectsProvidersHolder}, or
+	 * getting some Internet connections/stubs.
+	 */
+	public abstract void doSetupFromGameController(GController gc);
+
+	/**
+	 * Override designed BUT call <code>super.</code>{@link #finishOnCreate()}}.
+	 * <p>
+	 * Use the provided context, which was used to instantiate this instance, to
+	 * finish setting everything up (the {@link GController} is already set).
+	 */
+	public void finishOnCreate(GModalityFactoryContext gModalityFactoryContext) {
 		GObjectsInSpaceManager goism;
+		Objects.requireNonNull(gModalityFactoryContext.getGameObjectsProvidersHolder());
+		this.setGameObjectsProviderHolder(gModalityFactoryContext.getGameObjectsProvidersHolder()); // newGameObjectProvidersHolderFor(this);
+		this.gomDelegated = newGameObjectsManager(); // ((GControllerRPG) controller).get; //
+		this.setModel(newGameModel());
+
 		/*
 		 * Upon setting everything, "gom" and its "GOISM" included, add the goism to the
 		 * model as an "objects holder" because that's what it is: an holder of
@@ -210,6 +257,11 @@ public abstract class GModality implements ObjectNamed {
 		 */
 		goism = this.getGameObjectsManager().getGObjectInSpaceManager();
 		this.getModel().addObjHolder(goism.getNameGObjHolder(), goism);
+		// il game model deve avere anche l'holder dovuto dal "Misom"
+		assert this.getModel()
+				.containsObjHolder(this.getGameObjectsManager().getGObjectInSpaceManager().getNameGObjHolder()) : //
+				"The model does not have a \"GObjHolder\" instance for ObjectLocated (which is an instance of GObjectInSpaceManager)";
+
 	}
 
 	// NEW-STUFF METHODS
@@ -248,9 +300,13 @@ public abstract class GModality implements ObjectNamed {
 	 */
 //	public abstract void fireEvent(GEvent event);
 
-	// abstract methods
+	//
 
-	public abstract void loadFrom(GController gc, GameOptions gameOpt, LoaderGeneric loader);
+	// TODO ABSTRACT
+
+	// @Deprecated
+	// public abstract void loadFrom(GController gc, GameOptions gameOpt,
+	// LoaderGeneric loader);
 
 	//
 
@@ -376,6 +432,7 @@ public abstract class GModality implements ObjectNamed {
 
 	/** Override AND call the super implementation. */
 	public void closeAll() {
+		this.getGameObjectsProviderHolder().setGameModality(null); // clean it
 		this.pause();
 	}
 }

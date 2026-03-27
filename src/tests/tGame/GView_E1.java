@@ -115,7 +115,7 @@ public class GView_E1 extends GameView {
 		gc = (GC_E1) this.getGameController();
 		stringifiedElementPrinter = this::logInspectedElementStringified;
 
-		goph = (GameObjectsProvidersHolderTRAn) gc.getGameObjectsProvidersHolder();
+		goph = (GameObjectsProvidersHolderTRAn) gc.getSharedGameObjectsProvidersHolder();
 
 		this.inspectors = new InspectorElements[] { //
 				new InspectorElements<FactoryObjGModalityBased<IEquipmentUpgrade>>("Equipment Upgrades", //

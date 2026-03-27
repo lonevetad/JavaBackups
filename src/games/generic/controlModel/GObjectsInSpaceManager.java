@@ -20,6 +20,7 @@ import geometry.AbstractShape2D;
 import geometry.ObjectLocated;
 import geometry.ProviderShapesIntersectionDetector;
 import geometry.pointTools.PointConsumer;
+import tools.ObjectWithID;
 
 /**
  * One of the core classes.
@@ -33,6 +34,11 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 
 	public static final String OISM_NAME = "oism";
 
+	@Override
+	public default boolean canHold(ObjectWithID o) {
+		return (o instanceof ObjectInSpace);
+	}
+
 	/** Delegates there the real objects management */
 	public InSpaceObjectsManager<Double> getOIMManager();
 
@@ -42,7 +48,9 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 	 * Used by {@link GObjectsHolder} (like {@link GModel}) to add this instance of
 	 * {@link GObjectsHolder}.
 	 */
-	public default String getNameGObjHolder() { return OISM_NAME; }
+	public default String getNameGObjHolder() {
+		return OISM_NAME;
+	}
 
 	/**
 	 * The "space" concept could not be atomic and so could be divided in smaller
@@ -72,8 +80,9 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 	 * </code>
 	 */
 	public default boolean moveObject(ObjectInSpace o, Point to) {
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		if (!this.containsObject(o)) {
 			o.setLocation(to);
 			this.addObject(true, o);
@@ -96,7 +105,9 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 		return true;
 	}
 
-	public default boolean addObject(ObjectInSpace o) { return addObject(true, o); }
+	public default boolean addObject(ObjectInSpace o) {
+		return addObject(true, o);
+	}
 
 	/**
 	 * Set the object's location before adding it.
@@ -118,7 +129,9 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 		return added;
 	}
 
-	public default boolean removeObject(ObjectInSpace o) { return removeObject(true, o); }
+	public default boolean removeObject(ObjectInSpace o) {
+		return removeObject(true, o);
+	}
 
 	/**
 	 * @param fireEvent specify if a "remove" event should be fired
@@ -147,10 +160,13 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 	@Override
 	public default Set<ObjectInSpace> getObjects() {
 		SetMapped<ObjectLocated, ObjectInSpace> sm;
-		sm = new SetMapped<>(this.getOIMManager().getAllObjectLocated(), ol -> { return (ObjectInSpace) ol; });
+		sm = new SetMapped<>(this.getOIMManager().getAllObjectLocated(), ol -> {
+			return (ObjectInSpace) ol;
+		});
 		sm.setReverseMapper(owid -> {
-			if (owid instanceof ObjectLocated)
+			if (owid instanceof ObjectLocated) {
 				return (ObjectLocated) owid;
+			}
 			throw new IllegalArgumentException("Cannot add/remove a non-ObjectLocated to/from original set");
 		});
 		return sm;
@@ -158,33 +174,42 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 
 	@Override
 	public default boolean add(ObjectInSpace o) {
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		return addObject(o);
 	}
 
 	@Override
 	public default boolean remove(ObjectInSpace o) {
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		return removeObject(o);
 	}
 
 	@Override
 	public default boolean contains(ObjectInSpace o) {
-		if (o == null)
+		if (o == null) {
 			return false;
+		}
 		return containsObject(o);
 	}
 
 	@Override
-	public default boolean removeAll() { return this.getOIMManager().removeAllObjects(); }
+	public default boolean removeAll() {
+		return this.getOIMManager().removeAllObjects();
+	}
 
 	@Override
-	public default ObjectInSpace get(Long id) { return (ObjectInSpace) this.getOIMManager().getObjectLocated(id); }
+	public default ObjectInSpace get(Long id) {
+		return (ObjectInSpace) this.getOIMManager().getObjectLocated(id);
+	}
 
 	@Override
-	public default void forEach(Consumer<ObjectInSpace> action) { this.getObjects().forEach(action); }
+	public default void forEach(Consumer<ObjectInSpace> action) {
+		this.getObjects().forEach(action);
+	}
 
 	//
 
@@ -226,5 +251,7 @@ public interface GObjectsInSpaceManager extends GModalityHolder, GObjectsHolder<
 		getOIMManager().runOnShape(shape, action);
 	}
 
-	public default NodeIsom<Double> getNodeAt(Point location) { return getOIMManager().getNodeAt(location); }
+	public default NodeIsom<Double> getNodeAt(Point location) {
+		return getOIMManager().getNodeAt(location);
+	}
 }

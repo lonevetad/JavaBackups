@@ -17,7 +17,7 @@ import tools.json.JSONable;
  * Holds and provides a set of {@link GameObjectsProvider}, each identified by a
  * name (usually, the instance class name, but it's not mandatory).
  */
-public interface GameObjectsProvidersHolder {
+public interface GameObjectsProvidersHolder extends GModalityHolder {
 
 	public void initialize();
 

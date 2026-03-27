@@ -9,16 +9,18 @@ import java.util.function.Function;
 
 import dataStructures.MapTreeAVL;
 import dataStructures.PriorityQueueKey;
+import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventManager;
 import games.generic.controlModel.events.GEventObserver;
 import games.generic.controlModel.events.IGEvent;
 import games.generic.controlModel.subimpl.GEventManagerSimple.EventNotifier;
 import tools.Comparators;
+import tools.ObjectWithID;
 
 /**
  * Explanation of priorities:
  * <ul>
- * <li>"n > 0": alta priorità: esempio, come la "bambola Voodoo" del gioco
+ * <li>"n > 0": alta prioritï¿½: esempio, come la "bambola Voodoo" del gioco
  * Castlevenia, "se stai per morire, allora mi distruggo io e tu
  * rinasci/sopravvivi".</li>
  * <li>"h == 0": "importante ma non troppo". Esempio: "se muori tu, io, tua
@@ -62,7 +64,14 @@ public class GEventManagerFineGrained extends GEventManager {
 	//
 
 	@Override
-	public int objectsHeldCount() { return this.objCount; }
+	public boolean canHold(ObjectWithID o) {
+		return o instanceof GEvent;
+	}
+
+	@Override
+	public int objectsHeldCount() {
+		return this.objCount;
+	}
 
 	@Override
 	public boolean addEventObserver(GEventObserver geo) {
@@ -73,8 +82,9 @@ public class GEventManagerFineGrained extends GEventManager {
 		l = geo.getEventsWatching();
 		if (l == null || l.isEmpty()) {
 			// no specialization found, just add it to the "generic bin"
-			if (genericObservers.containsKey(idGeo))
+			if (genericObservers.containsKey(idGeo)) {
 				return false;
+			}
 			genericObservers.put(idGeo, geo);
 		} else {
 			boolean[] fl = { false };
@@ -86,11 +96,14 @@ public class GEventManagerFineGrained extends GEventManager {
 					pq = new PriorityQueueKey<>(GEventObserver.COMPARATOR_GameEventObserver,
 							Comparators.INTEGER_COMPARATOR, KEY_EXTRACTOR_Embedded);
 					observersByTypes.put(idEvent, pq);
-				} else if (pq.containsKey(geo)) { fl[0] = false; }
+				} else if (pq.containsKey(geo)) {
+					fl[0] = false;
+				}
 				pq.put(geo);
 			});
-			if (!fl[0])
+			if (!fl[0]) {
 				return false;
+			}
 		}
 		this.objCount++;
 		return true;
@@ -115,7 +128,9 @@ public class GEventManagerFineGrained extends GEventManager {
 				PriorityQueueKey<GEventObserver, Integer> pq;
 				pq = observersByTypes.get(idEvent);
 				if (pq != null) {
-					if (pq.containsKey(geo)) { fl[0] = true; }
+					if (pq.containsKey(geo)) {
+						fl[0] = true;
+					}
 					pq.remove(geo);
 				}
 			});
@@ -128,13 +143,19 @@ public class GEventManagerFineGrained extends GEventManager {
 	}
 
 	@Override
-	public Set<GEventObserver> getObjects() { return observersSet; }
+	public Set<GEventObserver> getObjects() {
+		return observersSet;
+	}
 
 	@Override
-	public GEventObserver get(Long id) { return this.allObsMap.get(id); }
+	public GEventObserver get(Long id) {
+		return this.allObsMap.get(id);
+	}
 
 	@Override
-	public boolean contains(GEventObserver o) { return observersSet.contains(o); }
+	public boolean contains(GEventObserver o) {
+		return observersSet.contains(o);
+	}
 
 	@Override
 	public void removeAllEventObserver() {
@@ -197,6 +218,9 @@ public class GEventManagerFineGrained extends GEventManager {
 		}
 
 		@Override
-		public void accept(Entry<GEventObserver, Integer> e) { e.getKey().notifyEvent(gem.getGameModality(), ge); }
+		public void accept(Entry<GEventObserver, Integer> e) {
+			e.getKey().notifyEvent(gem.getGameModality(), ge);
+		}
 	}
+
 }

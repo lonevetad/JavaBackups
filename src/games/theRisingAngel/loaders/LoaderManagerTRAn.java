@@ -1,7 +1,7 @@
 package games.theRisingAngel.loaders;
 
 import java.util.List;
-import java.util.Map;
+import java.util.function.Consumer;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.loaders.LoaderConfigurations;
@@ -30,21 +30,20 @@ public class LoaderManagerTRAn extends LoaderManager {
 	}
 
 	@Override
-	protected void enrichSetLoaderManagers(Map<Class<?>, LoaderGeneric> loaders) {
+	protected void enrichSetLoaderManagers(Consumer<LoaderGeneric> loaderAdder) {
 		GControllerTRAn gc;
 		GameObjectsProvidersHolderTRAn goph;
 		gc = (GControllerTRAn) this.gameController;
-		goph = (GameObjectsProvidersHolderTRAn) gc.getGameObjectsProvidersHolder();
-
-		loaders.put(LoaderAbilityTRAn.class, new LoaderAbilityTRAn(goph.getAbilitiesProvider()));
-		loaders.put(LoaderEquipUpgradesTRAn.class, new LoaderEquipUpgradesTRAn(goph.getEquipUpgradesProvider()));
-		loaders.put(LoaderItemsTRAn.class, new LoaderItemsTRAn(goph.getItemsProvider()));
-		loaders.put(LoaderEquipTRAn.class, new LoaderEquipTRAn(goph.getEquipmentsProvider()));
-		loaders.put(LoaderCreatureTRAn.class, new LoaderCreatureTRAn(goph.getCreaturesProvider()));
+		goph = (GameObjectsProvidersHolderTRAn) gc.getSharedGameObjectsProvidersHolder();
+		loaderAdder.accept(new LoaderAbilityTRAn(goph.getAbilitiesProvider()));
+		loaderAdder.accept(new LoaderEquipUpgradesTRAn(goph.getEquipUpgradesProvider()));
+		loaderAdder.accept(new LoaderItemsTRAn(goph.getItemsProvider()));
+		loaderAdder.accept(new LoaderEquipTRAn(goph.getEquipmentsProvider()));
+		loaderAdder.accept(new LoaderCreatureTRAn(goph.getCreaturesProvider()));
 	}
 
 	@Override
-	protected LoaderGMod newLoaderGameMods() { // TODO Auto-generated method stub
+	protected LoaderGMod newLoaderGameMods() {
 		return new LoaderGModTRAn(this.getGameController());
 	}
 
@@ -64,14 +63,14 @@ public class LoaderManagerTRAn extends LoaderManager {
 		}
 
 		@Override
-		public LoadStatusResult loadInto(GController gc) { // TODO Auto-generated method stub
-			System.out.println("mmmmmmmmmmmmmmmmmmmmMOD MANAGER TRAN");
+		public LoadStatusResult loadInto(GController gc) {
+			gc.getLogger().logAndPrint("LoaderGModTRAn loading ...\n");
 			return LoadStatusResult.Success;
 		}
 
 		@Override
-		public List<GModInterface> getAllLoadableGameMods() { // TODO Auto-generated method stub
-			return null;
+		public List<GModInterface> getAllLoadableGameMods() {
+			throw new UnsupportedOperationException("Don't know how to do it at the moment ....");
 		}
 	}
 

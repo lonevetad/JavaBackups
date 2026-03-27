@@ -33,7 +33,7 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime
 		implements HelperWithAttributeModificationsTRAn, GEventObserver {
 	private static final long serialVersionUID = -95598741022024L;
 	public static final int HEALING_FACTOR = 4;
-	public static final String NAME = "Meditation ";
+	public static final String NAME = "MeditationMoreRegen ";
 	protected static List<String> EVENTS_WATCHING_MMR = null;
 	protected static final AttributeIdentifier[] ATTRIBUTES_MODIFIED_MMR = new AttributeIdentifier[] {
 			AttributesTRAn.LifeRegen, AttributesTRAn.ManaRegen, AttributesTRAn.StaminaRegen };
@@ -124,7 +124,8 @@ public class AMeditationMoreRegen extends AbilityModifyingAttributesRealTime
 				eventRelatedObject = ed.getTarget();
 			}
 		} else {
-			System.out.println("WEIRD event in AMeditationMoreRegen: " + ge);
+			System.out
+					.println("WEIRD event in AMeditationMoreRegen: " + ge.getClass().getName() + " - " + ge.getName());
 			return;
 		}
 		if (eventRelatedObject != getOwner()) {

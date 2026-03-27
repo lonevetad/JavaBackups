@@ -144,6 +144,8 @@ public interface AbilitiesHolder extends GameObjectGeneric {
 						JSONTypes.Object, abilityJSONed);
 			}
 			// create the Ability
+			gm.getLogger()
+					.logAndPrint("Loading ability " + abilityName + " into ability holder: " + this.getName() + "\n");
 			AbilityGeneric ability = gm.getGameObjectsProvider().newAbilityGeneric(abilityName, extraParameters);
 			Objects.requireNonNull(ability);
 			ability.setLevel(level);

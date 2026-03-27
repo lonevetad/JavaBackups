@@ -2,7 +2,6 @@ package games.generic.controlModel.subimpl;
 
 import java.awt.Dimension;
 
-import games.generic.GameOptions;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.GameObjectsManager;
 import games.generic.controlModel.damage.DamageDealerGeneric;
@@ -10,7 +9,6 @@ import games.generic.controlModel.damage.DamageGeneric;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.items.InventoryItem;
 import games.generic.controlModel.items.InventoryItems;
-import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.misc.CreatureAttributes;
 import games.generic.controlModel.objects.ObjectInSpace;
 import games.generic.controlModel.objects.creature.CreatureSimple;
@@ -36,6 +34,14 @@ public abstract class GModalityRPG extends GModalityET {
 		return newGameObjectsManager(getEventInterface());
 //		return newGameObjectsManager(newEventInterface());
 	}
+
+	@Override
+	public void doSetupFromGameController(GController gc) {
+		super.doSetupFromGameController(gc);
+		// nothing else here
+	}
+
+	//
 
 	public abstract InventoryItems newInventoryItems();
 
@@ -78,11 +84,6 @@ public abstract class GModalityRPG extends GModalityET {
 	//
 
 	// TODO PUBLIC METHODS
-
-	@Override
-	public void loadFrom(GController gc, GameOptions gameOpt, LoaderGeneric loader) {
-
-	}
 
 	public boolean dropItem(InventoryItem item) {
 		GEventInterface gei;

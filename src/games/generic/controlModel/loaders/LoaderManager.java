@@ -4,17 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GController;
 import games.generic.controlModel.loaders.LoaderGeneric.LoadStatusResult;
-import tools.Comparators;
 import tools.log.LoggerMessages;
 
 /**
@@ -29,7 +26,7 @@ import tools.log.LoggerMessages;
  *
  */
 public abstract class LoaderManager {
-	public static final long MILLISECONDS_MAX_WAIT_LOADING_DEFAULT = 60000 * 15;
+	public static final long MILLISECONDS_MAX_WAIT_LOADING_DEFAULT = 60000 * 15; // 15 minutes
 
 	/**
 	 * Marks a class as observing the loading process performed by a
@@ -212,7 +209,7 @@ public abstract class LoaderManager {
 	 *
 	 * @param loaders
 	 */
-	protected abstract void enrichSetLoaderManagers(Map<Class<?>, LoaderGeneric> loaders);
+	protected abstract void enrichSetLoaderManagers(Consumer<LoaderGeneric> loaderAdder);
 
 	//
 
@@ -247,18 +244,16 @@ public abstract class LoaderManager {
 	}
 
 	/**
-	 * Delegates to {@link LoaderManager#loadAll()}).
+	 * Define ALL loaders in this whole ecosystem. Calls
+	 * {@link #definePrimaryLoaders()} first, then calls
+	 * {@link #enrichSetLoaderManagers(Consumer)} to add all the non-prioritary ones
+	 * by leveraging {@link #addLoader(LoaderGeneric)}).
+	 * <p>
+	 * This method is used in {@link LoaderManager#loadAll()}).
 	 */
 	public final void defineSetLoaders() {
-		Map<Class<?>, LoaderGeneric> loaders;
-		loaders = MapTreeAVL.newMap(MapTreeAVL.Optimizations.Lightweight, Comparators.CLASS_COMPARATOR);
-
 		this.definePrimaryLoaders();
-		this.enrichSetLoaderManagers(loaders);
-
-		loaders.forEach((c, loader) -> {
-			this.addLoader(loader);
-		});
+		this.enrichSetLoaderManagers(this::addLoader);
 	}
 
 	//
@@ -297,14 +292,14 @@ public abstract class LoaderManager {
 
 		results = new LoaderGeneric.LoadStatusResult[this.otherLoaders.size()];
 
-		allObserversNotifierComplete = (loader, status) -> {
+		allObserversNotifierStart = (loader, status) -> {
 			try {
-				this.loadersAndStatusObservers.forEach(lo -> lo.notifyLoadingProcessCompleted(loader, status));
+				this.loadersAndStatusObservers.forEach(lo -> lo.notifyLoadingProcessStarted(loader));
 			} catch (Exception e) {
 				this.gameController.getLogger().logException(e);
 			}
 		};
-		allObserversNotifierStart = (loader, status) -> {
+		allObserversNotifierComplete = (loader, status) -> {
 			try {
 				this.loadersAndStatusObservers.forEach(lo -> lo.notifyLoadingProcessCompleted(loader, status));
 			} catch (Exception e) {
@@ -318,10 +313,10 @@ public abstract class LoaderManager {
 		int ii = 0;
 		for (LoaderGeneric loaderPrioritary : this.prioritaryLoaders) {
 			LoadStatusResult res;
-
-			System.out.println("\nLOADING prioritary: " + ii++ + ", "
-					+ (loaderPrioritary == null ? "NULL!!" : loaderPrioritary.getClass().getName()));
-
+			getGameController().getLogger().logAndPrint("\nLOADING prioritary: " + ii++ + ", "
+					+ (loaderPrioritary == null ? "NULL!!" : loaderPrioritary.getClass().getName()) + "\n");
+			//
+			allObserversNotifierStart.accept(loaderPrioritary, null);
 			res = loaderPrioritary.loadInto(this.gameController);
 			if (res == LoadStatusResult.CriticalFail) {
 				throw new RuntimeException("The loader " + loaderPrioritary.getClass() + " failed loading.");
@@ -330,18 +325,22 @@ public abstract class LoaderManager {
 		}
 
 		// now non-prioritary loaders
-		System.out.println("this.otherLoaders size: " + this.otherLoaders.size());
+		getGameController().getLogger().logAndPrint("this.otherLoaders size: " + this.otherLoaders.size() + "\n");
 		if (this.poolParallelLoaders == null) {
 			this.poolParallelLoaders = this.newExecutorForParallelLoading();
 		}
+		final BiConsumer<Integer, LoaderGeneric> actualLoadingProcess = (indexCurrent, l) -> {
+			LoaderGeneric.LoadStatusResult res;
+			allObserversNotifierStart.accept(l, null);
+			results[indexCurrent] = res = l.loadInto(this.getGameController());
+			allObserversNotifierComplete.accept(l, res);
+		};
 		if (this.poolParallelLoaders != null) {
 
 			this.otherLoaders.forEach(l -> {
 				final int i = index[0]++;
 				poolParallelLoaders.execute(() -> {
-					LoaderGeneric.LoadStatusResult res;
-					results[i] = res = l.loadInto(this.gameController);
-					allObserversNotifierComplete.accept(l, res);
+					actualLoadingProcess.accept(i, l);
 				});
 			});
 			poolParallelLoaders.shutdown();
@@ -355,9 +354,7 @@ public abstract class LoaderManager {
 		} else {
 			this.otherLoaders.forEach(l -> {
 				final int i = index[0]++;
-				LoaderGeneric.LoadStatusResult res;
-				results[i] = res = l.loadInto(this.gameController);
-				allObserversNotifierComplete.accept(l, res);
+				actualLoadingProcess.accept(i, l);
 			});
 		}
 

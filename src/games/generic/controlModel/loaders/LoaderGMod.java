@@ -10,10 +10,12 @@ import games.generic.mods.GModInterface;
  *
  * <p>
  *
+ * This class is NOT a {@link LoaderGeneric} because the {@link GController} HAS
+ * to invoke this class BEFORE all loading ... unless some crazy magic with
+ * reflection and the {@link ClassLoader} happens.
+ * 
  * @author ottin
- *
  */
-//* This class is NOT a {@link LoaderGeneric} because the {@link GController} HAS to invoke this class BEFORE all loading
 public abstract class LoaderGMod extends LoaderGeneric {
 
 	public LoaderGMod(GController gameController) {
@@ -23,7 +25,9 @@ public abstract class LoaderGMod extends LoaderGeneric {
 
 	protected final GController gameController;
 
-	public GController getGameController() { return gameController; }
+	public GController getGameController() {
+		return gameController;
+	}
 
 	/**
 	 * Returns a list of all {@link GModInterface} that this loader can find.

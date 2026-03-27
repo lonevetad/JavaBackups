@@ -1,6 +1,5 @@
 package tests.tGame;
 
-import java.util.Map;
 import java.util.function.Consumer;
 
 import games.generic.controlModel.GController;
@@ -21,9 +20,9 @@ public class LoaderManagerTRAnE_E1 extends LoaderManagerTRAn {
 	}
 
 	@Override
-	protected void enrichSetLoaderManagers(Map<Class<?>, LoaderGeneric> loaders) {
+	protected void enrichSetLoaderManagers(Consumer<LoaderGeneric> loaderAdder) {
 		this.getGameController().getLogger().log("LoaderManagerTRAnE_E1 calling enrichSetLoaderManagers");
-		super.enrichSetLoaderManagers(loaders);
+		super.enrichSetLoaderManagers(loaderAdder);
 	}
 
 	//

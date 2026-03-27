@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.GObjectsHolder;
 import games.generic.controlModel.subimpl.GModalityET;
+import tools.ObjectWithID;
 
 /**
  * One of the core classes.
@@ -42,7 +43,9 @@ public abstract class GEventManager implements GObjectsHolder<GEventObserver> {
 
 	//
 
-	public GModality getGameModality() { return gameModality; }
+	public GModality getGameModality() {
+		return gameModality;
+	}
 
 	/** Use with care */
 //	public Queue<IGEvent> getEventsQueued() { return eventsQueued; }
@@ -59,7 +62,14 @@ public abstract class GEventManager implements GObjectsHolder<GEventObserver> {
 	//
 
 	/***/
-	public void setGameModality(GModalityET gameModality) { this.gameModality = gameModality; }
+	public void setGameModality(GModalityET gameModality) {
+		this.gameModality = gameModality;
+	}
+
+	@Override
+	public boolean canHold(ObjectWithID o) {
+		return (o instanceof GEvent);
+	}
 
 	//
 
@@ -87,17 +97,23 @@ public abstract class GEventManager implements GObjectsHolder<GEventObserver> {
 	}
 
 	@Override
-	public void forEach(Consumer<GEventObserver> action) { forEachEventObservers(geo -> action.accept(geo)); }
+	public void forEach(Consumer<GEventObserver> action) {
+		forEachEventObservers(geo -> action.accept(geo));
+	}
 
 	@Override
 	public boolean add(GEventObserver o) {
-		if (o == null) { return false; }
+		if (o == null || (!this.canHold(o))) {
+			return false;
+		}
 		return addEventObserver(o);
 	}
 
 	@Override
 	public boolean remove(GEventObserver o) {
-		if (o == null) { return false; }
+		if (o == null) {
+			return false;
+		}
 		return removeEventObserver(o);
 	}
 
@@ -153,5 +169,7 @@ public abstract class GEventManager implements GObjectsHolder<GEventObserver> {
 		}
 	}
 
-	protected void enqueueEvent(IGEvent e) { this.eventsQueued.add(e); }
+	protected void enqueueEvent(IGEvent e) {
+		this.eventsQueued.add(e);
+	}
 }

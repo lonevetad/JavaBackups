@@ -7,6 +7,7 @@ import java.util.Map;
 
 import games.generic.controlModel.loaders.LoaderUniqueIDProvidersState;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
+import games.generic.controlModel.misc.uidp.UIDPState;
 import games.theRisingAngel.enums.CreatureTypesTRAn;
 import tools.json.JSONParser;
 import tools.json.JSONValue;
@@ -36,7 +37,6 @@ public class LoaderUniqueIDProvidersStateTRAn extends LoaderUniqueIDProvidersSta
 
 	@Override
 	protected Iterable<UIDPState> readSavedUIDPStates() {
-		// TODO Auto-generated method stub
 		Iterable<UIDPState> iterStates;
 		Iterator<JSONValue> iterRaw;
 
@@ -52,20 +52,17 @@ public class LoaderUniqueIDProvidersStateTRAn extends LoaderUniqueIDProvidersSta
 
 				@Override
 				public Iterator<UIDPState> iterator() {
-
 					return new Iterator<UIDPState>() {
-						final Iterator<JSONValue> ir__ = ir_;
-
 						@Override
 						public UIDPState next() {
-							JSONObject jo = (JSONObject) ir__.next();
+							JSONObject jo = (JSONObject) ir_.next();
 							return new UIDPState(jo.getFieldValue("classIdentifier").asString(),
 									jo.getFieldValue("state").asLong());
 						}
 
 						@Override
 						public boolean hasNext() {
-							return iterRaw.hasNext();
+							return ir_.hasNext();
 						}
 					};
 				}
@@ -73,7 +70,6 @@ public class LoaderUniqueIDProvidersStateTRAn extends LoaderUniqueIDProvidersSta
 
 			return iterStates;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

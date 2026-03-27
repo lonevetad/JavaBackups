@@ -9035,5 +9035,41 @@
       "Defense": -3,
       "MagicalDamageReduction": 2
     }
+  },
+  {
+    "name": "Ethereal",
+    "rarity": 4,
+    "price": [120],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Dexterity": 6,
+      "LifeMax": -500,
+      "ManaMax": -400,
+      "ShieldMax": 350,
+      "ShieldRegen": 20,
+      "PhysicalDamageReduction": 20,
+      "PhysicalDamageMultiplierPercentageReduction": 10,
+      "PhysicalProbabilityPerThousandAvoid": 150,
+      "MagicalDamageReduction": -10,
+      "MagicalDamageMultiplierPercentageReduction": -5,
+      "MagicalProbabilityPerThousandAvoid": -50,
+      "Velocity": 5
+    }
+  },
+  {
+    "name": "Webfiber",
+    "rarity": 2,
+    "price": [15],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Constitution": 2,
+      "Defense": 5,
+      "LifeMax": 35,
+      "LifeRegen": 2,
+      "MagicalDamageReduction": 4,
+      "PhysicalDamageReduction": 5
+    }
   }
 ]

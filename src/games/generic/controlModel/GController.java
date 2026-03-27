@@ -6,12 +6,13 @@ import java.util.Random;
 
 import dataStructures.MapTreeAVL;
 import games.generic.GameOptions;
+import games.generic.controlModel.factories.GModalityFactory;
+import games.generic.controlModel.factories.GModalityFactoryContext;
 import games.generic.controlModel.holders.GameObjectsProvidersHolder;
 import games.generic.controlModel.holders.ProbabilityOfContextesHolders;
 import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.loaders.LoaderManager;
 import games.generic.controlModel.loaders.LoaderManager.LoadingObserver;
-import games.generic.controlModel.misc.GModalityFactory;
 import games.generic.controlModel.player.PlayerGeneric;
 import games.generic.controlModel.player.UserAccountGeneric;
 import games.generic.view.GameView;
@@ -158,13 +159,41 @@ public abstract class GController {
 	 * ability's constructor the flag about if the game modality allows randomness
 	 * or not).
 	 */
-	protected abstract GameObjectsProvidersHolder newGameObjectProvidersHolderFor(GModality gm);
+//	protected abstract GameObjectsProvidersHolder newGameObjectProvidersHolderFor(GModality gm);
+	/**
+	 * Defines and return an instance of {@link GameObjectsProvidersHolder} that is
+	 * shared across all subclasses of {@link GModality} (by setting it into a
+	 * {@link GModalityFactoryContext}).<br>
+	 * Usually, this method just return the value of a single variable.
+	 * <p>
+	 * Other games might differ. For instance, the game "The Rising Army" will have
+	 * two game modalities: one having some degree of randomness, the other one that
+	 * is totally deterministic and aspects like damage ranges or "something that
+	 * scatters randomly, like cluster bombs" are fixed (for instance, each grapes
+	 * of cluster bombs expands in symmetrically and radially). So, there would
+	 * exists abilities designed in a parallel way so that they could have random
+	 * intervals or fixed values. (In that case, it's advised to define the ability
+	 * only once and only one {@link GameObjectsProvidersHolder}, just passing to
+	 * that ability's constructor the flag about if the game modality allows
+	 * randomness or not).
+	 */
+	protected abstract GameObjectsProvidersHolder newSharedGameObjectProvidersHolder();
+
+	public abstract GameObjectsProvidersHolder getSharedGameObjectsProvidersHolder();
 
 	//
 
 	// TODO INITIALIZATION METHODS
 
 	//
+
+	public void enrichGModalityFactoryWithSharedData(GModalityFactory gmf) {
+		GModalityFactoryContext factoryContext = gmf.getGModalityFactoryContext();
+		// all factories get the shared one, unless they have the custom one
+		if (factoryContext.getGameObjectsProvidersHolder() == null) {
+			factoryContext.setGameObjectsProvidersHolder(getSharedGameObjectsProvidersHolder());
+		}
+	}
 
 	/**
 	 * Override designed BUT call <code>super.</code>{@link #initNonFinalStuffs()}}.
@@ -197,11 +226,35 @@ public abstract class GController {
 		}
 	}
 
-	/**
-	 * Additional preparations; it rarely occours
-	 */
-	public abstract void prepareLoadingAll();
+	public final void addGameModalityFactory(GModalityFactory gmf) {
+		this.getGameModalitiesFactories().put(gmf.getNameGModality(), gmf);
+	}
 
+	public GModalityFactory getGameModalityFactoryByGMName(String gameModalityName) {
+		return this.gameModalitiesFactories.get(gameModalityName);
+	}
+
+	public GModalityFactoryContext getGameModalityFactoryContextByGMName(String gameModalityName) {
+		return this.getGameModalityFactoryByGMName(gameModalityName).getGModalityFactoryContext();
+	}
+
+	/**
+	 * Additional preparations, like:
+	 * <ul>
+	 * <li>Set the {@link GModalityFactoryContext} for the
+	 * {@link GModalityFactory}-ies, maybe setting up shared instances
+	 * <li></li>
+	 * </ul>
+	 */
+	public void prepareLoadingAll() {
+		this.getGameModalitiesFactories().forEach((gmName, gmFactory) -> {
+			enrichGModalityFactoryWithSharedData(gmFactory);
+		});
+	}
+
+	/**
+	 * Do some final adjustments, similarly to {@link #prepareLoadingAll()}.
+	 */
 	public abstract void afterLoadingAll();
 
 	/**
@@ -235,10 +288,10 @@ public abstract class GController {
 	 * {@link #defineGameModalitiesFactories()} or, at least, contained by
 	 * {@link #getGameModalitiesFactories()}.
 	 */
-	public GModality newModalityByName(String name) {
+	public final GModality newModalityByName(String name) {
 		GModalityFactory gmf;
 		gmf = this.getGameModalitiesFactories().get(name);
-		return gmf == null ? null : gmf.newGameModality(this, name);
+		return gmf == null ? null : gmf.newAndSetupGameModality(this, name);
 	}
 
 	/**

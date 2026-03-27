@@ -3,6 +3,9 @@ package tests.tGame.tgEvent1;
 import java.io.IOException;
 import java.util.List;
 
+import games.generic.controlModel.GController;
+import games.generic.controlModel.GModality;
+import games.generic.controlModel.factories.GModalityFactory;
 import games.generic.controlModel.loaders.LoaderGeneric;
 import games.generic.controlModel.loaders.LoaderGeneric.LoadStatusResult;
 import games.generic.controlModel.loaders.LoaderManager;
@@ -45,9 +48,13 @@ public class GC_E1 extends GControllerTRAn {
 	@Override
 	protected void defineGameModalitiesFactories() {
 		super.defineGameModalitiesFactories();
-		this.getGameModalitiesFactories().put(GModality_E1.NAME, (gc, name) -> {
-			return new GModality_E1(gc);
-		});
+		this.addGameModalityFactory(//
+				new GModalityFactory(GModality_E1.NAME) {
+					@Override
+					public GModality newGameModality(GController gc, String gameModalityName) {
+						return new GModality_E1(gc);
+					}
+				});
 	}
 
 	@Override
@@ -57,7 +64,7 @@ public class GC_E1 extends GControllerTRAn {
 	}
 
 	protected void onInstantiatedGModality_E1() {
-		this.getGameObjectsProvidersHolder().setGameModality(getDummyGameModality_E1());
+		this.getSharedGameObjectsProvidersHolder().setGameModality(getDummyGameModality_E1());
 	}
 
 	@Override

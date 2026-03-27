@@ -7,6 +7,7 @@ import dataStructures.MapTreeAVL;
 import games.generic.controlModel.holders.TimedObjectHolder;
 import games.generic.controlModel.objects.TimedObject;
 import tools.Comparators;
+import tools.ObjectWithID;
 
 /**
  *
@@ -28,14 +29,25 @@ public class TimedObjectHolder_Impl1 extends TimedObjectHolder {
 	}
 
 	@Override
-	public Set<TimedObject> getObjects() { return timedObjects_Set; }
+	public boolean canHold(ObjectWithID o) {
+		return o instanceof TimedObject;
+	}
 
 	@Override
-	public int objectsHeldCount() { return this.timedObjects.size(); }
+	public Set<TimedObject> getObjects() {
+		return timedObjects_Set;
+	}
+
+	@Override
+	public int objectsHeldCount() {
+		return this.timedObjects.size();
+	}
 
 	@Override
 	public boolean add(TimedObject o) {
-		if (o == null || (!(o instanceof TimedObject)) || timedObjects.containsKey(o.getID())) { return false; }
+		if (o == null || (!(o instanceof TimedObject)) || timedObjects.containsKey(o.getID())) {
+			return false;
+		}
 		timedObjects.put(o.getID(), o);
 		return true;
 	}
@@ -56,12 +68,18 @@ public class TimedObjectHolder_Impl1 extends TimedObjectHolder {
 	}
 
 	@Override
-	public boolean contains(TimedObject o) { return timedObjects.containsKey(o.getID()); }
+	public boolean contains(TimedObject o) {
+		return timedObjects.containsKey(o.getID());
+	}
 
 	@Override
-	public TimedObject get(Long id) { return timedObjects.get(id); }
+	public TimedObject get(Long id) {
+		return timedObjects.get(id);
+	}
 
 	@Override
-	public void forEach(Consumer<TimedObject> action) { timedObjects.forEach((id, to) -> action.accept(to)); }
+	public void forEach(Consumer<TimedObject> action) {
+		timedObjects.forEach((id, to) -> action.accept(to));
+	}
 
 }

@@ -1,12 +1,13 @@
 package games.theRisingAngel;
 
 import games.generic.GameOptions;
+import games.generic.controlModel.GController;
 import games.generic.controlModel.GModality;
+import games.generic.controlModel.factories.GModalityFactory;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
 import games.generic.controlModel.loaders.LoaderManager;
 import games.generic.controlModel.player.UserAccountGeneric;
 import games.generic.controlModel.subimpl.GControllerRPG;
-import games.generic.controlModel.subimpl.GModalityRPG;
 import games.theRisingAngel.loaders.LoaderManagerTRAn;
 import games.theRisingAngel.providers.GameObjectsProvidersHolderTRAn;
 
@@ -31,13 +32,19 @@ public class GControllerTRAn extends GControllerRPG {
 	@Override
 	protected void defineGameModalitiesFactories() {
 		System.out.println("DEFINE GAME MODALITIES FACTORIES IN GControllerTRAn");
-		this.getGameModalitiesFactories().put(GModalityTRAnBaseWorld.NAME,
-				(gc, name) -> new GModalityTRAnBaseWorld(gc, name));
+		this.addGameModalityFactory( //
+				new GModalityFactory(GModalityTRAnBaseWorld.NAME) {
+					@Override
+					public GModality newGameModality(GController gc, String gameModalityName) {
+						return new GModalityTRAnBaseWorld(gc, gameModalityName);
+					}
+
+				});
 	}
 
 	@Override
-	protected GameObjectsProvidersHolderRPG newGameObjectProvidersHolderFor(GModality gm) {
-		return new GameObjectsProvidersHolderTRAn((GModalityRPG) gm);
+	protected GameObjectsProvidersHolderRPG newSharedGameObjectProvidersHolder() {
+		return new GameObjectsProvidersHolderTRAn(null);
 	}
 
 	@Override
@@ -53,17 +60,15 @@ public class GControllerTRAn extends GControllerRPG {
 
 	@Override
 	protected void initNonFinalStuffs() {
-		getGameObjectsProvidersHolder().setGameModality((GModalityRPG) getCurrentGameModality());
+		getSharedGameObjectsProvidersHolder().setGameModality(getCurrentGameModality());
 
 		super.initNonFinalStuffs();
 		System.out.println("GControllerTRAn init non final stuff done\n\n");
-//		this.gameObjectsProvidersHolderRPG.getEquipmentsProvider().getObjectsIdentified().forEach((n, f) -> {
-//			System.out.println("daffaking equip name: " + n);
-//		});
 	}
 
 	@Override
 	public void prepareLoadingAll() {
+		super.prepareLoadingAll();
 	}
 
 	@Override

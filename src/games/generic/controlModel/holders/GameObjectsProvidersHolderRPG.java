@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Random;
 
 import dataStructures.MapTreeAVL;
+import games.generic.controlModel.GModality;
 import games.generic.controlModel.ObjectNamed;
 import games.generic.controlModel.abilities.AbilityGeneric;
 import games.generic.controlModel.items.EquipmentItem;
@@ -105,6 +106,7 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		return providers;
 	}
 
+	@Override
 	public GModalityRPG getGameModality() {
 		return gameModality;
 	}
@@ -168,8 +170,9 @@ public abstract class GameObjectsProvidersHolderRPG implements GameObjectsProvid
 		this.itemsProvider = itemsProvider;
 	}
 
-	public void setGameModality(GModalityRPG gModality) {
-		this.gameModality = gModality;
+	@Override
+	public void setGameModality(GModality gModality) {
+		this.gameModality = (GModalityRPG) gModality;
 	}
 
 	// TODO new-methods

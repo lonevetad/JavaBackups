@@ -63,6 +63,7 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 		// DamageTypesTRAn.Magical.getName(),
 		// ADamageReductionCurrencyBased.RARITY, gc -> new
 		// ADamageReductionCurrencyBased(DamageTypesTRAn.Magical));
+		gcontroller.getLogger().logAndPrint("Starting LoaderAbilityTRAn ..\n");
 		objProvider.addObj(AMoreDamageReceivedMoreLifeRegen.NAME, AMoreDamageReceivedMoreLifeRegen.RARITY,
 				AMoreDamageReceivedMoreLifeRegen::new);
 		objProvider.addObj(AFireShpereOrbiting.NAME, AFireShpereOrbiting.RARITY, AFireShpereOrbiting::new);
@@ -101,8 +102,11 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 			ASimpleFixedBufferVanishingTRAn a;
 			a = new ASimpleFixedBufferVanishingTRAn(gm, "Frenzy for a miss",
 					new AttributeModification[] { new AttributeModificationTRAn(AttributesTRAn.Strength, 6),
-							new AttributeModificationTRAn(AttributesTRAn.PhysicalProbabilityPerThousandHit, 4), // frenzy
-							new AttributeModificationTRAn(AttributesTRAn.MagicalProbabilityPerThousandHit, 4), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.PhysicalProbabilityPerThousandHit, 8), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.MagicalProbabilityPerThousandHit, 8), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.VelocityAttackStrikePercentage, 5), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.VelocitySpellCastPercentage, 5), // frenzy
+							new AttributeModificationTRAn(AttributesTRAn.Velocity, 5), // frenzy
 							new AttributeModificationTRAn(AttributesTRAn.Dexterity, -5),
 							new AttributeModificationTRAn(AttributesTRAn.Intelligence, -6),
 							new AttributeModificationTRAn(AttributesTRAn.Wisdom, -7) }) {
@@ -330,7 +334,8 @@ public class LoaderAbilityTRAn extends LoaderAbilities {
 
 		//
 
-		System.out.println("objProvider ABILITY size: " + objProvider.getObjectsFactoriesCount());
+		gcontroller.getLogger().logAndPrint("ended LoaderAbilityTRAn -> objProvider ABILITY size: "
+				+ objProvider.getObjectsFactoriesCount() + "\n");
 		return LoadStatusResult.Success;
 	}
 

@@ -13,6 +13,7 @@ import tools.ObjectWithID;
 /**
  * One of the core classes.
  * <p>
+ * Holds ALL objects ... somehow (2026-03-26
  */
 public abstract class GModel implements GObjectsHolder<ObjectWithID> {
 	protected MapTreeAVL<Long, ObjectWithID> backmapAllObjectsUnfiltered;

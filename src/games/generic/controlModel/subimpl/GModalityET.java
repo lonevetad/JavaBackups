@@ -7,6 +7,7 @@ import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.events.GEventInterface;
 import games.generic.controlModel.events.GEventManager;
 import games.generic.controlModel.events.GEventObserver;
+import games.generic.controlModel.factories.GModalityFactoryContext;
 import games.generic.controlModel.misc.GThread;
 import games.generic.controlModel.misc.GThread.GTRunnableSimplestImplementation;
 import games.generic.controlModel.objects.GameObjectGeneric;
@@ -108,10 +109,15 @@ public abstract class GModalityET extends GModality implements IGameModalityTime
 	}
 
 	@Override
-	public void onCreate() {
+	public void finishOnCreate(GModalityFactoryContext gModalityFactoryContex) {
 		this.eventInterface = newEventInterface();
-		super.onCreate();
+		super.finishOnCreate(gModalityFactoryContex);
 		this.getGModelEventTimedObjectsHolder().setEventManager(getEventManager());
+	}
+
+	@Override
+	public void doSetupFromGameController(GController gc) {
+		// nothing here
 	}
 
 	//

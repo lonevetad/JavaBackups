@@ -1,11 +1,11 @@
 package games.generic.controlModel.loaders;
 
-import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
 import games.generic.controlModel.GController;
@@ -15,15 +15,14 @@ import games.generic.controlModel.events.GEvent;
 import games.generic.controlModel.items.InventoryItem;
 import games.generic.controlModel.misc.uidp.UIDPCollector;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
+import games.generic.controlModel.misc.uidp.UIDPState;
 import games.generic.controlModel.objects.OrbitingInteractiveObject;
 import games.generic.view.dataProviders.DrawableObjProviderEventsObserver;
 import tools.Comparators;
 import tools.ObjectWithID;
 import tools.UniqueIDProvider;
 import tools.UniqueIDProvider.BaseUniqueIDProvider;
-import tools.json.types.JSONLong;
-import tools.json.types.JSONObject;
-import tools.json.types.JSONString;
+import tools.log.LoggerMessages;
 
 /**
  * Class that loads every {@link UIDPState} in order to load the state of the
@@ -94,51 +93,51 @@ public abstract class LoaderUniqueIDProvidersState extends LoaderGeneric {
 	<code>
 	protected void enrichAllKnownUIDPLoadedListenerList(
 	Map&#60;Class&#60;?&#62;, UIDProviderLoadedListener&#62; list) {
-
+	
 		// MANDATORY
 		super.enrichAllKnownUIDPLoadedListenerList(list);
-
+	
 		// ADD HERE THE NEW ONES , like :
 		list.put(MyFancyFooClass.class, MyFancyFooClass.UIDP_LOADED_LISTENER_MFFC));
 		list.put(MyFancyBarInterface.class, MyFancyBarInterface.UIDP_LOADED_LISTENER_MFBI));
 	}
 	</code>
-
+	
 	where
-
+	
 	<code>
 	public class MyFancyFooClass {
 		private static UniqueIDProvider UIDP_MFFC = null;
-
+	
 		public static final UIDProviderLoadedListener UIDP_LOADED_LISTENER_MFFC =
 			uidp -> { if(uidp != null) { UIDP_MFFC = uidp; } };
-
+	
 		// since the provider is not final, it's not advised to make it public:
 		// this function makes it accessible without exposing the non-final pointer
 		public static UniqueIDProvider getUniqueIDProvider_MyFancyFooClass(){
 			return UIDP_MFFC;
 		}
-
+	
 		// other stuffs
 	}
 	</code>
-
+	
 	and
-
+	
 	<code>
 	public interface MyFancyBarInterface {
 		// suggested implementation: using UIDPLoadableFromCollector
-
+	
 		public static final UniqueIDProvider UIDP_MFBI = new UIDPLoadableFromCollector&#60;&#62;(MyFancyBarInterface.class);
-
+	
 		&#64;SuppressWarnings("unchecked")
 		public static final UIDProviderLoadedListener UIDP_LOADED_LISTENER_MFBI = ((UIDPLoadableFromCollector&#60;MyFancyBarInterface&#62;) UIDP_MyFancyBarInterface)
 			.getUidpLoaderListener();
-
+	
 		public static UniqueIDProvider getUniqueIDProvider_MyFancyBarInterface(){
 			return UIDP_MFBI;
 		}
-
+	
 		// other stuffs
 	}
 	</code>
@@ -192,67 +191,72 @@ public abstract class LoaderUniqueIDProvidersState extends LoaderGeneric {
 
 	@Override
 	public LoadStatusResult loadInto(GController gc) {
-
-		this.getAllKnownUIDPLoadedListener().forEach((clazz, u) -> this.registerClassAsUsingUIDP(clazz, u));
-
-		try {
-			for (UIDPState state : this.readSavedUIDPStates()) {
-				try {
-					UIDPCollector.loadProvider(state.classIdentifier, state);
-					this.classesUsingUIDPLoadableBackmap//
-							.get(state.classIdentifier)//
-							.accept(UIDPCollector.getProvider(state.classIdentifier));
-				} catch (Exception e2) {
-					gc.getLogger().logException(e2);
+		Map<Class<?>, UIDProviderLoadedListener> knownUIDPLoadedListenerMap = this.getAllKnownUIDPLoadedListener();
+		final Map<String, Class<?>> classByNameNotLoaded = new HashMap<>();
+		knownUIDPLoadedListenerMap.forEach((clazz, u) -> {
+			this.registerClassAsUsingUIDP(clazz, u);
+			classByNameNotLoaded.put(UIDPState.CLASS_TO_NAME.apply(clazz), clazz);
+		});
+		// check what is saved and create default ones for the absent ones
+		LoggerMessages log = gc.getLogger();
+		final Iterable<UIDPState> iterUIDPState = this.readSavedUIDPStates();
+		final Consumer<UIDPState> stateFullLoader = (state) -> {
+			// first of all, load the provider into the collector
+			log.logAndPrint("Loading UIDPState of '" + state.getClassIdentifier() + "' with state: " + state.getState()
+					+ " ...");
+			UIDPCollector.loadProvider(state.getClassIdentifier(), state);
+			log.logAndPrint("loaded!\n");
+			// then, notify that the provider has been loaded
+			this.classesUsingUIDPLoadableBackmap //
+					.get(state.getClassIdentifier()) //
+					.accept( // (note: retrieve back the provider stored in the collector)
+							UIDPCollector.getProvider(state.getClassIdentifier()) //
+			);
+			log.logAndPrint("UIDPState of '" + state.getClassIdentifier() + "' notified.\n");
+		};
+		if (iterUIDPState != null) {
+			try {
+				for (UIDPState state : iterUIDPState) {
+					try {
+						stateFullLoader.accept(state);
+						classByNameNotLoaded.remove(state.getClassIdentifier()); // mark it as loaded by removing it
+					} catch (Exception e2) {
+						gc.getLogger().logException(e2);
+					}
 				}
+			} catch (Exception e) {
+				log.logAndPrint("\n");
+				gc.getLogger().logException(e);
+				return LoadStatusResult.MinorFail;
 			}
-		} catch (Exception e) {
-			gc.getLogger().logException(e);
-			return LoadStatusResult.MinorFail;
 		}
+
+		log.logAndPrint("Loading " + classByNameNotLoaded.size() + " default UIDP\n");
+		classByNameNotLoaded.forEach((className, clazz) -> {
+			log.logAndPrint("Loading default UIDP of class: " + className + "\n");
+			UIDPState state = UIDPState.newEmpty(className);
+			stateFullLoader.accept(state);
+		});
 
 		return LoadStatusResult.Success;
 	}
 
 	//
-
-	public static class UIDPState implements Serializable {
-		public static final Function<Class<?>, String> CLASS_TO_NAME = Class::getName;
-		private static final long serialVersionUID = -401587584588922221L;
-
-		public UIDPState(Class<?> clazz, long state) { this(CLASS_TO_NAME.apply(clazz), state); }
-
-		public UIDPState(String classIdentifier, long state) {
-			super();
-			this.state = state;
-			this.classIdentifier = classIdentifier;
-		}
-
-		public final long state;
-		/**
-		 * Some Classes may use a private {@link UniqueIDProvider}. This variable is
-		 * used to identify that class.
-		 */
-		public final String classIdentifier;
-
-		public JSONObject toJSON() {
-			JSONObject o;
-			o = new JSONObject();
-			o.addField("state", new JSONLong(state));
-			o.addField("classIdentifier", new JSONString(classIdentifier));
-			return o;
-		}
-	}
-
 	//
 
 	public static class UIDPLoadable extends BaseUniqueIDProvider {
 
-		public UIDPState getState() { return this.getState(getClass()); }
+		public UIDPState getState() {
+			return this.getState(getClass());
+		}
 
-		public void loadState(UIDPState state) { this.idProgressive = state.state; }
+		public void loadState(UIDPState state) {
+			this.idProgressive = state.getState();
+		}
 
-		public UIDPState getState(Class<?> clazz) { return new UIDPState(clazz, idProgressive); }
+		public UIDPState getState(Class<?> clazz) {
+			return new UIDPState(clazz, idProgressive);
+		}
 
 	}
 }

@@ -332,7 +332,11 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 		if (o == null) {
 			return false;
 		}
-		m = getMISOMContaining(o.getLocation());
+		Point location = o.getLocation();
+		if (location == null) {
+			return false;
+		}
+		m = getMISOMContaining(location);
 		if (m == null) {
 			return false;
 		}
@@ -921,7 +925,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //
 //		/** Absolute coordinates. */
 //		public NodeIsom<Dd> getNodeAt(int x, int y) {
-////			boolean isNinety;
+	////			boolean isNinety;
 //			if (angleRotationDegrees == 0.0) {
 //				// consider the offset
 //				return misom.getNodeAt(x - this.x, y - this.y);
@@ -936,7 +940,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //				// consider the offset
 //				return misom.getNodeAt(xx, yy);
 //			}
-////				else if ((isNinety = angleRotationDegrees == 90.0) || (angleRotationDegrees == 270.0)) {
+	////				else if ((isNinety = angleRotationDegrees == 90.0) || (angleRotationDegrees == 270.0)) {
 ////				int xx, yy; // centre
 ////				xx = this.x + (width >> 1);
 //////				if((width&0x1)==0)xx--;
@@ -964,11 +968,11 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //				// NOTE: actions in "makeRelativeAndRotate" are make here just to make them fast
 //				location = this.misom.getLocation();
 //				// make coordinates relative to the centre
-////				x += location.x - (this.misom.getWidth() >> 1);
+	////				x += location.x - (this.misom.getWidth() >> 1);
 ////				y += location.y - (this.misom.getHeight() >> 1);
 //				x -= location.x;
 //				y -= location.y;
-////			s = Math.sin(a); // a is in radians
+	////			s = Math.sin(a); // a is in radians
 ////			c = Math.cos(a);
 ////			rotationMatrix = [
 ////				[c, -s],
@@ -1016,7 +1020,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //		/** See {@link #makePointRelativeToTopLeftCorner(int, int)}. */
 //		public Point makePointRelativeToCenter(Point p) {
 //			Point location;
-////			location = this.misom.getTopLetCorner();
+	////			location = this.misom.getTopLetCorner();
 ////			p.x += (this.misom.getWidth() >> 1) - location.x;
 ////			p.y += (this.misom.getHeight() >> 1) - location.y;
 ////			return p;
@@ -1030,7 +1034,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //
 //		public Point makePointAbsoluteToCenter(Point p) {
 //			Point location;
-////			location = this.misom.getTopLetCorner();
+	////			location = this.misom.getTopLetCorner();
 ////			p.x += location.x - (this.misom.getWidth() >> 1);
 ////			p.y += location.y - (this.misom.getHeight() >> 1);
 //			location = this.misom.getLocation();
@@ -1081,7 +1085,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //			oldLocation = o.getLocation();
 //			xo = oldLocation.x;
 //			yo = oldLocation.y;
-////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+	////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
 //			makeRelativeToCenterAndRotate(oldLocation);
 //			c = this.multi.add(o);
 //			o.setLocation(xo, yo);
@@ -1097,7 +1101,7 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //			oldLocation = o.getLocation();
 //			xo = oldLocation.x;
 //			yo = oldLocation.y;
-////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+	////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
 //			makeRelativeToCenterAndRotate(oldLocation);
 //			c = this.multi.contains(o);
 //			o.setLocation(xo, yo);
@@ -1108,13 +1112,13 @@ public class MultiISOMRetangularMap<Distance extends Number> extends AbstractMul
 //			boolean c;
 //			int xo, yo;// , x, y;
 //			Point oldLocation;
-////			misomLocation = this.misom.getLocation();
+	////			misomLocation = this.misom.getLocation();
 //			if (o == null)
 //				return false;
 //			oldLocation = o.getLocation();
 //			xo = oldLocation.x;
 //			yo = oldLocation.y;
-////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
+	////			o.setLocation(xo - misomLocation.x, yo - misomLocation.y);
 //			makeRelativeToCenterAndRotate(oldLocation);
 //			c = this.multi.remove(o);
 //			o.setLocation(xo, yo);

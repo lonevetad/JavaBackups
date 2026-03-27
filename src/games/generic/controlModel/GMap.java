@@ -7,10 +7,11 @@ import games.generic.controlModel.holders.GObjectsHolder;
 import games.generic.controlModel.misc.uidp.UIDPCollector.UIDProviderLoadedListener;
 import games.generic.controlModel.objects.ObjectInSpace;
 import tools.ObjectNamedID;
+import tools.ObjectWithID;
 import tools.UniqueIDProvider;
 
 /**
- * TODO: è una mappa attuale, o i dati grezzi per generare una mappa? o solo un
+ * TODO: ï¿½ una mappa attuale, o i dati grezzi per generare una mappa? o solo un
  * gestore?
  * <p>
  * Holds and manages all objects in the current game, as described by
@@ -21,10 +22,14 @@ public class GMap implements GObjectsHolder<ObjectInSpace>, ObjectNamedID {
 	private static final long serialVersionUID = -4521201066L;
 	private static UniqueIDProvider UIDP_GMAP = null;
 	public static final UIDProviderLoadedListener UIDP_LOADED_LISTENER_GMAP = uidp -> {
-		if (uidp != null) { UIDP_GMAP = uidp; }
+		if (uidp != null) {
+			UIDP_GMAP = uidp;
+		}
 	};
 
-	public static UniqueIDProvider getUniqueIDProvider_GMap() { return UIDP_GMAP; }
+	public static UniqueIDProvider getUniqueIDProvider_GMap() {
+		return UIDP_GMAP;
+	}
 
 	//
 
@@ -38,24 +43,34 @@ public class GMap implements GObjectsHolder<ObjectInSpace>, ObjectNamedID {
 	protected GObjectsInSpaceManager goismDelegated;
 
 	@Override
-	public Long getID() { return ID; }
+	public Long getID() {
+		return ID;
+	}
 
 	@Override
-	public String getName() { return mapName; }
+	public String getName() {
+		return mapName;
+	}
 
 	/**
 	 * That's the delegate for managing the space of this map and the objects to put
 	 * them in
 	 */
-	public GObjectsInSpaceManager getGOISMDelegated() { return goismDelegated; }
+	public GObjectsInSpaceManager getGOISMDelegated() {
+		return goismDelegated;
+	}
 
-	public String getNameGObjHolder() { return goismDelegated.getNameGObjHolder(); }
+	public String getNameGObjHolder() {
+		return goismDelegated.getNameGObjHolder();
+	}
 
 	//
 
 	@Override
 	public boolean setID(Long newID) {
-		if (this.ID != null || newID == null) { return false; }
+		if (this.ID != null || newID == null) {
+			return false;
+		}
 		this.ID = newID;
 		return true;
 	}
@@ -63,29 +78,52 @@ public class GMap implements GObjectsHolder<ObjectInSpace>, ObjectNamedID {
 	/**
 	 * Set the delegator cited in the class's documentation.
 	 */
-	public void setGOISMDelegated(GObjectsInSpaceManager isomDelegated) { this.goismDelegated = isomDelegated; }
+	public void setGOISMDelegated(GObjectsInSpaceManager isomDelegated) {
+		this.goismDelegated = isomDelegated;
+	}
 
 	@Override
-	public Set<ObjectInSpace> getObjects() { return goismDelegated.getObjects(); }
+	public Set<ObjectInSpace> getObjects() {
+		return goismDelegated.getObjects();
+	}
 
 	@Override
-	public int objectsHeldCount() { return this.goismDelegated.objectsHeldCount(); }
+	public int objectsHeldCount() {
+		return this.goismDelegated.objectsHeldCount();
+	}
 
 	@Override
-	public boolean add(ObjectInSpace o) { return goismDelegated.add(o); }
+	public boolean add(ObjectInSpace o) {
+		return goismDelegated.add(o);
+	}
 
 	@Override
-	public boolean remove(ObjectInSpace o) { return goismDelegated.remove(o); }
+	public boolean remove(ObjectInSpace o) {
+		return goismDelegated.remove(o);
+	}
 
 	@Override
-	public boolean removeAll() { return goismDelegated.removeAll(); }
+	public boolean removeAll() {
+		return goismDelegated.removeAll();
+	}
 
 	@Override
-	public boolean contains(ObjectInSpace o) { return goismDelegated.contains(o); }
+	public boolean contains(ObjectInSpace o) {
+		return goismDelegated.contains(o);
+	}
 
 	@Override
-	public ObjectInSpace get(Long id) { return goismDelegated.get(id); }
+	public ObjectInSpace get(Long id) {
+		return goismDelegated.get(id);
+	}
 
 	@Override
-	public void forEach(Consumer<ObjectInSpace> action) { goismDelegated.forEach(action); }
+	public void forEach(Consumer<ObjectInSpace> action) {
+		goismDelegated.forEach(action);
+	}
+
+	@Override
+	public boolean canHold(ObjectWithID o) {
+		return o instanceof ObjectInSpace;
+	}
 }

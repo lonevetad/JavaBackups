@@ -520,7 +520,7 @@ public class LoaderEquipTRAn extends LoaderEquipments implements ObjectLoadable 
 					// log.logAndPrint("\n");
 					fi = fe.getFactoryItem();
 					rarity = fi.getRarity();
-					eqType = fe.type;
+					eqType = fe.getType();
 				} else {
 					try {
 						EquipmentItem ei;

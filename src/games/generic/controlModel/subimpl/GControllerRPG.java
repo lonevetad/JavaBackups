@@ -1,33 +1,42 @@
 package games.generic.controlModel.subimpl;
 
 import games.generic.GameOptions;
-import games.generic.controlModel.GModality;
 import games.generic.controlModel.holders.GameObjectsProvidersHolderRPG;
 
 public abstract class GControllerRPG extends GControllerET {
 
 	public GControllerRPG() {
 		super();
-		this.gameObjectsProvidersHolderRPG = newGameObjectProvidersHolderFor(null);
+		this.sharedGameObjectsProvidersHolderRPG = newSharedGameObjectProvidersHolder();
 	}
 
-	protected GameObjectsProvidersHolderRPG gameObjectsProvidersHolderRPG;
+	protected GameObjectsProvidersHolderRPG sharedGameObjectsProvidersHolderRPG;
 
 	//
 
 	@Override
-	protected abstract GameObjectsProvidersHolderRPG newGameObjectProvidersHolderFor(GModality gm);
+	protected abstract GameObjectsProvidersHolderRPG newSharedGameObjectProvidersHolder();
 
 	//
 
-	public GameObjectsProvidersHolderRPG getGameObjectsProvidersHolder() { return gameObjectsProvidersHolderRPG; }
+	public GameObjectsProvidersHolderRPG getSharedGameObjectsProvidersHolder() {
+		return sharedGameObjectsProvidersHolderRPG;
+	}
 
-	public void setGameObjectsProvidersHolderRPG(GameObjectsProvidersHolderRPG gameObjectsProvidersHolderRPG) {
-		this.gameObjectsProvidersHolderRPG = gameObjectsProvidersHolderRPG;
+	public void setSharedGameObjectsProvidersHolderRPG(
+			GameObjectsProvidersHolderRPG sharedGameObjectsProvidersHolderRPG) {
+		this.sharedGameObjectsProvidersHolderRPG = sharedGameObjectsProvidersHolderRPG;
 	}
 
 	//
 
 	@Override
-	protected GameOptions newGameOptions() { return new GameOptionsRPG(this); }
+	protected GameOptions newGameOptions() {
+		return new GameOptionsRPG(this);
+	}
+
+	@Override
+	public void prepareLoadingAll() {
+		super.prepareLoadingAll();
+	}
 }

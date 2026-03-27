@@ -31,18 +31,35 @@ public class GObjectsHolderImpl<K, T extends ObjectWithID> implements GObjectsHo
 	}
 
 	@Override
-	public Set<T> getObjects() { return objectsHeld_Set; }
+	public boolean canHold(ObjectWithID o) {
+		try {
+			T t = (T) o;
+		} catch (ClassCastException cce) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
-	public int objectsHeldCount() { return this.objectsHeld.size(); }
+	public Set<T> getObjects() {
+		return objectsHeld_Set;
+	}
+
+	@Override
+	public int objectsHeldCount() {
+		return this.objectsHeld.size();
+	}
 
 	@Override
 	public boolean add(T o) {
 		K k;
-		if (o == null || (!(o instanceof TimedObject)))
+		if (o == null || (!(o instanceof TimedObject))) {
 			return false;
+		}
 		k = keyExtractor.apply(o);
-		if (objectsHeld.containsKey(k)) { return false; }
+		if (objectsHeld.containsKey(k)) {
+			return false;
+		}
 		this.objectsHeld.put(k, o);
 		this.objectsByID.put(o.getID(), o);
 		return true;
@@ -70,13 +87,21 @@ public class GObjectsHolderImpl<K, T extends ObjectWithID> implements GObjectsHo
 	}
 
 	@Override
-	public boolean contains(T o) { return objectsHeld.containsKey(o.getID()); }
+	public boolean contains(T o) {
+		return objectsHeld.containsKey(o.getID());
+	}
 
 	@Override
-	public T get(Long id) { return objectsByID.get(id); }
+	public T get(Long id) {
+		return objectsByID.get(id);
+	}
 
-	public T getByKey(K id) { return objectsHeld.get(id); }
+	public T getByKey(K id) {
+		return objectsHeld.get(id);
+	}
 
 	@Override
-	public void forEach(Consumer<T> action) { objectsHeld.forEach((id, to) -> action.accept(to)); }
+	public void forEach(Consumer<T> action) {
+		objectsHeld.forEach((id, to) -> action.accept(to));
+	}
 }

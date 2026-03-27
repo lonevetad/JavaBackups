@@ -634,6 +634,8 @@ public abstract class EquipmentItem extends InventoryItem implements AbilitiesHo
 			this.raiseExceptionMissingField(FIELD_EQUIPMENT_TYPE, JSONTypes.String);
 		}
 		JSONValue equipTypeNameJSONed_value = wrapper.getFieldValue(FIELD_EQUIPMENT_TYPE);
+		System.out.println("...... LOADING EQUIP with type: " + equipTypeNameJSONed_value.asString()
+				+ " --- with name: " + this.getName());
 		if (!equipTypeNameJSONed_value.isType(JSONTypes.String)) {
 			this.raiseExceptionIllegalTypeField(FIELD_EQUIPMENT_TYPE, JSONTypes.String, equipTypeNameJSONed_value);
 		}

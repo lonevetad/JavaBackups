@@ -5,8 +5,8 @@ import java.util.Set;
 
 import games.generic.controlModel.GController;
 import games.generic.controlModel.ObjectNamed;
+import games.generic.controlModel.factories.GModalityFactory;
 import games.generic.controlModel.loaders.LoaderGeneric;
-import games.generic.controlModel.misc.GModalityFactory;
 
 /**
  * Represent the point where a "mod" of a game can be defined, collected and

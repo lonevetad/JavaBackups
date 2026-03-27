@@ -16,4 +16,8 @@ public abstract class GControllerET extends GController {
 		super();
 	}
 
+	@Override
+	public void prepareLoadingAll() {
+		super.prepareLoadingAll();
+	}
 }

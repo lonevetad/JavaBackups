@@ -1,4 +1,4 @@
-package games.generic.controlModel.misc.factories;
+package games.generic.controlModel.factories;
 
 import java.io.Serializable;
 

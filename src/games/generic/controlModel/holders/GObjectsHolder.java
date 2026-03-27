@@ -32,7 +32,18 @@ public interface GObjectsHolder<T extends ObjectWithID> {
 
 	public int objectsHeldCount();
 
-	public default int size() { return this.objectsHeldCount(); }
+	public default int size() {
+		return this.objectsHeldCount();
+	}
+
+	/**
+	 * Tests whether the given object could be stored in this instance. Used in
+	 * {@link #add(ObjectWithID)}.
+	 * 
+	 * @param o
+	 * @return
+	 */
+	public boolean canHold(ObjectWithID o);
 
 	/**
 	 *

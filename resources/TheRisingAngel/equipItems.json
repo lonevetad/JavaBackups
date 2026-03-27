@@ -2465,7 +2465,7 @@
       "height": 2
     },
     "abilities": [
-      "AMeditationMoreRegen 2"
+      "MeditationMoreRegen 2"
     ],
     "attributesModifiers": {
       "LifeRegen": 2,

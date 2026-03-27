@@ -16,7 +16,7 @@ import games.theRisingAngel.enums.EquipmentTypesTRAn;
 
 public class FactoryEquip implements FactoryObjPrototypedGModalityBased<EquipmentItem> {
 	public final FactoryItems fi;
-	public EquipmentTypesTRAn type;
+	// public EquipmentTypesTRAn type;
 	public List<AbilityData> abilities = null;
 	protected AttributeModification[] attrMods = null;
 	/*
@@ -45,12 +45,19 @@ public class FactoryEquip implements FactoryObjPrototypedGModalityBased<Equipmen
 			this.attrMods = this.getPrototype().getBaseAttributesModifiers()
 					.toArray(new AttributeModification[this.getPrototype().getBaseAttributesModifiers().size()]);
 		}
-		ei = type.getFactory().newEquipItem( //
-				(GModalityRPG) gm, //
-				type, //
-				getFactoryItem().getName(), //
-				attrMods //
-		);
+		try {
+			EquipmentTypesTRAn type = this.getType();
+			ei = type.getFactory().newEquipItem( //
+					(GModalityRPG) gm, //
+					type, //
+					getFactoryItem().getName(), //
+					attrMods //
+			);
+		} catch (Exception e) {
+			e.printStackTrace();
+			gm.getLogger().logAndPrint("ERROR on equipment with name: " + this.fi.getName() + "\n");
+			throw e;
+		}
 		setValuesInto(gm, ei);
 		return ei;
 	}
@@ -102,7 +109,7 @@ public class FactoryEquip implements FactoryObjPrototypedGModalityBased<Equipmen
 	}
 
 	public EquipmentTypesTRAn getType() {
-		return type;
+		return (EquipmentTypesTRAn) this.getPrototype().getEquipmentType();
 	}
 
 	public List<AbilityData> getAbilities() {
@@ -115,7 +122,7 @@ public class FactoryEquip implements FactoryObjPrototypedGModalityBased<Equipmen
 
 	@Override
 	public String toString() {
-		return "FactoryEquip [\n name=" + getName() + ", type=" + type + //
+		return "FactoryEquip [\n name=" + getName() + ", type=" + this.getType() + //
 				",\n description: " + getDescription() + ",\n rarity=" + getRarity() + ", sell price: "
 				+ Arrays.toString(getPrice())//
 				+ ",\n dimensions in inventory: " + getFactoryItem().getDimensionInInventory() + ",\n abilities=\n\t"
