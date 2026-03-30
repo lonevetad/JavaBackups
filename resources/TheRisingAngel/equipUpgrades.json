@@ -9168,7 +9168,8 @@
       "Wisdom": 6,
       "ExperienceBonusPercentage": 15
     }
-  },{
+  },
+  {
     "name": "of Evenstar",
     "rarity": 4,
     "price": [4],
@@ -9182,7 +9183,8 @@
       "CriticalProbabilityPerThousandAvoid": 100,
       "VelocitySpellCastPercentage": 10
     }
-  },{
+  },
+  {
     "name": "of Torturer",
     "rarity": 3,
     "price": [-50],
@@ -9300,6 +9302,133 @@
       "Velocity": -20,
       "CriticalProbabilityPerThousandHit": 150,
       "CriticalMultiplierPercentageBonus": 20
+    }
+  },
+  {
+    "name": "Of the Channeler Initiate",
+    "rarity": 0,
+    "price": [8],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -15,
+      "ManaRegen": -2,
+      "MagicalDamageBonus": 2,
+      "MagicalDamageMultiplierPercentageBonus": 5
+    }
+  },
+  {
+    "name": "Of the Channeler Adept",
+    "rarity": 1,
+    "price": [15],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -25,
+      "ManaRegen": -4,
+      "MagicalDamageBonus": 4,
+      "MagicalDamageMultiplierPercentageBonus": 7,
+      "MagicalDamageReduction": 1,
+      "MagicalProbabilityPerThousandHit": 35
+    }
+  },
+  {
+    "name": "Of the Channeler Student",
+    "rarity": 2,
+    "price": [27],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -40,
+      "ManaRegen": -7,
+      "MagicalDamageBonus": 7,
+      "MagicalDamageMultiplierPercentageBonus": 12,
+      "MagicalDamageReduction": 5,
+      "MagicalProbabilityPerThousandHit": 80
+    }
+  },
+  {
+    "name": "Of the Channeler Expert",
+    "rarity": 3,
+    "price": [40],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -100,
+      "ManaRegen": -12,
+      "MagicalDamageBonus": 13,
+      "MagicalDamageMultiplierPercentageBonus": 20,
+      "MagicalDamageReduction": 10,
+      "MagicalDamageMultiplierPercentageReduction": 10,
+      "MagicalProbabilityPerThousandHit": 110,
+      "CriticalProbabilityPerThousandHit": 80,
+      "CriticalMultiplierPercentageBonus": 8
+    }
+  },
+  {
+    "name": "Of the Channeler Transcendent",
+    "rarity": 4,
+    "price": [85],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -250,
+      "ManaRegen": -30,
+      "MagicalDamageBonus": 20,
+      "MagicalDamageMultiplierPercentageBonus": 35,
+      "MagicalDamageReduction": 18,
+      "MagicalDamageMultiplierPercentageReduction": 17,
+      "MagicalProbabilityPerThousandHit": 150,
+      "MagicalProbabilityPerThousandAvoid": 50,
+      "CriticalProbabilityPerThousandHit": 120,
+      "CriticalMultiplierPercentageBonus": 12
+    }
+  },
+  {
+    "name": "Channel's Conduit",
+    "rarity": 3,
+    "price": [65],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ManaMax": -200,
+      "ManaRegen": -20,
+      "MagicalDamageBonus": 16,
+      "MagicalDamageMultiplierPercentageBonus": 25
+    }
+  },
+  {
+    "name": "Of the Channeler Gate",
+    "rarity": 5,
+    "price": [255],
+    "category": "Incarnation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ManaMax": -500,
+      "ManaRegen": -50,
+      "MagicalDamageBonus": 50,
+      "MagicalDamageMultiplierPercentageBonus": 50,
+      "MagicalDamageReduction": 35,
+      "MagicalDamageMultiplierPercentageReduction": 35,
+      "MagicalProbabilityPerThousandHit": 250,
+      "MagicalProbabilityPerThousandAvoid": 150,
+      "CriticalProbabilityPerThousandHit": 150,
+      "CriticalMultiplierPercentageBonus": 20
+    }
+  },
+  {
+    "name": "Iolite",
+    "rarity": 2,
+    "price": [34],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Defense": 4,
+      "Dexterity": 2,
+      "LifeRegen": 2,
+      "ManaRegen": 2,
+      "ShieldMax": 20,
+      "ShieldRegen": 1
     }
   }
 ]
