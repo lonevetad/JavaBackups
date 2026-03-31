@@ -7467,7 +7467,7 @@
     "name": "Baron's",
     "rarity": 3,
     "price": [100],
-    "description": "Of course it values a lot: it belonged to a Baron! They had an exquisite taste!",
+    "description": "of course it values a lot: it belonged to a Baron! They had an exquisite taste!",
     "category": "WorkersRolesRelated",
     "isPrefix": true,
     "attributesModifiers": {
@@ -9305,7 +9305,7 @@
     }
   },
   {
-    "name": "Of the Channeler Initiate",
+    "name": "of the Channeler Initiate",
     "rarity": 0,
     "price": [8],
     "category": "Blessing",
@@ -9318,7 +9318,7 @@
     }
   },
   {
-    "name": "Of the Channeler Adept",
+    "name": "of the Channeler Adept",
     "rarity": 1,
     "price": [15],
     "category": "Incantation",
@@ -9333,7 +9333,7 @@
     }
   },
   {
-    "name": "Of the Channeler Student",
+    "name": "of the Channeler Student",
     "rarity": 2,
     "price": [27],
     "category": "Incantation",
@@ -9348,7 +9348,7 @@
     }
   },
   {
-    "name": "Of the Channeler Expert",
+    "name": "of the Channeler Expert",
     "rarity": 3,
     "price": [40],
     "category": "Rune",
@@ -9366,7 +9366,7 @@
     }
   },
   {
-    "name": "Of the Channeler Transcendent",
+    "name": "of the Channeler Transcendent",
     "rarity": 4,
     "price": [85],
     "category": "Blessing",
@@ -9398,11 +9398,11 @@
     }
   },
   {
-    "name": "Of the Channeler Gate",
+    "name": "of the Channeler Gate",
     "rarity": 5,
     "price": [255],
     "category": "Incarnation",
-    "isPrefix": true,
+    "isPrefix": false,
     "attributesModifiers": {
       "ManaMax": -500,
       "ManaRegen": -50,
@@ -9429,6 +9429,451 @@
       "ManaRegen": 2,
       "ShieldMax": 20,
       "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "of the Initiate Magician",
+    "rarity": 0,
+    "price": [8],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Wisdom": 1,
+      "Faith": 1,
+      "MagicalDamageBonus": 1
+    }
+  },
+  {
+    "name": "of the Adept Magician",
+    "rarity": 1,
+    "price": [15],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": 1,
+      "Wisdom": 2,
+      "Faith": 2,
+      "MagicalDamageBonus": 2
+    }
+  },
+  {
+    "name": "of the Student Magician",
+    "rarity": 2,
+    "price": [27],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": 3,
+      "Wisdom": 4,
+      "Faith": 3,
+      "MagicalDamageBonus": 4,
+      "MagicalDamageMultiplierPercentageBonus": 4,
+      "MagicalDamageReduction": 2,
+      "VelocitySpellCastPercentage": 5
+    }
+  },
+  {
+    "name": "of the Teacher Magician",
+    "rarity": 3,
+    "price": [40],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": 5,
+      "Wisdom": 5,
+      "Faith": 4,
+      "MagicalDamageBonus": 7,
+      "MagicalDamageMultiplierPercentageBonus": 8,
+      "MagicalDamageReduction": 3,
+      "MagicalDamageMultiplierPercentageReduction": 4,
+      "VelocitySpellCastPercentage": 10,
+      "CostCastReductionPercentage": 5,
+      "ExperienceBonusPercentage": 5
+    }
+  },
+  {
+    "name": "of the High Magician",
+    "rarity": 4,
+    "price": [85],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": 8,
+      "Wisdom": 7,
+      "Faith": 5,
+      "MagicalDamageBonus": 12,
+      "MagicalDamageMultiplierPercentageBonus": 15,
+      "MagicalDamageReduction": 6,
+      "MagicalDamageMultiplierPercentageReduction": 7,
+      "VelocitySpellCastPercentage": 20,
+      "CostCastReductionPercentage": 10,
+      "ExperienceBonusPercentage": 10
+    }
+  },
+  {
+    "name": "of the Reality-Bender Magician",
+    "rarity": 5,
+    "price": [255],
+    "category": "Incarnation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": 11,
+      "Wisdom": 10,
+      "Faith": 6,
+      "MagicalDamageBonus": 15,
+      "MagicalDamageMultiplierPercentageBonus": 20,
+      "MagicalDamageReduction": 10,
+      "MagicalDamageMultiplierPercentageReduction": 10,
+      "VelocitySpellCastPercentage": 35,
+      "CostCastReductionPercentage": 15,
+      "ExperienceBonusPercentage": 15
+    }
+  },
+  {
+    "name": "of the Flux Initiate",
+    "rarity": 0,
+    "price": [8],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -10,
+      "Precision": 1,
+      "Dexterity": 2
+    }
+  },
+  {
+    "name": "of the Flux Adept",
+    "rarity": 1,
+    "price": [15],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -10,
+      "StaminaMax": -5,
+      "Precision": 2,
+      "Dexterity": 4,
+      "Defense": 1,
+      "PhysicalProbabilityPerThousandAvoid": 25,
+      "MagicalProbabilityPerThousandAvoid": 25
+    }
+  },
+  {
+    "name": "of the Flux Student",
+    "rarity": 2,
+    "price": [27],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -20,
+      "ManaRegen": -2,
+      "StaminaMax": -10,
+      "StaminaRegen": -1,
+      "Precision": 3,
+      "Dexterity": 7,
+      "Defense": 3,
+      "PhysicalProbabilityPerThousandAvoid": 50,
+      "MagicalProbabilityPerThousandAvoid": 50,
+      "CriticalProbabilityPerThousandAvoid": 25,
+      "ReflectionDamagePercentage": 10
+    }
+  },
+  {
+    "name": "of the Flux Expert",
+    "rarity": 3,
+    "price": [40],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -35,
+      "ManaRegen": -5,
+      "StaminaMax": -20,
+      "StaminaRegen": -3,
+      "Precision": 4,
+      "Dexterity": 10,
+      "Defense": 5,
+      "PhysicalProbabilityPerThousandAvoid": 50,
+      "MagicalProbabilityPerThousandAvoid": 50,
+      "CriticalProbabilityPerThousandAvoid": 25,
+      "CriticalMultiplierPercentageBonus": 10,
+      "ReflectionDamagePercentage": 15
+    }
+  },
+  {
+    "name": "of the Flux Transcendent",
+    "rarity": 4,
+    "price": [85],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -50,
+      "ManaRegen": -8,
+      "StaminaMax": -30,
+      "StaminaRegen": -7,
+      "Precision": 5,
+      "Dexterity": 14,
+      "Defense": 7,
+      "PhysicalProbabilityPerThousandAvoid": 100,
+      "MagicalProbabilityPerThousandAvoid": 100,
+      "CriticalProbabilityPerThousandAvoid": 50,
+      "CriticalMultiplierPercentageBonus": 10,
+      "CriticalProbabilityPerThousandHit": 10,
+      "ReflectionDamagePercentage": 25
+    }
+  },
+  {
+    "name": "of the Flux Windmill",
+    "rarity": 5,
+    "price": [255],
+    "category": "Incarnation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "ManaMax": -75,
+      "ManaRegen": -10,
+      "StaminaMax": -50,
+      "StaminaRegen": -10,
+      "Precision": 6,
+      "Dexterity": 18,
+      "Defense": 9,
+      "PhysicalProbabilityPerThousandAvoid": 150,
+      "MagicalProbabilityPerThousandAvoid": 150,
+      "CriticalProbabilityPerThousandAvoid": 100,
+      "CriticalMultiplierPercentageBonus": 15,
+      "CriticalProbabilityPerThousandHit": 15,
+      "ReflectionDamagePercentage": 35
+    }
+  },
+  {
+    "name": "of the Good Eyes",
+    "rarity": 0,
+    "price": [8],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 2,
+      "Dexterity": 1,
+      "Velocity": -3
+    }
+  },
+  {
+    "name": "of the Clear Eyes",
+    "rarity": 1,
+    "price": [15],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 4,
+      "Dexterity": 2,
+      "PhysicalProbabilityPerThousandHit": 50,
+      "MagicalProbabilityPerThousandHit": 50,
+      "CostCastReductionPercentage": -5,
+      "VelocitySpellCastPercentage": -5,
+      "Velocity": -5
+    }
+  },
+  {
+    "name": "of the Keen Eyes",
+    "rarity": 2,
+    "price": [27],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 7,
+      "Dexterity": 3,
+      "PhysicalProbabilityPerThousandHit": 85,
+      "MagicalProbabilityPerThousandHit": 85,
+      "CriticalProbabilityPerThousandHit": 30,
+      "CriticalMultiplierPercentageBonus": 10,
+      "CostCastReductionPercentage": -5,
+      "VelocitySpellCastPercentage": -5,
+      "Velocity": -5
+    }
+  },
+  {
+    "name": "of the Sharp Eyes",
+    "rarity": 3,
+    "price": [40],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 12,
+      "Dexterity": 4,
+      "PhysicalProbabilityPerThousandHit": 150,
+      "MagicalProbabilityPerThousandHit": 150,
+      "CriticalProbabilityPerThousandHit": 70,
+      "CriticalMultiplierPercentageBonus": 15,
+      "CostCastReductionPercentage": -10,
+      "VelocitySpellCastPercentage": -10,
+      "Velocity": -10
+    }
+  },
+  {
+    "name": "of the Eagle's Eyes",
+    "rarity": 4,
+    "price": [85],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 17,
+      "Dexterity": 5,
+      "PhysicalProbabilityPerThousandHit": 200,
+      "MagicalProbabilityPerThousandHit": 200,
+      "CriticalProbabilityPerThousandHit": 100,
+      "CriticalMultiplierPercentageBonus": 25,
+      "CostCastReductionPercentage": -20,
+      "VelocitySpellCastPercentage": -20,
+      "Velocity": -18
+    }
+  },
+  {
+    "name": "of the Telescopic Eyes",
+    "rarity": 5,
+    "price": [255],
+    "category": "Incarnation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Precision": 21,
+      "Dexterity": 6,
+      "PhysicalProbabilityPerThousandHit": 300,
+      "MagicalProbabilityPerThousandHit": 300,
+      "CriticalProbabilityPerThousandHit": 150,
+      "CriticalMultiplierPercentageBonus": 50,
+      "CostCastReductionPercentage": -35,
+      "VelocitySpellCastPercentage": -35,
+      "Velocity": -25
+    }
+  },
+  {
+    "name": "of the Fights Enthusiast",
+    "rarity": 0,
+    "price": [8],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -10,
+      "Strength": 3,
+      "Constitution": 1,
+      "Wisdom": -1,
+      "PhysicalDamageBonus": 2
+    }
+  },
+  {
+    "name": "of the Scuffle Enjoyer",
+    "rarity": 1,
+    "price": [15],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -20,
+      "StaminaMax": -5,
+      "Strength": 4,
+      "Constitution": 3,
+      "Dexterity": 1,
+      "Defense": 1,
+      "Wisdom": -3,
+      "Intelligence": -1,
+      "PhysicalDamageBonus": 7,
+      "PhysicalDamageMultiplierPercentageBonus": 3,
+      "VelocityAttackStrikePercentage": 5
+    }
+  },
+  {
+    "name": "of the Brawl Seeker",
+    "rarity": 2,
+    "price": [27],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -35,
+      "LifeRegen": -3,
+      "StaminaMax": -5,
+      "Strength": 7,
+      "Constitution": 5,
+      "Dexterity": 2,
+      "Defense": 2,
+      "Intelligence": -2,
+      "Wisdom": -5,
+      "PhysicalDamageBonus": 13,
+      "PhysicalDamageMultiplierPercentageBonus": 8,
+      "CriticalMultiplierPercentageReduction": 5,
+      "VelocityAttackStrikePercentage": 10
+    }
+  },
+  {
+    "name": "of the Commotion Instigator",
+    "rarity": 3,
+    "price": [40],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -50,
+      "LifeRegen": -5,
+      "StaminaMax": -10,
+      "StaminaRegen": -3,
+      "Strength": 12,
+      "Constitution": 6,
+      "Dexterity": 3,
+      "Defense": 3,
+      "Intelligence": -4,
+      "Wisdom": -7,
+      "PhysicalDamageBonus": 18,
+      "PhysicalDamageMultiplierPercentageBonus": 11,
+      "PhysicalDamageReduction": 5,
+      "PhysicalDamageMultiplierPercentageReduction": 5,
+      "CriticalMultiplierPercentageReduction": 10,
+      "VelocityAttackStrikePercentage": 18,
+      "ReflectionDamagePercentage": 5
+    }
+  },
+  {
+    "name": "of the Guerrilla Leader",
+    "rarity": 4,
+    "price": [85],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -95,
+      "LifeRegen": -7,
+      "StaminaMax": -25,
+      "StaminaRegen": -5,
+      "Strength": 17,
+      "Constitution": 8,
+      "Dexterity": 4,
+      "Defense": 4,
+      "Intelligence": -6,
+      "Wisdom": -10,
+      "PhysicalDamageBonus": 25,
+      "PhysicalDamageMultiplierPercentageBonus": 16,
+      "PhysicalDamageReduction": 7,
+      "PhysicalDamageMultiplierPercentageReduction": 7,
+      "CriticalMultiplierPercentageReduction": 12,
+      "VelocityAttackStrikePercentage": 25,
+      "ReflectionDamagePercentage": 10
+    }
+  },
+  {
+    "name": "of the Bandits Boss",
+    "rarity": 5,
+    "price": [255],
+    "category": "Incarnation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeMax": -150,
+      "LifeRegen": -12,
+      "StaminaMax": -20,
+      "StaminaRegen": -8,
+      "Strength": 22,
+      "Constitution": 10,
+      "Dexterity": 5,
+      "Defense": 5,
+      "Intelligence": -8,
+      "Wisdom": -13,
+      "PhysicalDamageBonus": 35,
+      "PhysicalDamageMultiplierPercentageBonus": 20,
+      "PhysicalDamageReduction": 12,
+      "PhysicalDamageMultiplierPercentageReduction": 12,
+      "CriticalMultiplierPercentageReduction": 20,
+      "VelocityAttackStrikePercentage": 35,
+      "ReflectionDamagePercentage": 20
     }
   }
 ]
