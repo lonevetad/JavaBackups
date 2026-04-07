@@ -7741,16 +7741,16 @@
     "price": [60],
     "category": "Refining",
     "attributesModifiers": {
-      "Strength": 3,
-      "Constitution": 3,
-      "Health": 3,
-      "Defense": 3,
-      "Dexterity": 3,
-      "Precision": 3,
-      "Intelligence": 3,
-      "Wisdom": 3,
-      "Faith": 3,
-      "Luck": 7
+      "Strength": 2,
+      "Constitution": 2,
+      "Health": 2,
+      "Defense": 2,
+      "Dexterity": 2,
+      "Precision": 2,
+      "Intelligence": 2,
+      "Wisdom": 2,
+      "Faith": 2,
+      "ManaMax": -30
     }
   },
   {
@@ -9874,6 +9874,115 @@
       "CriticalMultiplierPercentageReduction": 20,
       "VelocityAttackStrikePercentage": 35,
       "ReflectionDamagePercentage": 20
+    }
+  },
+  {
+    "name": "Unique",
+    "rarity": 3,
+    "price": [200],
+    "category": "Misc",
+    "isPrefix": true,
+    "attributesModifiers": {}
+  },
+  {
+    "name": "Valuable",
+    "rarity": 2,
+    "price": [100],
+    "category": "Misc",
+    "description": "... somehow, this item is highly valued ...",
+    "isPrefix": true,
+    "attributesModifiers": {}
+  },
+  {
+    "name": "Citrine",
+    "rarity": 3,
+    "price": [68],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": 8,
+      "Dexterity": 6,
+      "Defense": 2,
+      "StaminaMax": 15,
+      "StaminaRegen": 4,
+      "CriticalProbabilityPerThousandHit": 50
+    }
+  },
+  {
+    "name": "Alexandrite",
+    "rarity": 3,
+    "price": [68],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "ShieldMax": 65,
+      "ShieldRegen": 6,
+      "ManaMax": 40,
+      "ManaRegen": 4,
+      "VelocitySpellCastPercentage": 15,
+      "CostCastReductionPercentage": -20
+    }
+  },
+  {
+    "name": "Garnet",
+    "rarity": 3,
+    "price": [68],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 5,
+      "Constitution": 2,
+      "LifeMax": 128,
+      "LifeRegen": 8,
+      "VelocityAttackStrikePercentage": 10
+    }
+  },
+  {
+    "name": "Peridot",
+    "rarity": 3,
+    "price": [68],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Precision": 2,
+      "Dexterity": 8,
+      "Defense": 4,
+      "PhysicalDamageBonus": 4,
+      "PhysicalDamageMultiplierPercentageBonus": 2,
+      "PhysicalProbabilityPerThousandAvoid": 70
+    }
+  },
+  {
+    "name": "Tanzanite",
+    "rarity": 3,
+    "price": [68],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Intelligence": 10,
+      "VelocitySpellCastPercentage": 20,
+      "CostCastReductionPercentage": -35,
+      "PhysicalDamageBonus": 7,
+      "PhysicalDamageMultiplierPercentageBonus": 8,
+      "PhysicalProbabilityPerThousandAvoid": 70
+    }
+  },
+  {
+    "name": "Opalines",
+    "rarity": 3,
+    "price": [66],
+    "category": "Material",
+    "attributesModifiers": {
+      "Strength": 2,
+      "Constitution": 2,
+      "Health": 2,
+      "Defense": 2,
+      "Dexterity": 2,
+      "Precision": 2,
+      "Intelligence": 2,
+      "Wisdom": 2,
+      "Faith": 2,
+      "ManaMax": -30
     }
   }
 ]
