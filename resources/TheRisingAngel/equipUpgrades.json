@@ -9972,6 +9972,7 @@
     "rarity": 3,
     "price": [66],
     "category": "Material",
+    "isPrefix": true,
     "attributesModifiers": {
       "Strength": 2,
       "Constitution": 2,
@@ -9983,6 +9984,146 @@
       "Wisdom": 2,
       "Faith": 2,
       "ManaMax": -30
+    }
+  },
+  {
+    "name": "of Frothing Hunger",
+    "rarity": 2,
+    "price": [-15],
+    "category": "Blessing",
+    "attributesModifiers": {
+      "Strength": 8,
+      "Health": -5,
+      "Intelligence": -3,
+      "Wisdom": -7,
+      "PhysicalDamageBonus": 12,
+      "PhysicalDamageMultiplierPercentageBonus": 8,
+      "CriticalMultiplierPercentageBonus": 25,
+      "PhysicalProbabilityPerThousandHit": 75,
+      "VelocityAttackStrikePercentage": 35
+    }
+  },
+  {
+    "name": "of Masterwork",
+    "rarity": 3,
+    "price": [64],
+    "category": "Incarnation",
+    "attributesModifiers": {
+      "Intelligence": 6,
+      "Wisdom": 4,
+      "Faith": 4,
+      "Luck": 5
+    }
+  },
+  {
+    "name": "Etched",
+    "rarity": 2,
+    "price": [30],
+    "category": "Rune",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Faith": 4,
+      "Wisdom": 2,
+      "LifeMax": 20,
+      "LifeRegen": 2,
+      "ManaMax": 25,
+      "ManaRegen": 3,
+      "ShieldMax": 30,
+      "ShieldRegen": 3,
+      "Luck": 3
+    }
+  },
+  {
+    "name": "Platinum",
+    "rarity": 4,
+    "price": [350],
+    "category": "Material",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Defense": 10,
+      "Wisdom": 3,
+      "ManaMax": -150,
+      "ManaRegen": -7,
+      "ShieldMax": 250,
+      "ShieldRegen": 10,
+      "Luck": 7,
+      "MagicalDamageBonus": 5,
+      "MagicalDamageMultiplierPercentageBonus": 15,
+      "MagicalDamageReduction": 10,
+      "MagicalDamageMultiplierPercentageReduction": 20,
+      "VelocitySpellCastPercentage": 15
+    }
+  },
+  {
+    "name": "Old",
+    "rarity": 1,
+    "price": [-8],
+    "category": "Refining",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 3,
+      "Wisdom": 4,
+      "Defense": -5,
+      "Luck": 2
+    }
+  },
+  {
+    "name": "Terrible",
+    "rarity": 1,
+    "price": [-13],
+    "category": "Structural",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Strength": 5,
+      "Constitution": -2,
+      "Wisdom": -1,
+      "ReflectionDamagePercentage": 7,
+      "LifeLeechPercentage": 10,
+      "ManaLeechPercentage": -5
+    }
+  },
+  {
+    "name": "Survivor's",
+    "rarity": 1,
+    "price": [-7],
+    "category": "Incantation",
+    "isPrefix": true,
+    "attributesModifiers": {
+      "Health": -3,
+      "Constitution": 2,
+      "Defense": 3,
+      "Dexterity": 2,
+      "Wisdom": -5,
+      "Faith": 4
+    }
+  },
+  {
+    "name": "Surveyor's",
+    "isPrefix": true,
+    "rarity": 1,
+    "price": [-13],
+    "category": "Incantation",
+    "attributesModifiers": {
+      "Precision": 3,
+      "Dexterity": 2,
+      "Wisdom": 1
+    }
+  },
+  {
+    "name": "Sharkskin's",
+    "isPrefix": true,
+    "rarity": 3,
+    "price": [24],
+    "category": "Material",
+    "attributesModifiers": {
+      "Strength": 3,
+      "Constitution": 3,
+      "Dexterity": 1,
+      "Defense": 7,
+      "PhysicalDamageReduction": 10,
+      "PhysicalDamageMultiplierPercentageReduction": 10,
+      "MagicalDamageReduction": 5,
+      "MagicalDamageMultiplierPercentageReduction": 5
     }
   }
 ]
