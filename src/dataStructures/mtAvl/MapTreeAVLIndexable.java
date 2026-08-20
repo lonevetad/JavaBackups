@@ -1,5 +1,6 @@
 package dataStructures.mtAvl;
 
+import dataStructures.mtAvl.MapTreeAVLIndexable.NodeAVL_Indexable;
 import java.util.Comparator;
 
 public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K, V> {
@@ -68,17 +69,32 @@ public abstract class MapTreeAVLIndexable<K, V> extends MapTreeAVLLightweight<K,
 				n = (MapTreeAVLIndexable<K, V>.NodeAVL_Indexable) n.father.father;
 			}
 		}
-		((NodeAVL_Indexable) NIL).sizeLeft = ((NodeAVL_Indexable) NIL).sizeRight = -1;
-		NIL.height = DEPTH_INITIAL;
+		this.clearNil();
+	}
+
+	@Override
+	protected void clearNode(NodeAVL n){
+		super.clearNode(n);
+		((NodeAVL_Indexable) n).sizeLeft = ((NodeAVL_Indexable) n).sizeRight = -1;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected V delete(NodeAVL nnn) {
+		boolean hasLeft, hasRight;
 		int prevSize;
-		prevSize = size;
 		V v;
+		prevSize = size;
+		hasLeft = nnn.left != NIL;
+		hasRight = nnn.right != NIL;
 		v = super.delete(nnn);
+
+		if (hasLeft && hasRight && prevSize == 3) {
+			NodeAVL_Indexable r;
+			r = (NodeAVL_Indexable) this.root;
+			r.sizeLeft = 1;
+			r.sizeRight = 0;
+		}
 		if (prevSize == Integer.MAX_VALUE) {
 			prevSize = (1 + ((NodeAVL_Indexable) root).sizeLeft + ((NodeAVL_Indexable) root).sizeRight);
 			// is there an overflow?

@@ -72,13 +72,10 @@ public class MapTreeAVLMinIter<K, V> extends MapTreeAVLIndexable<K, V> {
 		super.clear();
 		minValue = (NodeAVL_MinIter) NIL;
 	}
-
-	// TODO insertFixup
 	@Override
-	@SuppressWarnings("unchecked")
-	protected void insertFixup(NodeAVL nnn) {
-		super.insertFixup(nnn);
-		((NodeAVL_MinIter) NIL).nextInOrder = ((NodeAVL_MinIter) NIL).prevInOrder = (NodeAVL_MinIter) NIL;
+	protected void clearNode(NodeAVL n){
+		super.clearNode(n);
+		((NodeAVL_MinIter) n).nextInOrder = ((NodeAVL_MinIter) n).prevInOrder = (NodeAVL_MinIter) NIL;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -191,6 +188,7 @@ public class MapTreeAVLMinIter<K, V> extends MapTreeAVLIndexable<K, V> {
 	@Override
 	protected V delete(NodeAVL nnn) {
 		boolean hasLeft, hasRight;
+		int prevSize;
 		V v;
 		NodeAVL_MinIter nToBeDeleted;
 		// actionPosition is the parent of the physically deleted node
@@ -209,15 +207,24 @@ public class MapTreeAVLMinIter<K, V> extends MapTreeAVLIndexable<K, V> {
 		// real deletion starts here:
 		hasLeft = nToBeDeleted.left != NIL;
 		hasRight = nToBeDeleted.right != NIL;
+		prevSize = this.size;
 
 		v = super.delete(nnn);
 
-		if (hasLeft || hasRight) {
+		if (hasLeft && hasRight && prevSize == 3) {
+			NodeAVL_MinIter r, remainingNode;
+			r = (NodeAVL_MinIter) this.root;
+			remainingNode = (NodeAVL_MinIter) r.left;
+			r.nextInOrder = (NodeAVL_MinIter) remainingNode;
+			r.prevInOrder = (NodeAVL_MinIter) remainingNode;
+			remainingNode.nextInOrder = (NodeAVL_MinIter) r;
+			remainingNode.prevInOrder = (NodeAVL_MinIter) r;
+			nToBeDeleted.unlinkAll();
+		}else if (hasLeft || hasRight) {
 			if (hasRight) {
 				// common code for both cases (2 children or 1)
 				// remember: the removed node is "nnn"'s successor,
 				NodeAVL_MinIter succ, succRight;
-
 				succRight = (succ = nToBeDeleted.nextInOrder).nextInOrder;
 				succRight.prevInOrder = nToBeDeleted;
 				nToBeDeleted.nextInOrder = succRight;

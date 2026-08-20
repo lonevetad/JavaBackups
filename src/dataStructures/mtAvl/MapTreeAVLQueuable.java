@@ -6,6 +6,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
+import dataStructures.mtAvl.MapTreeAVLMinIter.NodeAVL_MinIter;
 
 public class MapTreeAVLQueuable<K, V> extends MapTreeAVLIndexable<K, V> {
 	private static final long serialVersionUID = 4806840784056L;
@@ -53,6 +54,11 @@ public class MapTreeAVLQueuable<K, V> extends MapTreeAVLIndexable<K, V> {
 		super.clear();
 		firstInserted = (NodeAVL_Queuable) NIL;
 	}
+	@Override
+	protected void clearNode(NodeAVL n){
+		super.clearNode(n);
+		((NodeAVL_Queuable) n).nextInserted = ((NodeAVL_Queuable) n).prevInserted = (NodeAVL_Queuable) NIL;
+	}
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -93,28 +99,41 @@ public class MapTreeAVLQueuable<K, V> extends MapTreeAVLIndexable<K, V> {
 	@Override
 	protected V delete(NodeAVL nnn) {
 		boolean hasLeft, hasRight;
+		int prevSize;
 		V v;
-		NodeAVL_Queuable nToBeDeleted, succMaybeDeleted;
+		MapTreeAVLQueuable<K, V>.NodeAVL_Queuable nToBeDeleted, succMaybeDeleted;
 		if (root == NIL || nnn == NIL)
 			return null;
-		v = null;
-		nToBeDeleted = (NodeAVL_Queuable) nnn;
-		v = nToBeDeleted.v;
+		nToBeDeleted = (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) nnn;
 		if (size == 1 && comp.compare(root.k, nToBeDeleted.k) == 0) {
 			v = super.delete(nToBeDeleted);
-			firstInserted = (NodeAVL_Queuable) NIL;
-			((NodeAVL_Queuable) NIL).prevInserted = ((NodeAVL_Queuable) NIL).nextInserted = (NodeAVL_Queuable) NIL;
+			firstInserted = (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) NIL;
+			((MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) NIL).prevInserted = ((MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) NIL).nextInserted = (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) NIL;
 			return v;
 		}
 		// real deletion starts here:
 		hasLeft = nToBeDeleted.left != NIL;
 		hasRight = nToBeDeleted.right != NIL;
+		prevSize = this.size;
 		succMaybeDeleted = hasRight ? (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) successorSorted(nnn) : //
 				(MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) (hasLeft ? predecessorSorted(nnn) : NIL)//
 		;
 		v = super.delete(nnn);
 		// adjust connections
-		if (hasLeft || hasRight) {
+		if (hasLeft && hasRight && prevSize == 3) {
+			MapTreeAVLQueuable<K, V>.NodeAVL_Queuable r, remainingNode;
+			r = (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) this.root;
+			remainingNode = (MapTreeAVLQueuable<K, V>.NodeAVL_Queuable) r.left;
+			// fix the references
+			if(r.nextInserted == remainingNode) {
+				remainingNode.nextInserted = r; // it previously was "nnn"
+				r.prevInserted = remainingNode;
+			} else {
+				r.nextInserted = remainingNode;
+				remainingNode.prevInserted = r;
+			}
+			nToBeDeleted.unlinkAll();
+		}else if (hasLeft || hasRight) {
 			if (size == 1) {
 				firstInserted = nToBeDeleted;
 				nToBeDeleted.nextInserted = nToBeDeleted.prevInserted = nToBeDeleted;

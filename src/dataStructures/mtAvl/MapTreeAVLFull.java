@@ -58,6 +58,12 @@ public class MapTreeAVLFull<K, V> extends MapTreeAVLMinIter<K, V> {
 	}
 
 	@Override
+	protected void clearNode(NodeAVL n){
+		super.clearNode(n);
+		((NodeAVL_Full) n).nextInserted = ((NodeAVL_Full) n).prevInserted = (NodeAVL_Full) NIL;
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	protected V put(NodeAVL nnn) {
 		int prevSize;
@@ -79,7 +85,7 @@ public class MapTreeAVLFull<K, V> extends MapTreeAVLMinIter<K, V> {
 			firstInserted.prevInserted.nextInserted = n;
 			firstInserted.prevInserted = n;
 		}
-		((NodeAVL_Full) NIL).nextInserted = ((NodeAVL_Full) NIL).prevInserted = (NodeAVL_Full) NIL;
+		this.clearNil();
 		return v;
 	}
 
@@ -92,13 +98,12 @@ public class MapTreeAVLFull<K, V> extends MapTreeAVLMinIter<K, V> {
 	@Override
 	protected V delete(NodeAVL nnn) {
 		boolean hasLeft, hasRight;
+		int prevSize;
 		V v;
-		NodeAVL_Full nToBeDeleted, succMaybeDeleted;
+		MapTreeAVLFull<K, V>.NodeAVL_Full nToBeDeleted, succMaybeDeleted;
 		if (root == NIL || nnn == NIL)
 			return null;
-		v = null;
-		nToBeDeleted = (NodeAVL_Full) nnn;
-		v = nToBeDeleted.v;
+		nToBeDeleted = (MapTreeAVLFull<K, V>.NodeAVL_Full) nnn;
 		if (size == 1 && comp.compare(root.k, nToBeDeleted.k) == 0) {
 			v = super.delete(nToBeDeleted);
 			firstInserted = (NodeAVL_Full) NIL;
@@ -108,12 +113,27 @@ public class MapTreeAVLFull<K, V> extends MapTreeAVLMinIter<K, V> {
 		// real deletion starts here:
 		hasLeft = nToBeDeleted.left != NIL;
 		hasRight = nToBeDeleted.right != NIL;
+		prevSize = this.size;
 		succMaybeDeleted = hasRight ? (MapTreeAVLFull<K, V>.NodeAVL_Full) successorSorted(nnn) : //
 				(MapTreeAVLFull<K, V>.NodeAVL_Full) (hasLeft ? predecessorSorted(nnn) : NIL)//
 		;
 		v = super.delete(nnn);
 		// adjust connections
-		if (hasLeft || hasRight) {
+
+		if (hasLeft && hasRight && prevSize == 3) {
+			MapTreeAVLFull<K, V>.NodeAVL_Full r, remainingNode;
+			r = (MapTreeAVLFull<K, V>.NodeAVL_Full) this.root;
+			remainingNode = (MapTreeAVLFull<K, V>.NodeAVL_Full) r.left;
+			// fix the references
+			if(r.nextInserted == remainingNode) {
+				remainingNode.nextInserted = r; // it previously was "nnn"
+				r.prevInserted = remainingNode;
+			} else {
+				r.nextInserted = remainingNode;
+				remainingNode.prevInserted = r;
+			}
+			nToBeDeleted.unlinkAll();
+		}else if (hasLeft || hasRight) {
 			if (size == 1) {
 				firstInserted = nToBeDeleted;
 				nToBeDeleted.nextInserted = nToBeDeleted.prevInserted = nToBeDeleted;
@@ -144,8 +164,7 @@ public class MapTreeAVLFull<K, V> extends MapTreeAVLMinIter<K, V> {
 				nToBeDeleted.prevInserted.nextInserted = nToBeDeleted.nextInserted;
 			}
 		}
-
-		((NodeAVL_Full) NIL).nextInserted = ((NodeAVL_Full) NIL).prevInserted = (NodeAVL_Full) NIL;
+		this.clearNil();
 		if (root == NIL) {
 			firstInserted = (NodeAVL_Full) NIL;
 			return v;

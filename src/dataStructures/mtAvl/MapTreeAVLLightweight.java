@@ -341,8 +341,15 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 	public void clear() {
 		size = 0;
 		root = NIL;
-		NIL.father = NIL.left = NIL.right = NIL;
-		NIL.height = DEPTH_INITIAL;
+		this.clearNil();
+	}
+
+	protected void clearNode(NodeAVL n){
+		n.father = n.left = n.right = NIL;
+		n.height = DEPTH_INITIAL;
+	}
+	protected void clearNil(){
+		clearNode(this.NIL);
 	}
 
 	@Override
@@ -398,7 +405,7 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 //				n = father;
 			}
 		}
-		NIL.height = DEPTH_INITIAL;
+		this.clearNil();
 	}
 
 	@Override
@@ -483,13 +490,12 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 	 */
 	protected V delete(NodeAVL nToBeDeleted) {
 		boolean hasLeft, hasRight, notNilFather;
+		int prevSize;
 		V v;
 		NodeAVL ntbdFather, actionPosition;
 		// actionPosition is the parent of the physically deleted node
 		if (root == NIL || nToBeDeleted == NIL)
 			return null;
-		v = null;
-//			tempForLinks = nToBeDeleted;
 		v = nToBeDeleted.v;
 		if (size == 1 && comp.compare(root.k, nToBeDeleted.k) == 0) {
 			size = 0;
@@ -497,8 +503,8 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 			root = NIL;
 			return v;
 		}
-
 		// real deletion starts here:
+		prevSize = this.size;
 		actionPosition = ntbdFather = nToBeDeleted.father;
 		notNilFather = ntbdFather != NIL;
 		hasLeft = nToBeDeleted.left != NIL;
@@ -508,7 +514,26 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 			// both
 			NodeAVL succFather, succ;
 			succ = successorSorted(nToBeDeleted); //
-			// successor must exists
+			if(prevSize == 3){
+				// "nToBeDeleted" is the root
+				NodeAVL otherNode;
+				if (nToBeDeleted != this.root) {
+					throw new RuntimeException("ERROR: Removal of a node with both left and right branches, on a tree with size = 3, that is NOT the root ... what is it?\nthis node: %s\ntree:\n%s".formatted(nToBeDeleted.toString(), this.toString()));
+				}
+				if (nToBeDeleted.right != succ) {
+					throw new RuntimeException("ERROR: On a size-3-tree, the removal of the root should have said root's successor to be its right node.\nthis node: %s\ntree:\n%s".formatted(nToBeDeleted.toString(), this.toString()));
+				}
+				this.size = 2;
+				this.root = succ;
+				otherNode = nToBeDeleted.left;
+				succ.left = otherNode;
+				otherNode.father = succ;
+				succ.father = this.NIL;
+				succ.right = this.NIL;
+				succ.height = 1;
+				this.clearNil();
+				return v;
+			}
 			// substitute (swap?) value
 			nToBeDeleted.k = succ.k;
 			nToBeDeleted.v = succ.v;// also the value, to complete the substitution
@@ -1801,6 +1826,8 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 			return 1 + s;
 		}
 
+		protected void unlinkAll(){ }
+
 		@Override
 		public String toString() {
 			return "k:" + String.valueOf(k) + " - v:" + String.valueOf(v) + ",h:" + height + ",f:"
@@ -1870,12 +1897,15 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 		@SuppressWarnings("unchecked")
 		protected E getDesiredReturn() {
 			E e;
-			if (irt == IteratorReturnType.Entry)
-				e = (E) current;
-			else if (irt == IteratorReturnType.Key)
-				e = (E) current.k;
-			else // if (irt == IteratorReturnType.Value)
-				e = (E) current.v;
+			if (null == irt)
+                            // if (irt == IteratorReturnType.Value)
+                            e = (E) current.v;
+			else e = (E) (switch (irt) {
+                            case Entry -> current;
+                            case Key -> current.k;
+                            default -> current.v;
+                        }); // if (irt == IteratorReturnType.Value)
+                        
 			return e;
 		}
 
