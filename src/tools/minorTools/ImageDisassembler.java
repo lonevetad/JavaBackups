@@ -29,7 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import dataStructures.MyLinkedList;
+import dataStructures.minorUtils.MyLinkedList;
 
 public class ImageDisassembler {
 
@@ -100,6 +100,7 @@ public class ImageDisassembler {
 
 	public static enum JTA_Meaning {
 		xStart, yStart, width, height, xOffset, yOffset;
+
 		final int index;
 
 		JTA_Meaning() {
@@ -611,42 +612,42 @@ public class ImageDisassembler {
 				f = new File(pathCompleto);
 				if (f.exists()) {
 					switch (i) {
-					case (0): {
-						// png
-						try {
-							ret = ImageIO.read(f);
-						} catch (Exception e) {
-							e.printStackTrace();
+						case (0): {
+							// png
+							try {
+								ret = ImageIO.read(f);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
 						}
-						break;
-					}
-					case (1): // jpg
-					case (2): {
-						// jpeg
-						ret = castImageToBufferedImage(Toolkit.getDefaultToolkit().getImage(pathCompleto));
-						break;
-					}
-					case (3): {
-						// bmp
-						try {
-							ret = ImageIO.read(f);
-						} catch (Exception e) {
-							e.printStackTrace();
+						case (1): // jpg
+						case (2): {
+							// jpeg
+							ret = castImageToBufferedImage(Toolkit.getDefaultToolkit().getImage(pathCompleto));
+							break;
 						}
+						case (3): {
+							// bmp
+							try {
+								ret = ImageIO.read(f);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 
-						break;
-					}
-					case (4): {
-						try {
-							ret = castImageToBufferedImage((new ImageIcon(pathCompleto)).getImage());
-						} catch (Exception e) {
-							e.printStackTrace();
+							break;
 						}
-						break;
-					}
-					default: {
-						// nothing
-					}
+						case (4): {
+							try {
+								ret = castImageToBufferedImage((new ImageIcon(pathCompleto)).getImage());
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+						}
+						default: {
+							// nothing
+						}
 					}
 				}
 			}

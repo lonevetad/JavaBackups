@@ -1,4 +1,4 @@
-package dataStructures.minorUtils;
+package dataStructures;
 
 import java.io.Serializable;
 import java.util.Map.Entry;
@@ -16,15 +16,19 @@ public class EntryImpl<K, V> implements Serializable, Entry<K, V> {
 	protected V v;
 
 	@Override
-	public K getKey() { return k; }
+	public K getKey() {
+		return k;
+	}
 
 	@Override
-	public V getValue() { return v; }
+	public V getValue() {
+		return v;
+	}
 
 	@Override
 	public V setValue(V value) {
-		V oldv;
-		oldv = v;
+		V oldv = v;
+		this.v = value;
 		return oldv;
 	}
 }

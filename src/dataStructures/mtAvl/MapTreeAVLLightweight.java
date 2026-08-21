@@ -18,10 +18,11 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import dataStructures.EntryImpl;
 import dataStructures.MapTreeAVL;
-import dataStructures.QueueLightweight;
 import dataStructures.SortedSetEnhanced;
-import dataStructures.minorUtils.EntryImpl;
+
+import java.util.LinkedList;
 import tools.ClosestMatch;
 
 /**REMOVED COMMENTS <p>
@@ -701,56 +702,53 @@ public class MapTreeAVLLightweight<K, V> implements MapTreeAVL<K, V> {
 	@Override
 	public void forEach(ForEachMode mode, Consumer<Entry<K, V>> action) {
 		NodeAVL n;
-		QueueLightweight<NodeAVL> q;
+		LinkedList<NodeAVL> q;
 		if (root != NIL)
 			if (action != null) {
 				switch (mode) {
-				case Queue:
-				case Stack:
-					throw new UnsupportedOperationException(
-							"Cannot be performed by this subclass: " + this.getClass().getName());
-				case SortedDecreasing:
-					n = root;
-					if (n.right != NIL)// descend to maximum
-						while ((n = n.right).right != NIL)
-							;
-					action.accept(n);
-					while ((n = predecessorSorted(n)) != NIL)
-						action.accept(n);
-					break;
-				case SortedGrowing:
-					n = root;
-					if (n.left != NIL)// descend to minimum
-						while ((n = n.left).left != NIL)
-							;
-					action.accept(n);
-					while ((n = successorSorted(n)) != NIL)
-						action.accept(n);
-					break;
-				case BreadthGrowing:
-					q = new QueueLightweight<>();
-					q.add(root);
-					while (!q.isEmpty()) {
-						action.accept(n = q.poll());
-						if (n.left != NIL)
-							q.add(n);
-						if (n.right != NIL)
-							q.add(n);
-					}
-					return;
-				case BreadthDecreasing:
-					q = new QueueLightweight<>();
-					q.add(root);
-					while (!q.isEmpty()) {
-						action.accept(n = q.poll());
-						if (n.right != NIL)
-							q.add(n);
-						if (n.left != NIL)
-							q.add(n);
-					}
-					return;
-				default:
-					forEach(action);
+				case Queue, Stack -> throw new UnsupportedOperationException(
+                                        "Cannot be performed by this subclass: " + this.getClass().getName());
+				case SortedDecreasing -> {
+                                    n = root;
+                                    if (n.right != NIL)// descend to maximum
+                                        while ((n = n.right).right != NIL)
+                                            ;
+                                    action.accept(n);
+                                    while ((n = predecessorSorted(n)) != NIL)
+                                        action.accept(n);
+                        }
+				case SortedGrowing -> {
+                                    n = root;
+                                    if (n.left != NIL)// descend to minimum
+                                        while ((n = n.left).left != NIL)
+                                            ;
+                                    action.accept(n);
+                                    while ((n = successorSorted(n)) != NIL)
+                                        action.accept(n);
+                        }
+				case BreadthGrowing -> {
+                                    q = new LinkedList<>();
+                                    q.add(root);
+                                    while (!q.isEmpty()) {
+                                        action.accept(n = q.poll());
+                                        if (n.left != NIL)
+                                            q.add(n);
+                                        if (n.right != NIL)
+                                            q.add(n);
+                                    }
+                        }
+				case BreadthDecreasing -> {
+                                    q = new LinkedList<>();
+                                    q.add(root);
+                                    while (!q.isEmpty()) {
+                                        action.accept(n = q.poll());
+                                        if (n.right != NIL)
+                                            q.add(n);
+                                        if (n.left != NIL)
+                                            q.add(n);
+                                    }
+                        }
+                                default -> forEach(action);
 				}
 			} else
 				forEach(action);

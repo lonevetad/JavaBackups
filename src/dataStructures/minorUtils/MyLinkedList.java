@@ -1,4 +1,4 @@
-package dataStructures;
+package dataStructures.minorUtils;
 
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
@@ -196,7 +196,7 @@ public class MyLinkedList<E> implements Serializable, List<E> {
 				fn = sn = this.tail;
 				nodesVisited = size; // without "-1" because of the "--" on the cycle's condition
 				while (searchNotEnded && --nodesVisited >= 0) { /// >= half, but like this is faster
-//use "fn" as the iterator
+					// use "fn" as the iterator
 					if (nodesVisited == secondIndex) {
 						sn = fn;
 					} else if (nodesVisited == firstIndex) {

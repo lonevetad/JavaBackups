@@ -1,11 +1,11 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.function.BiConsumer;
 
-import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
 
 /**
  * Implementation of the algorithm proposed ... ehm, here: <i>Zhang, K., Shasha,
@@ -95,27 +95,28 @@ public class DissonanceTreeAlgo_AP_TED_Plus<T> implements DissonanceTreeAlgorith
 		// 2) crawl up searching for a multi-child(ren) father
 
 		// V1
-//		Object[] nodeAndChildrenIterator;
-//		LinkedList<Object[]> stackNodes; // stack of both a node and its children iterator (null if nul or empty set)
-//		NodeComparable<T> currentNode;
-//		Iterator<NodeComparable<T>> iter;
+		// Object[] nodeAndChildrenIterator;
+		// LinkedList<Object[]> stackNodes; // stack of both a node and its children
+		// iterator (null if nul or empty set)
+		// NodeComparable<T> currentNode;
+		// Iterator<NodeComparable<T>> iter;
 		SortedSetEnhanced<NodeComparable<T>> children;
-//		//
-//		children =t.getChildrenNC();
-//		if(children==null||children.isEmpty())return t;
-//		iter = children.iterator();
-//		stackNodes=new LinkedList<>();
-//		stackNodes.add(new Object[] {t,iter});
-//
-//		t = null; // it's the node we are looking for from here until end
-//		while(t==null&&(!stackNodes.isEmpty())) {
-//			nodeAndChildrenIterator=stackNodes.peek();
-//			currentNode=(NodeComparable<T>) nodeAndChildrenIterator[0];
-//			iter=(Iterator<NodeComparable<T>>) nodeAndChildrenIterator[1];
-//			if(iter!=null&&iter.hasNext()) {
-//				todo7
-//			} else todo
-//		}
+		// //
+		// children =t.getChildrenNC();
+		// if(children==null||children.isEmpty())return t;
+		// iter = children.iterator();
+		// stackNodes=new LinkedList<>();
+		// stackNodes.add(new Object[] {t,iter});
+		//
+		// t = null; // it's the node we are looking for from here until end
+		// while(t==null&&(!stackNodes.isEmpty())) {
+		// nodeAndChildrenIterator=stackNodes.peek();
+		// currentNode=(NodeComparable<T>) nodeAndChildrenIterator[0];
+		// iter=(Iterator<NodeComparable<T>>) nodeAndChildrenIterator[1];
+		// if(iter!=null&&iter.hasNext()) {
+		// todo7
+		// } else todo
+		// }
 
 		// V2 ---- simplest
 		// go straight to left-most
@@ -130,11 +131,11 @@ public class DissonanceTreeAlgo_AP_TED_Plus<T> implements DissonanceTreeAlgorith
 		return t;
 	}
 
-//	protected NodeAlteringCosts<T> frpn(NodeComparable<T> t){
-//		SortedSetEnhanced<NodeComparable<T>> children;
-//		children=t.getChildrenNC();
-//		if(children==null||children.isEmpty())return t;
-//	}
+	// protected NodeAlteringCosts<T> frpn(NodeComparable<T> t){
+	// SortedSetEnhanced<NodeComparable<T>> children;
+	// children=t.getChildrenNC();
+	// if(children==null||children.isEmpty())return t;
+	// }
 
 	protected long cd(NodeAlteringCosts<T> nodeAlteringCost, Comparator<T> keyComp,
 			SortedSetEnhanced<NodeComparable<T>> fv, SortedSetEnhanced<NodeComparable<T>> gw) {
@@ -145,7 +146,9 @@ public class DissonanceTreeAlgo_AP_TED_Plus<T> implements DissonanceTreeAlgorith
 		sizeg = gw.size();
 		// base cases
 		if (sizef == 0 || sizeg == 0) {
-			if (sizef == 0 && sizeg == 0) { return 0; }
+			if (sizef == 0 && sizeg == 0) {
+				return 0;
+			}
 			return (sizef == 0) ? getActionCostWholeSubtree(nodeAlteringCost, true, gw)
 					: getActionCostWholeSubtree(nodeAlteringCost, false, fv);
 		}

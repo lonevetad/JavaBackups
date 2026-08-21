@@ -1,8 +1,8 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import dataStructures.EditCosts;
-import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
 import tools.EditDistance;
 import tools.EditDistance.EqualityChecker;
 import tools.IterableSized;
@@ -11,7 +11,8 @@ import tools.impl.EditDistanceLevenshtein;
 /** Uses the {@link EditDistance}. It's the best one since nows */
 public class DissonanceTreeAlgo_Mine5<T> extends ADissonanceTreeAlgo_Mine<T> {
 
-	public DissonanceTreeAlgo_Mine5() {}
+	public DissonanceTreeAlgo_Mine5() {
+	}
 
 	@Override
 	public long computeDissonance(NodeAlteringCosts<T> nodeAlteringCost, NodeComparable<T> t1, NodeComparable<T> t2) {
@@ -32,13 +33,13 @@ public class DissonanceTreeAlgo_Mine5<T> extends ADissonanceTreeAlgo_Mine<T> {
 					@Override
 					public long insertion(NodeComparable<T> element) {
 						return nodeAlteringCost.insertion(element) + //
-						getActionCostWholeSubtree(nodeAlteringCost, true, element.getChildrenNC());
+								getActionCostWholeSubtree(nodeAlteringCost, true, element.getChildrenNC());
 					}
 
 					@Override
 					public long deletion(NodeComparable<T> element) {
 						return nodeAlteringCost.deletion(element) + //
-						getActionCostWholeSubtree(nodeAlteringCost, false, element.getChildrenNC());
+								getActionCostWholeSubtree(nodeAlteringCost, false, element.getChildrenNC());
 					}
 
 					@Override

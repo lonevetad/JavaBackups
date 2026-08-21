@@ -1,12 +1,11 @@
 package tests.tDataStruct;
 
+import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
-
-import dataStructures.NodeComparable;
-import dataStructures.SortedSetEnhanced;
 import tools.Comparators;
 
 public class Test_NodeComparable_RemovePath_ForEachPath {
@@ -17,9 +16,11 @@ public class Test_NodeComparable_RemovePath_ForEachPath {
 		LinkedList<NodeComparable<Integer>> path;
 		Consumer<NodeComparable<Integer>> printer;
 		Consumer<List<Integer>> printerList;
-//
+		//
 		printer = n -> System.out.println(n);
-		printerList = l -> { System.out.println(Arrays.toString(l.toArray())); };
+		printerList = l -> {
+			System.out.println(Arrays.toString(l.toArray()));
+		};
 		t = TreeCompInteger.fromString(
 				Test_NodeComparableSubtreeBased_Compare.TREE_PAIRS_TO_TEST[Test_NodeComparableSubtreeBased_Compare.TREE_PAIRS_TO_TEST.length
 						- 1][1]);

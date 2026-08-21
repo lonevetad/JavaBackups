@@ -3,8 +3,6 @@ package dataStructures.minorUtils;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-import dataStructures.NodeComparable;
-
 /** See {@link NodeComparable#computeDissonanceAsLong(NodeComparable)}. */
 public class DissonanceWeights implements Serializable {
 	private static final long serialVersionUID = 23263214070008L;
@@ -13,13 +11,19 @@ public class DissonanceWeights implements Serializable {
 		private static final long serialVersionUID = -5410794L;
 
 		@Override
-		public DissonanceWeights setWeightMissingNode(int weightMissingNode) { return this; }
+		public DissonanceWeights setWeightMissingNode(int weightMissingNode) {
+			return this;
+		}
 
 		@Override
-		public DissonanceWeights setWeightExceedingNode(int weightExceedingNode) { return this; }
+		public DissonanceWeights setWeightExceedingNode(int weightExceedingNode) {
+			return this;
+		}
 
 		@Override
-		public DissonanceWeights setWeightDepth(int weightDepth) { return this; }
+		public DissonanceWeights setWeightDepth(int weightDepth) {
+			return this;
+		}
 	};
 
 	//
@@ -34,17 +38,29 @@ public class DissonanceWeights implements Serializable {
 	protected int weightMissingNode, weightExceedingNode, weightDepth;
 	protected BigInteger weightMissingNodeBigInt, weightExceedingNodeBigInt, weightDepthBigInt;
 
-	public int getWeightMissingNode() { return weightMissingNode; }
+	public int getWeightMissingNode() {
+		return weightMissingNode;
+	}
 
-	public int getWeightExceedingNode() { return weightExceedingNode; }
+	public int getWeightExceedingNode() {
+		return weightExceedingNode;
+	}
 
-	public int getWeightDepth() { return weightDepth; }
+	public int getWeightDepth() {
+		return weightDepth;
+	}
 
-	public BigInteger getWeightMissingNodeBigInt() { return weightMissingNodeBigInt; }
+	public BigInteger getWeightMissingNodeBigInt() {
+		return weightMissingNodeBigInt;
+	}
 
-	public BigInteger getWeightExceedingNodeBigInt() { return weightExceedingNodeBigInt; }
+	public BigInteger getWeightExceedingNodeBigInt() {
+		return weightExceedingNodeBigInt;
+	}
 
-	public BigInteger getWeightDepthBigInt() { return weightDepthBigInt; }
+	public BigInteger getWeightDepthBigInt() {
+		return weightDepthBigInt;
+	}
 
 	public DissonanceWeights setWeightMissingNode(int weightMissingNode) {
 		if (weightMissingNode >= 0) {

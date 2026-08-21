@@ -1,4 +1,4 @@
-package dataStructures;
+package dataStructures.minorUtils;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 import java.util.function.Consumer;
+
+import dataStructures.MapTreeAVL;
 
 /**
  * A {@link List} implementation that guarantee a <code>O(log2(N))</code>
@@ -44,10 +46,14 @@ public class ListTree<E> implements List<E> {
 	}
 
 	@Override
-	public int size() { return size; }
+	public int size() {
+		return size;
+	}
 
 	@Override
-	public boolean isEmpty() { return root == NIL; }
+	public boolean isEmpty() {
+		return root == NIL;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -58,7 +64,9 @@ public class ListTree<E> implements List<E> {
 	}
 
 	@Override
-	public Iterator<E> iterator() { return new IteratorListTree(); }
+	public Iterator<E> iterator() {
+		return new IteratorListTree();
+	}
 
 	@Override
 	public E get(int index) {
@@ -123,12 +131,18 @@ public class ListTree<E> implements List<E> {
 		return true;
 	}
 
-	public void addFirst(E element) { add(0, element); }
+	public void addFirst(E element) {
+		add(0, element);
+	}
 
-	public void addLast(E element) { add(size, element); }
+	public void addLast(E element) {
+		add(size, element);
+	}
 
 	@Override
-	public void add(int index, E element) { addAt(index, new NodeListTree(element)); }
+	public void add(int index, E element) {
+		addAt(index, new NodeListTree(element));
+	}
 
 	protected void addAt(int index, NodeListTree n) {
 		NodeListTree x;
@@ -137,30 +151,28 @@ public class ListTree<E> implements List<E> {
 			root = last = first = n;
 			return;
 		}
-//		if (index == 0) {
-//			x = first;
-//			first = n;
-//			x.left = n;
-//			n.father = x;
-//			n.next = x;
-////			x.height++;
-////			x.sizeLeft++;
-//			insertFixup(n);
-//		} else {
-//			if (index == size) {
-//				x = last;
-//				x.right = n;
-//			} else {
-//				x = getAt(index);
-//			}
-//			x.next = n;
-//			n.father = x;
-//			n.prev = x;
-////				last.height++;
-////				x.sizeRight++;
-//			x = n;
-//			insertFixup(n);
-//		}
+		// if (index == 0) {
+		// x = first;
+		// first = n;
+		// x.left = n;
+		// n.father = x;
+		// n.next = x;
+		//// x.height++; / x.sizeLeft++;
+		// insertFixup(n);
+		// } else {
+		// if (index == size) {
+		// x = last;
+		// x.right = n;
+		// } else {
+		// x = getAt(index);
+		// }
+		// x.next = n;
+		// n.father = x;
+		// n.prev = x;
+		//// last.height++; / x.sizeRight++;
+		// x = n;
+		// insertFixup(n);
+		// }
 
 		if (index == size) {
 			x = last;
@@ -170,8 +182,8 @@ public class ListTree<E> implements List<E> {
 			n.father = x;
 			n.prev = x;
 			n.next = NIL;
-//			last.height++;
-//			x.sizeRight++;	
+			// last.height++;
+			// x.sizeRight++;
 			x = n;
 			insertFixup(x); // n is yet balanced: it's a leaf
 		} else {
@@ -190,7 +202,7 @@ public class ListTree<E> implements List<E> {
 				 * index must be pushed deeper, so it's needed to find
 				 * "the first place available before that node"
 				 */
-//				hasRight = x.right != NIL;
+				// hasRight = x.right != NIL;
 				if (x.left != NIL) {
 					System.out.println("________________adding " + n.element + " at" + index + " BUT LEFT NOT NIL: "
 							+ x.left.element + " ... and x is " + x.element);
@@ -221,9 +233,9 @@ public class ListTree<E> implements List<E> {
 			else
 				x.right = n;
 			n.father = x;
-//			x.height++;
-//			x.sizeLeft++;
-//			insertFixup(n);
+			// x.height++;
+			// x.sizeLeft++;
+			// insertFixup(n);
 			insertFixup(x); // n is yet balanced: it's a leaf
 		}
 		if (size != Integer.MAX_VALUE)
@@ -237,7 +249,9 @@ public class ListTree<E> implements List<E> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean remove(Object key) { return delete((E) key); }
+	public boolean remove(Object key) {
+		return delete((E) key);
+	}
 
 	/**
 	 * If the given key is stored inside the map, then that key and associated value
@@ -278,9 +292,13 @@ public class ListTree<E> implements List<E> {
 
 	// TODO protected
 
-	protected NodeListTree successor(NodeListTree n) { return n == NIL ? n : n.next; }
+	protected NodeListTree successor(NodeListTree n) {
+		return n == NIL ? n : n.next;
+	}
 
-	protected NodeListTree predecessor(NodeListTree n) { return n == NIL ? n : n.prev; }
+	protected NodeListTree predecessor(NodeListTree n) {
+		return n == NIL ? n : n.prev;
+	}
 
 	protected NodeListTree successorSorted(NodeListTree n) {
 		if (n == NIL)
@@ -294,7 +312,7 @@ public class ListTree<E> implements List<E> {
 		// travel fathers
 		while (n.father != NIL && n.father.right == n)
 			n = n.father;
-//			if (n.father == NIL)return NIL;
+		// if (n.father == NIL)return NIL;
 		return n.father;
 	}
 
@@ -374,16 +392,16 @@ public class ListTree<E> implements List<E> {
 				n = n.father;
 			} else {
 				System.out.println("rotating with delta: " + delta);// + ", hl: " + hl + ", hr: " + hr);
-//				if ((hr - hl) != (-delta))
-//					throw new RuntimeException("WTF");
+				// if ((hr - hl) != (-delta))
+				// throw new RuntimeException("WTF");
 				n.rotate(delta >= 2);
 				n = n.father.father;
 
 				// VERSION 2, in case of bugs try it:
 				//
-//				temp = n;
-//				n = n.father;
-//				temp.rotate(delta >= 2);
+				// temp = n;
+				// n = n.father;
+				// temp.rotate(delta >= 2);
 				System.out.println("the result is");
 				System.out.println(this);
 			}
@@ -403,7 +421,7 @@ public class ListTree<E> implements List<E> {
 		// actionPosition is the parent of the physically removed node
 		if (root == NIL || nToBeDeleted == NIL)
 			return NIL;
-//			tempForLinks = nToBeDeleted;
+		// tempForLinks = nToBeDeleted;
 		v = nToBeDeleted;
 		if (size == 1 && Objects.equals(root.element, nToBeDeleted.element)) {
 			size = 0;
@@ -452,9 +470,9 @@ public class ListTree<E> implements List<E> {
 			succ.right = NIL;
 			v = actionPosition;
 
-//			update first and last
-//			if (nToBeDeleted == first) // not needed
-//				first = ntbdFather;
+			// update first and last
+			// if (nToBeDeleted == first) // not needed
+			// first = ntbdFather;
 			if (succ == last)
 				last = succFather;
 			// unlink
@@ -474,7 +492,7 @@ public class ListTree<E> implements List<E> {
 			nToBeDeleted.element = child.element;
 			nToBeDeleted.height = 0; // DEPTH_INITIAL+1
 			child.father = NIL;
-//			update first and last
+			// update first and last
 			if (child == first) {
 				first = nToBeDeleted;
 				nToBeDeleted.prev = NIL;
@@ -494,7 +512,7 @@ public class ListTree<E> implements List<E> {
 					ntbdFather.left = NIL;
 				else
 					ntbdFather.right = NIL;
-//				update first and last
+				// update first and last
 				if (nToBeDeleted == first) {
 					first = ntbdFather;
 					ntbdFather.prev = NIL;
@@ -506,7 +524,7 @@ public class ListTree<E> implements List<E> {
 				nToBeDeleted.prev.next = nToBeDeleted.next;
 				nToBeDeleted.next.prev = nToBeDeleted.prev;
 				// do not clear nToBeDeleted's fields to save time
-//				actionPosition=ntbdFather; // removed because it's redundant
+				// actionPosition=ntbdFather; // removed because it's redundant
 			} else {// i'm root AND a leaf: this tree will be cleared (later)
 				clear();
 				return v;
@@ -515,7 +533,7 @@ public class ListTree<E> implements List<E> {
 
 		// then balance
 		// father can't be NIL
-//			balanceOnRemove(actionPosition);
+		// balanceOnRemove(actionPosition);
 		insertFixup(actionPosition);
 		actionPosition.height = ((actionPosition.left.height > actionPosition.right.height) ? actionPosition.left.height
 				: actionPosition.right.height) + 1;
@@ -524,7 +542,9 @@ public class ListTree<E> implements List<E> {
 		if (size == Integer.MAX_VALUE) {
 			size = (1 + root.sizeLeft + root.sizeRight);
 			// is there an overflow?
-			if (size < 0 || root.sizeLeft < 0 || root.sizeRight < 0) { size = Integer.MAX_VALUE; }
+			if (size < 0 || root.sizeLeft < 0 || root.sizeRight < 0) {
+				size = Integer.MAX_VALUE;
+			}
 		} else if (--size == 0) {
 			root = last = first = NIL;
 		} else if (root == NIL)
@@ -572,15 +592,15 @@ public class ListTree<E> implements List<E> {
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-//		boolean[] flag;
+		// boolean[] flag;
 		final int prevSize;
 		final ListTree<E> thisList;
 		thisList = this;
 		prevSize = size();
-//		flag = new boolean[] { false };
+		// flag = new boolean[] { false };
 		c.forEach(o -> {
 			thisList.add(o);
-//			flag[0] |= prevSize != thisList.size();
+			// flag[0] |= prevSize != thisList.size();
 		});
 		return prevSize != thisList.size();
 	}
@@ -591,11 +611,11 @@ public class ListTree<E> implements List<E> {
 		final ListTree<E> thisList;
 		thisList = this;
 		prevSize = size();
-//		flag = new boolean[] { false };
+		// flag = new boolean[] { false };
 		i = new int[] { index };
 		c.forEach(o -> {
 			thisList.add(i[0]++, o);
-//			flag[0] |= prevSize != thisList.size();
+			// flag[0] |= prevSize != thisList.size();
 		});
 		return prevSize != thisList.size();
 	}
@@ -622,7 +642,9 @@ public class ListTree<E> implements List<E> {
 		return sb.toString();
 	}
 
-	public void toString(StringBuilder sb) { toString(sb, 0); }
+	public void toString(StringBuilder sb) {
+		toString(sb, 0);
+	}
 
 	protected void toString(StringBuilder sb, int tabLevel) {
 		NodeListTree m;
@@ -643,7 +665,7 @@ public class ListTree<E> implements List<E> {
 		if (node != NIL) {
 			level++;
 			toString(sb, node.left, level);
-//			addTab(sb, level - 1, false);
+			// addTab(sb, level - 1, false);
 			tabLevel = level - 1;
 			sb.ensureCapacity(sb.length() + tabLevel << 2);
 			while (tabLevel-- > 0) {
@@ -671,7 +693,9 @@ public class ListTree<E> implements List<E> {
 			nullifyReferences();
 		}
 
-		void nullifyReferences() { father = left = right = prev = next = NIL; }
+		void nullifyReferences() {
+			father = left = right = prev = next = NIL;
+		}
 
 		public void rotate(boolean isRight) {
 			int hl, hr;
@@ -715,10 +739,10 @@ public class ListTree<E> implements List<E> {
 						c.father = NIL; // not necessary, but done to be sure
 					}
 					// adjust sizes
-//					if (c.right == NIL) c.sizeRight = 0;
-//					if (c.left == NIL) c.sizeLeft = 0;
-//					if (a.right == NIL) a.sizeRight = 0;
-//					if (b.left == NIL) b.sizeLeft = 0;
+					// if (c.right == NIL) c.sizeRight = 0;
+					// if (c.left == NIL) c.sizeLeft = 0;
+					// if (a.right == NIL) a.sizeRight = 0;
+					// if (b.left == NIL) b.sizeLeft = 0;
 					a.sizeLeft = c.sizeRight;
 					b.sizeRight = c.sizeLeft;
 					c.sizeRight += 1 + a.sizeRight;
@@ -726,7 +750,7 @@ public class ListTree<E> implements List<E> {
 					return;
 				}
 				left = left.right; // i could have put "nSide. .." but the whole piece of code would be less clear
-//				if (left == NIL)sizeLeft = 0;
+				// if (left == NIL)sizeLeft = 0;
 				nSide.right.father = this;
 				nSide.right = this;
 				// adjust sizes
@@ -769,10 +793,10 @@ public class ListTree<E> implements List<E> {
 						c.father = NIL; // not necessary, but done to be sure
 					}
 					// adjust sizes
-//					if (c.right == NIL) c.sizeRight = 0;
-//					if (c.left == NIL) c.sizeLeft = 0;
-//					if (b.right == NIL) b.sizeRight = 0;
-//					if (a.left == NIL) a.sizeLeft = 0;
+					// if (c.right == NIL) c.sizeRight = 0;
+					// if (c.left == NIL) c.sizeLeft = 0;
+					// if (b.right == NIL) b.sizeRight = 0;
+					// if (a.left == NIL) a.sizeLeft = 0;
 					a.sizeRight = c.sizeLeft;
 					b.sizeLeft = c.sizeRight;
 					c.sizeLeft += 1 + a.sizeLeft;
@@ -780,7 +804,7 @@ public class ListTree<E> implements List<E> {
 					return;
 				}
 				right = right.left; // i could have put "nSide. .." but the whole piece of code would be less clear
-//				if (right == NIL) sizeRight = 0;
+				// if (right == NIL) sizeRight = 0;
 				nSide.left.father = this;
 				nSide.left = this;
 				// adjust sizes
@@ -848,7 +872,9 @@ public class ListTree<E> implements List<E> {
 	}
 
 	@Override
-	public ListIterator<E> listIterator() { throw new UnsupportedOperationException("Operation not implemented yet"); }
+	public ListIterator<E> listIterator() {
+		throw new UnsupportedOperationException("Operation not implemented yet");
+	}
 
 	@Override
 	public ListIterator<E> listIterator(int index) {
@@ -873,7 +899,9 @@ public class ListTree<E> implements List<E> {
 		NodeListTree n = first;
 
 		@Override
-		public boolean hasNext() { return n != NIL; }
+		public boolean hasNext() {
+			return n != NIL;
+		}
 
 		@Override
 		public E next() {

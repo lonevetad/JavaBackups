@@ -1,7 +1,7 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
-import dataStructures.NodeComparable;
 import dataStructures.minorUtils.DissonanceWeights;
+import dataStructures.minorUtils.NodeComparable;
 
 public abstract class ADissonanceTreeAlgo_Mine<T> implements DissonanceTreeAlgorithm<T> {
 	public DissonanceWeights weigtsFrom(NodeAlteringCosts<T> nodeAlteringCost, NodeComparable<T> t1) {

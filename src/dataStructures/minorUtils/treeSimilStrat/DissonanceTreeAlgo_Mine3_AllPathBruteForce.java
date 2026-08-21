@@ -1,11 +1,11 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import dataStructures.NodeComparable;
+import dataStructures.minorUtils.NodeComparable;
 import tests.tDataStruct.TreeCompInteger;
 import tools.EditDistance;
 import tools.EditDistance.EqualityChecker;
@@ -61,7 +61,9 @@ public class DissonanceTreeAlgo_Mine3_AllPathBruteForce<T> extends ADissonanceTr
 			Iterator<List<NodeComparable<T>>> gpi = gg.iteratorPathNodes();
 			while (betterCost != 0 && gpi.hasNext()) {
 				diff = ed.editDistance(l, gpi.next(), equalityCheckerKey);
-				if (betterCost == -1 || diff < betterCost) { betterCost = diff; }
+				if (betterCost == -1 || diff < betterCost) {
+					betterCost = diff;
+				}
 			}
 			if (betterCost < 0)
 				betterCost = 0;

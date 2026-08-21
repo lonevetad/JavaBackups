@@ -1,11 +1,11 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
-import dataStructures.NodeComparable;
-import dataStructures.NodeComparable.NodeComparableDefaultAlghoritms;
 import dataStructures.minorUtils.DissonanceWeights;
+import dataStructures.minorUtils.NodeComparable;
+import dataStructures.minorUtils.NodeComparable.NodeComparableDefaultAlghoritms;
 
 /** @deprecated use {@link DissonanceTreeAlgo_Zhang_Shasha} instead. */
 @Deprecated

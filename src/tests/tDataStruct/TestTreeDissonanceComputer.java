@@ -1,17 +1,18 @@
 package tests.tDataStruct;
 
+import dataStructures.minorUtils.NodeComparable;
+import dataStructures.minorUtils.TreeComparable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import dataStructures.NodeComparable;
-import dataStructures.TreeComparable;
 import tools.Comparators;
 
 public class TestTreeDissonanceComputer extends TreeComparable<Integer> {
 	private static final long serialVersionUID = 1L;
 
-	public TestTreeDissonanceComputer() { super(Comparators.INTEGER_COMPARATOR); }
+	public TestTreeDissonanceComputer() {
+		super(Comparators.INTEGER_COMPARATOR);
+	}
 
 	/** See {@link NodeComparable#computeDissonanceAsLong(NodeComparable)}. */
 	public long computeDiff(TestTreeDissonanceComputer theBase) {
@@ -69,7 +70,7 @@ public class TestTreeDissonanceComputer extends TreeComparable<Integer> {
 		System.out.println("AND now 10 and 20");
 		System.out.println(altro);
 		System.out.println("now add some other blabla");
-//		altro.addNode(x, null);
+		// altro.addNode(x, null);
 		l.add(20);
 		ap(altro, 25, l);
 		l.add(25);

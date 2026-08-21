@@ -2,7 +2,7 @@ package tests.tDataStruct;
 
 import java.util.Comparator;
 
-import dataStructures.NodeComparable;
+import dataStructures.minorUtils.NodeComparable;
 import dataStructures.treeSimilStrat.DissonanceTreeAlgo_Mine5;
 import dataStructures.treeSimilStrat.DissonanceTreeAlgo_Zhang_Shasha;
 import dataStructures.treeSimilStrat.DissonanceTreeAlgorithm;
@@ -20,7 +20,7 @@ public class Test_NodeComparableSubtreeBased_Compare {
 	};
 
 	static final DifferenceCalculator<TreeCompInteger> DIFF_TREE = DifferenceCalculator.from(COMP_TREE_INT);
-//		 NodeComparable.newDifferenceCalculator(COMP_TREE_INT);
+	// NodeComparable.newDifferenceCalculator(COMP_TREE_INT);
 
 	public static final String[][] TREE_PAIRS_TO_TEST = { //
 			{ "2", "2" }, //

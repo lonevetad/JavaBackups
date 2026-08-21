@@ -1,14 +1,13 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
-import java.util.Comparator;
-
-import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
+import java.util.Comparator;
 
 /**
  * Implementation of the algorithm proposed ... ehm, here: <i>Zhang, K., Shasha,
  * D.: Simple fast algorithms for the editing distance between trees and related
- * problems. SIAM J. Comput. 18(6), 1245–1262 (1989)</i>
+ * problems. SIAM J. Comput. 18(6), 1245ï¿½1262 (1989)</i>
  * <p>
  * The general contract accept a "forest", while this implementation starts from
  * two single nodes.<br>
@@ -41,7 +40,9 @@ public class DissonanceTreeAlgo_Zhang_Shasha<T> implements DissonanceTreeAlgorit
 		sizeg = gw.size();
 		// base cases
 		if (sizef == 0 || sizeg == 0) {
-			if (sizef == 0 && sizeg == 0) { return 0; }
+			if (sizef == 0 && sizeg == 0) {
+				return 0;
+			}
 			return (sizef == 0) ? getActionCostWholeSubtree(nodeAlteringCost, true, gw)
 					: getActionCostWholeSubtree(nodeAlteringCost, false, fv);
 		}

@@ -7,8 +7,6 @@ import java.util.SortedMap;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import dataStructures.minorUtils.EntryImpl;
-
 public class MapMapped<K, OriginalType, T> implements Map<K, T> {
 
 	public MapMapped(Map<K, OriginalType> backMap, Function<OriginalType, T> newTypeExtractor) {
@@ -20,9 +18,13 @@ public class MapMapped<K, OriginalType, T> implements Map<K, T> {
 	protected final Function<OriginalType, T> newTypeExtractor;
 	protected Function<T, OriginalType> reverseMapper;
 
-	public Function<OriginalType, T> getNewTypeExtractor() { return newTypeExtractor; }
+	public Function<OriginalType, T> getNewTypeExtractor() {
+		return newTypeExtractor;
+	}
 
-	public Function<T, OriginalType> getReverseMapper() { return reverseMapper; }
+	public Function<T, OriginalType> getReverseMapper() {
+		return reverseMapper;
+	}
 
 	public MapMapped<K, OriginalType, T> setReverseMapper(Function<T, OriginalType> reverseMapper) {
 		this.reverseMapper = reverseMapper;
@@ -30,50 +32,57 @@ public class MapMapped<K, OriginalType, T> implements Map<K, T> {
 	}
 
 	@Override
-	public int size() { return this.backMap.size(); }
+	public int size() {
+		return this.backMap.size();
+	}
 
 	@Override
-	public void clear() { backMap.clear(); }
+	public void clear() {
+		backMap.clear();
+	}
 
 	@Override
-	public boolean isEmpty() { return this.backMap.isEmpty(); }
+	public boolean isEmpty() {
+		return this.backMap.isEmpty();
+	}
 
-//	public Object[] toArray() {
-//		int[] i;
-//		Object[] a;
-//		a = new Object[backMap.size()];
-//		i = new int[] { 0 };
-//		backMap.forEach(o -> a[i[0]++] = newTypeExtractor.apply(o));
-//		return a;
-//	}
+	// public Object[] toArray() {
+	// int[] i;
+	// Object[] a;
+	// a = new Object[backMap.size()];
+	// i = new int[] { 0 };
+	// backMap.forEach(o -> a[i[0]++] = newTypeExtractor.apply(o));
+	// return a;
+	// }
 
 	@Override
 	public void forEach(BiConsumer<? super K, ? super T> action) {
 		this.backMap.forEach((k, oldTypeElem) -> action.accept(k, newTypeExtractor.apply(oldTypeElem)));
 	}
 
-//	public <Tt> Tt[] toArray(final Tt[] a) {
-//		int len;
-////		throw new UnsupportedOperationException("Too lazy to implement");
-////        return backSet.toArray(a);
-//		if (a == null)
-//			return null;
-//		if (a.length >= (len = size())) {
-//			int[] i = { 0 };
-//			this.forEach(elem -> { a[i[0]++] = (Tt) elem; });
-//			return a;
-//		} else {
-//			int i = 0;
-//			Tt[] newArray;
-//			Iterator<T> iter = this.iterator();
-//			newArray = (Tt[]) Array.newInstance(a.getClass(), len);
-////			
-//			while (i < len && iter.hasNext()) {
-//				newArray[i++] = (Tt) iter.next();
-//			}
-//			return newArray;
-//		}
-//	}
+	// public <Tt> Tt[] toArray(final Tt[] a) {
+	// int len;
+	//// throw new UnsupportedOperationException("Too lazy to implement"); /
+	/// return backSet.toArray(a);
+
+	// if (a == null)
+	// return null;
+	// if (a.length >= (len = size())) {
+	// int[] i = { 0 };
+	// this.forEach(elem -> { a[i[0]++] = (Tt) elem; });
+	// return a;
+	// } else {
+	// int i = 0;
+	// Tt[] newArray;
+	// Iterator<T> iter = this.iterator();
+	// newArray = (Tt[]) Array.newInstance(a.getClass(), len);
+	////
+	// while (i < len && iter.hasNext()) {
+	// newArray[i++] = (Tt) iter.next();
+	// }
+	// return newArray;
+	// }
+	// }
 
 	@Override
 	public T put(K key, T value) {
@@ -128,19 +137,29 @@ public class MapMapped<K, OriginalType, T> implements Map<K, T> {
 	//
 
 	@Override
-	public boolean containsKey(Object key) { return this.backMap.containsKey(key); }
+	public boolean containsKey(Object key) {
+		return this.backMap.containsKey(key);
+	}
 
 	@Override
-	public boolean containsValue(Object value) { return this.backMap.containsValue(value); }
+	public boolean containsValue(Object value) {
+		return this.backMap.containsValue(value);
+	}
 
 	@Override
-	public T get(Object key) { return this.newTypeExtractor.apply(this.backMap.get(key)); }
+	public T get(Object key) {
+		return this.newTypeExtractor.apply(this.backMap.get(key));
+	}
 
 	@Override
-	public void putAll(Map<? extends K, ? extends T> m) { m.forEach(this::put); }
+	public void putAll(Map<? extends K, ? extends T> m) {
+		m.forEach(this::put);
+	}
 
 	@Override
-	public Set<K> keySet() { return this.backMap.keySet(); }
+	public Set<K> keySet() {
+		return this.backMap.keySet();
+	}
 
 	@Override
 	public Collection<T> values() {
@@ -158,8 +177,12 @@ public class MapMapped<K, OriginalType, T> implements Map<K, T> {
 	}
 
 	@Override
-	public boolean equals(Object o) { return this.backMap.equals(o); }
+	public boolean equals(Object o) {
+		return this.backMap.equals(o);
+	}
 
 	@Override
-	public int hashCode() { return this.backMap.hashCode(); }
+	public int hashCode() {
+		return this.backMap.hashCode();
+	}
 }

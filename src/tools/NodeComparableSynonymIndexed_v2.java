@@ -1,11 +1,10 @@
 package tools;
 
+import dataStructures.MapTreeAVL;
+import dataStructures.minorUtils.NodeComparable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import dataStructures.MapTreeAVL;
-import dataStructures.NodeComparable;
 
 /**
  * Enhance {@link NodeComparableSynonymIndexed#getChildNCBySingleKey(String)} at
@@ -16,18 +15,26 @@ import dataStructures.NodeComparable;
  *             some] individual synonyms) but different subtrees -> a single
  *             synonym may identify no better than a {@link List} of stuffs
  */
-//*  @deprecated because {@link #getChildNCByKey(SynonymSet)}
+// * @deprecated because {@link #getChildNCByKey(SynonymSet)}
 @Deprecated
 public class NodeComparableSynonymIndexed_v2 extends NodeComparableSynonymIndexed {
 	private static final long serialVersionUID = 58244716398L;
 
-	public NodeComparableSynonymIndexed_v2() { super(); }
+	public NodeComparableSynonymIndexed_v2() {
+		super();
+	}
 
-	public NodeComparableSynonymIndexed_v2(NodeComparableSynonymIndexed original) { super(original); }
+	public NodeComparableSynonymIndexed_v2(NodeComparableSynonymIndexed original) {
+		super(original);
+	}
 
-	public NodeComparableSynonymIndexed_v2(String[] aaaa) { super(aaaa); }
+	public NodeComparableSynonymIndexed_v2(String[] aaaa) {
+		super(aaaa);
+	}
 
-	public NodeComparableSynonymIndexed_v2(SynonymSet defaultSyn) { super(defaultSyn); }
+	public NodeComparableSynonymIndexed_v2(SynonymSet defaultSyn) {
+		super(defaultSyn);
+	}
 
 	@Override
 	protected void instantiatesChildrenStructures() {
@@ -46,9 +53,13 @@ public class NodeComparableSynonymIndexed_v2 extends NodeComparableSynonymIndexe
 		if (child == null)
 			return this;
 		children = getChildrenNC();
-		if (children == null) { return this; }
+		if (children == null) {
+			return this;
+		}
 		children.add(child);
-		child.getKeyIdentifier().forEach(syn -> { childrenByEachSynonyms.put(syn, child); });
+		child.getKeyIdentifier().forEach(syn -> {
+			childrenByEachSynonyms.put(syn, child);
+		});
 		return this;
 	}
 
@@ -58,21 +69,23 @@ public class NodeComparableSynonymIndexed_v2 extends NodeComparableSynonymIndexe
 	}
 
 	@Override
-	public NodeComparable<SynonymSet> getChildNCBySingleKey(String key) { return this.childrenByEachSynonyms.get(key); }
+	public NodeComparable<SynonymSet> getChildNCBySingleKey(String key) {
+		return this.childrenByEachSynonyms.get(key);
+	}
 
-//	@Override
-//	public NodeComparable<SynonymSet> getChildNCByKey(SynonymSet key) {
-//		NodeComparable<SynonymSet> c;
-////		Entry<SynonymSet, NodeComparable<SynonymSet>> entryIter;
-////		Iterator<Entry<SynonymSet, NodeComparable<SynonymSet>>> iterChildren;
-//		Iterator<String> iterSyn;
-//		c = this.childrenBySynonymsBackMap.get(key);
-//		if (c != null) // well contained
-//			return c;
-//		iterSyn = key.iterator();
-//		while (c == null && iterSyn.hasNext()) {
-//			c = this.childrenByEachSynonyms.get(iterSyn.next());
-//		}
-//		return c;
-//	}
+	// @Override
+	// public NodeComparable<SynonymSet> getChildNCByKey(SynonymSet key) {
+	// NodeComparable<SynonymSet> c;
+	//// Entry<SynonymSet, NodeComparable<SynonymSet>> entryIter; /
+	/// Iterator<Entry<SynonymSet, NodeComparable<SynonymSet>>> iterChildren;
+	// Iterator<String> iterSyn;
+	// c = this.childrenBySynonymsBackMap.get(key);
+	// if (c != null) // well contained
+	// return c;
+	// iterSyn = key.iterator();
+	// while (c == null && iterSyn.hasNext()) {
+	// c = this.childrenByEachSynonyms.get(iterSyn.next());
+	// }
+	// return c;
+	// }
 }

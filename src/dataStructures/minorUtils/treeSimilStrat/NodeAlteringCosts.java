@@ -1,12 +1,16 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import dataStructures.EditCosts;
-import dataStructures.NodeComparable;
+import dataStructures.minorUtils.NodeComparable;
 
 public interface NodeAlteringCosts<E> extends EditCosts<NodeComparable<E>> {
-	public default long insertNodeCost(NodeComparable<E> node) { return insertion(node); }
+	public default long insertNodeCost(NodeComparable<E> node) {
+		return insertion(node);
+	}
 
-	public default long deleteNodeCost(NodeComparable<E> node) { return deletion(node); }
+	public default long deleteNodeCost(NodeComparable<E> node) {
+		return deletion(node);
+	}
 
 	public long renameNodeCost(NodeComparable<E> node, E newLabel);
 
@@ -20,10 +24,14 @@ public interface NodeAlteringCosts<E> extends EditCosts<NodeComparable<E>> {
 	public static <T> NodeAlteringCosts<T> newDefaultNAC() {
 		return new NodeAlteringCosts<>() {
 			@Override
-			public long insertion(NodeComparable<T> node) { return 1; }
+			public long insertion(NodeComparable<T> node) {
+				return 1;
+			}
 
 			@Override
-			public long deletion(NodeComparable<T> node) { return 1; }
+			public long deletion(NodeComparable<T> node) {
+				return 1;
+			}
 
 			@Override
 			public long renameNodeCost(NodeComparable<T> node, T newLabel) {
@@ -39,6 +47,8 @@ public interface NodeAlteringCosts<E> extends EditCosts<NodeComparable<E>> {
 	 * interfaces.
 	 */
 	public static interface ActionOnNodeCost<K> extends ActionCost<NodeComparable<K>> {
-		public default long getNodeCost(NodeComparable<K> node) { return getCost(node); }
+		public default long getNodeCost(NodeComparable<K> node) {
+			return getCost(node);
+		}
 	}
 }

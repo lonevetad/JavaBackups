@@ -1,8 +1,7 @@
 package tests.tDataStruct;
 
+import dataStructures.minorUtils.ListTree;
 import java.util.function.Consumer;
-
-import dataStructures.ListTree;
 
 public class TestListTree {
 	static final Consumer<Integer> PRINTER = e -> System.out.print(", " + e);

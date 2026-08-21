@@ -1,4 +1,4 @@
-package dataStructures;
+package dataStructures.minorUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +17,9 @@ import java.util.function.Consumer;
 public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneable {
 	private static final long serialVersionUID = -540642504852222L;
 
-	public LinkedListLightweight() { this.clear(); }
+	public LinkedListLightweight() {
+		this.clear();
+	}
 
 	protected int size;
 	protected CircularListNode<T> first, last;
@@ -52,7 +54,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	//
 
 	protected void removeNode(CircularListNode<T> n) {
-		if (n == null || isEmpty()) { return; }
+		if (n == null || isEmpty()) {
+			return;
+		}
 		if (first == last) {
 			if (first == n) {
 				first = last = null;
@@ -63,8 +67,12 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 			}
 			return;
 		}
-		if (first == n) { first = n.next; }
-		if (last == n) { last = n.prev; }
+		if (first == n) {
+			first = n.next;
+		}
+		if (last == n) {
+			last = n.prev;
+		}
 		n.prev.next = n.next;
 		n.next.prev = n.prev;
 		n.next = n.prev = null;
@@ -73,7 +81,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 
 	@Override
 	public void forEach(Consumer<? super T> a) {
-		if (a == null || isEmpty()) { return; }
+		if (a == null || isEmpty()) {
+			return;
+		}
 		CircularListNode<T> iter, la;
 		iter = la = this.first;
 		do {
@@ -81,10 +91,14 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 		} while ((iter = iter.next) != la);
 	}
 
-	public void forEachInOrder(Consumer<T> a) { forEach(a); }
+	public void forEachInOrder(Consumer<T> a) {
+		forEach(a);
+	}
 
 	public void forEachReverseOrder(Consumer<T> a) {
-		if (a == null || isEmpty()) { return; }
+		if (a == null || isEmpty()) {
+			return;
+		}
 		CircularListNode<T> iter, la;
 		iter = la = this.last;
 		do {
@@ -116,7 +130,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 
 		public CirculaLLLIterator(LinkedListLightweight<E> list, int index) {
 			this(list);
-			if (index < 0 || index >= list.size) { throw new IndexOutOfBoundsException(index); }
+			if (index < 0 || index >= list.size) {
+				throw new IndexOutOfBoundsException(index);
+			}
 			while (--index >= 0) {
 				next();
 			}
@@ -136,13 +152,17 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 			e = this.node.item;
 			this.jumps++;
 			this.node = this.node.next;
-			if (this.jumps != 0 && this.node == this.last) { this.jumps = 0; }
+			if (this.jumps != 0 && this.node == this.last) {
+				this.jumps = 0;
+			}
 			this.lastMovementOperation = 1;
 			return e;
 		}
 
 		@Override
-		public boolean hasPrevious() { return hasNext(); }
+		public boolean hasPrevious() {
+			return hasNext();
+		}
 
 		@Override
 		public E previous() {
@@ -152,7 +172,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 			e = this.node.item;
 			this.jumps--;
 			this.node = this.node.prev;
-			if (this.jumps != 0 && this.node == this.last) { this.jumps = 0; }
+			if (this.jumps != 0 && this.node == this.last) {
+				this.jumps = 0;
+			}
 			this.lastMovementOperation = 2;
 			return e;
 		}
@@ -214,7 +236,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	//
 
 	@Override
-	public int size() { return this.size; }
+	public int size() {
+		return this.size;
+	}
 
 	@Override
 	public void clear() {
@@ -239,29 +263,43 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	}
 
 	@Override
-	public boolean isEmpty() { return this.first == null; }
+	public boolean isEmpty() {
+		return this.first == null;
+	}
 
 	@Override
 	public boolean contains(Object o) {
-		if (isEmpty()) { return false; }
+		if (isEmpty()) {
+			return false;
+		}
 		for (T t : this) {
-			if (Objects.equals(t, o)) { return true; }
+			if (Objects.equals(t, o)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	@Override
-	public Iterator<T> iterator() { return listIterator(); }
+	public Iterator<T> iterator() {
+		return listIterator();
+	}
 
 	@Override
-	public Object[] toArray() { return toList().toArray(); }
+	public Object[] toArray() {
+		return toList().toArray();
+	}
 
 	@Override
-	public <G> G[] toArray(G[] a) { return toList().toArray(a); }
+	public <G> G[] toArray(G[] a) {
+		return toList().toArray(a);
+	}
 
 	@Override
 	public boolean remove(Object o) {
-		if (isEmpty()) { return false; }
+		if (isEmpty()) {
+			return false;
+		}
 		CircularListNode<T> iter, la;
 		iter = la = this.first;
 		do { // for each in order
@@ -274,22 +312,34 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	}
 
 	@Override
-	public boolean containsAll(Collection<?> c) { return false; }
+	public boolean containsAll(Collection<?> c) {
+		return false;
+	}
 
 	@Override
-	public boolean addAll(Collection<? extends T> c) { return toList().addAll(c); }
+	public boolean addAll(Collection<? extends T> c) {
+		return toList().addAll(c);
+	}
 
 	@Override
-	public boolean addAll(int index, Collection<? extends T> c) { return toList().addAll(index, c); }
+	public boolean addAll(int index, Collection<? extends T> c) {
+		return toList().addAll(index, c);
+	}
 
 	@Override
-	public boolean removeAll(Collection<?> c) { return toList().removeAll(c); }
+	public boolean removeAll(Collection<?> c) {
+		return toList().removeAll(c);
+	}
 
 	@Override
-	public boolean retainAll(Collection<?> c) { return toList().retainAll(c); }
+	public boolean retainAll(Collection<?> c) {
+		return toList().retainAll(c);
+	}
 
 	protected CircularListNode<T> nodeAt(int i) {
-		if (i < 0 || i >= size) { throw new IndexOutOfBoundsException(i); }
+		if (i < 0 || i >= size) {
+			throw new IndexOutOfBoundsException(i);
+		}
 		CircularListNode<T> iter;
 		iter = this.first;
 		if (i <= (size >> 1)) {
@@ -308,7 +358,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 
 	@Override
 	public T get(int index) {
-		if (isEmpty()) { return null; }
+		if (isEmpty()) {
+			return null;
+		}
 		return nodeAt(index).item;
 	}
 
@@ -316,7 +368,9 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	public T set(int index, T element) {
 		CircularListNode<T> n;
 		T t;
-		if (isEmpty()) { return null; }
+		if (isEmpty()) {
+			return null;
+		}
 		n = nodeAt(index);
 		t = n.item;
 		n.item = element;
@@ -339,8 +393,8 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 			this.first = n = new CircularListNode<>(element, null);
 			n.next = oldFirst;
 			oldFirst.prev = ((n.prev = oldFirst.prev).next = n); // too optimized, look the next 2 statements
-//			n.prev = oldFirst.prev;
-//			oldFirst.prev = (oldFirst.prev.next = n);
+			// n.prev = oldFirst.prev;
+			// oldFirst.prev = (oldFirst.prev.next = n);
 		} else if (index == size) {
 			add(element);
 		} else {
@@ -356,8 +410,12 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	public T remove(int index) {
 		T e;
 		CircularListNode<T> n;
-		if (isEmpty()) { throw new NoSuchElementException(); }
-		if (index < 0 || index >= this.size) { throw new IndexOutOfBoundsException(index); }
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		if (index < 0 || index >= this.size) {
+			throw new IndexOutOfBoundsException(index);
+		}
 		if (index == 0) {
 			n = this.first;
 		} else if (index == (this.size - 1)) {
@@ -409,11 +467,17 @@ public class LinkedListLightweight<T> implements List<T>, Serializable, Cloneabl
 	}
 
 	@Override
-	public ListIterator<T> listIterator() { return new CirculaLLLIterator<>(this); }
+	public ListIterator<T> listIterator() {
+		return new CirculaLLLIterator<>(this);
+	}
 
 	@Override
-	public ListIterator<T> listIterator(int index) { return new CirculaLLLIterator<>(this, index); }
+	public ListIterator<T> listIterator(int index) {
+		return new CirculaLLLIterator<>(this, index);
+	}
 
 	@Override
-	public List<T> subList(int fromIndex, int toIndex) { return this.toList().subList(fromIndex, toIndex); }
+	public List<T> subList(int fromIndex, int toIndex) {
+		return this.toList().subList(fromIndex, toIndex);
+	}
 }

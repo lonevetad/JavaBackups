@@ -1,4 +1,4 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import java.math.BigInteger;
 import java.util.Comparator;
@@ -8,9 +8,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import dataStructures.MapTreeAVL;
-import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
 import dataStructures.minorUtils.DissonanceWeights;
+import dataStructures.minorUtils.NodeComparable;
 
 @Deprecated
 public class DissonanceTreeAlgo_Mine2<T> extends DissonanceTreeAlgo_Mine1<T> {
@@ -153,10 +153,10 @@ public class DissonanceTreeAlgo_Mine2<T> extends DissonanceTreeAlgo_Mine1<T> {
 		sizeNSRCThis = nodeSharingRootCollectedThis.size();
 		sizeNSRCBase = nodeSharingRootCollectedBase.size();
 		// edge cases
-//					if(sizeNSRCThis==0&&sizeNSRCBase==0)return;
-//					if(sizeNSRCThis)
-//
-//						//general cases
+		// if(sizeNSRCThis==0&&sizeNSRCBase==0)return;
+		// if(sizeNSRCThis)
+		//
+		// //general cases
 
 		// TODO
 	}
@@ -173,7 +173,9 @@ public class DissonanceTreeAlgo_Mine2<T> extends DissonanceTreeAlgo_Mine1<T> {
 		protected MapTreeAVL<NodeComparable<E>, NodeComparable<E>> mapOntoAdd;
 
 		@Override
-		public void accept(NodeComparable<E> t) { mapOntoAdd.put(t, t); }
+		public void accept(NodeComparable<E> t) {
+			mapOntoAdd.put(t, t);
+		}
 	}
 
 	protected static interface DifferenceAdderLong {
@@ -184,7 +186,9 @@ public class DissonanceTreeAlgo_Mine2<T> extends DissonanceTreeAlgo_Mine1<T> {
 		public void add(BigInteger[] differenceHolder, BigInteger value);
 	}
 
-	protected static final DifferenceAdderLong DIFF_ADDER_LONG = (dh, v) -> { dh[0] += v; };
+	protected static final DifferenceAdderLong DIFF_ADDER_LONG = (dh, v) -> {
+		dh[0] += v;
+	};
 	protected static final DifferenceAdderBigInt DIFF_ADDER_BIG_INT = (dh, v) -> {
 		if (v != BigInteger.ZERO)
 			dh[0] = dh[0].add(v);

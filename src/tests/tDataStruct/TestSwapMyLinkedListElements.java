@@ -1,6 +1,6 @@
 package tests.tDataStruct;
 
-import dataStructures.MyLinkedList;
+import dataStructures.minorUtils.MyLinkedList;
 
 public class TestSwapMyLinkedListElements {
 
@@ -11,9 +11,9 @@ public class TestSwapMyLinkedListElements {
 	public static void main(String[] args) {
 		int n, i, s;
 		MyLinkedList<Integer> l;
-//		Random r;
+		// Random r;
 
-//		r = new Random();
+		// r = new Random();
 		l = new MyLinkedList<Integer>();
 
 		MyLinkedList.printList(l);
@@ -21,7 +21,7 @@ public class TestSwapMyLinkedListElements {
 		i = -1;
 		s = 10;
 		while (++i < s) {
-//			n = r.nextInt(s);
+			// n = r.nextInt(s);
 			n = i;
 			System.out.println(i + " = " + n);
 			l.add(n);

@@ -1,13 +1,12 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
+import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
+import dataStructures.minorUtils.TreeComparable;
+import dataStructures.minorUtils.treeSimilStrat.NodeAlteringCosts.ActionOnNodeCost;
 import java.util.LinkedList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-
-import dataStructures.NodeComparable;
-import dataStructures.SortedSetEnhanced;
-import dataStructures.TreeComparable;
-import dataStructures.treeSimilStrat.NodeAlteringCosts.ActionOnNodeCost;
 
 /**
  * General contract to compute a dissonance over two trees (to be precise: two
@@ -26,7 +25,9 @@ public interface DissonanceTreeAlgorithm<T> {
 	public default long getActionCostWholeSubtree(NodeAlteringCosts<T> nodeAlteringCost, boolean isInsert,
 			SortedSetEnhanced<NodeComparable<T>> nodes) {
 		final long[] ll = { 0 };
-		nodes.forEach(n -> { ll[0] += getActionCostWholeSubtree(nodeAlteringCost, isInsert, n); });
+		nodes.forEach(n -> {
+			ll[0] += getActionCostWholeSubtree(nodeAlteringCost, isInsert, n);
+		});
 		return ll[0];
 	}
 
@@ -42,29 +43,38 @@ public interface DissonanceTreeAlgorithm<T> {
 	static class ActionCostWholeSubtree<E> implements BiConsumer<NodeAlteringCosts<E>, NodeComparable<E>> {
 		protected boolean isInsertAction;
 		protected long totalCost;
-//		protected NodeAlteringCosts<E> nodeAlteringCost;
-//		protected NodeComparable<E> node;
+		// protected NodeAlteringCosts<E> nodeAlteringCost;
+		// protected NodeComparable<E> node;
 
-//		public ActionCostWholeSubtree(NodeAlteringCosts<E> nodeAlteringCost, boolean isInsert, NodeComparable<E> n) {
+		// public ActionCostWholeSubtree(NodeAlteringCosts<E> nodeAlteringCost, boolean
+		// isInsert, NodeComparable<E> n) {
 		public ActionCostWholeSubtree(boolean isInsert) {
 			super();
 			this.isInsertAction = isInsert;
 			this.totalCost = 0;
-//			this.nodeAlteringCost = nodeAlteringCost;
-//			this.node = n;
+			// this.nodeAlteringCost = nodeAlteringCost;
+			// this.node = n;
 		}
 
-		public long getTotalCost() { return totalCost; }
+		public long getTotalCost() {
+			return totalCost;
+		}
 
-		public boolean isInsertAction() { return isInsertAction; }
+		public boolean isInsertAction() {
+			return isInsertAction;
+		}
 
-//		public NodeAlteringCosts<E> getNodeAlteringCost() { return nodeAlteringCost; }
-//		public NodeComparable<E> getNode() { return node; }
+		// public NodeAlteringCosts<E> getNodeAlteringCost() { return nodeAlteringCost;
+		// }
+		// public NodeComparable<E> getNode() { return node; }
 
-		public void setInsertAction(boolean isInsert) { this.isInsertAction = isInsert; }
+		public void setInsertAction(boolean isInsert) {
+			this.isInsertAction = isInsert;
+		}
 
-//		public void setNodeAlteringCost(NodeAlteringCosts<E> nodeAlteringCost) { this.nodeAlteringCost = nodeAlteringCost; }
-//		public void setNode(NodeComparable<E> n) { this.node = n; }
+		// public void setNodeAlteringCost(NodeAlteringCosts<E> nodeAlteringCost) {
+		// this.nodeAlteringCost = nodeAlteringCost; }
+		// public void setNode(NodeComparable<E> n) { this.node = n; }
 
 		@Override
 		public void accept(NodeAlteringCosts<E> nac, NodeComparable<E> n) {
@@ -83,7 +93,9 @@ public interface DissonanceTreeAlgorithm<T> {
 				n = nodesToBeComputed.removeFirst();
 				tc += costExt.getNodeCost(n);
 				children = n.getChildrenNC();
-				if (children != null && (!children.isEmpty())) { children.forEach(nodeAdder); }
+				if (children != null && (!children.isEmpty())) {
+					children.forEach(nodeAdder);
+				}
 			}
 			this.totalCost = tc;
 		}

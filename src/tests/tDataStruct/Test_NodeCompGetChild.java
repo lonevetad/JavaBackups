@@ -1,9 +1,8 @@
 package tests.tDataStruct;
 
+import dataStructures.minorUtils.TreeComparable;
 import java.util.Arrays;
 import java.util.LinkedList;
-
-import dataStructures.TreeComparable;
 import tools.Comparators;
 
 public class Test_NodeCompGetChild {
@@ -19,7 +18,7 @@ public class Test_NodeCompGetChild {
 		l = new LinkedList<>();
 		l.add(0);
 		l.add(-5);
-//		l.add(-88);
+		// l.add(-88);
 		t.addNode(-88, l);
 		t.addNode(-77, l);
 		l.clear();
@@ -32,7 +31,9 @@ public class Test_NodeCompGetChild {
 		System.out.println("\n\n\n end");
 	}
 
-	static void a(TreeComparable<Integer> t, Integer x, Integer... c) { t.addNode(x, Arrays.asList(c)); }
+	static void a(TreeComparable<Integer> t, Integer x, Integer... c) {
+		t.addNode(x, Arrays.asList(c));
+	}
 
 	static void p(TreeComparable<Integer> t) {
 		System.out.println("\ntree:");

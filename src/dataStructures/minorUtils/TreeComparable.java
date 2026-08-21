@@ -1,10 +1,10 @@
-package dataStructures;
+package dataStructures.minorUtils;
 
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.BiFunction;
 
-import dataStructures.NodeComparable.DefaultNodeComparable;
+import dataStructures.minorUtils.NodeComparable.DefaultNodeComparable;
 import tools.Stringable;
 
 /** See {@link NodeComparable}. */
@@ -24,11 +24,17 @@ public class TreeComparable<K> implements Stringable {
 		this.keyComparator = keyComparator;
 	}
 
-	public BiFunction<K, Comparator<K>, NodeComparable<K>> getNodeSupplier() { return nodeSupplier; }
+	public BiFunction<K, Comparator<K>, NodeComparable<K>> getNodeSupplier() {
+		return nodeSupplier;
+	}
 
-	public Comparator<K> getKeyComparator() { return keyComparator; }
+	public Comparator<K> getKeyComparator() {
+		return keyComparator;
+	}
 
-	public NodeComparable<K> getRoot() { return root; }
+	public NodeComparable<K> getRoot() {
+		return root;
+	}
 
 	/** No null pointer checks are performed */
 	public void addNode(K v, Iterable<K> path) {
@@ -52,36 +58,38 @@ public class TreeComparable<K> implements Stringable {
 			childIter = // (DefaultNodeComparable<K>) NodeComparable.newDefaultNodeComparable(v,
 						// keyComparator);
 					(DefaultNodeComparable<K>) nodeSupplier.apply(v, keyComparator);
-//			System.out.print("ADDING OVER PATH: ");
-//			for (K k : path) {
-//				System.out.print(", " + k);
-//			}
-//			System.out.println();
+			// System.out.print("ADDING OVER PATH: ");
+			// for (K k : path) {
+			// System.out.print(", " + k);
+			// }
+			// System.out.println();
 
 			while (iter.hasNext()) {
 				step = iter.next();
 				childIter.setKeyIdentifier(step);
 				oldIter = nIter;
-//				System.out.println("STEP IS : " + step + ", iter.hasNext()_ " + iter.hasNext());
+				// System.out.println("STEP IS : " + step + ", iter.hasNext()_ " +
+				// iter.hasNext());
 				nIter = nIter.getChildNCMostSimilarTo(childIter);
 				if (nIter == null) {
 					if (isAdd) {
-//						System.out.println("porcodddd oldIter: " + oldIter);
-//						System.out.println(this);
-//						System.out.println("######## let's build up the fucking node");
+						// System.out.println("porcodddd oldIter: " + oldIter);
+						// System.out.println(this);
+						// System.out.println("######## let's build up the fucking node");
 						nIter = nodeSupplier.apply(step, keyComparator);
 						oldIter.addChildNC(nIter);
 					} else {
 						throw new NullPointerException("Missing path node of key: " + step);
 					}
 				}
-//				System.out.println("and now is: " + nIter);
+				// System.out.println("and now is: " + nIter);
 			}
-//			System.out.println("adding on iter: " + nIter.getKeyIdentifier() + ", the newChild: " + newChild);
-//			System.out.println("nIter class: " + nIter.getClass().getName());
+			// System.out.println("adding on iter: " + nIter.getKeyIdentifier() + ", the
+			// newChild: " + newChild);
+			// System.out.println("nIter class: " + nIter.getClass().getName());
 			nIter.addChildNC(newChild);
-//			System.out.println("new nIter:");
-//			System.out.println(nIter);
+			// System.out.println("new nIter:");
+			// System.out.println(nIter);
 			if (!nIter.containsChildNC(newChild)) {
 				System.out.println("WTF");
 				nIter.getChildrenNC().forEach(System.out::println);
@@ -89,10 +97,12 @@ public class TreeComparable<K> implements Stringable {
 				throw new RuntimeException("WTF - " + nIter.getClass().getName());
 			}
 		}
-//		System.out.println("END add");
+		// System.out.println("END add");
 	}
 
-	public long computeDifference(TreeComparable<K> t) { return this.root.computeDissonanceAsLong(t.root); }
+	public long computeDifference(TreeComparable<K> t) {
+		return this.root.computeDissonanceAsLong(t.root);
+	}
 
 	//
 

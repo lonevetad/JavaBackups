@@ -1,4 +1,4 @@
-package dataStructures.treeSimilStrat;
+package dataStructures.minorUtils.treeSimilStrat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import dataStructures.NodeComparable;
 import dataStructures.SortedSetEnhanced;
+import dataStructures.minorUtils.NodeComparable;
 import tools.Comparators;
 import tools.EditDistance;
 import tools.EditDistance.EqualityChecker;
@@ -25,15 +25,16 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 	@Override
 	public long computeDissonance(NodeAlteringCosts<T> nodeAlteringCost, NodeComparable<T> ff, NodeComparable<T> gg) {
 		long[] cost = { -1 }, betterCost;
-//		Comparator<NodeComparable<T>> nodeComparatorOnlyByKey;
+		// Comparator<NodeComparable<T>> nodeComparatorOnlyByKey;
 		Comparator<List<T>> listComparator;
 		EqualityChecker<T> equalityCheckerKey;
 		SortedSetEnhanced<List<T>> fpaths, gpaths, sharedPath;
 		EditDistance ed;
 		ed = new EditDistanceLevenshtein();
 		// nodeComparatorOnlyByKey = (n1, n2) -> {
-//			return n1.getKeyComparator().compare(n1.getKeyIdentifier(), n2.getKeyIdentifier());
-//		};
+		// return n1.getKeyComparator().compare(n1.getKeyIdentifier(),
+		// n2.getKeyIdentifier());
+		// };
 		listComparator = Comparators.newListComparator(ff.getKeyComparator());
 		equalityCheckerKey = EqualityChecker.fromComparator(ff.getKeyComparator());
 
@@ -44,26 +45,27 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 		// shared paths does not contribute to calculating the cost
 		sharedPath = fpaths.intersectionWith(gpaths);
 
-//		System.out.println("intersection got");
-//		sharedPath.forEach(l -> System.out.println("p: " + Arrays.toString(l.toArray())));
-//		System.out.println("print by tree shape");
-//		MapTreeAVLLightweight.SortedSetWrapper ssw_sp;
-//		ssw_sp = (MapTreeAVLLightweight.SortedSetWrapper) sharedPath;
-//		System.out.println(ssw_sp.getBackTree());
-//		System.out.println("foreaching");
-//		sharedPath.forEach(l -> System.out.println(l));
-//		System.out.println("\n\n");
+		// System.out.println("intersection got");
+		// sharedPath.forEach(l -> System.out.println("p: " +
+		// Arrays.toString(l.toArray())));
+		// System.out.println("print by tree shape");
+		// MapTreeAVLLightweight.SortedSetWrapper ssw_sp;
+		// ssw_sp = (MapTreeAVLLightweight.SortedSetWrapper) sharedPath;
+		// System.out.println(ssw_sp.getBackTree());
+		// System.out.println("foreaching");
+		// sharedPath.forEach(l -> System.out.println(l));
+		// System.out.println("\n\n");
 
 		{ // Java's Compiler wants final variables inside lambdas ...
 			final SortedSetEnhanced<List<T>> ffff, gggg, sp;
 			ffff = fpaths;
 			gggg = gpaths;
 			sp = sharedPath;
-//			int[] a = { 0 };
-//			System.out.println("intersection removing ...");
+			// int[] a = { 0 };
+			// System.out.println("intersection removing ...");
 			sharedPath.forEach(l -> {
-//				Objects.requireNonNull(l, "WHAAAAAT:\n" + l + "\n\n\n" + sp.toString());
-//				System.out.println(a[0]++ + " - " + Arrays.toString(l.toArray()));
+				// Objects.requireNonNull(l, "WHAAAAAT:\n" + l + "\n\n\n" + sp.toString());
+				// System.out.println(a[0]++ + " - " + Arrays.toString(l.toArray()));
 				ffff.remove(l);
 				gggg.remove(l);
 			});
@@ -85,9 +87,11 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 				betterCost[0] = -1;
 				fpi = ffff.iterator();
 				while (betterCost[0] != 0 && // should never be 0 but ...
-				fpi.hasNext()) {
+						fpi.hasNext()) {
 					diff = ed.editDistance(l, fpi.next(), equalityCheckerKey);
-					if (betterCost[0] == -1 || diff < betterCost[0]) { betterCost[0] = diff; }
+					if (betterCost[0] == -1 || diff < betterCost[0]) {
+						betterCost[0] = diff;
+					}
 				}
 				if (betterCost[0] < 0)
 					betterCost[0] = 0;
@@ -132,15 +136,16 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 		// shared paths does not contribute to calculating the cost
 		sharedPath = fpaths.intersectionWith(gpaths);
 
-//		System.out.println("intersection got");
-//		sharedPath.forEach(l -> System.out.println("p: " + Arrays.toString(l.toArray())));
-//		System.out.println("print by tree shape");
-//		MapTreeAVLLightweight.SortedSetWrapper ssw_sp;
-//		ssw_sp = (MapTreeAVLLightweight.SortedSetWrapper) sharedPath;
-//		System.out.println(ssw_sp.getBackTree());
-//		System.out.println("foreaching");
-//		sharedPath.forEach(l -> System.out.println(l));
-//		System.out.println("\n\n");
+		// System.out.println("intersection got");
+		// sharedPath.forEach(l -> System.out.println("p: " +
+		// Arrays.toString(l.toArray())));
+		// System.out.println("print by tree shape");
+		// MapTreeAVLLightweight.SortedSetWrapper ssw_sp;
+		// ssw_sp = (MapTreeAVLLightweight.SortedSetWrapper) sharedPath;
+		// System.out.println(ssw_sp.getBackTree());
+		// System.out.println("foreaching");
+		// sharedPath.forEach(l -> System.out.println(l));
+		// System.out.println("\n\n");
 
 		{ // Java's Compiler wants final variables inside lambdas ...
 			final SortedSetEnhanced<List<NodeComparable<T>>> ffff, gggg, sp;
@@ -175,9 +180,11 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 				betterCost[0] = -1;
 				fpi = ffff.iterator();
 				while (betterCost[0] != 0 && // should never be 0 but ...
-				fpi.hasNext()) {
+						fpi.hasNext()) {
 					diff = ed.editDistance(l, fpi.next(), equalityCheckerKey);
-					if (betterCost[0] == -1 || diff < betterCost[0]) { betterCost[0] = diff; }
+					if (betterCost[0] == -1 || diff < betterCost[0]) {
+						betterCost[0] = diff;
+					}
 				}
 				if (betterCost[0] < 0)
 					betterCost[0] = 0;
@@ -202,12 +209,12 @@ public class DissonanceTreeAlgo_Mine4_AllPathBruteForce<T> extends DissonanceTre
 	//
 
 	protected static <K> List<K> copyPath(List<K> l) {
-//		K[] a;
-//		a = l.
+		// K[] a;
+		// a = l.
 		List<K> ll;
 		ll = new ArrayList<>(l.size());
 		l.forEach(ll::add);
 		return ll;
-//		return new ArrayList<>(l);
+		// return new ArrayList<>(l);
 	}
 }

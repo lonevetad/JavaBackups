@@ -1,13 +1,15 @@
 package tests.tDataStruct;
 
-import dataStructures.NodeComparable;
-import dataStructures.TreeComparable;
+import dataStructures.minorUtils.NodeComparable;
+import dataStructures.minorUtils.TreeComparable;
 import tools.Comparators;
 
 public class TreeCompInteger extends TreeComparable<Integer> {
 	private static final long serialVersionUID = 1L;
 
-	public TreeCompInteger() { super(Comparators.INTEGER_COMPARATOR); }
+	public TreeCompInteger() {
+		super(Comparators.INTEGER_COMPARATOR);
+	}
 
 	public static TreeCompInteger fromString(String s) {
 		TreeCompInteger t;
@@ -21,7 +23,9 @@ public class TreeCompInteger extends TreeComparable<Integer> {
 		NodeComparable<Integer> root;
 		c = s.charAt(0);
 		root = null;
-		if (c == '-' || Character.isDigit(c)) { root = parseStringBuilder(t, s, new int[] { 0 }); }
+		if (c == '-' || Character.isDigit(c)) {
+			root = parseStringBuilder(t, s, new int[] { 0 });
+		}
 		return root;
 	}
 
@@ -42,7 +46,9 @@ public class TreeCompInteger extends TreeComparable<Integer> {
 				root = t.getNodeSupplier().apply(//
 						Integer.parseInt(s.substring(i, endIndex)), t.getKeyComparator());
 				startIndex[0] = endIndex;
-				if (endIndex >= ssize) { return root; }
+				if (endIndex >= ssize) {
+					return root;
+				}
 				i = skipToFirstNonBlankChar(s, endIndex) - 1; // "-1" because "i" will be incremented later
 			}
 		}
