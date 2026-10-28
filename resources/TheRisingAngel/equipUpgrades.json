@@ -8421,13 +8421,24 @@
     "name": "of the Bat",
     "rarity": 2,
     "price": [18],
-    "category": "Refining",
+    "category": "Incarnation",
     "isPrefix": false,
     "attributesModifiers": {
       "Health": -3,
       "Precision": 8,
       "Dexterity": 2,
       "LifeLeechPercentage": 6
+    }
+  },
+  {
+    "name": "with Bat Teeth",
+    "rarity": 3,
+    "price": [21],
+    "category": "Refining",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "LifeLeechPercentage": 15,
+      "LifeLeechPercentage": 8
     }
   },
   {
@@ -10124,6 +10135,93 @@
       "PhysicalDamageMultiplierPercentageReduction": 10,
       "MagicalDamageReduction": 5,
       "MagicalDamageMultiplierPercentageReduction": 5
+    }
+  },
+  {
+    "name": "of Adrenaline",
+    "rarity": 2,
+    "price": [14],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Strength": 5,
+      "Dexterity": 2,
+      "Precision": -3,
+      "Wisdom": -4,
+      "Velocity": 5,
+      "PhysicalDamageBonus": 3,
+      "PhysicalDamageMultiplierPercentageBonus": 5,
+      "PhysicalDamageReduction": 2,
+      "MagicalDamageReduction": 2,
+      "StaminaMax": 10,
+      "StaminaRegen": 2
+    }
+  },
+  {
+    "name": "of Adrenaline Rush",
+    "rarity": 3,
+    "price": [17],
+    "category": "Rune",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Strength": 9,
+      "Defense": 2,
+      "Dexterity": 5,
+      "Precision": -6,
+      "Intelligence": -2,
+      "Wisdom": -8,
+      "Velocity": 10,
+      "LifeRegen": -3,
+      "ManaRegen": 2,
+      "StaminaMax": 15,
+      "StaminaRegen": 5,
+      "PhysicalDamageBonus": 7,
+      "PhysicalDamageMultiplierPercentageBonus": 7,
+      "PhysicalDamageReduction": 3,
+      "MagicalDamageReduction": 3,
+      "CriticalMultiplierPercentageBonus": 8
+    }
+  },
+  {
+    "name": "of the Fallen",
+    "rarity": 3,
+    "price": [30],
+    "category": "Blessing",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Defense": 2,
+      "Wisdom": 3,
+      "Faith": -5,
+      "Luck": -3,
+      "LifeLeechPercentage": 5,
+      "ManaLeechPercentage": 5,
+      "CriticalMultiplierPercentageReduction": 10
+    }
+  },
+  {
+    "name": "of Dust Telekinesis",
+    "rarity": 3,
+    "price": [60],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": -8,
+      "ManaRegen": -10,
+      "ShieldMax": 100,
+      "ShieldRegen": 1
+    }
+  },
+  {
+    "name": "of Iron Dust Telekinesis",
+    "rarity": 4,
+    "price": [135],
+    "category": "Incantation",
+    "isPrefix": false,
+    "attributesModifiers": {
+      "Intelligence": -16,
+      "ManaRegen": -25,
+      "ShieldMax": 200,
+      "ShieldRegen": 3
     }
   }
 ]
